@@ -31,13 +31,7 @@
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
-        "cordova-plugin-file-opener2": {
-            "PACKAGE_NAME": "com.controlcondo.phonega"
-        },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.controlcondo.phonega"
-        },
-        "cordova-plugin-fileopener": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-geolocation": {
