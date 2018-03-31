@@ -8,8 +8,8 @@
        First Control Sistemas Inteligentes Ltda. Epp
     </author>
     <content src="index.html" />
+	<preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="orientation" value="portrait" />
