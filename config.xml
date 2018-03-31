@@ -8,7 +8,7 @@
        First Control Sistemas Inteligentes Ltda. Epp
     </author>
     <content src="index.html" />
-	<preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
@@ -132,5 +132,6 @@
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
     <plugin name="cordova-plugin-ionic-keyboard" source="npm" />
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
     <engine name="android" spec="^7.0.0" />
 </widget>
