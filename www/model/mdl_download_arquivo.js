@@ -9,6 +9,16 @@ function download_arquivo(path,tipo,nome){
 	
     var filePath = cordova.file.externalRootDirectory+'Download/'+nome+'.'+tipo;
     //var filePath = cordova.file.applicationStorageDirectory+'Download/'+nome+'.'+tipo;
+	//$("#wait").show();
+	fileTransfer.onprogress = function(progressEvent) {
+		if (progressEvent.lengthComputable) {
+		  //loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+			//alert(progressEvent.loaded);
+		} else {
+		  //loadingStatus.increment();
+			
+		}
+	};
     fileTransfer.download(
         uri,
         filePath,
@@ -16,6 +26,12 @@ function download_arquivo(path,tipo,nome){
             console.log("download complete: " + entry.fullPath);
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
+			//alert(path);
+			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			var myCallback = function(event) { console.log('envio ok'); }
+			ref.addEventListener('loadstart', myCallback);
+			ref.addEventListener('loaderror', myCallback);
+			ref.removeEventListener('loadstart', myCallback);
             //window.open(path, "_system");
 
         },
