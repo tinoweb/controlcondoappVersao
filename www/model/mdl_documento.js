@@ -38,8 +38,8 @@ function carrega_documentos(tipo){
             for (x in retorno) {
                 caminho = retorno[x]['local'].split('../');
                 tipo_ = caminho[1].split('.');
-                dado  = '<div class="documento"><span>Categoria: '+retorno[x]['descricao']+'</span><div style="width:100%"><div class="documento_foto" style="background-image:url(img/'+retorno[x]['tipo']+')"></div><strong>'+retorno[x]['titulo']+'</strong></div><div style="width:100% ; float: left"><img class="download" src="img/download.png" width="40" onClick="download_arquivo(\'';
-				dado += localStorage.getItem('DOMINIO')+caminho[1]+'\',\''+tipo_[1]+'\',\''+retorno[x]['titulo']+'\')"></div></div>';
+                dado  = '<div class="documento"><span>Categoria: '+retorno[x]['descricao']+'</span><div style="width:100%"><div class="documento_foto" style="background-image:url(img/'+retorno[x]['tipo']+')"></div><strong>'+retorno[x]['titulo']+'</strong></div><div style="width:100% ; float: left"><div class="block" style="margin:8px"><button style="margin-left:26%;width:50%" class="col button button-fill color-green" href="#" onClick="download_arquivo(\'';
+				dado += localStorage.getItem('DOMINIO')+caminho[1]+'\',\''+tipo_[1]+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button></div></div></div>';
                 dados = dados + dado;
             }
 			if(tipo === 0){

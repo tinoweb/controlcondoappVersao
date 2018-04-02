@@ -141,7 +141,9 @@ function carrega_comunicado(id){
 function carrega_comunicado_arq(id){
 	
     var dados = '';
-    var dado = '';
+    var dado  = '';
+	var ext;
+	var num;
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
@@ -152,7 +154,11 @@ function carrega_comunicado_arq(id){
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
-                dado = '<div>'+retorno[x]['nome_arquivo']+'<span onClick="download_arq_comunicado(\''+retorno[x]['caminho']+'\',\''+retorno[x]['nome_arquivo']+'\');">baixa</span></div>';
+				num  = parseInt(x);
+				num += 1;
+				ext = retorno[x]['nome_arquivo'];
+				ext = ext.split('.');
+                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arq_comunicado(\''+retorno[x]['caminho']+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
                 //alert(retorno[x]['caminho']);
                 dados = dados + dado;
             }
@@ -340,22 +346,41 @@ function comentario_update() {
 
 function download_arq_comunicado(caminho,arquivo) {
     //salert(path);
-    caminho = caminho.replace("../","");
-    var path = localStorage.getItem('DOMINIO')+caminho+arquivo;
+    caminho      = caminho.replace("../","");
+    var path     = localStorage.getItem('DOMINIO')+caminho+arquivo;
+	var extencao = arquivo.split(".");
+	var ext      = extencao[1];
     //alert(path);
     console.log(cordova.file.externalRootDirectory);
+	statusDom    = document.querySelector('#status');
+	$('#downloadProgress').css({"display":"block"});
+  	app2.progressbar.set('#status', "0");
+	
     var fileTransfer = new FileTransfer();
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
 	
     var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
+	fileTransfer.onprogress = function(progressEvent) {
+		if (progressEvent.lengthComputable) {
+			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+			statusDom.innerHTML = perc + "%...";
+			app2.progressbar.set('#status', perc);
+		}
+	};
     //var filePath = cordova.file.applicationStorageDirectory+'Download/'+arquivo;
     fileTransfer.download(
         uri,
         filePath,
         function(entry) {
             console.log("download complete: " + entry.fullPath);
-            notifica('Download/Download Concluído /ok',0,0);
+			$('#downloadProgress').css({"display":"none"});
+            //notifica('Download/Download Concluído90 /ok',0,0);
+			var path = entry.toURL(); //**THIS IS WHAT I NEED**
+			//alert(path);
+			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			//alert(JSON.stringify(ref, null, 4));
+            //window.open(path, "_system");
 
         },
         function(error) {
@@ -371,3 +396,4 @@ function download_arq_comunicado(caminho,arquivo) {
         }
     );
 }
+

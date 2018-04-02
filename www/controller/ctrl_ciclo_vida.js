@@ -112,6 +112,7 @@ function onBackKeyDown() {
     }
     
     if(localStorage.getItem('TELA_ATUAL') == 'qrcode_gera'){	
+		openPopUp();
         afed('#home','#qrcode','','',2);
         localStorage.setItem('TELA_ATUAL','liberacao_list');
     }

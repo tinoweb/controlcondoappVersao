@@ -234,6 +234,15 @@
 	<img src="img/aguarde.gif" width="50" style="margin-top: 70%">
 </div>
 	
+<div id="downloadProgress">
+	<div class="block-strong">
+		<p>Download</p>
+		<div>
+			<p><div data-progress="0" class="progressbar" id="status"></div></p>
+		</div>
+	</div>
+</div>	
+	
 <!----------------------------------------------  $LOGIN   ----------------------------------------------------->   
 
 <div id="login_ini" class="login_ini">
@@ -453,7 +462,7 @@
 			</p><p style="text-align: left; margin-top: 20px">Para dúvidas e sugestões, encaminhe e-mail para controlcondo@firstcontrol.com.br <br><br>
 				Visite nosso site: <a href="#" onClick="window.open('http://www.firstcontrol.com.br', '_system');">www.firstcontrol.com.br</a><br><br>
 				Visite nosso canal no youtube: <a href="#" onClick="window.open('https://www.youtube.com/channel/UCdas9PY7vrJhL9GENETHsew','_system')">CONTROL GUARITA</a><br><br>
-			Av. dos Expedicionários 285 - Paulínia - SP
+			Av. Argentina 252 - Paulínia - SP
 			Telefone: (19) 3244-7142
 			</p>
             <!--<form name="form_contato" id="contato">
@@ -871,8 +880,8 @@
             <div id="anexos_comunicado" class="anexos_comunicado"></div>
             <div id="comentario_curtir" class="comentario_curtir">
 				
-                <img src="img/curtir.png" id="curtir" class="curtir" style="float: left">                        
-                <img src="img/descurtir.png" id="descurtir" class="descurtir" style="float: left">
+                <img src="img/curtir.png" id="curtir" class="curtir" style="float: left; width: 30px">                        
+                <img src="img/descurtir.png" id="descurtir" class="descurtir" style="float: left; width: 30px">
 				<div id="ncurtida" class="badge" style="margin-top: 8px;float: left">99+</div>
 				<div style="float: left;margin-top: 8px;">&nbsp;Curtir</div>
                 
@@ -892,18 +901,22 @@
 			<span class="title">Comunicado</span>
 		</div>
 	</div>
-	<p class="title" style="margin: 10px">COMENTÁRIOS</p>
-    <div class="scroll">
-        <div id="comentario_comunicado" class="comentario_comunicado" style="height: 80%"></div>
-        <form id="form_comenta">
-            <div class="form-group" >
-                <input type="hidden" name="id_comunicado" id='id_comunicado_comentario' value="">
-                <input type="hidden" name="id_comunicado_comentario" value="0">
-                <input type="hidden" name="id_usuario_condominio" id="id_usuario_condominio_comentario" value="">
-                <input class="form-control" type="text" name="comentario" id="txt_comenta" style="width: 100%;color: #ad9d9d;border: 1px solid;background-color: #ddd; margin-bottom: 54px; border-radius: 5px;">
-                <button class="col button button-fill color-green" type="button" id="bt_comenta" onClick="comentar();" style="float: right; margin-top: -33px;"><i class="fa fa-paper-plane-o"></i></button>
-            </div>
-        </form>
+	<form id="form_comenta">
+		<div class="form-group" >
+			<input type="hidden" name="id_comunicado" id='id_comunicado_comentario' value="">
+			<input type="hidden" name="id_comunicado_comentario" value="0">
+			<input type="hidden" name="id_usuario_condominio" id="id_usuario_condominio_comentario" value="">
+			<input type="text" name="comentario" id="txt_comenta" placeholder="Digite seu comentário" style="width: 100%;color: #ad9d9d;border: 1px solid; border-radius: 5px;padding: 8px">
+			<p class="segmented segmented-raised">
+				<button class="button" type="button"  id="bt_comenta" onClick="comentar()"><i class="fa fa-paper-plane-o"></i>Enviar</button>
+			</p>
+			<!--
+" 
+<button class="col button button-fill color-green" type="button" id="bt_comenta" onClick="comentar();" style="float: right; margin-top: -33px;"><i class="fa fa-paper-plane-o"></i></button>-->
+		</div>
+	</form>
+    <div class="scroll">     
+		<div id="comentario_comunicado" class="comentario_comunicado" style="height: 80%"></div>		
     </div>
 </div>
 

@@ -3,6 +3,10 @@
 function download_arquivo(path,tipo,nome){
     //salert(path);
     console.log(cordova.file.externalRootDirectory);
+	statusDom    = document.querySelector('#status');
+	$('#downloadProgress').css({"display":"block"});
+  	app2.progressbar.set('#status', "0");
+	
     var fileTransfer = new FileTransfer();
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
@@ -12,11 +16,9 @@ function download_arquivo(path,tipo,nome){
 	//$("#wait").show();
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
-		  //loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
-			//alert(progressEvent.loaded);
-		} else {
-		  //loadingStatus.increment();
-			
+			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+			statusDom.innerHTML = perc + "%...";
+			app2.progressbar.set('#status', perc);
 		}
 	};
     fileTransfer.download(
@@ -24,6 +26,7 @@ function download_arquivo(path,tipo,nome){
         filePath,
         function(entry) {
             console.log("download complete: " + entry.fullPath);
+			$('#downloadProgress').css({"display":"none"});
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
@@ -36,6 +39,7 @@ function download_arquivo(path,tipo,nome){
 
         },
         function(error) {
+			$('#downloadProgress').css({"display":"none"});
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
             //console.log("upload error code" + error.code);

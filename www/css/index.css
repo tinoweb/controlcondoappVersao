@@ -63,6 +63,13 @@ pre {
   overflow: auto;
   padding: 5px;
 }
+#downloadProgress{
+	display: none;
+	position: absolute;
+    z-index: 9000;
+    background-color: #ddd;
+    width: 100%;
+}
 .main {
   flex: 1;
   transition: transform .3s;
@@ -1864,7 +1871,7 @@ input, textarea {
 	float:left;
 	margin:5% 0 0 2%;
 	font-size:22px;
-	color:#53c7ec;
+	color: #235780;
 }
 
 .comunicados2 .comunicado .txt_comunicado {
@@ -1967,9 +1974,8 @@ input, textarea {
 }
 
 .comunicados2 .comunicado .comunicado_comentar {
-    width: 50%;
-    float: left;
-    margin: 0;   
+	float: right;
+    margin-right: 10px;
     margin-top: 8px;
 }
 
@@ -2046,15 +2052,16 @@ input, textarea {
 }
 
 .comunicados_comentario .comentario_comunicado .comentario .txt_comentario{
-    width: 75%;
+	width: 81%;
     float: left;
     margin: 2% 0 0 2%;
-    background-color: aliceblue;
+    background-color: #f5f5f5;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .comunicados_comentario .comentario_comunicado .comentario .txt_comentario .nome_comentario{
-    color: violet;
+    color: #41648a;
 }
 
 

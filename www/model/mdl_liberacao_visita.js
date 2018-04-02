@@ -310,6 +310,10 @@ function download_qrcode(){
     console.log('0');
     console.log(cordova.file.externalRootDirectory);
     console.log('1');
+	statusDom    = document.querySelector('#status');
+	$('#downloadProgress').css({"display":"block"});
+  	app2.progressbar.set('#status', "0");
+	
     var fileTransfer = new FileTransfer();
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     //var canvas = document.getElementById('qr_s_teste');
@@ -317,12 +321,27 @@ function download_qrcode(){
     var uri = encodeURI(dataURL);
     var filePath = cordova.file.externalRootDirectory+'Download/qrcode.png';
     console.log('2');
+	fileTransfer.onprogress = function(progressEvent) {
+		if (progressEvent.lengthComputable) {
+			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+			statusDom.innerHTML = perc + "%...";
+			app2.progressbar.set('#status', perc);
+		}
+	};
     fileTransfer.download(
         uri,
         filePath,
         function(entry) {
             console.log("download complete: " + entry.fullPath);
-            notifica('Download/Download Concluido/ok',0,0);
+			$('#downloadProgress').css({"display":"none"});
+            //notifica('Download/Download Concluído90 /ok',0,0);
+			var path = entry.toURL(); //**THIS IS WHAT I NEED**
+			//alert(path);
+			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			var myCallback = function(event) { console.log('envio ok'); }
+			ref.addEventListener('loadstart', myCallback);
+			ref.addEventListener('loaderror', myCallback);
+			ref.removeEventListener('loadstart', myCallback);
         },
         function(error) {
             console.log("download error source " + error.source);
