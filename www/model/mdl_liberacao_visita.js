@@ -82,6 +82,7 @@ function carrega_liberacao_visita(visita,tipo){
                     }
                     todo_motivos = todo_motivos + motivo;
                 }
+				$( "#new_visit" ).attr('onClick',"");
                 $( "#add_liberacao #visita_motivo" ).html(todo_motivos);
                 $( "#add_liberacao #id" ).val(retorno[0]['id']);
                 $( "#add_liberacao #tipo" ).val(tipo);
@@ -146,6 +147,8 @@ function adiciona_liberacao(){
 	var hora = dt_atual_1.getHours()+":"+dt_atual_1.getMinutes();
     //alert(hora);
     //alert(dt_2);
+	$("#new_visit").attr('onClick',"afed('#visitantes','#liberacao2','','','2');$('#visitante_busca').val('');localStorage.setItem('TELA_ATUAL','visitantes');$('#retorno_visita').html('');$('#visitante_busca').focus()");
+	
 	$( "#add_liberacao #id" ).val('0');
 	$( "#add_liberacao #tipo" ).val('0');
 	$( "#add_liberacao #nome" ).val(' ');
