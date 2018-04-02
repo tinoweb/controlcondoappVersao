@@ -66,9 +66,10 @@ function login_user_device(){
                             $( "#DADOS #PARENTESCO" ).val(retorno[0]['parentesco']);
                             MORADOR_SEXO = retorno[0]['masculino'];
                             QUADRA = retorno[0]['rquadra']+' '+retorno[0]['quadra'];
+							
                             LOTE = retorno[0]['rlote']+' '+retorno[0]['lote'];
 
-                            localStorage.setItem('ROTULO_QUADRA',retorno[0]['rquadra']);
+                            localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                             localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
 
                             $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
@@ -244,7 +245,7 @@ function select_user() {
                     QUADRA = retorno[0]['rquadra']+' '+retorno[0]['quadra'];
                     LOTE = retorno[0]['rlote']+' '+retorno[0]['lote'];
 
-                    localStorage.setItem('ROTULO_QUADRA',retorno[0]['rquadra']);
+                    localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                     localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
 
                     $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");

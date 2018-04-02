@@ -1,4 +1,5 @@
 // JavaScript Document
+
 function carrega_chat(par=''){
     var dados = '';
 	localStorage.setItem("TELA_ATUAL","chat_msg");
@@ -44,7 +45,8 @@ function carrega_chat(par=''){
                     var ultima_data = '';
                 }else{
                     var ultima_data = retorno[x]['data_c'];
-                }				
+                }
+				
                 morador = '<div onClick="carrega_msg('+retorno[x]['id_usuario_condominio']+',\''+retorno[x]['nome']+'\',\''+retorno[x]['foto']+'\');" class="fale_usuario"><div class="morador_foto" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span style=    "color: black;font-weight: bold;" class="item-title">'+retorno[x]['nome']+'<br></span>'+grupos+'<span style="color: #928c8c; float: left;    width: 70%;">'+localStorage.getItem('ROTULO_QUADRA')+' '+retorno[x]['descricao']+' - '+localStorage.getItem('ROTULO_LOTE')+' '+retorno[x]['lote']+'</span><div '+alerta_msg+' class="badge color-red" id="msg_n_lida">'+retorno[x]['msg']+'</div><div style="font-size: 10px; color: green;float: right;">'+ultima_data+'</div></div>';
               
                 dados = dados + morador;
