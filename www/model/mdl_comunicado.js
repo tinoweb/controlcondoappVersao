@@ -85,7 +85,9 @@ function carrega_comunicados(tipo){
 
 // FUNCAO CARREGA UM COMINICADO ESPECIFICO
 function carrega_comunicado(id){
-
+	var id_condominio         = $( "#DADOS #ID_CONDOMINIO" ).val();
+	var id_usuario_condominio = $( "#DADOS #ID_USER" ).val();
+	//alert("Condominio: "+id_condominio+" usuario: "+id_usuario_condominio);
     var dados = '';
 	$.ajax({
 		type: 'POST',
@@ -98,12 +100,14 @@ function carrega_comunicado(id){
 		success: function(retorno){
             //alert(retorno);
             $( ".comunicado_titulo" ).html(retorno[0]['titulo']);
+			//alert('classe titulo');
             $( "#comunicados_comentario span" ).html(retorno[0]['titulo'].substring(0,53));
             $( "#comunicados2 .comunicado .topo_comunicado .morador_foto" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
             $( "#comunicados2 .comunicado .topo_comunicado span" ).html(retorno[0]['data_criacao']);
             $( "#comunicados2 .comunicado .topo_comunicado strong" ).html(retorno[0]['criado']);
             $( "#comunicados2 .comunidado .comunicado_titulo" ).html(retorno[0]['titulo']);
-            //alert(retorno[0]['texto']);
+			
+            alert(retorno[0]['texto']);
             $( "#txt_comunicado" ).html(retorno[0]['texto']);
             $( "#id_comunicado_comentario" ).val(id);
             $( "#id_usuario_condominio_comentario" ).val($( "#DADOS #ID_USER" ).val());
@@ -112,12 +116,15 @@ function carrega_comunicado(id){
                 afed('#comunicados2 .comunidado #anexos_comunicado','','','',1);
                 carrega_comunicado_arq(id);
             }
+			//alert("fim1");
             if(retorno[0]['ativa_comentarios'] == 1){
                 //afed('#comentario_comunicado','','','',1);
                 carrega_comunicado_comentario(id);
             }
+			//alert("fim2");
 			afed('#comunicados2','#comunicados,#home','','',3);
             localStorage.setItem('TELA_ATUAL','comunicado');
+			//alert("fim3");
 		},
         error      : function() {
             //alert('Erro ao carregar');

@@ -63,10 +63,10 @@
             document.addEventListener("deviceready",onDeviceReady,false); 
             function onDeviceReady() { 
                      var push = PushNotification.init({ 
-                         "android": {"senderID": "226803209983"},
+                         "android": {"senderID": "484379421838"},
                          "browser": {},
                          "ios": { 
-                             "senderID": "226803209983",
+                             "senderID": "484379421838",
                              "alert": true,
                              "sound": true, 
                              "vibration": true, 
@@ -80,7 +80,11 @@
                      });        
                      push.on('notification', function(data) {
                          var titulo_notifica = data.title;
+						 localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
+						 localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
+						 localStorage.setItem("NOT_COND",data.additionalData.condominio);
                          console.log('notification event');
+						 //alert(JSON.stringify(data, null, 4));
                          if(titulo_notifica == 'Chat'){
                              if(localStorage.getItem('TELA_ATUAL') == 'chat'){
                                  carrega_msg_eviadas($( "#DADOS #ID_USER" ).val(), $( "#DADOS #CHAT_USER" ).val());
@@ -89,25 +93,43 @@
                              }
                          }
                          if(localStorage.getItem('TELA_ATUAL') != 'chat'){
-                             navigator.notification.alert(
+                             navigator.notification.confirm(
                                 data.message,         // message
-                                null,                 // callback
-                                data.title,           // title
-                                'Ok'                  // buttonName
+                                onConfirm,            // callback
+                                data.title,
+                                ['Abrir','Cancelar']  // buttonName
                              );
-                         }
-//                         navigator.notification.prompt(
-//                            'Please enter your name',  // message
-//                            onPrompt,                  // callback to invoke
-//                            'Registration',            // title
-//                            ['Ok','Exit'],             // buttonLabels
-//                            'Jane Doe'                 // defaultText
-//                        );                     
+                         }                    
                      }); 
            
                      push.on('error', function(e) { 
-                     //alert(e); 
+                     	alert(e); 
                      }); 
+					 function onConfirm(buttonIndex) {
+						if(buttonIndex===1){
+							var id_reg    = localStorage.getItem("NOT_ID");
+							var tipo      = localStorage.getItem("NOT_TYPE");
+							var not_cond  = localStorage.getItem("NOT_COND");
+							var atu_cond  = $( "#DADOS #ID_CONDOMINIO" ).val();
+							// VERIFICA SE O CONDOMINIO É O MESMO LOGADO
+							if(not_cond == atu_cond){
+								// TIPO 1= COMUNICADO 2= DOCUMENTO  3 = ENQUETE  4 = CHAT
+								//alert("reg: "+id_reg+" tipo: "+tipo);
+								if(id_reg > 0){
+									if(tipo==1){
+										carrega_comunicado(id_reg);
+									}else if(tipo==2){
+										carrega_documento(id_reg);
+									}else if(tipo==3){
+										carrega_enquete(id_reg);
+									}else if(tipo==4){
+										inicia(1);
+									}
+								}
+							}
+						}
+    					
+				 	 } 
                      //app.initialize();
             }  
         </script> 
@@ -553,7 +575,7 @@
 			<div class="title">Conf. de Notificações</div>
 		</div>
 	</div>	
-    <div class="scroll">
+    <div class="scroll" style="height: 85%">
         <strong>COMUNICADOS</strong>
         <form id="not_conf_up">
 
@@ -826,7 +848,8 @@
 	</div>
 </div>
         
-<!--------------------------------------------    $COMUNICADOS     -------------------------------------------->        
+<!--------------------------------------------    $COMUNICADOS     -------------------------------------------->
+	
 
 <div id="comunicados" class="pagina comunicados">
 	<div class="view view-comunicados">
@@ -1194,7 +1217,8 @@
 
 </div>     
 
-<!---------------------------------------------   $RESERVAS        ------------------------------------------->	
+<!---------------------------------------------   $RESERVAS        -------------------------------------------->
+	
 
 <div id="reservas" class="pagina reservas">
 	<div class="navbar" style="height: 50px">		
@@ -1353,6 +1377,7 @@
 </div>        
 
 <!---------------------------------------------   $ENTREGAS         ------------------------------------------>
+	
 
 <div id="entregas" class="pagina entregas">
 	<div class="view view-entregas">
@@ -1381,6 +1406,7 @@
 </div>
 
 <!---------------------------------------------   $ENQUETES         ------------------------------------------>
+	
 
 <div id="enquetes" class="pagina enquetes">
 	<div class="view view-enquetes">
@@ -1461,6 +1487,7 @@
         </div>
 
 <!---------------------------------------------   $DOCUMENTOS       ------------------------------------------>
+	
 
 <div id="documentos" class="pagina documentos">
 	<div class="view view-documentos">
@@ -1498,6 +1525,7 @@
 </div>
 
 <!---------------------------------------------   $RELATORIOS       ------------------------------------------>
+	
 
 <div id="relatorios" class="pagina relatorios">
 	<div class="topo_sub" style="background-color:#53c7ec;">
@@ -1512,6 +1540,7 @@
 </div>
 </div>
 <!---------------------------------------------   $FUNCOES          ------------------------------------------>
+	
 <script type="text/javascript">
 	app.initialize();
 	$(document).ajaxStart(function(){
