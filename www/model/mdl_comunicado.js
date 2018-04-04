@@ -107,7 +107,7 @@ function carrega_comunicado(id){
             $( "#comunicados2 .comunicado .topo_comunicado strong" ).html(retorno[0]['criado']);
             $( "#comunicados2 .comunidado .comunicado_titulo" ).html(retorno[0]['titulo']);
 			
-            alert(retorno[0]['texto']);
+            //alert(retorno[0]['texto']);
             $( "#txt_comunicado" ).html(retorno[0]['texto']);
             $( "#id_comunicado_comentario" ).val(id);
             $( "#id_usuario_condominio_comentario" ).val($( "#DADOS #ID_USER" ).val());
