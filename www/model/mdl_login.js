@@ -336,6 +336,7 @@ function perfil_notificacao(id_condominio){
             var tipo      = localStorage.getItem("NOT_TYPE");
             var not_cond  = localStorage.getItem("NOT_COND");
             var atu_cond  = $( "#DADOS #ID_CONDOMINIO" ).val();
+            alert(id_reg+' '+tipo+' '+not_cond+' '+atu_cond);
             // VERIFICA SE O CONDOMINIO É O MESMO LOGADO
             if(not_cond == atu_cond){
                 // TIPO 1= COMUNICADO 2= DOCUMENTO  3 = ENQUETE  4 = CHAT
