@@ -198,9 +198,14 @@ function carrega_user_perfil(id) {
 }
 
 // FUNCAO LOGIN TROCA USUARIO
-function select_user() {
+function select_user(id_usuario_condominio=0) {
 	if(navigator.connection.type != 'none'){
-		var dados = $( "#form_perfil" ).serialize();
+        if(id_usuario_condominio == 0){
+            var dados = $( "#form_perfil" ).serialize();
+        }else{
+            var dados = 'perfil='+id_usuario_condominio;
+        }
+		
 		$.ajax({
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
@@ -325,9 +330,9 @@ function perfil_notificacao(id_condominio){
         complete   : function() { },
         dataType   : 'json',
 		success: function(retorno){
-            alert(retorno);
-            alert(retorno['id_usuario_condominio']);
-            alert(retorno[0]['id_usuario_condominio']);
+            //alert(retorno[0]['id_usuario_condominio']);
+            select_user(retorno[0]['id_usuario_condominio']);
+            alert('Foi');
 		}
 	});
 }
