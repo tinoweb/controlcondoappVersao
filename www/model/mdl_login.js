@@ -325,7 +325,9 @@ function perfil_notificacao(id_condominio){
         complete   : function() { },
         dataType   : 'json',
 		success: function(retorno){
+            alert(retorno);
             alert(retorno['id_usuario_condominio']);
+            alert(retorno[0]['id_usuario_condominio']);
 		}
 	});
 }
