@@ -314,3 +314,14 @@ function logout(){
 		}
 	});
 }
+
+function perfil_notificacao(id_condominio){
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
+		data: 'id_usuario='+$( "#DADOS #ID_USER_L" ).val()+'&id_condominio='+id_condominio,
+		success: function(retorno){
+            alert(retorno['id_usuario_condominio']);
+		}
+	});
+}

@@ -149,7 +149,9 @@
     					
 				 	 } 
 					 function onConfirm_condo(buttonIndex) {
-                         alert(buttonIndex);
+                         if(buttonIndex===1){
+                             perfil_notificacao(localStorage.getItem("NOT_COND"));
+                         }
                      }
                      //app.initialize();
             }  
