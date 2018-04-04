@@ -320,8 +320,12 @@ function perfil_notificacao(id_condominio){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
 		data: 'id_usuario='+$( "#DADOS #ID_USER_L" ).val()+'&id_condominio='+id_condominio,
+        crossDomain: true,
+        beforeSend : function() { },
+        complete   : function() { },
+        dataType   : 'json',
 		success: function(retorno){
-            alert(retorno[0]['id_usuario_condominio']);
+            alert(retorno['id_usuario_condominio']);
 		}
 	});
 }
