@@ -198,9 +198,14 @@ function carrega_user_perfil(id) {
 }
 
 // FUNCAO LOGIN TROCA USUARIO
-function select_user() {
+function select_user(id_usuario_condominio=0) {
 	if(navigator.connection.type != 'none'){
-		var dados = $( "#form_perfil" ).serialize();
+        if(id_usuario_condominio == 0){
+            var dados = $( "#form_perfil" ).serialize();
+        }else{
+            var dados = 'perfil='+id_usuario_condominio;
+        }
+		
 		$.ajax({
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
@@ -311,6 +316,36 @@ function logout(){
 			afed('#login_ini','#home','','',2);
             localStorage.setItem('TELA_ATUAL','tela_login');
 
+		}
+	});
+}
+
+function perfil_notificacao(id_condominio){
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
+		data: 'id_usuario='+$( "#DADOS #ID_USER_L" ).val()+'&id_condominio='+id_condominio,
+        crossDomain: true,
+        beforeSend : function() { },
+        complete   : function() { },
+        dataType   : 'json',
+		success: function(retorno){
+            //alert(retorno[0]['id_usuario_condominio']);
+            select_user(retorno[0]['id_usuario_condominio']);
+            var id_reg    = localStorage.getItem("NOT_ID");
+            var tipo      = localStorage.getItem("NOT_TYPE");
+            if(id_reg > 0){
+                if(tipo==1){
+                    carrega_comunicado(id_reg);
+                }else if(tipo==2){
+                    carrega_documentos(0);
+                }else if(tipo==3){
+                    carrega_enquete(id_reg);
+                }else if(tipo==4){
+                    inicia2(1);
+                    carrega_chat();
+                }
+            }
 		}
 	});
 }

@@ -90,14 +90,15 @@
                              if(titulo_notifica == 'Chat'){
                                  if(localStorage.getItem('TELA_ATUAL') == 'chat'){
                                      carrega_msg_eviadas($( "#DADOS #ID_USER" ).val(), $( "#DADOS #CHAT_USER" ).val());
-                                 }else{
-                                     navigator.notification.confirm(
-                                        data.message,         // message
-                                        onConfirm,            // callback
-                                        data.title,
-                                        ['Abrir','Cancelar']  // buttonName
-                                     );
                                  }
+//                                 else{
+//                                     navigator.notification.confirm(
+//                                        data.message,         // message
+//                                        onConfirm,            // callback
+//                                        data.title,
+//                                        ['Abrir','Cancelar']  // buttonName
+//                                     );
+//                                 }
                              }
                              if(localStorage.getItem('TELA_ATUAL') != 'chat'){
                                  navigator.notification.confirm(
@@ -110,7 +111,7 @@
                              
                          }else{
                              navigator.notification.confirm(
-                                'Voce recebeu uma mnssagem de outro condominio. Deseja trocar de condominio?',         // message
+                                'Voce recebeu uma Notificação de outro condominio. Deseja trocar de condominio?',         // message
                                 onConfirm_condo,            // callback
                                 'Trocar de Condominio',
                                 ['Sim','Nao']  // buttonName
@@ -139,8 +140,8 @@
 									}else if(tipo==3){
 										carrega_enquete(id_reg);
 									}else if(tipo==4){
+                                        inicia2(1);
                                         carrega_chat();
-										inicia(1);
 									}
 								}
 							}
@@ -148,7 +149,9 @@
     					
 				 	 } 
 					 function onConfirm_condo(buttonIndex) {
-                         alert(buttonIndex);
+                         if(buttonIndex===1){
+                             perfil_notificacao(localStorage.getItem("NOT_COND"));
+                         }
                      }
                      //app.initialize();
             }  
