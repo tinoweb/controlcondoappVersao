@@ -332,7 +332,27 @@ function perfil_notificacao(id_condominio){
 		success: function(retorno){
             //alert(retorno[0]['id_usuario_condominio']);
             select_user(retorno[0]['id_usuario_condominio']);
-            alert('Foi');
+            var id_reg    = localStorage.getItem("NOT_ID");
+            var tipo      = localStorage.getItem("NOT_TYPE");
+            var not_cond  = localStorage.getItem("NOT_COND");
+            var atu_cond  = $( "#DADOS #ID_CONDOMINIO" ).val();
+            // VERIFICA SE O CONDOMINIO É O MESMO LOGADO
+            if(not_cond == atu_cond){
+                // TIPO 1= COMUNICADO 2= DOCUMENTO  3 = ENQUETE  4 = CHAT
+                //alert("reg: "+id_reg+" tipo: "+tipo);
+                if(id_reg > 0){
+                    if(tipo==1){
+                        carrega_comunicado(id_reg);
+                    }else if(tipo==2){
+                        carrega_documentos(0);
+                    }else if(tipo==3){
+                        carrega_enquete(id_reg);
+                    }else if(tipo==4){
+                        inicia2(1);
+                        carrega_chat();
+                    }
+                }
+            }
 		}
 	});
 }
