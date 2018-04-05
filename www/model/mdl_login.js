@@ -335,8 +335,8 @@ function perfil_notificacao(id_condominio){
             select_user(retorno[0]['id_usuario_condominio']);
             var id_reg    = localStorage.getItem("NOT_ID");
             var tipo      = localStorage.getItem("NOT_TYPE");
-            alert(id_reg+' --- '+tipo);
             if(id_reg > 0){
+                alert('teste');
                 if(tipo==1){
                     carrega_comunicado(id_reg);
                 }else if(tipo==2){
@@ -344,6 +344,7 @@ function perfil_notificacao(id_condominio){
                 }else if(tipo==3){
                     carrega_enquete(id_reg);
                 }else if(tipo==4){
+                    alert('teste2');
                     inicia2(1);
                     carrega_chat();
                 }
