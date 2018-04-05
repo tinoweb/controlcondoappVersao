@@ -87,7 +87,7 @@ function verifica_data_ativas(ini,fim,ativo) {
 			//alert(iniDate);
 			$( "#h_"+i ).css("background-color","white");
 			$( "#h_"+i ).css("color","black");
-			$( "#h_"+i ).css("border-color","green")
+			$( "#h_"+i ).css("border-color","#4caf50")
 			var bt_add = document.getElementById('h_'+i);
 			bt_add.setAttribute("onclick", "adiciona_reserva('"+i+"')");
 		}
