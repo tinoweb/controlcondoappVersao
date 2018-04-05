@@ -350,7 +350,8 @@ function perfil_notificacao(id_condominio){
                         carrega_chat();
                     }
                 }
-            }, 500);            
+            }, 500);
+            clearInterval(intervalo);
 		}
 	});
 }
