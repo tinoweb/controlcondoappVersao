@@ -28,6 +28,7 @@ function login_user_device(){
                         afed('#login_perfil,#troca_perfil','#login_ini','','',3);
                         carrega_user_perfil(retorno[0]['id_usuario']);
                         localStorage.setItem('TELA_ATUAL','perfil_login');
+                        $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                     }else{
                         if(retorno[0]['usar_control_condo'] == 1){
                             //alert('Perfil:'+retorno[0]['usar_control_condo']);
