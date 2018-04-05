@@ -322,7 +322,6 @@ function logout(){
 }
 
 function perfil_notificacao(id_condominio){
-    alert($( "#DADOS #ID_USER_L" ).val()+" "+id_condominio);
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
@@ -334,9 +333,9 @@ function perfil_notificacao(id_condominio){
 		success: function(retorno){
             //alert(retorno[0]['id_usuario_condominio']);
             select_user(retorno[0]['id_usuario_condominio']);
-            afed('#home','#login_perfil','','',3);
             var id_reg    = localStorage.getItem("NOT_ID");
             var tipo      = localStorage.getItem("NOT_TYPE");
+            alert(id_reg+' --- '+tipo);
             if(id_reg > 0){
                 if(tipo==1){
                     carrega_comunicado(id_reg);
