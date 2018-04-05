@@ -332,6 +332,7 @@ function perfil_notificacao(id_condominio){
 		success: function(retorno){
             //alert(retorno[0]['id_usuario_condominio']);
             select_user(retorno[0]['id_usuario_condominio']);
+            afed('#home','#login_perfil','','',3);
             var id_reg    = localStorage.getItem("NOT_ID");
             var tipo      = localStorage.getItem("NOT_TYPE");
             if(id_reg > 0){
