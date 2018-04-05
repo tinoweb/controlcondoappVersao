@@ -335,7 +335,7 @@ function perfil_notificacao(id_condominio){
             select_user(retorno[0]['id_usuario_condominio']);
             var id_reg    = localStorage.getItem("NOT_ID");
             var tipo      = localStorage.getItem("NOT_TYPE");
-            var intervalo = window.setInterval(function() {
+            window.setTimeout(function() {
                 if(id_reg > 0){
                     alert('teste');
                     if(tipo==1){
