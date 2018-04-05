@@ -321,6 +321,7 @@ function logout(){
 }
 
 function perfil_notificacao(id_condominio){
+    alert($( "#DADOS #ID_USER_L" ).val()+" "+id_condominio);
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
