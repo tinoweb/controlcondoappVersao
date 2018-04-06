@@ -22,7 +22,7 @@ function carrega_perfil(){
 				$( "#perfil_mulher" ).attr("checked","checked");
 			}
 			$( "#perfil_msg" ).val(retorno[0]['observacao']);
-			$( "#perfil_tel" ).val(retorno[0]['tel_tel']);
+			$( "#perfil_tel" ).val(retorno[0]['tel_res']);
 			$( "#perfil_com" ).val(retorno[0]['tel_com']);
 			$( "#perfil_cel" ).val(retorno[0]['tel_cel']);
             
