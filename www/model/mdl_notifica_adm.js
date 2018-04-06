@@ -151,7 +151,8 @@ function notificacao_conf_update(){
         complete   : function() { },
         data       : 'id_usuario_condominio='+$( "#DADOS #ID_USER" ).val()+'&'+dados,
 		success: function(retorno){
-            alert(retorno);
+            //alert(retorno);
+			notifica('Notificações/Configuração gravada/ok',0,0);
         },
         error      : function() {
             alert('Erro ao carregar');
