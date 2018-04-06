@@ -47,6 +47,7 @@ function atualiza_perfil(){
 		success: function(retorno){
 			//alert(retorno);
             //afed('#home','#perfil2','','',2);
+			notifica('Perfil/Perfil gravado/ok',0,0);
 		},
 		error: function(data){
 			alert('erro');
