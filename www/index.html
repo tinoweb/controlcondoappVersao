@@ -339,7 +339,7 @@
 					<img src="img/logoicon6.png" >
 					<div class="title">ControlCondo</div>
 					<div class="right">
-						<a href="#" onClick="afed('#info','#home','','',2);localStorage.setItem('TELA_ATUAL','info');">
+						<a href="#" onClick="afed('#info','#home','','',2,'info');">
 							<img src="img/help.png" width="30">
 						</a>
 					</div>
@@ -496,7 +496,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a href="#" onClick="afed('#home','#info','','',2);localStorage.setItem('TELA_ATUAL','home')"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#home','#info','','',2,'home');"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title">Informações</div>
 		</div>
@@ -504,7 +504,7 @@
 	<div style="width: 100%;float: left;text-align: center">
 	<img src="img/logo.png" width="180">
 	</div>
-            <p style="margin-top: 15px"><span style="text-align: center">CONTROL CONDO MOBILE - v1.0.13s</span><br><br>
+            <p style="margin-top: 15px"><span style="text-align: center">CONTROL CONDO MOBILE - v1.0.13t</span><br><br>
 				Este aplicativo foi projetado e desenvolvido pela FIRSTCONTROL SISTEMAS INTELIGENTES, e compõe o grupo de sistemas voltados para segurança de acesso a condomínios residenciais; CONTROL GUARITA, CONTROLCONDO e CONTROLCONDOMOBILE.
 			</p><p style="text-align: left; margin-top: 20px">Para dúvidas e sugestões, encaminhe e-mail para controlcondo@firstcontrol.com.br <br><br>
 				Visite nosso site: <a href="#" onClick="window.open('http://www.firstcontrol.com.br', '_system');">www.firstcontrol.com.br</a><br><br>
@@ -525,7 +525,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a href="#" onClick="afed('#home','#perfil2','','',2);"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#home','#perfil2','','',2,'home');"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title">Perfil do Usuário</div>
 		</div>
@@ -593,7 +593,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a href="#" onClick="afed('#home','#config','','',2);"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#home','#config','','',2,'home');"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title">Conf. de Notificações</div>
 		</div>
@@ -784,7 +784,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a href="#" onClick="afed('#home','#moradores','','',2);"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#home','#moradores','','',2,'home');"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title">Moradores</div>
 		</div>
@@ -795,7 +795,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a href="#" onClick="afed('#moradores','#morador','','',2);"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#moradores','#morador','','',2,'moradores');"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title">Morador</div>
 		</div>
@@ -845,7 +845,7 @@
 <div id="fale_msg" class="pagina fale_msg">
 	<div class="page" id="page_chat">
 		<div id="fale_msg_user" class="fale_msg_user">
-			<div onClick="limpa_reload();afed('#home','#fale_msg','','',2);carrega_chat();" id="fale_msg_user_volta" class="fale_msg_user_volta">
+			<div onClick="limpa_reload();afed('#home','#fale_msg','','',2,'home');carrega_chat();" id="fale_msg_user_volta" class="fale_msg_user_volta">
 				<i class="icon icon-back"></i>
 			</div>
 			<div id="fale_msg_user_foto" class="fale_msg_user_foto"></div>
@@ -934,7 +934,7 @@
 				<div style="float: left;margin-top: 8px;">&nbsp;Curtir</div>
                 
             </div>
-            <div id="comunicado_comentar" class="comunicado_comentar" onClick="afed('#comunicados_comentario','#comunicados2','','',1);localStorage.setItem('TELA_ATUAL','comunicado_comentario');$('#txt_comenta').focus();">
+            <div id="comunicado_comentar" class="comunicado_comentar" onClick="afed('#comunicados_comentario','#comunicados2','','',1,'comunicado_comentario');localStorage.setItem('TELA_ATUAL','comunicado_comentario');$('#txt_comenta').focus();">
                 <i class="fa fa-comment-o"></i>&nbsp;Comentar
             </div>
             <div id="comunicado_anexo_retorno"></div>
@@ -973,7 +973,7 @@
 <div id="liberacao2" class="pagina liberacao2">
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
-			<a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2);"><i class="icon icon-back"></i></a>
+			<a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'home');"><i class="icon icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -982,7 +982,7 @@
 			<input type="hidden" name="id_liberacao" id="id" value="0">
 			<input type="hidden" name="tipo" id="tipo" value="0">
 			<input type="hidden" name="id_visitante" id="visita" value="0">
-			<div id="new_visit" onClick="afed('#visitantes','#liberacao2','','','2');$('#visitante_busca').val('');localStorage.setItem('TELA_ATUAL','visitantes');$('#retorno_visita').html('');$('#visitante_busca').focus()">
+			<div id="new_visit" onClick="afed('#visitantes','#liberacao2','','','2','visitantes');$('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()">
 						
 				<div class="form-group">
 					 <div class="item-title item-label">Name</div>
@@ -1078,7 +1078,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a class="link popup-close" href="#" onClick="afed('#visitantes','#visitante','','',2)"><i class="icon icon-back"></i></a>
+				<a class="link popup-close" href="#" onClick="afed('#visitantes','#visitante','','',2,'visitantes')"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title" style="font-size: 16px">Cadastro de Visitante</div>
 		</div>
@@ -1171,7 +1171,7 @@
 				</div>
 			</div>
 			<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_visitante()">
-			<input type="button" value="" style="background-image:url(img/cancela.png); float:right; margin-right:5%; background-color:#F00;" onClick="afed('#visitantes','#visitante','','',2);">
+			<input type="button" value="" style="background-image:url(img/cancela.png); float:right; margin-right:5%; background-color:#F00;" onClick="afed('#visitantes','#visitante','','',2,'visitantes');">
 		</form>		
 	</div>
 </div>
@@ -1180,7 +1180,7 @@
 	   	<div class="navbar" style="height: 50px">		
 			<div class="navbar-inner">
 				<div class="left">
-					<a class="link popup-close" href="#" onClick="afed('#home','#visitantes','','',2);"><i class="icon icon-back"></i></a>
+					<a class="link popup-close" href="#" onClick="afed('#home','#visitantes','','',2,'home');"><i class="icon icon-back"></i></a>
 				</div>
 				<div class="title" style="font-size: 16px">Cadastro de Autorizado</div>
 				<div class="right">
@@ -1200,7 +1200,7 @@
 <div id="qrcode" class="qrcode pagina"  style="background-color: #EAEBED;">
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
-			<a href="#" onClick="openPopUp();afed('#home','#qrcode','','',2);"><i class="icon icon-back"></i></a>
+			<a href="#" onClick="openPopUp();afed('#home','#qrcode','','',2,'home');"><i class="icon icon-back"></i></a>
 			<div class="title">QR Code</div>
 		</div>
 	</div>
@@ -1224,7 +1224,7 @@
 <div id="qrcode_share" class="pagina">
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
-			<a href="#" onClick="afed('#qrcode','#qrcode_share','','',2);"><i class="icon icon-back"></i></a>
+			<a href="#" onClick="afed('#qrcode','#qrcode_share','','',2,'qrcode');"><i class="icon icon-back"></i></a>
 			<div class="title">Compartilhe QR Code</div>
 		</div>
 	</div>
@@ -1247,7 +1247,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
 			<div class="left">
-				<a class="link popup-close" href="#" onClick="afed('#home','#reservas','','',2);"><i class="icon icon-back"></i></a>
+				<a class="link popup-close" href="#" onClick="afed('#home','#reservas','','',2,'home');"><i class="icon icon-back"></i></a>
 			</div>
 			<div class="title" style="font-size: 16px">Reserva de Áreas Comuns</div>
 		</div>
@@ -1262,7 +1262,7 @@
 	<div class="navbar" style="height: 50px;margin-bottom:0px">		
 		<div class="navbar-inner topo_sub">
 			<div class="left">
-				<a href="#" onClick="afed('#reservas','#area,.cale2_titulo','','',2);"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#reservas','#area','','',2,'reservas');"><i class="icon icon-back"></i></a>
 			</div>
 			<span class="title" style="font-size: 16px">Data do Evento</span>
 		</div>
@@ -1346,7 +1346,7 @@
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner topo_sub">
 			<div class="left">
-				<a href="#" onClick="afed('#area','#reserva','','',2);"><i class="icon icon-back"></i></a>
+				<a href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class="icon icon-back"></i></a>
 			</div>
 			<span class="title" style="font-size: 16px">Data do Evento</span>
 		</div>
@@ -1518,7 +1518,7 @@
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">		
 				<div class="navbar-inner">
-					<a href="#" onClick="afed('#home','#documentos','','',2);"><i class="icon icon-back"></i></a>
+					<a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class="icon icon-back"></i></a>
 					<div class="title">Documentos</div>
 				</div>
 			</div>	
@@ -1552,7 +1552,7 @@
 
 <div id="relatorios" class="pagina relatorios">
 	<div class="topo_sub" style="background-color:#53c7ec;">
-		<img onClick="afed('#home','#relatorios','','',2);" src="img/voltar.png">
+		<img onClick="afed('#home','#relatorios','','',2,'home');" src="img/voltar.png">
 		<span>Relatorios</span>
 	</div>
 	<div class="scroll">

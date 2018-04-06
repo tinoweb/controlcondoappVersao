@@ -58,7 +58,7 @@ function login_user_device() {
 					QUADRA = dados_morador[3];
 					LOTE = dados_morador[4];
 					$( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+dados_morador[5]+")");
-					afed('#home','#login_ini','','',3);
+					afed('#home','#login_ini','','',3,'home');
 					inicia(0);
 					$( ".perfil_condominio" ).html(CONDOMINIO);
 					$( ".perfil_nome" ).html(MORADOR_NOME);

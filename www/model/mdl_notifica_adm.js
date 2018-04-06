@@ -115,8 +115,8 @@ function notificacao_configuracao(){
                 $( "#enq_msg" ).attr("checked",false);
             }
             //alert(retorno);
-            afed('#config','#home','','',2);
-            localStorage.setItem('TELA_ATUAL','notificacao_conf');
+            afed('#config','#home','','',2,'notificacao_conf');
+   
         },
         error      : function() {
             //alert('Erro ao carregar');

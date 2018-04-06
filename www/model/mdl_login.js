@@ -25,9 +25,9 @@ function login_user_device(){
                     
                     if(retorno[0]['perfil'] > 1){
                         //alert('teste4');
-                        afed('#login_perfil,#troca_perfil','#login_ini','','',3);
+                        afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
                         carrega_user_perfil(retorno[0]['id_usuario']);
-                        localStorage.setItem('TELA_ATUAL','perfil_login');
+   
                         $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                     }else{
                         if(retorno[0]['usar_control_condo'] == 1){
@@ -100,8 +100,8 @@ function login_user_device(){
                             localStorage.setItem('COR_VIBRA',retorno[0]['COR_VIBRA']);
                             localStorage.setItem('COR_MSG',retorno[0]['COR_MSG']);
 
-                            afed('#home','#login_ini','','',3);
-                            localStorage.setItem('TELA_ATUAL','home');
+                            afed('#home','#login_ini','','',3,'home');
+                            
                             afed('.smenu,#perfil_abre,#perfil','#perfil_edit,#perfil_fecha','','',2);
 
                             $( ".perfil_condominio" ).html(retorno[0]['nome_condominio']);
@@ -279,8 +279,8 @@ function select_user(id_usuario_condominio=0) {
                     localStorage.setItem('COR_TOCA',retorno[0]['COR_TOCA']);
                     localStorage.setItem('COR_VIBRA',retorno[0]['COR_VIBRA']);
                     localStorage.setItem('COR_MSG',retorno[0]['COR_MSG']);
-                    afed('#home','#login_perfil','','',3);
-                    localStorage.setItem('TELA_ATUAL','home');
+                    afed('#home','#login_perfil','','',3,'home');
+                 
 
                     $( ".perfil_condominio" ).html(retorno[0]['nome_condominio']);
                     $( ".perfil_nome" ).html(MORADOR_NOME);
@@ -314,8 +314,8 @@ function logout(){
 		url: localStorage.getItem('DOMINIO')+'appweb/logout.php',
 		data: 'id='+$( "#DADOS #ID_USER_L" ).val(),
 		success: function(retorno){
-			afed('#login_ini','#home','','',2);
-            localStorage.setItem('TELA_ATUAL','tela_login');
+			afed('#login_ini','#home','','',2,'tela_login');
+          
 
 		}
 	});

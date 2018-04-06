@@ -38,7 +38,7 @@ var app = {
 		
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
-                afed('#fale_user','#fale_msg','','',2);
+                afed('#fale_user','#fale_msg','','',2,'fale_user');
             }
             if(swiper.realIndex != 3){
                 afed('.smenu,#perfil_abre,#perfil','#perfil_edit,#perfil_fecha','','',2);

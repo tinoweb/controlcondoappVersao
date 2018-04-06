@@ -46,8 +46,8 @@ function carrega_documentos(tipo){
 				$( "#main_documento" ).html('');
 			}
             $( "#main_documento" ).append(dados);
-			afed('#documentos','#home','','',3);
-            localStorage.setItem('TELA_ATUAL','documentos');		
+			afed('#documentos','#home','','',3,'documentos');
+          		
 		},
         error      : function() {
             //alert('Erro ao carregar');

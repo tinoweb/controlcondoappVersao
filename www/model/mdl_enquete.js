@@ -60,8 +60,8 @@ function carrega_enquetes(tipo){
                 $( "#main_enquete" ).html("");
             }
             $( "#main_enquete" ).append(dados);
-			afed('#enquetes','#home,#enquete','','',3);
-            localStorage.setItem('TELA_ATUAL','enquetes');
+			afed('#enquetes','#home,#enquete','','',3,'enquetes');
+            
 		},
         error      : function() {
             alert('Erro ao carregar');
@@ -87,9 +87,8 @@ function carrega_enquete(id){
             $( "#enquete .enquete_periodo" ).html('Validade de '+retorno[0]['data_inicio']+' ate '+retorno[0]['data_final']);
 			//alert(retorno[0]['voto']);
             //$( "#enquete" ).html(retorno);
-			afed('#enquete','#enquetes,#home','','',3);
-            localStorage.setItem('TELA_ATUAL','enquete');
-            
+			afed('#enquete','#enquetes,#home','','',3,'enquete');
+
 //            var dt_festa = retorno[0]['data_final'];
 //            var dt = dt_festa.split(" ");
 //            var dt_dt = dt[0].split("-");

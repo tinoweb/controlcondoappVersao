@@ -73,8 +73,8 @@ function carrega_comunicados(tipo){
 				$("#main_comunicado").html("");
 			}
 			$( "#main_comunicado" ).append(dados);
-			afed('#comunicados','#home,#comunicados2','','',3);	
-            localStorage.setItem('TELA_ATUAL','comunicados');
+			afed('#comunicados','#home,#comunicados2','','',3,'comunicados');	
+            
             $("pull-comunicados").scrollTop(50);
 		},
         error      : function() {

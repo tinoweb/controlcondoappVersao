@@ -26,8 +26,8 @@ function carrega_perfil(){
 			$( "#perfil_com" ).val(retorno[0]['tel_com']);
 			$( "#perfil_cel" ).val(retorno[0]['tel_cel']);
             
-            afed('#perfil2','#home','','',2);
-            localStorage.setItem('TELA_ATUAL','perfil_usuario_edicao');
+            afed('#perfil2','#home','','',2,'perfil_usuario_edicao');
+           
         },
         error      : function() {
             alert('Erro ao carregar');

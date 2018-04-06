@@ -51,8 +51,8 @@ function carrega_entregas(tipo){
 				$( "#main_correspondencia" ).html('');
 			}
 			$( "#main_correspondencia" ).append(dados);
-			afed('#entregas','#home','','',3);
-            localStorage.setItem('TELA_ATUAL','entregas');
+			afed('#entregas','#home','','',3,'entregas');
+          
 		},
         error : function() {
             //notifica('Entregas/N\u00e3o ha entrega/Fechar',0,0);

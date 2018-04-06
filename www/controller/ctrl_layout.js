@@ -30,8 +30,8 @@ if (valor_campo.value == '')
 }
 
 // FUNCAO ABRE, FECHA, ENABLE E DISABLE (COMPONENTES HTML)***********************************/
-function afed(abre,fecha,ativa,desativa,tipo) {
-    
+function afed(abre,fecha,ativa,desativa,tipo,local="") {
+   
 //	if(tipo == 1){
 //		$( fecha ).slideUp("slow", function() { });
 //		$( abre ).slideDown("slow", function() { });
@@ -42,6 +42,10 @@ function afed(abre,fecha,ativa,desativa,tipo) {
 //		$( fecha ).css('display','none');
 //		$( abre ).css('display','block');
 //	}
+	if(local!==""){
+		localStorage.setItem('TELA_ATUAL',local);
+	}
+	//alert(localStorage.getItem("TELA_ATUAL"));
     $( fecha ).css('display','none');
     $( abre ).css('display','block');
 	$( desativa ).attr('disabled', true);

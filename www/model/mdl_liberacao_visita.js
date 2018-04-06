@@ -96,8 +96,8 @@ function carrega_liberacao_visita(visita,tipo){
                 $( "#add_liberacao #hr_ate" ).val(dt_ate[1]);
                 $( "#add_liberacao #visita" ).val(retorno[0]['visitante']);
 				closePopUp();
-                afed('#liberacao2,#del_lib','#home,#liberacao3','','',3);
-                localStorage.setItem('TELA_ATUAL','liberacao_add');
+                afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
+          
             },
             error      : function() {
                 //alert('Erro ao carregar liberacao');
@@ -160,7 +160,7 @@ function adiciona_liberacao(){
 	$( "#add_liberacao #hr_ate" ).val(hora);
 	$( "#add_liberacao #visita" ).val('0');
     
-	afed('#liberacao2','#home,#del_lib','','',3);
+	afed('#liberacao2','#home,#del_lib','','',3,'liberacao_add');
     //localStorage.setItem('TELA_ATUAL','liberacao_add');
 	$("#new_visit").click();
 }
@@ -196,7 +196,7 @@ function salva_liberacao(){
                         //alert(retorno);
                         carrega_liberacao(0);
 						openPopUp();
-                        afed('#home','#liberacao2','','',3);
+                        afed('#home','#liberacao2','','',3,'liberacao_list');
                 },
                 error      : function() {
                     //alert('Erro ao carregar liberacao');
@@ -230,7 +230,7 @@ function gera_qrcode(qrcode_numero,nome){
             var dados_qr = 'Olá '+nome+', <br>essa é sua autorização para acessar o <br>condomínio '+$( "#DADOS #CONDOMINIO" ).val()+' <br>no período de '+retorno[0]['data_inicio']+' a '+retorno[0]['data_validade']+'';
             //var dados_qr = 'Condominio '+$( "#DADOS #CONDOMINIO" ).val()+'<br>Morador: '+$( "#DADOS #NOME_MORADOR" ).val()+'<br>'+$( "#DADOS #QUADRA" ).val()+' '+$( "#DADOS #LOTE" ).val()+'<br>Válido de '+retorno[0]['data_inicio']+'<br>Até '+retorno[0]['data_validade']+'';
             $('#qr_dados').html(dados_qr);
-			afed('#qrcode','#home,#del_lib','','',3);
+			afed('#qrcode','#home,#del_lib','','',3,'qrcode');
 			closePopUp();
             
             //var canvas = document.getElementById('qrcodeCanvas');
@@ -289,8 +289,8 @@ function preview(){
             localStorage.setItem("img_share", dataURL);
         }
     });
-    afed('#qrcode_share','#qrcode','','',2);
-    localStorage.setItem('TELA_ATUAL','qrcode_share');
+    afed('#qrcode_share','#qrcode','','',2,'qrcode_share');
+
     
 }
 
@@ -391,7 +391,7 @@ function liberacao_delete(buttonIndex){
                 //alert(retorno);
                 carrega_liberacao(0);
                 openPopUp();
-				afed('#home','#liberacao2','','',3);
+				afed('#home','#liberacao2','','',3,'liberacao_list');
             },
             error      : function() {
                 alert('erro');

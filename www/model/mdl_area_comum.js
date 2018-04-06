@@ -17,8 +17,8 @@ function carrega_areas(){
                 dados = dados + dado;
             }
 			$( "#areas_retorno" ).html(dados);
-			afed('#reservas','#home','','',3);
-            localStorage.setItem('TELA_ATUAL','areas');
+			afed('#reservas','#home','','',3,'reservas');
+
 		}
 	});	
 }
@@ -33,8 +33,8 @@ function carrega_area(id,cale_view,nome){
 		$( "#DADOS #AREA_COMUM" ).val(id);
 		$( "#area .topo_sub span" ).html(nome);
 		cale('#dt_festa','','');
-		afed('#area','#reservas','','',3);
-        localStorage.setItem('TELA_ATUAL','area');
+		afed('#area','#reservas','','',3,'area');
+
 	}else{
 		var dt_festa = $( "#dt_festa" ).val();
 		$.ajax({
@@ -67,7 +67,7 @@ function carrega_area(id,cale_view,nome){
                     verifica_data_ativas(retorno[0]['inicio'],retorno[0]['fim'],retorno[0]['ativo']);
                 }
                 verifica_data_usadas(retorno[0]['reservas']);
-                localStorage.setItem('TELA_ATUAL','area');
+                localStorage.setItem('TELA_ATUAL','calendario');
 			}
 		});	
 	}
@@ -371,7 +371,7 @@ function adiciona_reserva(h){
 	var hora_ini = $( "#h_"+h ).html();
 	var iniDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " "+hora_ini);
 	iniDate.setMinutes(iniDate.getMinutes()+30);
-	afed('#reserva','#area','','',2);
+	afed('#reserva','#area','','',2,'reserva');
 	$( "#add_reserva_dt" ).val(dt[2] +"-"+ dt[1] +"-"+ dt[0]);
 	$( "#add_reserva_data" ).html(dt_festa);
 	$( "#add_reserva_hora_inicio" ).val(hora_ini);
@@ -383,7 +383,7 @@ function adiciona_reserva(h){
 //FUNCAO EDITA RESERVA
 function edite_reserva(id_reserva,data,inicio,fim){ 
 	var dt_festa = $( "#dt_festa" ).val();
-	afed('#reserva','#area','','',2)
+	afed('#reserva','#area','','',2,'reserva')
 	$( "#add_reserva_dt" ).val(data);
 	$( "#add_reserva_id" ).val(id_reserva);
     $( "#add_reserva_data" ).html(dt_festa);
@@ -434,7 +434,7 @@ function salva_reserva(){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
                         carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
-                        afed('#area','#reserva','','',2);
+                        afed('#area','#reserva','','',2,'area');
                         
                     }
                 },
@@ -470,7 +470,7 @@ function apaga_reserva(button){
             complete   : function() { },
             data:'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_reserva='+id_reserva,
 			success: function(retorno){
-                afed('#area','#reserva','','',2);
+                afed('#area','#reserva','','',2,'area');
                 carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
 			},
             error: function(erro){

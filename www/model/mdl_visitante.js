@@ -40,8 +40,7 @@ function escolhe_visita(id,nome,rg){
 	$( "#add_liberacao #nome" ).val(nome);
 	$( "#add_liberacao #rg" ).val(rg);
 	$( "#add_liberacao #visita" ).val(id);
-	afed('#liberacao2','#visitantes','','',3);
-    localStorage.setItem('TELA_ATUAL','liberacao_add');
+	afed('#liberacao2','#visitantes','','',3,'liberacao_add');
 
 }
 
@@ -63,9 +62,9 @@ function novo_visitante(){
     $( "#add_visitante #email" ).val('');
     $( "#add_visitante #obs" ).val('');
     
-    afed('#visitante','#visitantes','','','2');
+    afed('#visitante','#visitantes','','','2','visitante');
     $("#visi_scroll").scrollTop(0);
-    localStorage.setItem('TELA_ATUAL','visitante');
+
 	("#add_visitante #nome").focus();
 }
 
@@ -98,9 +97,8 @@ function salva_visitante(){
 					$( "#add_liberacao #rg" ).val(retorno[0]['rg']);
 					$( "#add_liberacao #visita" ).val(retorno[0]['id']);
 
-					afed('#liberacao2','#visitante','','',3);
-					
-                    localStorage.setItem('TELA_ATUAL','liberacao_add');
+					afed('#liberacao2','#visitante','','',3,'liberacao_add');
+
 				}
 				//alert(retorno);
 			}

@@ -1,7 +1,7 @@
 // JavaScript Document
 
 function onBackKeyDown() {
-	//alert(localStorage.getItem("TELA_ATUAL"));
+	//alert('Ciclo: '+localStorage.getItem("TELA_ATUAL"));
 	
 //	if($( "#home" ).css("display") == "block"){
 //        alert(localStorage.getItem('TELA_ATUAL'));
@@ -81,8 +81,7 @@ function onBackKeyDown() {
     
     //REGRAS LIBERACAO   
     if(localStorage.getItem('TELA_ATUAL') == 'liberacao_add'){
-        afed('#home','#liberacao2','','',2);
-        localStorage.setItem('TELA_ATUAL','home');
+		afed('#home','#visitantes','','',2,'home');
         $( '#busca_liberacao' ).val('');
     }
 
@@ -133,6 +132,7 @@ function onBackKeyDown() {
 		afed('#home','#moradores','','',2);
         localStorage.setItem('TELA_ATUAL','perfil_usuario');
     }  
+	
     if(localStorage.getItem('TELA_ATUAL') == 'morador'){
 		afed('#moradores','#morador','','',2);
         localStorage.setItem('TELA_ATUAL','moradores');
@@ -144,17 +144,28 @@ function onBackKeyDown() {
         localStorage.setItem('TELA_ATUAL','painel_usuario');
     } 
 
-
     //REGRAS RESERVA   
-    if(localStorage.getItem('TELA_ATUAL') == 'areas'){
-        afed('#home','#reservas','','',2);
-        localStorage.setItem('TELA_ATUAL','perfil_usuario');
+    if(localStorage.getItem('TELA_ATUAL') == 'reservas'){
+        afed('#home','#reservas','','',2,'perfil_usuario');
+  
+    }
+	
+	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
+        afed('#area','#reserva','','',2,'area');
+  
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'calendario'){
+        afed('#reservas','#area','','',2,'reservas');
+       
     }
 
     if(localStorage.getItem('TELA_ATUAL') == 'area'){
-        afed('#reservas','#area,.cale2_titulo','','',2);
-        localStorage.setItem('TELA_ATUAL','areas');
+		afed('#reservas','#area','','',2,'reservas');
+       
     }
+	
+	
     
      //REGRAS ENTREGAS   
     if(localStorage.getItem('TELA_ATUAL') == 'entregas'){

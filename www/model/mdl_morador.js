@@ -17,8 +17,8 @@ function carrega_morador(){
             }
             $( "#morador_retorno" ).html(dados);
             //alert(retorno);
-            afed('#moradores','#home','','',2);
-            localStorage.setItem('TELA_ATUAL','moradores');
+            afed('#moradores','#home','','',2,'moradores');
+       
         },
         error      : function() {
             alert('Erro ao carregar');
@@ -60,8 +60,8 @@ function carrega_morador_dados(id_morador){
 			$( "#mor_telr" ).val(retorno[0]['tel_tel']);
 			$( "#mor_telc" ).val(retorno[0]['tel_com']);
 			$( "#mor_telcel" ).val(retorno[0]['tel_cel']);
-            afed('#morador','#moradores','','',2);
-            localStorage.setItem('TELA_ATUAL','morador');
+            afed('#morador','#moradores','','',2,'morador');
+        
         },
         error      : function() {
             alert('Erro ao carregar');
@@ -80,7 +80,7 @@ function atualiza_morador(){
 		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 		success: function(retorno){
 			//alert(retorno);
-            afed('#moradores','#morador','','',2);
+            afed('#moradores','#morador','','',2,'moradores');
             carrega_morador();
 		},
 		error: function(data){
@@ -98,7 +98,7 @@ function insert_morador(){
 		data: dados+'&id='+$( "#DADOS #ID_MORADOR" ).val()+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 		success: function(retorno){
 			//alert(retorno);
-            afed('#moradores','#morador','','',2);
+            afed('#moradores','#morador','','',2,'moradores');
 		},
 		error: function(data){
 			alert('erro');
