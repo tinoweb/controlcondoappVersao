@@ -45,7 +45,7 @@ function atualiza_perfil(){
 		url: localStorage.getItem('DOMINIO')+'appweb/perfil_usuario_update.php',
 		data: dados+'&id='+$( "#DADOS #ID_MORADOR" ).val()+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 		success: function(retorno){
-			alert(retorno);
+			//alert(retorno);
             //afed('#home','#perfil2','','',2);
 		},
 		error: function(data){
