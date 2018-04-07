@@ -129,7 +129,7 @@ function adiciona_liberacao(){
             };
             //alert(motivos);
             $( "#add_liberacao #visita_motivo" ).html(motivos);
-            localStorage.setItem('TELA_ATUAL','visitantes');
+            //localStorage.setItem('TELA_ATUAL','visitantes');
         },
         error      : function() {
             //alert('Erro ao carregar motivos');
@@ -147,7 +147,7 @@ function adiciona_liberacao(){
 	var hora = dt_atual_1.getHours()+":"+dt_atual_1.getMinutes();
     //alert(hora);
     //alert(dt_2);
-	$("#new_visit").attr('onClick',"afed('#visitantes','#liberacao2','','','2');$('#visitante_busca').val('');localStorage.setItem('TELA_ATUAL','visitantes');$('#retorno_visita').html('');$('#visitante_busca').focus()");
+	$("#new_visit").attr('onClick',"afed('#visitantes','#liberacao2','','','2', 'visitantes' ); $('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()");
 	
 	$( "#add_liberacao #id" ).val('0');
 	$( "#add_liberacao #tipo" ).val('0');

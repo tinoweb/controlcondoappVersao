@@ -85,28 +85,29 @@
 						 localStorage.setItem("NOT_COND",data.additionalData.condominio);
                          console.log('notification event');
 						 //alert(JSON.stringify(data, null, 4));
+						 
+						 // verifica se o condominio logado é o mesmo da notificação
+						 //alert('Condominio enviado: '+localStorage.getItem('NOT_COND'));
+						 //alert('Chat enviado: '+titulo_notifica+"tela :"+localStorage.getItem('TELA_ATUAL'));
                          if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val()){
                              
                              if(titulo_notifica == 'Chat'){
                                  if(localStorage.getItem('TELA_ATUAL') == 'chat'){
                                      carrega_msg_eviadas($( "#DADOS #ID_USER" ).val(), $( "#DADOS #CHAT_USER" ).val());
                                  }
-//                                 else{
-//                                     navigator.notification.confirm(
-//                                        data.message,         // message
-//                                        onConfirm,            // callback
-//                                        data.title,
-//                                        ['Abrir','Cancelar']  // buttonName
-//                                     );
-//                                 }
+								 if(localStorage.getItem('TELA_ATUAL')=='chat_msg'){
+									 carrega_chat();
+								 }
                              }
                              if(localStorage.getItem('TELA_ATUAL') != 'chat'){
-                                 navigator.notification.confirm(
-                                    data.message,         // message
-                                    onConfirm,            // callback
-                                    data.title,
-                                    ['Abrir','Cancelar']  // buttonName
-                                 );
+								 if(localStorage.getItem('TELA_ATUAL') != 'chat_msg'){
+									 navigator.notification.confirm(
+										data.message,         // message
+										onConfirm,            // callback
+										data.title,
+										['Abrir','Cancelar']  // buttonName
+									 );
+								 }
                              }  
                              
                          }else{
@@ -504,7 +505,7 @@
 	<div style="width: 100%;float: left;text-align: center">
 	<img src="img/logo.png" width="180">
 	</div>
-            <p style="margin-top: 15px"><span style="text-align: center">CONTROL CONDO MOBILE - v1.0.13t</span><br><br>
+            <p style="margin-top: 15px"><span style="text-align: center">CONTROL CONDO MOBILE - v1.0.13v</span><br><br>
 				Este aplicativo foi projetado e desenvolvido pela FIRSTCONTROL SISTEMAS INTELIGENTES, e compõe o grupo de sistemas voltados para segurança de acesso a condomínios residenciais; CONTROL GUARITA, CONTROLCONDO e CONTROLCONDOMOBILE.
 			</p><p style="text-align: left; margin-top: 20px">Para dúvidas e sugestões, encaminhe e-mail para controlcondo@firstcontrol.com.br <br><br>
 				Visite nosso site: <a href="#" onClick="window.open('http://www.firstcontrol.com.br', '_system');">www.firstcontrol.com.br</a><br><br>
@@ -1145,10 +1146,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-xs-5">
+					
 							<div class="item-title item-label" style="margin-top: 7px">CEP</div>
 							<input class="form-control" type="text" name="cep" id="cep">
-						</div>
+						
 					</div>
 					<div class="form-group">
 						<div class="item-title item-label" style="margin-top: 7px">Celular</div>

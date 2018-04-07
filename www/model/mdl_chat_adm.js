@@ -112,7 +112,7 @@ function carrega_msg_eviadas(enviado,recebido){
 
 function envia_msg(){
 	//alert('chat: envia_msg pag:'+localStorage.getItem("TELA_ATUAL"));
-    $("#send_txt").focus(); 
+    //$("#send_txt").focus(); 
 	//scroll_historico();
     var id_usuario_condominio = $( "#DADOS #ID_USER" ).val();
     var id_usuario_condominio_recebe = $( "#DADOS #CHAT_USER" ).val();

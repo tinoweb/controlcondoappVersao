@@ -42,10 +42,11 @@ function afed(abre,fecha,ativa,desativa,tipo,local="") {
 //		$( fecha ).css('display','none');
 //		$( abre ).css('display','block');
 //	}
+	//alert('tela anterior:' +localStorage.getItem("TELA_ATUAL"));
 	if(local!==""){
 		localStorage.setItem('TELA_ATUAL',local);
 	}
-	//alert(localStorage.getItem("TELA_ATUAL"));
+	//alert('tela atual: '+localStorage.getItem("TELA_ATUAL"));
     $( fecha ).css('display','none');
     $( abre ).css('display','block');
 	$( desativa ).attr('disabled', true);
