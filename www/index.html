@@ -973,7 +973,7 @@
 <div id="liberacao2" class="pagina liberacao2">
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
-			<a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'home');"><i class="icon icon-back"></i></a>
+			<a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -1016,6 +1016,21 @@
 					<div class="item-title item-label" style="margin-top: 7px">&nbsp;&nbsp;às:</div>
 					<input type="time" name="ate_hr" id="hr_ate"  class="form-control">
 				</div>
+			</div>
+			<div class="form-group">
+				<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
+				<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
+                    <option value="0">Ilimitado</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
 			</div>
 			<div>
 				<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">
