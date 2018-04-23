@@ -64,6 +64,7 @@ function login_user_device(){
                             $( "#DADOS #QUADRA" ).val(retorno[0]['rquadra']+' '+retorno[0]['quadra']);
                             $( "#DADOS #LOTE" ).val(retorno[0]['rlote']+' '+retorno[0]['lote']);
                             MORADOR_NOME = retorno[0]['nome'];
+                            localStorage.setItem('MORADOR_NOME',MORADOR_NOME);
                             $( "#DADOS #PARENTESCO" ).val(retorno[0]['parentesco']);
                             MORADOR_SEXO = retorno[0]['masculino'];
                             QUADRA = retorno[0]['rquadra']+' '+retorno[0]['quadra'];

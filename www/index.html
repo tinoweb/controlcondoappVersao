@@ -44,6 +44,7 @@
         <script src="controller/valida_conexao.js"></script>
         <script src="model/mdl_area_comum.js"></script>
         <script src="model/mdl_comunicado.js"></script>
+        <script src="model/mdl_ocorrencia.js"></script>
         <script src="model/mdl_correspondencia.js"></script>
         <script src="model/mdl_documento.js"></script>
         <script src="model/mdl_download_arquivo.js"></script>
@@ -1561,6 +1562,132 @@
 			</div>
         </div>
 	</div>
+</div>
+    
+<!--------------------------------------------    $OCORRENCIAS     -------------------------------------------->	
+
+<div id="ocorrencias" class="pagina ocorrencias">
+	<div class="view view-ocorrencias">
+		<!-- Initial Page, "data-name" contains page name -->
+		<div data-name="home" class="page">
+			<div class="navbar" style="height: 50px">		
+				<div class="navbar-inner">
+					<a href="#" onClick="voltar('#home','#ocorrencias','home');"><i class="icon icon-back"></i></a>
+					<div class="title">Ocorrencias</div>
+				</div>
+			</div>		
+			<form class="searchbar" id="form_busca_ocorrencias" style="width: 100%; margin-top: -7px">
+				<div class="searchbar-inner">
+					<div class="searchbar-input-wrap">
+						<input type="search" placeholder="Busca" name="busca" id="busca_ocorrencias">
+						<i class="searchbar-icon"></i>
+						<span class="input-clear-button" onClick="carrega_ocorrencias(4)"></span>
+					</div>
+					<span class="searchbar-disable-button" onClick="carrega_ocorrencias(3)">Cancela</span>
+				</div>
+				<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
+			</form>
+			<!-- Searchbar backdrop -->
+			<div class="searchbar-backdrop"></div>
+			<!-- Scrollable page content -->
+			<div class="box" id="boxUp_ocorrencias"></div>
+			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="padding-top: 60px; padding-bottom: 10px">
+				<div class="ptr-preloader">
+					<div class="preloader"></div>
+					<div class="ptr-arrow"></div>
+				</div>
+				<div id="main_ocorrencia" class="list media-list searchbar-found" style="height: 90% !important"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="ocorrencia" class="pagina ocorrencias">
+    <div data-name="home" class="page">
+        <div class="navbar" style="height: 50px">		
+            <div class="navbar-inner">
+                <a href="#" onClick="voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+                <div class="title">Ocorrencia</div>
+            </div>
+        </div>		
+        <form id="form_ocorrencia" style="margin-top: 60px; float: left; width: 100%;">
+            <input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
+            <input type="hidden" name="id_condominio" id="id_condominio">
+            <input type="hidden" name="tipo_solicitante" value="1">
+            <input type="hidden" name="id_solicitante" id="id_solicitante">
+            <input type="hidden" name="criado_por" id="criado_por">
+            <input type="hidden" name="id_situacao" id="id_situacao">
+            <label style="width: 100%;">Solicitante</label>
+            <label style="width: 100%;" id="solicitante">Nome do Morador</label>
+            <label style="width: 100%;" id="situacao">status: Aberto</label>
+            <label style="width: 100%;">Descricação</label>
+            <textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
+            <button id="bt_oco_tickets">Tickets</button>
+            <button id="bt_oco_salva">Salvar</button>
+            <button id="bt_oco_finaliza">Finalizar</button>
+        </form>
+    </div>
+</div>
+
+<div id="ocorrencias_ticket" class="pagina ocorrencias_ticket">
+	<div class="view view-ocorrencias">
+		<!-- Initial Page, "data-name" contains page name -->
+		<div data-name="home" class="page">
+			<div class="navbar" style="height: 50px">		
+				<div class="navbar-inner">
+					<a href="#" onClick="voltar('#ocorrencia','#ocorrencias_ticket','tickets');"><i class="icon icon-back"></i></a>
+					<div class="title">Tickets</div>
+				</div>
+			</div>		
+			<form class="searchbar" id="form_busca_tickets" style="width: 100%; margin-top: -7px">
+				<div class="searchbar-inner">
+					<div class="searchbar-input-wrap">
+						<input type="search" placeholder="Busca" name="busca" id="busca_tickets">
+						<i class="searchbar-icon"></i>
+						<span class="input-clear-button" onClick="carrega_tickets(4)"></span>
+					</div>
+					<span class="searchbar-disable-button" onClick="carrega_tickets(3)">Cancela</span>
+				</div>
+				<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
+			</form>
+			<!-- Searchbar backdrop -->
+			<div class="searchbar-backdrop"></div>
+			<!-- Scrollable page content -->
+			<div class="box" id="boxUp_tickets"></div>
+			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-tickets" style="padding-top: 60px; padding-bottom: 10px">
+				<div class="ptr-preloader">
+					<div class="preloader"></div>
+					<div class="ptr-arrow"></div>
+				</div>
+				<div id="main_ticket" class="list media-list searchbar-found" style="height: 90% !important"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="ticket" class="pagina ocorrencias">
+    <div data-name="home" class="page">
+        <div class="navbar" style="height: 50px">		
+            <div class="navbar-inner">
+                <a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','tickets');"><i class="icon icon-back"></i></a>
+                <div class="title">Ticket</div>
+            </div>
+        </div>		
+        <form id="form_ticket" style="margin-top: 60px; float: left; width: 100%;">
+            <!--<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
+            <input type="hidden" name="id_condominio" id="id_condominio">
+            <input type="hidden" name="tipo_solicitante" value="1">
+            <input type="hidden" name="id_solicitante" id="id_solicitante">
+            <input type="hidden" name="criado_por" id="criado_por">
+            <input type="hidden" name="id_situacao" id="id_situacao">
+            <label style="width: 100%;">Solicitante</label>
+            <label style="width: 100%;" id="solicitante">Nome do Morador</label>
+            <label style="width: 100%;" id="situacao">status: Aberto</label>
+            <label style="width: 100%;">Descricação</label>
+            <textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
+            <button id="bt_oco_tickets">Tickets</button>
+            <button id="bt_oco_salva">Salvar</button>
+            <button id="bt_oco_finaliza">Finalizar</button>-->
+        </form>
+    </div>
 </div>
 
 <!---------------------------------------------   $RELATORIOS       ------------------------------------------>
