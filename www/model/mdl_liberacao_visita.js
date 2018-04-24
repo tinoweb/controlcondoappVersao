@@ -34,7 +34,18 @@ function carrega_liberacao(tipo){
                 if(retorno[x]['foto'].length>0){
                     dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
-                dado = dado +'></div><div onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')"><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['validadeInicio']+' a '+retorno[x]['validadeFim']+'</span><br></div>';
+                dado = dado +'></div><div onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')"><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['validadeInicio']+' a '+retorno[x]['validadeFim']+'</span><br>';
+                if(retorno[x]['numero_acesso_perm'] != null){
+                    if(retorno[x]['numero_acesso_perm'] == 0){
+                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Ilimitados</span><br>';
+                    }else{
+                        //dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos: '+retorno[x]['numero_acesso_perm']+'</span><br>';
+                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Usados: '+retorno[x]['numero_acesso']+' de '+retorno[x]['numero_acesso_perm']+'</span><br>';
+                    }
+                }
+                
+                dado = dado + '</div>';
+                
 				if(retorno[x]['valido']==1){
 					dado = dado + '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
 				}else{
@@ -95,6 +106,8 @@ function carrega_liberacao_visita(visita,tipo){
                 $( "#add_liberacao #dt_ate" ).val(dt_ate[0]);
                 $( "#add_liberacao #hr_ate" ).val(dt_ate[1]);
                 $( "#add_liberacao #visita" ).val(retorno[0]['visitante']);
+                if(retorno[0]['numero_acesso_perm'] == null){ retorno[0]['numero_acesso_perm'] = 0;}
+                $( "#add_liberacao #numero_acesso_perm" ).val(retorno[0]['numero_acesso_perm']);
 				closePopUp();
                 afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
           
@@ -159,6 +172,7 @@ function adiciona_liberacao(){
 	$( "#add_liberacao #dt_ate" ).val(dt_2);
 	$( "#add_liberacao #hr_ate" ).val(hora);
 	$( "#add_liberacao #visita" ).val('0');
+    $( "#add_liberacao #numero_acesso_permc" ).val('0');
     
 	afed('#liberacao2','#home,#del_lib','','',3,'liberacao_add');
     //localStorage.setItem('TELA_ATUAL','liberacao_add');
@@ -176,9 +190,11 @@ function salva_liberacao(){
         dt_atual.setMinutes(dt_atual.getMinutes()-30);
         var dt_de = new Date($('#add_liberacao #dt_de').val()+ " "+$('#add_liberacao #hr_de').val() );
         var dt_ate = new Date($('#add_liberacao #dt_ate').val()+ " "+$('#add_liberacao #hr_ate').val() );
+        var tipo = $('#add_liberacao #tipo').val();
         //alert(dt_atual+'\n'+dt_de+'\n'+dt_ate);
         
-        if(dt_de < dt_atual){
+        
+        if(dt_de < dt_atual && tipo != 1){
            notifica('Data Inválida/Data INICIAL não pode ser inferior a data atual/Ok',0,0);
         }else if(dt_ate < dt_atual){
            notifica('Data Inválida/Data FINAL não pode ser inferior a data atual/Ok',0,0);

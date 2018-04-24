@@ -44,6 +44,7 @@
         <script src="controller/valida_conexao.js"></script>
         <script src="model/mdl_area_comum.js"></script>
         <script src="model/mdl_comunicado.js"></script>
+        <script src="model/mdl_ocorrencia.js"></script>
         <script src="model/mdl_correspondencia.js"></script>
         <script src="model/mdl_documento.js"></script>
         <script src="model/mdl_download_arquivo.js"></script>
@@ -478,6 +479,10 @@
 						<div class="smenu button" onClick="carrega_documentos(0);">
 							<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT9SURBVHhe7ZtNbxtVFIazYsEP4CcipGSPkICKVaF21rQsEqmLGCoCpQu6KCpC/IAGqarSRQuFBlqpUpI2NJ+O8Ts5j7kdH9tnxuPxVPIrPWo6Z47vee7Y8bhplhZZZLpce//au+2V9U/ay+vb/T9PVlfWezWy01/z80uXbrxj49Sb1gfX32uvrN1zBquX5bXLNlJ9Mfn7GuDqpzcGw5zsPi7M2at/er3DvYxu/2vveArnPPlti3V3bKx6ksp/9dm3vdv3X5begLLywLo22uzjyd95fFxqA6aVP917Uu8GjJIvswFVyJ+/3q1vA8bJF92AquRVY90RVPMuMUl+8gb83use7mZfVykvWHcs07xLROTHb8CFvNIdIVZWXrDu7vbdIR7+fJt6uXeJqLxgkHRggfwgJ68Ly3eP9lx5wbreBgjqphRPdoe3vL6l5knygoUYOiW78srxq8LyZwfPs9bz4wP3XNb15AV104pndWXtYzXqJmeS/M1f/8oWufrRxmDwgQCSJa782cGz/uvmLNuA3nm3/xj/Dp2PoCcvqJtWPP0NeEhzlF+++WkwfF6yqHz3aP9CPJ/Tozd6WNuTF9RNK54iH2x05SV/+OKRK1lUXmSveT3tdeWV+p8BF43pUFEqkecbnqQVR14wpycvqJtWPDSmg0WoVB5yT/sU5vTkBXXTiofGdLhJzER+AszpyQvqphUPjemA45iHvGBOT15QN614aEyH9Nj4YnOwSFE2rmxmjyH5TuuHoXqnfcuVTuFcT15QN614aMwL5+m0bw4WKUqn9d3gyn+9emuormOedArnevKCumnFQ6MnDfN62qcwpycvqJtWPDSmA6c0QV4wpycvqJtWPDSmQ0Mq2blS/iWQJ/Kaz0OvJy+om1Y8NI6T11XV65hzpyXyms9DrycvqJtWPDSOk/eOp8zqaZ/CnJ68oG5a8dDoSTZFXjCnJy+om1Y8NOYlmyQvmNOTF9RNKx4amywvmNOTF9RNKx4aWWiUfKc1fAMzLdF3A81EjycvqJtWPDSykCcvvDu4aYm8GzATPZ68oG5a8dA4Tj4/DMz6aZ+ux5yevKBuWvHQyEJNlBfM6ckL6qYVD41aZJx8kU+DZe70UvLytWzApCtf5E6wzJ0eePKCx/bkBXXTiofGyDB1P+1TmNOTF9RNKx4aJw0zT3nBnJ68oG5a8dA4bph5ywvm9OQFddOKh8ZRwzRBXjCnJy+om1Y8NOaH0Q87T/f/bIS8YE5PXlA3rXhozMtn6Z72B90fGrwKisgL5vTkBXXTiofGdDFd+Uz+6KU7/LQUlRfM6ckL6qYVD40s9P9rvhlXHpjTkxfUTSseGvVv9+k3PH36y9/RTX2s9f0bUrq75GcGk44xpycvqJtWPDSK9Bsex1KJKo6lYkWPCU9eUDeteNIH9wau4lj34NngmCcWPSY8eUHdtOKhMX//rr9XcUzyktBnCZGKFTnGnJ68oG5a8dCYClQF8lXAnJ68oG5a8dDoCUxDlfKCOT15Qd204qHRkyhL1fKCOT15Qd204mkvr/2txqcPHrkyRZmF/B9b9zK5Lz+87sqL0hug/15Kc9O5s77pygvOMa149B+MbRN2eJCmoSsv+RcPfHnBuaZVXXhgb9EmsdiAxQbMaAN4l9i++6O7cBPQbLYB1f9S1dv0LjGTX6t7G94l+uxoxrn9YuUiiyzS8Cwt/QfJiFjbBxkPMAAAAABJRU5ErkJggg==);"></div>
 							<span>Documentos</span>
+						</div>
+						<div class="smenu button" onClick="carrega_ocorrencias(0);">
+							<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT9SURBVHhe7ZtNbxtVFIazYsEP4CcipGSPkICKVaF21rQsEqmLGCoCpQu6KCpC/IAGqarSRQuFBlqpUpI2NJ+O8Ts5j7kdH9tnxuPxVPIrPWo6Z47vee7Y8bhplhZZZLpce//au+2V9U/ay+vb/T9PVlfWezWy01/z80uXbrxj49Sb1gfX32uvrN1zBquX5bXLNlJ9Mfn7GuDqpzcGw5zsPi7M2at/er3DvYxu/2vveArnPPlti3V3bKx6ksp/9dm3vdv3X5begLLywLo22uzjyd95fFxqA6aVP917Uu8GjJIvswFVyJ+/3q1vA8bJF92AquRVY90RVPMuMUl+8gb83use7mZfVykvWHcs07xLROTHb8CFvNIdIVZWXrDu7vbdIR7+fJt6uXeJqLxgkHRggfwgJ68Ly3eP9lx5wbreBgjqphRPdoe3vL6l5knygoUYOiW78srxq8LyZwfPs9bz4wP3XNb15AV104pndWXtYzXqJmeS/M1f/8oWufrRxmDwgQCSJa782cGz/uvmLNuA3nm3/xj/Dp2PoCcvqJtWPP0NeEhzlF+++WkwfF6yqHz3aP9CPJ/Tozd6WNuTF9RNK54iH2x05SV/+OKRK1lUXmSveT3tdeWV+p8BF43pUFEqkecbnqQVR14wpycvqJtWPDSmg0WoVB5yT/sU5vTkBXXTiofGdLhJzER+AszpyQvqphUPjemA45iHvGBOT15QN614aEyH9Nj4YnOwSFE2rmxmjyH5TuuHoXqnfcuVTuFcT15QN614aMwL5+m0bw4WKUqn9d3gyn+9emuormOedArnevKCumnFQ6MnDfN62qcwpycvqJtWPDSmA6c0QV4wpycvqJtWPDSmQ0Mq2blS/iWQJ/Kaz0OvJy+om1Y8NI6T11XV65hzpyXyms9DrycvqJtWPDSOk/eOp8zqaZ/CnJ68oG5a8dDoSTZFXjCnJy+om1Y8NOYlmyQvmNOTF9RNKx4amywvmNOTF9RNKx4aWWiUfKc1fAMzLdF3A81EjycvqJtWPDSykCcvvDu4aYm8GzATPZ68oG5a8dA4Tj4/DMz6aZ+ux5yevKBuWvHQyEJNlBfM6ckL6qYVD41aZJx8kU+DZe70UvLytWzApCtf5E6wzJ0eePKCx/bkBXXTiofGyDB1P+1TmNOTF9RNKx4aJw0zT3nBnJ68oG5a8dA4bph5ywvm9OQFddOKh8ZRwzRBXjCnJy+om1Y8NOaH0Q87T/f/bIS8YE5PXlA3rXhozMtn6Z72B90fGrwKisgL5vTkBXXTiofGdDFd+Uz+6KU7/LQUlRfM6ckL6qYVD40s9P9rvhlXHpjTkxfUTSseGvVv9+k3PH36y9/RTX2s9f0bUrq75GcGk44xpycvqJtWPDSK9Bsex1KJKo6lYkWPCU9eUDeteNIH9wau4lj34NngmCcWPSY8eUHdtOKhMX//rr9XcUzyktBnCZGKFTnGnJ68oG5a8dCYClQF8lXAnJ68oG5a8dDoCUxDlfKCOT15Qd204qHRkyhL1fKCOT15Qd204mkvr/2txqcPHrkyRZmF/B9b9zK5Lz+87sqL0hug/15Kc9O5s77pygvOMa149B+MbRN2eJCmoSsv+RcPfHnBuaZVXXhgb9EmsdiAxQbMaAN4l9i++6O7cBPQbLYB1f9S1dv0LjGTX6t7G94l+uxoxrn9YuUiiyzS8Cwt/QfJiFjbBxkPMAAAAABJRU5ErkJggg==);"></div>
+							<span>Ocorrencias</span>
 						</div>
 						<!--   RELATORIOS SOMENTE NA VERSAO SEGUINTE
 						<div class="smenu" onClick="afed('#relatorios','#home','','',2)">
@@ -973,7 +978,7 @@
 <div id="liberacao2" class="pagina liberacao2">
 	<div class="navbar" style="height: 50px">		
 		<div class="navbar-inner">
-			<a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'home');"><i class="icon icon-back"></i></a>
+			<a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -1016,6 +1021,21 @@
 					<div class="item-title item-label" style="margin-top: 7px">&nbsp;&nbsp;às:</div>
 					<input type="time" name="ate_hr" id="hr_ate"  class="form-control">
 				</div>
+			</div>
+			<div class="form-group">
+				<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
+				<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
+                    <option value="0">Ilimitado</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
 			</div>
 			<div>
 				<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">
@@ -1542,6 +1562,126 @@
 			</div>
         </div>
 	</div>
+</div>
+    
+<!--------------------------------------------    $OCORRENCIAS     -------------------------------------------->	
+
+<div id="ocorrencias" class="pagina ocorrencias">
+	<div class="view view-ocorrencias">
+		<!-- Initial Page, "data-name" contains page name -->
+		<div data-name="home" class="page">
+			<div class="navbar" style="height: 50px">		
+				<div class="navbar-inner">
+					<a href="#" onClick="voltar('#home','#ocorrencias','home');"><i class="icon icon-back"></i></a>
+					<div class="title">Ocorrencias</div>
+				</div>
+			</div>		
+			<form class="searchbar" id="form_busca_ocorrencias" style="width: 100%; margin-top: -7px">
+				<div class="searchbar-inner">
+					<div class="searchbar-input-wrap">
+						<input type="search" placeholder="Busca" name="busca" id="busca_ocorrencias">
+						<i class="searchbar-icon"></i>
+						<span class="input-clear-button" onClick="carrega_ocorrencias(4)"></span>
+					</div>
+					<span class="searchbar-disable-button" onClick="carrega_ocorrencias(3)">Cancela</span>
+				</div>
+				<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
+			</form>
+			<!-- Searchbar backdrop -->
+			<div class="searchbar-backdrop"></div>
+			<!-- Scrollable page content -->
+			<div class="box" id="boxUp_ocorrencias"></div>
+			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="padding-top: 60px; padding-bottom: 10px">
+				<div class="ptr-preloader">
+					<div class="preloader"></div>
+					<div class="ptr-arrow"></div>
+				</div>
+				<div id="main_ocorrencia" class="list media-list searchbar-found" style="height: 90% !important"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="ocorrencia" class="pagina ocorrencias">
+    <div data-name="home" class="page">
+        <div class="navbar" style="height: 50px">		
+            <div class="navbar-inner">
+                <a href="#" onClick="voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+                <div class="title">Ocorrencia</div>
+            </div>
+        </div>		
+        <form id="form_ocorrencia" style="margin-top: 60px; float: left; width: 100%;">
+            <input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
+            <input type="hidden" name="id_condominio" id="id_condominio">
+            <input type="hidden" name="tipo_solicitante" value="1">
+            <input type="hidden" name="id_solicitante" id="id_solicitante">
+            <input type="hidden" name="criado_por" id="criado_por">
+            <input type="hidden" name="id_situacao" id="id_situacao">
+            <label style="width: 100%;">Solicitante</label>
+            <label style="width: 100%;" id="solicitante">Nome do Morador</label>
+            <label style="width: 100%;" id="situacao">status: Aberto</label>
+            <label style="width: 100%;">Descricação</label>
+            <textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
+            <button id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" >Tickets</button>
+            <button id="bt_oco_salva" type="button">Salvar</button>
+            <button id="bt_oco_finaliza" type="button">Finalizar</button>
+        </form>
+    </div>
+</div>
+
+<div id="ocorrencias_ticket" class="pagina ocorrencias_ticket">
+	<div class="view view-ocorrencias">
+		<!-- Initial Page, "data-name" contains page name -->
+		<div data-name="home" class="page">
+			<div class="navbar" style="height: 50px">		
+				<div class="navbar-inner">
+					<a href="#" onClick="voltar('#ocorrencia','#ocorrencias_ticket','tickets');"><i class="icon icon-back"></i></a>
+					<div class="title">Tickets</div>
+				</div>
+			</div>		
+			<!--<form class="searchbar" id="form_busca_tickets" style="width: 100%; margin-top: -7px">
+				<!--<div class="searchbar-inner">
+					<div class="searchbar-input-wrap">
+						<input type="search" placeholder="Busca" name="busca" id="busca_tickets">
+						<i class="searchbar-icon"></i>
+						<span class="input-clear-button" onClick="carrega_tickets(4)"></span>
+					</div>
+					<span class="searchbar-disable-button" onClick="carrega_tickets(3)">Cancela</span>
+				</div>-->
+				<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button>
+			</form>-->
+			<!-- Searchbar backdrop -->
+			<div class="searchbar-backdrop"></div>
+			<!-- Scrollable page content -->
+			<div class="box" id="boxUp_tickets"></div>
+			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-tickets" style="padding-top: 60px; padding-bottom: 10px">
+				<div class="ptr-preloader">
+					<div class="preloader"></div>
+					<div class="ptr-arrow"></div>
+				</div>
+				<div id="main_ticket" class="list media-list searchbar-found" style="height: 90% !important"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="ticket" class="pagina ocorrencias">
+    <div data-name="home" class="page">
+        <div class="navbar" style="height: 50px">		
+            <div class="navbar-inner">
+                <a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','tickets');"><i class="icon icon-back"></i></a>
+                <div class="title">Ticket</div>
+            </div>
+        </div>		
+        <form id="form_ticket" style="margin-top: 60px; float: left; width: 100%;">
+            <input type="hidden" name="id_ocorrencia_ticket" id="id_ocorrencia_ticket">
+            <input type="hidden" name="id_condominio" id="id_condominio">
+            <input type="hidden" name="id_situacao" id="id_situacao">
+            <label style="width: 100%;" id="situacao">status: Aberto</label>
+            <label style="width: 100%;">Descricação</label>
+            <textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
+            <button id="bt_ticket_salva">Salvar</button>
+            <button id="bt_ticket_finaliza">Finalizar</button>
+        </form>
+    </div>
 </div>
 
 <!---------------------------------------------   $RELATORIOS       ------------------------------------------>
