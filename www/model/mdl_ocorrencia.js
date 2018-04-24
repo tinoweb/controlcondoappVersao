@@ -96,14 +96,12 @@ function carrega_ocorrencia(id){
 }
 
 // FUNCAO CARREGA TODOS OS COMUNICADOS
-function carrega_tickets(id_ocorrencias){
+function carrega_tickets(tipo){
+    var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 	"use strict";
 //	app.controler_pull("comunicados");
-	if(tipo === 4){
-		$("#busca_ocorrencia").val("");
-	}
 	var pg = 0;
-    if(tipo === 0 || tipo===3 || tipo===4){
+    if(tipo === 0){
         pg = 1;
     }else{
         var offset = $('.ocorrencia').length;
@@ -120,32 +118,70 @@ function carrega_tickets(id_ocorrencias){
 	var dado  = '';
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
+		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
         crossDomain: true,
         beforeSend : function() { },
         complete   : function() { },
-        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#busca_ocorrencia").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo,
+        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
         dataType   : 'json',
 		success: function(retorno){
             //alert(retorno);
             for (x in retorno) {
                 
-                dado = '<div class="ocorrencia"  onClick="carrega_ocorrencia(\''+retorno[x]['id_ocorrencia']+'\');"><div class="topo_comunicado"><span>'+retorno[x]['data_criacao']+'</span><strong>'+retorno[x]['situacao_descricao']+'</strong></div><div class="comunicado_titulo" style="margin-top:20px">'+retorno[x]['descricao']+'</div><div class="feed_home">';
+                dado = '<div class="ticket"  onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');"><div class="topo_comunicado"><span>'+retorno[x]['data_criacao']+'</span><strong>'+retorno[x]['situacao_descricao']+'</strong></div><div class="comunicado_titulo" style="margin-top:20px">'+retorno[x]['descricao']+'</div><div class="feed_home">';
 				dado = dado +'</div></div>';
                 dados = dados + dado;
             }
 			if(tipo != 1){
-				$("#main_ocorrencia").html("");
+				$("#main_ticket").html("");
 			}
-			$( "#main_ocorrencia" ).append(dados);
-			afed('#ocorrencias','#home','','',3,'ocorrencias');	
+			$( "#main_ticket" ).append(dados);
+			afed('#ocorrencias_ticket','#ocorrencia','','',3,'tickets');	
             
             //$("pull-comunicados").scrollTop(50);
 		},
         error      : function() {
-            alert('Erro Ocorrencia');
+            alert('Erro tickets');
         }
 	});    
+}
+
+function carrega_ticket(id,id_ocorrencia){
+    if(id === 0){
+        $("#form_ticket #id_ocorrencia_ticket").val(id);
+        $("#form_ticket #id_ocorrencia").val(id_ocorrencia);
+        $("#form_ticket #id_condominio").val($( "#DADOS #ID_CONDOMINIO" ).val());
+        $("#form_ticket #id_situacao").val('1');
+        $("#form_ticket #situacao").val('Aberto');
+    }else{
+        $.ajax({
+            type: 'POST',
+            url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
+            crossDomain: true,
+            beforeSend : function() { },
+            complete   : function() { },
+            data       : {id_ocorrencia_ticket : id, id_ocorrencia : id_ocorrencia, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
+            dataType   : 'json',
+            success: function(retorno){
+                //alert(retorno);
+                $("#form_ticket #id_ocorrencia_ticket").val(retorno[0]['id_ocorrencia_ticket']);
+                $("#form_ticket #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
+                $("#form_ticket #id_condominio").val(retorno[0]['id_condominio']);
+                $("#form_ticket #id_situacao").val(retorno[0]['id_situacao']);
+                $("#form_ticket #situacao").val(retorno[0]['situacao_descricao']);
+                $("#form_ticket #descricao").val(retorno[0]['descricao']);
+                afed('#ticket,#bt_ticket_finaliza','#ocorrencias_ticket,#home,#bt_ticket_salva','','#form_ticket #descricao',3);
+                if(retorno[0]['id_situacao'] == 10){
+                    afed('','#bt_ticket_finaliza','','',3);
+                }
+                localStorage.setItem('TELA_ATUAL','ticket');
+            },
+            error      : function() {
+                alert('erro ticket');
+            }
+        });
+    }
+    
 }
 
 //
@@ -181,156 +217,7 @@ function carrega_tickets(id_ocorrencias){
 //        }
 //	});	
 //}
-//
-//// FUNCAO CARREGA COMENTARIOS
-//function carrega_comunicado_comentario(id){
-//    var dados = '';
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-//        crossDomain: true,
-//        beforeSend : function() { },
-//        complete   : function() { },
-//        data       : {id_comunicado : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '3'},
-//        dataType   : 'json',
-//		success: function(retorno){
-//            for (x in retorno) {
-//                if(retorno[x]['id_usuario_condominio'] == $( "#DADOS #ID_USER" ).val()){
-//                    var comente_edit = 'onClick="notifica_comentario(\''+retorno[x]['id_comunicado_comentario']+'\',\''+retorno[x]['comentario']+'\')"';
-//                }else{
-//                    var comente_edit = '';
-//                }
-//                var dado = '<div class="comentario" '+comente_edit+' ><div class="morador_foto" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><div class="txt_comentario"><div class="nome_comentario">'+retorno[x]['nome']+'</div>'+retorno[x]['comentario']+'</div></div>';
-//                dados = dados + dado;
-//            }
-//            
-//            $( "#comentario_comunicado" ).html(dados);
-//		},
-//        error      : function() {
-//            $( "#comentario_comunicado" ).html('');
-//        }
-//	});	
-//}
-//
-//// FUNCAO CARREGA COMENTARIOS
-//function carrega_comunicado_curtida(id){
-//    var dados = '';
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-//        crossDomain: true,
-//        beforeSend : function() { },
-//        complete   : function() { },
-//        data       : {id_comunicado : id, tipo : '4', id_usuario_condominio : $( "#DADOS #ID_USER" ).val()},
-//        dataType   : 'json',
-//		success: function(retorno){
-//            $( "#ncurtida" ).html(retorno[0]['curtida']);
-//            if(retorno[0]['curtiu'] > 0){
-//                afed('#descurtir','#curtir','','',3);
-//                var mudar = document.getElementById('comentario_curtir');
-//				mudar.setAttribute("onclick", "curtir_descurtir("+id+")");
-//
-//            }else{
-//                afed('#curtir','#descurtir','','',3);
-//                var mudar = document.getElementById('comentario_curtir');
-//				mudar.setAttribute("onclick", "curtir_descurtir("+id+")");
-//            }
-//		},
-//        error      : function() {
-//        }
-//	});	
-//}
-//
-//function curtir_descurtir(id){
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_curtida.php',
-//        data       : {id_comunicado : id, id_comentario : '0', id_usuario_condominio : $( "#DADOS #ID_USER" ).val()},
-//		success: function(retorno){
-//            carrega_comunicado_curtida(id);
-//        },
-//        error      : function() {
-//        }
-//	});	
-//}
-//
-//function comentar(){
-//    if($('#txt_comenta').val().length > 0 ){
-//        var dados = $( '#form_comenta' ).serialize();
-//        $.ajax({
-//            type: 'POST',
-//            url: localStorage.getItem('DOMINIO')+'appweb/comunicado_comentar.php',
-//            data: dados,
-//            success: function(retorno){
-//                $( "#txt_comenta" ).val('');
-//                carrega_comunicado_comentario($( "#id_comunicado_comentario" ).val());
-//            },
-//            error      : function() {
-//            }
-//        });	
-//    }
-//}
-//
-//function notifica_comentario(id_comunicado_comentario,txt) {
-//    localStorage.setItem('COMENTARIO',id_comunicado_comentario);
-//    localStorage.setItem('COMENTARIO_TXT',txt);
-//    navigator.notification.confirm(
-//        'Escolha uma opção',  // message
-//        comentario_ee,              // callback to invoke with index of button pressed
-//        'Comentario',            // title
-//        'Editar,Excluir'          // buttonLabels
-//    );
-//}
-//
-//function comentario_ee(buttonIndex) {
-//    if(buttonIndex == 1){
-//        afed('#bg_box4','','','',3);
-//        $('#comentario_edit').val(localStorage.getItem('COMENTARIO_TXT'));
-//    
-//    }else if(buttonIndex == 2){
-//        
-//        navigator.notification.confirm(
-//            'Voce tem certeza que deseja excluir esse comentario',  // message
-//            comentario_excluir,              // callback to invoke with index of button pressed
-//            'Excluir Comentario',            // title
-//            'Sim,Não'          // buttonLabels
-//        );
-//    
-//    }else{
-//             
-//    }    
-//}
-//
-//function comentario_excluir(buttonIndex) {
-//    if(buttonIndex == 1){
-//        $.ajax({
-//            type: 'POST',
-//            url: localStorage.getItem('DOMINIO')+'appweb/comunicado_comentar_delete.php',
-//            data: {id : localStorage.getItem('COMENTARIO')},
-//            success: function(retorno){
-//                carrega_comunicado_comentario($( "#id_comunicado_comentario" ).val());
-//            },
-//            error      : function() {
-//                alert('Erro ao Exluir');
-//            }
-//        });	
-//    }    
-//}
-//
-//function comentario_update() {
-//    $.ajax({
-//        type: 'POST',
-//        url: localStorage.getItem('DOMINIO')+'appweb/comunicado_comentar_update.php',
-//        data: {id_comentario : localStorage.getItem('COMENTARIO'),comentario : $('#comentario_edit').val()},
-//        success: function(retorno){
-//            carrega_comunicado_comentario($( "#id_comunicado_comentario" ).val());
-//            afed('','#bg_box4','','',1);
-//        },
-//        error      : function() {
-//        }
-//    });	
-//}
-//
+
 //function download_arq_comunicado(caminho,arquivo) {
 //    caminho      = caminho.replace("../","");
 //    var path     = localStorage.getItem('DOMINIO')+caminho+arquivo;

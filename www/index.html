@@ -1621,9 +1621,9 @@
             <label style="width: 100%;" id="situacao">status: Aberto</label>
             <label style="width: 100%;">Descricação</label>
             <textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
-            <button id="bt_oco_tickets">Tickets</button>
-            <button id="bt_oco_salva">Salvar</button>
-            <button id="bt_oco_finaliza">Finalizar</button>
+            <button id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" >Tickets</button>
+            <button id="bt_oco_salva" type="button">Salvar</button>
+            <button id="bt_oco_finaliza" type="button">Finalizar</button>
         </form>
     </div>
 </div>
@@ -1638,17 +1638,17 @@
 					<div class="title">Tickets</div>
 				</div>
 			</div>		
-			<form class="searchbar" id="form_busca_tickets" style="width: 100%; margin-top: -7px">
-				<div class="searchbar-inner">
+			<!--<form class="searchbar" id="form_busca_tickets" style="width: 100%; margin-top: -7px">
+				<!--<div class="searchbar-inner">
 					<div class="searchbar-input-wrap">
 						<input type="search" placeholder="Busca" name="busca" id="busca_tickets">
 						<i class="searchbar-icon"></i>
 						<span class="input-clear-button" onClick="carrega_tickets(4)"></span>
 					</div>
 					<span class="searchbar-disable-button" onClick="carrega_tickets(3)">Cancela</span>
-				</div>
-				<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
-			</form>
+				</div>-->
+				<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button>
+			</form>-->
 			<!-- Searchbar backdrop -->
 			<div class="searchbar-backdrop"></div>
 			<!-- Scrollable page content -->
@@ -1672,20 +1672,14 @@
             </div>
         </div>		
         <form id="form_ticket" style="margin-top: 60px; float: left; width: 100%;">
-            <!--<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
+            <input type="hidden" name="id_ocorrencia_ticket" id="id_ocorrencia_ticket">
             <input type="hidden" name="id_condominio" id="id_condominio">
-            <input type="hidden" name="tipo_solicitante" value="1">
-            <input type="hidden" name="id_solicitante" id="id_solicitante">
-            <input type="hidden" name="criado_por" id="criado_por">
             <input type="hidden" name="id_situacao" id="id_situacao">
-            <label style="width: 100%;">Solicitante</label>
-            <label style="width: 100%;" id="solicitante">Nome do Morador</label>
             <label style="width: 100%;" id="situacao">status: Aberto</label>
             <label style="width: 100%;">Descricação</label>
             <textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
-            <button id="bt_oco_tickets">Tickets</button>
-            <button id="bt_oco_salva">Salvar</button>
-            <button id="bt_oco_finaliza">Finalizar</button>-->
+            <button id="bt_ticket_salva">Salvar</button>
+            <button id="bt_ticket_finaliza">Finalizar</button>
         </form>
     </div>
 </div>
