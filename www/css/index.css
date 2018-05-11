@@ -588,7 +588,7 @@ input, textarea {
 .home .corpo .notificacoes .notificacao {
 	width: 93%;
     float: left;
-    margin: 2% 0px 9px 3%;
+    margin: 0% 0px 3% 3%;
 	border-radius:5px;
 	background-color:#FFF;
     box-shadow: 4px 4px 5px 2px #999;
@@ -634,6 +634,17 @@ input, textarea {
 	margin:1.5% 0 0 1.5%;
 	border-radius:5px;
 	background-color:#FFF;
+}
+
+.card_ocorrencia {
+	width:93%;
+	float:left;
+	margin:1.5% 4% 1.5% 3%;
+	border-radius:10px;
+	padding: 2px;
+	background-color:#F8F8F8;
+	border: solid 1px #AED2E1; 
+	box-shadow: 5px 5px #888888;
 }
 
 .home .corpo .notificacoes .notificacao .noti_corpo .topo_comunicado {

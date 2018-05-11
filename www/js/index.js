@@ -209,7 +209,9 @@ var app = {
             //alert('Camera Indisponivel');
         }    
     },
-    
+	
+	
+   	
     foto_perfil2: function() {
         
         navigator.camera.getPicture(onSuccess, onFail, {  
@@ -242,6 +244,38 @@ var app = {
         }    
     },
     
+	foto_ocorrencia: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+
+    function onSuccess(imageURI) {
+            
+          //  $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $.ajax({ 
+                type: 'POST', 
+                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+                crossDomain: true, 
+                beforeSend : function() { }, 
+                complete   : function() { }, 
+                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+                success: function(retorno){ 
+                    //$("#erro_box").html(retorno); 
+                   alert(retorno);
+                }, 
+                error      : function() { 
+                    //alert('Erro'); 
+                } 
+            }); 
+        }
+        function onFail(message) {
+            //alert('Camera Indisponivel');
+        }    
+    },
+	
+	
     foto_visitante: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
