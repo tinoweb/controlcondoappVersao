@@ -1,4 +1,4 @@
-'var home_feed           = '';
+var home_feed           = '';
 var ref_liberacao       = '';
 var ref_comunicado      = '';
 var ref_correspondencia = '';
@@ -253,7 +253,6 @@ var app = {
 
     function onSuccess(imageURI) {
             
-          //  $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
@@ -262,9 +261,36 @@ var app = {
                 complete   : function() { }, 
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
-                    //$("#erro_box").html(retorno); 
-                   alert(retorno);
-					$("#form_ocorrencia #foto").val(retorno);
+				    $("#form_ocorrencia_add #foto_oco").val(retorno);
+                }, 
+                error      : function() { 
+                    //alert('Erro'); 
+                } 
+            }); 
+        }
+        function onFail(message) {
+            //alert('Camera Indisponivel');
+        }    
+    },
+	
+	foto_ocorrencia2: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL, 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+        });
+
+    function onSuccess(imageURI) {
+            
+            $.ajax({ 
+                type: 'POST', 
+                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+                crossDomain: true, 
+                beforeSend : function() { }, 
+                complete   : function() { }, 
+                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+                success: function(retorno){ 
+				    $("#form_ocorrencia_add #foto_oco").val(retorno);
                 }, 
                 error      : function() { 
                     //alert('Erro'); 
