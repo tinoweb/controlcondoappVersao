@@ -1413,7 +1413,7 @@
 										
 										<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Tickets </button>
 										<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_oco_salva" type="button"> <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Salvar </button>
-										<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_finaliza" type="button"> <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
+										<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_finaliza" type="button" onClick="finaliza_ocorrencia();"> <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
 										
 									</form>
 								</div>
@@ -1560,6 +1560,7 @@
 					var mainEntreg  = app2.views.create('.view-entregas'   );
 					var mainEnquet  = app2.views.create('.view-enquetes'   );
 					var mainDocume  = app2.views.create('.view-documentos' );
+					var mainOcorem  = app2.views.create('.view-ocorrencias' );
 					var $$          = Dom7;
 					var $ptrContent = $$('.ptr-content');
 					$ptrContent.on('ptr:refresh', function (e) {
@@ -1611,6 +1612,18 @@
 		on: {
 			search() {
 				carrega_documentos(0);	
+				$(".list").show();
+				//$(".block").hide();	
+			}
+		}
+	});
+	var searchbar_ocorrencias = app2.searchbar.create({
+		el: '#form_busca_ocorrencias',
+		searchContainer: '#busca_ocorrencias',
+		searchIn: '.item-title',
+		on: {
+			search() {
+				carrega_ocorrencias(0);	
 				$(".list").show();
 				//$(".block").hide();	
 			}

@@ -3,7 +3,7 @@
 // FUNCAO CARREGA TODOS OS COMUNICADOS
 function carrega_ocorrencias(tipo){
 	"use strict";
-//	app.controler_pull("comunicados");
+	app.controler_pull("ocorrencias");
 	if(tipo === 4){
 		$("#busca_ocorrencia").val("");
 	}
@@ -24,13 +24,14 @@ function carrega_ocorrencias(tipo){
     var dados = '';
 	var dado  = '';
 	var cor_status='yellow';
+    //alert($("#busca_ocorrencias").val());
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
         crossDomain: true,
         beforeSend : function() { },
         complete   : function() { },
-        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#busca_ocorrencia").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo,
+        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#busca_ocorrencias").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo,
         dataType   : 'json',
 		success: function(retorno){
             //alert(retorno);
@@ -126,7 +127,36 @@ function carrega_ocorrencia(id){
     
 }
 
+function finaliza_ocorrencia(){
+    navigator.notification.confirm(
+        'Deseja realmente Finalizar essa ocorrencia',  // message
+        finaliza_ocorrencia2,              // callback to invoke with index of button pressed
+        'Finalizar',            // title
+        'Sim,Não'          // buttonLabels
+    );    
+}
 
+function finaliza_ocorrencia2(res){
+    if(res==1){
+        var dados = $( "#form_ocorrencia" ).serialize();
+ 		$.ajax({
+			type: 'POST',
+            url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_update.php',
+            crossDomain: true,
+            beforeSend : function() {  },
+            complete   : function() {  },
+            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
+			success: function(retorno){
+                voltar('#ocorrencias','#ocorrencia','ocorrencias');
+                carrega_ocorrencias(0);
+//                $('#form_ocorrencia_add #descricao').val('');
+//                $('#form_ocorrencia_add #foto_oco').val('');
+			}
+		});
+   }else{
+        
+    }
+}
 
 //Buscar anexo de ocorrencia 
 
