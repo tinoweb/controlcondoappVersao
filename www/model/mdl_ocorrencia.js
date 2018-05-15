@@ -257,10 +257,7 @@ function ocorrencia_insert(){
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
 	}else{
-//		//processando(1);
-//		
 		var dados = $( "#form_ocorrencia_add" ).serialize();
-        //alert(dados);
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_insert.php',
@@ -268,12 +265,12 @@ function ocorrencia_insert(){
             beforeSend : function() {  },
             complete   : function() {  },
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
-            //data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),sql : sql},
-            //dataType   : 'json',
 			success: function(retorno){
 				//alert(retorno);
                 voltar('#ocorrencias','#ocorrencia_add','ocorrencias');
                 carrega_ocorrencias(0);
+                $('#form_ocorrencia_add #descricao').val('');
+                $('#form_ocorrencia_add #foto_oco').val('');
 			}
 		});
 	}
