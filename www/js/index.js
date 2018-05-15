@@ -1,4 +1,4 @@
-var home_feed           = '';
+'var home_feed           = '';
 var ref_liberacao       = '';
 var ref_comunicado      = '';
 var ref_correspondencia = '';
@@ -264,6 +264,7 @@ var app = {
                 success: function(retorno){ 
                     //$("#erro_box").html(retorno); 
                    alert(retorno);
+					$("#form_ocorrencia #foto").val(retorno);
                 }, 
                 error      : function() { 
                     //alert('Erro'); 
