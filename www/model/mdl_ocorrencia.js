@@ -45,15 +45,27 @@ function carrega_ocorrencias(tipo){
 					cor_status='yellow;'
 				}
                 dado = '<div class="card_ocorrencia" onClick="carrega_ocorrencia(\''+retorno[x]['id_ocorrencia']+'\');"  >'
-						+'<div>'
-							+'<div>Ocorrência: <strong>'+retorno[x]['id_ocorrencia']+'</strong></div>'
-							+'<div>'
-								+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> '
-								+'<strong>'+retorno[x]['situacao_descricao']+'</strong>'
+							+'<div class="titulo">'
+								+'<label style="font-size: 15px;" >Ocorrência nº '+retorno[x]['id_ocorrencia']+'</label>'
+								//+'<div class="icone"></div>'
+				
+								+'<div style="float: right; " ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x]['situacao_descricao']+'</label></div>'	
 							+'</div>'
-							+'<div><span>Data de Abertura: '+retorno[x]['data_criacao']+'</span></div>'							
-						+'</div>'+
-					'<div>Descrição: '+retorno[x]['descricao']+'</div>';
+			/*
+			*CORPO Do card ocorrencia na listagem
+			*/
+							+'<div class="corpo">'
+								
+								
+								+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['data_criacao']+'</h6></div>'	
+								+'<div class="titulo_descricao">'
+									//+'<p style="0 0 0px"> Descrição</p>' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
+								+'<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKASURBVDhP1ZTbThNRFIbnUl/AeKGP4DOZGBMPYJQECSAIV8RoEaEUiEJbKQxMW1qkrQUplul0epgypSfKwUgoYGkpDfHKRKO/e0+2FVKQGuKFK/mzDjP7mzV77Rnu/7Knd02XexrMt3ob+Qe1St9mbdE3C400NpC4r3m8/tnt0UsMyXF9Tbxrxpn66nalUYtmvVn43q3C485gbjaLBd8avO7Md/1DfoYhOa6/1SoH1D2cJSVdxFK2RHQAKV5AJL2P+HoZykoJ0nIBhke2EEPWDk1ulJH6UD4RSB808NgeYcjaoOHU/qkd0jrNBzunYgxZDfWHtjG/+LEif3ALwfA2fOImxHAO6toBAiT3R3YqQKqhjqk4Q1ZDHYIK/qWoaXI4AKtRqsR2cxBSdAcTJPdMJypADdrpTDBkNfS9nKvqcFHeQkjZJh3mtFxJFY8BFdLxHwfltKlVHdpMQQgjJH8lavWAvKnB6OAoMKAWQDkMeRyaXC/VNBSqjdwhdoufIS8XtbWnQiOp08/hUSBVLEv8aklbdyLUTzZfJqCQmodEXiUY20U0VUA0U4Sf7OtSpgQluYdoIq9NX1Y/QVTy2jU6gxOhNj4Ch2MJIzoPPL4sRvvnwY+ImHYlYXzuhdubxviwCMvgAjzzKxjWvcWUk5wSswTTizl4xQ30tx2FtlkVizmAMQvRKPUSLNSz+KifEMKwexOwe5Yxzocq91FPfiy/v6gn9yxXepvGGvtahNazpG8RspOOmAY2tNu+/KrT9ZTDkH9nujvGqwMd9oLNFcdQ1/S3juumC+zS+ay7znjN0G7ND3W9+dFz//UNVj6/dTcIF3V1xpvd9cZ6VvqXxnE/ATLUlbEEZFlVAAAAAElFTkSuQmCC"> Descrição' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
+				
+								+'</div>'
+								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
+							+'</div>';
+					
 				dado = dado +'</div>';
                 dados = dados + dado;
             }
@@ -103,15 +115,27 @@ function carrega_ocorrencia(id){
 					cor_status='yellow';
 				}
 				
+				//Preenche dados do form form_ocorrencia da pagina index.html
                 $("#form_ocorrencia #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
+                
                 $("#form_ocorrencia #id_condominio").val(retorno[0]['id_condominio']);
                 $("#form_ocorrencia #id_solicitante").val(retorno[0]['id_solicitante']);
                 $("#form_ocorrencia #criado_por").val(retorno[0]['criado_por']);
                 $("#form_ocorrencia #id_situacao").val(retorno[0]['id_situacao']);
-				$("#form_ocorrencia #statusbar").css('background-color', cor_status);
-                $("#form_ocorrencia #solicitante").html(retorno[0]['nome']);
-                $("#form_ocorrencia #situacao").html(retorno[0]['situacao_descricao']);
+				
+				//$("#form_ocorrencia #statusbar").css('background-color', cor_status);
+                
+				$("#form_ocorrencia #solicitante").html(retorno[0]['nome']);
+                
                 $("#form_ocorrencia #descricao").val(retorno[0]['descricao']);
+				
+				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrencia "+retorno[0]['id_ocorrencia']);
+                
+				
+				$("#form_ocorrencia #icone_ocorrencia").css('color', cor_status);
+				$("#form_ocorrencia #situacao").html(" "+retorno[0]['situacao_descricao']);
+				$("#form_ocorrencia #data_criacao").html(retorno[0]['data_criacao']);
+				
                 afed('#ocorrencia,#bt_oco_finaliza','#ocorrencias,#home,#bt_oco_salva','','#form_ocorrencia #descricao',3);
                 if(retorno[0]['id_situacao'] == 10){
                     afed('','#bt_oco_finaliza','','',3);

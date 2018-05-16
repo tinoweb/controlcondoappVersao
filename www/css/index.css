@@ -1,11 +1,11 @@
-@charset "UTF-8";
+car@charset "UTF-8";
 /* CSS Document */
 
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 300;
-  src: local('Montserrat Light'), local('Montserrat-Light'), url(https://fonts.gstatic.com/s/montserrat/v12/IVeH6A3MiFyaSEiudUMXExNcqx07xvyppV96iFRdwiM.woff2) format('woff2');
+  src: local('Montserrat Light'), local('Montserrat-Light'), url(https://fonts.gstatic.com/s/montserrat/v12/IVeH6A3MiFyaSEiuocUMXExNcqx07xvyppV96iFRdwiM.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
@@ -635,18 +635,78 @@ input, textarea {
 	border-radius:5px;
 	background-color:#FFF;
 }
-
+/*
+*********************** SESSAO DE CSS PARA OCORRENCIAS **********************
+*/
 .card_ocorrencia {
+	background-color: #FFFFFF;
 	width:93%;
 	float:left;
 	margin:1.5% 4% 1.5% 3%;
-	border-radius:10px;
+	border-radius:7px;
 	padding: 2px;
-	background-color:#F8F8F8;
-	border: solid 1px #AED2E1; 
-	box-shadow: 5px 5px #888888;
+	border: solid 1px #d6d6d6; 
+	font-size: 15px;
+	box-shadow: 1px 1px 2px 1px #e9e6e6;
+	font-family: 'Roboto Condensed', sans-serif !important;
 }
 
+.card_ocorrencia .titulo{
+	width: 96%;
+    float: left;
+	font-weight: 700;
+    border-bottom: 1px solid #d6d6d6;
+    margin: 0 0 0 2%;	
+	color: #9F9F9F;
+	vertical-align: middle;
+}
+.card_ocorrencia .titulo .icone{
+	width: 30px;
+    height: 30px;
+    float: right;
+    border-radius: 15px;
+    background-image: 	url('data:image/png;base64,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');
+	
+    background-size: 80%;
+    background-repeat: no-repeat;
+    margin: 0;
+    background-position: center;
+}
+
+.card_ocorrencia .corpo{
+	width: 96%;
+    float: left;    
+    margin: 0 0 0 2%;
+}
+
+.card_ocorrencia .data_o_criacao{
+	color: #fd9715;
+	font-size: 11px;
+	font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+.cardo_ocorrencia .titulo_descricao{
+	margin: 0;
+	color: #9F9F9F;
+	font-weight: 500;
+}
+.card_ocorrencia .titulo_descricao p::before { 		
+	content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALXSURBVEhL7ZVNU1JhFMeZqUV9gHa17Iv0DVq0bqZWTVKTaW8uWDVqiQkYFShowEV5SUBAlEsoICjy/iZm5kgoiDox7RrLf89zvdQ4oYJjrToz/zn3PGfu/3fvc547V/A/mo7uO6rLfa2ajLSdKTar/of6irzDUCV5XfqAKZLrL/IOY1XaxuSpL48QCHqFaqF5JLLri5bQjAKJTcTyOwgmN+GLlRDObiG2tIPI4jaoH/XlEQLBi1ZNq8UYrWtUT6FkGdmPO4cC/LEyrKYoqC+PaB5CDZcLVYRS9QEU7LAkTg45aotqAFo7LMmTQRoFNAwxM2FoZO7f6mehf/Ue2pcsVzNyD1zONFGG1CzGRhd+Aaic1gYg3mAB7ukVTh7fKoLzBXj9q3DPrMAXWkMwXMBcooTp+SK3Hk6WmodMepZhH0/D6czC485jgmS7PY2pyRw8bB6sexEOe4as5xBd3N+2mqL5bXK6YsdDrKY4GKUPRnUA+gEfGMUMRgf9XG1Q+bmarpuGA1hI788itbwPCMTLoH6HQgJkoIn81hFD3vpjyFQf1qrY2PyKSK7C+RwJoYpkK00BqFLk41wtVjFL3uJYSLNvQFXbItqvPeihECoKsBoiHMD+LsaZOMZi5MYNWM1xRDIVuBxphFNlTJHDMBdfx7gtDZacQHpQ3NOf4HDk6kMMujm86bbBxmbx+qmFy4ouG8Y9JHfaYHGloHxmx5gzgYFeJ8y2GAb7JmC0RKCWTcJoCmNIzmJkJASN0gvqdwAiblHfVIod0Gr8jUsbgNEZh2kiwUnHzB7oK8T2vR7h8A0eQSD3Rs9LHjGd/R1GXaOStDMzKpnrRw0iua/dPdAnfqLr6nM84mRhuGY409emW2L0sxxE9kT/XSQSneXbpxddQsVF8nf8rHnr26Pb/bxFdYVvnW5IhIMXpI8Zr6Rd96337jDLL/+d6LmluiS+PXSVL/91CAQ/AXku99gXHmPlAAAAAElFTkSuQmCC" ) ;	
+	margin: 0;
+	
+}
+
+.card_ocorrencia .descricao_card_ocorrencia{	/* Campo da descricao */
+	width: 96%; 
+	border: solid 1px #EDEDED; 
+	margin: 0 0 10px 2%;
+	padding:  3px 5px 3px 5px;	
+	border-radius: 7px;
+}
+
+/*
+*******************FIM DA SESSAO DE CSS PARA OCORRENCIAS
+*/
 .home .corpo .notificacoes .notificacao .noti_corpo .topo_comunicado {
 	width:100%;
 	float:left;

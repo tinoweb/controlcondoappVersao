@@ -19,7 +19,7 @@
 			<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 			<link rel="stylesheet" type="text/css" href="css/index.css">
 			<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 			<meta charset="UTF-8">
 			<script src="js/jquery-3.2.1.js"></script>
 			<script src="js/jquery-ui.js"></script>
@@ -151,9 +151,14 @@
 					}
 					 //app.initialize();
 					}  
+				function preenchenome(){
+					document.getElementById("login").value = 'pedro@firstcontrol.com.br';
+					document.getElementById("senha").value = '1234';
+					
+				}
 				</script>
 			</head>
-			<body>
+			<body onload="preenchenome();">
 				<div id="app">
 					<form id="DADOS" style="display: none;">
 						<input id="SERVIDOR_CAMINHO"    value="" type="hidden">
@@ -263,10 +268,10 @@
 		  <div id="login_ini" class="login_ini"> <img src="img/logoicon.png" width="150">
 	<form id="form_login" >
 			  <div class="input-group" style="margin-top: 30px; padding: 20px;">
-		<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off" value="pedro@firstcontrol.com.br">
+		<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off" >
 		<span class="input-group-addon"><i class="fa fa-user-o"></i></span> </div>
 			  <div class="input-group" style="padding: 20px">
-		<input id="senha" class="form-control" type="password" name="senha" value="1234" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
+		<input id="senha" class="form-control" type="password" name="senha" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
 		<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span> </div>
 			  <div style="text-align: center">
 		<input class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="login_user();" style="width: 50%" >
@@ -703,7 +708,7 @@
 			<input type="text" name="cpf" id="mor_cpf">
 			<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Nascimento</label>
 			<input type="date" name="nascimento" id="mor_nascimento">
-			<label style='width: 10%'>Sexo</label>
+			<label style="width: 10%">Sexo</label>
 			<input type="radio" name="masculino" value="0" id="mor_homem">
 			<img src="img/homem.png">
 			<input type="radio" name="masculino" value="1" id="mor_mulher">
@@ -804,7 +809,7 @@
 						</div>
 						<form id="form_comenta">
 							<div class="form-group" >
-								<input type="hidden" name="id_comunicado" id='id_comunicado_comentario' value="">
+								<input type="hidden" name="id_comunicado" id="id_comunicado_comentario" value="">
 								<input type="hidden" name="id_comunicado_comentario" value="0">
 								<input type="hidden" name="id_usuario_condominio" id="id_usuario_condominio_comentario" value="">
 								<input type="text" name="comentario" id="txt_comenta" placeholder="Digite seu comentário" style="width: 100%;color: #ad9d9d;border: 1px solid; border-radius: 5px;padding: 8px">
@@ -959,7 +964,8 @@
 				</div>
 				<div class="form-group">
 					<div class="item-title item-label" style="margin-top: 7px">RG</div>
-					<input class="form-control" type="number" name="rg" id="rg" min="1" max="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" value=${var} >
+					<!--<input class="form-control" type="number" name="rg" id="rg" min="1" max="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');" value=${var} >--> <!-- Alterado por Pedro 16/05/2018 por mostrar erro no console em value=${var} -->
+					<input class="form-control" type="number" name="rg" id="rg" min="1" max="9" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  >
 				</div>
 				<button type="button" class="btn btn-default" id="collapse_more" data-toggle="collapse" data-target="#more_information" onClick="moreInformation()" style="float: left;margin-top: 10px" > <img width="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC/SURBVFhH7dbBCcJAFIThxaMXT4JiWdpFWrAFa7APwRo8WoItiIHoPMKABIK7Zl+y6HwwsARCfthLgoiIyP9aY7P26GqJzdtjvD32xE5Y8ssJdtgdu2ELexDriFmg7Yx5RFrcA7Nv1NgGi2bXe8W8IrcY4xqswpJ5RWaJo9yRWeMoV6RLHA2NdI2jbyNHiaPUyFHjKDZykjj6FDlpHPVFFhFH3cgLVkwcdSOLiqP3yOLiaIUdMPtLERERkZ8QwgtqbGZtnMK0pQAAAABJRU5ErkJggg=="> Mais informações </button>
 				<div style="width: 100%;float: left"></div>
@@ -1345,7 +1351,7 @@
 				-->
 				<!--------------------------------------------    $OCORRENCIAS LISTA    -------------------------------------------->
 
-				<div id="ocorrencias" class="pagina ocorrencias">
+				<div id="ocorrencias" class="pagina ocorrencias" >
 					<div class="view view-ocorrencias"> 
 						<!-- Initial Page, "data-name" contains page name -->
 						<div data-name="home" class="page">
@@ -1369,7 +1375,7 @@
 
 									<!-- Scrollable page content -->
 									<div class="box" id="boxUp_ocorrencias"></div>
-									<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" >
+									<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="background-color: #f0f0f04d" >
 										<div class="ptr-preloader">
 											<div class="preloader"></div>
 											<div class="ptr-arrow"></div>
@@ -1385,11 +1391,11 @@
 							<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
 									<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
-										<div class="title">Ocorrencia</div>
+										<div class="title" >Ocorrencia</div>
 									</div>
 								</div>
 								<div class="form-control">
-									<form id="form_ocorrencia" style="margin-top: 60px; float: left; width: 100%;">
+									<form id="form_ocorrencia" style="margin-top: 50px; float: left; width: 100%;">
 										<input type="hidden" id="foto" name="foto" > 
 										<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
 										<input type="hidden" name="id_condominio" id="id_condominio">
@@ -1398,15 +1404,32 @@
 										<input type="hidden" name="criado_por" id="criado_por">
 										<input type="hidden" name="id_situacao" id="id_situacao">
 										<input type="hidden" name="arquivo" id="arquivo">
-										<div style='border: solid 1px #88A3A7; margin-bottom: 6px;  background-color: aliceblue; border-radius: 10px;'>
-											<div id='statusbar' style='border-radius: 10px 10px 0px 0px; height: 5%;'>&nbsp;</div>
-											<label style="width: 100%; font-size: 15px;">Solicitante</label>
-											<p id="solicitante">Nome do Morador</p>
-											<label style="width: 100%;font-size: 15px;" >Status </label>
-											<p id="situacao" name="situacao">status: Aberto</p>
-											<label style="width: 100%;font-size: 15px;">Descrição</label>
-											<textarea name="descricao" style="width: 100%;font-size: 12px;" id="descricao"></textarea>
+										
+											<!-- <div id='statusbar' style='border-radius: 10px 10px 0px 0px; height: 5%;'>&nbsp;</div> -->
+
+
+										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
+											<div style="font-size: 20px; float: left;" id="titulo_ocorrencia" >
+												Titulo da ocorrencia 											
+											</div>
+											<div style="padding-top: 5px;float: right;" id="situacao">
+											</div>
+											<div style="padding-top: 5px; float: right;">
+												<i class="fa fa-circle" id="icone_ocorrencia">&nbsp;</i>  
+											</div>
+
+										
 										</div>
+										
+										<label id="data_criacao" style="width: 100%; color: #fd9715; font-weight: 500;"> Data de Criação </label>
+										
+										<label style="width: 100%; font-size: 15px;font-weight: 700;">Solicitante</label>
+										
+										<p id="solicitante">Local onde é preenchido o Nome do Morador</p>
+										
+										<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
+										<textarea name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></textarea>
+										
 										
 										<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
 					
