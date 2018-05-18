@@ -355,6 +355,11 @@
 					  				<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Minha lista de visitas</button>
 					  			</p>
 					  		</div>
+					  		<div class="block" style="text-align: center;margin-top: 20px">
+					  			<p class="row">
+					  				<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Últimos Acessos</button>
+					  			</p>
+					  		</div>
 					  	</div>
 			<!-------------------------------------- SWIPER MENU ----------------------------------------------->
 			<div id="menu" class="swiper-slide menu">
@@ -908,27 +913,56 @@
 			<form class="searchbar" id="form_busca_liberacao" style="width: 100%; margin-top: -7px">
 				<div class="searchbar-inner">
 					<div class="searchbar-input-wrap">
-						<input type="search" placeholder="Busca" name="busca" id="busca_liberacao">
-						<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_liberacao(4)"></span> </div>
-						<span class="searchbar-disable-button" onClick="carrega_liberacao(3)">Cancela</span> </div>
-						<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
-					</form>
+                    <input type="search" placeholder="Busca" name="busca" id="busca_liberacao">
+                    <i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_liberacao(4)"></span> </div>
+                    <span class="searchbar-disable-button" onClick="carrega_liberacao(3)">Cancela</span> 
+                </div>
+            </form>
 					<!-- Searchbar backdrop -->
-					<div class="searchbar-backdrop"></div>
+            <div class="searchbar-backdrop"></div>
 					<!-- Scrollable page content -->
-					<div class="box" id="boxUp_liberacao"></div>
-					<div class="page-content ptr-content" data-ptr-distance="55" id="pull-liberacao" style="padding-top: 60px; padding-bottom: 10px">
-						<div class="ptr-preloader">
-							<div class="preloader"></div>
-							<div class="ptr-arrow"></div>
-						</div>
-						<div id="retorno_liberacao" class="list media-list searchbar-found" style="height: 90% !important"></div>
-					</div>
-
-					<!-- <div class="scroll list searchbar-found" id="retorno_liberacao" style="margin-top: -5px"></div> --> 
+            <div class="box" id="boxUp_liberacao"></div>
+            <div class="page-content ptr-content" data-ptr-distance="55" id="pull-liberacao" style="padding-top: 60px; padding-bottom: 10px">
+                <div class="ptr-preloader">
+                    <div class="preloader"></div>
+                    <div class="ptr-arrow"></div>
+                </div>
+                <div id="retorno_liberacao" class="list media-list searchbar-found" style="height: 90% !important"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup popup-liberacao2" style="background-color: beige">
+	<div class="view view-liberacao2"> 
+		<!-- Initial Page, "data-name" contains page name -->
+		<div data-name="home" class="page">
+			<div class="navbar" style="height: 50px">
+				<div class="navbar-inner"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a>
+					<div class="title">Ultimas Liberações</div>
 				</div>
 			</div>
-		</div>
+			<form class="searchbar" id="form_busca_liberacao2" style="width: 100%; margin-top: -7px">
+				<div class="searchbar-inner">
+					<div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Busca" name="busca" id="busca_liberacao2">
+                    <i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_liberacao2(4)"></span> </div>
+                    <span class="searchbar-disable-button" onClick="carrega_liberacao2(3)">Cancela</span> 
+                </div>
+            </form>
+					<!-- Searchbar backdrop -->
+            <div class="searchbar-backdrop"></div>
+					<!-- Scrollable page content -->
+            <div class="box" id="boxUp_liberacao2"></div>
+            <div class="page-content ptr-content" data-ptr-distance="55" id="pull-liberacao2" style="padding-top: 60px; padding-bottom: 10px">
+                <div class="ptr-preloader">
+                    <div class="preloader"></div>
+                    <div class="ptr-arrow"></div>
+                </div>
+                <div id="retorno_liberacao2" class="list media-list searchbar-found" style="height: 90% !important"></div>
+            </div>
+        </div>
+    </div>
+</div>
 		  <!--<div id="liberacao3" class="pagina">
 	<div class="topo_sub" style="background-color:#437efc;">
 		<img onClick="afed('#home','#liberacao3','','',2);ref_liberacao.destroy();$( '#busca_liberacao' ).val('');" src="img/voltar.png">
@@ -1664,6 +1698,21 @@
 				app.controler_pull('liberacao');  // controle do pull refresh
 				//alert('popupliberacao');
 				carrega_liberacao(0);
+			},
+		}
+	});
+	
+	var liberacaoPopup2 = app2.popup.create({
+		el: '.popup-liberacao2',
+		animate: false,
+		on: {
+			open: function (popup) {
+				console.log('Popup open');
+			},
+			opened: function (popup) {
+				app.controler_pull('liberacao2');  // controle do pull refresh
+                alert('popupliberacao2');
+				carrega_liberacao2(0);
 			},
 		}
 	});
