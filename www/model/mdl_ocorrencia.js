@@ -47,9 +47,8 @@ function carrega_ocorrencias(tipo){
                 dado = '<div class="card_ocorrencia" onClick="carrega_ocorrencia(\''+retorno[x]['id_ocorrencia']+'\');"  >'
 							+'<div class="titulo">'
 								+'<label style="font-size: 15px;" >Ocorrência nº '+retorno[x]['id_ocorrencia']+'</label>'
-								//+'<div class="icone"></div>'
-				
-								+'<div style="float: right; " ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x]['situacao_descricao']+'</label></div>'	
+												
+								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x]['situacao_descricao']+'</label></div>'	
 							+'</div>'
 			/*
 			*CORPO Do card ocorrencia na listagem
@@ -64,6 +63,10 @@ function carrega_ocorrencias(tipo){
 				
 								+'</div>'
 								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
+								+'<div class="feed_home">'
+										+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img>'
+										+'<span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['q_ticket']+'&nbsp; &nbsp; &nbsp; </span>'
+								+'</div>'
 							+'</div>';
 					
 				dado = dado +'</div>';
@@ -129,7 +132,7 @@ function carrega_ocorrencia(id){
                 
                 $("#form_ocorrencia #descricao").val(retorno[0]['descricao']);
 				
-				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrencia "+retorno[0]['id_ocorrencia']);
+				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrencia <span style='background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;'>"+retorno[0]['id_ocorrencia']+"</span>");
                 
 				
 				$("#form_ocorrencia #icone_ocorrencia").css('color', cor_status);
