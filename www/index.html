@@ -1650,6 +1650,19 @@
 			}
 		}
 	});
+	var searchbar_liberacao2 = app2.searchbar.create({
+		el: '#form_busca_liberacao2',
+		searchContainer: '#retorno_liberacao2',
+		searchIn: '.item-title',
+		on: {
+			search() {
+				carrega_liberacao2(0);
+				//alert("busca_liberacao");
+				$(".list").show();
+				//$(".block").hide();	
+			}
+		}
+	});
 	var searchbar_comunicados = app2.searchbar.create({
 		el: '#form_busca_comunicados',
 		searchContainer: '#busca_comunicados',
@@ -1710,7 +1723,7 @@
 			},
 			opened: function (popup) {
 				app.controler_pull('liberacao2');  // controle do pull refresh
-                alert('popupliberacao2');
+                //alert('popupliberacao2');
 				carrega_liberacao2(0);
 			},
 		}

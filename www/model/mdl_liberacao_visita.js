@@ -76,6 +76,7 @@ function carrega_liberacao2(tipo){
 	}
     if(tipo == 0 || tipo==3 || tipo==4){
         var pg = 1;
+        var offset = 0;
     }else{
         //var offset = $("#retorno_liberacao").find(".liberado").size();
         var offset = $(".liberado2").length;
@@ -88,53 +89,37 @@ function carrega_liberacao2(tipo){
 			pg = pg+1; 
 		}
 	}
-    //alert(pg);
     var dados = '';
+    //alert($( "#busca_liberacao2" ).val());
 	$.ajax({
 		type: 'POST',
 		//url: localStorage.getItem('DOMINIO')+"appweb/liberacao_get.php",
 		url: localStorage.getItem('DOMINIO')+'appweb/liberacao2_get.php',
         crossDomain: true,
-        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg),tipo : 1,nome : $( "#busca_liberacao" ).val()},
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val()},
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
-                var dado = '<div class="liberado2"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
+                var dado = '<div class="liberado2"><div class="liberado_foto" ';
                 if(retorno[x]['foto'].length>0){
                     dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
-                dado = dado +'></div><div onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')"><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['validadeInicio']+' a '+retorno[x]['validadeFim']+'</span><br>';
-                if(retorno[x]['numero_acesso_perm'] != null){
-                    if(retorno[x]['numero_acesso_perm'] == 0){
-                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Ilimitados</span><br>';
-                    }else{
-                        //dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos: '+retorno[x]['numero_acesso_perm']+'</span><br>';
-                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Usados: '+retorno[x]['numero_acesso']+' de '+retorno[x]['numero_acesso_perm']+'</span><br>';
-                    }
-                }
-                
+                dado = dado +'></div><div><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['dt_visita']+'</span><br>';
                 dado = dado + '</div>';
-                
-				if(retorno[x]['valido']==1){
-					dado = dado + '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
-				}else{
-					dado = dado + '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
-				}
 				dado  = dado + '</div>';
                 dados = dados + dado;
             }
-            //alert(dados);
-			//dados = '<div class="main">'+dados+'</div>';
+			dados = '<div class="main">'+dados+'</div>';
 			if(tipo == 0 || tipo==3 || tipo==4){
-				$("#retorno_liberacao").html("");
+				$("#retorno_liberacao2").html("");
 			}
-			$( "#retorno_liberacao" ).append(dados);
+			$( "#retorno_liberacao2" ).append(dados);
 		},
         error   : function() {
-            //alert('Erro ao carregar liberacao');
+            //alert('Erro ao carregar liberacao 2');
         }
 	});
-    localStorage.setItem('TELA_ATUAL','liberacao_list');
+    localStorage.setItem('TELA_ATUAL','liberacao_list2');
 }
 
 //FUNCAO CRREGA LIBERACAO PRA EDITAR
