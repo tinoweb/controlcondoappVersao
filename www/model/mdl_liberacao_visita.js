@@ -104,7 +104,7 @@ function carrega_liberacao2(tipo){
                 if(retorno[x]['foto'].length>0){
                     dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
-                dado = dado +'></div><div><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['dt_visita']+'</span><br>';
+                dado = dado +'></div><div><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">de '+retorno[x]['dt_entrada']+' até '+retorno[x]['dt_saida']+'</span><br>';
                 dado = dado + '</div>';
 				dado  = dado + '</div>';
                 dados = dados + dado;
