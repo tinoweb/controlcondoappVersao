@@ -1154,6 +1154,7 @@ input, textarea {
     box-shadow: 6px 6px 8px 0 #ccc;
 	padding-bottom: 10px;
 }
+
 .liberado {
     width: 90%;
     float: left;
@@ -1204,6 +1205,68 @@ input, textarea {
 	margin:6% 0 0 2%;
 	font-size:18px;
 }
+.home .corpo .liberacao .liberado2 {
+    width: 90%;
+    float: left;
+    margin: 10px 0 0 4%;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    box-shadow: 6px 6px 8px 0 #ccc;
+	padding-bottom: 10px;
+}
+
+.liberado2 {
+    width: 90%;
+    float: left;
+    margin: 10px 0 0 4%;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    box-shadow: 6px 6px 8px 0 #ccc;
+	padding-bottom: 10px;
+}
+
+.home .corpo .liberacao .liberado2 .liberado_foto{
+	width:60px;
+	height:60px;
+	float:left;
+	margin:2% 0 0 2%;
+	border-radius:50%;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:90%;
+	background-position:center center;
+	border:2px solid #D6D6D6;
+	background-color: #eee;
+}
+.liberado2 .liberado_foto{
+	width:60px;
+	height:60px;
+	float:left;
+	margin:2% 0 0 2%;
+	border-radius:50%;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:90%;
+	background-position:center center;
+	border:2px solid #D6D6D6;
+	background-color: #eee;
+}
+
+.home .corpo .liberacao .liberado2 strong {
+	width:70%;
+	float:left;
+	margin:6% 0 0 2%;
+	font-size:18px;
+}
+.liberado2 strong {
+	width:70%;
+	float:left;
+	margin:6% 0 0 2%;
+	font-size:18px;
+}
+
 .home .corpo .menu {
 	float:left;
 	overflow:auto;

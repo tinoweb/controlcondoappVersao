@@ -31,11 +31,12 @@ var app = {
         
 		$("#box_notificacoes" ).hide();
 		$("#boxUp_liberacao"  ).hide();
+		$("#boxUp_liberacao2" ).hide();
 		$("#boxUp_comunicados").hide();
 		$("#boxUp_entregas"   ).hide();
 		$("#boxUp_enquetes"   ).hide();
 		$("#boxUp_documentos" ).hide();
-		$("#boxUp_ocorrencias" ).hide();
+		$("#boxUp_ocorrencias").hide();
 		
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
@@ -110,6 +111,23 @@ var app = {
 		
 		$('#boxUp_liberacao').click(function(){
 			$('#pull-liberacao').animate({
+				scrollTop: 0
+			},600)
+		});
+		
+		$("#pull-liberacao2").scroll(function() { 
+			var y=(($(this).scrollTop() + $(this).height()) + 71);
+			var x=$(this).get(0).scrollHeight;
+			//alert('pull liberacao');
+			//alert(y+ ' iii '+x);
+            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+                carrega_liberacao2(1);
+            }
+			app.ckBoxUp("#boxUp_liberacao2","#pull-liberacao2");
+		});		
+		
+		$('#boxUp_liberacao2').click(function(){
+			$('#pull-liberacao2').animate({
 				scrollTop: 0
 			},600)
 		});
@@ -442,6 +460,7 @@ var app = {
     remove_pull: function(){
 		$("#notificacoes"    ).removeClass("ptr-content");
 		$("#pull-liberacao"  ).removeClass("ptr-content");
+		$("#pull-liberacao2"  ).removeClass("ptr-content");
 		$("#pull-comunicados").removeClass("ptr-content");
 		$("#pull-entregas"   ).removeClass("ptr-content");
 		$("#pull-enquetes"   ).removeClass("ptr-content");
@@ -456,6 +475,8 @@ var app = {
 			$("#notificacoes"    ).addClass("ptr-content");	
 		}else if(pag==='liberacao'){
 			$("#pull-liberacao"  ).addClass("ptr-content");
+		}else if(pag==='liberacao2'){
+			$("#pull-liberacao2"  ).addClass("ptr-content");
 		}else if(pag==='comunicados'){
 			$("#pull-comunicados").addClass("ptr-content");
 		}else if(pag==='entregas'){
@@ -478,6 +499,8 @@ var app = {
 			carrega_notificacoes(0);
 		}else if(res==='liberacao_list'){
 			carrega_liberacao(0);
+		}else if(res==='liberacao_list2'){
+			carrega_liberacao2(0);
 		}else if(res==='comunicados'){
 			carrega_comunicados(0);
 		}else if(res==='entregas'){
