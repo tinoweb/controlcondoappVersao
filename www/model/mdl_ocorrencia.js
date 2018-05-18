@@ -65,7 +65,7 @@ function carrega_ocorrencias(tipo){
 								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
 								+'<div class="feed_home">'
 										+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img>'
-										+'<span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['q_ticket']+'&nbsp; &nbsp; &nbsp; </span>'
+										+'<span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['q_ticket']+' </span>'
 								+'</div>'
 							+'</div>';
 					
@@ -307,8 +307,21 @@ function ocorrencia_novo(){
     afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
 
 
-	("#add_ocorrencia #nome").focus();
+	$("#add_ocorrencia #nome").focus();
 }
+
+// FUNCAO CARREGA PAGINA NOVA OCORRENCIA
+function ticket_novo(){
+
+    $("#add_ticket #descricao" ).val('');    
+
+    
+    afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
+
+
+	$("#add_ticket #descricao").focus();
+}
+
 
 function ocorrencia_insert(){
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
@@ -377,9 +390,18 @@ function carrega_tickets(tipo){
 				}
 				
                 dado = '<div class="card_ocorrencia" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
-						+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> <label style="font-weight: normal;">'+retorno[x]['situacao_descricao']+'</label><br>'
-						+'<label style="font-weight: normal;">'+retorno[x]['descricao']+'</label><br>'		
-						+'<label style="font-weight: normal;">'+retorno[x]['data_criacao']+'</label><br>';
+						+'<div style="float:left">'
+						+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> Ticket '+retorno[x]['id_ocorrencia_ticket']
+						+'</div>'
+						+'<div style="float: right">'
+						+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> <label style="font-weight: normal;">'+retorno[x]['situacao_descricao']+'</label>'
+						+'</div><br>'
+						+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['data_criacao']+'</h6></div>'	
+						
+						+'<label style="font-weight: normal;">Descrição</label><br>'		
+						+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
+						
+						
 								
 				dado = dado +'</div>';
                 dados = dados + dado;
