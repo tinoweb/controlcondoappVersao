@@ -1406,8 +1406,6 @@
 									<div class="left"> <a href="#" onClick="voltar('#home','#ocorrencias','home');"><i class="icon icon-back"></i></a></div>
 									<div class="title">Ocorrencias</div>
 									<div class="right"> <a href="#" onClick="ocorrencia_novo();"> <span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span> </a> </div>
-							
-								</div>
 								</div>
 							</div>
 							<form class="searchbar" id="form_busca_ocorrencias" style="width: 100%; margin-top: -7px">
@@ -1432,7 +1430,8 @@
 									</div>
 								</div>
 							</div>
-					
+						</div>
+
 <!------------------------------------------$OCORRENCIAS PAGINA VISUALIZACAO ------------------------------------->
 						<div id="ocorrencia" class="pagina ocorrencias">
 							<div data-name="home" class="page">
@@ -1542,6 +1541,7 @@
 						</div>	
 				
 
+				
 <!-------------------------------------------------- LISTA TICKET --------------------------------------------------->
 					<div id="ocorrencias_ticket" class="pagina ocorrencias_ticket">
 						<div class="view view-ocorrencias"> 
@@ -1571,6 +1571,8 @@
 							</div>
 						</div>
 					</div>
+		
+
 <!-------------------------------------------------  TICKET OCORRENCIA PAGINA INCLUSAO ------------------------------>
 						<div id="add_ticket" class="pagina ocorrencias">
 							<div class="navbar" style="height: 50px">
@@ -1581,19 +1583,21 @@
 							</div>
 							<div class="scroll">
 								<form id="form_ticket_add">
-									<input type="hidden" name="tipo_solicitante" value="1">
-									<input type="hidden" name="id_situacao" value="1">
-									<input type="hidden" name="responsavel" value="">
+									<input type="hidden" name="id_ocorrencia" id='id_ocorrencia' value="">
+									<input type="hidden" name="id_condominio" id="id_condominio"  value="">
+									
+									
+									<input type="hidden" name="id_situacao" id="id_situacao"  value="1">
+									<input type="hidden" name="responsavel" id="responsavel" value="">
+									
 									<div class="form-group">
-										<label for="solicitante">Sitauação</label>
-										<input class="form-control" id="id_situacao" name="id_situacao" value="1" >
-										<label for="solicitante">Motivo</label>
-										<textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Motivo da ocorrência"></textarea>
+										<label for="solicitante">Descrição do Ticket </label>
+										<textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Descrição do ticket"></textarea>
 									</div>
 									<p></p>
 
 									<p></p>
-									<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_ticket_salva2" type="button" onClick="ocorrencia_insert();"> 
+									<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_ticket_salva2" type="button" onClick="ticket_insert();"> 
 										<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Salvar 
 									</button>
 								</form>

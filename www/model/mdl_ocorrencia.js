@@ -313,8 +313,10 @@ function ocorrencia_novo(){
 // FUNCAO CARREGA PAGINA NOVA OCORRENCIA
 function ticket_novo(){
 
-    $("#add_ticket #descricao" ).val('');    
-
+    $("#add_ticket #descricao" ).val('');  
+	
+	$("#form_ticket_add #id_ocorrencia").val($("#form_ocorrencia #id_ocorrencia").val());
+	$("#form_ticket_add #id_condominio").val($("#form_ocorrencia #id_condominio").val());
     
     afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
 
@@ -322,6 +324,28 @@ function ticket_novo(){
 	$("#add_ticket #descricao").focus();
 }
 
+function ticket_insert(){
+	if($( "#form_ticket_add #descricao" ).val() == ''){
+		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
+	}else{
+		
+		var dados = $( "#form_ticket_add" ).serialize();
+		$.ajax({
+			type: 'POST',
+            url: localStorage.getItem('DOMINIO')+'appweb/ticket_insert.php',
+            crossDomain: true,
+            beforeSend : function() {  },
+            complete   : function() {  },
+            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
+			success: function(retorno){
+				alert(retorno);
+                voltar('#ocorrencias_ticket','#ticket_add','ocorrencias_ticket');
+                carrega_ocorrencias(0);
+                $('#form_ticket_add #descricao').val('');                
+			}
+		});
+	}
+}
 
 function ocorrencia_insert(){
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
