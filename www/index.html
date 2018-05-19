@@ -1544,7 +1544,7 @@
 				
 <!-------------------------------------------------- LISTA TICKET --------------------------------------------------->
 					<div id="ocorrencias_ticket" class="pagina ocorrencias_ticket">
-						<div class="view view-ocorrencias"> 
+						<div class="view view-tickets"> 
 							<!-- Initial Page, "data-name" contains page name -->
 							<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
@@ -1574,7 +1574,7 @@
 		
 
 <!-------------------------------------------------  TICKET OCORRENCIA PAGINA INCLUSAO ------------------------------>
-						<div id="add_ticket" class="pagina ocorrencias">
+						<div id="add_ticket" class="pagina add_ticket">
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner topo_sub">
 									<div class="left"> <a href="#" onClick="voltar('#ocorrencias_ticket','#ticket_add','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
@@ -1606,7 +1606,7 @@
 						</div>
 				
 <!-------------------------------------------------- VISUALIZACAO TICKET ------------------------------------------>
-					<div id="ticket" class="pagina ocorrencias">
+					<div id="ticket" class="pagina ticket">
 						<div data-name="home" class="page">
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner"> <a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','tickets');"><i class="icon icon-back"></i></a>
@@ -1669,6 +1669,7 @@
 					var mainEnquet  = app2.views.create('.view-enquetes'   );
 					var mainDocume  = app2.views.create('.view-documentos' );
 					var mainOcorem  = app2.views.create('.view-ocorrencias' );
+					var mainTicket  = app2.views.create('.view-tickets' );
 					var $$          = Dom7;
 					var $ptrContent = $$('.ptr-content');
 					$ptrContent.on('ptr:refresh', function (e) {

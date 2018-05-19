@@ -37,6 +37,7 @@ var app = {
 		$("#boxUp_enquetes"   ).hide();
 		$("#boxUp_documentos" ).hide();
 		$("#boxUp_ocorrencias").hide();
+		$("#boxUp_tickets").hide();
 		
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
@@ -208,6 +209,22 @@ var app = {
 		
 		$('#boxUp_ocorrencias').click(function(){
 			$('#pull-ocorrencias').animate({
+				scrollTop: 0
+			},600)
+		});
+		
+		$("#pull-tickets").scroll(function() { 
+			var y=(($(this).scrollTop() + $(this).height()) + 71);
+			var x=$(this).get(0).scrollHeight;
+			//alert(y+ ' iii '+x);
+            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+                carrega_ocorrencias(1);
+            }
+			app.ckBoxUp("#boxUp_tickets","#pull-tickets");
+		});		
+		
+		$('#boxUp_tickets').click(function(){
+			$('#pull-tickets').animate({
 				scrollTop: 0
 			},600)
 		});
@@ -466,6 +483,7 @@ var app = {
 		$("#pull-enquetes"   ).removeClass("ptr-content");
 		$("#pull-documentos" ).removeClass("ptr-content");
 		$("#pull-ocorrencias" ).removeClass("ptr-content");
+		$("#pull-tickets" ).removeClass("ptr-content");
 	},
 	controler_pull: function(pag){
 		"use strict";
@@ -490,6 +508,9 @@ var app = {
 		}else if(pag==='ocorrencias'){
 			$("#pull-ocorrencias").addClass("ptr-content");
 			//alert('saindo do controler_pull');
+		}else if(pag==='tickets'){
+			$("#pull-tickets").addClass("ptr-content");
+			//alert('saindo do controler_pull');
 		}
 	},
 	pull_to_refresh: function(res){
@@ -511,6 +532,8 @@ var app = {
 			carrega_documentos(0);
 		}else if(res==='ocorrencias'){
 			carrega_ocorrencias(0);
+		}else if(res==='tickets'){
+			carrega_tickets(0);
 		}
 		//alert('terminado');
 	},

@@ -338,9 +338,9 @@ function ticket_insert(){
             complete   : function() {  },
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
-				alert(retorno);
+				//alert(retorno);
                 voltar('#ocorrencias_ticket','#ticket_add','ocorrencias_ticket');
-                carrega_ocorrencias(0);
+                carrega_tickets(0);
                 $('#form_ticket_add #descricao').val('');                
 			}
 		});
@@ -374,7 +374,7 @@ function ocorrencia_insert(){
 function carrega_tickets(tipo){
     var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 	"use strict";
-//	app.controler_pull("comunicados");
+	app.controler_pull("tickets");
 	var pg = 0;
     if(tipo === 0){
         pg = 1;

@@ -192,6 +192,27 @@ function onBackKeyDown() {
         localStorage.setItem('TELA_ATUAL','home');
     }
 	
+     //REGRAS OCORRENCIA   
+    if(localStorage.getItem('TELA_ATUAL') == 'ocorrencias'){
+        afed('#home','#ocorrencias','','',2);
+        localStorage.setItem('TELA_ATUAL','home');
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'ocorrencia'){
+        afed('#ocorrencias','#ocorrencia','','',2);
+        localStorage.setItem('TELA_ATUAL','ocorrencias');
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'tickets'){
+        afed('#ocorrencia','#ocorrencias_ticket','','',2);
+        localStorage.setItem('TELA_ATUAL','ocorrencia');
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'ticket'){
+        afed('#ocorrencias_ticket','#ticket','','',2);
+        localStorage.setItem('TELA_ATUAL','tickets');
+    }
+	
 	
 }
 
