@@ -365,6 +365,8 @@ function ocorrencia_insert(){
 			success: function(retorno){
 				//alert(retorno);
                 voltar('#ocorrencias','#ocorrencia_add','ocorrencias');
+                afed('','#anexo_oco','','','');
+                $("#form_ocorrencia_add #foto_oco").val('');
                 carrega_ocorrencias(0);
                 $('#form_ocorrencia_add #descricao').val('');
                 $('#form_ocorrencia_add #foto_oco').val('');
