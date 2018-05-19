@@ -1391,7 +1391,7 @@
 <!---------------------------------------------	
 
 
-----------------------------------------------Inicio de configuração do modulo de Ocorrencias 
+										Inicio de configuração do modulo de OCORRENCIA 
 
 
 ---------------------------------------------->
@@ -1620,13 +1620,22 @@
 									<input type="hidden" name="id_ocorrencia_ticket" id="id_ocorrencia_ticket">
 									<input type="hidden" name="id_condominio" id="id_condominio">
 									<input type="hidden" name="id_situacao" id="id_situacao">
-									<div  style="border: solid 1px #88A3A7; margin-bottom: 6px;  background-color: aliceblue; border-radius: 10px;'">
-										<label style="width: 100%;" >Status </label>
-										<p id="situacao" name="situacao">situacao</p>
-										<label style="width: 100%;" >Data </label>
-										<p id="data_ticket" name="data_ticket"></p>
-										<label style="width: 100%;">Descrição </label>
-										<textarea name="descricao" style="width: 100%;" id="descricao"></textarea>
+									<div  style="margin-bottom: 6px; ">
+										<div>
+											<h4 style="float:left" >Ticket </h4>
+											<p style="float:right" id="situacao" name="situacao">situacao</p>										
+										</div>
+										<br>
+										 
+										<div style="float: left;width: 100%; color: #d45507;">
+											Criado em <span id="data_ticket" name="data_ticket"></span>
+										</div>
+										<br>
+										
+										<div>
+											<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
+											<textarea name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></textarea>
+										</div>
 									</div>
 									<button class="btn btn-success" id="bt_ticket_finaliza" > <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
 								</form>

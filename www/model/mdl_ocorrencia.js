@@ -210,14 +210,17 @@ function carrega_ocorrencia_arq(id){
 				ext = replaceAll(retorno[x]['arquivo'], "\/","_");
 				
 				 
-              //  dado = '<button class="col button button-small button-fill color-gray" style="top: 18px; margin-top:10px">teste</button>';
+              	//  dado = '<button class="col button button-small button-fill color-gray" style="top: 18px; margin-top:10px">teste</button>';
 				//<input type="hidden" id="num_anexo_"+num >
-                dado = '<button type="button"  class="btn btn-default" onClick=download_arq_ocorrencia("'+ext+'"); >'
-							+' <span class="glyphicon glyphicon-paperclip"></span>  Anexo ' +num+  '  </button><p></p>';
+                //dado = '<button type="button" class="btn btn-default; border-radius: 30;" onClick=download_arq_ocorrencia("'+ext+'"); >'
+				//			+' <span class="glyphicon glyphicon-paperclip"></span>  Anexo ' +num+  '  </button><p></p>';
+				
+				dado = '<div onClick=download_arq_ocorrencia("'+ext+'"); > <img src="img/anexo_ocorrencia.png" width="30" height="30" alt=""/> Anexo ' +num+  ' 	<p></p> </div> ' ; 
                 //alert(retorno[x]['caminho']);
                 dados = dados + dado;
             }
-            $("#ocorrencia_anexo_retorno").html(dados);
+           
+			$("#ocorrencia_anexo_retorno").html(dados);
 		},
         error : function() {
 			alert('Erro ao carregar arquivos');
