@@ -3,6 +3,7 @@
 // FUNCAO CARREGA TODOS OS COMUNICADOS
 function carrega_ocorrencias(tipo){
 	"use strict";
+	
 	app.controler_pull("ocorrencias");
 	if(tipo === 4){
 		$("#busca_ocorrencia").val("");
