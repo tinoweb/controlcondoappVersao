@@ -34,9 +34,12 @@ function carrega_ocorrencias(tipo){
         complete   : function() { },
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#busca_ocorrencias").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo,
         dataType   : 'json',
+		
 		success: function(retorno){
-            //alert(retorno);
+            
+			var cont=0;
             for (x in retorno) {
+				cont++;
                 cor_status = retorno[x]['id_situacao'];
 				if(cor_status == 1){
 					cor_status = '#696969';
@@ -75,6 +78,10 @@ function carrega_ocorrencias(tipo){
             }
 			if(tipo != 1){
 				$("#main_ocorrencia").html("");
+			}
+			if (cont == 0){
+				var sem_reg = "<div align='center' style='margin-top: 50%; width:100%'><h4>Nenhum registro encontrado...	</h4></div>";
+				$("#main_comunicado").html(sem_reg);
 			}
 			$( "#main_ocorrencia" ).append(dados);
 			afed('#ocorrencias','#home','','',3,'ocorrencias');	
