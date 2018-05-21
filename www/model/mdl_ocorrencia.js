@@ -80,7 +80,7 @@ function carrega_ocorrencias(tipo){
 				$("#main_ocorrencia").html("");
 			}
 			if (cont == 0){
-				var sem_reg = "<div align='center' style='margin-top: 50%; width:100%'><h4>Nenhum registro encontrado...	</h4></div>";
+				var sem_reg = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4></div>";
 				$("#main_comunicado").html(sem_reg);
 			}
 			$( "#main_ocorrencia" ).append(dados);
