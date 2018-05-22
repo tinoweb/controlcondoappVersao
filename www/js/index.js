@@ -347,6 +347,10 @@ var app = {
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
 				    $("#form_ocorrencia_add #foto_oco").val(retorno);
+                    $("#anexo_foto").html(retorno);
+                    afed('#anexo_oco','','','','');
+                    $('#myModal').hide();
+                    $('.modal-backdrop').hide();
                 }, 
                 error      : function() { 
                     //alert('Erro'); 
