@@ -1619,7 +1619,9 @@
 
 									<input type="hidden" name="id_ocorrencia_ticket" id="id_ocorrencia_ticket">
 									<input type="hidden" name="id_condominio" id="id_condominio">
-									<input type="hidden" name="id_situacao" id="id_situacao">
+									<input type="hidden" name="id_situacao" value="10">
+									<input type="hidden" name="id_situacao_atual" id="id_situacao_atual">
+									<input type="hidden" name="data_conclusao" value="1">
 									<div  style="margin-bottom: 6px; ">
 										<div>
 											<h4 style="float:left" >Ticket </h4>
@@ -1633,11 +1635,11 @@
 										<br>
 										
 										<div>
-											<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
+											<label style="width: 100%;font-size: 15px;font-weight: 700;">Descrição</label>
 											<textarea name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></textarea>
 										</div>
 									</div>
-									<button class="btn btn-success" id="bt_ticket_finaliza" > <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
+									<button type="button" class="btn btn-success" id="bt_ticket_finaliza" onClick="finaliza_ticket();" > <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
 								</form>
 							</div>
 						</div>

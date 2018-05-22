@@ -385,7 +385,7 @@ function ocorrencia_insert(){
 
 // FUNCAO CARREGA TODOS OS TICKETS
 function carrega_tickets(tipo){
-    alert('tickets');
+    //alert('tickets');
     afed('','#add_ocorrencia','','','');
     var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 	"use strict";
@@ -492,7 +492,7 @@ function carrega_ticket(id,id_ocorrencia){
                 $("#form_ticket #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
                 $("#form_ticket #id_condominio").val(retorno[0]['id_condominio']);
 				$("#form_ticket #data_ticket").html(retorno[0]['data_criacao']);
-                $("#form_ticket #id_situacao").val(retorno[0]['id_situacao']);
+                $("#form_ticket #id_situacao_atual").val(retorno[0]['id_situacao']);
                 $("#form_ticket #situacao").html(cor_status +' '+ retorno[0]['situacao_descricao']);
                 $("#form_ticket #descricao").val(retorno[0]['descricao']);
 				
@@ -511,6 +511,39 @@ function carrega_ticket(id,id_ocorrencia){
         });
     }
     
+}
+
+function finaliza_ticket(){
+    navigator.notification.confirm(
+        'Deseja realmente Finalizar esse ticket',  // message
+        finaliza_ticket2,              // callback to invoke with index of button pressed
+        'Finalizar',            // title
+        'Sim,Não'          // buttonLabels
+    );    
+}
+
+function finaliza_ticket2(res){
+    if(res==1){
+        var dados = $( "#form_ticket" ).serialize();
+        //alert(dados);
+ 		$.ajax({
+			type: 'POST',
+            url: localStorage.getItem('DOMINIO')+'appweb/ticket_update.php',
+            crossDomain: true,
+            beforeSend : function() {  },
+            complete   : function() {  },
+            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&'+dados,
+			success: function(retorno){
+                //alert(retorno);
+                voltar('#tickets','#ticket','tickets');
+                carrega_tickets(0);
+//                $('#form_ocorrencia_add #descricao').val('');
+//                $('#form_ocorrencia_add #foto_oco').val('');
+			}
+		});
+   }else{
+        
+    }
 }
 
 //
