@@ -385,6 +385,8 @@ function ocorrencia_insert(){
 
 // FUNCAO CARREGA TODOS OS TICKETS
 function carrega_tickets(tipo){
+    alert('tickets');
+    afed('','#add_ocorrencia','','','');
     var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 	"use strict";
 	app.controler_pull("tickets");
