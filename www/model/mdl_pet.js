@@ -1,9 +1,6 @@
-// JavaScript Document
-
-// FUNCAO CARREGA TODOS OS COMUNICADOS
+// FUNCAO CARREGA TODOS OS PETS
 function carrega_pets(tipo){
-	"use strict";
-	
+	"use strict";	
 	app.controler_pull("pets_lista");
 	if(tipo === 4){
 		$("#busca_pets").val("");
@@ -24,7 +21,7 @@ function carrega_pets(tipo){
     }
     var dados = '';
 	var dado  = '';
-	alert(tipo);
+	
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/pet_get.php',
@@ -37,31 +34,22 @@ function carrega_pets(tipo){
 		success: function(retorno){
             
 			var cont=0;
-            for (x in retorno) {
+            for (var x in retorno) {
 				cont++;
    
-                dado = '<div class="card_ocorrencia" onClick="carrega_ocorrencia(\''+retorno[x]['nome']+'\');"  >'
+                dado = '<div class="card_ocorrencia" onClick="carrega_pet(\''+retorno[x]['id_pet']+'\');"  >'
 							+'<div class="titulo">'
-								+'<label style="font-size: 15px;" >Ocorrência nº '+retorno[x]['cor']+'</label>'
-												
-								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+retorno[x]['raca']+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x]['desc_quadra']+'</label></div>'	
+								+'<label style="font-size: 15px;" >Nome: '+retorno[x]['nome']+'</label>'												
+								+'<div style="float: right;" ><label style="font-size:13px;">'+localStorage.getItem('ROTULO_LOTE')+' '+retorno[x]['lote']+' / '+localStorage.getItem('ROTULO_QUADRA')+' '+retorno[x]['desc_quadra']+'</label></div>'	
 							+'</div>'
-			/*
-			*CORPO Do card ocorrencia na listagem
-			*/
+							//CORPO Do card pet
+			
 							+'<div class="corpo">'							
 								
-								+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['sexo']+'</h6></div>'	
-								+'<div class="titulo_descricao">'
-									//Tag <p> traz icone com o balao antes do conteudo do paragrafo
-								+'<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKASURBVDhP1ZTbThNRFIbnUl/AeKGP4DOZGBMPYJQECSAIV8RoEaEUiEJbKQxMW1qkrQUplul0epgypSfKwUgoYGkpDfHKRKO/e0+2FVKQGuKFK/mzDjP7mzV77Rnu/7Knd02XexrMt3ob+Qe1St9mbdE3C400NpC4r3m8/tnt0UsMyXF9Tbxrxpn66nalUYtmvVn43q3C485gbjaLBd8avO7Md/1DfoYhOa6/1SoH1D2cJSVdxFK2RHQAKV5AJL2P+HoZykoJ0nIBhke2EEPWDk1ulJH6UD4RSB808NgeYcjaoOHU/qkd0jrNBzunYgxZDfWHtjG/+LEif3ALwfA2fOImxHAO6toBAiT3R3YqQKqhjqk4Q1ZDHYIK/qWoaXI4AKtRqsR2cxBSdAcTJPdMJypADdrpTDBkNfS9nKvqcFHeQkjZJh3mtFxJFY8BFdLxHwfltKlVHdpMQQgjJH8lavWAvKnB6OAoMKAWQDkMeRyaXC/VNBSqjdwhdoufIS8XtbWnQiOp08/hUSBVLEv8aklbdyLUTzZfJqCQmodEXiUY20U0VUA0U4Sf7OtSpgQluYdoIq9NX1Y/QVTy2jU6gxOhNj4Ch2MJIzoPPL4sRvvnwY+ImHYlYXzuhdubxviwCMvgAjzzKxjWvcWUk5wSswTTizl4xQ30tx2FtlkVizmAMQvRKPUSLNSz+KifEMKwexOwe5Yxzocq91FPfiy/v6gn9yxXepvGGvtahNazpG8RspOOmAY2tNu+/KrT9ZTDkH9nujvGqwMd9oLNFcdQ1/S3juumC+zS+ay7znjN0G7ND3W9+dFz//UNVj6/dTcIF3V1xpvd9cZ6VvqXxnE/ATLUlbEEZFlVAAAAAElFTkSuQmCC"> Descrição' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
+								+'<img style="float: left; border-radius:10%; max-width:20%; max-height: 60px; margin-top:10px; margin-bottom:10px;" src="data:image/jpeg;base64,'+retorno[x]['foto']+'">'
 				
-								+'</div>'
-								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['observacao']+'</div>'
-								+'<div class="feed_home">'
-										+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img>'
-										+'<span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['lote']+' </span>'
-								+'</div>'
+								+'<span style="float: right; width: 79%">'+retorno[x]['observacao']+'</span>'
+								
 							+'</div>';
 					
 				dado = dado +'</div>';
@@ -72,13 +60,13 @@ function carrega_pets(tipo){
 			}
 			if (cont == 0){
 				var sem_reg = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
-				+"<img  width='50%' src='fotoo'> </div>";
+				+"<img  width='50%'> </div>";
 				
 				$("#main_pet").html(sem_reg);
 			
 			}
 			$( "#main_pet" ).append(dados);
-			afed('#pets','#home','','',3,'pets');	
+			afed('#pet_lista','#home','','',3,'pet_lista');	
             
             //$("pull-comunicados").scrollTop(50);
 		},
@@ -87,66 +75,103 @@ function carrega_pets(tipo){
         }
 	});    
 }
+//Editar um pet
 
-// FUNCAO CARREGA UMA OCORRENCIA ESPECIFICO
-function carrega_ocorrencia(id){
 	//var cor_status='';
+function editar_pet(){
+	
+	var id_pet = $("#form_pet #id_pet").val();
+	var id_condominio = $("#form_pet #id_condominio").val();
+	var nome = $("#form_pet #nome_pet").html();
+	var especie = $("#form_pet #id_especie").val();
+	var sexo = $("#form_pet #sexo").val();
+	var observacao = $("#form_pet #observacao").val();
+	var cor = $("#form_pet #cor").val();
+	var raca = $("#form_pet #raca").val();
+	var foto = $("#form_pet #foto_up").val();
+	
+	$("#form_pet_update #id_condominio").val(id_condominio);
+	$("#form_pet_update #id_pet").val(id_pet);
+	$("#form_pet_update #nome").val(nome);
+	$("#form_pet_update #foto_up_pet").val(foto);
+	
+	$("#form_pet_update #observacao").val(observacao);
+	$("#form_pet_update #cor").val(cor);
+	$("#form_pet_update #raca").val(raca);
+	getEspecie_editar(especie);
+	$("#form_pet_update #especie_desc").val(especie);
+	
+	//$("#form_pet_update #pet_foto").html('<img style="border-radius:10px; max-width:50%; height:100px; margin-top:10px;" class="lazy lazy-fade-in demo-lazy" src="data:image/jpeg;base64,'+foto+'">');                
+	
+	$('#form_pet_update #pet_foto' ).attr("src", "data:image/jpeg;base64,"+foto+" ");
+	afed('#update_pet','#pet','','',3,'update_pet');	
+	
+	if (sexo == '1'){		
+		document.forms['form_pet_update'].sexo_desc[0].checked = true;
+	}else{
+		document.forms['form_pet_update'].sexo_desc[1].checked = true;
+	}
+	
+}
+// FUNCAO CARREGA UM PET ESPECIFICO
+function carrega_pet(id){
+	"use strict";
     if(id === 0){
-        $("#form_ocorrencia #id_ocorrencia").val(id);
-        $("#form_ocorrencia #id_condominio").val($( "#DADOS #ID_CONDOMINIO" ).val());
-        $("#form_ocorrencia #id_solicitante").val($( "#DADOS #ID_MORADOR" ).val());
-        $("#form_ocorrencia #criado_por").val(localStorage.getItem('MORADOR_NOME'));
-        $("#form_ocorrencia #id_situacao").val('1');
-        $("#form_ocorrencia #solicitante").val(localStorage.getItem('MORADOR_NOME'));
-        $("#form_ocorrencia #situacao").val('Aberto');
+        $("#form_pet #id_ocorrencia").val(id);
+        $("#form_pet #id_condominio").val($( "#DADOS #ID_CONDOMINIO" ).val());
+        $("#form_pet #id_solicitante").val($( "#DADOS #ID_MORADOR" ).val());
+        $("#form_pet #criado_por").val(localStorage.getItem('MORADOR_NOME'));
+        $("#form_pet #id_situacao").val('1');
+        $("#form_pet #solicitante").val(localStorage.getItem('MORADOR_NOME'));
+        $("#form_pet #situacao").val('Aberto');
     }else{
         $.ajax({
             type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
+            url: localStorage.getItem('DOMINIO')+'appweb/pet_get.php',
             crossDomain: true,
             beforeSend : function() { },
             complete   : function() { },
-            data       : {id_ocorrencia : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
+            data       : {id_pet : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
             dataType   : 'json',
             success: function(retorno){
-				var cor_status='';
-				cor_status=retorno[0]['id_situacao'];
 				
-				if(cor_status == '1'){
-					cor_status = '#696969';
-				}else if(cor_status=='10'){
-					cor_status='green';
+				if (retorno[0]['sexo'] == 1){
+					var sexo = "MASCULINO";
 				}else{
-					cor_status='yellow';
+					var sexo = "FEMININO";
 				}
-				
-				//Preenche dados do form form_ocorrencia da pagina index.html
-                $("#form_ocorrencia #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
+				//Preenche dados do form form_pet da pagina index.html
+							
+                $("#form_pet #id_pet").val(retorno[0]['id_pet']);
+                $("#form_pet #id_especie").val(retorno[0]['id_especie']);
+                $("#form_pet #sexo").val(retorno[0]['sexo']);
+                $("#form_pet #foto_up").val(retorno[0]['foto']);
+                $("#form_pet #nome").val(retorno[0]['nome']);
                 
-                $("#form_ocorrencia #id_condominio").val(retorno[0]['id_condominio']);
-                $("#form_ocorrencia #id_solicitante").val(retorno[0]['id_solicitante']);
-                $("#form_ocorrencia #criado_por").val(retorno[0]['criado_por']);
-                $("#form_ocorrencia #id_situacao").val(retorno[0]['id_situacao']);
+				$("#form_pet #raca").val(retorno[0]['raca']);
+				$("#form_pet #cor").val(retorno[0]['cor']);
+				$("#form_pet #observacao").val(retorno[0]['observacao']);
 				
-				//$("#form_ocorrencia #statusbar").css('background-color', cor_status);
+				
+                $("#form_pet #unidade").html('<label>'+localStorage.getItem('ROTULO_LOTE')+' '+retorno[0]['lote']+' / '+localStorage.getItem('ROTULO_QUADRA')+' '+retorno[0]['desc_quadra']+'</label');
+	
+                $("#form_pet #id_situacao").val(retorno[0]['id_situacao']);
+                $("#form_pet #data_cadastro").val(retorno[0]['data_cadastro']);
+		
+				$("#form_pet #nome_pet").html(retorno[0]['nome']);
+				$("#form_pet #foto").html('<img style="border-radius:10px; max-width:90%; height:auto; margin-top:10px;" class="lazy lazy-fade-in demo-lazy" src="data:image/jpeg;base64,'+retorno[0]['foto']+'">');
                 
-				$("#form_ocorrencia #solicitante").html(retorno[0]['nome']);
+                $("#form_pet #desc_especie").html(retorno[0]['desc_especie']+' - ');
+                $("#form_pet #lbl_raca").html(retorno[0]['raca']+' - ');
+				$("#form_pet #lbl_cor").html(retorno[0]['cor']+' - ');
+				$("#form_pet #lbl_sexo").html(sexo);
+				
+				$("#form_pet #lbl_observacao").html(retorno[0]['observacao']);
+				
+                afed('#pet,#bt_oco_finaliza','#pet_lista,#home,#bt_oco_salva','','#form_pet #desc_especie',3);
                 
-                $("#form_ocorrencia #descricao").val(retorno[0]['descricao']);
-				
-				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrencia <span style='background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;'>"+retorno[0]['id_ocorrencia']+"</span>");
-                
-				
-				$("#form_ocorrencia #icone_ocorrencia").css('color', cor_status);
-				$("#form_ocorrencia #situacao").html(" "+retorno[0]['situacao_descricao']);
-				$("#form_ocorrencia #data_criacao").html(retorno[0]['data_criacao']);
-				
-                afed('#ocorrencia,#bt_oco_finaliza','#ocorrencias,#home,#bt_oco_salva','','#form_ocorrencia #descricao',3);
-                if(retorno[0]['id_situacao'] == 10){
-                    afed('','#bt_oco_finaliza','','',3);
-                }
 				carrega_ocorrencia_arq(id);
-                localStorage.setItem('TELA_ATUAL','ocorrencia');
+                localStorage.setItem('TELA_ATUAL','pet');
             },
             error      : function() {
                 alert('erro ocorrencia');
@@ -156,83 +181,72 @@ function carrega_ocorrencia(id){
     
 }
 
-function finaliza_ocorrencia(){
-    navigator.notification.confirm(
-        'Deseja realmente Finalizar essa ocorrencia',  // message
-        finaliza_ocorrencia2,              // callback to invoke with index of button pressed
-        'Finalizar',            // title
-        'Sim,Não'          // buttonLabels
-    );    
-}
-
-function finaliza_ocorrencia2(res){
-    if(res==1){
-        var dados = $( "#form_ocorrencia" ).serialize();
- 		$.ajax({
-			type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_update.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
-            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
-			success: function(retorno){
-                voltar('#ocorrencias','#ocorrencia','ocorrencias');
-                carrega_ocorrencias(0);
-//                $('#form_ocorrencia_add #descricao').val('');
-//                $('#form_ocorrencia_add #foto_oco').val('');
-			}
-		});
-   }else{
-        
-    }
-}
-
-//Buscar anexo de ocorrencia 
-
-
-// FUNCAO CARREGA UM ANEXO
-function carrega_ocorrencia_arq(id){
+function getEspecie_editar(id_especie){
 	
-    var dados = '';
-    var dado  = '';
-	var ext;
-	var num;
+	var dados = '';
+	var dado  = '';
+	var inicio_select = '<select class="form-control" name="id_especie" id="id_especie">';
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
+		url: localStorage.getItem('DOMINIO')+'appweb/especie_pet_get.php',
         crossDomain: true,
         beforeSend : function() { },
         complete   : function() { },
-        data       : {id_ocorrencia : id, tipo : '2', id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
         dataType   : 'json',
 		success: function(retorno){
-            for (x in retorno) {
-				num  = parseInt(x);
-				num += 1;
-				ext = replaceAll(retorno[x]['arquivo'], "\/","_");
-				
-				 
-              	//  dado = '<button class="col button button-small button-fill color-gray" style="top: 18px; margin-top:10px">teste</button>';
-				//<input type="hidden" id="num_anexo_"+num >
-                //dado = '<button type="button" class="btn btn-default; border-radius: 30;" onClick=download_arq_ocorrencia("'+ext+'"); >'
-				//			+' <span class="glyphicon glyphicon-paperclip"></span>  Anexo ' +num+  '  </button><p></p>';
-				
-				dado = '<div onClick=download_arq_ocorrencia("'+ext+'"); > <img src="img/anexo_ocorrencia.png" width="30" height="30" alt=""/> Anexo ' +num+  ' 	<p></p> </div> ' ; 
-                //alert(retorno[x]['caminho']);
-                dados = dados + dado;
-            }
-           
-			$("#ocorrencia_anexo_retorno").html(dados);
-		},
-        error : function() {
-			alert('Erro ao carregar arquivos');
-            
-
-        }
+            for (var x in retorno) {
+				if (retorno[x]['id_pet_especie'] == id_especie){
+                	var dado = '<option value="'+retorno[x]['id_pet_especie']+'" selected> '+retorno[x]['descricao']+' </option> ';
+				}else{
+					var dado = '<option value="'+retorno[x]['id_pet_especie']+'" > '+retorno[x]['descricao']+' </option> ';					
+				}
+				dados = dados + dado;				
+            }			
+			dados= inicio_select + dados + "</select>";
+			$("#form_pet_update #div_especie" ).html(dados);
+		}
 	});	
 }
 
+function getEspecie_incluir(){
+	
+	var dados = '';
+	var dado  = '';
+	var inicio_select = '<select class="form-control" name="id_especie" id="id_especie">'
+						 +'<option value="0"></option> 	';
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/especie_pet_get.php',
+        crossDomain: true,
+        beforeSend : function() { },
+        complete   : function() { },
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
+        dataType   : 'json',
+		success: function(retorno){
+            for (x in retorno) {
+				var dado = '<option value="'+retorno[x]['id_pet_especie']+'" > '+retorno[x]['descricao']+' </option> ';				
+				
+				dados = dados + dado;				
+            }			
+			dados= inicio_select + dados + "</select>";
+			$("#form_pet_add #div_especie" ).html(dados);
+		}
+	});	
+}
+//*****************Funcao DELETAR Pet
+function excluir_pet(id_pet){
+	"use strict";
+	var r=confirm("Tem Certeza que deseja excluir?");
+	if (r===true){
+	  alert("excluindo: "+id_pet);
+	}else{
+	  alert("ta loco porra");
+	}
+}
+
 function replaceAll(str, de, para){
+	"use strict";
     var pos = str.indexOf(de);
     while (pos > -1){
 		str = str.replace(de, para);
@@ -241,371 +255,45 @@ function replaceAll(str, de, para){
     return (str);
 }
 
-function download_arq_ocorrencia(arquivo) {
-    //salert(path); /controlcondo/docs/26/ocorrencia/f90553d3a2d733013c29b379b7667b3d.jpg
-	
-    arquivo      = replaceAll(arquivo,"..","");
-
-	arquivo      = replaceAll(arquivo,"_","\/");
-
-
-    var path     = localStorage.getItem('DOMINIO')+arquivo;
-	var extencao = arquivo.split(".");
-	var ext      = extencao[1];
-    //alert(path);
-    console.log(cordova.file.externalRootDirectory);
-
-	statusDom    = document.querySelector('#status');
-	$('#downloadProgress').css({"display":"block"});
-  	app2.progressbar.set('#status', "0");
-	
-    var fileTransfer = new FileTransfer();
-    //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
-    var uri = encodeURI(path);
-	
-    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
-	fileTransfer.onprogress = function(progressEvent) {
-		if (progressEvent.lengthComputable) {
-			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			statusDom.innerHTML = perc + "%...";
-			app2.progressbar.set('#status', perc);
-		}
-	};
-    //var filePath = cordova.file.applicationStorageDirectory+'Download/'+arquivo;
-    fileTransfer.download(
-        uri,
-        filePath,
-        function(entry) {
-            console.log("download complete: " + entry.fullPath);
-			$('#downloadProgress').css({"display":"none"});
-            //notifica('Download/Download Concluído90 /ok',0,0);
-			var path = entry.toURL(); //**THIS IS WHAT I NEED**
-			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
-			//alert(JSON.stringify(ref, null, 4));
-            //window.open(path, "_system");
-
-        },
-        function(error) {
-            console.log("download error source " + error.source);
-            console.log("download error target " + error.target);
-            //console.log("upload error code" + error.code);
-        },
-        false,
-        {
-            headers: {
-                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-            }
-        }
-    );
-	
-}
-
-
-
-// FUNCAO CARREGA PAGINA NOVA OCORRENCIA
-function ocorrencia_novo(){
-
-    $( "#add_ocorrencia #nome" ).val('');    
-
-    
-    afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
-
-
-	$("#add_ocorrencia #nome").focus();
-}
-
-// FUNCAO CARREGA PAGINA NOVA OCORRENCIA
-function ticket_novo(){
-
-    $("#add_ticket #descricao" ).val('');  
-	
-	$("#form_ticket_add #id_ocorrencia").val($("#form_ocorrencia #id_ocorrencia").val());
-	$("#form_ticket_add #id_condominio").val($("#form_ocorrencia #id_condominio").val());
-    
-    afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
-
-
-	$("#add_ticket #descricao").focus();
-}
-
-function ticket_insert(){
-	if($( "#form_ticket_add #descricao" ).val() == ''){
-		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
-	}else{
-		
-		var dados = $( "#form_ticket_add" ).serialize();
-		$.ajax({
-			type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/ticket_insert.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
-            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
-			success: function(retorno){
-				//alert(retorno);
-                voltar('#ocorrencias_ticket','#ticket_add','ocorrencias_ticket');
-                carrega_tickets(0);
-                $('#form_ticket_add #descricao').val('');                
-			}
-		});
-	}
-}
-
-function ocorrencia_insert(){
-	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
-		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
-	}else{
-		var dados = $( "#form_ocorrencia_add" ).serialize();
-		$.ajax({
-			type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_insert.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
-            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
-			success: function(retorno){
-				//alert(retorno);
-                voltar('#ocorrencias','#ocorrencia_add','ocorrencias');
-                afed('','#anexo_oco','','','');
-                $("#form_ocorrencia_add #foto_oco").val('');
-                carrega_ocorrencias(0);
-                $('#form_ocorrencia_add #descricao').val('');
-                $('#form_ocorrencia_add #foto_oco').val('');
-			}
-		});
-	}
-}
-
-// FUNCAO CARREGA TODOS OS TICKETS
-function carrega_tickets(tipo){
-    //alert('tickets');
-    afed('','#add_ocorrencia','','','');
-    var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
+function pet_insert(){
 	"use strict";
-	app.controler_pull("tickets");
-	var pg = 0;
-    if(tipo === 0){
-        pg = 1;
-    }else{
-        var offset = $('.ocorrencia').length;
-        if(offset !== 0){
-            pg = (offset/6)+1;
-        }else{
-            pg = 1;
-        }
-    }
-    if(parseInt(pg) !== parseFloat(pg)) { 
-        pg = pg+1; 
-    }
-    var dados = '';
-	var dado  = '';
-	var cor_status='yellow';
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
-        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
-        dataType   : 'json',
-		success: function(retorno){
-            //alert(retorno);
-            for (x in retorno) {
-         
-                dado = '<div class="card_ocorrencia" >'
-						+'<div style="float:left">'
-						+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> Ticket '+retorno[x]['id_ocorrencia_ticket']
-						+'</div>'
-						+'<div style="float: right">'
-						+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> <label style="font-weight: normal;">'+retorno[x]['situacao_descricao']+'</label>'
-						+'</div><br>'
-						+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['data_criacao']+'</h6></div>'	
-						
-						+'<label style="font-weight: normal;">Descrição</label><br>'		
-						+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
-						
-						
-								
-				dado = dado +'</div>';
-                dados = dados + dado;
-            }
-			if(tipo != 1){
-				$("#main_ticket").html("");
-			}
-			$( "#main_ticket" ).append(dados);
-			afed('#ocorrencias_ticket','#ocorrencia','','',3,'tickets');	
-            
-            //$("pull-comunicados").scrollTop(50);
-		},
-        error      : function() {
-            alert('Erro tickets');
-        }
-	});    
-}
-
-function carrega_ticket(id,id_ocorrencia){
-    if(id === 0){
-        $("#form_ticket #id_ocorrencia_ticket").val(id);
-        $("#form_ticket #id_ocorrencia").val(id_ocorrencia);
-        $("#form_ticket #id_condominio").val($( "#DADOS #ID_CONDOMINIO" ).val());
-        $("#form_ticket #id_situacao").val('1');
-        $("#form_ticket #situacao").val('Aberto');
-    }else{
-        $.ajax({
-            type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
-            data       : {id_ocorrencia_ticket : id, id_ocorrencia : id_ocorrencia, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
-            dataType   : 'json',
-            success: function(retorno){
-				var cor_status='';
-				cor_status=retorno[0]['id_situacao'];
-				
-				if(cor_status == '1'){
-					cor_status = 'green';
-				}else if(cor_status=='10'){
-					cor_status='red';
-				}else{
-					cor_status='yellow';
-				}
-				
-				cor_status = '<i class="fa fa-circle" style="color:'+cor_status+';" id="icon_status_ticket"></i>';
-                $("#form_ticket #id_ocorrencia_ticket").val(retorno[0]['id_ocorrencia_ticket']);
-                $("#form_ticket #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
-                $("#form_ticket #id_condominio").val(retorno[0]['id_condominio']);
-				$("#form_ticket #data_ticket").html(retorno[0]['data_criacao']);
-                $("#form_ticket #id_situacao_atual").val(retorno[0]['id_situacao']);
-                $("#form_ticket #situacao").html(cor_status +' '+ retorno[0]['situacao_descricao']);
-                $("#form_ticket #descricao").val(retorno[0]['descricao']);
-				
-                //$("#form_ticket #icon_status_ticket").css("color", cor_status);
-				
-				
-                afed('#ticket,#bt_ticket_finaliza','#ocorrencias_ticket,#home,#bt_ticket_salva','','#form_ticket #descricao',3);
-                if(retorno[0]['id_situacao'] == 10){
-                    afed('','#bt_ticket_finaliza','','',3);
-                }
-                localStorage.setItem('TELA_ATUAL','ticket');
-            },
-            error      : function() {
-                alert('erro ticket');
-            }
-        });
-    }
-    
-}
-
-function finaliza_ticket(){
-    navigator.notification.confirm(
-        'Deseja realmente Finalizar esse ticket',  // message
-        finaliza_ticket2,              // callback to invoke with index of button pressed
-        'Finalizar',            // title
-        'Sim,Não'          // buttonLabels
-    );    
-}
-
-function finaliza_ticket2(res){
-    if(res==1){
-        var dados = $( "#form_ticket" ).serialize();
-        //alert(dados);
- 		$.ajax({
+	if($( "#form_pet_add #nome" ).val() == ''){
+		notifica('Erro Preenchimento/Preencha o campo Nome/Ok',1000,0);
+		$("#form_pet_add #nome").focus();
+	}else if($( "#form_pet_add #id_especie" ).val() == '0'){
+		notifica('Erro Preenchimento/Preencha o campo Espécie/Ok',1000,0);
+		$("#form_pet_add #id_especie").focus();
+	}else{
+		var dados = $( "#form_pet_add" ).serialize();
+		$.ajax({
 			type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/ticket_update.php',
+            url: localStorage.getItem('DOMINIO')+'appweb/pet_insert.php',
             crossDomain: true,
             beforeSend : function() {  },
             complete   : function() {  },
-            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&'+dados,
+            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_unidade='+$( "#DADOS #ID_UNIDADE" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
-                //alert(retorno);
-                voltar('#tickets','#ticket','tickets');
-                carrega_tickets(0);
-//                $('#form_ocorrencia_add #descricao').val('');
-//                $('#form_ocorrencia_add #foto_oco').val('');
+				//alert(retorno);
+                voltar('#pet_lista','#pet_add','pet_lista');
+//                afed('','#anexo_oco','','','');
+//                $("#form_ocorrencia_add #foto_oco").val('');
+                carrega_pets(0);
+
 			}
 		});
-   }else{
-        
-    }
+	}
 }
-
-//
-//
-//// FUNCAO CARREGA UM ANEXO
-//function carrega_comunicado_arq(id){
-//	
-//    var dados = '';
-//    var dado  = '';
-//	var ext;
-//	var num;
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-//        crossDomain: true,
-//        beforeSend : function() { },
-//        complete   : function() { },
-//        data       : {id_comunicado : id, tipo : '2'},
-//        dataType   : 'json',
-//		success: function(retorno){
-//            for (x in retorno) {
-//				num  = parseInt(x);
-//				num += 1;
-//				ext = retorno[x]['nome_arquivo'];
-//				ext = ext.split('.');
-//                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arq_comunicado(\''+retorno[x]['caminho']+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
-//                dados = dados + dado;
-//            }
-//            $("#comunicado_anexo_retorno").html(dados);
-//		},
-//        error      : function() {            
-//
-//        }
-//	});	
-//}
-
-//function download_arq_comunicado(caminho,arquivo) {
-//    caminho      = caminho.replace("../","");
-//    var path     = localStorage.getItem('DOMINIO')+caminho+arquivo;
-//	var extencao = arquivo.split(".");
-//	var ext      = extencao[1];
-//    console.log(cordova.file.externalRootDirectory);
-//	statusDom    = document.querySelector('#status');
-//	$('#downloadProgress').css({"display":"block"});
-//  	app2.progressbar.set('#status', "0");
-//	
-//    var fileTransfer = new FileTransfer();
-//    var uri = encodeURI(path);
-//	
-//    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
-//	fileTransfer.onprogress = function(progressEvent) {
-//		if (progressEvent.lengthComputable) {
-//			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-//			statusDom.innerHTML = perc + "%...";
-//			app2.progressbar.set('#status', perc);
-//		}
-//	};
-//    fileTransfer.download(
-//        uri,
-//        filePath,
-//        function(entry) {
-//            console.log("download complete: " + entry.fullPath);
-//			$('#downloadProgress').css({"display":"none"});
-//			var path = entry.toURL(); //**THIS IS WHAT I NEED**
-//			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
-//
-//        },
-//        function(error) {
-//            console.log("download error source " + error.source);
-//            console.log("download error target " + error.target);
-//        },
-//        false,
-//        {
-//            headers: {
-//                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-//            }
-//        }
-//    );
-//}
+		
+// FUNCAO CARREGA PAGINA NOVA OCORRENCIA
+function carrega_pet_novo(){
+	
+	
+    $( "#add_pet #nome" ).val('');  
+	
+	getEspecie_incluir();
+	
+    afed('#add_pet','#pet_lista','','','2','add_pet');
+	
+	$("#add_pet #nome").focus();
+}
 

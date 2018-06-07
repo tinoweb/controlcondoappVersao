@@ -187,17 +187,12 @@ function finaliza_ocorrencia2(res){
 			success: function(retorno){
                 voltar('#ocorrencias','#ocorrencia','ocorrencias');
                 carrega_ocorrencias(0);
-//                $('#form_ocorrencia_add #descricao').val('');
-//                $('#form_ocorrencia_add #foto_oco').val('');
 			}
 		});
    }else{
         
     }
 }
-
-//Buscar anexo de ocorrencia 
-
 
 // FUNCAO CARREGA UM ANEXO
 function carrega_ocorrencia_arq(id){
@@ -310,9 +305,7 @@ function download_arq_ocorrencia(arquivo) {
 	
 }
 
-
-
-// FUNCAO CARREGA PAGINA NOVA OCORRENCIA
+//FUNCAO CARREGA PAGINA NOVA OCORRENCIA
 function ocorrencia_novo(){
 
     $( "#add_ocorrencia #nome" ).val('');    
@@ -324,7 +317,7 @@ function ocorrencia_novo(){
 	$("#add_ocorrencia #nome").focus();
 }
 
-// FUNCAO CARREGA PAGINA NOVA OCORRENCIA
+//FUNCAO CARREGA PAGINA NOVO TICKET
 function ticket_novo(){
 
     $("#add_ticket #descricao" ).val('');  
@@ -548,82 +541,4 @@ function finaliza_ticket2(res){
         
     }
 }
-
-//
-//
-//// FUNCAO CARREGA UM ANEXO
-//function carrega_comunicado_arq(id){
-//	
-//    var dados = '';
-//    var dado  = '';
-//	var ext;
-//	var num;
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-//        crossDomain: true,
-//        beforeSend : function() { },
-//        complete   : function() { },
-//        data       : {id_comunicado : id, tipo : '2'},
-//        dataType   : 'json',
-//		success: function(retorno){
-//            for (x in retorno) {
-//				num  = parseInt(x);
-//				num += 1;
-//				ext = retorno[x]['nome_arquivo'];
-//				ext = ext.split('.');
-//                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arq_comunicado(\''+retorno[x]['caminho']+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
-//                dados = dados + dado;
-//            }
-//            $("#comunicado_anexo_retorno").html(dados);
-//		},
-//        error      : function() {            
-//
-//        }
-//	});	
-//}
-
-//function download_arq_comunicado(caminho,arquivo) {
-//    caminho      = caminho.replace("../","");
-//    var path     = localStorage.getItem('DOMINIO')+caminho+arquivo;
-//	var extencao = arquivo.split(".");
-//	var ext      = extencao[1];
-//    console.log(cordova.file.externalRootDirectory);
-//	statusDom    = document.querySelector('#status');
-//	$('#downloadProgress').css({"display":"block"});
-//  	app2.progressbar.set('#status', "0");
-//	
-//    var fileTransfer = new FileTransfer();
-//    var uri = encodeURI(path);
-//	
-//    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
-//	fileTransfer.onprogress = function(progressEvent) {
-//		if (progressEvent.lengthComputable) {
-//			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-//			statusDom.innerHTML = perc + "%...";
-//			app2.progressbar.set('#status', perc);
-//		}
-//	};
-//    fileTransfer.download(
-//        uri,
-//        filePath,
-//        function(entry) {
-//            console.log("download complete: " + entry.fullPath);
-//			$('#downloadProgress').css({"display":"none"});
-//			var path = entry.toURL(); //**THIS IS WHAT I NEED**
-//			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
-//
-//        },
-//        function(error) {
-//            console.log("download error source " + error.source);
-//            console.log("download error target " + error.target);
-//        },
-//        false,
-//        {
-//            headers: {
-//                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-//            }
-//        }
-//    );
-//}
 
