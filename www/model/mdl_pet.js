@@ -22,17 +22,18 @@ function carrega_pets(tipo){
     var dados = '';
 	var dado  = '';
 	
+	console.log("Funcao carrega_pets| tipo: "+tipo+" |condominio: "+$( "#DADOS #ID_CONDOMINIO" ).val()+"| Morador: "+$( "#DADOS #ID_MORADOR" ).val() );
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/pet_get.php',
         crossDomain: true,
         beforeSend : function() { },
-        complete   : function() { },
+        complete   : function() { },        
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo,
         dataType   : 'json',
 		
 		success: function(retorno){
-            
+          
 			var cont=0;
             for (var x in retorno) {
 				cont++;
