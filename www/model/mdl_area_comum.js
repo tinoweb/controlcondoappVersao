@@ -408,13 +408,14 @@ function edite_reserva(id_reserva,data,inicio,fim){
 function salva_reserva(){
 
 	if($("#concordo").is(':checked')){
+        afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'reserva');
 		var dados = $( "#add_reserva" ).serialize();
         var dt_ini = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_inicio").val());
         var dt_fim = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_fim").val());
         var dt_atual = new Date();
         var dt_valida_ini = new Date(localStorage.getItem('RESERVA_ATUAL_INI'));
         var dt_valida_fim = new Date(localStorage.getItem('RESERVA_ATUAL_FIM'));
-        //alert(dt_valida_ini+' '+dt_valida_fim+' '+dt_ini+' '+dt_fim);
+        ///alert(dt_ini+' '+dt_fim);
         if(dt_fim < dt_ini){
             notifica('Alerta/Horario final n\u00e3o pode ser menor que o de inicio/Fechar',2000,0);
         }else if(dt_ini < dt_atual){
@@ -445,8 +446,7 @@ function salva_reserva(){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
                         carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
-                        afed('#area','#reserva','','',2,'area');
-                        
+                        afed('#area','#reserva','','',2,'area');                       
                     }
                 },
                 error: function(erro){
