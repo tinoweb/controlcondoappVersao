@@ -62,6 +62,7 @@ function carrega_area(id,cale_view,nome){
                 $( "#reserva .topo_sub span" ).html(retorno[0]['nome']);
 				$( "#reserva #add_reserva #add_reserva_valor" ).html("R$ "+retorno[0]['valor']);
 				$( "#reserva #add_reserva #add_reserva_termo" ).html(retorno[0]['termo']);
+                localStorage.setItem('TIPO_PERIODO',retorno[0]['periodo_integral']);
                 limpa_calendario();
                 if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){                    
                     verifica_data_ativas(retorno[0]['inicio'],retorno[0]['fim'],retorno[0]['ativo']);
@@ -366,16 +367,26 @@ function limpa_calendario(){
 
 //FUNCAO ADICIONA RESERVA
 function adiciona_reserva(h){ 
+    afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'reserva');
 	var dt_festa = $( "#dt_festa" ).val();
 	var dt = dt_festa.split("/");
 	var hora_ini = $( "#h_"+h ).html();
 	var iniDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " "+hora_ini);
 	iniDate.setMinutes(iniDate.getMinutes()+30);
+    var hora_fim = pad(iniDate.getHours(),2)+":"+pad(iniDate.getMinutes(),2);
+    if(localStorage.getItem('TIPO_PERIODO') == 1){
+        var hora_ini_int = localStorage.getItem('RESERVA_ATUAL_INI').split(" ");
+        var hora_fim_int = localStorage.getItem('RESERVA_ATUAL_FIM').split(" ");
+        hora_ini = hora_ini_int[1];
+        hora_fim = hora_fim_int[1];
+        afed('','','','#add_reserva_hora_inicio,#add_reserva_hora_fim',2,'reserva');
+    }
 	afed('#reserva','#area','','',2,'reserva');
 	$( "#add_reserva_dt" ).val(dt[2] +"-"+ dt[1] +"-"+ dt[0]);
 	$( "#add_reserva_data" ).html(dt_festa);
 	$( "#add_reserva_hora_inicio" ).val(hora_ini);
-	$( "#add_reserva_hora_fim" ).val(pad(iniDate.getHours(),2)+":"+pad(iniDate.getMinutes(),2));
+	$( "#add_reserva_hora_fim" ).val(hora_fim);
+	//$( "#add_reserva_hora_fim" ).val(pad(iniDate.getHours(),2)+":"+pad(iniDate.getMinutes(),2));
 	$( "#add_reserva_tipo" ).val("0");
 	//alert(hora_ini);
 }
