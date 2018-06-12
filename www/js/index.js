@@ -4,8 +4,10 @@ var ref_comunicado      = '';
 var ref_correspondencia = '';
 var ref_enquete         = '';
 var ref_documento       = '';
+
 //localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
 localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -231,7 +233,44 @@ var app = {
 		
     },
     
-    foto_perfil: function() {
+    foto_pet_edicao: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            
+			destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+
+        function onSuccess(imageURI) {
+           
+			$( '#form_pet_update #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+" ");
+			$( '#form_pet_update #foto_up_pet' ).val(imageURI);
+
+        }
+        function onFail(message) {
+            alert('Camera Indisponivel');
+        }    
+    },
+	
+	foto_pet_inclusao: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,  
+			destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+
+        function onSuccess(imageURI) {
+           
+			$( '#form_pet_add #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+" ");
+			$( '#form_pet_add #foto_up_pet' ).val(imageURI);
+
+        }
+        function onFail(message) {
+            alert('Camera Indisponivel');
+        }    
+    },
+	
+	foto_perfil: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
@@ -261,15 +300,15 @@ var app = {
             //alert('Camera Indisponivel');
         }    
     },
+
+    
 	
-	
-   	
     foto_perfil2: function() {
         
         navigator.camera.getPicture(onSuccess, onFail, {  
             quality: 50, 
             destinationType: Camera.DestinationType.DATA_URL, 
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 	
         }); 
         
         function onSuccess(imageURI) {
