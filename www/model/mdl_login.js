@@ -39,6 +39,12 @@ function login_user_device(){
                             $( "#DADOS #ID_CONDOMINIO" ).val(retorno[0]['id_condominio']);
                             //alert($( "#DADOS #ID_CONDOMINIO" ).val());                    
                             $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
+                            localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
+                            if(retorno[0]['tipo_busca_visitante'] == 0){
+                               afed('#btipo_nome','#btipo_rg','','',3,'home');
+                            }else{
+                                afed('#btipo_rg','#btipo_nome','','',3,'home');
+                            }
                             if(retorno[0]['GRUPOS'].indexOf("Morador") != -1){ $( "#DADOS #GRUPO_MOR" ).val(1); $( "#gmor" ).css("display","block"); }
                             if(retorno[0]['GRUPOS'].indexOf("Síndico") != -1){ $( "#DADOS #GRUPO_SIN" ).val(1); $( "#gsin" ).css("display","block"); }
                             if(retorno[0]['GRUPOS'].indexOf("Administração") != -1){ $( "#DADOS #GRUPO_ADM" ).val(1); $( "#gadm" ).css("display","block"); }
@@ -221,6 +227,12 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #ID_CONDOMINIO" ).val(retorno[0]['id_condominio']);
                     //alert($( "#DADOS #ID_CONDOMINIO" ).val());
                     $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
+                    localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
+                    if(retorno[0]['tipo_busca_visitante'] == 0){
+                       afed('#btipo_nome','#btipo_rg','','',3,'home');
+                    }else{
+                        afed('#btipo_rg','#btipo_nome','','',3,'home');
+                    }
                     if(retorno[0]['GRUPOS'].indexOf("Morador") != -1){ $( "#DADOS #GRUPO_MOR" ).val(1); $( "#gmor" ).css("display","block"); }
                     if(retorno[0]['GRUPOS'].indexOf("Síndico") != -1){ $( "#DADOS #GRUPO_SIN" ).val(1); $( "#gsin" ).css("display","block"); }
                     if(retorno[0]['GRUPOS'].indexOf("Administração") != -1){ $( "#DADOS #GRUPO_ADM" ).val(1); $( "#gadm" ).css("display","block"); }

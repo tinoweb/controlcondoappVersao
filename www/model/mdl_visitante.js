@@ -4,11 +4,12 @@ function carrega_visitantes(sql){
     var dados = '';
 	var cont =0;
     if(sql != ''){
+        if(sql.length > 4 && localStorage.getItem('TIPO_BUSCA_VISITANTE') == 1 || localStorage.getItem('TIPO_BUSCA_VISITANTE') == 0 ){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/visitante_get.php',
             crossDomain: true,
-            data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),sql : sql},
+            data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : localStorage.getItem('TIPO_BUSCA_VISITANTE'), sql : sql},
             dataType   : 'json',
             success: function(retorno){
                 for (x in retorno) {
@@ -22,7 +23,7 @@ function carrega_visitantes(sql){
                     //var dado = '<div class="visitanteb">teste</div>';
                     dados = dados + dado;
                 }
-
+                dados = dados + '<div class="visitanteb" onClick="novo_visitante()"><strong>Novo Visitante</strong></div>';
                 $( "#retorno_visita" ).html(dados);
                 //alert(dados);
             },
@@ -31,6 +32,7 @@ function carrega_visitantes(sql){
                 //alert('Erro ao carregar visitantes');
             }
         });
+        }
     }else{
         $( "#retorno_visita" ).html('');
     }
@@ -69,6 +71,12 @@ function novo_visitante(){
     $( "#add_visitante #fone" ).val('');
     $( "#add_visitante #email" ).val('');
     $( "#add_visitante #obs" ).val('');
+    
+    if(localStorage.getItem('TIPO_BUSCA_VISITANTE') == 0){
+        $( "#add_visitante #nome" ).val($("#visitante_busca").val());
+    }else{
+        $( "#add_visitante #rg" ).val($("#visitante_busca").val());
+    }
     
     afed('#visitante','#visitantes','','','2','visitante');
     $("#visi_scroll").scrollTop(0);
