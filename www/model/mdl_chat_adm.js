@@ -1,6 +1,8 @@
 // JavaScript Document
 
 function carrega_chat(par=''){
+    if($( "#DADOS #MFALE" ).val() == 1){
+    afed('#fale_user','#fale_user2','','',3);
     var dados = '';
 	localStorage.setItem("TELA_ATUAL","chat_msg");
 	//alert('mdl_chat_adm: carrega_chat pag:'+localStorage.getItem("TELA_ATUAL"));
@@ -58,6 +60,9 @@ function carrega_chat(par=''){
         }
     }); 
 	limpa_reload();
+    }else{
+        afed('#fale_user2','#fale_user','','',3);
+    }
 }
 
 function carrega_msg(chat_user,nome,foto){

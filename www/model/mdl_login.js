@@ -51,7 +51,7 @@ function login_user_device(){
                             if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){ $( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }
                             if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){ $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }
                             $( "#DADOS #MHOME" ).val(retorno[0]['perfil']);
-                            $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MHOME']);
+                            $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MCOMUNICADO']);
                             $( "#DADOS #MLUNICA" ).val(retorno[0]['MLUNICA']);
                             $( "#DADOS #MLRECORRENTE" ).val(retorno[0]['MLRECORRENTE']);
                             $( "#DADOS #MRESERVA" ).val(retorno[0]['MRESERVA']);
@@ -60,6 +60,8 @@ function login_user_device(){
                             $( "#DADOS #MENQUENTE" ).val(retorno[0]['MENQUENTE']);
                             $( "#DADOS #MDOCUMENTOS" ).val(retorno[0]['MDOCUMENTOS']);
                             $( "#DADOS #MRELATORIOS" ).val(retorno[0]['MRELATORIOS']);
+                            localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
+                            localStorage.setItem('M_PET',retorno[0]['M_PET']);
                             $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                             $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                             $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -119,6 +121,9 @@ function login_user_device(){
                             if($( "<strong>#DADOS #PARENTESCO</strong>" ).val() == 1){ $( "#edit_moradores" ).css("display","block"); }
                             //carrega_notificacoes(1);
                             carrega_notificacoes(0);
+                            
+                            if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
+                            
                             carrega_chat();
                             inicia(0);
                             localStorage.setItem('TELA_ATUAL','home');	
@@ -239,7 +244,7 @@ function select_user(id_usuario_condominio=0) {
                     if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){ $( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }
                     if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){ $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }
                     $( "#DADOS #MHOME" ).val(retorno[0]['perfil']);
-                    $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MHOME']);
+                    $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MCOMUNICADOS']);
                     $( "#DADOS #MLUNICA" ).val(retorno[0]['MLUNICA']);
                     $( "#DADOS #MLRECORRENTE" ).val(retorno[0]['MLRECORRENTE']);
                     $( "#DADOS #MRESERVA" ).val(retorno[0]['MRESERVA']);
@@ -248,6 +253,8 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #MENQUENTE" ).val(retorno[0]['MENQUENTE']);
                     $( "#DADOS #MDOCUMENTOS" ).val(retorno[0]['MDOCUMENTOS']);
                     $( "#DADOS #MRELATORIOS" ).val(retorno[0]['MRELATORIOS']);
+                    localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
+                    localStorage.setItem('M_PET',retorno[0]['M_PET']);
                     $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                     $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                     $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -303,6 +310,17 @@ function select_user(id_usuario_condominio=0) {
                     if(MORADOR_PARENTESCO == 1){ $( "#edit_moradores" ).css("display","block"); }
                     //carrega_notificacoes(1);
                     carrega_notificacoes(0);
+                    
+                    if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
+                    if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
+                    if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
+                    if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
+                    //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
+                    if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
+                    if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
+                    if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
+                    if(localStorage.getItem('M_PET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); } 
+
                     carrega_chat();
                     inicia(0);
                     localStorage.setItem('TELA_ATUAL','home');	
