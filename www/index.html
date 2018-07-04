@@ -148,7 +148,10 @@
 						}else{
                             if(tipo==20){
                                 var val_confg = id_reg.split(';');
-								alert('DADOS1'+val_confg[0]);
+                                if(val_confg[0] == 'Morador'){
+                                    alert(id_reg);
+                                    alert('DADOS1'+val_confg[0]);
+                                }
 							}
                         }
 					}
