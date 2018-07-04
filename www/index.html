@@ -132,7 +132,6 @@
 					// VERIFICA SE O CONDOMINIO É O MESMO LOGADO
 					if(not_cond == atu_cond){
 						// TIPO 1= COMUNICADO 2= DOCUMENTO  3 = ENQUETE  4 = CHAT 5 = OCORRENCIA 20 = CONFIGURACAO
-                        alert('DADOS1'+id_reg);
 						if(id_reg > 0){
 							if(tipo==1){
 								carrega_comunicado(id_reg);
@@ -145,12 +144,18 @@
 								carrega_chat();
 							}else if(tipo==5){
 								carrega_ocorrencia(id_reg);
-							}else if(tipo==20){
-								alert('DADOS2'+id_reg);
 							}
-						}
+						}else{
+                            if(tipo==20){
+								alert('DADOS1'+id_reg);
+							}
+                        }
 					}
-				}
+				}else{
+                    if(tipo==20){
+                        alert('DADOS1'+id_reg);
+                    }
+                }
 
 			} 
 			function onConfirm_condo(buttonIndex) {
