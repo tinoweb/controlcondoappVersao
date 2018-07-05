@@ -124,7 +124,6 @@
 				alert(e); 
 			}); 
 			function onConfirm(buttonIndex) {
-                alert('entro');
 				if(buttonIndex===1){
 					var id_reg    = localStorage.getItem("NOT_ID");
 					var tipo      = localStorage.getItem("NOT_TYPE");
@@ -148,7 +147,6 @@
 							}
 						}else{
                             if(tipo==20){
-                                alert('sim');
                                 var val_confg = id_reg.split(';');
                                 if(val_confg[0] == 'Morador'){
 //                                    alert(id_reg);
@@ -181,7 +179,10 @@
                         }
 					}
 				}else{
-                    alert('nao');
+					var id_reg    = localStorage.getItem("NOT_ID");
+					var tipo      = localStorage.getItem("NOT_TYPE");
+					var not_cond  = localStorage.getItem("NOT_COND");
+					var atu_cond  = $( "#DADOS #ID_CONDOMINIO" ).val();
                     if(tipo==20){
                                 var val_confg = id_reg.split(';');
                                 if(val_confg[0] == 'Morador'){
