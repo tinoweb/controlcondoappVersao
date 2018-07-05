@@ -163,6 +163,8 @@
                                     localStorage.setItem('MOCORRENCIA',val_confg[11]);
                                     localStorage.setItem('MPET',val_confg[12]);
                                     $( "#DADOS #MRELATORIOS" ).val(val_confg[13]);
+                                    
+                                    alert($( "#DADOS #MCOMUNICADOS" ).val());
 
                                     if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
                                     if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
