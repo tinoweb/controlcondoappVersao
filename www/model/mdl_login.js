@@ -61,7 +61,7 @@ function login_user_device(){
                             $( "#DADOS #MDOCUMENTOS" ).val(retorno[0]['MDOCUMENTOS']);
                             $( "#DADOS #MRELATORIOS" ).val(retorno[0]['MRELATORIOS']);
                             localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
-                            localStorage.setItem('M_PET',retorno[0]['M_PET']);
+                            localStorage.setItem('MPET',retorno[0]['MPET']);
                             $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                             $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                             $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -254,7 +254,7 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #MDOCUMENTOS" ).val(retorno[0]['MDOCUMENTOS']);
                     $( "#DADOS #MRELATORIOS" ).val(retorno[0]['MRELATORIOS']);
                     localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
-                    localStorage.setItem('M_PET',retorno[0]['M_PET']);
+                    localStorage.setItem('MPET',retorno[0]['MPET']);
                     $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                     $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                     $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -319,7 +319,8 @@ function select_user(id_usuario_condominio=0) {
                     if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
                     if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
                     if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
-                    if(localStorage.getItem('M_PET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); } 
+                    if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
+                    
 
                     carrega_chat();
                     inicia(0);
