@@ -1,6 +1,6 @@
 //FUNCAO CARREGA TODOS VISITAMTES
 function carrega_visitantes(sql){
-    //alert(sql);
+    //alert(localStorage.getItem('TIPO_BUSCA_VISITANTE')+'///'+sql);
     var dados = '';
 	var cont =0;
     if(sql != ''){
@@ -25,11 +25,12 @@ function carrega_visitantes(sql){
                 }
                 dados = dados + '<div class="visitanteb" onClick="novo_visitante()"><strong>Novo Visitante</strong></div>';
                 $( "#retorno_visita" ).html(dados);
-                //alert(dados);
+                
             },
             error      : function(error) {
                 //console.log(error);
                 //alert('Erro ao carregar visitantes');
+                //alert(dados);
             }
         });
         }
