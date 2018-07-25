@@ -83,13 +83,19 @@
 				localStorage.setItem('registrationId', data.registrationId);
 			});        
 			push.on('notification', function(data) {
-                alert('Notificacao');
+                //alert('Notificacao');
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
 				localStorage.setItem("NOT_COND",data.additionalData.condominio);
 				console.log('notification event');
-				 alert('Notificacao');
+                
+                if($( "#DADOS #ID_CONDOMINIO" ).val() == ''){
+                    $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));
+                    perfil_notificacao(localStorage.getItem("NOT_COND"));
+                }
+                
+				 //alert('Notificacao');
 				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val() ){
 
 					if(titulo_notifica == 'Chat'){

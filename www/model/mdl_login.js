@@ -22,7 +22,6 @@ function login_user_device(){
             success    : function(retorno) {
 
                 if(retorno[0]['error'] == 0){
-                    alert('login');
                     if(retorno[0]['perfil'] > 1){
                         //alert('teste4');
                         afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
