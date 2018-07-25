@@ -1,6 +1,6 @@
 // LOGIN USUARIO DEVICE (VALIDA O LOGIN PELO ID DO DISPOSITIVO)
 function login_user_device(){
-    //alert('teste');
+    alert('Login');
     if(navigator.connection.type != 'none'){
         //alert('teste2');
         if(device.uuid == null){

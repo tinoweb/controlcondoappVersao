@@ -83,6 +83,7 @@
 				localStorage.setItem('registrationId', data.registrationId);
 			});        
 			push.on('notification', function(data) {
+                alert('Notificacao');
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
@@ -1257,8 +1258,9 @@
 			<div class="area_legendas">
 				<div class="area_legenda" style="background-color:red; ">Inválido</div>
 				<div class="area_legenda" style="background-color:#4caf50; color: white">Livre</div>
-				<div class="area_legenda" style="background-color:#53c7ec; color: black;">Minha Reserva</div>
-				<div class="area_legenda" style="background-color:#8c72cd;">Outras Reservas</div>
+				<div class="area_legenda" style="background-color:#53c7ec; color: black;">Minhas</div>
+				<div class="area_legenda" style="background-color:#f5db00; color: black;">Aguardando</div>
+				<div class="area_legenda" style="background-color:#8c72cd;">Outras</div>
 			</div>
 			<div class="horas">
 				<div class="horas_colunas">

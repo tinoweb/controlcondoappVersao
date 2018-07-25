@@ -116,7 +116,15 @@ function verifica_data_usadas(dados){
 						$( "#h_"+ii ).css("border-top-color","#53c7ec");
 					}
 					$( "#h_"+ii ).css("background-color","#ddd");
-					$( "#h_"+ii ).css("border-color","#53c7ec");
+                    //alert(dados[x]['situacao']);
+                    if(dados[x]['situacao'] == 0){
+                        //alert('sim');
+                        $( "#h_"+ii ).css("border-color","#f5db00");
+                    }else{
+                        //alert('nao');
+                        $( "#h_"+ii ).css("border-color","#53c7ec");
+                    }
+					//$( "#h_"+ii ).css("border-color","#53c7ec");
 					var bt_edit = document.getElementById('h_'+ii);
 					bt_edit.setAttribute("onclick", "edite_reserva('"+dados[x]['id_reserva']+"','"+startHora[0]+"','"+startHora[1]+"','"+endHora[1]+"')");
 				}else{
