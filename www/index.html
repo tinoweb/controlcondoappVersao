@@ -89,8 +89,8 @@
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
 				localStorage.setItem("NOT_COND",data.additionalData.condominio);
 				console.log('notification event');
-				
-				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val()){
+				 alert('Notificacao');
+				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val() ){
 
 					if(titulo_notifica == 'Chat'){
 						if(localStorage.getItem('TELA_ATUAL') == 'chat'){
