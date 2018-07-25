@@ -84,7 +84,7 @@ function verifica_data_ativas(ini,fim,ativo) {
     localStorage.setItem('RESERVA_ATUAL_FIM',dt[2] +"-"+ dt[1] +"-"+ dt[0] + " " + fim);
 	var iniDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " 00:00");
 	for (i = 0; i < 48; i++) {
-		if(iniDate >= startDate && iniDate < endDate) {
+		if(iniDate >= startDate && iniDate < endDate && ativo == 1) {
 			//alert(iniDate);
 			$( "#h_"+i ).css("background-color","white");
 			$( "#h_"+i ).css("color","black");
