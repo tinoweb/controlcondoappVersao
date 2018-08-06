@@ -12,6 +12,7 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
+            dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva();">MINHAS RESERVAS</div>';
             for (x in retorno) {
                 var dado = '<div class="area" onClick="carrega_area(\''+retorno[x]['id_area_comum']+'\',\'1\',\''+retorno[x]['nome']+'\');"><strong>'+retorno[x]['nome']+'</strong></div>';
                 dados = dados + dado;
@@ -21,6 +22,66 @@ function carrega_areas(){
 
 		}
 	});	
+}
+
+//FUNCAO CARREGA MINHA RESERVA 
+function carrega_minha_reserva(){
+	var dados = '';
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/minha_reserva_get.php',
+        crossDomain: true,
+        beforeSend : function() { },
+        complete   : function() { },
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val()},
+        dataType   : 'json',
+		success: function(retorno){
+            for (x in retorno) {
+                cor_status = retorno[x]['situacao'];
+				if(cor_status=='1'){
+					cor_class='#28a745';
+				}else if(cor_status=='0'){
+					cor_class='#ffc107'
+				}else if(cor_status=='2') {
+					cor_class='#dc3545'
+				}
+                
+                var dados_reserva = retorno[x]['id_reserva']+'||'+retorno[x]['area']+'||'+retorno[x]['morador']+'||'+retorno[x]['descricao']+'||'+retorno[x]['lote']+'||'+retorno[x]['data']+'||'+retorno[x]['inicio']+'||'+retorno[x]['fim']+'||'+retorno[x]['situacao']+'||'+retorno[x]['observacao'];
+                
+                //alert(dados_reserva);
+                
+                var dado = '<div class="card"><div class="card-header">'+retorno[x]['area']+'<div class="right"><i class="fa fa-circle" style="color:'+cor_class+'"></i></div></div><div class="card-content card-content-padding"><div class="item-inner"><div class="item-subtitle" style="font-size:12px;">DATA</div><div class="item-title">'+retorno[x]['data']+'  de '+retorno[x]['inicio']+' até '+retorno[x]['fim']+'</div><a class="col button button-fill sheet-open" onclick="carrega_minha_reserva_unica(\''+dados_reserva+'\')" data-sheet=".minha_reserva" >Visualizar</a></div></div></div>';
+                dados = dados + dado;
+            }
+			$( "#minha_reservas_retorno" ).html(dados);
+            afed('#minha_reservas','#reservas','','',3,'minha_reserva');
+		}
+	});	
+}
+
+function carrega_minha_reserva_unica(retorno){
+
+    var dados = retorno.split('||');
+    $( "#r_area" ).html(dados[1]);
+    $( "#r_morador" ).html(dados[2]);
+    $( "#r_titulo_quadralote" ).html(localStorage.getItem('ROTULO_QUADRA')+'/'+localStorage.getItem('ROTULO_LOTE'));
+    $( "#r_quadralote" ).html(localStorage.getItem('ROTULO_QUADRA')+' '+dados[3]+' / '+localStorage.getItem('ROTULO_LOTE')+' '+dados[4]);
+    $( "#r_data" ).html(dados[5]+' das '+dados[6]+' até '+dados[7]);
+    if(dados[8] == 0){
+        var status = '<i class="fa fa-circle" style="color:#ffc107;"></i> PENDENTE';
+    }else if(dados[8] == 1){
+        var status = '<i class="fa fa-circle" style="color:#28a745;"></i> CONFIRMADO';        
+    }else if(dados[8] == 2){
+        var status = '<i class="fa fa-circle" style="color:#dc3545;"></i> CANCELADO';        
+    }
+    $( "#r_situacao" ).html(status);
+    //alert (retorno);
+    if(dados[8] != 2){
+        $( "#r_bt_cancela" ).html('<button class="col button button-fill color-red" style="margin-top: 10px;" >Cancelar Reserva</button>');
+        $( "#rel_delete_reserva #add_reserva_id" ).val(dados[0]);
+    }else{
+        $( "#r_bt_cancela" ).html('<div class="item-subtitle" style="font-size:12px;"><strong>MOTIVO CANCELAMENTO</strong></div><div class="item-title">'+dados[9]+'</div>');
+    }
 }
 
 //FUNCAO CARREGA UMA AREA COMUM ESPECIFICA 
@@ -84,7 +145,7 @@ function verifica_data_ativas(ini,fim,ativo) {
     localStorage.setItem('RESERVA_ATUAL_FIM',dt[2] +"-"+ dt[1] +"-"+ dt[0] + " " + fim);
 	var iniDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " 00:00");
 	for (i = 0; i < 48; i++) {
-		if(iniDate >= startDate && iniDate < endDate) {
+		if(iniDate >= startDate && iniDate < endDate && ativo == 1) {
 			//alert(iniDate);
 			$( "#h_"+i ).css("background-color","white");
 			$( "#h_"+i ).css("color","black");
@@ -116,7 +177,15 @@ function verifica_data_usadas(dados){
 						$( "#h_"+ii ).css("border-top-color","#53c7ec");
 					}
 					$( "#h_"+ii ).css("background-color","#ddd");
-					$( "#h_"+ii ).css("border-color","#53c7ec");
+                    //alert(dados[x]['situacao']);
+                    if(dados[x]['situacao'] == 0){
+                        //alert('sim');
+                        $( "#h_"+ii ).css("border-color","#f5db00");
+                    }else{
+                        //alert('nao');
+                        $( "#h_"+ii ).css("border-color","#53c7ec");
+                    }
+					//$( "#h_"+ii ).css("border-color","#53c7ec");
 					var bt_edit = document.getElementById('h_'+ii);
 					bt_edit.setAttribute("onclick", "edite_reserva('"+dados[x]['id_reserva']+"','"+startHora[0]+"','"+startHora[1]+"','"+endHora[1]+"')");
 				}else{

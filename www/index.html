@@ -95,13 +95,20 @@
 				localStorage.setItem('registrationId', data.registrationId);
 			});        
 			push.on('notification', function(data) {
+                //alert('Notificacao');
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
 				localStorage.setItem("NOT_COND",data.additionalData.condominio);
 				console.log('notification event');
-				
-				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val()){
+                
+                if($( "#DADOS #ID_CONDOMINIO" ).val() == ''){
+                    $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));
+                    perfil_notificacao(localStorage.getItem("NOT_COND"));
+                }
+                
+				 //alert('Notificacao');
+				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val() ){
 
 					if(titulo_notifica == 'Chat'){
 						if(localStorage.getItem('TELA_ATUAL') == 'chat'){
@@ -442,7 +449,7 @@
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt2">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Minha lista de visitas</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;">Minha lista de visitas</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt3">
@@ -1246,10 +1253,70 @@
 		</div>
 	</div>
 	<div class="scroll" id="areas_retorno"> 
-			  <!--            	<div class="area" onClick="afed('#area','#reservas','','',2); cale('#dt_festa','','');">
-			<strong>CHURRASQUEIRA</strong>
-		</div>--> 
 	</div>
+</div>
+<div id="minha_reservas" class="pagina reservas">
+	<div class="navbar" style="height: 50px">
+		<div class="navbar-inner">
+			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+			<div class="title" style="font-size: 16px">Minhas Reservas</div>
+            <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
+		</div>
+	</div>
+	<div class="scroll" id="minha_reservas_retorno">
+	</div>
+    <div class="popup pop-filtro" style="display: none;">
+        <div class="navbar" style="height: 50px">
+            <div class="navbar-inner">
+                <div class="left"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a> </div>
+                <div class="title" style="font-size: 16px">FILTRO</div>
+            </div>
+        </div>
+        <p>teste de teste</p>
+        <p>teste de teste</p>
+        <p>teste de teste</p>
+        <p>teste de teste</p>
+    </div>
+    <div class="sheet-modal minha_reserva" style="height: 70%;">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left">
+                    <div class="title" style="font-size: 16px; padding-left: 10px;" id="r_area">AREA RESERVADA</div>
+                </div>
+                <div class="right">
+                    <a class="link sheet-close">Fechar</a>
+                </div>
+            </div>
+        </div>
+        <div class="sheet-modal-inner">
+            <div class="page-content">
+                <div class="block">
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong>MORADOR</strong></div>
+                        <div class="item-title" id="r_morador">Diego Ramos</div>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong id="r_titulo_quadralote">BLOCO/APTO</strong></div>
+                        <div class="item-title" id="r_quadralote">Bloco 1 / Apto 2</div>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong>DATA</strong></div>
+                        <div class="item-title" id="r_data">11/11/2011</div>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong>SITUAÇÃO</strong></div>
+                        <div class="item-title" id="r_situacao"><i class="fa fa-circle"></i> CONCLUIDO</div>
+                    </div>
+                    <div class="item-inner" id="r_bt_cancela">
+                        
+                    </div>
+                    <form id="rel_delete_reserva">
+                        <input type="hidden" name="add_reserva_id" id="add_reserva_id">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="area" class="pagina area">
 	<div class="navbar" style="height: 50px;margin-bottom:0px">
@@ -1269,8 +1336,9 @@
 			<div class="area_legendas">
 				<div class="area_legenda" style="background-color:red; ">Inválido</div>
 				<div class="area_legenda" style="background-color:#4caf50; color: white">Livre</div>
-				<div class="area_legenda" style="background-color:#53c7ec; color: black;">Minha Reserva</div>
-				<div class="area_legenda" style="background-color:#8c72cd;">Outras Reservas</div>
+				<div class="area_legenda" style="background-color:#53c7ec; color: black;">Minhas</div>
+				<div class="area_legenda" style="background-color:#f5db00; color: black;">Aguardando</div>
+				<div class="area_legenda" style="background-color:#8c72cd;">Outras</div>
 			</div>
 			<div class="horas">
 				<div class="horas_colunas">

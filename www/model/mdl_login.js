@@ -1,6 +1,6 @@
 // LOGIN USUARIO DEVICE (VALIDA O LOGIN PELO ID DO DISPOSITIVO)
 function login_user_device(){
-    //alert('teste');
+    //alert('Login');
     if(navigator.connection.type != 'none'){
         //alert('teste2');
         if(device.uuid == null){
@@ -20,9 +20,8 @@ function login_user_device(){
             data       : {uuid : UUID}, //APP
             dataType   : 'json',
             success    : function(retorno) {
-                //alert('teste3');
+
                 if(retorno[0]['error'] == 0){
-                    
                     if(retorno[0]['perfil'] > 1){
                         //alert('teste4');
                         afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
@@ -30,6 +29,7 @@ function login_user_device(){
    
                         $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                     }else{
+                        
                         if(retorno[0]['usar_control_condo'] == 1){
                             //alert('Perfil:'+retorno[0]['usar_control_condo']);
                             $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
@@ -37,6 +37,7 @@ function login_user_device(){
                             $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);
                             $( "#DADOS #ID_UNIDADE" ).val(retorno[0]['id_unidade']);
                             $( "#DADOS #ID_CONDOMINIO" ).val(retorno[0]['id_condominio']);
+                            
                             //alert($( "#DADOS #ID_CONDOMINIO" ).val());                    
                             $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                             localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
