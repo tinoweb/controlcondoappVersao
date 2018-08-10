@@ -83,6 +83,11 @@ function voltar(abre,fecha,pagina){
     if(pagina == 'enquetes'){
         carrega_enquetes(0);
     }
+
+    if(pagina == 'ocorrencias_ticket'){
+        carrega_tickets(0);
+    }
+    
     
     $( fecha ).css('display','none');
     $( abre ).css('display','block');
