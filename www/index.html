@@ -120,42 +120,13 @@
 					}
 					if(localStorage.getItem('TELA_ATUAL') != 'chat'){
 						if(localStorage.getItem('TELA_ATUAL') != 'chat_msg'){
-//							navigator.notification.confirm(
-//								data.message,         // message
-//								onConfirm,            // callback
-//								data.title,
-//								['Abrir','Cancelar']  // buttonName
-//				            );
-                            if(localStorage.setItem("NOT_TYPE") == 1){
-                                var icone = 'glyphicon glyphicon-bullhorn';
-                            }else if(localStorage.setItem("NOT_TYPE") == 2){
-                                var icone = 'glyphicon glyphicon-duplicate';
-                            }else if(localStorage.setItem("NOT_TYPE") == 3){
-                                var icone = 'fa fa-pie-chart';
-                            }else if(localStorage.setItem("NOT_TYPE") == 4){
-                                var icone = 'glyphicon glyphicon-comment';
-                            }else if(localStorage.setItem("NOT_TYPE") == 5){
-                                var icone = 'glyphicon glyphicon-warning-sign';
-                            }else if(localStorage.setItem("NOT_TYPE") == 6){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.setItem("NOT_TYPE") == 7){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.setItem("NOT_TYPE") == 8){
-                                var icone = 'glyphicon glyphicon-envelope';
-                            }else if(localStorage.setItem("NOT_TYPE") == 9){
-                                var icone = 'glyphicon glyphicon-envelope';
-                            }else if(localStorage.setItem("NOT_TYPE") == 13){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.setItem("NOT_TYPE") == 14){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.setItem("NOT_TYPE") == 20){
-                                var icone = 'fa fa-cogs';
-                            }else if(localStorage.setItem("NOT_TYPE") == 21){
-                                var icone = 'glyphicon-calendar';
-                            }else{
-                                var icone = 'glyphicon glyphicon-home';
-                            }
-                            openNotificacao(icone,data.title,'',data.message);
+							navigator.notification.confirm(
+								data.message,         // message
+								onConfirm,            // callback
+								data.title,
+								['Abrir','Cancelar']  // buttonName
+				            );
+                            openNotificacao('icone','titulo','subtitulo','texto');
 						}
 					}  
 
@@ -598,9 +569,9 @@
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARzSURBVEhL3VXrTxxVFN8Yo8ZXtDH+A35pYmJMTExM/GJijPpB42cT/WCCQoFS3KE82l1sDZayC27Z1yzM3ju7zMy67G4KLY9CtxQoAgXKSym1FNiCCuWxbYHy5njPMENBWlv8YuIvOZm553fub87de85Zw38O85fkGWsq/azoIP3EbA4+pblV4Br9yGOc5t4bbCm2p50ZtK9RluejPmmOvXeazeYnkcOni63R3yTLc87DYvffk3gsOIzU2BZRFpbHIoB2SZHnijmagJw9gyY2B5R5nWsNKQtOo5imbtwLPNn04syvIVUEbbI3BHy2WKNxNbf6yrc4jOOzaYO6cS/gs2hrfDC8JTT9i/qRKHKebPECrnUO4zBe3bgX2DmS11sTWNGFOiuUJUcGzULOydEjXZXKks51VweWHRnkuLrxn8Cnk/2CSRxmFqfHfAHrVyX73Jl0tP9cYKOvVllzHaY3Cr71PYex+GTrYfQjz+JGnInSy+zp8eSI4+zZczKFvqYK68Bq8eTQ3yd7N3/nZkVeKzXR/IJvfK+6OO8xB0dM1kMl+wqT6OuWAzTBmky/sCST/cyfizzG4UmaFFktFNTBpPRqVFGYQj+IUmmrkhZjEcCMNFoFq54T7iwx3hJUVi74pXt2js7a0ryfarTBnUVji7H7d1hPpXhhsvC+RhsMrKm+7j6rbOgBaKVH6YRGG6wp9D36nRhHkfaIAvVEgpmBcnByZNqSwL+CMSx+cvv+niplozBVUEteRUEy/SgqylN6wNLNCLDMRjTawBrv8ljn5k95dygMrAGhuyoAHRXKCjtRPsbwWeI47tM1GsrkO9Yk8qEqgMCxwLK6PjMQWseAtrAydSqdnECuKIm86TsuzuibVWNit6+FYP5GBNgkmLIn2Z93ZnhPdZzerLjZqyFMcmzXuLGk0reK00m/O1Mcsh0iMgbYUvwvssu9dvPy/cbTjXU5dJwOqKVtN5KwOYF/lt1ZRekR8U9Vg+lp0ruhV4Q1VfyYfWC8p/qnrV7ZbneuhyH8Y5l6qvOkbI5V15WTifSNHRX1MGileSVo8ce3j45H2UhrEEiub8bF0XDRQfKSJrcb2AfskqdH24IPFHqksVOxqlplxTCC96TJ7oQrk14cbnn87B9mLeXyssNIcjTZnWAzaWKoOQjtYQkG6iToOVPGjL2fk6CD+a4yX3t5GQw3ytAs+WGsVYYo8cNklwK1vB/i/QGoLPbDUFMQp7I6sXfBwdHYeAuF2AU3/HHJDeONzJo232MNPEz87IbRKA+32lwwVMfDbIcbfqvl4XaXGwarPXC32wUDZzwweN4PrOKoJrsTdiM1NxBh/V6/C/6tLfS5QM7zLhYdEN/RZHcC/0I9Od7eaqewPlzPq9m2KiVw1i6sSt97F70mMi8cJXNeZsREFpQ8YanOVbrWFSwBjB+s4kH+QVgVTKRYk3wwWJ0/YUsjn9NcWkvNtNKWJiRgo+ZzpS9oIVvAuWVJEt5l04ITzbTOa/aG2IR+W6P/dzAY/gIecTXtJrV8AwAAAABJRU5ErkJggg==);"></div>
 				<span>Pet's</span> 
 			</div>
-			<div class="smenu button" onClick="openNotificacao('icone','titulo','subtitulo','texto');" id="menu_pet">
+			<div class="smenu button" onClick="openNotificacao();">
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARzSURBVEhL3VXrTxxVFN8Yo8ZXtDH+A35pYmJMTExM/GJijPpB42cT/WCCQoFS3KE82l1sDZayC27Z1yzM3ju7zMy67G4KLY9CtxQoAgXKSym1FNiCCuWxbYHy5njPMENBWlv8YuIvOZm553fub87de85Zw38O85fkGWsq/azoIP3EbA4+pblV4Br9yGOc5t4bbCm2p50ZtK9RluejPmmOvXeazeYnkcOni63R3yTLc87DYvffk3gsOIzU2BZRFpbHIoB2SZHnijmagJw9gyY2B5R5nWsNKQtOo5imbtwLPNn04syvIVUEbbI3BHy2WKNxNbf6yrc4jOOzaYO6cS/gs2hrfDC8JTT9i/qRKHKebPECrnUO4zBe3bgX2DmS11sTWNGFOiuUJUcGzULOydEjXZXKks51VweWHRnkuLrxn8Cnk/2CSRxmFqfHfAHrVyX73Jl0tP9cYKOvVllzHaY3Cr71PYex+GTrYfQjz+JGnInSy+zp8eSI4+zZczKFvqYK68Bq8eTQ3yd7N3/nZkVeKzXR/IJvfK+6OO8xB0dM1kMl+wqT6OuWAzTBmky/sCST/cyfizzG4UmaFFktFNTBpPRqVFGYQj+IUmmrkhZjEcCMNFoFq54T7iwx3hJUVi74pXt2js7a0ryfarTBnUVji7H7d1hPpXhhsvC+RhsMrKm+7j6rbOgBaKVH6YRGG6wp9D36nRhHkfaIAvVEgpmBcnByZNqSwL+CMSx+cvv+niplozBVUEteRUEy/SgqylN6wNLNCLDMRjTawBrv8ljn5k95dygMrAGhuyoAHRXKCjtRPsbwWeI47tM1GsrkO9Yk8qEqgMCxwLK6PjMQWseAtrAydSqdnECuKIm86TsuzuibVWNit6+FYP5GBNgkmLIn2Z93ZnhPdZzerLjZqyFMcmzXuLGk0reK00m/O1Mcsh0iMgbYUvwvssu9dvPy/cbTjXU5dJwOqKVtN5KwOYF/lt1ZRekR8U9Vg+lp0ruhV4Q1VfyYfWC8p/qnrV7ZbneuhyH8Y5l6qvOkbI5V15WTifSNHRX1MGileSVo8ce3j45H2UhrEEiub8bF0XDRQfKSJrcb2AfskqdH24IPFHqksVOxqlplxTCC96TJ7oQrk14cbnn87B9mLeXyssNIcjTZnWAzaWKoOQjtYQkG6iToOVPGjL2fk6CD+a4yX3t5GQw3ytAs+WGsVYYo8cNklwK1vB/i/QGoLPbDUFMQp7I6sXfBwdHYeAuF2AU3/HHJDeONzJo232MNPEz87IbRKA+32lwwVMfDbIcbfqvl4XaXGwarPXC32wUDZzwweN4PrOKoJrsTdiM1NxBh/V6/C/6tLfS5QM7zLhYdEN/RZHcC/0I9Od7eaqewPlzPq9m2KiVw1i6sSt97F70mMi8cJXNeZsREFpQ8YanOVbrWFSwBjB+s4kH+QVgVTKRYk3wwWJ0/YUsjn9NcWkvNtNKWJiRgo+ZzpS9oIVvAuWVJEt5l04ITzbTOa/aG2IR+W6P/dzAY/gIecTXtJrV8AwAAAABJRU5ErkJggg==);"></div>
-				<span>notifica</span> 
+				<span>teste notificacao</span> 
 			</div>
             </div>
 				
@@ -2647,9 +2618,10 @@
 	function openNotificacao(icone,titulo,subtitulo,texto){
 // Create notification with close button
         var notificationWithButton = app2.notification.create({
-          icon: '<i class="'+icone+'"></i>',
-          title: titulo,
-          text: texto,
+          icon: '<i class="f7-icons">calendar</i>',
+          title: 'Framework7',
+          subtitle: 'Notification with close button',
+          text: 'Click (x) button to close me',
           closeButton: true,
           closeOnClick: true,
           on: {
