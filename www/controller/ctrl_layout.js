@@ -130,3 +130,12 @@ function msg_erro(msg){
 	$('#erro_msg').html(msg);
 }
 
+function form_data(val){
+    if(val < 10){
+        val2 = '0'+val;
+    }else{
+        val2 = val;
+    }
+    return val2;
+}
+
