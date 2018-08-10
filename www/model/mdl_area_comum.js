@@ -3,7 +3,6 @@
 //FUNCAO CARREGA TODAS AREAS COMUNS
 function carrega_areas(){
 	var dados = '';
-	var dados_select = '<option value="">TODOS</option>';
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
@@ -13,16 +12,12 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
- //           dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
-            dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
+            dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva();">MINHAS RESERVAS</div>';
             for (x in retorno) {
                 var dado = '<div class="area" onClick="carrega_area(\''+retorno[x]['id_area_comum']+'\',\'1\',\''+retorno[x]['nome']+'\');"><strong>'+retorno[x]['nome']+'</strong></div>';
-                var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
                 dados = dados + dado;
-                dados_select = dados_select + dado_select;
             }
 			$( "#areas_retorno" ).html(dados);
-			$( "#filtro_r_area" ).html(dados_select);
 			afed('#reservas','#home','','',3,'reservas');
 
 		}
@@ -30,29 +25,7 @@ function carrega_areas(){
 }
 
 //FUNCAO CARREGA MINHA RESERVA 
-function carrega_minha_reserva(filtro=0,scroll=0){
-    //"use strict";
-    app.controler_pull("minha_reserva");
-    
-    if(filtro == 0){
-        var d1 = new Date();
-        var d2 = new Date();
-        var d3 = new Date(d2.setDate(d2.getDate() + 180));
-        var data_inicio = d1.getFullYear()+'-'+form_data((d1.getMonth()+1))+'-'+form_data(d1.getDate());
-        var data_fim = d3.getFullYear()+'-'+form_data((d3.getMonth()+1))+'-'+form_data(d3.getDate());
-        var area = '';
-        var situacao = '';
-        $("#filtro_r_data_inicio").val(data_inicio);
-        $("#filtro_r_data_fim").val(data_fim);
-    }else{
-        var data_inicio = $("#filtro_r_data_inicio").val();
-        var data_fim = $("#filtro_r_data_fim").val();
-        var area = $("#filtro_r_area").val();
-        var situacao = $("#filtro_r_situacao").val();
-    }
-    
-    //alert(situacao);
-    //alert(data_inicio+' ate '+data_fim);
+function carrega_minha_reserva(){
 	var dados = '';
 	$.ajax({
 		type: 'POST',
@@ -60,7 +33,7 @@ function carrega_minha_reserva(filtro=0,scroll=0){
         crossDomain: true,
         beforeSend : function() { },
         complete   : function() { },
-        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), inicio : data_inicio, fim : data_fim, id_area : area, situacao : situacao },
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val()},
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
@@ -80,10 +53,8 @@ function carrega_minha_reserva(filtro=0,scroll=0){
                 var dado = '<div class="card"><div class="card-header">'+retorno[x]['area']+'<div class="right"><i class="fa fa-circle" style="color:'+cor_class+'"></i></div></div><div class="card-content card-content-padding"><div class="item-inner"><div class="item-subtitle" style="font-size:12px;">DATA</div><div class="item-title">'+retorno[x]['data']+'  de '+retorno[x]['inicio']+' até '+retorno[x]['fim']+'</div><a class="col button button-fill sheet-open" onclick="carrega_minha_reserva_unica(\''+dados_reserva+'\')" data-sheet=".minha_reserva" >Visualizar</a></div></div></div>';
                 dados = dados + dado;
             }
-			$( "#main_mreserva" ).html(dados);
-            if(filtro == 0){
-                afed('#m_reserva','#reservas','','',3,'minha_reserva');
-            }
+			$( "#minha_reservas_retorno" ).html(dados);
+            afed('#minha_reservas','#reservas','','',3,'minha_reserva');
 		}
 	});	
 }
@@ -96,30 +67,18 @@ function carrega_minha_reserva_unica(retorno){
     $( "#r_titulo_quadralote" ).html(localStorage.getItem('ROTULO_QUADRA')+'/'+localStorage.getItem('ROTULO_LOTE'));
     $( "#r_quadralote" ).html(localStorage.getItem('ROTULO_QUADRA')+' '+dados[3]+' / '+localStorage.getItem('ROTULO_LOTE')+' '+dados[4]);
     $( "#r_data" ).html(dados[5]+' das '+dados[6]+' até '+dados[7]);
-    var dataout = dados[5].split('/');
-    var dt = new Date(dataout[2]+'-'+dataout[1]+'-'+dataout[0]+' 00:00:00');
-    var dt_hoje = new Date();
-    
     if(dados[8] == 0){
         var status = '<i class="fa fa-circle" style="color:#ffc107;"></i> PENDENTE';
     }else if(dados[8] == 1){
-        if(dt <= dt_hoje){
-            var status = '<i class="fa fa-circle" style="color:#28a745;"></i> CONCLUIDO'; 
-        }else{
-            var status = '<i class="fa fa-circle" style="color:#28a745;"></i> CONFIRMADO'; 
-        }
-               
+        var status = '<i class="fa fa-circle" style="color:#28a745;"></i> CONFIRMADO';        
     }else if(dados[8] == 2){
         var status = '<i class="fa fa-circle" style="color:#dc3545;"></i> CANCELADO';        
     }
     $( "#r_situacao" ).html(status);
     //alert (retorno);
     if(dados[8] != 2){
-        if(dt > dt_hoje){
-            $( "#r_bt_cancela" ).html('<button class="col button button-fill color-red sheet-close" style="margin-top: 10px;" onclick="delete_reserva();" >Cancelar Reserva</button>');
-            $( "#rel_delete_reserva #add_reserva_id" ).val(dados[0]);
-        }
-        //alert($( "#rel_delete_reserva #add_reserva_id" ).val());
+        $( "#r_bt_cancela" ).html('<button class="col button button-fill color-red" style="margin-top: 10px;" >Cancelar Reserva</button>');
+        $( "#rel_delete_reserva #add_reserva_id" ).val(dados[0]);
     }else{
         $( "#r_bt_cancela" ).html('<div class="item-subtitle" style="font-size:12px;"><strong>MOTIVO CANCELAMENTO</strong></div><div class="item-title">'+dados[9]+'</div>');
     }
@@ -582,11 +541,8 @@ function delete_reserva(){
 
 function apaga_reserva(button){
     if(button == 1){
-        if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){
-            var id_reserva = $( "#add_reserva_id" ).val();
-        }else{
-            var id_reserva = $( "#rel_delete_reserva #add_reserva_id" ).val();
-        }
+        var id_reserva = $( "#add_reserva_id" ).val();
+        //alert(id_reserva);
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/reserva_delete.php',
@@ -594,13 +550,8 @@ function apaga_reserva(button){
             complete   : function() { },
             data:'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_reserva='+id_reserva,
 			success: function(retorno){
-                if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){
-                    afed('#area','#reserva','','',2,'area');
-                    carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
-                }else{
-                    carrega_minha_reserva();
-                    $( "#rel_delete_reserva #add_reserva_id" ).val('');
-                }
+                afed('#area','#reserva','','',2,'area');
+                carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
 			},
             error: function(erro){
                 //alert('erro');

@@ -126,7 +126,6 @@
 								data.title,
 								['Abrir','Cancelar']  // buttonName
 				            );
-                            openNotificacao('icone','titulo','subtitulo','texto');
 						}
 					}  
 
@@ -136,7 +135,7 @@
 						onConfirm_condo,            // callback
 						'Trocar de Condominio',
 						['Sim','Nao']  // buttonName
-				    );
+						);
 				 }
 				}); 
 
@@ -355,20 +354,6 @@
 				</div>
 			</div>
 		</div>
-    
-<!----------------------------------------- $NOTIFICACAO ------------------------------------------------------   
-        <div class="notification modal-in">
-            <div class="notification-header">
-                <div class="notification-icon"><i class="icon icon-f7"></i></div>
-                <div class="notification-title">Framework7</div>
-                <div class="notification-title-right-text">now</div>
-
-            </div>
-            <div class="notification-content">
-                <div class="notification-subtitle">Notification with close on click</div>
-                <div class="notification-text">Click me to close</div>
-            </div>
-        </div>
 
 <!----------------------------------------------  $LOGIN   ----------------------------------------------------->
 		<div id="login_ini" class="login_ini"> <img alt="" src="img/logoicon.png" width="150">
@@ -568,10 +553,6 @@
 			<div class="smenu button" onClick="carrega_pets(0);" id="menu_pet">
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARzSURBVEhL3VXrTxxVFN8Yo8ZXtDH+A35pYmJMTExM/GJijPpB42cT/WCCQoFS3KE82l1sDZayC27Z1yzM3ju7zMy67G4KLY9CtxQoAgXKSym1FNiCCuWxbYHy5njPMENBWlv8YuIvOZm553fub87de85Zw38O85fkGWsq/azoIP3EbA4+pblV4Br9yGOc5t4bbCm2p50ZtK9RluejPmmOvXeazeYnkcOni63R3yTLc87DYvffk3gsOIzU2BZRFpbHIoB2SZHnijmagJw9gyY2B5R5nWsNKQtOo5imbtwLPNn04syvIVUEbbI3BHy2WKNxNbf6yrc4jOOzaYO6cS/gs2hrfDC8JTT9i/qRKHKebPECrnUO4zBe3bgX2DmS11sTWNGFOiuUJUcGzULOydEjXZXKks51VweWHRnkuLrxn8Cnk/2CSRxmFqfHfAHrVyX73Jl0tP9cYKOvVllzHaY3Cr71PYex+GTrYfQjz+JGnInSy+zp8eSI4+zZczKFvqYK68Bq8eTQ3yd7N3/nZkVeKzXR/IJvfK+6OO8xB0dM1kMl+wqT6OuWAzTBmky/sCST/cyfizzG4UmaFFktFNTBpPRqVFGYQj+IUmmrkhZjEcCMNFoFq54T7iwx3hJUVi74pXt2js7a0ryfarTBnUVji7H7d1hPpXhhsvC+RhsMrKm+7j6rbOgBaKVH6YRGG6wp9D36nRhHkfaIAvVEgpmBcnByZNqSwL+CMSx+cvv+niplozBVUEteRUEy/SgqylN6wNLNCLDMRjTawBrv8ljn5k95dygMrAGhuyoAHRXKCjtRPsbwWeI47tM1GsrkO9Yk8qEqgMCxwLK6PjMQWseAtrAydSqdnECuKIm86TsuzuibVWNit6+FYP5GBNgkmLIn2Z93ZnhPdZzerLjZqyFMcmzXuLGk0reK00m/O1Mcsh0iMgbYUvwvssu9dvPy/cbTjXU5dJwOqKVtN5KwOYF/lt1ZRekR8U9Vg+lp0ruhV4Q1VfyYfWC8p/qnrV7ZbneuhyH8Y5l6qvOkbI5V15WTifSNHRX1MGileSVo8ce3j45H2UhrEEiub8bF0XDRQfKSJrcb2AfskqdH24IPFHqksVOxqlplxTCC96TJ7oQrk14cbnn87B9mLeXyssNIcjTZnWAzaWKoOQjtYQkG6iToOVPGjL2fk6CD+a4yX3t5GQw3ytAs+WGsVYYo8cNklwK1vB/i/QGoLPbDUFMQp7I6sXfBwdHYeAuF2AU3/HHJDeONzJo232MNPEz87IbRKA+32lwwVMfDbIcbfqvl4XaXGwarPXC32wUDZzwweN4PrOKoJrsTdiM1NxBh/V6/C/6tLfS5QM7zLhYdEN/RZHcC/0I9Od7eaqewPlzPq9m2KiVw1i6sSt97F70mMi8cJXNeZsREFpQ8YanOVbrWFSwBjB+s4kH+QVgVTKRYk3wwWJ0/YUsjn9NcWkvNtNKWJiRgo+ZzpS9oIVvAuWVJEt5l04ITzbTOa/aG2IR+W6P/dzAY/gIecTXtJrV8AwAAAABJRU5ErkJggg==);"></div>
 				<span>Pet's</span> 
-			</div>
-			<div class="smenu button" onClick="openNotificacao();">
-				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARzSURBVEhL3VXrTxxVFN8Yo8ZXtDH+A35pYmJMTExM/GJijPpB42cT/WCCQoFS3KE82l1sDZayC27Z1yzM3ju7zMy67G4KLY9CtxQoAgXKSym1FNiCCuWxbYHy5njPMENBWlv8YuIvOZm553fub87de85Zw38O85fkGWsq/azoIP3EbA4+pblV4Br9yGOc5t4bbCm2p50ZtK9RluejPmmOvXeazeYnkcOni63R3yTLc87DYvffk3gsOIzU2BZRFpbHIoB2SZHnijmagJw9gyY2B5R5nWsNKQtOo5imbtwLPNn04syvIVUEbbI3BHy2WKNxNbf6yrc4jOOzaYO6cS/gs2hrfDC8JTT9i/qRKHKebPECrnUO4zBe3bgX2DmS11sTWNGFOiuUJUcGzULOydEjXZXKks51VweWHRnkuLrxn8Cnk/2CSRxmFqfHfAHrVyX73Jl0tP9cYKOvVllzHaY3Cr71PYex+GTrYfQjz+JGnInSy+zp8eSI4+zZczKFvqYK68Bq8eTQ3yd7N3/nZkVeKzXR/IJvfK+6OO8xB0dM1kMl+wqT6OuWAzTBmky/sCST/cyfizzG4UmaFFktFNTBpPRqVFGYQj+IUmmrkhZjEcCMNFoFq54T7iwx3hJUVi74pXt2js7a0ryfarTBnUVji7H7d1hPpXhhsvC+RhsMrKm+7j6rbOgBaKVH6YRGG6wp9D36nRhHkfaIAvVEgpmBcnByZNqSwL+CMSx+cvv+niplozBVUEteRUEy/SgqylN6wNLNCLDMRjTawBrv8ljn5k95dygMrAGhuyoAHRXKCjtRPsbwWeI47tM1GsrkO9Yk8qEqgMCxwLK6PjMQWseAtrAydSqdnECuKIm86TsuzuibVWNit6+FYP5GBNgkmLIn2Z93ZnhPdZzerLjZqyFMcmzXuLGk0reK00m/O1Mcsh0iMgbYUvwvssu9dvPy/cbTjXU5dJwOqKVtN5KwOYF/lt1ZRekR8U9Vg+lp0ruhV4Q1VfyYfWC8p/qnrV7ZbneuhyH8Y5l6qvOkbI5V15WTifSNHRX1MGileSVo8ce3j45H2UhrEEiub8bF0XDRQfKSJrcb2AfskqdH24IPFHqksVOxqlplxTCC96TJ7oQrk14cbnn87B9mLeXyssNIcjTZnWAzaWKoOQjtYQkG6iToOVPGjL2fk6CD+a4yX3t5GQw3ytAs+WGsVYYo8cNklwK1vB/i/QGoLPbDUFMQp7I6sXfBwdHYeAuF2AU3/HHJDeONzJo232MNPEz87IbRKA+32lwwVMfDbIcbfqvl4XaXGwarPXC32wUDZzwweN4PrOKoJrsTdiM1NxBh/V6/C/6tLfS5QM7zLhYdEN/RZHcC/0I9Od7eaqewPlzPq9m2KiVw1i6sSt97F70mMi8cJXNeZsREFpQ8YanOVbrWFSwBjB+s4kH+QVgVTKRYk3wwWJ0/YUsjn9NcWkvNtNKWJiRgo+ZzpS9oIVvAuWVJEt5l04ITzbTOa/aG2IR+W6P/dzAY/gIecTXtJrV8AwAAAABJRU5ErkJggg==);"></div>
-				<span>teste notificacao</span> 
 			</div>
             </div>
 				
@@ -917,24 +898,23 @@
 							<div class="searchbar-input-wrap">
 								<input type="search" placeholder="Busca" name="busca" id="busca_comunicados">
 								<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_comunicados(4)"></span> </div>
-								<span class="searchbar-disable-button" onClick="carrega_comunicados(3)">Cancela</span> 
-                        </div>
+								<span class="searchbar-disable-button" onClick="carrega_comunicados(3)">Cancela</span> </div>
 								<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
-					</form>
+							</form>
 							<!-- Searchbar backdrop -->
-				    <div class="searchbar-backdrop"></div>
+							<div class="searchbar-backdrop"></div>
 							<!-- Scrollable page content -->
-				    <div class="box" id="boxUp_comunicados"></div>
-                    <div class="page-content ptr-content" data-ptr-distance="55" id="pull-comunicados" style="padding-top: 60px; padding-bottom: 10px">
-                        <div class="ptr-preloader">
-                            <div class="preloader"></div>
-                            <div class="ptr-arrow"></div>
-                        </div>
-                        <div id="main_comunicado" class="list media-list searchbar-found" style="height: 90% !important"></div>
-                    </div>
+							<div class="box" id="boxUp_comunicados"></div>
+							<div class="page-content ptr-content" data-ptr-distance="55" id="pull-comunicados" style="padding-top: 60px; padding-bottom: 10px">
+								<div class="ptr-preloader">
+									<div class="preloader"></div>
+									<div class="ptr-arrow"></div>
+								</div>
+								<div id="main_comunicado" class="list media-list searchbar-found" style="height: 90% !important"></div>
+							</div>
+						</div>
+					</div>
 				</div>
-                </div>
-        </div>
 				<!----------------------------------- Pagina Anexo dos Comunicados ----------------->
 				<div id="comunicados2" class="pagina comunicados2">
 					<div class="navbar" style="height: 50px">
@@ -1276,144 +1256,65 @@
 	<div class="scroll" id="areas_retorno"> 
 	</div>
 </div>
-
-<div id="m_reserva" class="pagina comunicados">
-    <div class="view view-mreserva"> 
-        <!-- Initial Page, "data-name" contains page name -->
-        <div data-name="home" class="page">
-            <div class="navbar" style="height: 50px">
-                <div class="navbar-inner">
-                    <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#m_reserva','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
-                    <div class="title" style="font-size: 16px">Minhas Reservas</div>
-                    <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
-                </div>
-            </div>
-                    <!-- Scrollable page content -->
-            <div class="box" id="boxUp_mreserva"></div>
-            <div class="page-content ptr-content" data-ptr-distance="55" id="pull-mreserva" style="padding-top: 50px; padding-bottom: 10px">
-                <div class="ptr-preloader">
-                    <div class="preloader"></div>
-                    <div class="ptr-arrow"></div>
-                </div>
-                <div id="main_mreserva" class="list media-list " style="height: 100% !important"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="minha_reservas" class="pagina reservas">
-    <div class="view view-minha-reserva">
+	<div class="navbar" style="height: 50px">
+		<div class="navbar-inner">
+			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+			<div class="title" style="font-size: 16px">Minhas Reservas</div>
+            <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
+		</div>
+	</div>
+	<div class="scroll" id="minha_reservas_retorno">
+	</div>
+    <div class="popup pop-filtro" style="display: none;">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
-                <div class="title" style="font-size: 16px">Minhas Reservas</div>
-                <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a> </div>
+                <div class="title" style="font-size: 16px">FILTRO</div>
             </div>
         </div>
-        <div class="page-content ptr-content" data-ptr-distance="35" id="pull-minha-reserva" style="padding-top: 60px; padding-bottom: 10px">
-            <div class="ptr-preloader">
-                <div class="preloader"></div>
-                <div class="ptr-arrow"></div>
-            </div>
-            <div id="minha_reservas_retorno" class="scroll" style="height: 100% !important"></div>
-        </div>
+        <p>teste de teste</p>
+        <p>teste de teste</p>
+        <p>teste de teste</p>
+        <p>teste de teste</p>
     </div>
-</div>
-<div class="popup pop-filtro" style="display: none;">
-    <div class="navbar" style="height: 50px">
-        <div class="navbar-inner">
-            <div class="left"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a> </div>
-            <div class="title" style="font-size: 16px">FILTRO</div>
-        </div>
-    </div>
-    <div class="list no-hairlines-md">
-        <ul>
-            <li class="item-content item-input">
-                <div class="item-inner">
-                    <div class="item-title item-label">AREA</div>
-                    <div class="item-input-wrap input-dropdown-wrap">
-                        <select class="form-control" id="filtro_r_area" >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
+    <div class="sheet-modal minha_reserva" style="height: 70%;">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left">
+                    <div class="title" style="font-size: 16px; padding-left: 10px;" id="r_area">AREA RESERVADA</div>
                 </div>
-            </li>
-            <li class="item-content item-input item-input-with-value">
-                <div class="item-inner">
-                    <div class="item-title item-label">DATA INICIO</div>
-                    <div class="item-input-wrap">
-                        <input type="date" value="2018-08-08" class="form-control" id="filtro_r_data_inicio">
-                    </div>
+                <div class="right">
+                    <a class="link sheet-close">Fechar</a>
                 </div>
-            </li>
-            <li class="item-content item-input item-input-with-value">
-                <div class="item-inner">
-                    <div class="item-title item-label">DATA FIM</div>
-                    <div class="item-input-wrap">
-                        <input type="date" value="2018-08-08" class="form-control" id="filtro_r_data_fim">
-                    </div>
-                </div>
-            </li>
-            <li class="item-content item-input">
-                <div class="item-inner">
-                    <div class="item-title item-label">SITUAÇÃO</div>
-                    <div class="item-input-wrap input-dropdown-wrap">
-                        <select class="form-control" id="filtro_r_situacao" >
-                            <option value="">TODAS</option>
-                            <option value="0">PENDENTES</option>
-                            <option value="1">CONFIRMADAS</option>
-                            <option value="2">CANCELADOS</option>
-                        </select>
-                    </div>
-                </div>
-            </li>
-            <li class="item-content item-input">
-                <div class="item-inner">
-                    <div class="item-input-wrap input-dropdown-wrap">
-                        <button type="button" class="col button button-fill popup-close" onClick="carrega_minha_reserva('1');"><i class="icon material-icons md-only color-white">search</i> BUSCAR</button>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="sheet-modal minha_reserva" style="height: 60%;">
-    <div class="toolbar">
-        <div class="toolbar-inner">
-            <div class="left">
-                <div class="title" style="font-size: 16px; padding-left: 10px;" id="r_area">AREA RESERVADA</div>
-            </div>
-            <div class="right">
-                <a class="link sheet-close">Fechar</a>
             </div>
         </div>
-    </div>
-    <div class="sheet-modal-inner">
-        <div class="page-content">
-            <div class="block">
-                <div class="item-inner">
-                    <div class="item-subtitle" style="font-size:12px;"><strong>MORADOR</strong></div>
-                    <div class="item-title" id="r_morador">Diego Ramos</div>
+        <div class="sheet-modal-inner">
+            <div class="page-content">
+                <div class="block">
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong>MORADOR</strong></div>
+                        <div class="item-title" id="r_morador">Diego Ramos</div>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong id="r_titulo_quadralote">BLOCO/APTO</strong></div>
+                        <div class="item-title" id="r_quadralote">Bloco 1 / Apto 2</div>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong>DATA</strong></div>
+                        <div class="item-title" id="r_data">11/11/2011</div>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-subtitle" style="font-size:12px;"><strong>SITUAÇÃO</strong></div>
+                        <div class="item-title" id="r_situacao"><i class="fa fa-circle"></i> CONCLUIDO</div>
+                    </div>
+                    <div class="item-inner" id="r_bt_cancela">
+                        
+                    </div>
+                    <form id="rel_delete_reserva">
+                        <input type="hidden" name="add_reserva_id" id="add_reserva_id">
+                    </form>
                 </div>
-                <div class="item-inner">
-                    <div class="item-subtitle" style="font-size:12px;"><strong id="r_titulo_quadralote">BLOCO/APTO</strong></div>
-                    <div class="item-title" id="r_quadralote">Bloco 1 / Apto 2</div>
-                </div>
-                <div class="item-inner">
-                    <div class="item-subtitle" style="font-size:12px;"><strong>DATA</strong></div>
-                    <div class="item-title" id="r_data">11/11/2011</div>
-                </div>
-                <div class="item-inner">
-                    <div class="item-subtitle" style="font-size:12px;"><strong>SITUAÇÃO</strong></div>
-                    <div class="item-title" id="r_situacao"><i class="fa fa-circle"></i> CONCLUIDO</div>
-                </div>
-                <div class="item-inner" id="r_bt_cancela">
-
-                </div>
-                <form id="rel_delete_reserva">
-                    <input type="hidden" name="add_reserva_id" id="add_reserva_id">
-                </form>
             </div>
         </div>
     </div>
@@ -2480,7 +2381,6 @@
 					var mainLibera  = app2.views.create('.view-liberacao'  );
 					var mainLibera  = app2.views.create('.view-liberacao2'  );
 					var mainComuni  = app2.views.create('.view-comunicados');
-					var mainMreser  = app2.views.create('.view-mreserva');
 					var mainEntreg  = app2.views.create('.view-entregas'   );
 					var mainEnquet  = app2.views.create('.view-enquetes'   );
 					var mainDocume  = app2.views.create('.view-documentos' );
@@ -2596,16 +2496,6 @@
 			},
 		}
 	});
-                    
-//// Create notification with click to close
-//    var notificationClickToClose = app2.notification.create({
-//        icon: '<i class="icon demo-icon">7</i>',
-//        title: 'Framework7',
-//        titleRightText: 'now',
-//        subtitle: 'Notification with close on click',
-//        text: 'Click me to close',
-//        closeOnClick: true,
-//    })
 	
 	function closePopUp(){
 		liberacaoPopup.close(false);
@@ -2615,78 +2505,6 @@
 		liberacaoPopup.open(false);
 	};
 	
-	function openNotificacao(icone,titulo,subtitulo,texto){
-// Create notification with close button
-        var notificationWithButton = app2.notification.create({
-          icon: '<i class="f7-icons">calendar</i>',
-          title: 'Framework7',
-          subtitle: 'Notification with close button',
-          text: 'Click (x) button to close me',
-          closeButton: true,
-          closeOnClick: true,
-          on: {
-            click: function () {
-//                app2.dialog.alert('Notification closed');
-                var id_reg    = localStorage.getItem("NOT_ID");
-                var tipo      = localStorage.getItem("NOT_TYPE");
-                var not_cond  = localStorage.getItem("NOT_COND");
-                var atu_cond  = $( "#DADOS #ID_CONDOMINIO" ).val();
-                // VERIFICA SE O CONDOMINIO É O MESMO LOGADO
-                if(not_cond == atu_cond){
-                    // TIPO 1= COMUNICADO 2= DOCUMENTO  3 = ENQUETE  4 = CHAT 5 = OCORRENCIA 20 = CONFIGURACAO
-                    if(id_reg > 0){
-                        if(tipo==1){
-                            carrega_comunicado(id_reg);
-                        }else if(tipo==2){
-                            carrega_documentos(0);
-                        }else if(tipo==3){
-                            carrega_enquete(id_reg);
-                        }else if(tipo==4){
-                            inicia2(1);
-                            carrega_chat();
-                        }else if(tipo==5){
-                            carrega_ocorrencia(id_reg);
-                        }
-                    }else{
-                        if(tipo==20){
-                            var val_confg = id_reg.split(';');
-                            if(val_confg[0] == 'Morador'){
-    //                                    alert(id_reg);
-    //                                    alert('DADOS1'+val_confg[0]);
-                                $( "#DADOS #MHOME" ).val(val_confg[2]);
-                                $( "#DADOS #MCOMUNICADOS" ).val(val_confg[3]);
-                                $( "#DADOS #MLUNICA" ).val(val_confg[4]);
-                                $( "#DADOS #MLRECORRENTE" ).val(val_confg[5]);
-                                $( "#DADOS #MRESERVA" ).val(val_confg[6]);
-                                $( "#DADOS #MENTREGAS" ).val(val_confg[7]);
-                                $( "#DADOS #MFALE" ).val(val_confg[8]);
-                                $( "#DADOS #MENQUENTE" ).val(val_confg[9]);
-                                $( "#DADOS #MDOCUMENTOS" ).val(val_confg[10]);
-                                localStorage.setItem('MOCORRENCIA',val_confg[11]);
-                                localStorage.setItem('MPET',val_confg[12]);
-                                $( "#DADOS #MRELATORIOS" ).val(val_confg[13]);
-
-                                if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
-                                if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
-                                if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
-                                if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
-                                //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
-                                if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
-                                if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
-                                if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
-                                if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
-
-                            }
-                        }
-                    }
-                }
-            },
-          },
-        });
-        notificationWithButton.open();
-    };
-	
-                    
 	window.onresize = function(){
 		var res = localStorage.getItem("TELA_ATUAL");
 		//alert(res);
