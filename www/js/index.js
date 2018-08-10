@@ -334,6 +334,86 @@ var app = {
             //alert('Camera Indisponível');
         }    
     },
+
+
+    foto_ticket_camera: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+
+    function onSuccess(imageURI) {
+            var dominio = localStorage.getItem('DOMINIO'); 
+            
+            $.ajax({ 
+                type: 'POST', 
+                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+                crossDomain: true, 
+                beforeSend : function() { }, 
+                complete   : function() { }, 
+                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+                success: function(retorno){ 
+                    
+                    $("#add_ticket #btn_anexo").html("Alterar Imagem");
+                    
+                    $("#add_ticket #foto_oco").val(dominio+retorno);
+                    
+                    $("#add_ticket #anexo_foto").attr("src", dominio+retorno);
+                    
+                    afed('#add_ticket #anexo_oco','','','','');
+                    
+                }, 
+                error      : function() { 
+                    //alert('Erro'); 
+                } 
+            }); 
+        }
+        function onFail(message) {
+            //alert('Camera Indisponivel');
+              //alert('Camera Indisponivel');
+        }    
+    },
+    
+
+    foto_ticket_galeria: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL, 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+        });
+
+    function onSuccess(imageURI) {
+            var dominio = localStorage.getItem('DOMINIO'); 
+            $.ajax({ 
+                type: 'POST', 
+                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+                crossDomain: true, 
+                beforeSend : function() { }, 
+                complete   : function() { }, 
+                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+                success: function(retorno){ 
+                    
+                    $("#add_ticket #btn_anexo").html("Alterar Imagem");
+                  
+                    $("#add_ticket #foto_oco").val(dominio+retorno);
+                    
+                    $("#add_ticket #anexo_foto").attr("src", dominio+retorno);
+                    
+                    afed('#add_ticket #anexo_oco','','','','');
+                    
+                }, 
+                error      : function() { 
+                    alert('Erro'); 
+                } 
+            }); 
+        }
+        function onFail(message) {
+            //alert('Camera Indisponivel');
+        }    
+    },
+    
+
     
 	foto_ocorrencia: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
