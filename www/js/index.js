@@ -40,6 +40,7 @@ var app = {
 		$("#boxUp_documentos" ).hide();
 		$("#boxUp_ocorrencias").hide();
 		$("#boxUp_tickets").hide();
+		$("#boxUp_mreserva").hide();
 		
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
@@ -227,6 +228,22 @@ var app = {
 		
 		$('#boxUp_tickets').click(function(){
 			$('#pull-tickets').animate({
+				scrollTop: 0
+			},600)
+		});
+		
+		$("#pull-mreserva").scroll(function() { 
+			var y=(($(this).scrollTop() + $(this).height()) + 71);
+			var x=$(this).get(0).scrollHeight;
+			//alert(y+ ' iii '+x);
+//            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+//                alert('fim');
+//            }
+			app.ckBoxUp("#boxUp_mreserva","#pull-mreserva");
+		});		
+		
+		$('#boxUp_mreserva').click(function(){
+			$('#pull-mreserva').animate({
 				scrollTop: 0
 			},600)
 		});
@@ -609,11 +626,13 @@ var app = {
 		$("#pull-liberacao"  ).removeClass("ptr-content");
 		$("#pull-liberacao2"  ).removeClass("ptr-content");
 		$("#pull-comunicados").removeClass("ptr-content");
+		$("#pull-mreserva").removeClass("ptr-content");
 		$("#pull-entregas"   ).removeClass("ptr-content");
 		$("#pull-enquetes"   ).removeClass("ptr-content");
 		$("#pull-documentos" ).removeClass("ptr-content");
 		$("#pull-ocorrencias" ).removeClass("ptr-content");
 		$("#pull-tickets" ).removeClass("ptr-content");
+		//$("#pull-minha-reserva" ).removeClass("ptr-content");
 	},
 	controler_pull: function(pag){
 		"use strict";
@@ -641,6 +660,9 @@ var app = {
 		}else if(pag==='tickets'){
 			$("#pull-tickets").addClass("ptr-content");
 			//alert('saindo do controler_pull');
+		}else if(pag==='minha_reserva'){
+			$("#pull-mreserva").addClass("ptr-content");
+			//alert('saindo do controler_pull');
 		}
 	},
 	pull_to_refresh: function(res){
@@ -664,6 +686,9 @@ var app = {
 			carrega_ocorrencias(0);
 		}else if(res==='tickets'){
 			carrega_tickets(0);
+		}else if(res==='minha_reserva'){
+			//carrega_tickets(0);
+            carrega_minha_reserva(0);
 		}
 		//alert('terminado');
 	},
