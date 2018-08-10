@@ -8,17 +8,26 @@
 	<link rel="stylesheet" type="text/css" href="css/octicons.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!-- framework7 -->
+	
+	<!-- Desativado por Pedro 02/08/2018 - Para uso integral do css framework 7
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- framework7 -->
 	<meta name="theme-color" content="#2196f3">
 	<link rel="stylesheet" href="lib/framework7/css/framework7.css">
 	<link rel="stylesheet" href="lib/framework7/css/framework7-icons.css">
 	<!-- end framework7 -->
-
+	
+	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+	
+
+	
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta charset="UTF-8">
@@ -32,8 +41,11 @@
 	
 	
 	<script src="js/jquery.mobile-1.4.5.js"></script>
-	<script src="lib/framework7/js/framework7.js"></script>
+	
 	<script scr="js/bootstrap.js"></script>
+	
+	
+	<script src="lib/framework7/js/framework7.js"></script>
 	<script src="js/jquery.qrcode.js"></script>
 	<script src="js/qrcode.js"></script>
 	<script src="js/html2canvas.js"></script>
@@ -1489,7 +1501,7 @@
 
 	<!---------------------------------------------   $ADICIONA RESERVA ------------------------------------------>
 
-	<div id="reserva" class="pagina reserva view">
+	<div id="reserva" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub">
 				<div class="left"> <a href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class="icon icon-back"></i></a> </div>
@@ -1503,18 +1515,12 @@
 		<!-- Menu Rodapé -->
 		<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
 			
+				
 				<div class="row">
-					
-						<input type="checkbox" name="concordo" id="concordo" style="margin: 0">
-						<span style="width:80%;">Aceito os termos de Utilização</span> 
-					
-				</div>
-				<div>
-				<div class="row">
-					<button type="button" value="" class="col button button-fill color-green" onClick="salva_reserva();">CONFIRMA</button>
+					<div type="button" value="" class="col button button-fill color-green" onClick="salva_reserva();">CONFIRMA</div>
 					<button type="button" value="" class="col button button-fill color-red" onClick="delete_reserva();">CANCELA </button>
 				</div>
-				</div>
+			
 			
 		</div>
 			
@@ -1543,24 +1549,41 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="item-inner" >
 						<div class="item-title item-label">Valor</div>
-						<span class="form-control" id="add_reserva_valor" style="width: 45%">R$ 200,00</span> </div>
-						<div class="item-inner" style="margin-top: 5px; margin-bottom: 50%;" >
-							<div class="item-title item-label"><strong>Termo de Utilização</strong></div>
-							<span style="width:100%; height:80%; overflow:auto;" id="add_reserva_termo"></span> </div>
-							
-							</form>
-						</div>
+						<span class="form-control" id="add_reserva_valor" style="width: 45%">R$ 200,00</span> 
 					</div>
+					
+					<div class="item-inner" style="margin-top: 5px; " >
+						<div class="item-title item-label"><strong>Termo de Utilização</strong></div>
+						<span style="width:100%;  overflow:auto;" id="add_reserva_termo"></span> 
+					</div>
+							
 
-	
-	
+							<div class="block" style="padding-bottom: 40px;">
+						
+								
+			
+						<div class="list simple-list" >
+						  <ul>
+							<li>
 
-	
-	
-	
-	
+							  <label class="toggle toggle-init color-blue">
+								<input  name="concordo" id="concordo" type="checkbox" >
+								<span class="toggle-icon"></span>
+							  </label>
+							  <span>Aceito os termos de Utilização</span>
+							</li>
+							  </div></div>
+
+							</form>
+		
+						</div>
+			
+			</div>
+
+
 					<!---------------------------------------------   $ENTREGAS         ------------------------------------------>
 
 					<div id="entregas" class="pagina entregas">
@@ -1700,42 +1723,126 @@
 ---------------------------------------------->
 				
 <!--------------------------------------------    $OCORRENCIAS LISTA    -------------------------------------------->
-				<div id="ocorrencias" class="pagina ocorrencias" >
-					<div class="view view-ocorrencias"> 
+			
+					<div id="ocorrencias" class="pagina view view-ocorrencias"> 
 						<!-- Initial Page, "data-name" contains page name -->
-						<div data-name="home" class="page">
+						
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner">
-									<div class="left"> <a href="#" onClick="voltar('#home','#ocorrencias','home');"><i class="icon icon-back"></i></a></div>
-									<div class="title">Ocorrencias</div>
-									<div class="right"> <a href="#" onClick="ocorrencia_novo();"> <span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span> </a> </div>
-								</div>
-							</div>
-							<form class="searchbar" id="form_busca_ocorrencias" style="width: 100%; margin-top: -7px">
-								<div class="searchbar-inner">
-									<div class="searchbar-input-wrap">
-										<input type="search" placeholder="Busca" name="busca" id="busca_ocorrencias">
-										<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_ocorrencias(4)"></span> </div>
-										<span class="searchbar-disable-button" onClick="carrega_ocorrencias(3)">Cancela</span> </div>
-										<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
-									</form>
-									<!-- Searchbar backdrop -->
-									<div class="searchbar-backdrop"></div>
+									<div class="left"> 
+										<a href="#" onClick="voltar('#home','#ocorrencias','home');">
+											<i class="icon icon-back"></i>
+										</a>
+									</div>
 
-									<!-- Scrollable page content -->
-									<div class="box" id="boxUp_ocorrencias"></div>
-									<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="background-color: #f0f0f04d" >
-										<div class="ptr-preloader">
-											<div class="preloader"></div>
-											<div class="ptr-arrow"></div>
-										</div>
-										<div id="main_ocorrencia" class="list media-list searchbar-found " style="height: 90% !important; margin:0;"></div>
+									<div class="title">Ocorrencias</div>
+									
+									<div class="right"> 
+										<a class="link popup-open" href="#" data-popup=".popup-about">
+											<i class="glyphicon glyphicon-search" style='margin-right: 15px'></i>
+										</a>
 									</div>
 								</div>
 							</div>
-						</div>
+								<!-- Scrollable page content -->
+								<!-- Desativado por Pedro 06/08 <div class="box" id="boxUp_ocorrencias"></div>-->
+								<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="background-color: #f0f0f04d" >
+									<div class="ptr-preloader" style="display: none;">
+										<div class="preloader"></div>
+										<div class="ptr-arrow"></div>
+									</div>
+						
+									<div id="main_ocorrencia" class="list media-list searchbar-found" style="margin-top:0;"></div>
+								</div>
+								
+								<div class="fab fab-right-bottom color-blue">
+									<a onclick="ocorrencia_novo();" >
+									  <!-- Icons For iOS Theme -->
+									  
+								  		<i class="glyphicon glyphicon-plus"></i>
+									  <!-- Icons For MD Theme -->
+									 
+									</a>
+								
+								  </div>
+								
+								
+								<div class="popup popup-about" style="font-size: 14px; font-weight: 100;">
+									<div class="block">
+										
+										<div class="block-title">
+											<label style="font-size: 16px"><i class="glyphicon glyphicon-search"></i> Filtros de Ocorrência</label></div>
+										<div class="list no-hairlines-md">
+											<form class="searchbar" id="form_busca_ocorrencias" style="width: 100%;">
+										  <ul>
+												<li class="item-content item-input">
+												  <div class="item-inner">
+													<div class="item-title item-label">Ocorrência</div>
+													<div class="item-input-wrap">
+													  <input type="text" placeholder="" id="busca_ocorrencias" name="busca_ocorrencias">
+													  <span class="input-clear-button"></span>
+													</div>
+												  </div>
+												</li>											
+											
+												<li class="item-content item-input">
+												  <div class="item-inner">
+													<div class="item-title item-label">Descrição</div>
+													<div class="item-input-wrap">
+													  <input type="text" placeholder="">
+													  <span class="input-clear-button"></span>
+													</div>
+												  </div>
+												</li>
 
-<!------------------------------------------$OCORRENCIAS PAGINA VISUALIZACAO ------------------------------------->
+												<li>
+												  
+												<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
+													
+													  	<input type="checkbox" name="demo-checkbox" value="1" />
+														<i class="icon icon-checkbox"></i>
+													
+													  	<div class="item-title" style="width:100%; float:left">Minhas Ocorrências</div>
+													
+												  </label>
+													
+											  	</li>
+											  
+												  <li>
+												  <div class="item-content item-input">
+													<div class="item-inner">
+														<div class="item-title item-label">Data Inicial</div>
+													  	<div class="item-input-wrap">
+															<input type="date" placeholder="Data Inicial" style='background-color: white' >
+													  	</div>
+													</div>
+												  </div>
+												</li>
+											  	<li>
+											  		<div class="item-content item-input">
+														<div class="item-inner">
+															<div class="item-title item-label">Data Final</div>
+															<div class="item-input-wrap">
+																<input type="date" placeholder="Data Final" style='background-color: white' >
+															</div>
+														</div>
+													 </div>
+											  	</li>
+											  <li>
+												<p class="row">
+													<button type="button" class="button button-fill button-raised link popup-close color-red" onClick="carrega_ocorrencias(3)" >Cancelar</button>
+												</p>
+											  </li>
+											</ul>
+											</form>
+										</div>
+
+								  </div>
+							</div>	
+				
+				</div>
+<!-- 										OCORRENCIAS PAGINA VISUALIZACAO 						-->
+
 						<div id="ocorrencia" class="pagina ocorrencias">
 							<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
@@ -1754,7 +1861,7 @@
 										<input type="hidden" name="id_situacao" id="id_situacao">
 										<input type="hidden" name="arquivo" id="arquivo">
 										
-											<!-- <div id='statusbar' style='border-radius: 10px 10px 0px 0px; height: 5%;'>&nbsp;</div> -->
+											<div id='statusbar' style='border-radius: 10px 10px 0px 0px; height: 5%;'>&nbsp;</div>
 
 
 										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
@@ -1795,19 +1902,29 @@
 					
 <!--------------------------------------------------  OCORRENCIAS PAGINA INCLUSAO ------------------------------------>
 
-						<div id="add_ocorrencia" class="pagina ocorrencias">
+						<div id="add_ocorrencia" class="pagina view ocorrencias">
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner topo_sub">
 									<div class="left"> <a href="#" onClick="voltar('#ocorrencias','#add_ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a> </div>
 									<div class="title">Nova Ocorrência</div>
 								</div>
 							</div>
-							<div class="scroll">
+							<div class="page-content">
 								<form id="form_ocorrencia_add">
 									<input type="hidden" name="foto" id="foto_oco">
 									<input type="hidden" name="tipo_solicitante" value="1">
 									<input type="hidden" name="id_situacao" value="1">
 									<input type="hidden" name="responsavel" value="">
+
+									  
+									    <select class="form-control" name="fruits">
+									      <option value="99" selected>Tipo de Ocorrência</option>
+									      <option value="1" selected>Privada</option>
+									      <option value="0">Pública</option>
+									    </select>
+									  
+
+
 									<div class="form-group">
 										<label for="solicitante">Motivo</label>
 										<textarea class="form-control" id="descricao" name="descricao" rows="4" placeholder="Motivo da ocorrência"></textarea>
