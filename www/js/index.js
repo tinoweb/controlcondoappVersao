@@ -5,7 +5,7 @@ var ref_correspondencia = '';
 var ref_enquete         = '';
 var ref_documento       = '';
 
-localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
+localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 //localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 
 var app = {
@@ -362,7 +362,8 @@ var app = {
 
     function onSuccess(imageURI) {
             var dominio = localStorage.getItem('DOMINIO'); 
-            
+            var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+            alert("caminho: "+caminho);
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
@@ -374,9 +375,9 @@ var app = {
                     
                     $("#add_ticket #btn_anexo").html("Alterar Imagem");
                     
-                    $("#add_ticket #foto_oco").val(dominio+retorno);
+                    $("#add_ticket #foto").val(retorno);
                     
-                    $("#add_ticket #anexo_foto").attr("src", dominio+retorno);
+                    $("#add_ticket #anexo_foto").attr("src", dominio+caminho+retorno);
                     
                     afed('#add_ticket #anexo_oco','','','','');
                     
@@ -402,6 +403,8 @@ var app = {
 
     function onSuccess(imageURI) {
             var dominio = localStorage.getItem('DOMINIO'); 
+            var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+            alert("caminho: "+caminho);
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
@@ -413,9 +416,9 @@ var app = {
                     
                     $("#add_ticket #btn_anexo").html("Alterar Imagem");
                   
-                    $("#add_ticket #foto_oco").val(dominio+retorno);
+                    $("#add_ticket #foto").val(retorno);
                     
-                    $("#add_ticket #anexo_foto").attr("src", dominio+retorno);
+                    $("#add_ticket #anexo_foto").attr("src", dominio+""+caminho+""+retorno);
                     
                     afed('#add_ticket #anexo_oco','','','','');
                     
