@@ -21,11 +21,11 @@
 	<!-- end framework7 -->
 	
 	
+	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
 	
-
 	
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1876,28 +1876,32 @@
 
 <!-- OCORRENCIAS PAGINA VISUALIZACAO 						-->
 
-						<div id="ocorrencia" class="pagina ocorrencias">
-							<div data-name="home" class="page">
+						<div id="ocorrencia" class="pagina view ocorrencias">
+						
 								<div class="navbar" style="height: 50px">
 									<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
 										<div class="title" >Ocorrencia</div>
 									</div>
 								</div>
-								<div class="form-control">
-									<form id="form_ocorrencia" style="margin-top: 50px; float: left; width: 100%;">
+
+								<div class="page-content ptr-content">
+									<form id="form_ocorrencia" style="margin-top: 10px; float: left; width: 100%;">
 										<input type="hidden" id="foto" name="foto" > 
 										<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
 										<input type="hidden" name="id_condominio" id="id_condominio">
 										<input type="hidden" name="tipo_solicitante" value="1">
 										<input type="hidden" name="id_solicitante" id="id_solicitante">
+										<input type="hidden" name="id_responsavel" id="id_responsavel">
 										<input type="hidden" name="criado_por" id="criado_por">
 										<input type="hidden" name="id_situacao" id="id_situacao">
 										<input type="hidden" name="arquivo" id="arquivo">
+										<input type="hidden" name="privada" id="privada">
+
 										
 											<div id='statusbar' style='border-radius: 10px 10px 0px 0px; height: 5%;'>&nbsp;</div>
 
 
-										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
+										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%; padding-bottom: 5px;" >	
 											<div style="font-size: 20px; float: left;" id="titulo_ocorrencia" >
 												Titulo da ocorrencia 											
 											</div>
@@ -1907,30 +1911,35 @@
 											<div style="padding-top: 5px; float: right;">
 												<i class="fa fa-circle" id="icone_ocorrencia">&nbsp;</i>  
 											</div>
-
-										
 										</div>
 										
+										
 										<label id="data_criacao" style="width: 100%; color: #fd9715; font-weight: 500;"> Data de Criação </label>
+
+										<label> Tipo </label>
+										<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>
+
+										
 										
 										<label style="width: 100%; font-size: 15px;font-weight: 700;">Solicitante</label>
 										
 										<p id="solicitante">Local onde é preenchido o Nome do Morador</p>
 										
 										<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
-										<textarea name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></textarea>
+										<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>
 										
 										
 										<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
 					
 										
 										<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Tickets </button>
-										<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_oco_salva" type="button"> <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Salvar </button>
-										<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_finaliza" type="button" onClick="finaliza_ocorrencia();"> <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
+										<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_oco_reabre" type="button" onclick="ticket_novo(2);"> <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
+										 </button>
+										<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
 										
 									</form>
 								</div>
-							</div>
+						
 						</div>
 					
 
@@ -2042,7 +2051,7 @@
 								</div>
 								<div class="title">Ticket's</div>
 								<div class="right">
-									<a href="#" onClick="ticket_novo();">
+									<a href="#" onClick="ticket_novo(0);">
 										<span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span>
 									</a>
 								</div>
@@ -2052,6 +2061,9 @@
 
 						<div class="page-content ptr-content" data-ptr-distance="55" id="pull-tickets" style="padding-top: 60px; padding-bottom: 10px">
 							<div class="box" id="boxUp_tickets"></div>
+							<div class="box" id="pull-tickets"></div>
+
+
 							<div class="ptr-preloader">
 								<div class="preloader"></div>
 								<div class="ptr-arrow"></div>
@@ -2075,7 +2087,7 @@
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner topo_sub">
 									<div class="left"> <a href="#" onClick="voltar('#ocorrencias_ticket','#ticket_add','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
-									<div class="title">Novo Ticket</div>
+									<div class="title" id="ti_titulo">Novo Ticket</div>
 								</div>
 							</div>
 
@@ -2101,13 +2113,14 @@
 							<div class="page-content ptr-content">
 								<div  style="padding: 0 10px 0 10px;">
 									<form id="form_ticket_add">
-
+										<input type="hidden" name="operacao" id='operacao' value="">
 										<input type="hidden" name="id_ocorrencia" id='id_ocorrencia' value="">
 										<input type="hidden" name="id_condominio" id="id_condominio"  value="">
 										<input type="hidden" name="id_solicitante" id="id_solicitante"  value="">
 										<input type="hidden" name="id_responsavel" id="id_responsavel" value="">									
 										<input type="hidden" name="id_situacao" id="id_situacao"  value="1">
-										<input type="hidden" name="foto" id="foto_oco">
+										<input type="hidden" name="privada" id="privada" value="">
+										<input type="hidden" name="foto" id="foto">
 
 										<div class="form-group" id="ti_div_situacao" name="ti_div_situacao">
 											
@@ -2125,7 +2138,11 @@
 										</div>
 									</form>
 									<p></p> 
-									<button class="btn btn-default link sheet-open" href="#" data-sheet=".modal-anexo-ticket" id="btn_anexo">Anexar Arquivo</button>
+
+
+									<button class="btn btn-default link sheet-open" href="#" data-sheet=".modal-anexo-ticket" id="btn_anexo" style="margin-bottom: 10px:">Anexar Arquivo</button>
+
+
 
 									<div id="modal-anexo-ticket" class="sheet-modal modal-anexo-ticket" style="height: 35%">
 									    <div class="sheet-modal-inner">
@@ -2178,6 +2195,11 @@
 										<div>
 											<label style="width: 100%;font-size: 15px;font-weight: 700;">Descrição</label>
 											<textarea name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></textarea>
+										</div>
+
+										<div class="form-group" id="tv_anexo" >
+											
+											
 										</div>
 									</div>
 									<button type="button" class="btn btn-success" id="bt_ticket_finaliza" onClick="finaliza_ticket();" > <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
