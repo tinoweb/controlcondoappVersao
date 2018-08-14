@@ -4,7 +4,7 @@
 function carrega_ocorrencias(tipo){
 	"use strict";
 	
-	app.controler_pull("ocorrencias");
+	app.controler_pull("pull-ocorrencias");
 	if(tipo === 4){
 		$("#busca_ocorrencia").val("");
 	}
@@ -93,7 +93,7 @@ function carrega_ocorrencias(tipo){
 			$( "#main_ocorrencia" ).append(dados);
 			afed('#ocorrencias','#home','','',3,'ocorrencias');	
             
-            //$("pull-comunicados").scrollTop(50);
+            $("pull-ocorrencias").scrollTop(50);
 		},
         error      : function() {
             alert('Erro Ocorrencia');
@@ -106,6 +106,7 @@ function carrega_ocorrencias(tipo){
 
 // FUNCAO CARREGA UMA OCORRENCIA ESPECIFICO
 function carrega_ocorrencia(id){
+	"use strict";
 	afed('','#bt_oco_reabre','','','',''); // esconde botao reabrir
 	afed('','#bt_oco_finaliza','','','',''); //esconde botao finalizar
     if(id === 0){
@@ -129,9 +130,9 @@ function carrega_ocorrencia(id){
 				var cor_status='';
 				cor_status=retorno[0].id_situacao;
 				
-				if(cor_status == '1'){
+				if(cor_status === '1'){
 					cor_status = '#696969';
-				}else if(cor_status=='10'){
+				}else if(cor_status==='10'){
 					cor_status='green';
 				}else{
 					cor_status='yellow';
@@ -144,17 +145,18 @@ function carrega_ocorrencia(id){
                 $("#form_ocorrencia #id_responsavel").val(retorno[0].responsavel);
                 $("#form_ocorrencia #criado_por").val(retorno[0].criado_por);
                 $("#form_ocorrencia #id_situacao").val(retorno[0].id_situacao);
+				
+				$("#form_ocorrencia #txt_categoria").html(retorno[0].categoria_descricao);
+				
 
 
                 $("#form_ocorrencia #privada").val(retorno[0].privada);
 
-                if(retorno[0].privada == 1){
+                if(retorno[0].privada === 1){
                 	$("#form_ocorrencia #txt_privada").html("Privada");	
                 }else{
                 	$("#form_ocorrencia #txt_privada").html("Pública");	
-                }
-                
-				
+				}
 				//$("#form_ocorrencia #statusbar").css('background-color', cor_status);
                 
 				$("#form_ocorrencia #solicitante").html(retorno[0].nome);
@@ -171,20 +173,20 @@ function carrega_ocorrencia(id){
                 afed('#ocorrencia','#ocorrencias,#home,#bt_oco_salva,#bt_oco_finaliza','','#form_ocorrencia #titulo_ocorrencia',3);
         
 
-                if( ($( "#DADOS #ID_MORADOR" ).val() == retorno[0].id_solicitante) && (retorno[0].id_situacao != 10) ){
+                if( ($( "#DADOS #ID_MORADOR" ).val() === retorno[0].id_solicitante) && (retorno[0].id_situacao !== 10) ){
                     afed('#bt_oco_finaliza','','','','','');
                 }
     	
-                if( ($( "#DADOS #ID_MORADOR" ).val() == retorno[0].id_solicitante) && (retorno[0].id_situacao == 10) ){
+                if( ($( "#DADOS #ID_MORADOR" ).val() === retorno[0].id_solicitante) && (retorno[0].id_situacao === 10) ){
                     afed('#bt_oco_reabre','','','','','');
                 }
 
-
+					
 				carrega_ocorrencia_arq(id);
                 localStorage.setItem('TELA_ATUAL','ocorrencia');
             },
-            error      : function() {
-                alert('erro ocorrencia');
+            error : function() {
+                alert('Erro Ocorrencia');
             }
         });
     }
@@ -424,7 +426,8 @@ function getSituacao_incluir(div_destino, valor_padrao){
 //FUNCAO CARREGA PAGINA NOVA OCORRENCIA
 function ocorrencia_novo(){
 
-    $( "#add_ocorrencia #nome" ).val('');    
+    afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
+	$( "#add_ocorrencia #nome" ).val('');    
 
     $( "#add_ocorrencia #div_situacao" ).html('');    
     $( "#add_ocorrencia #div_categoria" ).html('');    
@@ -438,7 +441,7 @@ function ocorrencia_novo(){
 	$( "#add_ocorrencia #id_solicitante" ).val( $( "#DADOS #ID_MORADOR" ).val() );
 	$( "#add_ocorrencia #criado_por" ).val(localStorage.getItem('MORADOR_NOME'));
 
-    document.getElementById("privada").options[0].selected = "true";
+    document.getElementById("privada").options['0'].selected = "true";
 
     getCategoria_incluir();
     getSituacao_incluir('#add_ocorrencia #div_situacao', 0);
@@ -554,8 +557,7 @@ function ticket_insert(){
 // FUNCAO CARREGA TODOS OS TICKETS
 function carrega_tickets(tipo){
     "use strict";
-	app.controler_pull("tickets");
-    
+	app.controler_pull("pull-tickets");
     
     var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 	
@@ -563,7 +565,7 @@ function carrega_tickets(tipo){
     if(tipo === 0){
         pg = 1;
     }else{
-        var offset = $('.ocorrencia').length;
+        var offset = $('.ocorrencias_ticket').length;
         if(offset !== 0){
             pg = (offset/6)+1;
         }else{
@@ -628,7 +630,7 @@ function carrega_tickets(tipo){
 			$( "#main_ticket" ).append(dados);
 			afed('#ocorrencias_ticket','#ocorrencia','','',3,'');	
             
-            //$("pull-comunicados").scrollTop(50);
+            $("pull-tickets").scrollTop(50);
 		},
         error      : function() {
             alert('Erro tickets');
@@ -690,9 +692,7 @@ function carrega_ticket(id,id_ocorrencia){
 				
 				
                 afed('#ticket,#bt_ticket_finaliza','#ocorrencias_ticket,#home,#bt_ticket_salva','','#form_ticket #descricao',3);
-                if(retorno[0]['id_situacao'] == 10){
-                    afed('','#bt_ticket_finaliza','','',3);
-                }
+           
                 localStorage.setItem('TELA_ATUAL','ticket');
             },
             error      : function() {

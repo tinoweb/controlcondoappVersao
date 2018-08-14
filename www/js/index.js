@@ -38,7 +38,7 @@ var app = {
 		$("#boxUp_entregas"   ).hide();
 		$("#boxUp_enquetes"   ).hide();
 		$("#boxUp_documentos" ).hide();
-		$("#boxUp_ocorrencias").hide();
+		$("#boxUp_ocorrencias").hide();		
 		$("#boxUp_tickets").hide();
 		$("#boxUp_mreserva").hide();
 		
@@ -221,7 +221,7 @@ var app = {
 			var x=$(this).get(0).scrollHeight;
 			//alert(y+ ' iii '+x);
             if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
-                carrega_ocorrencias(1);
+                carrega_tickets(1);
             }
 			app.ckBoxUp("#boxUp_tickets","#pull-tickets");
 		});		
@@ -657,7 +657,7 @@ var app = {
 		}else if(pag==='ocorrencias'){
 			$("#pull-ocorrencias").addClass("ptr-content");
 			//alert('saindo do controler_pull');
-		}else if(pag==='tickets'){
+		}else if(pag==='ocorrencias_ticket'){
 			$("#pull-tickets").addClass("ptr-content");
 			//alert('saindo do controler_pull');
 		}else if(pag==='minha_reserva'){
@@ -684,7 +684,7 @@ var app = {
 			carrega_documentos(0);
 		}else if(res==='ocorrencias'){
 			carrega_ocorrencias(0);
-		}else if(res==='tickets'){
+		}else if(res==='ocorrencias_ticket'){
 			carrega_tickets(0);
 		}else if(res==='minha_reserva'){
 			//carrega_tickets(0);

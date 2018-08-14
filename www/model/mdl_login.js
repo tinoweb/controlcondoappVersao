@@ -63,7 +63,6 @@ function login_user_device(){
                             $( "#DADOS #MRELATORIOS" ).val(retorno[0]['MRELATORIOS']);
                             localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
                             localStorage.setItem('MPET',retorno[0]['MPET']);
-                            localStorage.setItem('MCAM',retorno[0]['MCAM']);
                             $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                             $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                             $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -133,7 +132,6 @@ function login_user_device(){
                             if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
                             if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
                             if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }    
-                            if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }
                             
                             carrega_chat();
                             inicia(0);
@@ -266,7 +264,6 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #MRELATORIOS" ).val(retorno[0]['MRELATORIOS']);
                     localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
                     localStorage.setItem('MPET',retorno[0]['MPET']);
-                    localStorage.setItem('MCAM',retorno[0]['MCAM']);
                     $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                     $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                     $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -332,7 +329,6 @@ function select_user(id_usuario_condominio=0) {
                     if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
                     if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
                     if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }    
-                    if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }    
                     
                     carrega_chat();
                     inicia(0);
