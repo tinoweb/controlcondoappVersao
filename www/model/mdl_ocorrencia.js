@@ -40,19 +40,19 @@ function carrega_ocorrencias(tipo){
 			var cont=0;
             for (x in retorno) {
 				cont++;
-                cor_status = retorno[x]['id_situacao'];
+                cor_status = retorno[x].id_situacao;
 				if(cor_status == 1){
 					cor_status = '#696969';
 				}else if(cor_status=='10'){
-					cor_status='green';
+					cor_status='#a1cf77';
 				}else{
-					cor_status='yellow;'
+					cor_status='yellow';
 				}
-                dado = '<div class="card" onClick="carrega_ocorrencia(\''+retorno[x]['id_ocorrencia']+'\');"  >'
+                dado = '<div class="card" onClick="carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="card-header">'
-								+'<span style="font-size: 15px;" >Ocorrência nº '+retorno[x]['id_ocorrencia']+'</span>'
+								+'<span style="font-size: 15px;" >Ocorrência nº  <span style="background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;"">'+retorno[x].id_ocorrencia+'</span></span>'
 												
-								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x]['situacao_descricao']+'</label></div>'	
+								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x].situacao_descricao+'</label></div>'	
 							+'</div>'
 								/*
 								*CORPO Do card ocorrencia na listagem
@@ -61,34 +61,32 @@ function carrega_ocorrencias(tipo){
 								
 								
 								+'<div><h6 style="color: orange">Data de Criação: '+retorno[x].data_criacao+'</h6></div>'	
-								+'<div><h6>Solicitante: '+retorno[x].criado_por+'</h6></div>'
+								+'<div><h6>Solicitante: '+retorno[x].nome+'</h6></div>'
 								+'<div class="titulo_descricao">'
 									//+'<p style="0 0 0px"> Descrição</p>' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
 								+'<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKASURBVDhP1ZTbThNRFIbnUl/AeKGP4DOZGBMPYJQECSAIV8RoEaEUiEJbKQxMW1qkrQUplul0epgypSfKwUgoYGkpDfHKRKO/e0+2FVKQGuKFK/mzDjP7mzV77Rnu/7Knd02XexrMt3ob+Qe1St9mbdE3C400NpC4r3m8/tnt0UsMyXF9Tbxrxpn66nalUYtmvVn43q3C485gbjaLBd8avO7Md/1DfoYhOa6/1SoH1D2cJSVdxFK2RHQAKV5AJL2P+HoZykoJ0nIBhke2EEPWDk1ulJH6UD4RSB808NgeYcjaoOHU/qkd0jrNBzunYgxZDfWHtjG/+LEif3ALwfA2fOImxHAO6toBAiT3R3YqQKqhjqk4Q1ZDHYIK/qWoaXI4AKtRqsR2cxBSdAcTJPdMJypADdrpTDBkNfS9nKvqcFHeQkjZJh3mtFxJFY8BFdLxHwfltKlVHdpMQQgjJH8lavWAvKnB6OAoMKAWQDkMeRyaXC/VNBSqjdwhdoufIS8XtbWnQiOp08/hUSBVLEv8aklbdyLUTzZfJqCQmodEXiUY20U0VUA0U4Sf7OtSpgQluYdoIq9NX1Y/QVTy2jU6gxOhNj4Ch2MJIzoPPL4sRvvnwY+ImHYlYXzuhdubxviwCMvgAjzzKxjWvcWUk5wSswTTizl4xQ30tx2FtlkVizmAMQvRKPUSLNSz+KifEMKwexOwe5Yxzocq91FPfiy/v6gn9yxXepvGGvtahNazpG8RspOOmAY2tNu+/KrT9ZTDkH9nujvGqwMd9oLNFcdQ1/S3juumC+zS+ay7znjN0G7ND3W9+dFz//UNVj6/dTcIF3V1xpvd9cZ6VvqXxnE/ATLUlbEEZFlVAAAAAElFTkSuQmCC"> Descrição' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
 				
 								+'</div>'
 					
-								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['titulo_ocorrencia']+'</div>'
+								+'<div class="descricao_card_ocorrencia" >'+retorno[x].titulo_ocorrencia+'</div>'
 								
 								
 							+'</div>'
 							+'<div class="card-footer">'
 										+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img>'
-										+'<span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['q_ticket']+' </span>'
+										+'<span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x].q_ticket+' </span>'
 								+'</div>'
 
 				dado = dado +'</div>';
                 dados = dados + dado;
             }
-			if(tipo != 1){
+			if(tipo !== 1){
 				$("#main_ocorrencia").html("");
 			}
-			if (cont == 0){
+			if (cont === 0){
 				var sem_reg = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 				+"<img  width='50%' src='data:image/jpeg;base64,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'> </div>";
 				
-				
-			
 			}
 			$( "#main_ocorrencia" ).append(dados);
 			afed('#ocorrencias','#home','','',3,'ocorrencias');	
@@ -130,10 +128,10 @@ function carrega_ocorrencia(id){
 				var cor_status='';
 				cor_status=retorno[0].id_situacao;
 				
-				if(cor_status === '1'){
+				if(cor_status == '1'){
 					cor_status = '#696969';
-				}else if(cor_status==='10'){
-					cor_status='green';
+				}else if(cor_status=='10'){
+					cor_status='#a1cf77';
 				}else{
 					cor_status='yellow';
 				}
@@ -143,13 +141,11 @@ function carrega_ocorrencia(id){
                 $("#form_ocorrencia #id_condominio").val(retorno[0].id_condominio);
                 $("#form_ocorrencia #id_solicitante").val(retorno[0].id_solicitante);
                 $("#form_ocorrencia #id_responsavel").val(retorno[0].responsavel);
-                $("#form_ocorrencia #criado_por").val(retorno[0].criado_por);
+                $("#form_ocorrencia #criado_por").val(retorno[0].nome);
                 $("#form_ocorrencia #id_situacao").val(retorno[0].id_situacao);
 				
 				$("#form_ocorrencia #txt_categoria").html(retorno[0].categoria_descricao);
 				
-
-
                 $("#form_ocorrencia #privada").val(retorno[0].privada);
 
                 if(retorno[0].privada === 1){
@@ -194,6 +190,7 @@ function carrega_ocorrencia(id){
 }
 
 function finaliza_ocorrencia(){
+	"use strict";
     navigator.notification.confirm(
         'Deseja realmente Finalizar essa ocorrencia',  // message
         finaliza_ocorrencia2,              // callback to invoke with index of button pressed
@@ -203,7 +200,8 @@ function finaliza_ocorrencia(){
 }
 
 function finaliza_ocorrencia2(res){
-    if(res==1){
+	"use strict";
+    if(res===1){
         var dados = $( "#form_ocorrencia" ).serialize();
  		$.ajax({
 			type: 'POST',
@@ -241,10 +239,10 @@ function carrega_ocorrencia_arq(id){
             for (x in retorno) {
 				num  = parseInt(x);
 				num += 1;
-				ext = replaceAll(retorno[x]['arquivo'], "\/","_");
+				ext = replaceAll(retorno[x].arquivo, "\/","_");
 				
 				dado = '<div onClick=download_arq_ocorrencia("'+ext+'"); > <img src="img/anexo_ocorrencia.png" width="30" height="30" alt=""/> Anexo ' +num+  ' 	<p></p> </div> ' ; 
-                //alert(retorno[x]['caminho']);
+ 
                 dados = dados + dado;
             }
            
@@ -259,7 +257,7 @@ function carrega_ocorrencia_arq(id){
 
 // FUNCAO CARREGA UM ANEXO
 function carrega_ticket_anexo(id_ticket){
-	
+	"use strict";
     var dados = '';
     var dado  = '';
 	var ext;
@@ -293,9 +291,9 @@ function carrega_ticket_anexo(id_ticket){
 
 
 
-
 function replaceAll(str, de, para){
-    var pos = str.indexOf(de);
+    "use strict";
+	var pos = str.indexOf(de);
     while (pos > -1){
 		str = str.replace(de, para);
 		pos = str.indexOf(de);
@@ -303,8 +301,7 @@ function replaceAll(str, de, para){
     return (str);
 }
 
-function download_arq_ocorrencia(arquivo) {
-    //salert(path); /controlcondo/docs/26/ocorrencia/f90553d3a2d733013c29b379b7667b3d.jpg
+function download_arq_ocorrencia(arquivo) {  
 	
     arquivo      = replaceAll(arquivo,"..","");
 
@@ -392,7 +389,7 @@ function getCategoria_incluir(){
 
 
 function getSituacao_incluir(div_destino, valor_padrao){
-	
+	alert("Preecher");
 	var dados = '';
 	var dado  = '';
 	var inicio_select = '<label for="id_situacao">Situação</label><select class="form-control" name="id_situacao" id="id_situacao">'
@@ -418,6 +415,7 @@ function getSituacao_incluir(div_destino, valor_padrao){
 				dados = dados + dado;				
             }			
 			dados= inicio_select + dados + "</select>";
+			alert("Preechido");
 			$(div_destino).html(dados);
 		}
 	});	
@@ -427,9 +425,13 @@ function getSituacao_incluir(div_destino, valor_padrao){
 function ocorrencia_novo(){
 
     afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
+
+    getSituacao_incluir('#add_ocorrencia #div_situacao','1');
+	getCategoria_incluir();
+
 	$( "#add_ocorrencia #nome" ).val('');    
 
-    $( "#add_ocorrencia #div_situacao" ).html('');    
+     
     $( "#add_ocorrencia #div_categoria" ).html('');    
     $( "#add_ocorrencia #descricao" ).html('');
     $( "#add_ocorrencia #titulo_ocorrencia" ).html('');
@@ -441,14 +443,9 @@ function ocorrencia_novo(){
 	$( "#add_ocorrencia #id_solicitante" ).val( $( "#DADOS #ID_MORADOR" ).val() );
 	$( "#add_ocorrencia #criado_por" ).val(localStorage.getItem('MORADOR_NOME'));
 
-    document.getElementById("privada").options['0'].selected = "true";
-
-    getCategoria_incluir();
-    getSituacao_incluir('#add_ocorrencia #div_situacao', 0);
-
+    
     afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
 
-	$("#add_ocorrencia #nome").focus();
 }
 
 function ocorrencia_insert(){
@@ -460,6 +457,8 @@ function ocorrencia_insert(){
 		notifica('Campo não preenchido/Você deve preencher o campo Privacidade/Ok',1000,0);
 	}if($( "#form_ocorrencia_add #id_categoria" ).val() == '99'){
 		notifica('Campo não preenchido/Você deve preencher o campo Categoria/Ok',1000,0);
+	}if($( "#form_ocorrencia_add #id_situacao" ).val() == '99'){
+		notifica('Campo não preenchido/Você deve preencher o campo Situação/Ok',1000,0);
 	}else{
 		var dados = $( "#form_ocorrencia_add" ).serialize();
 		$.ajax({
@@ -468,7 +467,7 @@ function ocorrencia_insert(){
             crossDomain: true,
             beforeSend : function() {  },
             complete   : function() {  },
-            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
+            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
 				notifica('Ocorrência Criada/Você criou a ocorrência: '+retorno+'/Ok',1000,0);
                 voltar('#ocorrencias','#ocorrencia_add','ocorrencias');
@@ -482,6 +481,33 @@ function ocorrencia_insert(){
 	}
 }
 
+
+
+function getCategoria_incluir(){
+	
+	var dados = '';
+	var dado  = '';
+	var inicio_select = '<label for="id_situacao">Categoria</label><select class="form-control" name="id_categoria" id="id_categoria">'
+						 +'<option value="99"></option> 	';
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/categoria_ocorrencia_get.php',
+        crossDomain: true,
+        beforeSend : function() { },
+        complete   : function() { },
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
+        dataType   : 'json',
+		success: function(retorno){
+            for (x in retorno) {
+				var dado = '<option value="'+retorno[x]['id_categoria']+'" > '+retorno[x]['desc_categoria']+' </option> ';				
+				
+				dados = dados + dado;				
+            }			
+			dados= inicio_select + dados + "</select>";
+			$("#add_ocorrencia #div_categoria" ).html(dados);
+		}
+	});	
+}
 
 //FUNCAO CARREGA PAGINA NOVO TICKET
 function ticket_novo(operacao){
@@ -562,7 +588,7 @@ function carrega_tickets(tipo){
     var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 	
 	var pg = 0;
-    if(tipo === 0){
+    if(tipo == 0){
         pg = 1;
     }else{
         var offset = $('.ocorrencias_ticket').length;
@@ -595,7 +621,7 @@ function carrega_tickets(tipo){
 				if(cor_status == 1){
 					cor_status = '#696969';
 				}else if(cor_status=='10'){
-					cor_status='green';
+					cor_status='#a1cf77';
 				}else{
 					cor_status='yellow;'
 				}
@@ -659,9 +685,9 @@ function carrega_ticket(id,id_ocorrencia){
 				cor_status=retorno[0]['id_situacao'];
 				
 				if(cor_status == '1'){
-					cor_status = 'green';
+					cor_status = '#696969';
 				}else if(cor_status=='10'){
-					cor_status='red';
+					cor_status='#a1cf77';
 				}else{
 					cor_status='yellow';
 				}
@@ -669,8 +695,6 @@ function carrega_ticket(id,id_ocorrencia){
 				cor_status = '<i class="fa fa-circle" style="color:'+cor_status+';" id="icon_status_ticket"></i>';
                 
 
-                carrega_ticket_anexo(id);
-                
 
                 $("#form_ticket #id_ocorrencia_ticket").val(retorno[0]['id_ocorrencia_ticket']);
                 $("#form_ticket #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
@@ -680,9 +704,12 @@ function carrega_ticket(id,id_ocorrencia){
                 $("#form_ticket #situacao").html(cor_status +' '+ retorno[0]['situacao_descricao']);
 
 
-                $("#form_ticket #descricao").val(retorno[0]['descricao']);
+                $("#form_ticket #descricao").html(retorno[0]['descricao']);
 
                 
+                carrega_ticket_anexo(id);
+                
+                getHistorico_Situacao_Ticket(id, id_ocorrencia);
 
                 //$("#form_ticket #tv_imagem").attr("src", "https://leo.controlcondo.com.br/controlcondo/docs/26/ocorrencia/15338320823664.jpg");
 
@@ -702,6 +729,30 @@ function carrega_ticket(id,id_ocorrencia){
     }
     
 }
+
+
+
+function getHistorico_Situacao_Ticket(id,id_ocorrencia){
+	
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
+        crossDomain: true,
+        beforeSend : function() { },
+        complete   : function() { },
+        data       : {id_ocorrencia_ticket : id, id_ocorrencia : id_ocorrencia, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '7'},
+        dataType   : 'json',
+		success: function(retorno){
+
+    	//alert("Alterado de: "+retorno[0]['desc_situacao_tkt_ant']+" Para");
+			var dado = 'Status alterado de: '+retorno[0]['desc_situacao_tkt_ant']+'para: ';
+					
+			
+			$("#form_ticket #div_historico" ).html(dado);
+		}
+	});	
+}
+
 
 function finaliza_ticket(){
     navigator.notification.confirm(

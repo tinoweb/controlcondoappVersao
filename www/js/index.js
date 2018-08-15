@@ -372,7 +372,7 @@ var app = {
                 complete   : function() { }, 
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
-                    
+                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
                     $("#add_ticket #btn_anexo").html("Alterar Imagem");
                     
                     $("#add_ticket #foto").val(retorno);
@@ -413,7 +413,7 @@ var app = {
                 complete   : function() { }, 
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
-                    
+                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
                     $("#add_ticket #btn_anexo").html("Alterar Imagem");
                   
                     $("#add_ticket #foto").val(retorno);
@@ -435,7 +435,7 @@ var app = {
     
 
     
-	foto_ocorrencia: function() {
+	foto_ocorrencia_camera: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
@@ -452,6 +452,7 @@ var app = {
                 complete   : function() { }, 
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
+                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
 				    $("#form_ocorrencia_add #foto_oco").val(retorno);
                     $("#anexo_foto").html(retorno);
                     afed('#anexo_oco','','','','');
@@ -468,7 +469,9 @@ var app = {
         }    
     },
 	
-	foto_ocorrencia2: function() {
+
+
+	foto_ocorrencia_galeira: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50, 
             destinationType: Camera.DestinationType.DATA_URL, 
@@ -485,7 +488,9 @@ var app = {
                 complete   : function() { }, 
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
-				    $("#form_ocorrencia_add #foto_oco").val(retorno);
+                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+                    
+				    $("#form_ocorrencia_add #foto_oco").val(''+retorno+'');
                     $("#anexo_foto").html(retorno);
                     afed('#anexo_oco','','','','');
                     $('#myModal').hide();
