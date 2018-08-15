@@ -11,7 +11,7 @@ function login_user_device(){
         //alert(UUID);
         $.ajax({
             type       : "POST",
-            //url        : "https://leo.controlcondo.com.br/controlcondo/appweb/login.php",
+            //url        : "https://leo.controlcondo.com.br/controlcondo/appweb/login_140818.php",
             url        : localStorage.getItem('DOMINIO')+"appweb/login.php",
             crossDomain: true,
             beforeSend : function() { },
@@ -120,7 +120,7 @@ function login_user_device(){
                             $( "#bloco" ).html(QUADRA);
                             $( "#apto" ).html(LOTE);
         //					$( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
-                            if($( "<strong>#DADOS #PARENTESCO</strong>" ).val() == 1){ $( "#edit_moradores" ).css("display","block"); }
+                            if($( "#DADOS #PARENTESCO" ).val() == 1){ $( "#edit_moradores" ).css("display","block"); }
                             //carrega_notificacoes(1);
                             carrega_notificacoes(0);
                             
@@ -178,7 +178,8 @@ function login_user() {
 			//data: dados+'&nome=local&sistema=windows&uuid=123456&versao=10', //local
 			data: dados+'&nome='+device.model+'&sistema='+device.platform+'&uuid='+UUID+'&versao='+device.version+'&id_notificacao='+localStorage.getItem('registrationId'), //APP
 			success: function(retorno){
-                console.log(retorno);
+                //alert(retorno);
+                //console.log(retorno);
 				if(retorno[0]['error'] == 1){
 					notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
 				}else{
