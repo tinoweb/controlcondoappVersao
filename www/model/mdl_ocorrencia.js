@@ -480,7 +480,7 @@ function ocorrencia_insert(){
 			success: function(retorno){
 				
 				notifica('Ocorrência Criada/Você criou a ocorrência: '+retorno+'/Ok',1000,0);
-				alert('Ocorrência Criada/Você criou a ocorrência: '+retorno);
+				
                 afed('','#add_ocorrencia','','','',''); //esconde ocorrencia add
 				afed('','#anexo_oco','','','','');
 				
