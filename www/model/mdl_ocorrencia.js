@@ -169,11 +169,11 @@ function carrega_ocorrencia(id){
                 afed('#ocorrencia','#ocorrencias,#home,#bt_oco_salva,#bt_oco_finaliza','','#form_ocorrencia #titulo_ocorrencia',3);
         
 
-                if( ($( "#DADOS #ID_MORADOR" ).val() === retorno[0].id_solicitante) && (retorno[0].id_situacao !== 10) ){
+                if( ($( "#DADOS #ID_MORADOR" ).val() == retorno[0].id_solicitante) && (retorno[0].id_situacao != 10) ){
                     afed('#bt_oco_finaliza','','','','','');
                 }
     	
-                if( ($( "#DADOS #ID_MORADOR" ).val() === retorno[0].id_solicitante) && (retorno[0].id_situacao === 10) ){
+                if( ($( "#DADOS #ID_MORADOR" ).val() == retorno[0].id_solicitante) && (retorno[0].id_situacao == 10) ){
                     afed('#bt_oco_reabre','','','','','');
                 }
 
@@ -389,7 +389,7 @@ function getCategoria_incluir(){
 
 
 function getSituacao_incluir(div_destino, valor_padrao){
-	alert("Preecher");
+	
 	var dados = '';
 	var dado  = '';
 	var inicio_select = '<label for="id_situacao">Situação</label><select class="form-control" name="id_situacao" id="id_situacao">'
@@ -415,7 +415,7 @@ function getSituacao_incluir(div_destino, valor_padrao){
 				dados = dados + dado;				
             }			
 			dados= inicio_select + dados + "</select>";
-			alert("Preechido");
+	
 			$(div_destino).html(dados);
 		}
 	});	
@@ -430,11 +430,11 @@ function ocorrencia_novo(){
 	getCategoria_incluir();
 
 	$( "#add_ocorrencia #nome" ).val('');    
+	$( "#add_ocorrencia #nome" ).val(''); 
 
-     
-    $( "#add_ocorrencia #div_categoria" ).html('');    
-    $( "#add_ocorrencia #descricao" ).html('');
-    $( "#add_ocorrencia #titulo_ocorrencia" ).html('');
+    
+    $( "#add_ocorrencia #descricao" ).val('');
+    $( "#add_ocorrencia #titulo_ocorrencia" ).val('');
 
     $( "#add_ocorrencia #anexo_foto" ).html('');
 
@@ -451,13 +451,13 @@ function ocorrencia_novo(){
 function ocorrencia_insert(){
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
-	}if($( "#form_ocorrencia_add #titulo_ocorrencia" ).val() == ''){
+	}else if($( "#form_ocorrencia_add #titulo_ocorrencia" ).val() == ''){
 		notifica('Campo não preenchido/Você deve preencher o campo de Resumo/Ok',1000,0);
-	}if($( "#form_ocorrencia_add #privada" ).val() == '99'){
+	}else if($( "#form_ocorrencia_add #privada" ).val() == '99'){
 		notifica('Campo não preenchido/Você deve preencher o campo Privacidade/Ok',1000,0);
-	}if($( "#form_ocorrencia_add #id_categoria" ).val() == '99'){
+	}else if($( "#form_ocorrencia_add #id_categoria" ).val() == '99'){
 		notifica('Campo não preenchido/Você deve preencher o campo Categoria/Ok',1000,0);
-	}if($( "#form_ocorrencia_add #id_situacao" ).val() == '99'){
+	}else if($( "#form_ocorrencia_add #id_situacao" ).val() == '99'){
 		notifica('Campo não preenchido/Você deve preencher o campo Situação/Ok',1000,0);
 	}else{
 		var dados = $( "#form_ocorrencia_add" ).serialize();
@@ -473,7 +473,7 @@ function ocorrencia_insert(){
                 voltar('#ocorrencias','#ocorrencia_add','ocorrencias');
                 afed('','#anexo_oco','','','');
                 $("#form_ocorrencia_add #foto_oco").val('');
-                carrega_ocorrencias(0);
+                carrega_ocorrencia(retorno);
                 $('#form_ocorrencia_add #descricao').val('');
                 $('#form_ocorrencia_add #foto_oco').val('');
 			}
@@ -694,8 +694,6 @@ function carrega_ticket(id,id_ocorrencia){
 				
 				cor_status = '<i class="fa fa-circle" style="color:'+cor_status+';" id="icon_status_ticket"></i>';
                 
-
-
                 $("#form_ticket #id_ocorrencia_ticket").val(retorno[0]['id_ocorrencia_ticket']);
                 $("#form_ticket #id_ocorrencia").val(retorno[0]['id_ocorrencia']);
                 $("#form_ticket #id_condominio").val(retorno[0]['id_condominio']);
@@ -710,11 +708,9 @@ function carrega_ticket(id,id_ocorrencia){
                 carrega_ticket_anexo(id);
                 
                 getHistorico_Situacao_Ticket(id, id_ocorrencia);
-
+			
                 //$("#form_ticket #tv_imagem").attr("src", "https://leo.controlcondo.com.br/controlcondo/docs/26/ocorrencia/15338320823664.jpg");
 
-                
-				
                 //$("#form_ticket #icon_status_ticket").css("color", cor_status);
 				
 				
@@ -733,7 +729,7 @@ function carrega_ticket(id,id_ocorrencia){
 
 
 function getHistorico_Situacao_Ticket(id,id_ocorrencia){
-	
+
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
@@ -742,13 +738,12 @@ function getHistorico_Situacao_Ticket(id,id_ocorrencia){
         complete   : function() { },
         data       : {id_ocorrencia_ticket : id, id_ocorrencia : id_ocorrencia, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '7'},
         dataType   : 'json',
-		success: function(retorno){
-
-    	//alert("Alterado de: "+retorno[0]['desc_situacao_tkt_ant']+" Para");
-			var dado = 'Status alterado de: '+retorno[0]['desc_situacao_tkt_ant']+'para: ';
-					
-			
-			$("#form_ticket #div_historico" ).html(dado);
+		success: function(retorno){	
+			if(retorno == ''){
+				$("#form_ticket #div_historico" ).html('Ticket Inicial');
+			}else{
+				$("#form_ticket #div_historico" ).html(retorno);
+			}
 		}
 	});	
 }

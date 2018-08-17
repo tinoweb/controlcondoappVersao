@@ -1364,6 +1364,9 @@
         </ul>
     </div>
 </div>
+	
+	
+	
 <div class="sheet-modal minha_reserva" style="height: 60%;">
     <div class="toolbar">
         <div class="toolbar-inner">
@@ -1758,16 +1761,17 @@
 			
 
 								<div class="popup popup-about" style="font-size: 14px; font-weight: 100;" >
-										<div class="block-title">
-											<label style="font-size: 16px"><i class="glyphicon glyphicon-search"></i> Filtros de Ocorrência</label></div>
-										<div class="list no-hairlines-md">
-											<form class="searchbar" id="form_busca_ocorrencias" style="width: 100%;">
+										<div class="block-title" style="height: 5%">
+											<label style="font-size: 16px"><i class="glyphicon glyphicon-search"></i> Filtros de Ocorrência</label>
+										</div>
+										<div class="page-content list no-hairlines-md" style="height: 60%">
+											<form class="searchbar" id="form_busca_ocorrencias" >
 										  <ul>
 												<li class="item-content item-input">
 												  <div class="item-inner">
-													<div class="item-title item-label">Ocorrência</div>
+													<div class="item-title item-label">Número da Ocorrência</div>
 													<div class="item-input-wrap">
-													  <input type="text" placeholder="" id="busca_ocorrencias" name="busca_ocorrencias">
+													  <input type="text" id="busca_ocorrencias" name="busca_ocorrencias">
 													  <span class="input-clear-button"></span>
 													</div>
 												  </div>
@@ -1777,7 +1781,7 @@
 												  <div class="item-inner">
 													<div class="item-title item-label">Descrição</div>
 													<div class="item-input-wrap">
-													  <input type="text" placeholder="">
+													  <input type="text" >
 													  <span class="input-clear-button"></span>
 													</div>
 												  </div>
@@ -1811,35 +1815,36 @@
 														<div class="item-inner">
 															<div class="item-title item-label">Data Final</div>
 															<div class="item-input-wrap">
-																<input type="date" placeholder="Data Final" style='background-color: white' >
+																<input type="date" placeholder="Data Final" style="background-color: white" >
 															</div>
 														</div>
 													 </div>
 											  	</li>
 											  <li>
 												<p class="row">
-													<button type="button" class="button button-fill button-raised link popup-close color-red" onClick="carrega_ocorrencias(3)" >Cancelar</button>
+													<button type="button" class="button button-fill button-raised link popup-close color-red" onClick="carrega_ocorrencias(0)" >Cancelar</button>
 												</p>
 											  </li>
 											</ul>
 
-											<div class="toolbar tabbar">
-											    <div class="toolbar-inner">
-											        <a href="#tab1" class="tab-link active">
-											            <i class="icon demo-icon-1"></i>
-											        </a>
-											        <a href="#tab2" class="tab-link">
-											            <i class="icon demo-icon-2"></i>
-											        </a>
-											        <a href="#tab3" class="tab-link">
-											            <i class="icon demo-icon-3"></i>
-											        </a>
-											        <a href="#tab4" class="tab-link">
-											            <i class="icon demo-icon-4"></i>
-											        </a>
-											    </div>
-											</div>
 											</form>
+								
+										</div>
+												
+										<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
+											<div class="toolbar-inner" style="padding: 5px">
+												<div style="width: 50%" onClick="excluir_pet();">
+													<!--<i class="fa fa-trash fa-2x"></i>-->
+													<i class="glyphicon glyphicon-trash"></i>
+													<br>
+													<label>Cancelarr</label>
+												</div>
+												<div style="width: 50%" type="button" onClick="editar_pet()">
+													<i class="glyphicon glyphicon-pencil"></i>										
+													<br>
+													<label>Buscar</label>
+												</div>
+											</div>
 										</div>
 							</div>	
 			
@@ -1904,7 +1909,7 @@
 										<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
 					
 										
-										<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Tickets </button>
+										<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>
 										<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_oco_reabre" type="button" onclick="ticket_novo(2);"> <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
 										 </button>
 										<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
@@ -1928,7 +1933,27 @@
 									<div class="title">Nova Ocorrência</div>
 								</div>
 							</div>
-
+							
+							
+										<!-- Menu Rodapé -->
+							<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
+								<div class="toolbar-inner" style="padding: 5px">
+									<div style="width: 50%" onClick="carrega_ocorrencias('0');" >
+										<!--<i class="fa fa-trash fa-2x"></i>-->
+										<i class="glyphicon glyphicon-log-out"></i>
+										<br>
+										<label>Cancelar</label>
+									</div>
+									<div style="width: 50%" type="button" onClick="ocorrencia_insert();" >
+										<i class="glyphicon glyphicon-floppy-disk"></i>
+										<br>
+										<label>Salvar</label>
+										
+									</div>
+								</div>
+							</div>
+							
+							
 
 							<div class="page-content ptr-content" style="padding: 56px 7px 7px 7px;">
 								
@@ -1979,10 +2004,7 @@
 									<!-- Trigger the modal with a button -->
 									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Anexar Arquivo</button>
 									<p></p>
-									<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_salva2" type="button" onClick="ocorrencia_insert();"> 
-										<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Salvar 
-
-									</button>
+				
 
 								</form>
 							</div>
@@ -2136,7 +2158,7 @@
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner"> 
 									<a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','tickets');"><i class="icon icon-back"></i></a>
-									<div class="title">Ticket</div>
+									<div class="title">Detalhe do Ticket</div>
 								</div>
 							</div>
 							
@@ -2161,7 +2183,7 @@
 											</div>
 
 											<div>
-												<label style="width: 100%;font-size: 15px;font-weight: 700;">Histórico de alteração de situação </label>
+												<label style="width: 100%;font-size: 15px;font-weight: 700;">Status Anterior</label>
 												<span  id="div_historico" name="div_historico"></span>
 											</div>
 
@@ -2595,7 +2617,7 @@
 		on: {
 			search() {
 				carrega_ocorrencias(0);	
-				$(".list").show();
+				$("#main_ocorrencia").show();
 				//$(".block").hide();	
 			}
 		}
@@ -2731,3 +2753,4 @@
 </script>
 </body>
 </html>
+>>
