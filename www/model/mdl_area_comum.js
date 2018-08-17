@@ -50,7 +50,7 @@ function carrega_minha_reserva(filtro=0,scroll=0){
         var area = $("#filtro_r_area").val();
         var situacao = $("#filtro_r_situacao").val();
     }
-    
+    $( "#main_mreserva" ).html('');
     //alert(situacao);
     //alert(data_inicio+' ate '+data_fim);
 	var dados = '';
