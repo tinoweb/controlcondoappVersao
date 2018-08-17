@@ -9,6 +9,10 @@ var ref_documento       = '';
 localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 
 var app = {
+	
+	escondeTeclado: function(){
+		Keyboard.hide();
+	},
     // Application Constructor
     initialize: function() {
         this.bindEvents();
