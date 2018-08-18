@@ -546,7 +546,7 @@
 					<span>Documentos</span> 
 			</div>
 			<!-- Botao Ocorrencias -->
-			<div class="smenu button" onClick="carrega_ocorrencias('0')" id="menu_ocorrencia">
+			<div class="smenu button" onClick="carrega_ocorrencias(0)" id="menu_ocorrencia">
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP4SURBVGhD1ZlNSBRhGMdH0F1BKghCOhRBhEZ0iuhQhocCCQzKDAqiTt018NSlQxpFeQ3rZoc+zY7t+rGrblsY+ZHZx+oKFZmBUOImrtv79jzTMzaz++zsfO26/uGHu+/Mzvt7dt533plVKaaInopKEfaPi5B/DF9T8/qJCPs6ZNgvEXxNzesjIlS2F7791P8C/Clso83FHxHyPdfkV4uANtpc3BH9/rp0eQ3cRrsVZ2S/UgqTdoKTR9RtsA/t7iyBqZVjgenk12B8RXrN5HgHK24g5L9IKs4SiCe/cJ27pX96Xi4PbTPInqs9oKJvgyvSd/FS2Ug69sN17gXxkcsGUYQrAIGr0lXSsR+uc7cMxuLyz8CmDFGTApbkYPl2UrIX7PB6cE5WNUdVbgR/sFJ2+DZ8PkMSyVYAApfVTlKylqe9keHuvojU0/5oSFZfiq6K3BlJ2qb7dRSEyjMEEfMC/EKESveTXu509w29Si/g1kP3BcxGallBxKwABCb0IOlZD4risKmG4YPyN3ucD6Gxd49ZMY1cBSAwlE6SmrVwIk7ojSdkIrKbldKwVEDYF5MTio/0coeTccLH8XZWyAliwNdEernDydglNDUnk4NbWRk9rRf2qHDb9MCEnhcvlM2kaB5OSIObpBxvo82sSDpWC0CgiHZSNA+KZlsHONl07o4syVQ4c9FyCy5upMjHyjpglbnhRuiUv/Y7QV0Twv4uUuVjZR3IJ6ThPngwr9YBO1D37sMdvBBQ9+7DHVyDm7ReQd27DyeuwXXsFdS9+3DihYC6dx88mNfPA1ag7p3Hy3XACaThPIVaB3piv+XYg/tytuWsXDxdJVNHKlTEIeU9cA84JfcpZaRlP9hJtnWAm3x2CHR2yV8ndkpZo5gCRcTEQaWelOxFk+XgpCzxZlmOXmlhZbMhahQBhbTB2CohNWvhxN0yc82evB4sgtSshRNww+iTLikPlxjFjldmtiHYhtt0beqZsDOcOAmn4IRNNKSN+cYdUs7OSPnstrEIfI1tuA330X0GzsInyxMbO/ZqHcCrjV5E1m/5J6hFK0KT14L74L66z+LViRT55ON3oVjTGYNEhigG33Nt+rMDwFAy/6ErH78L/WzYZZBQ4YrQh5FHoIAPpGoeFPXqeSB1dEOGiEq2IrLII1DAAimahxNxyrovING4BkPIy39w4P2OQYSTx/dcW1oROSexluDMSl0wnvzMCdmloJfRfAQXH3UR0onkfSHzOngbAKdf6IXyeiuRj8A32KaXsgN8tpUOs3bBW2IsIuNMmKB+805up/MZdTjBwwonrAf3WfNhky3qxK5RGkASHx/xMXIR3i/A30m1DbbxE1ZR/gJq5jn26XdcegAAAABJRU5ErkJggg==);"></div>
 				<span>Ocorrencias</span> 
 			</div>		
@@ -1716,7 +1716,7 @@
 			
 					<div id="ocorrencias" class="pagina ocorrencias"> 
 						<div class="view view-ocorrencias"> 
-						
+						<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
 									<div class="navbar-inner">
 										<div class="left"> 
@@ -1734,17 +1734,20 @@
 										</div>
 									</div>
 								</div>
-									<!-- Scrollable page content -->
-									<!-- Desativado por Pedro 06/08 <div class="box" id="boxUp_ocorrencias"></div>-->
+				
+							
+								<div class="searchbar-backdrop"></div>
+								
+							
 								<div class="box" id="boxUp_ocorrencias"></div>
-								<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="background-color: #f0f0f04d" >
-									
+								<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+
 									<div class="ptr-preloader">
 										<div class="preloader"></div>
 										<div class="ptr-arrow"></div>
 									</div>
 						
-									<div id="main_ocorrencia" class="list media-list searchbar-found" style="margin-top:0;"></div>
+									<div id="main_ocorrencia" class="list media-list" style="margin-top:0;"></div>
 								</div>
 								<!-- BOTAO ADICIONAR OCORRENCIA -->
 								<div class="fab fab-right-bottom color-blue open-full">
@@ -1754,7 +1757,8 @@
 									  <!-- Icons For MD Theme -->
 										</a>
 								</div>
-						</div>	
+						</div>
+						</div>
 					</div>
 					
 								
@@ -1791,7 +1795,7 @@
 												  
 												<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
 													
-													  	<input type="checkbox" name="f_minhas" name="f_minhas" value="1" />
+													  	<input type="checkbox" id="f_minhas" name="f_minhas" value="1" />
 														<i class="icon icon-checkbox"></i>
 													
 													  	<div class="item-title" style="width:100%; float:left">Minhas Ocorrências</div>
@@ -1851,15 +1855,16 @@
 
 <!-- OCORRENCIAS PAGINA VISUALIZACAO 						-->
 
-						<div id="ocorrencia" class="view pagina view-ocorrencias">
-							
+						<div id="ocorrencia" class="pagina">
+							<div class="view view-ocorrencias"> 
+							<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
 									<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
 										<div class="title" >Detalhe da Ocorrencia</div>
 									</div>
 								</div>
 
-								<div class="page-content ptr-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
+								<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
 									<form id="form_ocorrencia" style="float: left; width: 100%;">
 										
 										<input type="hidden" id="foto" name="foto" > 
@@ -1912,7 +1917,8 @@
 										
 									</form>
 								</div>
-						
+							</div>
+							</div>
 						</div>
 					
 
@@ -2109,8 +2115,7 @@
 								</div>
 							</div>
 
-							
-							<div class="page-content ptr-content" data-ptr-distance="55" id="pull-tickets" >
+
 								
 								
 								<div  style="padding: 0 10px 0 10px;">
@@ -2159,18 +2164,18 @@
 									      </div>
 									 	</div>
 									 </div>
-							
+									
+									
 								</div>
 							</div>
 						
-						</div>
 				
 <!--  VISUALIZACAO TICKET  -->
 					<div id="ticket" class="view pagina">
 						
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner"> 
-									<a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','tickets');"><i class="icon icon-back"></i></a>
+									<a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a>
 									<div class="title">Detalhe do Ticket</div>
 								</div>
 							</div>
@@ -2219,7 +2224,7 @@
 
 <!--  $PET LISTA  -->
 <div id="pet_lista" class="pagina ocorrencias" >
-	<div class="view view-ocorrencias"> 
+	<div class="view"> 
 		<!-- Initial Page, "data-name" contains page name -->
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
@@ -2558,6 +2563,7 @@
 					var $ptrContent = $$('.ptr-content');
 					$ptrContent.on('ptr:refresh', function (e) {
 						app.pull_to_refresh(localStorage.getItem('TELA_ATUAL'));
+						
 						app2.ptr.done();
 					});
 	// create searchbar
@@ -2653,7 +2659,18 @@
 			},
 		}
 	});
-                    
+    var searchbar_ocorrencias = app2.searchbar.create({
+		el: '#form_busca_ocorrencias',
+		searchContainer: '#busca_ocorrencias',
+		searchIn: '.item-title',
+		on: {
+			search() {
+				carrega_ocorrencias(0);	
+				$(".list").show();
+				//$(".block").hide();	
+			}
+		}
+	});               
 //// Create notification with click to close
 //    var notificationClickToClose = app2.notification.create({
 //        icon: '<i class="icon demo-icon">7</i>',
@@ -2750,8 +2767,6 @@
 			$("#historico").animate({scrollTop: $("#historico").prop("scrollHeight")}, 0);
 		}
 	};
-
-	
 </script>
 </body>
 </html>

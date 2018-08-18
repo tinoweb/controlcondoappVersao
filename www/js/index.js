@@ -75,7 +75,13 @@ var app = {
                 event.preventDefault();
             }
         });   
-        
+           $("#busca_ocorrencias").on("keypress", function(event){   
+            if (event.keyCode === 13) {
+                //comentar();
+                carrega_ocorrencias(0);
+                event.preventDefault();
+            }
+        }); 
         $("#busca_doc").on("keypress", function(event){   
             if (event.keyCode === 13) {
                 //comentar();
@@ -205,11 +211,12 @@ var app = {
 		});
 		
 		$("#pull-ocorrencias").scroll(function() { 
+			
 			var y=(($(this).scrollTop() + $(this).height()) + 71);
 			var x=$(this).get(0).scrollHeight;
 			//alert(y+ ' iii '+x);
             if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
-                carrega_ocorrencias(1);
+                carrega_ocorrencias(0);
             }
 			app.ckBoxUp("#boxUp_ocorrencias","#pull-ocorrencias");
 		});		
@@ -364,7 +371,7 @@ var app = {
             saveToPhotoAlbum: true
         });
 
-    function onSuccess(imageURI) {
+		function onSuccess(imageURI) {
             var dominio = localStorage.getItem('DOMINIO'); 
             var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
             
@@ -405,7 +412,7 @@ var app = {
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         });
 
-    function onSuccess(imageURI) {
+    	function onSuccess(imageURI) {
             var dominio = localStorage.getItem('DOMINIO'); 
             var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
             
@@ -446,7 +453,7 @@ var app = {
             saveToPhotoAlbum: true
         });
 
-    function onSuccess(imageURI) {
+    	function onSuccess(imageURI) {
             
             $.ajax({ 
                 type: 'POST', 
@@ -482,7 +489,7 @@ var app = {
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         });
 
-    function onSuccess(imageURI) {
+    	function onSuccess(imageURI) {
             
             $.ajax({ 
                 type: 'POST', 
@@ -640,7 +647,9 @@ var app = {
 		$("#pull-enquetes"   ).removeClass("ptr-content");
 		$("#pull-documentos" ).removeClass("ptr-content");
 		$("#pull-ocorrencias" ).removeClass("ptr-content");
+		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
 		$("#pull-tickets" ).removeClass("ptr-content");
+		$("#pull-tickets" ).removeClass("ptr-refreshing");
 		//$("#pull-minha-reserva" ).removeClass("ptr-content");
 	},
 	controler_pull: function(pag){
@@ -663,11 +672,13 @@ var app = {
 		}else if(pag==='documentos'){
 			$("#pull-documentos").addClass("ptr-content");
 			//alert('saindo do controler_pull');
-		}else if(pag==='ocorrencias'){
+		}else if(pag=='ocorrencias'){
 			$("#pull-ocorrencias").addClass("ptr-content");
+			//$("#pull-ocorrencias" ).addClass("ptr-refreshing");
 			//alert('saindo do controler_pull');
 		}else if(pag==='ocorrencias_ticket'){
 			$("#pull-tickets").addClass("ptr-content");
+			//$("#pull-tickets" ).addClass("ptr-refreshing");
 			//alert('saindo do controler_pull');
 		}else if(pag==='minha_reserva'){
 			$("#pull-mreserva").addClass("ptr-content");
@@ -675,7 +686,7 @@ var app = {
 		}
 	},
 	pull_to_refresh: function(res){
-		"use strict";
+		
 		//alert('pull refresh '+res);
 		if(res==='home'){
 			carrega_notificacoes(0);
@@ -691,7 +702,7 @@ var app = {
 			carrega_enquetes(0);
 		}else if(res==='documentos'){
 			carrega_documentos(0);
-		}else if(res==='ocorrencias'){
+		}else if(res=='ocorrencias'){
 			carrega_ocorrencias(0);
 		}else if(res==='ocorrencias_ticket'){
 			carrega_tickets(0);

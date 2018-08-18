@@ -43,7 +43,7 @@ function afed(abre,fecha,ativa,desativa,tipo,local="") {
 //		$( abre ).css('display','block');
 //	}
 	//alert('tela anterior:' +localStorage.getItem("TELA_ATUAL"));
-	if(local!==""){
+	if(local!=""){
 		localStorage.setItem('TELA_ATUAL',local);
 	}
 	//alert('tela atual: '+localStorage.getItem("TELA_ATUAL"));
