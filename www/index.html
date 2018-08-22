@@ -107,12 +107,12 @@
 					}
 					if(localStorage.getItem('TELA_ATUAL') != 'chat'){
 						if(localStorage.getItem('TELA_ATUAL') != 'chat_msg'){
-//							navigator.notification.confirm(
-//								data.message,         // message
-//								onConfirm,            // callback
-//								data.title,
-//								['Abrir','Cancelar']  // buttonName
-//				            );
+							navigator.notification.confirm(
+								data.message,         // message
+								onConfirm,            // callback
+								data.title,
+								['Abrir','Cancelar']  // buttonName
+				            );
                             if(localStorage.setItem("NOT_TYPE") == 1){
                                 var icone = 'glyphicon glyphicon-bullhorn';
                             }else if(localStorage.setItem("NOT_TYPE") == 2){
@@ -142,8 +142,10 @@
                             }else{
                                 var icone = 'glyphicon glyphicon-home';
                             }
+                            alert(1);
                             //openNotificacao(icone,data.title,'',data.message);	
                             openNotificacao('glyphicon glyphicon-bullhorn','Titulo teste','','texto teste');
+                            alert(2);
                         }
 					}  
 
