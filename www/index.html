@@ -1328,7 +1328,7 @@
     <div class="view view-minha-reserva">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');carrega_areas();"><i class="icon icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Minhas Reservas</div>
                 <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
             </div>
@@ -2850,7 +2850,6 @@
 
                             }
                         }else if(tipo==21){
-                            carrega_areas();
                             var vfiltro = id_reg.split('||');
                             $("#filtro_r_data_inicio").val(vfiltro[1]);
                             $("#filtro_r_data_fim").val(vfiltro[1]);
