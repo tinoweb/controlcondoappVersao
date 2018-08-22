@@ -573,7 +573,7 @@ function ticket_insert(){
             data       : 'operacao='+operacao+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
 				notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
-				console.log("Retonro ajax de ticket__insert: "+retorno);
+				alert("Retonro ajax de ticket__insert: "+retorno);
 				$("#add_ticket").css('display','none');
 
 
@@ -638,6 +638,8 @@ function carrega_tickets(tipo){
 				}else{
 					cor_status='yellow;'
 				}
+				
+				$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
 				
                 dado = '<div class="card" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
 		                	+'<div class="card-header">'
