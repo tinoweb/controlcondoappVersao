@@ -2850,10 +2850,14 @@
 
                             }
                         }else if(tipo==21){
-                            //carrega_minha_reserva(1,0);
-                            //afed('#m_reserva','#reservas, #home','','',3,'minha_reserva');
-                            alert('foi');
-                            alert(id_reg);
+                            var vfiltro = id_reg.split('||');
+                            $("#filtro_r_data_inicio").val(vfiltro[1]);
+                            $("#filtro_r_data_fim").val(vfiltro[1]);
+                            $("#filtro_r_area").val(vfiltro[0]);
+                            carrega_minha_reserva(1,0);
+                            afed('#m_reserva','#reservas, #home','','',3,'minha_reserva');
+                            //alert('foi');
+                            //alert(id_reg);
                         }
                     }
                 }
