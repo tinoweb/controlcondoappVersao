@@ -1193,6 +1193,29 @@ input, textarea {
 	background-color: #eee;
 }
 
+.sheet_visita_foto{
+	width:120px;
+	height:160px;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:100%;
+	background-position:center center;
+    display: table;
+    margin: auto;
+    background-color: #eee;
+}
+
+.sheet_visita_foto2{
+	width:120px;
+	height:160px;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:70%;
+	background-position:center center;
+    display: table;
+    margin: auto;
+}
+
 .home .corpo .liberacao .liberado strong {
 	width:70%;
 	float:left;

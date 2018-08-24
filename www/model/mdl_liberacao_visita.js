@@ -103,7 +103,7 @@ function carrega_liberacao2(tipo){
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
-                var dado = '<div class="liberado2"><div class="liberado_foto" ';
+                var dado = '<div class="liberado2" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'\')"><div class="liberado_foto" ';
                 if(retorno[x]['foto'].length>0){
                     dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
