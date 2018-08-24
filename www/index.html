@@ -92,8 +92,10 @@
 				console.log('notification event');
                 
                 if($( "#DADOS #ID_CONDOMINIO" ).val() == ''){
-                    $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));                 
-                    perfil_notificacao(localStorage.getItem("NOT_COND"));
+                    $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));
+                    window.setTimeout(function() {
+                        perfil_notificacao(localStorage.getItem("NOT_COND"));
+                    },500);
                 }
                 
 				 //alert('Notificacao');

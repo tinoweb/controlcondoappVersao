@@ -26,9 +26,9 @@ function login_user_device(){
                         //alert('teste4');
                         afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
                         carrega_user_perfil(retorno[0]['id_usuario']);
-                        alert('t'+retorno[0]['id_usuario']);
+                        //alert('t'+retorno[0]['id_usuario']);
                         $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
-                        alert('tt'+$( "#DADOS #ID_USER_L" ).val());
+                        //alert('tt'+$( "#DADOS #ID_USER_L" ).val());
                     }else{
                         
                         if(retorno[0]['usar_control_condo'] == 1){
@@ -378,7 +378,7 @@ function perfil_notificacao(id_condominio){
         complete   : function() { },
         dataType   : 'json',
 		success: function(retorno){
-            alert(retorno[0]['id_usuario_condominio']);
+            //alert(retorno[0]['id_usuario_condominio']);
             select_user(retorno[0]['id_usuario_condominio']);
             var id_reg    = localStorage.getItem("NOT_ID");
             var tipo      = localStorage.getItem("NOT_TYPE");
