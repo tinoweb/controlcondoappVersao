@@ -1765,6 +1765,8 @@
 										<div class="title">Ocorrencias</div>
 										
 										<div class="right"> 
+											<i class="glyphicon glyphicon-sort"></i>
+											&nbsp;
 											<a class="link popup-open" href="#" data-popup=".popup-about">
 												<i class="glyphicon glyphicon-search" style='margin-right: 15px'></i>
 											</a>
@@ -2103,7 +2105,7 @@
 										</div>
 										<div class="title">Tickets</div>
 										<div class="right">
-											<a href="#" onClick="ticket_novo(0);">
+											<a id="tl_botao_novo" href="#" onClick="ticket_novo(0);">
 												<span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span>
 											</a>
 										</div>
@@ -2163,19 +2165,19 @@
 										<input type="hidden" name="id_condominio" id="id_condominio"  value="">
 										<input type="hidden" name="id_solicitante" id="id_solicitante"  value="">
 										<input type="hidden" name="id_responsavel" id="id_responsavel" value="">									
-										<input type="hidden" name="id_situacao" id="id_situacao"  value="1">
 										<input type="hidden" name="privada" id="privada" value="">
 										<input type="hidden" name="foto" id="foto">
+										
 
 										<div class="form-group" id="ti_div_situacao" name="ti_div_situacao">
 											
 										</div>
-
+										
 										<div class="form-group">
 											<label for="descricao">Descrição do Ticket </label>
-											<textarea class="form-control" id="descricao" name="descricao" rows="4"  placeholder="Descrição do ticket"></textarea>
+											<textarea class="form-control"  id="ti_descricao" name="ti_descricao" rows="4"  placeholder="Descrição do ticket"></textarea>
 										</div>
-
+							
 										<div class="form-group" id="anexo_oco" style="width: 100%;display: none;" align="center" >
 											<label for="anexo_foto">Imagem</label>
 											<img id="anexo_foto" name="anexo_foto" class="img-responsive img-rounded"  >
