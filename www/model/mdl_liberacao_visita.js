@@ -71,7 +71,7 @@ function carrega_liberacao(tipo){
     localStorage.setItem('TELA_ATUAL','liberacao_list');
 }
 
-function carrega_liberacao2(tipo){
+function carrega_liberacao2(tipo,id_visita=0){
     //alert('teste');
 	app.controler_pull("liberacao2");
 	if(tipo ==4){
@@ -99,11 +99,11 @@ function carrega_liberacao2(tipo){
 		//url: localStorage.getItem('DOMINIO')+"appweb/liberacao_get.php",
 		url: localStorage.getItem('DOMINIO')+'appweb/liberacao2_get.php',
         crossDomain: true,
-        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val()},
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val(), id_visita : id_visita},
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
-                var dado = '<div class="liberado2"><div class="liberado_foto" ';
+                var dado = '<div class="liberado2" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'\')"><div class="liberado_foto" ';
                 if(retorno[x]['foto'].length>0){
                     dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
