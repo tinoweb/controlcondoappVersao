@@ -87,6 +87,8 @@
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
 				localStorage.setItem("NOT_COND",data.additionalData.condominio);
+				localStorage.setItem("NOT_TITULO",data.title);
+				localStorage.setItem("NOT_TEXTO",data.message);
 				console.log('notification event');
                 
                 if($( "#DADOS #ID_CONDOMINIO" ).val() == ''){
@@ -113,37 +115,37 @@
 //								data.title,
 //								['Abrir','Cancelar']  // buttonName
 //				            );
-                            if(localStorage.getItem("NOT_TYPE") == 1){
-                                var icone = 'glyphicon glyphicon-bullhorn';
-                            }else if(localStorage.getItem("NOT_TYPE") == 2){
-                                var icone = 'glyphicon glyphicon-duplicate';
-                            }else if(localStorage.getItem("NOT_TYPE") == 3){
-                                var icone = 'fa fa-pie-chart';
-                            }else if(localStorage.getItem("NOT_TYPE") == 4){
-                                var icone = 'glyphicon glyphicon-comment';
-                            }else if(localStorage.getItem("NOT_TYPE") == 5){
-                                var icone = 'glyphicon glyphicon-warning-sign';
-                            }else if(localStorage.getItem("NOT_TYPE") == 6){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.getItem("NOT_TYPE") == 7){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.getItem("NOT_TYPE") == 8){
-                                var icone = 'glyphicon glyphicon-envelope';
-                            }else if(localStorage.getItem("NOT_TYPE") == 9){
-                                var icone = 'glyphicon glyphicon-envelope';
-                            }else if(localStorage.getItem("NOT_TYPE") == 13){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.getItem("NOT_TYPE") == 14){
-                                var icone = 'glyphicon glyphicon-log-in';
-                            }else if(localStorage.getItem("NOT_TYPE") == 20){
-                                var icone = 'fa fa-cogs';
-                            }else if(localStorage.getItem("NOT_TYPE") == 21){
-                                var icone = 'glyphicon-calendar';
-                            }else{
-                                var icone = 'glyphicon glyphicon-home';
-                            }
+//                            if(localStorage.getItem("NOT_TYPE") == 1){
+//                                var icone = 'glyphicon glyphicon-bullhorn';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 2){
+//                                var icone = 'glyphicon glyphicon-duplicate';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 3){
+//                                var icone = 'fa fa-pie-chart';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 4){
+//                                var icone = 'glyphicon glyphicon-comment';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 5){
+//                                var icone = 'glyphicon glyphicon-warning-sign';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 6){
+//                                var icone = 'glyphicon glyphicon-log-in';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 7){
+//                                var icone = 'glyphicon glyphicon-log-in';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 8){
+//                                var icone = 'glyphicon glyphicon-envelope';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 9){
+//                                var icone = 'glyphicon glyphicon-envelope';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 13){
+//                                var icone = 'glyphicon glyphicon-log-in';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 14){
+//                                var icone = 'glyphicon glyphicon-log-in';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 20){
+//                                var icone = 'fa fa-cogs';
+//                            }else if(localStorage.getItem("NOT_TYPE") == 21){
+//                                var icone = 'glyphicon-calendar';
+//                            }else{
+//                                var icone = 'glyphicon glyphicon-home';
+//                            }
 //                            alert(1);
-                            openNotificacao(icone,data.title,'',data.message);	
+                            openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);	
 //                            openNotificacao('glyphicon glyphicon-bullhorn','Titulo teste','','texto teste');
 //                            alert(2);
                         }
@@ -258,6 +260,7 @@
 			function onConfirm_condo(buttonIndex) {
 				if(buttonIndex===1){
 					perfil_notificacao(localStorage.getItem("NOT_COND"));
+                    openNotificacao(localStorage.getItem("NOT_TYPE"),localStorage.getItem("NOT_TITULO"),'',localStorage.getItem("NOT_TEXTO"));
 				}
 			}
 			 //app.initialize();
@@ -2722,6 +2725,36 @@
 	};
 	
 	function openNotificacao(icone,titulo,subtitulo,texto){
+        if(localStorage.getItem("NOT_TYPE") == 1){
+            var icone = 'glyphicon glyphicon-bullhorn';
+        }else if(localStorage.getItem("NOT_TYPE") == 2){
+            var icone = 'glyphicon glyphicon-duplicate';
+        }else if(localStorage.getItem("NOT_TYPE") == 3){
+            var icone = 'fa fa-pie-chart';
+        }else if(localStorage.getItem("NOT_TYPE") == 4){
+            var icone = 'glyphicon glyphicon-comment';
+        }else if(localStorage.getItem("NOT_TYPE") == 5){
+            var icone = 'glyphicon glyphicon-warning-sign';
+        }else if(localStorage.getItem("NOT_TYPE") == 6){
+            var icone = 'glyphicon glyphicon-log-in';
+        }else if(localStorage.getItem("NOT_TYPE") == 7){
+            var icone = 'glyphicon glyphicon-log-in';
+        }else if(localStorage.getItem("NOT_TYPE") == 8){
+            var icone = 'glyphicon glyphicon-envelope';
+        }else if(localStorage.getItem("NOT_TYPE") == 9){
+            var icone = 'glyphicon glyphicon-envelope';
+        }else if(localStorage.getItem("NOT_TYPE") == 13){
+            var icone = 'glyphicon glyphicon-log-in';
+        }else if(localStorage.getItem("NOT_TYPE") == 14){
+            var icone = 'glyphicon glyphicon-log-in';
+        }else if(localStorage.getItem("NOT_TYPE") == 20){
+            var icone = 'fa fa-cogs';
+        }else if(localStorage.getItem("NOT_TYPE") == 21){
+            var icone = 'glyphicon-calendar';
+        }else{
+            var icone = 'glyphicon glyphicon-home';
+        }
+
 //        alert('entro');
 // Create notification with close button
         var notificationWithButton = app2.notification.create({
@@ -2752,6 +2785,18 @@
                             carrega_chat();
                         }else if(tipo==5){
                             carrega_ocorrencia(id_reg);
+                        }else if(tipo==6){
+                            alert(id_reg);
+                        }else if(tipo==7){
+                            alert(id_reg);
+                        }else if(tipo==8){
+                            alert(id_reg);
+                        }else if(tipo==9){
+                            alert(id_reg);
+                        }else if(tipo==13){
+                            alert(id_reg);
+                        }else if(tipo==14){
+                            alert(id_reg);
                         }
                     }else{
                         if(tipo==20){
