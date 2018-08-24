@@ -92,6 +92,7 @@
 				console.log('notification event');
                 
                 if($( "#DADOS #ID_CONDOMINIO" ).val() == ''){
+                    alert('entra condominio');
                     $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));
                     perfil_notificacao(localStorage.getItem("NOT_COND"));
                 }
