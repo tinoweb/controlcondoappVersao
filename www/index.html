@@ -92,7 +92,7 @@
 				console.log('notification event');
                 
                 if($( "#DADOS #ID_CONDOMINIO" ).val() == ''){
-                    $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));
+                    $( "#DADOS #ID_CONDOMINIO" ).val(localStorage.getItem("NOT_COND"));                 
                     perfil_notificacao(localStorage.getItem("NOT_COND"));
                 }
                 
@@ -2780,7 +2780,6 @@
                             carrega_comunicado(id_reg);
                         }else if(tipo==2){
                             carrega_documentos(0);
-                            alert('teste abrir doc');
                         }else if(tipo==3){
                             carrega_enquete(id_reg);
                         }else if(tipo==4){
