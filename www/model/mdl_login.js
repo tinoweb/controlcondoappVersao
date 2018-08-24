@@ -367,6 +367,7 @@ function logout(){
 }
 
 function perfil_notificacao(id_condominio){
+    alert( id_condominio );
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
@@ -376,7 +377,7 @@ function perfil_notificacao(id_condominio){
         complete   : function() { },
         dataType   : 'json',
 		success: function(retorno){
-            //alert(retorno[0]['id_usuario_condominio']);
+            alert(retorno[0]['id_usuario_condominio']);
             select_user(retorno[0]['id_usuario_condominio']);
             var id_reg    = localStorage.getItem("NOT_ID");
             var tipo      = localStorage.getItem("NOT_TYPE");
