@@ -368,7 +368,7 @@ function getCategoria_incluir(){
 	
 	var dados = '';
 	var dado  = '';
-	var inicio_select = '<label for="id_situacao">Categoria</label><select class="form-control" name="id_categoria" id="id_categoria">'
+	var inicio_select = '<label for="id_situacao">Categoria</label><select class="form-control form-control-lg" name="id_categoria" id="id_categoria">'
 						 +'<option value="99"></option> 	';
 	$.ajax({
 		type: 'POST',
@@ -494,7 +494,6 @@ function ocorrencia_insert(){
 }
 
 
-
 function getCategoria_incluir(){
 	
 	var dados = '';
@@ -523,7 +522,8 @@ function getCategoria_incluir(){
 
 //FUNCAO CARREGA PAGINA NOVO TICKET
 function ticket_novo(operacao){
-    $("#add_ticket #descricao" ).val('');  
+	
+    $("#form_ticket_add #ti_descricao" ).val('');  
     $("#form_ticket_add #operacao").val(operacao);
 	$("#form_ticket_add #id_ocorrencia").val($("#form_ocorrencia #id_ocorrencia").val());
 	$("#form_ticket_add #id_condominio").val( $( "#DADOS #ID_CONDOMINIO" ).val() );
@@ -550,16 +550,16 @@ function ticket_novo(operacao){
 		$("#ti_titulo").html("Encerrar de Ocorrência");
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
 	}else{ //Novo
-		
 		getSituacao_incluir('#add_ticket #ti_div_situacao', $("#form_ocorrencia #id_situacao").val() );
 		afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
+				
     }
 }
 
 
 function ticket_insert(){
 	var operacao = $( "#form_ticket_add #operacao" ).val();
-	if($( "#form_ticket_add #descricao" ).val() == ''){
+	if($( "#form_ticket_add #ti_descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
 	}else{
 		
@@ -570,19 +570,21 @@ function ticket_insert(){
             crossDomain: true,
             beforeSend : function() {  },
             complete   : function() {  },
-            data       : 'operacao='+operacao+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
+            data       : 'id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$("#DADOS #ID_MORADOR" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
-				notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
-				alert("Retonro ajax de ticket__insert: "+retorno);
-				$("#add_ticket").css('display','none');
-
-
-                voltar('#ocorrencias_ticket','#ticket_add','ocorrencias_ticket');   
-                afed('','#anexo_oco','','','');
-                afed('','#add_ticket','','','');
+				//notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
+				openNotificacao('glyphicon glyphicon-warning-sign','Ticket Criado','','Voce Criou o Ticket'+retorno);
+				//alert("Retonro ajax de ticket_insert: "+retorno);
+				
                 
-                carrega_tickets(0);
-                $('#form_ticket_add #descricao').val('');    
+				afed('','#add_ticket','','','',''); //esconde ocorrencia add
+				
+                afed('','#anexo_oco','','','','','');   
+                
+                carrega_ticket(retorno,$("#form_ocorrencia #id_ocorrencia").val() );
+                
+				$("#form_ocorrencia #id_situacao").val($("#form_ticket_add #id_situacao").val());
+				$('#form_ticket_add #descricao').val('');    
                 $("#form_ticket_add #foto_oco").val('');
 			    $("#add_ticket #btn_anexo").html("Anexar Imagem");			                    
 				$("#add_ticket #foto_oco").val("");			                    
@@ -599,6 +601,14 @@ function carrega_tickets(tipo){
 	app.controler_pull("pull-tickets");
     
     var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
+	status = $("#form_ocorrencia #id_situacao").val();
+		
+	if(status == '10'){
+		$("#tl_botao_novo").css('display','none');
+	}else{
+		$("#tl_botao_novo").css('display','block');
+	}
+
 	
 	var pg = 0;
     if(tipo == 0){
