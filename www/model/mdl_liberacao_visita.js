@@ -71,7 +71,7 @@ function carrega_liberacao(tipo){
     localStorage.setItem('TELA_ATUAL','liberacao_list');
 }
 
-function carrega_liberacao2(tipo){
+function carrega_liberacao2(tipo,id_visita=0){
     //alert('teste');
 	app.controler_pull("liberacao2");
 	if(tipo ==4){
@@ -99,7 +99,7 @@ function carrega_liberacao2(tipo){
 		//url: localStorage.getItem('DOMINIO')+"appweb/liberacao_get.php",
 		url: localStorage.getItem('DOMINIO')+'appweb/liberacao2_get.php',
         crossDomain: true,
-        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val()},
+        data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val(), id_visita : id_visita},
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
