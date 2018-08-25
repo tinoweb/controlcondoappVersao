@@ -5,7 +5,7 @@ var ref_correspondencia = '';
 var ref_enquete         = '';
 var ref_documento       = '';
 
-localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
+localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 //localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 
 var app = {
