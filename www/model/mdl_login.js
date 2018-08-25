@@ -384,16 +384,46 @@ function perfil_notificacao(id_condominio){
             var tipo      = localStorage.getItem("NOT_TYPE");
             window.setTimeout(function() {
                 if(id_reg > 0){
-                    if(tipo==1){
-                        carrega_comunicado(id_reg);
-                    }else if(tipo==2){
-                        carrega_documentos(0);
-                    }else if(tipo==3){
-                        carrega_enquete(id_reg);
-                    }else if(tipo==4){
-                        inicia2(1);
-                        carrega_chat();
-                    }
+//                    if(tipo==1){
+//                        carrega_comunicado(id_reg);
+//                    }else if(tipo==2){
+//                        carrega_documentos(0);
+//                    }else if(tipo==3){
+//                        carrega_enquete(id_reg);
+//                    }else if(tipo==4){
+//                        inicia2(1);
+//                        carrega_chat();
+//                    }
+                        if(tipo==1){
+                            carrega_comunicado(id_reg);
+                        }else if(tipo==2){
+                            carrega_documentos(0);
+                        }else if(tipo==3){
+                            carrega_enquete(id_reg);
+                        }else if(tipo==4){
+                            inicia2(1);
+                            carrega_chat();
+                        }else if(tipo==5){
+                            carrega_ocorrencia(id_reg);
+                        }else if(tipo==6){
+                            liberacaoPopup2.open();
+                            window.setTimeout(function() {
+                                carrega_liberacao2('0',id_reg);
+                            },500);
+                        }else if(tipo==7){
+                            liberacaoPopup2.open();
+                            window.setTimeout(function() {
+                                carrega_liberacao2('0',id_reg);
+                            },500);                      
+                        }else if(tipo==8){
+                            carrega_entregas(0);
+                        }else if(tipo==9){
+                             carrega_entregas(0);
+                        }else if(tipo==13){
+                            
+                        }else if(tipo==14){
+                           
+                        }
                 }
             }, 500);
             clearInterval(intervalo);
