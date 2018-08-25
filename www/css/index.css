@@ -1206,14 +1206,14 @@ input, textarea {
 }
 
 .sheet_visita_foto2{
-	width:120px;
-	height:160px;
+	width:160px;
+	height:120px;
 	background-image:url(../img/user2.png);
 	background-repeat:no-repeat;
-	background-size:70%;
+	background-size:50%;
 	background-position:center center;
     display: table;
-    margin: auto;
+    margin: auto; 
 }
 
 .home .corpo .liberacao .liberado strong {
