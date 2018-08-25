@@ -26,8 +26,9 @@ function login_user_device(){
                         //alert('teste4');
                         afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
                         carrega_user_perfil(retorno[0]['id_usuario']);
-   
+                        //alert('t'+retorno[0]['id_usuario']);
                         $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
+                        //alert('tt'+$( "#DADOS #ID_USER_L" ).val());
                     }else{
                         
                         if(retorno[0]['usar_control_condo'] == 1){
@@ -367,6 +368,7 @@ function logout(){
 }
 
 function perfil_notificacao(id_condominio){
+    //alert($( "#DADOS #ID_USER_L" ).val());
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
