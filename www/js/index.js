@@ -77,8 +77,9 @@ var app = {
         });   
            $("#busca_ocorrencias").on("keypress", function(event){   
             if (event.keyCode === 13) {
-                //comentar();
-                carrega_ocorrencias(0);
+                var ordem = $("#ol_ordem").val();
+				//alert('device ready'+ordem);
+                carrega_ocorrencias(ordem);
                 event.preventDefault();
             }
         }); 
@@ -211,12 +212,13 @@ var app = {
 		});
 		
 		$("#pull-ocorrencias").scroll(function() { 
-			
+			var ordem = $("#ol_ordem").val();
 			var y=(($(this).scrollTop() + $(this).height()) + 71);
 			var x=$(this).get(0).scrollHeight;
 			//alert(y+ ' iii '+x);
             if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
-                carrega_ocorrencias(0);
+				//alert('recive event'+ordem);
+                carrega_ocorrencias(ordem);
             }
 			app.ckBoxUp("#boxUp_ocorrencias","#pull-ocorrencias");
 		});		
@@ -447,6 +449,8 @@ var app = {
 
     
 	foto_ocorrencia_camera: function() {
+		var dominio = localStorage.getItem('DOMINIO'); 
+		var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
@@ -463,12 +467,13 @@ var app = {
                 complete   : function() { }, 
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
-                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"");
+					$("#form_ocorrencia_add #btn_anexo").html("Alterar Imagem");
 				    $("#form_ocorrencia_add #foto_oco").val(retorno);
-                    $("#anexo_foto").html(retorno);
+                  					
+					$("#form_ocorrencia_add #anexo_foto").attr("src", dominio+caminho+retorno);
                     afed('#anexo_oco','','','','');
-                    $('#myModal').hide();
-                    $('.modal-backdrop').hide();
+                  
                 }, 
                 error      : function() { 
                     //alert('Erro'); 
@@ -483,6 +488,8 @@ var app = {
 
 
 	foto_ocorrencia_galeira: function() {
+		var dominio = localStorage.getItem('DOMINIO'); 
+		var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50, 
             destinationType: Camera.DestinationType.DATA_URL, 
@@ -500,12 +507,12 @@ var app = {
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
-                    
+                    $("#form_ocorrencia_add #btn_anexo").html("Alterar Imagem");
 				    $("#form_ocorrencia_add #foto_oco").val(''+retorno+'');
-                    $("#anexo_foto").html(retorno);
+                    //$("#anexo_foto").html(retorno);
+					$("#form_ocorrencia_add #anexo_foto").attr("src", dominio+caminho+retorno);
                     afed('#anexo_oco','','','','');
-                    $('#myModal').hide();
-                    $('.modal-backdrop').hide();
+    
                 }, 
                 error      : function() { 
                     //alert('Erro'); 
@@ -703,7 +710,9 @@ var app = {
 		}else if(res==='documentos'){
 			carrega_documentos(0);
 		}else if(res=='ocorrencias'){
-			carrega_ocorrencias(0);
+			var ordem = $("#ol_ordem").val();
+			//alert('pull_to_refresh'+ordem);
+			carrega_ocorrencias(ordem);
 		}else if(res==='ocorrencias_ticket'){
 			carrega_tickets(0);
 		}else if(res==='minha_reserva'){

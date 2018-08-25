@@ -3,7 +3,8 @@
 // FUNCAO CARREGA TODOS OS COMUNICADOS
 function carrega_ocorrencias(tipo){
 	"use strict";
-	
+	$("#ol_ordem").val(tipo);
+	//tipo 0 = todas || 4 = data crescente || 5 = data decrescente || 6 = Situacao || 7= Prioridade
 	app.controler_pull("ocorrencias");
 	if(tipo === 4){
 		$("#busca_ocorrencias").val("");
@@ -479,8 +480,8 @@ function ocorrencia_insert(){
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
 				
-				notifica('Ocorrência Criada/Você criou a ocorrência: '+retorno+'/Ok',1000,0);
-				
+				//notifica('Ocorrência Criada/Você criou a ocorrência: '+retorno+'/Ok',1000,0);
+				openNotificacao('glyphicon glyphicon-warning-sign','Ocorrência Criada','','Você criou a ocorrência:'+retorno);
                 afed('','#add_ocorrencia','','','',''); //esconde ocorrencia add
 				afed('','#anexo_oco','','','','');
 				
