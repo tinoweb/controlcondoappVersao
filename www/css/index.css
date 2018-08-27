@@ -2302,6 +2302,62 @@ input, textarea {
 	border-radius:5px;
 }
 
+.liberacao2-card .card-header {
+  display: block;
+  padding: 10px;
+}
+
+.liberacao2-card .liberacao2-avatar {
+    width: 40px;
+    height: 40px;
+    float: left;
+	border-radius:50%;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:100%;
+	background-position:center center;
+    background-color:#F5F5F5;
+}
+
+.liberacao2-card .liberacao2-name {
+  margin-left: 50px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.liberacao2-card .liberacao2-date {
+  margin-left: 50px;
+  font-size: 13px;
+  color: #8e8e93;
+}
+
+.liberado-card .card-header {
+  display: block;
+  padding: 10px;
+}
+
+.liberado-card .liberacao2-avatar {
+    width: 40px;
+    height: 40px;
+    float: left;
+	border-radius:50%;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:100%;
+	background-position:center center;
+    background-color:#F5F5F5;
+}
+
+.liberado-card .liberacao2-name {
+  margin-left: 50px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.liberado-card .liberacao2-date {
+  margin-left: 50px;
+  font-size: 13px;
+  color: #8e8e93;
+}
+
 /********************************VISITANTE**************************************************/
 .visitantes {
 /*	display:block; */

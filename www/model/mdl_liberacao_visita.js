@@ -9,7 +9,8 @@ function carrega_liberacao(tipo){
         var pg = 1;
     }else{
         //var offset = $("#retorno_liberacao").find(".liberado").size();
-        var offset = $(".liberado").length;
+        var offset = $(".liberado-card").length;
+        //alert(offset);
         if(offset != 0){
             var pg = (offset/5)+1;
         }else{
@@ -32,7 +33,7 @@ function carrega_liberacao(tipo){
 		success: function(retorno){
             for (x in retorno) {
 				cont++;
-                var dado = '<div class="liberado"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
+/*                var dado = '<div class="liberado"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
                 if(retorno[x]['foto'].length>0){
                     dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
@@ -53,7 +54,36 @@ function carrega_liberacao(tipo){
 				}else{
 					dado = dado + '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
 				}
-				dado  = dado + '</div>';
+				dado  = dado + '</div>';*/
+                var credito = '';
+                if(retorno[x]['numero_acesso_perm'] != null){
+                    if(retorno[x]['numero_acesso_perm'] == 0){
+                        credito = 'Créditos Ilimitados';
+                    }else{
+                        credito = 'Créditos Usados: '+retorno[x]['numero_acesso']+' de '+retorno[x]['numero_acesso_perm'];
+                    }
+                }
+                var bt_convite = '';
+				if(retorno[x]['valido']==1){
+					bt_convite = '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
+				}else{
+					bt_convite = '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
+				}
+                
+                var foto = '';
+                if(retorno[x]['foto'].length>0){
+                    foto = 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
+                }
+
+                var dado =  '<div class="card liberado-card">'+
+                                '<div class="card-header">'+
+                                    '<div class="liberacao2-avatar" '+foto+' onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div>'+
+                                    '<div class="liberacao2-name" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
+                                    '<div class="liberacao2-date" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
+                                '</div>'+
+                                '<div class="card-content card-content-padding">Validade de: '+retorno[x]['validadeInicio']+' até '+retorno[x]['validadeFim']+'<br>'+credito+bt_convite+'</div>'+
+                                
+                            '</div>';
                 dados = dados + dado;
             }
             //alert(dados);
@@ -82,7 +112,7 @@ function carrega_liberacao2(tipo,id_visita=0){
         var offset = 0;
     }else{
         //var offset = $("#retorno_liberacao").find(".liberado").size();
-        var offset = $(".liberado2").length;
+        var offset = $(".liberado2-card").length;
         if(offset != 0){
             var pg = (offset/5)+1;
         }else{
@@ -103,13 +133,14 @@ function carrega_liberacao2(tipo,id_visita=0){
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
-                var dado = '<div class="liberado2" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'\')"><div class="liberado_foto" ';
-                if(retorno[x]['foto'].length>0){
-                    dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
-                }
-                dado = dado +'></div><div><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">de '+retorno[x]['dt_entrada']+' até '+retorno[x]['dt_saida']+'</span><br>';
-                dado = dado + '</div>';
-				dado  = dado + '</div>';
+                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'\')">'+
+                                '<div class="card-header">'+
+                                    '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>'+
+                                    '<div class="liberacao2-name">'+retorno[x]['nome']+'</div>'+
+                                    '<div class="liberacao2-date">'+retorno[x]['motivo']+'</div>'+
+                                '</div>'+
+                                '<div class="card-content card-content-padding">Entrada: '+retorno[x]['dt_entrada']+'<br>Saida: '+retorno[x]['dt_saida']+'</div>'+
+                            '</div>';
                 dados = dados + dado;
             }
 			dados = '<div class="main">'+dados+'</div>';
