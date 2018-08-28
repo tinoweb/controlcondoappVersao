@@ -14,6 +14,7 @@ function carrega_ocorrencias(tipo){
     if(parseInt(pg) !== parseFloat(pg)) { 
         pg = pg+1; 
     }
+	
     var dados = '';
 	var dado  = '';
 	var cor_status='yellow';
@@ -27,8 +28,7 @@ function carrega_ocorrencias(tipo){
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#f_ocorrencia").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo+'&'+dados_form,
         dataType   : 'json',
 		
-		success: function(retorno){
-            
+		success: function(retorno){            
 			var cont=0;
             for (x in retorno) {
 				cont++;

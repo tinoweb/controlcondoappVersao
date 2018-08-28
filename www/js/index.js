@@ -13,6 +13,7 @@ var app = {
 	
 	escondeTeclado: function(){
 		Keyboard.hide();
+		
 	},
     // Application Constructor
     initialize: function() {
@@ -21,6 +22,7 @@ var app = {
 
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+		
     },
 	
     onDeviceReady: function() {

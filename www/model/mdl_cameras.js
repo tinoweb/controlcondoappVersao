@@ -8,6 +8,7 @@ function carrega_cameras(){
     $(".caixa_camera").width(tamanhow/2)
     $(".caixa_camera").height(tamanhoh/2);
     
+	
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/cameras_get.php',

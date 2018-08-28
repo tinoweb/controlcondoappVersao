@@ -17,6 +17,7 @@ function processando(status){
 	}
 }
 
+
 // FUNCAO ESVAZIA CAMPO DE FORMULARIO(PLACE HOLDER) ******************************************/
 function Esvazia(valor_campo){
 
