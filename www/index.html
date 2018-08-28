@@ -214,7 +214,7 @@
                                     //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
                                     if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
                                     if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
-                                    if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
+                                    if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3,'ocorrencias'); }else{ afed('','#menu_ocorrencia','','',3); } 
                                     if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
 
                                 }
@@ -1776,17 +1776,13 @@
 											</a>
 											&nbsp;
 											<a class="link popup-open" href="#" data-popup=".popup-about">
-												<i class="glyphicon glyphicon-search" style='margin-right: 15px'></i>
+												<i class="glyphicon glyphicon-search" style="margin-right: 15px"></i>
 											</a>
 										</div>
 									</div>
 								</div>
 				
 							
-								<div class="searchbar-backdrop"></div>
-								
-							
-								<div class="box" id="boxUp_ocorrencias"></div>
 								<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
 
 									<div class="ptr-preloader">
@@ -1808,8 +1804,7 @@
 						</div>
 					</div>
 					
-								
-			
+		
 
 								<div class="popup popup-about" style="font-size: 14px; font-weight: 100;" >
 										<div class="block-title" style="height: 5%">
@@ -1817,6 +1812,13 @@
 										</div>
 										<div class="page-content list no-hairlines-md" style="height: 60%">
 											<form id="form_busca_ocorrencias" >
+													<div class="searchbar-backdrop">
+							
+								<div class="box" id="boxUp_ocorrencias"></div>
+								<input type="search" placeholder="Busca" name="busca" id="busca_ocorrencias">
+
+								</div>
+								
 										  <ul>
 								
 											
@@ -2084,14 +2086,14 @@
 <!--  LISTA TICKET                         -->
 
 
-					<div id="ocorrencias_ticket" class="pagina ocorrencias_ticket">
+					<div id="ocorrencias_ticket" class="pagina">
 						<div class="view view-tickets"> 
 							<!-- Initial Page, "data-name" contains page name -->
 							<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
 									<div class="navbar-inner">
 										<div class="left"> 
-											<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','tickets');"><i class="icon icon-back"></i></a>
+											<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="afed('#ocorrencia','#ocorrencias_ticket','','','','ocorrencia')"><i class="icon icon-back"></i></a>
 										</div>
 										<div class="title">Tickets</div>
 										<div class="right">
@@ -2145,8 +2147,6 @@
 								</div>
 							</div>
 
-
-								
 								
 								<div  style="padding: 55px 10px 0 10px;">
 									<form id="form_ticket_add">
@@ -2154,6 +2154,7 @@
 										<input type="hidden" name="id_ocorrencia" id='id_ocorrencia' value="">
 										<input type="hidden" name="id_condominio" id="id_condominio"  value="">
 										<input type="hidden" name="id_solicitante" id="id_solicitante"  value="">
+										<input type="hidden" name="id_criador" id="id_criador"  value="">
 										<input type="hidden" name="id_responsavel" id="id_responsavel" value="">									
 										<input type="hidden" name="privada" id="privada" value="">
 										<input type="hidden" name="foto" id="foto">
@@ -2961,7 +2962,8 @@
                 '</div>';
         
         }
-        
+
+		
         var dynamicSheet = app2.sheet.create({
           content: html,
           // Events
@@ -2986,4 +2988,4 @@
 	};              
 </script>
 </body>
-</html> 
+</html>

@@ -4,8 +4,9 @@ var ref_comunicado      = '';
 var ref_correspondencia = '';
 var ref_enquete         = '';
 var ref_documento       = '';
+var ref_ocorrencia       = '';
 
-localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
+localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
 //localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 
 var app = {
@@ -681,6 +682,7 @@ var app = {
 			//alert('saindo do controler_pull');
 		}else if(pag=='ocorrencias'){
 			$("#pull-ocorrencias").addClass("ptr-content");
+			
 			//$("#pull-ocorrencias" ).addClass("ptr-refreshing");
 			//alert('saindo do controler_pull');
 		}else if(pag==='ocorrencias_ticket'){

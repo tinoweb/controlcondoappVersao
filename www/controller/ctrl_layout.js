@@ -76,7 +76,6 @@ function voltar(abre,fecha,pagina){
             //alert('enquete');
         }
     }
-    
     if(pagina == 'comunicados'){
         carrega_comunicados(0);
     }
@@ -144,3 +143,8 @@ function form_data(val){
     return val2;
 }
 
+function abre(pagina){
+	$( '#comunicado' ).css('display','none');
+	$(pagina).css('display','block');
+
+}

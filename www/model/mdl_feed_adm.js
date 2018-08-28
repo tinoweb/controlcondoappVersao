@@ -1,6 +1,7 @@
 // JavaScript Document
 
 function carrega_notificacoes(tipo){
+	localStorage.setItem('TELA_ATUAL','home');
 var dados = '';
 var id_condominio = $( "#DADOS #ID_CONDOMINIO" ).val();
 var id_usuario_condominio = $( "#DADOS #ID_USER" ).val();
@@ -22,6 +23,7 @@ if(tipo == 0){
 		pg = pg+1; 
 	}	
 }
+	
 var dados_grupo = '';
 var grupos      = '';
 var width       = 0 ;
