@@ -115,11 +115,13 @@ var app = {
 		});
 
 		$("#pull-liberacao").scroll(function() { 
-			var y=(($(this).scrollTop() + $(this).height()) + 71);
+            
+			var y=(($(this).scrollTop() + $(this).height()) + 85);
 			var x=$(this).get(0).scrollHeight;
 			//alert('pull liberacao');
 			//alert(y+ ' iii '+x);
-            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+            if ((($(this).scrollTop() + $(this).height()) + 95) > $(this).get(0).scrollHeight) {
+                //alert('scroll');
                 carrega_liberacao(1);
             }
 			app.ckBoxUp("#boxUp_liberacao","#pull-liberacao");
@@ -136,7 +138,7 @@ var app = {
 			var x=$(this).get(0).scrollHeight;
 			//alert('pull liberacao');
 			//alert(y+ ' iii '+x);
-            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+            if ((($(this).scrollTop() + $(this).height()) + 95) > $(this).get(0).scrollHeight) {
                 carrega_liberacao2(1);
             }
 			app.ckBoxUp("#boxUp_liberacao2","#pull-liberacao2");
