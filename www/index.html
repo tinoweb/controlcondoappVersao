@@ -2773,7 +2773,12 @@
                             inicia2(1);
                             carrega_chat();
                         }else if(tipo==5){
-                            carrega_ocorrencia(id_reg);
+                            
+                            window.setTimeout(function() {
+                                carrega_ocorrencia(id_reg);
+                            },500);   
+							
+							
                         }else if(tipo==6){
                             liberacaoPopup2.open();
                             window.setTimeout(function() {
