@@ -13,7 +13,6 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
- //           dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
             dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
             for (x in retorno) {
                 var dado = '<div class="area" onClick="carrega_area(\''+retorno[x]['id_area_comum']+'\',\'1\',\''+retorno[x]['nome']+'\');"><strong>'+retorno[x]['nome']+'</strong></div>';
@@ -496,9 +495,7 @@ function adiciona_reserva(h){
 	$( "#add_reserva_data" ).html(dt_festa);
 	$( "#add_reserva_hora_inicio" ).val(hora_ini);
 	$( "#add_reserva_hora_fim" ).val(hora_fim);
-	//$( "#add_reserva_hora_fim" ).val(pad(iniDate.getHours(),2)+":"+pad(iniDate.getMinutes(),2));
 	$( "#add_reserva_tipo" ).val("0");
-	//alert(hora_ini);
 }
 
 //FUNCAO EDITA RESERVA
