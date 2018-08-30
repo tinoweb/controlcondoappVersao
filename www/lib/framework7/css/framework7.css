@@ -8305,7 +8305,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .login-screen {
   transition-duration: 400ms;
   will-change: opacity;
   contain: strict;
-  z-index: 10500;
+  z-index: 11000;
 }
 .sheet-backdrop.not-animated {
   -webkit-transition-duration: 0ms;

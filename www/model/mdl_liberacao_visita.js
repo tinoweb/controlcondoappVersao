@@ -65,7 +65,11 @@ function carrega_liberacao(tipo){
                 }
                 var bt_convite = '';
 				if(retorno[x]['valido']==1){
-					bt_convite = '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
+                    if(retorno[x]['numero_acesso_perm'] != null){
+					   bt_convite = '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-orange">Reenviar Convite</button>';
+                    }else{
+					   bt_convite = '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
+                    }
 				}else{
 					bt_convite = '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
 				}
@@ -133,7 +137,7 @@ function carrega_liberacao2(tipo,id_visita=0){
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
-                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'\')">'+
+                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+'\')">'+
                                 '<div class="card-header">'+
                                     '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>'+
                                     '<div class="liberacao2-name">'+retorno[x]['nome']+'</div>'+
