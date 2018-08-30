@@ -1207,10 +1207,10 @@ input, textarea {
 
 .sheet_visita_foto2{
 	width:160px;
-	height:120px;
+	height:90px;
 	background-image:url(../img/user2.png);
 	background-repeat:no-repeat;
-	background-size:50%;
+	background-size:100%;
 	background-position:center center;
     display: table;
     margin: auto; 

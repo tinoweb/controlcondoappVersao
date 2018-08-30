@@ -78,7 +78,7 @@ var app = {
                 event.preventDefault();
             }
         });   
-           $("#busca_ocorrencias").on("keypress", function(event){   
+        $("#busca_ocorrencias").on("keypress", function(event){   
             if (event.keyCode === 13) {
                 var ordem = $("#ol_ordem").val();
 				//alert('device ready'+ordem);

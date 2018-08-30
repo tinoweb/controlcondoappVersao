@@ -11,7 +11,7 @@ function login_user_device(){
         //alert(UUID);
         $.ajax({
             type       : "POST",
-            //url        : "https://leo.controlcondo.com.br/controlcondo/appweb/login_140818.php",
+            //url        : "https://leo.controlcondo.com.br/controlcondo/appweb/login.php",
             url        : localStorage.getItem('DOMINIO')+"appweb/login.php",
             crossDomain: true,
             beforeSend : function() { },
@@ -26,11 +26,9 @@ function login_user_device(){
                         //alert('teste4');
                         afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
                         carrega_user_perfil(retorno[0]['id_usuario']);
-                        //alert('t'+retorno[0]['id_usuario']);
-                        $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
-                        //alert('tt'+$( "#DADOS #ID_USER_L" ).val());
-                    }else{
                         
+                        $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
+                    }else{                        
                         if(retorno[0]['usar_control_condo'] == 1){
                             //alert('Perfil:'+retorno[0]['usar_control_condo']);
                             $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
@@ -38,12 +36,11 @@ function login_user_device(){
                             $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);
                             $( "#DADOS #ID_UNIDADE" ).val(retorno[0]['id_unidade']);
                             $( "#DADOS #ID_CONDOMINIO" ).val(retorno[0]['id_condominio']);
-                            
                             //alert($( "#DADOS #ID_CONDOMINIO" ).val());                    
                             $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                             localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
                             if(retorno[0]['tipo_busca_visitante'] == 0){
-                               afed('#btipo_nome','#btipo_rg','','',3,'home');
+                                afed('#btipo_nome','#btipo_rg','','',3,'home');
                             }else{
                                 afed('#btipo_rg','#btipo_nome','','',3,'home');
                             }
@@ -179,8 +176,6 @@ function login_user() {
 			//data: dados+'&nome=local&sistema=windows&uuid=123456&versao=10', //local
 			data: dados+'&nome='+device.model+'&sistema='+device.platform+'&uuid='+UUID+'&versao='+device.version+'&id_notificacao='+localStorage.getItem('registrationId'), //APP
 			success: function(retorno){
-                //alert(retorno);
-                //console.log(retorno);
 				if(retorno[0]['error'] == 1){
 					notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
 				}else{
@@ -247,7 +242,7 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                     localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
                     if(retorno[0]['tipo_busca_visitante'] == 0){
-                       afed('#btipo_nome','#btipo_rg','','',3,'home');
+                        afed('#btipo_nome','#btipo_rg','','',3,'home');
                     }else{
                         afed('#btipo_rg','#btipo_nome','','',3,'home');
                     }
@@ -368,7 +363,6 @@ function logout(){
 }
 
 function perfil_notificacao(id_condominio){
-    //alert($( "#DADOS #ID_USER_L" ).val());
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',

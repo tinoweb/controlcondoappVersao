@@ -87,9 +87,16 @@ function novo_visitante(){
 
 //FUNCAO SALVA CADASTRO VISITANETE
 function salva_visitante(){
+    var qtd_nome = $( "#add_visitante #nome" ).val().split(' ');
 	var msg = '';
-	if($( "#add_visitante #nome" ).val() == '' || $( "#add_visitante #rg" ).val() == ''){
-		notifica('Preencha o campo/Preencha os campos Nome e RG/Ok',1000,0);
+	if($( "#add_visitante #nome" ).val() == ''){
+		notifica('Preencha o campo/Preencha os campos Nome/Ok',1000,0);
+	}else if($( "#add_visitante #rg" ).val() == ''){
+        notifica('Preencha o campo/Preencha os campos RG/Ok',1000,0);
+    }else if(qtd_nome.length < 2){
+        notifica('Preencha o campo/Informe um sobrenome/Ok',1000,0);
+    }else if(qtd_nome[1].length < 2){
+        notifica('Preencha o campo/Informe sobrenome completo/Ok',1000,0);
 	}else{
 		//processando(1);
 		
