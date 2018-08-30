@@ -1644,38 +1644,22 @@
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner">
-					<div class="left"> <a href="#" onClick="voltar('#home','#enquetes','home');"><i class="icon icon-back"></i></a> </div>
+					<div class="left"> 
+						<a type="button" href="#" onClick="voltar('#home','#enquetes','home');">
+							<i class="icon icon-back"></i>
+						</a> 
+					</div>
 					<div class="title">Enquetes</div>
+					<div class="right">
+						<a href="#" type="button" onClick="sheet_modulo('filtro_enquetes','');">
+							<i class="glyphicon glyphicon-search" style="margin-right: 15px"></i>
+						</a>
+					</div>
 				</div>
 			</div>
-			<form id="form_busca_enquete" style="width: 100%; margin-top: 65px; position: relative; z-index: 2; height: 120px; background-color: white;" >
-				<div style="width: 100%; text-align: center">
-					<label class="item-radio item-content" > <span style="float: left; margin-left: 25px;">TODOS</span>
-						<input type="radio" name="tipo" value="0" checked id="tipob">
-						<i class="icon icon-radio"></i>
-					</label>
-					<label class="item-radio item-content" > 
-						<span style="float: left; margin-left: 25px;">EM VOTAÇÃO</span>
-						<input type="radio" name="tipo" value="1">
-						<i class="icon icon-radio"></i> 
-					</label>
-					<label class="item-radio item-content"> 
-						<span style="float: left; margin-left: 25px;">ENCERRADA</span>
-						<input type="radio" name="tipo" value="2">
-						<i class="icon icon-radio"></i> 
-					</label>
-				</div>
-				<div class="block" style="width: 100%; margin: 3px; text-align: center">
-					<div class="block" style="margin:0">
-						<input type="text" placeholder="Sua Busca" name="busca" id="busca_enquete" style="width: 100%;border: 1px solid;border-radius: 3px; padding: 4px;">
-					</div>
-					<div class="block" style="margin-top: 5px;margin-bottom: 2px">
-						<button type="button" class="col button button-raised" onClick="carrega_enquetes(0)" >FILTRAR</button>
-					</div>
-				</div>
-			</form>
+
 			<div class="box" id="boxUp_enquetes"></div>
-			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-enquetes" style="background-color: #EAEBED; margin-top: -70px;max-height: 80%;padding: 20px">
+			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-enquetes" style="background-color: #EAEBED; padding: 10px">
 				<div class="ptr-preloader">
 					<div class="preloader"></div>
 					<div class="ptr-arrow"></div>
@@ -2966,8 +2950,50 @@
                     '</div>'+
                 '</div>';
         
-        }
+        }else if(modulo == 'filtro_enquetes') {
+			var html= '<div class="sheet-modal" style="height:90%;">'+
+                    '<div class="toolbar">'+
+                        '<div class="toolbar-inner">'+
+                            '<div class="left" style="width:70%; margin-left:10px;">Filtros Enquetes</div>'+
+                            '<div class="right"><a class="link sheet-close">Fechar</a></div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="sheet-modal-inner">'+
+                        '<div class="block">'+
+                           '<form id="form_busca_enquete" >'+	
+								'<div class="item-inner" style="margin-top:2%;">'+
+									'<h4 class="item-title">Título</h4>'+
+									'<input class="form-control" id="f_titulo" name="f_titulo" />'+
 
+								'</div>'+
+								'<div class="item-inner" >'+
+									'<h4 class="item-title">Descrição</h4>'+
+									'<input class="form-control" id="f_texto" name="f_texto" />'+
+								'</div>'+
+								'<div class="item-inner" >'+                                
+									'<h4 class="item-title">Situação</h4>'+
+									'<select class="form-control" id="f_tipo" name="f_tipo" />'+
+										'<option class="form-control" value="0" />Todas</option>'+
+										'<option class="form-control" value="1" />Em andamento</option>'+
+										'<option class="form-control" value="2" />Encerradas</option>'+
+									'</select>'+
+								'</div>'+
+								'<div class="item-inner" >'+
+									'<h4 class="item-title">Período Inicio</h4>'+
+									'<input type="date" class="form-control" id="f_inicio" name="f_inicio" />'+
+								'</div>'+
+								'<div class="item-inner" >'+
+									'<h4 class="item-title">Período Fim</h4>'+
+									'<input type="date" class="form-control" id="f_fim" name="f_fim" />'+
+								'</div>'+
+								'<div >'+
+									'<button type="button" class="button col button-fill color-green sheet-close" style="margin-top: 5%; width: 30%; float: right" onClick="carrega_enquetes(0)" >Buscar</button>'+
+								'</div>'+
+							'</form>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+		}
 		
         var dynamicSheet = app2.sheet.create({
           content: html,
@@ -2994,4 +3020,4 @@
                     
 </script>
 </body>
-</html>>>
+</html>

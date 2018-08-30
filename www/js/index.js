@@ -213,7 +213,7 @@ var app = {
 		$('#boxUp_enquetes').click(function(){
 			$('#pull-enquetes').animate({
 				scrollTop: 0
-			},600)
+			},400)
 		});
 		
 		$("#pull-ocorrencias").scroll(function() { 
@@ -657,6 +657,7 @@ var app = {
 		$("#pull-mreserva").removeClass("ptr-content");
 		$("#pull-entregas"   ).removeClass("ptr-content");
 		$("#pull-enquetes"   ).removeClass("ptr-content");
+		$("#pull-enquetes" ).removeClass("ptr-refreshing");
 		$("#pull-documentos" ).removeClass("ptr-content");
 		$("#pull-ocorrencias" ).removeClass("ptr-content");
 		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
