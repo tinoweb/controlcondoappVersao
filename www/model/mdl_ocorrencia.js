@@ -670,8 +670,13 @@ function carrega_tickets(tipo){
 					+'</div>'
 						
 					+'<div class="card-footer">'
-						+'Autor: '+retorno[x]['nome']+' </div>'
-					
+						+'Autor: '+retorno[x]['nome'];
+						
+						if( (retorno[x]['q_anexo'] > 0) && (retorno[x]['q_anexo'] > 0) ){
+							dado = dado +'<span style="float:right; matgin-right:1%;" <i class="fa fa-paperclip"></i></span></div>';
+						}else{
+							dado = dado + ' </div>';
+						}
 
 				dado = dado +'</div>';
                 dados = dados + dado;
