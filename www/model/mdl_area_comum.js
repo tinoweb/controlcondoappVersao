@@ -496,6 +496,8 @@ function adiciona_reserva(h){
 	$( "#add_reserva_hora_inicio" ).val(hora_ini);
 	$( "#add_reserva_hora_fim" ).val(hora_fim);
 	$( "#add_reserva_tipo" ).val("0");
+    $("#concordo").prop("checked",false);
+
 }
 
 //FUNCAO EDITA RESERVA
@@ -553,7 +555,7 @@ function salva_reserva(){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
                         carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
-                        afed('#area','#reserva','','',2,'area');                       
+                        afed('#area','#reserva','','',2,'area');     
                     }
                 },
                 error: function(erro){
