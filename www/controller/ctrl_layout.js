@@ -72,22 +72,24 @@ function voltar(abre,fecha,pagina){
         }
         if(localStorage.getItem('TELA_ATUAL') == 'enquetes'){
             $('#enquetes_retorno').scrollTop(0);
-            $("#busca_enquete").val("");
-            document.getElementById("tipob").checked = true;
+            
             //alert('enquete');
         }
     }
+    
     if(pagina == 'comunicados'){
         carrega_comunicados(0);
     }
     if(pagina == 'enquetes'){
         carrega_enquetes(0);
     }
-
-    if(pagina == 'ocorrencias_ticket'){
-        carrega_tickets(0);
+	
+	if(pagina == 'ocorrencia'){
+        carrega_ocorrencia( $("#form_ocorrencia #id_ocorrencia").val() ) ;
     }
-    
+	if(pagina == 'ocorrencias_ticket'){
+        carrega_tickets( 0 ) ;
+    }
     
     $( fecha ).css('display','none');
     $( abre ).css('display','block');
