@@ -98,19 +98,12 @@ function carrega_enquete(id){
         data       : {id_enquete : id, id_usuario_condominio : $( "#DADOS #ID_USER" ).val(), tipo : 1},
         dataType   : 'json',
 		success: function(retorno){
-            $( "#enquete .enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
-            $( "#enquete .enquete_morador" ).html(retorno[0]['criado']);
-            $( "#enquete span" ).html(retorno[0]['titulo']);
-            $( "#enquete .enquete_subtitulo" ).html(retorno[0]['descricao']);
-            $( "#enquete .enquete_periodo" ).html('Validade de '+retorno[0]['data_inicio']+' ate '+retorno[0]['data_final']);
-			//alert(retorno[0]['voto']);
-            //$( "#enquete" ).html(retorno);
-			afed('#enquete','#enquetes,#home','','',3,'enquete');
-
-//            var dt_festa = retorno[0]['data_final'];
-//            var dt = dt_festa.split(" ");
-//            var dt_dt = dt[0].split("-");
-            //var startDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " " + ini );
+            $( "#enquete #enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+            $( "#enquete #enquete_morador" ).html('<label> Criador: </label> '+retorno[0]['criado']);
+            $( "#enquete #enquete_titulo" ).html(retorno[0]['titulo']);
+            $( "#enquete #enquete_subtitulo" ).html(retorno[0]['descricao']);
+            $( "#enquete #enquete_periodo" ).html(retorno[0]['data_inicio']+' até '+retorno[0]['data_final']);
+			
             var datafim   = new Date(retorno[0]['dataFim']);
             var dataatual = new Date();
 			//alert(retorno[0]['dataFim']);
@@ -123,29 +116,54 @@ function carrega_enquete(id){
                 var status = 1;
                 //alert('0');
             }
-            
+			carrega_resposta(id);
+            /*
             if($( "#DADOS #PARENTESCO" ).val() == 1 && retorno[0]['voto'] == null){
                 //alert('entro');
                 if(status == 0){
-                    carrega_resposta(id);
-                    afed('.enquete_votos','','','',3);
+                    
+                    afed('#enquete_votos','','','',3,'');
                     //alert('entro1');
                 }else{
                     carrega_perguntas(id,$( "#DADOS #ID_USER" ).val());
-                    afed('','.enquete_votos','','',3);                    
+                    afed('','#enquete_votos','','',3,'');                    
                 }
             }else{
                 carrega_resposta(id);
-                afed('.enquete_votos','','','',3);
+                afed('#enquete_votos','','','',3,'');
                 //alert('entro2');
-            }
+            }*/
             
 		},
         error      : function() {
             alert('Erro ao carregar');
         }
 	});	
+	
+	afed('#enquete','#enquetes,#home','','',3,'enquete');
 }
+
+
+
+function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+
 
 function carrega_perguntas(id,id_usuario_condominio){
     
@@ -179,6 +197,12 @@ function carrega_resposta(id){
     var dados = '';
 	var tt_por= '';
 	var dado  = '';
+	var valor = [];
+	var label = [];
+	var cor = [];
+	var qt_dados= 0;
+	
+	
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
@@ -188,8 +212,14 @@ function carrega_resposta(id){
         data       : {id_enquete : id, tipo : 3},
         dataType   : 'json',
 		success: function(retorno){
+			
             for (x in retorno) {
+				qt_dados++;
                 tt_por = (retorno[x]['votos']*100)/retorno[x]['total'];
+				valor[valor.length] = parseFloat(tt_por).toFixed(2);
+				label[label.length] = retorno[x]['pergunta']+': '+parseFloat(tt_por).toFixed(2) +'%';
+				cor[cor.length] = colorTween(x*1000000);
+					
                 dado   = '<span class="enquete_barra_voto">'+retorno[x]['pergunta']+'</span><span class="enquete_barra_voto4">Votos: '+retorno[x]['votos'];
 				if(retorno[x]['votos']>0){
 					dado += ' ('+tt_por+'%)';
@@ -197,14 +227,78 @@ function carrega_resposta(id){
 				dado += '</span><div class="enquete_barra_voto2"><div class="enquete_barra_voto3" style="width:'+(tt_por+1)+'%;"></div></div>';
                 dados = dados + dado;
             }
-            $( "#enquete_voto" ).html(dados);
-            $( "#enquete .enquete_votos" ).html('Votos: '+retorno[0]['total']);
+			
+			if(qt_dados == 2){
+				cor = ['green','red'];
+			}
+			limparGrafico();
+			criarGrafico('Meu gratico', label, valor, cor );
+			
+            //$( "#enquete_voto" ).append(dados);
+            $( "#enquete #enquete_votos" ).html('<label>Votos:</label> '+retorno[0]['total']);
 		},
         error      : function() {
             alert('Erro ao carregar respostas');
         }
 	});	
 }
+		function criarGrafico(titulo, label, valor, cor){
+			var ctx = document.getElementById("canvas");
+			//Type, Date e options
+			var chartGraph ='';
+			chartGraph = new Chart(ctx, {
+				type:'doughnut', 
+				data: {
+					labels: label,
+					datasets: [{ 
+						label:titulo, 
+						data: valor,
+						backgroundColor: cor
+
+						}] 
+				},
+				options: {
+					tooltips: {
+					  callbacks: {
+						label: function(item, data) {
+						  
+						  return label[item.index];
+						}
+					  }
+					}
+				 }
+	
+			});
+				chartGraph.update();
+				chartGraph.clear();
+		}
+
+
+		function limparGrafico(){
+			var in_canvas = document.getElementById('enquete_voto');
+	//remove canvas if present
+			while (in_canvas.hasChildNodes()) {
+				  in_canvas.removeChild(in_canvas.lastChild);
+				} 
+	//insert canvas
+			var newDiv = document.createElement('canvas');
+			in_canvas.appendChild(newDiv);
+			newDiv.id = "canvas";
+			
+		}
+function colorTween(p) {
+  var r1 = 0xff;
+  var g1 = 0x00;
+  var b1 = 0x00;
+  var r2 = 0xaa;
+  var g2 = 0x33;
+  var b2 = 0xfc;
+  var r3 = (256+(r2-r1)*p/100+r1).toString(16);
+  var g3 = (256+(g2-g1)*p/100+g1).toString(16);
+  var b3 = (256+(b2-b1)*p/100+b1).toString(16);
+  return '#'+r3.substring(1,3)+g3.substring(1,3)+b3.substring(1,3);
+}
+
 
 function atualiza_enquete(id){
 	var dados = $( "#enquete_voto" ).serialize();
