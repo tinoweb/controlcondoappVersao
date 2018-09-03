@@ -58,7 +58,7 @@ function carrega_enquetes(tipo){
                 if(grupos.length>0){
                     grupos = '<div style="float:left; width: 100%;">'+grupos+'</div>';
                 }                
-                dado = '<div class="enquete" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos"><button type="button" class="btn btn-info">VOTOS</button></span><span class="enquete_periodo">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span></div>';
+                dado = '<div class="enquete" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos"><button type="button" class="btn btn-info">VOTOS</button></span><span class="enquete_periodo">Validade<br> de '+retorno[x]['data_inicio']+' até '+retorno[x]['data_final']+'</span></div>';
                 dados = dados + dado;
             }
             if(tipo != 1){
@@ -111,12 +111,25 @@ function carrega_enquete(id){
             if(dataatual > datafim){
 				// não pode votar
                 var status = 0;
+				$("#enquete #enquete_periodo" ).css('color','red');
                 //alert('0');
             }else{
                 var status = 1;
                 //alert('0');
             }
-			carrega_resposta(id);
+			
+			
+			if($( "#DADOS #PARENTESCO" ).val() == 1 && retorno[0]['voto'] == null){
+				if(status == 0){
+					afed('#enquete_votos','','','',3,'');
+				}else{
+					afed('','#enquete_votos','','',3,'');          
+					carrega_perguntas(id,$( "#DADOS #ID_USER" ).val());
+					
+				}
+			}else{
+				carrega_resposta(id);	
+			}
             /*
             if($( "#DADOS #PARENTESCO" ).val() == 1 && retorno[0]['voto'] == null){
                 //alert('entro');
@@ -126,21 +139,21 @@ function carrega_enquete(id){
                     //alert('entro1');
                 }else{
                     carrega_perguntas(id,$( "#DADOS #ID_USER" ).val());
-                    afed('','#enquete_votos','','',3,'');                    
+                    afed('','#enquete_votos','','',3,'');          
                 }
             }else{
                 carrega_resposta(id);
                 afed('#enquete_votos','','','',3,'');
                 //alert('entro2');
             }*/
-            
+         	afed('#enquete','#enquetes,#home','','',3,'enquete');   
 		},
         error      : function() {
             alert('Erro ao carregar');
         }
 	});	
 	
-	afed('#enquete','#enquetes,#home','','',3,'enquete');
+	
 }
 
 
@@ -176,14 +189,22 @@ function carrega_perguntas(id,id_usuario_condominio){
         data       : {id_enquete : id, id_usuario_condominio : id_usuario_condominio, tipo : 2},
         dataType   : 'json',
 		success: function(retorno){
-			var dados = '<input type="hidden" name="id_enquete" value="'+id+'"><input type="hidden" name="id_usuario_condominio" value="'+id_usuario_condominio+'">';
+			var dados = '<div class="list" style="margin: 10px 0;" >Alternativas  <ul> <input type="hidden" name="id_enquete" value="'+id+'"><input type="hidden" name="id_usuario_condominio" value="'+id_usuario_condominio+'">';
             for (x in retorno) {
-                var dado = '<input type="hidden" name="id_enquete" value="'+retorno[x]['id_enquete']+'"><div style="float:left; width:100%; margin:3% 0 0 0;"><input type="radio" name="voto" value="'+retorno[x]['id_enquete_alternativa']+'"><label>'+retorno[x]['pergunta']+'</label></div>';
+                var dado = '<label class="item-radio item-content">'				
+					+'<input type="hidden" name="id_enquete" value="'+retorno[x]['id_enquete']+'">'
+				
+						+'<input type="radio" name="voto" value="'+retorno[x]['id_enquete_alternativa']+'">'
+						+'<i class="icon icon-radio"></i>'
+						+'<div class="item-inner">'
+						+'<div class="item-title">'+retorno[x]['pergunta']+'</div>'
+					+'</div>'
+					+'</label></li>';
                 dados = dados + dado;
             }
-             var bt_submit = '<input type="button" name="votar" value="" onclick="atualiza_enquete('+id+');">';
+             var bt_submit = '<button type="button" class="btn btn-success" name="votar" onclick="atualiza_enquete('+id+');">Votar</button>';
             
-                dados = dados + bt_submit;
+                dados = dados +'</ul></div>'+ bt_submit;
             $( "#enquete_voto" ).html(dados);
 		},
         error      : function() {
@@ -231,8 +252,12 @@ function carrega_resposta(id){
 			if(qt_dados == 2){
 				cor = ['green','red'];
 			}
+			
 			limparGrafico();
-			criarGrafico('Meu gratico', label, valor, cor );
+			if(retorno[0]['total'] > 0){
+				
+				criarGrafico('Meu gratico', label, valor, cor );
+			}
 			
             //$( "#enquete_voto" ).append(dados);
             $( "#enquete #enquete_votos" ).html('<label>Votos:</label> '+retorno[0]['total']);
