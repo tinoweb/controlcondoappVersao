@@ -154,7 +154,7 @@ function carrega_ocorrencia(id){
                 
                 $("#form_ocorrencia #descricao").html(retorno[0].titulo_ocorrencia);
 				
-				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrencia <span style='background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;'>"+retorno[0].id_ocorrencia+"</span>");
+				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrência <span style='background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;'>"+retorno[0].id_ocorrencia+"</span>");
                 
 				
 				$("#form_ocorrencia #icone_ocorrencia").css('color', cor_status);
@@ -187,7 +187,7 @@ function carrega_ocorrencia(id){
 function finaliza_ocorrencia(){
 	"use strict";
     navigator.notification.confirm(
-        'Deseja realmente Finalizar essa ocorrencia',  // message
+        'Deseja realmente Finalizar essa ocorrência',  // message
         finaliza_ocorrencia2,              // callback to invoke with index of button pressed
         'Finalizar',            // title
         'Sim,Não'          // buttonLabels
