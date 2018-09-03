@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+	
 		<!-- framework7 -->
 	<meta name="theme-color" content="#2196f3">
 	<link rel="stylesheet" href="lib/framework7/css/framework7.css">
@@ -62,6 +62,9 @@
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	
 	<script type="text/javascript"> 
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
@@ -137,12 +140,14 @@
 			}
 			 //app.initialize();
 			}  
-		
+		function carregaPedro(){
+			$("#login").val('pedro@firstcontrol.com.br');
+			$("#senha").val('102030');
+		}
 	</script>
 </head>
-<body>
+<body onLoad="carregaPedro();">
 	<div id="app">
-
 		<form id="DADOS" style="display: none;">
 			<input id="SERVIDOR_CAMINHO"    value="" type="hidden">
 			<input id="ID_USER"             value="" type="hidden">
@@ -1508,6 +1513,7 @@
 
 <!---   $ENQUETES         -->
 
+
 <div id="enquetes" class="pagina enquetes">
 	<div class="view view-enquetes"> 
 		<!-- Initial Page, "data-name" contains page name -->
@@ -1542,28 +1548,43 @@
 </div>
 
 
-<div id="enquete" class="pagina enquete">
-	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner topo_sub">
-			<div class="left"> <a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> </div>
-			<span class="title">Enquete</span> </div>
-		</div>
-		<div class="scroll">
-			<div class="enquete_foto_morador"></div>
-			<div class="enquete_morador"></div>
-			<span class="enquete_titulo">titulo</span>
-			<div class="enquete_subtitulo">stitulo</div>
-			<div class="enquete_periodo">Validade de </div>
-			<div class="enquete_votos">Votos </div>
-			<form name="enquete_voto" id="enquete_voto">
-			</form>
-			  <!--                <span class="enquete_barra_voto">pergunta</span>';
-				<span class="enquete_barra_voto4">Votos | 100%</span>
-				<div class="enquete_barra_voto2" style="border-color:'.cor_enquete(conta_perguntas).';">
-					<div class="enquete_barra_voto3" style="width:100%; background-color:'.cor_enquete(1).';"></div>
+<div id="enquete" class="pagina">
+	<div class="view">
+		<div class="page page-current"> 
+			<div class="navbar" >
+				<div class="navbar-inner">
+					<div class="left"> <a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> </div>
+					<div class="title">Enquete</div> 
+					<div class="right"></div> 
 				</div>
-			--> </div>
+			</div>
+			<div class="page-content" style="padding: 55px 10px 10px 10px" >
+				<div class="row">
+					<div class="enquete_foto_morador" id="enquete_foto_morador"></div>
+					<div class="enquete_morador" id="enquete_morador"></div>
+				</div>
+				<hr style="margin-bottom: 10px; margin-top: 10px"/>
+					<label style="font-size:15px">Título</label>
+					<div id="enquete_titulo">titulo</div>
+					
+					<label style="font-size:15px">Descrição</label>
+					<div id="enquete_subtitulo">stitulo</div>
+					
+					<label style="font-size:15px">Perído</label>
+					<div id="enquete_periodo">Validade de </div>
+				
+					<h5 id="enquete_votos" >Votos </h5>
+				
+					<form name="enquete_voto" id="enquete_voto">
+						<span>Resultado</span>
+						<canvas id="canvas"></canvas>
+					</form>
+
 		</div>
+		</div>
+	</div>
+</div>
+	
 
 <!---   $DOCUMENTOS       -->
 
@@ -1945,9 +1966,10 @@
 							<!-- Initial Page, "data-name" contains page name -->
 							<div data-name="home" class="page">
 								<div class="navbar" style="height: 50px">
+									
 									<div class="navbar-inner">
 										<div class="left"> 
-											<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="afed('#ocorrencia','#ocorrencias_ticket','','','','ocorrencia')"><i class="icon icon-back"></i></a>
+											<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class="icon icon-back"></i></a>
 										</div>
 										<div class="title">Tickets</div>
 										<div class="right">

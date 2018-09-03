@@ -800,11 +800,11 @@ input, textarea {
 	background-color:#FFF;
 }
 
-.home .corpo .notificacoes .notificacao .noti_corpo .enquete .enquete_foto_morador{
+.enquete_foto_morador{
 	width:50px;
 	height:50px;
 	float:left;
-	margin:2% 0 0 2%;
+	margin:2% 0 0 0;
 	border-radius:50%;
 	background-image:url(../img/user2.png);
 	background-repeat:no-repeat;
@@ -814,10 +814,10 @@ input, textarea {
 	background-color:#FBFBFB;
 }
 
-.home .corpo .notificacoes .notificacao .noti_corpo .enquete .enquete_morador{
+.enquete_morador{
 	width:70%;
 	float:left;
-	margin:3% 0 0 2%;
+	margin:5% 0 0 0;
 	font-size:14px;
 }
 
