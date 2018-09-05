@@ -191,8 +191,8 @@ function carrega_perguntas(id,id_usuario_condominio){
 		success: function(retorno){
 			var dados = '<div class="list" style="margin: 10px 0;" >Alternativas  <ul> <input type="hidden" name="id_enquete" value="'+id+'"><input type="hidden" name="id_usuario_condominio" value="'+id_usuario_condominio+'">';
             for (x in retorno) {
-                var dado = '<label class="item-radio item-content">'				
-					+'<input type="hidden" name="id_enquete" value="'+retorno[x]['id_enquete']+'">'
+                var dado = '<li><label class="item-radio item-content">'				
+					
 				
 						+'<input type="radio" name="voto" value="'+retorno[x]['id_enquete_alternativa']+'">'
 						+'<i class="icon icon-radio"></i>'
