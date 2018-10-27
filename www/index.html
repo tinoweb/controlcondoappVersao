@@ -2883,7 +2883,6 @@
                     
 	window.onresize = function(){
 		var res = localStorage.getItem("TELA_ATUAL");
-		//alert(res);
 		if(res=="chat"){
 			$("#historico").animate({scrollTop: $("#historico").prop("scrollHeight")}, 0);
 		}
