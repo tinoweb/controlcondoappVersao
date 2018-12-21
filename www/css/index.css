@@ -328,26 +328,54 @@ input, textarea {
 	height:100%;
 	float:left;
 	margin:0;
-	background-image:url(../img/bg_login.jpg);
+	background-image:url(../img/bg_home.jpg);
 	background-size:auto 100%;
 	background-repeat:no-repeat;
-	background-position:center center;
+	
+	/*background-image: url(../img/bg_home.jpg);
+    height: auto;
+    background-size: 100% 55%;
+    bottom: 0;
+    color: black;
+    left: 0;
+    overflow: auto;
+    padding: 3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-repeat: no-repeat;*/
+	
+	
 /*	display:none;
 */}
 
 .login_ini img {
     top: 13%;
-    left: 28%;
+    left: 30%;
     position: absolute;
 	text-align: center;
 }
 
 .login_ini form {
+	/* como estava
 	width:100%;
 	height:50%;
 	background: white;
     position: absolute;
+    bottom: 0;*/
+	
+	
+	
+	width: 96%;
+    height: 50%;
+    background: white;
     bottom: 0;
+	margin-left: 2%;
+    margin-top: 249px;
+    border-radius: 16px;
+    padding: 1px;
+    border: 1px solid silver;
+	
 }
 
 .login_ini form .login {
@@ -463,7 +491,8 @@ input, textarea {
 	height:100%;
 	float:left;
 	margin:0;
-	background-image:url(../img/bg_login.jpg);
+	/*background-image:url(../img/bg_login.jpg);*/
+	background-image:url(../img/bg_home.jpg);
 	background-size:auto 100%;
 	background-repeat:no-repeat;
 	background-position:center center;
@@ -589,9 +618,9 @@ input, textarea {
 	width: 93%;
     float: left;
     margin: 0% 0px 3% 3%;
-	border-radius:5px;
+	/*border-radius:5px;
 	background-color:#FFF;
-    box-shadow: 4px 4px 5px 2px #999;
+    box-shadow: 4px 4px 5px 2px #999;*/
 }
 
 .home .corpo .notificacoes .notificacao .noti_titulo {
@@ -1836,9 +1865,9 @@ input, textarea {
 	width: 95%;
     float: left;
     margin: 3.5% 0px 0px 2.5%;
-    border-radius: 5px;
+    /*border-radius: 5px;
     background-color: #FFF;
-    box-shadow: 3px 3px 8px 2px #a29b9b;
+    box-shadow: 3px 3px 8px 2px #a29b9b;*/
 }
 
 .comunicados .comunicado .topo_comunicado {
@@ -1993,7 +2022,7 @@ input, textarea {
 	border-radius:50%;
 	background-image:url(../img/user2.png);
 	background-repeat:no-repeat;
-	background-size:90%;
+	background-size:100%;
 	background-position:center center;
 	border:1.2px solid #D6D6D6;
 	background-color:#FBFBFB;
@@ -2692,12 +2721,12 @@ input, textarea {
 }
 
 .enquetes .enquete {
-    width: 99%;
+    /*width: 99%;*/
     float: left;
     margin: 2.5% 0 0 0.5%;
-    border-radius: 5px;
+    /*border-radius: 5px;
     background-color: #FFF;
-    box-shadow: 0 0 4px 2px #ccc;
+    box-shadow: 0 0 4px 2px #ccc;*/
 }
 
 .enquetes .enquete .enquete_foto_morador{
@@ -2831,10 +2860,11 @@ input, textarea {
 	margin:4% 0 0 35%;
 	margin-top:6%;
 	font-size:16px;
-	color:#FFF;
+	color:#0a0a0a;;
 	padding:5px;
 	text-align:center;
 	border-radius:50px;
+	background-color: #f1efef;
 }
 
 .enquete form { 
@@ -3077,4 +3107,59 @@ input, textarea {
 	background-size: 40px;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.feed-enquete{
+	
+	background-color: #00a65a;
+    border-radius: 8px;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-comunicado{
+	
+	background-color: #0073b7;
+    border-radius: 8px;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-documento{
+	
+	background-color: #f39c12;
+    border-radius: 8px;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-corresponencia{
+	
+	background-color: #63aeaf;
+    border-radius: 8px;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-ocorrencia{
+	
+	background-color: #6576b5;
+    border-radius: 8px;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
 }

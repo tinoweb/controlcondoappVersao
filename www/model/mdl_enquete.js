@@ -56,9 +56,9 @@ function carrega_enquetes(tipo){
                     //alert(grupos);
                 }
                 if(grupos.length>0){
-                    grupos = '<div style="float:left; width: 100%;">'+grupos+'</div>';
+                    grupos = '<div style="float:left; width: 100%;"enquete_votos>'+grupos+'</div>';
                 }                
-                dado = '<div class="enquete" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos"><button type="button" class="btn btn-info">VOTOS</button></span><span class="enquete_periodo">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span></div>';
+                dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span></div>';
                 dados = dados + dado;
             }
             if(tipo != 1){
@@ -103,6 +103,8 @@ function carrega_enquete(id){
             $( "#enquete span" ).html(retorno[0]['titulo']);
             $( "#enquete .enquete_subtitulo" ).html(retorno[0]['descricao']);
             $( "#enquete .enquete_periodo" ).html('Validade de '+retorno[0]['data_inicio']+' ate '+retorno[0]['data_final']);
+			$( "#enquete .navbar").css("background-color","#00a65a");
+			$( "#enquetes .navbar").css("background-color","#00a65a");
 			//alert(retorno[0]['voto']);
             //$( "#enquete" ).html(retorno);
 			afed('#enquete','#enquetes,#home','','',3,'enquete');

@@ -6,8 +6,8 @@ var ref_enquete         = '';
 var ref_documento       = '';
 var ref_ocorrencia       = '';
 
-localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
-//localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
+//localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
+localStorage.setItem('DOMINIO','https://leo.controlcondo.com.br/controlcondo/');
 
 var app = {
 	
@@ -751,5 +751,7 @@ var app = {
 //	  return year + '/' + month + '/' + day;
         return dt_1;
 	}
+	
+	
 
 };

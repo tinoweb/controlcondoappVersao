@@ -271,13 +271,17 @@
 				<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off" >
 				<span class="input-group-addon"><i class="fa fa-user-o"></i></span> </div>
 				<div class="input-group" style="padding: 20px">
-					<input id="senha" class="form-control" type="password" name="senha" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
+					<input id="senha" class="form-control" type="password" placeholder="******" name="senha" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
 					<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span> 
 				</div>
 				<div style="text-align: center">
-					<input class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="login_user();" style="width: 50%" >
+					
+					<span class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="login_user();" style="width: 50%" >
+					<i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
+					</span>
+					
 				</div>
-				<div style="text-align: center; margin-top: 20px"> 
+				<div style="text-align: center; margin-top: 35px"> 
 					<a href="#" onclick="afed('#bg_box5','','','',1);$('#email_recupera').focus();">Esqueceu sua senha?</a> 
 				</div>
 			</form>
@@ -288,7 +292,10 @@
 				<select name="perfil" id="perfil_login" class="form-control">
 				</select>
 				<div style="text-align: center; margin-top: 70px" >
-					<input class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="select_user();" style="width: 50%; margin-top: 40px"  >
+					<span class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="select_user();" style="width: 50%;margin-top: 40px" >
+					<i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
+					</span>
+					
 				</div>
 			</form>
 		</div>
@@ -303,8 +310,8 @@
 			<!-- Initial Page, "data-name" contains page name -->
 			<div data-name="home" class="page"> 
 				<!-- Top Navbar -->
-				<div class="navbar" style="height: 50px">
-					<div class="navbar-inner"> <img alt="" src="img/logoicon6.png" >
+				<div class="navbar" style="height: 50px;background-color:#0073b7">
+					<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;"> <img alt="" src="img/logoicon6.png" >
 						<div class="title">ControlCondo</div>
 						<div class="right"> <a href="#" onClick="afed('#info','#home','','',2,'info');"> <img alt="" src="img/help.png" width="30"> </a> </div>
 					</div>
@@ -577,7 +584,7 @@
 
 	<div id="config" class="pagina">
 		<div class="navbar" style="height: 50px">
-			<div class="navbar-inner">
+			<div class="navbar-inner" >
 				<div class="left"> <a href="#" onClick="afed('#home','#config','','',2,'home');"><i class="icon icon-back"></i></a> </div>
 				<div class="title">Conf. de Notificações</div>
 			</div>
@@ -806,7 +813,7 @@
 				<!-- Initial Page, "data-name" contains page name -->
 				<div data-name="home" class="page">
 					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner"> <a href="#" onClick="voltar('#home','#comunicados','home');"><i class="icon icon-back"></i></a>
+						<div class="navbar-inner"  style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#home','#comunicados','home');"><i class="icon icon-back"></i></a>
 							<div class="title">Comunicados</div>
 						</div>
 					</div>
@@ -836,7 +843,7 @@
 				<!-- Pagina Anexo dos Comunicados -->
 				<div id="comunicados2" class="pagina comunicados2">
 					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner"> <a href="#" onClick="voltar('#comunicados','#comunicados2','comunicados');"><i class="icon icon-back"></i></a>
+						<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#comunicados','#comunicados2','comunicados');"><i class="icon icon-back"></i></a>
 							<div class="title">Comunicado</div>
 						</div>
 					</div>
@@ -845,7 +852,7 @@
 							<div class="topo_comunicado">
 								<div class="morador_foto"></div>
 								<span>data</span> <strong>criado</strong> </div>
-								<span class="comunicado_titulo">titulo</span>
+								<span style="background-color: #e4ae3a;padding-left: 9px;border-radius: 7px;color: white;"class="comunicado_titulo">titulo</span>
 								<div id="txt_comunicado" class="txt_comunicado">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> <img alt="" src="img/curtir.png" id="curtir" class="curtir" style="float: left; width: 30px"> <img alt="" src="img/descurtir.png" id="descurtir" class="descurtir" style="float: left; width: 30px">
@@ -860,7 +867,7 @@
 				<!--  Pagiina comentario em comunicado -->
 					<div id="comunicados_comentario" class="pagina comunicados_comentario">
 						<div class="navbar" style="height: 50px">
-							<div class="navbar-inner topo_sub"> <a href="#" onClick="afed('#comunicados2','#comunicados_comentario','','',1);"><i class="icon icon-back"></i></a> <span class="title">Comunicado</span> </div>
+							<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="afed('#comunicados2','#comunicados_comentario','','',1);"><i class="icon icon-back"></i></a> <span class="title">Comunicado</span> </div>
 						</div>
 						<form id="form_comenta">
 							<div class="form-group" >
@@ -955,7 +962,7 @@
 	<div class="view view-liberacao"> 
 		<!-- Initial Page, "data-name" contains page name -->
 		<div data-name="home" class="page">
-			<div class="navbar" style="height: 50px">
+			<div class="navbar" style="height: 50px;">
 				<div class="navbar-inner"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a>
 					<div class="title">Autorização de Entrada</div>
 				</div>
@@ -1322,7 +1329,7 @@
 </div>
 <div id="area" class="pagina area">
 	<div class="navbar" style="height: 50px;margin-bottom:0px">
-		<div class="navbar-inner topo_sub">
+		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 			<div class="left"> <a href="#" onClick="afed('#reservas','#area','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
 			<span class="title" style="font-size: 16px">Data do Evento</span> </div>
 		</div>
@@ -1406,7 +1413,7 @@
 
 	<div id="reserva" class="pagina view">
 		<div class="navbar" style="height: 50px">
-			<div class="navbar-inner topo_sub">
+			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 				<div class="left"> <a href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class="icon icon-back"></i></a> </div>
 				<span class="title" style="font-size: 16px">Data do Evento</span> 
 			</div>
@@ -1513,7 +1520,7 @@
 		<!-- Initial Page, "data-name" contains page name -->
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner">
+				<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;">
 					<div class="left"> 
 						<a type="button" href="#" onClick="voltar('#home','#enquetes','home');">
 							<i class="icon icon-back"></i>
@@ -1522,7 +1529,7 @@
 					<div class="title">Enquetes</div>
 					<div class="right">
 						<a href="#" type="button" onClick="sheet_modulo('filtro_enquetes','');">
-							<i class="glyphicon glyphicon-search" style="margin-right: 15px"></i>
+							<i class="fa fa-search" style="margin-right: 15px"></i>
 						</a>
 					</div>
 				</div>
@@ -1544,7 +1551,7 @@
 
 <div id="enquete" class="pagina enquete">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner topo_sub">
+		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 			<div class="left"> <a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> </div>
 			<span class="title">Enquete</span> </div>
 		</div>
@@ -1553,7 +1560,7 @@
 			<div class="enquete_morador"></div>
 			<span class="enquete_titulo">titulo</span>
 			<div class="enquete_subtitulo">stitulo</div>
-			<div class="enquete_periodo">Validade de </div>
+			<div class="enquete_periodo ">Validade de </div>
 			<div class="enquete_votos">Votos </div>
 			<form name="enquete_voto" id="enquete_voto">
 			</form>
@@ -1630,7 +1637,7 @@
 											</a>
 											&nbsp;
 											<a class="link popup-open" href="#" data-popup=".popup-about">
-												<i class="glyphicon glyphicon-search" style="margin-right: 15px"></i>
+												<i class="fa fa-search" style="margin-right: 15px"></i>
 											</a>
 										</div>
 									</div>
@@ -1662,7 +1669,7 @@
 
 								<div class="popup popup-about" style="font-size: 14px; font-weight: 100;" >
 										<div class="block-title" style="height: 5%">
-											<label style="font-size: 16px"><i class="glyphicon glyphicon-search"></i> Filtros de Ocorrência</label>
+											<label style="font-size: 16px"><i class="fa fa-search"></i> Filtros de Ocorrência</label>
 										</div>
 										<div class="page-content list no-hairlines-md" style="height: 60%">
 											<form id="form_busca_ocorrencias" >
@@ -1833,7 +1840,7 @@
 
 						<div id="add_ocorrencia" class="pagina view">
 							<div class="navbar" style="height: 50px">
-								<div class="navbar-inner topo_sub">
+								<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 									<div class="left"> <a href="#" onClick="voltar('#ocorrencias','#add_ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a> </div>
 									<div class="title">Nova Ocorrência</div>
 								</div>
@@ -1977,7 +1984,7 @@
 						<div id="add_ticket" class="view pagina">
 							
 							<div class="navbar" style="height: 50px">
-								<div class="navbar-inner topo_sub">
+								<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 									<div class="left"> <a href="#" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
 									<div class="title" id="ti_titulo">Novo Ticket</div>
 								</div>
@@ -2219,7 +2226,7 @@
 <!--  Pets INCLUSAO  -->
 	<div id="add_pet" class="pagina view">
 		<div class="navbar" style="height: 50px">
-			<div class="navbar-inner topo_sub">
+			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#add_pet','pet_lista');"><i class="icon icon-back"></i></a> </div>
 				<div class="title">Cadastrar Novo Pet</div>
 			</div>
@@ -2291,7 +2298,7 @@
 <!--$ Pets EDICAO ----------->
 	<div id="update_pet" class="pagina view">
 		<div class="navbar" style="height: 50px">
-			<div class="navbar-inner topo_sub">
+			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#update_pet','pet_lista');"><i class="icon icon-back"></i></a> </div>
 				<div class="title">Editar PET</div>
 			</div>
