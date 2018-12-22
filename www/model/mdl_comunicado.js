@@ -360,55 +360,19 @@ function comentario_update() {
 }
 
 function download_arq_comunicado(caminho,arquivo) {
-    //salert(path);
-    caminho      = caminho.replace("../","");
-    var path     = localStorage.getItem('DOMINIO')+caminho+arquivo;
-	var extencao = arquivo.split(".");
-	var ext      = extencao[1];
-    //alert(path);
-    console.log(cordova.file.externalRootDirectory);
-	statusDom    = document.querySelector('#status');
-	$('#downloadProgress').css({"display":"block"});
-  	app2.progressbar.set('#status', "0");
-	
-    var fileTransfer = new FileTransfer();
-    //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
-    var uri = encodeURI(path);
-	
-    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
-	fileTransfer.onprogress = function(progressEvent) {
-		if (progressEvent.lengthComputable) {
-			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			statusDom.innerHTML = perc + "%...";
-			app2.progressbar.set('#status', perc);
-		}
-	};
-    //var filePath = cordova.file.applicationStorageDirectory+'Download/'+arquivo;
-    fileTransfer.download(
-        uri,
-        filePath,
-        function(entry) {
-            console.log("download complete: " + entry.fullPath);
-			$('#downloadProgress').css({"display":"none"});
-            //notifica('Download/Download Concluído90 /ok',0,0);
-			var path = entry.toURL(); //**THIS IS WHAT I NEED**
-			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
-			//alert(JSON.stringify(ref, null, 4));
-            //window.open(path, "_system");
+    let fileTransfer = new FileTransfer();
+  url = encodeURI("https://www.controlcondo.com.br/controlcondo/docs/26/documento/dbfb607c5b88d80ce7fba52fadefffee.JPG");
 
-        },
-        function(error) {
-            console.log("download error source " + error.source);
-            console.log("download error target " + error.target);
-            //console.log("upload error code" + error.code);
-        },
-        false,
-        {
-            headers: {
-                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-            }
-        }
-    );
+  fileTransfer.download(
+    url,
+    cordova.file.externalApplicationStorageDirectory+'whatever.JPG',
+    function(entry) {
+      console.log('download complete: ' + entry.toURL());
+    },
+    function(error) {
+      console.log('download error source ' + error.source);
+      console.log('download error target ' + error.target);
+      console.log('upload error code is ' + error.code);
+    });
 }
 
