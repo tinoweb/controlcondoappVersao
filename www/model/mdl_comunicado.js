@@ -396,12 +396,14 @@ function download_arq_comunicado(caminho,arquivo) {
 			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
 			//alert(JSON.stringify(ref, null, 4));
             window.open(path, "_system");
-			alert(1);
+			//alert(1);
 
         },
         function(error) {
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
+			$('#downloadProgress').css({"display":"none"});
+			alert("erro ao fazer download");
             //console.log("upload error code" + error.code);
         },
         false,
