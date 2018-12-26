@@ -7,7 +7,7 @@ var ref_documento       = '';
 var ref_ocorrencia       = '';
 
 //localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
-localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
+localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/v2/');
 
 var app = {
 	

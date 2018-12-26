@@ -1,6 +1,6 @@
 /* formulário vazio */
 function login_user_device() {
-	SERVIDOR_CAMINHO = 'https://www.controlcondo.com.br/controlcondo/';
+	SERVIDOR_CAMINHO = 'https://www.controlcondo.com.br/controlcondo/v2/';
     PullToRefresh.init({
         mainElement: 'body',
         onRefresh: function(){
