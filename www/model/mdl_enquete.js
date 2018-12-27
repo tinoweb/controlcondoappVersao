@@ -96,7 +96,6 @@ function carrega_enquete(id){
         data       : {id_enquete : id, id_usuario_condominio : $( "#DADOS #ID_USER" ).val(), tipo : 1},
         dataType   : 'json',
 		success: function(retorno){
-<<<<<<< HEAD
             $( "#enquete .enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
             $( "#enquete .enquete_morador" ).html(retorno[0]['criado']);
             $( "#enquete span" ).html(retorno[0]['titulo']);
@@ -112,14 +111,7 @@ function carrega_enquete(id){
 //            var dt = dt_festa.split(" ");
 //            var dt_dt = dt[0].split("-");
             //var startDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " " + ini );
-=======
-            $( "#enquete #enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
-            $( "#enquete #enquete_morador" ).html('<label> Criador: </label> '+retorno[0]['criado']);
-            $( "#enquete #enquete_titulo" ).html(retorno[0]['titulo']);
-            $( "#enquete #enquete_subtitulo" ).html(retorno[0]['descricao']);
-            $( "#enquete #enquete_periodo" ).html(retorno[0]['data_inicio']+' até '+retorno[0]['data_final']);
-			
->>>>>>> origin/master
+
             var datafim   = new Date(retorno[0]['dataFim']);
             var dataatual = new Date();
 			//alert(retorno[0]['dataFim']);
