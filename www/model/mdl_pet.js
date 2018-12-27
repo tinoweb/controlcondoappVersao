@@ -245,7 +245,7 @@ function excluir_pet(id_pet){
 	  alert("ta loco porra");
 	}
 }
-
+/*
 function replaceAll(str, de, para){
 	"use strict";
     var pos = str.indexOf(de);
@@ -254,7 +254,7 @@ function replaceAll(str, de, para){
 		pos = str.indexOf(de);
 	}
     return (str);
-}
+}*/
 
 function pet_insert(){
 	"use strict";

@@ -286,13 +286,13 @@ function carrega_ticket_anexo(id_ticket){
 
 
 
-function replaceAll(str, de, para){
-    "use strict";
-	var pos = str.indexOf(de);
+function replaceAll(str, de, para){ 
+    //"use strict";
+	/*var pos = str.indexOf(de); 
     while (pos > -1){
 		str = str.replace(de, para);
 		pos = str.indexOf(de);
-	}
+	}*/
     return (str);
 }
 
