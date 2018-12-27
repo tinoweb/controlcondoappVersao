@@ -763,27 +763,90 @@
 				<div class="title">Morador</div>
 			</div>
 		</div>
-		<form name="form_moradores" id="form_moradores">
-			<label style="margin-bottom: -7px;font-size: 11px">Nome</label>
-			<input type="text" name="nome" id="mor_nome">
-			<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">RG</label>
-			<input type="text" name="rg" id="mor_rg" oninput="this.value=this.value.replace(/[^0-9]/g,'');" >
-			<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">CPF</label>
-			<input type="text" name="cpf" id="mor_cpf">
-			<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Nascimento</label>
-			<input type="date" name="nascimento" id="mor_nascimento">
-			<label style="width: 10%">Sexo</label>
-			<input type="radio" name="masculino" value="0" id="mor_homem">
-			<img alt="" src="img/homem.png">
-			<input type="radio" name="masculino" value="1" id="mor_mulher">
-			<img alt="" src="img/mulher.png">
-			<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Parentesco</label>
-			<input type="text" name="parentesco" value="parentesco" disabled id="mor_parentesco">              
-			<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Observação</label>
-			<textarea name="observacao" id="mor_msg"></textarea>
-			<input type="hidden" name="id" id="mor_id_morador">
-			<input type="button" value="" onClick="atualiza_morador();">
-		</form>
+		<div class="toolbar tabbar tabbar-labels" style="margin-top: -80px;">
+			<div class="toolbar-inner">
+				<a href="#tab-1" class="tab-link tab-link-active">
+				  <i class="icon material-icons md-only">person</i>
+				  <span class="tabbar-label">Dados</span>
+				</a>
+				<a href="#tab-2" class="tab-link">
+				  <i class="icon material-icons md-only">directions_car</i>
+				  <span class="tabbar-label">Veiculos</span>
+				</a>
+				<a href="#tab-3" class="tab-link">
+				  <i class="icon material-icons md-only">contact_phone</i>
+				  <span class="tabbar-label">Contatos</span>
+				</a>
+				<a href="#tab-4" class="tab-link">
+				  <i class="icon material-icons md-only">credit_card</i>
+				  <span class="tabbar-label">Dispositivos</span>
+				</a>
+			</div>
+	  	</div>
+		<div class="tabs" style="margin:70px 0 0 0;">
+		<!-- First tab, should have "tab" class and unique id attribute -->
+		<!-- First tab is active by default - additional "tab-active" class -->
+			<div class="tab tab-active" id="tab-1">
+				<form name="form_moradores" id="form_moradores">
+					<div class="form-group mor_form">
+						<div class="item-title item-label">Nome</div>
+						<input type="text" name="nome" id="mor_nome" class="form-control">
+					</div>
+					<div class="form-group mor_form">
+						<div class="item-title item-label">RG</div>
+						<input type="text" name="rg" id="mor_rg" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+					</div>
+					<div class="form-group mor_form">
+						<div class="item-title item-label">CPF</div>
+						<input type="text" name="cpf" id="mor_cpf" class="form-control" >
+					</div>
+					<div class="form-group mor_form ">
+						<div class="col-xs-6">
+							<div class="item-title item-label">Nascimento</div>
+							<input type="date" name="nascimento" id="mor_nascimento" class="form-control" >
+						</div>
+						<div class="col-xs-6">
+							<div class="item-title item-label">Sexo</div>
+							<input type="radio" name="masculino" value="0" id="mor_homem">
+							<img alt="" src="img/homem.png">
+							<input type="radio" name="masculino" value="1" id="mor_mulher">
+							<img alt="" src="img/mulher.png">
+						</div>
+					</div>
+					<div class="form-group mor_form">
+						<div class="item-title item-label">Sexo</div>
+						<input type="date" name="nascimento" id="mor_nascimento" class="form-control" >
+					</div>
+
+					<!--<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">CPF</label>
+					<input type="text" name="cpf" id="mor_cpf">
+					<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Nascimento</label>
+					<input type="date" name="nascimento" id="mor_nascimento">
+					<label style="width: 10%">Sexo</label>
+					<input type="radio" name="masculino" value="0" id="mor_homem">
+					<img alt="" src="img/homem.png">
+					<input type="radio" name="masculino" value="1" id="mor_mulher">
+					<img alt="" src="img/mulher.png">-->
+					<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Parentesco</label>
+					<input type="text" name="parentesco" value="parentesco" disabled id="mor_parentesco">              
+					<label style="margin-bottom: -7px;margin-top: 4px; font-size: 11px">Observação</label>
+					<textarea name="observacao" id="mor_msg"></textarea>
+					<input type="hidden" name="id" id="mor_id_morador">
+					<input type="button" value="" onClick="atualiza_morador();">
+				</form>
+			</div>
+			<!-- Second tab, should have "tab" class and unique id attribute -->
+			<div class="tab" id="tab-2">
+			... Tab 2 content goes here ...
+			</div>
+			<!-- Third tab, should have "tab" class and unique id attribute -->
+			<div class="tab" id="tab-3">
+			... Tab 3 content goes here ...
+			</div>
+			<div class="tab" id="tab-4">
+			... Tab 3 content goes here ...
+			</div>
+		</div>
 	</div>
 
 	<!--    $CHAT            -->
@@ -2919,4 +2982,4 @@
 </script>
 
 </body>
-</html>>>>>
+</html>>>>>>>>>>>>>>>>>>>
