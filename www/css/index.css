@@ -1777,7 +1777,7 @@ input, textarea {
 	margin:0 0 0 2%;
 }
 
-.morador2 form {
+/*.morador2 form {
 	width:92%;
 	float:left;
 	margin:0 0 0 4%;
@@ -1786,7 +1786,7 @@ input, textarea {
 .morador2 form .mor_form {
 	margin-top: 5px; 
 }
-
+*/
 /*.morador2 form label {
 	width:92%;
 	float:left;
@@ -1816,17 +1816,16 @@ input, textarea {
 }*/
 
 .morador2 form input[type=radio] {
-	width:20%;
 	float:left;
 	margin:2% 0 0 4%;
 }
 
 .morador2 form img {
-	width:20%;
+	width:10%;
 	float:left;
 	margin:0 0 0 1%;
 }
-
+/*
 .morador2 form textarea {
 	width:89%;
 	height:40px;
@@ -1888,7 +1887,7 @@ input, textarea {
 	margin:0;
 	display:none;
 }
-
+*/
 /********************************COMUNICADOS************************************************/
 .comunicados {
 /*	display:block;
