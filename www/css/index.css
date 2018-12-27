@@ -1815,13 +1815,13 @@ input, textarea {
 }*/
 
 .morador2 form input[type=radio] {
-	width:5%;
+	width:20%;
 	float:left;
 	margin:2% 0 0 4%;
 }
 
 .morador2 form img {
-	width:10%;
+	width:20%;
 	float:left;
 	margin:0 0 0 1%;
 }
