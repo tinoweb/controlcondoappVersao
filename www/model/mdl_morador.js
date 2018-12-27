@@ -12,7 +12,16 @@ function carrega_morador(){
 		success: function(retorno){
             var dados = '';
             for (x in retorno) {
-                var morador = '<div class="morador" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')"><div class="morador_foto" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><strong style="font-family: \'Roboto Condensed\';font-size: 12px;font-weight: bold; color: #0078d0;">'+retorno[x]['nome']+'</strong><span style="font-size:11px">'+retorno[x]['descricao']+'</span></div>';
+				
+				var morador =  	'<div class="card morador-card" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')">'+
+									'<div class="card-header">'+
+										'<div class="morador-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div>'+
+										'<div class="morador-name">'+retorno[x]['nome']+'</div>'+
+										'<div class="morador-date">'+retorno[x]['descricao']+'</div>'+
+									'</div>'+
+                            	'</div>';
+
+                /*var morador = '<div class="morador" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')"><div class="morador_foto" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><strong style="font-family: \'Roboto Condensed\';font-size: 12px;font-weight: bold; color: #0078d0;">'+retorno[x]['nome']+'</strong><span style="font-size:11px">'+retorno[x]['descricao']+'</span></div>';*/
                 dados = dados + morador;
             }
             $( "#morador_retorno" ).html(dados);

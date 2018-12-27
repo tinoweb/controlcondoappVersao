@@ -1712,6 +1712,35 @@ input, textarea {
 	display:block;
 }
 */
+
+.morador-card .card-header {
+  display: block;
+  padding: 10px;
+}
+
+.morador-card .morador-avatar {
+    width: 40px;
+    height: 40px;
+    float: left;
+	border-radius:50%;
+	background-image:url(../img/user2.png);
+	background-repeat:no-repeat;
+	background-size:100%;
+	background-position:center center;
+    background-color:#F5F5F5;
+}
+
+.morador-card .morador-name {
+  margin-left: 50px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.morador-card .morador-date {
+  margin-left: 50px;
+  font-size: 13px;
+  color: #8e8e93;
+}
+
 .moradores .morador {
 	width:90%;
 	height:75px;
@@ -1749,12 +1778,16 @@ input, textarea {
 }
 
 .morador2 form {
-	width:100%;
+	width:92%;
 	float:left;
-	margin:0;
+	margin:0 0 0 4%;
 }
 
-.morador2 form label {
+.morador2 form .mor_form {
+	margin-top: 5px; 
+}
+
+/*.morador2 form label {
 	width:92%;
 	float:left;
 	margin:2% 0 0 4%;
@@ -1780,7 +1813,7 @@ input, textarea {
     border-radius: 5px;
     padding: 1%;
     box-shadow: 2px 2px 9px black;
-}
+}*/
 
 .morador2 form input[type=radio] {
 	width:5%;
