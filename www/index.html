@@ -783,7 +783,7 @@
 				</a>
 			</div>
 	  	</div>
-		<div class="tabs" style="margin:70px 0 0 0;">
+		<div class="tabs scroll" style="margin-top:25px;">
 		<!-- First tab, should have "tab" class and unique id attribute -->
 		<!-- First tab is active by default - additional "tab-active" class -->
 			<div class="tab tab-active" id="tab-1">
@@ -820,7 +820,7 @@
 							<div class="item-inner">
 								<div class="item-title item-label">Nascimento</div>
 								<div class="item-input-wrap">
-									<input type="text" id="mor_nascimento" name="nascimento" value="">
+									<input type="date" id="mor_nascimento" name="nascimento" value="">
 									<span class="input-clear-button"></span>
 								</div>
 							</div>
@@ -828,22 +828,78 @@
 						<li class="item-content item-input">
 							<div class="item-inner">
 								<div class="item-title item-label">Sexo</div>
-								<div class="item-input-wrap">
+								<div class="item-input-wrap" style="width: 50%; float: left; margin: 0;">
 									<label class="item-radio item-content" style="font-weight:100; font-size: 12px;">
 										<input type="radio" id="mor_homem" name="masculino" value="0" />
 										<i class="icon icon-radio"></i>
-										<div class="item-title" style="width:100%; float:left">Homem</div>
+										<div class="item-title" style="width:100%; float:left"><img alt="" src="img/homem.png"></div>
 									</label>
+									<span class="input-clear-button"></span>
+								</div>
+								<div class="item-input-wrap" style="width: 50%; float: left; margin: 0;">
 									<label class="item-radio item-content" style="font-weight:100; font-size: 12px;">
 										<input type="radio" id="mor_mulher" name="masculino" value="1" />
 										<i class="icon icon-radio"></i>
-										<div class="item-title" style="width:100%; float:left">Mulher</div>
+										<div class="item-title" style="width:100%; float:left"><img alt="" src="img/mulher.png"></div>
 									</label>
-									<!--<input type="radio" name="masculino" value="0" id="mor_homem">
-									<img alt="" src="img/homem.png">
-									<input type="radio" name="masculino" value="1" id="mor_mulher">
-									<img alt="" src="img/mulher.png">-->
 									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Parentesco</div>
+								<div class="item-input-wrap">
+									<input type="text" id="mor_parentesco" name="parentesco" value="">
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label"></div>
+								<div class="item-input-wrap" style="width: 50%; float: left; margin: 0;">
+									<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
+										<input type="checkbox" id="mor_homem" name="masculino" value="0" />
+										<i class="icon icon-checkbox"></i>
+										<div class="item-title" style="width:100%; float:left">Control Condo</div>
+									</label>
+									<span class="input-clear-button"></span>
+								</div>
+								<div class="item-input-wrap" style="width: 50%; float: left; margin: 0;">
+									<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
+										<input type="checkbox" id="mor_mulher" name="masculino" value="1" />
+										<i class="icon icon-checkbox"></i>
+										<div class="item-title" style="width:100%; float:left">Autoriza Visita</div>
+									</label>
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Email</div>
+								<div class="item-input-wrap">
+									<input type="text" id="mor_email" name="email" value="">
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Observação</div>
+								<div class="item-input-wrap">
+									<textarea name="observacao" id="mor_msg"></textarea>
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-input-wrap">
+									<input type="hidden" name="id" id="mor_id_morador">
+									<button class="col button button-fill color-green"><i class="icon material-icons color-white">save</i>Salvar</button>
+									<!--<input type="button" value="" onClick="atualiza_morador();">-->
 								</div>
 							</div>
 						</li>
@@ -873,7 +929,7 @@
 							<input type="radio" name="masculino" value="1" id="mor_mulher">
 							<img alt="" src="img/mulher.png">
 						</div>
-					</div>-->
+					</div>
 					<div class="form-group mor_form">
 						<div class="item-title item-label">Parentesco</div>
 						<input type="text" name="parentesco" disabled id="mor_parentesco" class="form-control" >
@@ -884,7 +940,7 @@
 					</div>
 
 					<input type="hidden" name="id" id="mor_id_morador">
-					<input type="button" value="" onClick="atualiza_morador();">
+					<input type="button" value="" onClick="atualiza_morador();">-->
 				</form>
 			</div>
 			<!-- Second tab, should have "tab" class and unique id attribute -->

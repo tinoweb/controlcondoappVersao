@@ -1821,7 +1821,7 @@ input, textarea {
 }
 
 .morador2 form img {
-	width:10%;
+	width:25%;
 	float:left;
 	margin:0 0 0 1%;
 }
@@ -1834,7 +1834,7 @@ input, textarea {
 	border:1px solid #666;
 	border-radius:5px;
 	padding:1%;
-}
+} 
 
 .morador2 form input[type=button] {
 	width:89%;
@@ -1849,6 +1849,7 @@ input, textarea {
 	background-repeat:no-repeat;
 	border-radius:5px;
 }
+
 
 .morador2 form .contato_morador_abre {
 	width:20px;
