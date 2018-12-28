@@ -32,6 +32,35 @@ body, html {
   	min-height: 100vh;
   	flex-direction: column;
 }
+
+/*.md .button.button-fill, .md .button.button-fill-md, .md .button.button-active, .md .button.tab-link-active {
+    background-color: #0073b7 !important;
+    color: #fff !important;
+}*/
+
+#menu #perfil{
+	padding-top: 5px;
+}
+/*
+.title{
+	background-color: #0073b7;
+}*/
+
+.md .tabbar-labels.toolbar-bottom-md {
+    height: 56px;
+    background: #0073b7;
+}
+
+.navbar-inner{
+	background-color: #0073b7;
+}
+
+.cabecalho_card {
+	width:96%;
+	float:left;
+	margin:2% 0 0 2%;
+}
+
 .corpo_refresh {
   margin: 0;
   padding: 0;
@@ -258,8 +287,8 @@ input, textarea {
     overflow: auto;
     float: left;
     /* margin: 1px 0 0 5%;*/ 
-    padding-left: 12px;
-	padding-right: 12px;
+    padding-left: 6px;
+	padding-right: 6px;
 }
 
 /*****************************************botao switch************************************************/
@@ -664,6 +693,57 @@ input, textarea {
 	border-radius:5px;
 	background-color:#FFF;
 }
+
+.feed-enquete{
+	
+	background-color: #00a65a;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-comunicado{
+	
+	background-color: #0073b7;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-documento{
+	
+	background-color: #f39c12;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-corresponencia{
+	
+	background-color: #63aeaf;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+.feed-ocorrencia{
+	
+	background-color: #6576b5;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
 /*
 *********************** SESSAO DE CSS PARA OCORRENCIAS **********************
 */
@@ -2445,13 +2525,13 @@ input, textarea {
 }
 
 .visitantes .visitanteb {
-	width:90%;
-	height:75px;
-	float:left;
-	margin:1px 0 0 4%;
-	border:1px solid #666;
-	border-radius:5px;
-	background-color:#F5F5F5;
+    width: 100%;
+    height: 75px;
+    float: left;
+    margin: 6px 0 0 0%;
+    border: 1px solid #b3b2b2;
+    border-radius: 5px;
+    background-color: #ffffff;
 }
 
 .visitantes .visitanteb .liberado_foto{
@@ -2470,7 +2550,7 @@ input, textarea {
 .visitantes .visitanteb strong {
 	width:70%;
 	float:left;
-	margin:6% 0 0 2%;
+	margin: 4% 0 0 2%;
 	font-size:18px;
 }
 
@@ -3143,52 +3223,4 @@ input, textarea {
 	background-repeat: no-repeat;
 }
 
-.feed-enquete{
-	
-	background-color: #00a65a;
-    padding-left: 6px;
-    padding-top: 5px;
-    margin-top: 8px !important;
-	color:white;
-	
-}
 
-.feed-comunicado{
-	
-	background-color: #0073b7;
-    padding-left: 6px;
-    padding-top: 5px;
-    margin-top: 8px !important;
-	color:white;
-	
-}
-
-.feed-documento{
-	
-	background-color: #f39c12;
-    padding-left: 6px;
-    padding-top: 5px;
-    margin-top: 8px !important;
-	color:white;
-	
-}
-
-.feed-corresponencia{
-	
-	background-color: #63aeaf;
-    padding-left: 6px;
-    padding-top: 5px;
-    margin-top: 8px !important;
-	color:white;
-	
-}
-
-.feed-ocorrencia{
-	
-	background-color: #6576b5;
-    padding-left: 6px;
-    padding-top: 5px;
-    margin-top: 8px !important;
-	color:white;
-	
-}

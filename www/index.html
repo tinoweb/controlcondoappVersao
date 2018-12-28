@@ -364,17 +364,17 @@
 			<div class="topo_sub" style="background-color: #333b4a"> <span>Liberações</span> </div>
 			<div class="block" style="text-align: center; margin-top: 140px" id="libt1">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style="background-image: url(img/new_visit.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Incluir Visitante</button>
+					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%"><span class="glyphicon glyphicon-log-in"></span> Incluir Liberação</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt2">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;">Minha lista de visitas</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;"><span class="fa fa-file"></span> Minha lista de visitas</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt3">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Últimos Acessos</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%"><span class="fa fa-list"></span> Últimos Acessos</button>
 				</p>
 			</div>
             <div id="liberacao_desativada" class="fale_usuarios list searchbar-found" style=" margin-top: 150px; text-align: center; display:none">Função Desativada</div>
@@ -387,7 +387,7 @@
 				<strong class="perfil_nome">Nome do Morador</strong>
 				<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 			</div>
-			<div id="perfil_edit" class="perfil_edit" style="margin-top: 105px">
+			<div id="perfil_edit" class="perfil_edit" style="margin-top: 117px">
 				<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
 				<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
 			
@@ -877,7 +877,7 @@
 		<div id="comunicados" class="pagina comunicados">
 			<div class="view view-comunicados"> 
 				<!-- Initial Page, "data-name" contains page name -->
-				<div data-name="home" class="page">
+				<div data-name="home" class="page" style="background:#EAEBED !important;" >
 					<div class="navbar" style="height: 50px">
 						<div class="navbar-inner"  style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#home','#comunicados','home');"><i class="icon icon-back"></i></a>
 							<div class="title">Comunicados</div>
@@ -918,7 +918,7 @@
 							<div class="topo_comunicado">
 								<div class="morador_foto"></div>
 								<span>data</span> <strong>criado</strong> </div>
-								<span style="background-color: #e4ae3a;padding-left: 9px;border-radius: 7px;color: white;"class="comunicado_titulo">titulo</span>
+								<span style="background-color: #e4ae3a;padding-left: 9px;color: white;"class="comunicado_titulo">titulo</span>
 								<div id="txt_comunicado" class="txt_comunicado">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> 
@@ -962,7 +962,7 @@
 
 <div id="liberacao2" class="pagina liberacao2">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner" style="padding-left: 16px;"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -987,7 +987,7 @@
 				</select>
 			</div>
 			<div class="form-group row">
-				<div class="col-xs-6">
+				<div class="col-xs-6" style="padding-left: 6px;">
 					<div class="item-title item-label" style="margin-top: 15px">&nbsp;&nbsp;Desde:</div>
 					<input class="form-control" type="date" name="de" id="dt_de" >
 				</div>
@@ -997,7 +997,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-xs-6">
+				<div class="col-xs-6" style="padding-left: 6px;">
 					<div class="item-title item-label" style="margin-top: 7px">&nbsp;&nbsp;Até:</div>
 					<input type="date" name="ate" id="dt_ate"  class="form-control">
 				</div>
@@ -1021,9 +1021,36 @@
 					<option value="9">9</option>
 				</select>
 			</div>
-			<div>
-				<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">
-				<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+			<div class="form-group row" style="margin-top: 10px;">
+				<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
+				<div class="col-xs-6">
+					<button class="btn btn-success" id="l_cadastrar" onClick="salva_liberacao()"><span class="fa fa-check"></span> Cadastrar</button>
+				</div>
+				<div class="col-xs-6">
+					<button class="btn btn-danger" id="l_deletar" onClick="liberacao_delete_notifica();"><span class="fa fa-close"></span> deletar</button>
+				</div>
+				
+				<!--<div align="center" class="toolbar toolbar-bottom-md tabbar-labels" style=" position: absolute;width: 100%;bottom: 0;">
+					<div class="toolbar-inner" style="padding: 5px">
+						<div style="width: 40%" onclick="carrega_ocorrencias(0);">
+							<!--<i class="fa fa-trash fa-2x"></i>-->
+							<!--<i class="glyphicon glyphicon-log-out"></i>
+							<br>
+							<label>Cancelar</label>
+						</div>
+						<div style="width: 20%" onclick="app.escondeTeclado();">
+							<i class="material-icons">keyboard_hide</i>
+						</div>
+						<div style="width: 40%" type="button" onclick="ocorrencia_insert();">
+							<i class="glyphicon glyphicon-floppy-disk"></i>
+							<br>
+							<label>Salvar</label>
+
+						</div>
+					<span class="tab-link-highlight"></span></div>
+				</div>-->
+				
+				<!--<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">-->
 			</div>
 		</form>
 	</div>
@@ -1202,7 +1229,11 @@
 		<div class="item-title item-label" id="btipo_rg" style="margin-top: 7px; margin-left: 11px; display: none;">&nbsp;Selecione uma pessoa por RG</div>
 	</div>
 	<div id="busca_visitate" class="form-group busca_visitate">
-		<input class="form-control" type="search" id="visitante_busca" onKeyUp="carrega_visitantes(this.value)" value="">
+		<!--<input class="form-control" type="search"   value="">-->
+		<div class="form-group has-feedback">
+			<input type="text" class="form-control" id="visitante_busca" placeholder="Busca" onKeyUp="carrega_visitantes(this.value)">
+			<i class="fa fa-search form-control-feedback"></i>
+		</div>
 	</div>
 	<div id="retorno_visita" class="scroll" style="background-color: #ddd;"> </div>
 </div>

@@ -18,12 +18,12 @@ function carrega_visitantes(sql){
                     if(retorno[x]['foto'].length>0){
                         dadof = dadof + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')" ';
                     }
-                    var dado = '<div class="visitanteb" onClick="escolhe_visita(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\',\''+retorno[x]['rg']+'\')">';
-                    dado     = dado+dadof+'></div><strong>'+retorno[x]['nome']+'</strong><span>'+retorno[x]['rg']+'</span></div>';
+                    var dado = '<div class="visitanteb" onClick="hidden_btn();escolhe_visita(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\',\''+retorno[x]['rg']+'\')">';
+                    dado     = dado+dadof+'></div><strong>'+limitanome(retorno[x]['nome'])+'</strong><span>'+retorno[x]['rg']+'</span></div>';
                     //var dado = '<div class="visitanteb">teste</div>';
                     dados = dados + dado;
                 }
-                dados = dados + '<div class="visitanteb" onClick="novo_visitante()"><strong>Novo Visitante</strong></div>';
+                dados = dados + '<div class="visitanteb" style="background-color: #f86464;color: white;height: 50px;padding-top: -10px;" onClick="novo_visitante()"><strong><i class="fa fa-user"></i> Novo Visitante</strong></div>';
                 $( "#retorno_visita" ).html(dados);
                 
             },
@@ -50,6 +50,7 @@ function escolhe_visita(id,nome,rg){
 
 	$( "#add_liberacao #nome" ).val(nome);
 	$( "#add_liberacao #rg" ).val(rg);
+	$( "#add_liberacao #visita" ).val(id);
 	$( "#add_liberacao #visita" ).val(id);
 	afed('#liberacao2','#visitantes','','',3,'liberacao_add');
 
@@ -147,4 +148,11 @@ function foto_v_carrega(opcao) {
         //alert('Galeria');
         app.foto_visitante2();
     }
+}
+
+function hidden_btn(){
+	
+	$( "#add_liberacao #l_deletar" ).hide();
+	$( "#add_liberacao #l_cadastrar" ).parent().attr("class","col-xs-12");
+	
 }
