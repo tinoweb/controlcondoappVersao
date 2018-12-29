@@ -54,21 +54,23 @@ function carrega_morador_dados(id_morador){
 			$( "#mor_cpf" ).val(retorno[0]['telefone']);
 			$( "#mor_nascimento" ).val(retorno[0]['nascimento']);
 			$( "#mor_parentesco" ).val(retorno[0]['descricao']);
+			$( "#mor_email" ).val(retorno[0]['email']);
 			if(retorno[0]['masculino'] == 1){
-				//$( "#mor_homem" ).css("display","block");
-				//$( "#mor_mulher" ).css("display","none");
-                //$( "#mor_homem" ).attr( "checked" );
                 document.getElementById("mor_homem").checked = true;
 			}else{
-				//$( "#mor_homem" ).css("display","none");
-				//$( "#mor_mulher" ).css("display","block");
-                //$( "#mor_mulher" ).attr( "checked" );
                 document.getElementById("mor_mulher").checked = true;
 			}
+			if(retorno[0]['autoriza'] == 1){
+                document.getElementById("mor_autoriza").checked = true;
+			}else{
+                document.getElementById("mor_autoriza").checked = false;
+			}
+			if(retorno[0]['usar_control_condo'] == 1){
+                document.getElementById("mor_controlcondo").checked = true;
+			}else{
+                document.getElementById("mor_controlcondo").checked = false;
+			}
 			$( "#mor_msg" ).val(retorno[0]['observacao']);
-			$( "#mor_telr" ).val(retorno[0]['tel_tel']);
-			$( "#mor_telc" ).val(retorno[0]['tel_com']);
-			$( "#mor_telcel" ).val(retorno[0]['tel_cel']);
             afed('#morador','#moradores','','',2,'morador');
         
         },
