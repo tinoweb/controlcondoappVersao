@@ -364,17 +364,17 @@
 			<div class="topo_sub" style="background-color: #333b4a"> <span>Liberações</span> </div>
 			<div class="block" style="text-align: center; margin-top: 140px" id="libt1">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%"><span class="glyphicon glyphicon-log-in"></span> Incluir Liberação</button>
+					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style="background-image: url(img/new_visit.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Incluir Visitante</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt2">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;"><span class="fa fa-file"></span> Minha lista de visitas</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;">Minha lista de visitas</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt3">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%"><span class="fa fa-list"></span> Últimos Acessos</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Últimos Acessos</button>
 				</p>
 			</div>
             <div id="liberacao_desativada" class="fale_usuarios list searchbar-found" style=" margin-top: 150px; text-align: center; display:none">Função Desativada</div>
@@ -387,7 +387,7 @@
 				<strong class="perfil_nome">Nome do Morador</strong>
 				<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 			</div>
-			<div id="perfil_edit" class="perfil_edit" style="margin-top: 117px">
+			<div id="perfil_edit" class="perfil_edit" style="margin-top: 105px">
 				<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
 				<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
 			
@@ -432,253 +432,7 @@
 				</div>
 			</div>
 			<div id="perfil_abre" class="perfil_abre" onClick="afed('#perfil_edit,#perfil_fecha','#perfil_abre,#perfil,#menu_perfil','','',2);"></div>
-			<div class="page m_page" style="margin-top: 21px">
-
-  <!--<div class="toolbar tabbar tabbar-labels">
-    <div class="toolbar-inner">
-    <a href="#tab-1" class="tab-link tab-link-active">
-      <i class="icon icon-fill f7-icons ios-only">email_fill<span class="badge color-green">5</span></i>
-      <i class="icon material-icons md-only">email<span class="badge color-green">5</span></i>
-      <span class="tabbar-label">Inbox</span>
-    </a>
-    <a href="#tab-2" class="tab-link">
-      <i class="icon f7-icons ios-only">today<span class="badge color-red">7</span></i>
-      <i class="icon material-icons md-only">today<span class="badge color-red">7</span></i>
-      <span class="tabbar-label">Calendar</span>
-    </a>
-    <a href="#tab-3" class="tab-link">
-      <i class="icon f7-icons ios-only">cloud<span class="badge color-red">1</span></i>
-      <i class="icon material-icons md-only">file_upload<span class="badge color-red">1</span></i>
-      <span class="tabbar-label">Upload</span>
-    </a>
-    </div>
-  </div>-->
-  <!--<div class="page-content">
-    <div class="list">
-      <ul>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-bullhorn" style="margin-left: 3px;font-size: 2em;"></span> Comunicado</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-unlock-alt" style="font-size: 2em;"></span> Liberacao</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-calendar" style="font-size: 2em;"></span> Reservas</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-envelope-o" style="font-size: 2em;"></span> Entregas</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-		<li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-pie-chart" style="font-size: 2em;"></span> Enquetes</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-		<li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-file-o" style="font-size: 2em;"></span> Documentos</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-		<li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-warning" style="font-size: 2em;"></span> Ocorrencias</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-		<li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-paw" style="font-size: 2em;"></span> Pet's</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-		<li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title"><span class="fa fa-camera" style="font-size: 2em;"></span> Camera</div>
-              <div class="item-after"><span class="badge">0</span></div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>-->
-
-			<div class="page-content" style="padding-top:0px">
-                <div class="list components-list searchbar-found" style=" color: #414141">
-					<ul>
-					<li>
-					<a class="item-content item-link" href="/accordion/">
-					<div class="item-media"><i class="fa fa-bullhorn"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Comunicados</div>
-					<span class="circle_m" style="background-color: #0073b7;"><strong>1</strong></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/action-sheet/">
-					<div class="item-media"><i class="fa fa-unlock-alt"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Liberacao</div>
-					<span class="circle_m" style="background-color: #f49645;"><strong>2</strong></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/autocomplete/">
-					<div class="item-media"><i class="fa fa-calendar"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Reservas</div>
-					<span class="circle_m" style="background-color: #00b76b;"><strong>5</strong></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/badge/">
-					<div class="item-media"><i class="fa fa-envelope-o"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Entregas</div>
-					<span class="circle_m" style="background-color: #00b76b;"><strong>8</strong></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/buttons/">
-					<div class="item-media"><i class="fa fa-pie-chart"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Enquetes</div>
-					<span class="circle_m" style="background-color: #ebee39;"></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/calendar/">
-					<div class="item-media"><i class="fa fa-file"></i></div>
-					<div class="item-inner">
-					<div class="item-title" >Documentos</div>
-					<span class="circle_m" style="background-color: #f65858;"></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/cards/">
-					<div class="item-media"><i class="fa fa-warning"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Ocorrencias</div>
-					<span class="circle_m" style="background-color: #a850cd;"></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/checkbox/">
-					<div class="item-media"><i class="fa fa-paw"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Pet's</div>
-					<span class="circle_m" style="background-color: #0073b7;"></span>
-					</div>
-					</a>
-					</li>
-					<li>
-					<a class="item-content item-link" href="/chips/">
-					<div class="item-media"><i class="fa fa-camera"></i></div>
-					<div class="item-inner">
-					<div class="item-title">Camera</div>
-					<span class="circle_m" style="background-color: #00b76b;"></span>
-					</div>
-					</a>
-					</li>
-                </div>
-			</div>
-				
-			  <div id="menu_perfil" style="position:relative;margin-top: 217px;margin-left: 27px;">
-                <!--<div class="row container" style="width:100%;margin-bottom: 6px;" >
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-bullhorn" style="margin-left: 3px;font-size: 2em;"></span></br>
-						<span style="margin-left: -31px;">Comunicado</span>
-					    <div class="f_m_notification">
-							<span class="m_notification">5</span>
-						</div>
-					</div>
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-unlock-alt" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -23px;">Liberação</span>
-					</div>
-				</div>
-				
-			    <div class="row container" style="width:100%;margin-bottom: 6px;" >
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-calendar" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -22px" >Reservas</span>
-					</div>
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-envelope-o" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -21px;" >Entregas</span>
-					</div>
-				</div>
-				
-				<div class="row container" style="width:100%;margin-bottom: 6px;" >
-					<div class="n_new col-xs-5" style="background-color:#f4f4f4;/* color: white; */">
-						<span class="fa fa-pie-chart" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -22px;" style="font-size: 2em;">Enquetes</span>
-					</div>
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-file-o" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -33px;">Documentos</span>
-					</div>
-				</div>
-			
-			    <div class="row container" style="width:100%;margin-bottom: 6px;" >
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-warning" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -31px;">Ocorrências</span>
-					</div>
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-paw" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -8px;">Pet's</span>
-					</div>
-				</div>
-	
-	            <div class="row container" style="width:100%;margin-bottom: 6px;" >
-					<div class="n_new col-xs-5" style="background-color: #f4f4f4;/* color: white; */">
-						<span class="fa fa-camera" style="font-size: 2em;"></span></br>
-						<span style="margin-left: -10px;">Camera</span>
-					</div>
-					<div class=" col-xs-5" style="">
-					</div>
-				</div>-->
-					
-					<!--<div class=" " onClick="carrega_comunicados(0);" id="menu_comunicado">
-					</div>
+                <div id="menu_perfil">
 				<div class="smenu button" onClick="carrega_comunicados(0);" id="menu_comunicado">
 					<div id="icone" class="icone" style="background-image:url(data:image/png;base64,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);border-color:#53c7ec);">
 					</div>
@@ -710,12 +464,12 @@
 					<span>Documentos</span> 
 			</div>
 			<!-- Botao Ocorrencias -->
-			<!--<div class="smenu button" onClick="carrega_ocorrencias(0)" id="menu_ocorrencia">
+			<div class="smenu button" onClick="carrega_ocorrencias(0)" id="menu_ocorrencia">
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP4SURBVGhD1ZlNSBRhGMdH0F1BKghCOhRBhEZ0iuhQhocCCQzKDAqiTt018NSlQxpFeQ3rZoc+zY7t+rGrblsY+ZHZx+oKFZmBUOImrtv79jzTMzaz++zsfO26/uGHu+/Mzvt7dt533plVKaaInopKEfaPi5B/DF9T8/qJCPs6ZNgvEXxNzesjIlS2F7791P8C/Clso83FHxHyPdfkV4uANtpc3BH9/rp0eQ3cRrsVZ2S/UgqTdoKTR9RtsA/t7iyBqZVjgenk12B8RXrN5HgHK24g5L9IKs4SiCe/cJ27pX96Xi4PbTPInqs9oKJvgyvSd/FS2Ug69sN17gXxkcsGUYQrAIGr0lXSsR+uc7cMxuLyz8CmDFGTApbkYPl2UrIX7PB6cE5WNUdVbgR/sFJ2+DZ8PkMSyVYAApfVTlKylqe9keHuvojU0/5oSFZfiq6K3BlJ2qb7dRSEyjMEEfMC/EKESveTXu509w29Si/g1kP3BcxGallBxKwABCb0IOlZD4risKmG4YPyN3ucD6Gxd49ZMY1cBSAwlE6SmrVwIk7ojSdkIrKbldKwVEDYF5MTio/0coeTccLH8XZWyAliwNdEernDydglNDUnk4NbWRk9rRf2qHDb9MCEnhcvlM2kaB5OSIObpBxvo82sSDpWC0CgiHZSNA+KZlsHONl07o4syVQ4c9FyCy5upMjHyjpglbnhRuiUv/Y7QV0Twv4uUuVjZR3IJ6ThPngwr9YBO1D37sMdvBBQ9+7DHVyDm7ReQd27DyeuwXXsFdS9+3DihYC6dx88mNfPA1ag7p3Hy3XACaThPIVaB3piv+XYg/tytuWsXDxdJVNHKlTEIeU9cA84JfcpZaRlP9hJtnWAm3x2CHR2yV8ndkpZo5gCRcTEQaWelOxFk+XgpCzxZlmOXmlhZbMhahQBhbTB2CohNWvhxN0yc82evB4sgtSshRNww+iTLikPlxjFjldmtiHYhtt0beqZsDOcOAmn4IRNNKSN+cYdUs7OSPnstrEIfI1tuA330X0GzsInyxMbO/ZqHcCrjV5E1m/5J6hFK0KT14L74L66z+LViRT55ON3oVjTGYNEhigG33Nt+rMDwFAy/6ErH78L/WzYZZBQ4YrQh5FHoIAPpGoeFPXqeSB1dEOGiEq2IrLII1DAAimahxNxyrovING4BkPIy39w4P2OQYSTx/dcW1oROSexluDMSl0wnvzMCdmloJfRfAQXH3UR0onkfSHzOngbAKdf6IXyeiuRj8A32KaXsgN8tpUOs3bBW2IsIuNMmKB+805up/MZdTjBwwonrAf3WfNhky3qxK5RGkASHx/xMXIR3i/A30m1DbbxE1ZR/gJq5jn26XdcegAAAABJRU5ErkJggg==);"></div>
 				<span>Ocorrências</span> 
 			</div>		
 			<!-- Botao Pets -->
-			<!--<div class="smenu button" onClick="carrega_pets(0);" id="menu_pet">
+			<div class="smenu button" onClick="carrega_pets(0);" id="menu_pet">
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARzSURBVEhL3VXrTxxVFN8Yo8ZXtDH+A35pYmJMTExM/GJijPpB42cT/WCCQoFS3KE82l1sDZayC27Z1yzM3ju7zMy67G4KLY9CtxQoAgXKSym1FNiCCuWxbYHy5njPMENBWlv8YuIvOZm553fub87de85Zw38O85fkGWsq/azoIP3EbA4+pblV4Br9yGOc5t4bbCm2p50ZtK9RluejPmmOvXeazeYnkcOni63R3yTLc87DYvffk3gsOIzU2BZRFpbHIoB2SZHnijmagJw9gyY2B5R5nWsNKQtOo5imbtwLPNn04syvIVUEbbI3BHy2WKNxNbf6yrc4jOOzaYO6cS/gs2hrfDC8JTT9i/qRKHKebPECrnUO4zBe3bgX2DmS11sTWNGFOiuUJUcGzULOydEjXZXKks51VweWHRnkuLrxn8Cnk/2CSRxmFqfHfAHrVyX73Jl0tP9cYKOvVllzHaY3Cr71PYex+GTrYfQjz+JGnInSy+zp8eSI4+zZczKFvqYK68Bq8eTQ3yd7N3/nZkVeKzXR/IJvfK+6OO8xB0dM1kMl+wqT6OuWAzTBmky/sCST/cyfizzG4UmaFFktFNTBpPRqVFGYQj+IUmmrkhZjEcCMNFoFq54T7iwx3hJUVi74pXt2js7a0ryfarTBnUVji7H7d1hPpXhhsvC+RhsMrKm+7j6rbOgBaKVH6YRGG6wp9D36nRhHkfaIAvVEgpmBcnByZNqSwL+CMSx+cvv+niplozBVUEteRUEy/SgqylN6wNLNCLDMRjTawBrv8ljn5k95dygMrAGhuyoAHRXKCjtRPsbwWeI47tM1GsrkO9Yk8qEqgMCxwLK6PjMQWseAtrAydSqdnECuKIm86TsuzuibVWNit6+FYP5GBNgkmLIn2Z93ZnhPdZzerLjZqyFMcmzXuLGk0reK00m/O1Mcsh0iMgbYUvwvssu9dvPy/cbTjXU5dJwOqKVtN5KwOYF/lt1ZRekR8U9Vg+lp0ruhV4Q1VfyYfWC8p/qnrV7ZbneuhyH8Y5l6qvOkbI5V15WTifSNHRX1MGileSVo8ce3j45H2UhrEEiub8bF0XDRQfKSJrcb2AfskqdH24IPFHqksVOxqlplxTCC96TJ7oQrk14cbnn87B9mLeXyssNIcjTZnWAzaWKoOQjtYQkG6iToOVPGjL2fk6CD+a4yX3t5GQw3ytAs+WGsVYYo8cNklwK1vB/i/QGoLPbDUFMQp7I6sXfBwdHYeAuF2AU3/HHJDeONzJo232MNPEz87IbRKA+32lwwVMfDbIcbfqvl4XaXGwarPXC32wUDZzwweN4PrOKoJrsTdiM1NxBh/V6/C/6tLfS5QM7zLhYdEN/RZHcC/0I9Od7eaqewPlzPq9m2KiVw1i6sSt97F70mMi8cJXNeZsREFpQ8YanOVbrWFSwBjB+s4kH+QVgVTKRYk3wwWJ0/YUsjn9NcWkvNtNKWJiRgo+ZzpS9oIVvAuWVJEt5l04ITzbTOa/aG2IR+W6P/dzAY/gIecTXtJrV8AwAAAABJRU5ErkJggg==);"></div>
 				<span>Pet's</span> 
 			</div>
@@ -727,7 +481,7 @@
 				<div id="icone" class="icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAyASURBVHhe7V1ZbBxJGQ4gbgQCCSQk4IlDXC/LC0hICMQT8ALSSkgIlqcVycw4tuNNnJCsN/GySdZzeGzH9tjT1XP4HMfxGTvxxE7s3IlzL0G570022WySJbtkLxf/31PVXX04PqbH9nrqkz553H/VX93/N3X8fc0SCQkJCQkJCQmJ+USgqPFrAQ/Z6PeSQb9HTTsx4CWRioLoT1gViVwh7Et+GcS4HPCqdCqCME/8BbGfsaoSuYDfQ4qdgj8Z/V61m1WVyAWgd6g82J2VhJ7aodg42qKIglxiVSVyAQhwMw/23jaF0nuNNt48FjUE8ZBrrKpELiAFmQdUrEh8scJL/gTD0yorYWV1ggc75Sf0SJdiYzomDFke8sDJj6RBiFGJ36P8IfJ85NNMAgMBX+zXUOB1HlDJuSOMPhdMq1LMG2DjO06FJeeGMAK9GSxMflMTBDakuCG0PE5V/yBNVqclc0xSMUCDBXFDFA/xa4JAInefb+zuOE7Hjt2WnCNuaz9mCOJVj2qC8A3I9Ohlx4qSueHA4FlDEI960ibI4PA5uuvgVck5YrJu2BAEUgubIO3bjtKtgycl54hVq9v02Ac95DkpyDwSY63H3qN+VPGPxDfyXpBU7zht7x53tOWapC5tCOJVD2liIISNeSFIc/M+WvevLljiJ/TjDsJyv7Z8G03GRh3r5IJbXtqqtw/zRymTI38E6eg/TiObevRjnYy1Gzppqu+Yow+32AH+xRwk4CE/ZXLkiSAD5m9kCJgqJHSkOEp3A7sKFRpmNmT1mjZNQEdfLjCh7tHbsp2I5QbkYhUkGh7Uj5EUEHp5ZQO9Xxox8eaqBtq+3DhBir3JyZcbrDf31FomRQaCYVEKgpM2zhF4fBEfobdWMRFWN9AHaxWNb8Fn3HYX2KyLEqMtqYOOPrPjCVq5IqnHvMKr/p5JkQE3IBejILH6XfrxHSlp1AL/1ppG+mhDE327vDlD+PxgTVSzXYTew8tHKwcdfWbD5tb9uv+Al/wvUNT+eSZFBobRXUGU6p20alULDa+cPWte7KBtnYcNvzAXNPj7aXgSv9getivuR/3GzPBQCbxbmukJj9YnDDEYUaD7qzO9R4FhDetg+6IvNxgNDejxhsm8n8lgQDcC3RIk1WucNMuWjYHtut+W9oOOZUz0wYQtrJL4ZF4P2zHYGPS3N5jF4MRhDMuk2LCFAnM/blHMzv3LlKVMBgPciHSvh5zQViqi79kxRuPqbt0vCl1Z0uRQzmAVtIvt8zqYc2jbYf7QBMEeIg5XnCAStyeZIDVr23U/bhDjK+5rZUH8O0wGA2IBN4csXDZiEtaU3Dtrtm0Vhivut+84bWpy9ovtWZerOA/w4zu3MjOHPFhHbII8XJfpQbdh0sdlMZbH4U70lS1N2blPPcskMEMvAHRTkIXClrYDxvHBN5/3AlxdPSqL00cvJeAz9B42fwxBXsLLY77g5HO2FHMhmD82MgnM0AsAF6MgyNr1nfoxDhRF6ZtMFCsPwCqMl8OxHhcRTv5mQ2t2DvPHL5kEZvACyMUqCK7UQsXG2j9WoNDDEHxMEK9AQngcPrctz6yskJi3YM9y8jVbitk50u8lZZt8Dd9iMhgQCy1WQZAY4PAUCwJkqChBk/ExRx/Z0JKda8SbG0LLoz9gUmQgFljMgiDbu4/SyOZeGvTFTIHRCMviule6zHmPazRn5yZ61DYmRQaicbELwonL54Q6SkltmpItQzROdtNUT+6ui4jZOd7Z09Iwqv8PgpxnUmSgG4D5IshcU8zOY6GddOz4Hf3/vDzbO98Uk+T+gbNSkPkkxlSM8aELb0tB5pNidh4p76an79PpC+L22lsSklIhO9/WPj4zQfBkWiI26nieSHLm1K5UwnKax3fv6XszE0Qyd1QDOzQxpCALgHUvdtKjV96ZuSDRTf20dl0HrVndLjkFIduf4HGDz3dCRcnb4ZKme+EXWh5Wl7Y93rKm/YlSsf2Dnu5T9MTt93UxZiTIrrErjndpS9pZvapVj9vIgeunxIBPRSlIDigFWWCcF0FGx1+nanAHrSxK0o7kQZMNufvgdVq/oYtWrmiifT1nbPah4Ysw3rbRmjUpOrT7os3eC3WwLvpAX1Z7R+KQ1jbuw9i42YZMVKVpZWGStpF9NtueI7dow8s9tLI4SXs6T9rs+HBS7doOLbA7hs7Z7AMDZ2m4pAUm5K10eN81m10UpHff9cfpy+/R6bJ77w297owEwSByW9ULLSYbsrvzhG5vfKXXZm+uNy7K4GerHetwO/qy2jEg3D40cslkG9l/VbfhGVTRhuzve023R9Z32eypuHFpF5/5s9pJwLgW39l6xGafF0F27jqv2yqLm0w2ZHeHcbtPQ3m3zZ6sMZ4Qws9WO9bhdvRltWOb3I77ItpwX7kNKdqQvT2ndVvtuq02e3vMOCWuBnfa7AqsOLl9a/Nhm10KsoAFCa9qnajG4W+arCoV7s3iD3tycAPSLsgF3RZ2EKRLEKQRxmurval2RLfjZ6sd63A7+rLasU1ux30RbSZBfDGTDdknCFJX9nRB4pUOglQY1zA6m58+ZGVDEGQdkyID0WgVBCdGnJDR5rTT6T2XtUkX7TgBW+19vWcgaYprxDHdau9IZO5ERB+7HJ4AxjbRvgX2YRT2RbThggMzYLQrr2432ZA4x4RLmjV7a+OYzY5PwIYKYtrlXKf5C+cNPA8VKkzYvgxINwTxe9RkWVnqM0yKDMQCVkGQew7f1FYhGACrDTmy/5rjDnNioJ2CzYl10YeTDdvEtnEfnOz4hcnsm1kszpEDN+iOtHmoE4nHm3ZY/XHiomZ431VHm0kQj1oY9Cq/nS7xVSb6mxusEAWRz6lPn6Igk95jNRvINznMnPjFxWGYx830SFq2AIf6u07wBjH5rpOnE+c1MT/ye8nNsrKyT7JwZo8Kn/IjmOnl24BmyYpl6l9ZKN1DwKf8CpzfsjYmOTkhoXs34CVeFkL3Ufac+rmAJ/ZHmFP+CT1mk3skb/KDqCptpY2hAdeI/vQAQTvO7btNsh7+/j3sU77OQvfxAux8KQ9aENb0bt0hmOo5pvkzBBEevpeYHDXLar4EAbvHAyc+opYNsYdwn+gf22FNSkwFsZdg9osPbqqR4VmzMbjddDeH7B0zROT5yBdgrX5RF8VFghgX0D9rSmK6wOQJAnjdGtBsiKeug8tiP2ZNSMwUm56PfAWCWBzwqB3wd58Y3ES5SjuCRGcqQCZaN5PHiXJyRywH9Q5j/QqvUoQ/EsBcS2QLWF6X8yBXr1A+fHLD/rZs5I1x0xuz35WTdw7g98S/D4I84YE+tM359eXItGq8EAYSsR7mIn+wcWnzV109N2MBTsAwEZ/mQa5fTSbeu+UsBvaaqmIuBtCj/pm5yQ9gls6+iadsL0VxAalnU5+CoHbqAYal67XDUUcxkEe6Tb3jDdvFnMUOcWka8sR/wTa7grAv/Fm/l2wzAqzSsdbJhyrsHbUrjbJ4yoK5yh/gMlIPgIsXXfxLybeh941x38i+LYROvOEsBhLFEso/xKGUucsfuC0IzkUBb+xvMNy8JQSXdlUR+uEdZyGQd89EaWi5UR6HUuYyv+CWIDg8gY9nYb44w/1xDieUp4qBtuTLxlsVwMd5PBPNXOcXZisI9oTNBeR7fp/6F/DRAN9o/bIwJ66Wzg5PPoFzDhFDDJg3JvCmANZM/kEUBHgLlqeXpiT+mo5Rx8YgrKR2Rgl9fGVqMcZ7TfMGJoKvsl3LT1gEyYrYI4aIQu++5hx8K/+dhoxcOIMLQ9X+vFvmWpGNINgT4htULbM+O6LQ9ydJ9px4alDR6nNf0PMufGyvyLkJUZD9KXIJk7an8frRKPSAKP3vpSj94LZzsJ9GXPaKv3+YEYPcDCxr/C7bpfyGKMjlA9FTTkF0iygintU1iYHtSzEMzIUgE3cb6emdUVpTYgihieFVjzm+0CufkVNBQAjwac4xGGGYasXfUWS7IcGRC0HwnBT+Vm6i3C4E8CHmLqx5CSvcEASHpPv/iWorp+4aQsOFjj1iIuAh6qR3gEtkIArSV6fcdvqJVZEHOxU61qZop0PwZGHzRkKrxesXVnrUj0CILvl769OEKIib9HvUuyBGMLQ0/kPWlMR04JogHvUDEOEkilDhJb/J+4x7tjALQnqAkWnRQzYDV+MEHfCpP5f3SbkEURBXnwqSmB2kIAsMUpAFBinIAgOsivRLrkEPeYZtlpgvBJaR3+FyFXpKmC6hn2CbJSQkJCQk7Fiy5P+Qp6H3kVG7WgAAAABJRU5ErkJggg==);"></div>
 				<span>TESTE</span> 
 			</div>-->
-           <!-- </div>-->
+            </div>
 				
 					  <!--   RELATORIOS SOMENTE NA VERSAO SEGUINTE
 						<div class="smenu" onClick="afed('#relatorios','#home','','',2)">
@@ -735,7 +489,7 @@
 							<span>RelatÃƒÂ³rios</span> 
 						</div>--> 
 
-					  </div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -884,7 +638,7 @@
 						<label for="com_msg"></label>
 					</div>
 				</div>
-				<strong>CORRESPONDÃƒÅ NCIA</strong>
+				<strong>CORRESPONDÃƒÅ NCIA</strong>
 				<div class="configura"> <span>E-mail</span>
 					<div class="switch__container">
 						<input id="cor_email" class="switch switch--shadow" type="checkbox" name="cor_email" value="1">
@@ -990,6 +744,7 @@
 			</form>
 		</div>
 	</div>
+
 
 	<!--    $MORADORES       -->
 
@@ -1305,6 +1060,7 @@
 								<div class="item-inner">
 							  		<div class="item-title">
 										<div class="item-header">Email</div>
+
 										teste@teste.com.br
 							  		</div>
 							  		<div class="item-after">Edit</div>
@@ -1379,7 +1135,7 @@
 		<div id="comunicados" class="pagina comunicados">
 			<div class="view view-comunicados"> 
 				<!-- Initial Page, "data-name" contains page name -->
-				<div data-name="home" class="page" style="background:#EAEBED !important;" >
+				<div data-name="home" class="page">
 					<div class="navbar" style="height: 50px">
 						<div class="navbar-inner"  style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#home','#comunicados','home');"><i class="icon icon-back"></i></a>
 							<div class="title">Comunicados</div>
@@ -1420,7 +1176,7 @@
 							<div class="topo_comunicado">
 								<div class="morador_foto"></div>
 								<span>data</span> <strong>criado</strong> </div>
-								<span style="background-color: #e4ae3a;padding-left: 9px;color: white;"class="comunicado_titulo">titulo</span>
+								<span style="background-color: #e4ae3a;padding-left: 9px;border-radius: 7px;color: white;"class="comunicado_titulo">titulo</span>
 								<div id="txt_comunicado" class="txt_comunicado">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> 
@@ -1464,7 +1220,7 @@
 
 <div id="liberacao2" class="pagina liberacao2">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner" style="padding-left: 16px;"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -1489,7 +1245,7 @@
 				</select>
 			</div>
 			<div class="form-group row">
-				<div class="col-xs-6" style="padding-left: 6px;">
+				<div class="col-xs-6">
 					<div class="item-title item-label" style="margin-top: 15px">&nbsp;&nbsp;Desde:</div>
 					<input class="form-control" type="date" name="de" id="dt_de" >
 				</div>
@@ -1499,7 +1255,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-xs-6" style="padding-left: 6px;">
+				<div class="col-xs-6">
 					<div class="item-title item-label" style="margin-top: 7px">&nbsp;&nbsp;Até:</div>
 					<input type="date" name="ate" id="dt_ate"  class="form-control">
 				</div>
@@ -1523,36 +1279,9 @@
 					<option value="9">9</option>
 				</select>
 			</div>
-			<div class="form-group row" style="margin-top: 10px;">
-				<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-				<div class="col-xs-6">
-					<button class="btn btn-success" id="l_cadastrar" onClick="salva_liberacao()"><span class="fa fa-check"></span> Cadastrar</button>
-				</div>
-				<div class="col-xs-6">
-					<button class="btn btn-danger" id="l_deletar" onClick="liberacao_delete_notifica();"><span class="fa fa-close"></span> deletar</button>
-				</div>
-				
-				<!--<div align="center" class="toolbar toolbar-bottom-md tabbar-labels" style=" position: absolute;width: 100%;bottom: 0;">
-					<div class="toolbar-inner" style="padding: 5px">
-						<div style="width: 40%" onclick="carrega_ocorrencias(0);">
-							<!--<i class="fa fa-trash fa-2x"></i>-->
-							<!--<i class="glyphicon glyphicon-log-out"></i>
-							<br>
-							<label>Cancelar</label>
-						</div>
-						<div style="width: 20%" onclick="app.escondeTeclado();">
-							<i class="material-icons">keyboard_hide</i>
-						</div>
-						<div style="width: 40%" type="button" onclick="ocorrencia_insert();">
-							<i class="glyphicon glyphicon-floppy-disk"></i>
-							<br>
-							<label>Salvar</label>
-
-						</div>
-					<span class="tab-link-highlight"></span></div>
-				</div>-->
-				
-				<!--<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">-->
+			<div>
+				<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">
+				<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
 			</div>
 		</form>
 	</div>
@@ -1731,11 +1460,7 @@
 		<div class="item-title item-label" id="btipo_rg" style="margin-top: 7px; margin-left: 11px; display: none;">&nbsp;Selecione uma pessoa por RG</div>
 	</div>
 	<div id="busca_visitate" class="form-group busca_visitate">
-		<!--<input class="form-control" type="search"   value="">-->
-		<div class="form-group has-feedback">
-			<input type="text" class="form-control" id="visitante_busca" placeholder="Busca" onKeyUp="carrega_visitantes(this.value)">
-			<i class="fa fa-search form-control-feedback"></i>
-		</div>
+		<input class="form-control" type="search" id="visitante_busca" onKeyUp="carrega_visitantes(this.value)" value="">
 	</div>
 	<div id="retorno_visita" class="scroll" style="background-color: #ddd;"> </div>
 </div>
@@ -2505,6 +2230,7 @@
 										<i class="glyphicon glyphicon-floppy-disk"></i>
 										<br>
 										<label>Salvar</label>
+
 										
 									</div>
 								</div>
