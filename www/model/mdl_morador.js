@@ -48,12 +48,18 @@ function carrega_morador_dados(id_morador){
         dataType   : 'json',
 		success: function(retorno){
             
+			$( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
             $( "#mor_id_morador" ).val(id_morador);
 			$( "#mor_nome" ).val(retorno[0]['nome']);
 			$( "#mor_rg" ).val(retorno[0]['rg']);
 			$( "#mor_cpf" ).val(retorno[0]['telefone']);
 			$( "#mor_nascimento" ).val(retorno[0]['nascimento']);
-			$( "#mor_parentesco" ).val(retorno[0]['descricao']);
+			var paretesco_dados = '';
+			for (x in retorno[0]['parentescos']) {
+				paretesco_dados = paretesco_dados + '<option value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
+			}
+			$( "#mor_parentesco" ).html(paretesco_dados);
+			$( "#mor_parentesco" ).val(retorno[0]['parentesco']);
 			$( "#mor_email" ).val(retorno[0]['email']);
 			if(retorno[0]['masculino'] == 1){
                 document.getElementById("mor_homem").checked = true;
@@ -71,6 +77,40 @@ function carrega_morador_dados(id_morador){
                 document.getElementById("mor_controlcondo").checked = false;
 			}
 			$( "#mor_msg" ).val(retorno[0]['observacao']);
+			
+			var veiculos_dados = '';
+			for (x in retorno[0]['veiculos']) {
+				veiculos_dados = veiculos_dados + 
+					'<li>'+
+					'<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador">'+
+					'<div class="item-media" style="width: 44px; height: 44px; background-size: 44px; background-position: center center; background-image:url(data:image/jpeg;base64,'+retorno[0]['veiculos'][x]['foto']+'); border-radius: 22px; margin-top:15px;"></div>'+
+					'<div class="item-inner">'+
+					'<div class="item-title-row">'+
+					'<div class="item-title">'+retorno[0]['veiculos'][x]['marca_desc']+' - '+retorno[0]['veiculos'][x]['modelo_desc']+' - '+retorno[0]['veiculos'][x]['cor_desc']+'</div>'+
+					'</div>'+
+					'<div class="item-subtitle">'+retorno[0]['veiculos'][x]['placa']+'</div>'+
+					'</div>'+
+					'</a>'+
+					'</li>';
+			}
+			$( "#retorno_veiculo_morador" ).html(veiculos_dados);
+			
+			/*var contatos_dados = '';
+			for (x in retorno[0]['contatos']) {
+				contatos_dados = contatos_dados + 
+					'<li>'+
+					'<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador">'+
+					'<div class="item-media" style="width: 44px; height: 44px; background-size: 44px; background-position: center center; background-image:url(data:image/jpeg;base64,'+retorno[0]['veiculos'][x]['foto']+'); border-radius: 22px; margin-top:15px;"></div>'+
+					'<div class="item-inner">'+
+					'<div class="item-title-row">'+
+					'<div class="item-title">'+retorno[0]['veiculos'][x]['marca_desc']+' - '+retorno[0]['veiculos'][x]['modelo_desc']+' - '+retorno[0]['veiculos'][x]['cor_desc']+'</div>'+
+					'</div>'+
+					'<div class="item-subtitle">'+retorno[0]['veiculos'][x]['placa']+'</div>'+
+					'</div>'+
+					'</a>'+
+					'</li>';
+			}
+			$( "#retorno_veiculo_morador" ).html(veiculos_dados);*/
             afed('#morador','#moradores','','',2,'morador');
         
         },
