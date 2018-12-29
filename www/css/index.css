@@ -1457,7 +1457,8 @@ input, textarea {
 	height: 70px;
 	float:left;
 	margin:0;
-	background-color:#F5F5F5;
+	background-color:#ffffff;
+	
 }
 
 .home .corpo .menu .perfil .user_foto {
@@ -1611,6 +1612,7 @@ input, textarea {
 	height:4%;
 	float:left;
 	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFySURBVHhe7dO/SsNQFAbwDA5aRwfBycFBHPKXkDjdV3PwZRx8B0F8hILi0qW7u2D9hHNAQm+rzW1ycvv94GCbpCf3+8CEiIiIiIiIiIhoPefcsXw0LU3TU/kYRl3XZ2VZvlRVtcLf56IoLuSWKTjfDPOI+cK8Y67lVj9YdIdZ6aCEN2sl4FwznOvp9zkxD3K7Hyy+7yw2VQLOsy78z4QpoGmacyxbdJabKAHn8IX/wL9uLo/1l2XZJZaaKgHv94bHmW7lsXAslYD3DhteWSgB7xsnvBqzBLxn3PBqjBKw30Z4NWQJ2GsrvBqiBOyzGV7tswTs8YbH9VYeG9+GEl53LQG/n0Z4FbIE/G5a4VWIEvD8NMOrPiXguWmHV7uUgPtxhFf/KQHX4wqv/lICvscZXm0p4Srq8GpDCZ/da5i4witfCZ2JM7zaUkLc4ZWnhMMIr6SEuYRfHlR45Zw7yvP8pm3bE7lERERERERERERE+5Yk3xRF2iaSV9DiAAAAAElFTkSuQmCC);
+	
 	
 	
 	background-size:95%;
