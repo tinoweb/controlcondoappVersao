@@ -33,6 +33,23 @@ body, html {
   	flex-direction: column;
 }
 
+#border_m{
+	    width: 58px;
+    height: 58px;
+    padding: 14px;
+    border: 2px solid #3578e5;
+    margin-left: -4px;
+    margin-top: -4.1px;
+    border-radius: 50%;
+    /* border: 2px solid #3b80d2; */
+    /* border-radius: 50%; */
+    /* box-sizing: border-box; */
+    /* padding: 2px 2px; */
+    box-sizing: border-box;
+    padding: 2px 2px;
+    border-color: #0073b7;
+}
+
 .list .item-link .item-inner, .links-list a, .media-list .item-link .item-title-row, li.media-item .item-link .item-title-row{
 	background-image:none !important;
 	
@@ -66,7 +83,7 @@ body, html {
 
 
 #menu #perfil{
-	padding-top: 5px;
+	padding-top: 8px;
 }
 /*
 .title{
@@ -1449,7 +1466,7 @@ input, textarea {
 	height: 70px;
 	float:left;
 	margin:0;
-	background-color:#F5F5F5;
+	background-color:#ffffff;
 }
 
 .home .corpo .menu .perfil .user_foto {
