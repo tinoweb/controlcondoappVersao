@@ -1,5 +1,28 @@
 // JavaScript Document
 
+/* Abre e Fecha Menu */
+setTimeout(function(){
+	$(".panel-open").on("click",function(){
+         var status = $(this).attr("class");
+		
+         if(status.indexOf("aberto") >=0){
+			$(".panel-backdrop").next().addClass("panel-cover").removeClass("aberto");
+			$(this).removeClass("aberto");
+			 //alert(1);
+		}else{
+			$(this).addClass("aberto");
+			$(".panel-backdrop").next().removeClass("panel-cover").removeClass("aberto").addClass("panel panel-left panel-reveal");
+			//alert(2);
+		}
+
+	});
+	$
+},2000);
+
+setTimeout(function(){
+	$("#fast_menu span").eq(3).attr("onclick","atualiza_notificacao()");
+},3000);
+
 function carrega_notificacoes(tipo){
 	localStorage.setItem('TELA_ATUAL','home');
 var dados = '';
