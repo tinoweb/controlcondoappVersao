@@ -835,7 +835,7 @@
 				<form name="form_moradores" id="form_moradores" class="list">
 					<ul>
 						<li class="item-content">
-							<div class="item-media" id="foto_visitante" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
+							<div class="item-media" id="foto_morador_edit" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
 							<!--<div onClick="foto_visitante();" id="foto_visitante" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); float: left"></div>-->
 							<div class="item-inner">
 								<p><button class="col button button-fill color-green"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
@@ -907,7 +907,10 @@
 							<div class="item-inner">
 								<div class="item-title item-label">Parentesco</div>
 								<div class="item-input-wrap">
-									<input type="text" id="mor_parentesco" name="parentesco" value="">
+									<!--<input type="text" id="mor_parentesco" name="parentesco" value="">-->
+									<select name="parentesco" id="mor_parentesco">
+										
+									</select>
 									<span class="input-clear-button"></span>
 								</div>
 							</div>
@@ -1003,7 +1006,7 @@
 			<!-- Second tab, should have "tab" class and unique id attribute -->
 			<div class="tab" id="tab-2">
 				<div class="list media-list">
-  					<ul>
+  					<ul id="retorno_veiculo_morador">
     					<li>
       						<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador">
         						<div class="item-media"><img src="http://lorempixel.com/88/88/fashion/2" width="44"/></div>
