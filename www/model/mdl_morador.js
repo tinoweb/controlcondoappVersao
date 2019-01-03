@@ -82,7 +82,7 @@ function carrega_morador_dados(id_morador){
 			for (x in retorno[0]['veiculos']) {
 				veiculos_dados = veiculos_dados + 
 					'<li>'+
-					'<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador">'+
+					'<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador" onClick="veiculo_marca_modelo_cor('+retorno[0]['veiculos'][x]['id']+',1)">'+
 					'<div class="item-media" style="width: 44px; height: 44px; background-size: 44px; background-position: center center; background-image:url(data:image/jpeg;base64,'+retorno[0]['veiculos'][x]['foto']+'); border-radius: 22px; margin-top:15px;"></div>'+
 					'<div class="item-inner">'+
 					'<div class="item-title-row">'+
@@ -95,22 +95,22 @@ function carrega_morador_dados(id_morador){
 			}
 			$( "#retorno_veiculo_morador" ).html(veiculos_dados);
 			
-			/*var contatos_dados = '';
+			var contatos_dados = '';
 			for (x in retorno[0]['contatos']) {
 				contatos_dados = contatos_dados + 
 					'<li>'+
-					'<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador">'+
-					'<div class="item-media" style="width: 44px; height: 44px; background-size: 44px; background-position: center center; background-image:url(data:image/jpeg;base64,'+retorno[0]['veiculos'][x]['foto']+'); border-radius: 22px; margin-top:15px;"></div>'+
+					'<a href="#" class="item-link item-content sheet-open" data-sheet=".contato-morador" >'+
 					'<div class="item-inner">'+
-					'<div class="item-title-row">'+
-					'<div class="item-title">'+retorno[0]['veiculos'][x]['marca_desc']+' - '+retorno[0]['veiculos'][x]['modelo_desc']+' - '+retorno[0]['veiculos'][x]['cor_desc']+'</div>'+
+					'<div class="item-title">'+
+					'<div class="item-header">'+retorno[0]['contatos'][x]['descricao']+'</div>'+
+					''+retorno[0]['contatos'][x]['contato']+''+
 					'</div>'+
-					'<div class="item-subtitle">'+retorno[0]['veiculos'][x]['placa']+'</div>'+
+					'<div class="item-after"></div>'+
 					'</div>'+
 					'</a>'+
 					'</li>';
 			}
-			$( "#retorno_veiculo_morador" ).html(veiculos_dados);*/
+			$( "#retorno_contato_morador" ).html(contatos_dados);
             afed('#morador','#moradores','','',2,'morador');
         
         },
