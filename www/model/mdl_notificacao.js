@@ -67,7 +67,7 @@ function atualiza_notificacao(){
 				   $("#n_enquetes").html("<strong>"+retorno.Enquete+"</strong>").show();
 				}
 				
-				if(retorno.Comunicdo == "0"){
+				if(retorno.Comunicado == "0"){
 				   $("#n_comunicado").css("display","none");
 				}else{
 				   $("#n_comunicado").html("<strong>"+retorno.Comunicado+"</strong>").show();
@@ -81,5 +81,39 @@ function atualiza_notificacao(){
 			}
 		});							
 	},500);
-    
+		 
+}
+
+
+function atualiza_notificacao_modulo(id_modulo,id,el){
+	
+	"use strict";
+	var id_usuario_condominio = $("#ID_USER").attr("value");
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/atualiza_notificacao.php',
+		crossDomain: true,
+		beforeSend : function() { },
+		complete   : function() { },
+		data       : { 
+						         usuario:id_usuario_condominio,
+			            tipo_notificacao:id_modulo,
+			              id_notificacao:id,
+						            tipo:'atualiza_modulo'
+					 },
+		dataType   : 'json',
+		success: function(retorno){
+
+			/* Nao visualizado */
+			if(retorno['retorno']!=null){
+				$(el).css("background","red");
+			}
+
+
+		},
+		error : function() {
+
+		}
+	});		
+		
 }
