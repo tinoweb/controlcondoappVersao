@@ -292,7 +292,7 @@
 			</form>
 		</div>
 		<div id="login_perfil" class="login_perfil"> <img alt="" src="img/logoicon.png">
-			<form id="form_perfil" style="border-radius: 10px">
+			<form id="form_perfil">
 				<span id="texto_login" class="texto_login">Selecione o seu Condomínio</span>
 				<select name="perfil" id="perfil_login" class="form-control">
 				</select>
@@ -366,20 +366,20 @@
 			<div class="topo_sub" style="background-color: #333b4a"> <span>Liberações</span> </div>
 			<div class="block" style="text-align: center; margin-top: 140px" id="libt1">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style="background-image: url(img/new_visit.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Incluir Visitante</button>
+					<button class="col button button-big button-raised button-fill link popup-open" onClick="adiciona_liberacao()" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><span class="fa fa-check"></span> Incluir Visitante</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt2">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;">Minha lista de visitas</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><span class="fa fa-list"></span> Minha lista de visitas</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt3">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style="background-image: url(img/visits.png); background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%">Últimos Acessos</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><span class="fa fa-sign-in"></span> Últimos Acessos</button>
 				</p>
 			</div>
-            <div id="liberacao_desativada" class="fale_usuarios list searchbar-found" style=" margin-top: 150px; text-align: center; display:none">Função Desativada</div>
+            <div id="liberacao_desativada" class="fale_usuarios list searchbar-found" style=" margin-top: 150px; text-align: center; display:none"><span class="fa fa-list"></span> Função Desativada</div>
 		</div>
 						
 <!-- SWIPER MENU -->
@@ -410,22 +410,22 @@
 					<div id="perfil_fecha" class="perfil_fecha" onClick="afed('.m_page,#perfil_abre,#perfil,#menu_perfil','#perfil_edit,#perfil_fecha','','',2);"></div>
 					<div style="width: 100%">
 						<div class="bt_perfil_edit button" onClick="location.reload();" id="troca_perfil">
-							<div id="icone" ><i class="material-icons" style="color:#0073b7;font-size: 23px; float: left">sync</i></div>
+							<div id="icone" ><i class="material-icons" style="color:#0073b7;font-size: 23px; float: left;color:#0073b7">sync</i></div>
 							<span>Trocar Perfil</span> 
 						</div>
 						<div class="bt_perfil_edit button" onClick="carrega_perfil();">
-							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px"></i></div>
+							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px;color:#0073b7"></i></div>
 							<span>Editar Perfil</span> 
 						</div>
 						<div class="bt_perfil_edit button" onClick="carrega_morador();" id="edit_moradores">
-							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px"></i></div>
+							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px;color:#0073b7"></i></div>
 							<span>Editar Moradores</span> 
 						</div>
 						<div class="bt_perfil_edit button" onClick="notificacao_configuracao();">
-							<div id="icone"><i class="fa fa-exclamation-circle" style="font-size: 23px"></i></div>
+							<div id="icone"><i class="fa fa-exclamation-circle" style="font-size: 23px;color:#0073b7"></i></div>
 							<span>Notificação</span> 
 						</div>
-						<div class="bt_perfil_edit button" onClick="logout();">
+						<div class="bt_perfil_edit button" onClick="logout();" style="color:#0073b7">
 							<div id="icone" ><i class="material-icons">exit_to_app</i></div>
 							<span>Sair</span> 
 						</div>
@@ -441,13 +441,13 @@
 					<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 				</div>
 				<div class="col-xs-1">
-					<span class="panel-left fa fa-cogs panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;margin-left: 31px;"></span>
+					<span class="col button button-raised button-round panel-left panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;margin-left: 1px;"><i class="fa fa-cogs"></i></span>
 				</div>
 			</div>
 			
 			<div id="perfil_abre" class="perfil_abre" onClick="afed('#perfil_edit,#perfil_fecha','#perfil_abre,#perfil,#menu_perfil','','',2);"></div>
 			    <div class="page m_page" style="margin-top: 177px">
-                 <div class="page-content" style="padding-top:0px">
+                 <div class="page-content" style="padding-top:0px;height: 77% !important;">
 					<div class="list components-list searchbar-found" style=" color: #414141">
 						<ul>
 						<li  onClick="carrega_comunicados(0);">
@@ -3301,4 +3301,4 @@
 </script>
 
 </body>
-</html>>>
+</html>

@@ -67,7 +67,7 @@ function atualiza_notificacao(){
 				   $("#n_enquetes").html("<strong>"+retorno.Enquete+"</strong>").show();
 				}
 				
-				if(retorno.Comunicdo == "0"){
+				if(retorno.Comunicado == "0"){
 				   $("#n_comunicado").css("display","none");
 				}else{
 				   $("#n_comunicado").html("<strong>"+retorno.Comunicado+"</strong>").show();
