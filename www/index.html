@@ -61,6 +61,7 @@
 	<script src="model/mdl_cameras.js"></script>
 	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
+	<script src="model/mdl_contatos.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -835,6 +836,7 @@
 		<!-- First tab is active by default - additional "tab-active" class -->
 			<div class="tab tab-active" id="tab-1">
 				<form name="form_moradores" id="form_moradores" class="list">
+					<input type="hidden" name="foto" id="mor_foto_up" value="">
 					<ul>
 						<li class="item-content">
 							<div class="item-media" id="foto_morador_edit" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
@@ -921,14 +923,16 @@
 							<div class="item-inner">
 								<div class="item-title item-label"></div>
 								<div class="item-input-wrap" style="width: 50%; float: left; margin: 0;">
+									<input type="hidden" name="usar_control_condo" value="0">
 									<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
-										<input type="checkbox" id="mor_controlcondo" name="usar_control_condo" value="" />
+										<input type="checkbox" id="mor_controlcondo" name="usar_control_condo" value="1" />
 										<i class="icon icon-checkbox"></i>
 										<div class="item-title" style="width:100%; float:left">Control Condo</div>
 									</label>
 									<span class="input-clear-button"></span>
 								</div>
 								<div class="item-input-wrap" style="width: 50%; float: left; margin: 0;">
+									<input type="hidden" name="autorica" value="0">
 									<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
 										<input type="checkbox" id="mor_autoriza" name="autorica" value="1" />
 										<i class="icon icon-checkbox"></i>
@@ -960,7 +964,7 @@
 							<div class="item-inner">
 								<div class="item-input-wrap">
 									<input type="hidden" name="id" id="mor_id_morador">
-									<button class="col button button-fill color-green"><i class="icon material-icons color-white">save</i>Salvar</button>
+									<button type="button" class="col button button-fill color-green" onClick="atualiza_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
 									<!--<input type="button" value="" onClick="atualiza_morador();">-->
 								</div>
 							</div>
@@ -1079,12 +1083,15 @@
     				<div class="sheet-modal-inner">
       					<div class="block">
 							<form name="form_morador_contato" id="form_morador_contato" class="list">
+								<input type="hidden" name="id_contato" id="mor_id_contato">
 								<ul>
 									<li class="item-content item-input">
 										<div class="item-inner">
 											<div class="item-title item-label">Tipo</div>
 											<div class="item-input-wrap">
-												<input type="text" id="mor_tipo_contato" name="tipo_contato" value="">
+												<select name="tipo" id="mor_tipo_contato">
+
+												</select>
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -3249,4 +3256,4 @@
 </script>
 
 </body>
-</html>>>
+</html>

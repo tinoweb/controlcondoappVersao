@@ -99,7 +99,7 @@ function carrega_morador_dados(id_morador){
 			for (x in retorno[0]['contatos']) {
 				contatos_dados = contatos_dados + 
 					'<li>'+
-					'<a href="#" class="item-link item-content sheet-open" data-sheet=".contato-morador" >'+
+					'<a href="#" class="item-link item-content sheet-open" data-sheet=".contato-morador" onClick="contatos('+retorno[0]['contatos'][x]['id_contato']+',1)" >'+
 					'<div class="item-inner">'+
 					'<div class="item-title">'+
 					'<div class="item-header">'+retorno[0]['contatos'][x]['descricao']+'</div>'+
@@ -124,20 +124,20 @@ function carrega_morador_dados(id_morador){
 
 function atualiza_morador(){
 	var dados = $( "#form_moradores" ).serialize();
-    //alert(dados);
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
-		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-		success: function(retorno){
-			//alert(retorno);
-            afed('#moradores','#morador','','',2,'moradores');
-            carrega_morador();
-		},
-		error: function(data){
-			alert('erro');
-	    }	
-	});	
+    alert(dados);
+//	$.ajax({
+//		type: 'POST',
+//		url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
+//		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+//		success: function(retorno){
+//			//alert(retorno);
+//            afed('#moradores','#morador','','',2,'moradores');
+//            carrega_morador();
+//		},
+//		error: function(data){
+//			alert('erro');
+//	    }	
+//	});	
 }
 
 function insert_morador(){
