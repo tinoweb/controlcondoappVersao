@@ -88,6 +88,7 @@
 			});        
 			push.on('notification', function(data) {
                 //alert('Notificacao');
+				atualiza_notificacao();
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
@@ -105,7 +106,7 @@
                 
 				 
 				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val() ){
-					atualiza_notificacao();
+					
 					if(titulo_notifica == 'Chat'){
 						if(localStorage.getItem('TELA_ATUAL') == 'chat'){
 							carrega_msg_eviadas($( "#DADOS #ID_USER" ).val(), $( "#DADOS #CHAT_USER" ).val());
@@ -481,7 +482,7 @@
 						<div class="item-media"><i class="fa fa-envelope-o"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Entregas</div>
-						<span class="circle_m" style="background-color: #00b76b;" id="n_entregas"></span>
+						<span class="circle_m" style="background-color: green;" id="n_entregas"></span>
 						</div>
 						</a>
 						</li>
@@ -499,7 +500,7 @@
 						<div class="item-media"><i class="fa fa-file"></i></div>
 						<div class="item-inner">
 						<div class="item-title" >Documentos</div>
-						<span class="circle_m" id="n_documento" style="background-color: #00b76b;"></span>
+						<span class="circle_m" id="n_documento" style="background-color: green;"></span>
 						</div>
 						</a>
 						</li>
@@ -517,7 +518,7 @@
 						<div class="item-media"><i class="fa fa-paw"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Pet's</div>
-						<span class="circle_m" id="n_pet"  style="background-color: #00b76b;"></span>
+						<span class="circle_m" id="n_pet"  style="background-color: green;"></span>
 						</div>
 						</a>
 						</li>
@@ -526,7 +527,7 @@
 						<div class="item-media"><i class="fa fa-camera"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Camera</div>
-						<span class="circle_m" id="n_camera"  style="background-color: #00b76b;"></span>
+						<span class="circle_m" id="n_camera"  style="background-color: green;"></span>
 						</div>
 						</a>
 						</li>
@@ -3300,4 +3301,4 @@
 </script>
 
 </body>
-</html>
+</html>>>
