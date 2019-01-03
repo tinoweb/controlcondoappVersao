@@ -60,6 +60,7 @@
 	<script src="model/mdl_pet.js"></script>
 	<script src="model/mdl_cameras.js"></script>
 	<script src="model/mdl_notificacao.js"></script>
+	<script src="model/mdl_veiculos.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -292,7 +293,7 @@
 			</form>
 		</div>
 		<div id="login_perfil" class="login_perfil"> <img alt="" src="img/logoicon.png">
-			<form id="form_perfil">
+			<form id="form_perfil" style="border-radius: 0px">
 				<span id="texto_login" class="texto_login">Selecione o seu Condomínio</span>
 				<select name="perfil" id="perfil_login" class="form-control">
 				</select>
@@ -366,20 +367,20 @@
 			<div class="topo_sub" style="background-color: #333b4a"> <span>Liberações</span> </div>
 			<div class="block" style="text-align: center; margin-top: 140px" id="libt1">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" onClick="adiciona_liberacao()" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><span class="fa fa-check"></span> Incluir Visitante</button>
+					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><i class="fa fa-check"></i> Incluir Visitante</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt2">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style="background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><span class="fa fa-list"></span> Minha lista de visitas</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;;background:#0073b7"><i class="fa fa-list"></i> Minha lista de visitas</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt3">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><span class="fa fa-sign-in"></span> Últimos Acessos</button>
+					<button class="col button button-big button-raised button-fill link popup-open" data-popup=".popup-liberacao2"  style="background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#0073b7"><i class="fa fa-sign-in"></i> Últimos Acessos</button>
 				</p>
 			</div>
-            <div id="liberacao_desativada" class="fale_usuarios list searchbar-found" style=" margin-top: 150px; text-align: center; display:none"><span class="fa fa-list"></span> Função Desativada</div>
+            <div id="liberacao_desativada" class="fale_usuarios list searchbar-found" style=" margin-top: 150px; text-align: center; display:none">Função Desativada</div>
 		</div>
 						
 <!-- SWIPER MENU -->
@@ -410,22 +411,22 @@
 					<div id="perfil_fecha" class="perfil_fecha" onClick="afed('.m_page,#perfil_abre,#perfil,#menu_perfil','#perfil_edit,#perfil_fecha','','',2);"></div>
 					<div style="width: 100%">
 						<div class="bt_perfil_edit button" onClick="location.reload();" id="troca_perfil">
-							<div id="icone" ><i class="material-icons" style="color:#0073b7;font-size: 23px; float: left;color:#0073b7">sync</i></div>
+							<div id="icone" ><i class="material-icons" style="color:#0073b7;font-size: 23px; float: left">sync</i></div>
 							<span>Trocar Perfil</span> 
 						</div>
 						<div class="bt_perfil_edit button" onClick="carrega_perfil();">
-							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px;color:#0073b7"></i></div>
+							<div id="icone"><i class="fa fa-user-circle-o" style="color:#0073b7;font-size: 23px"></i></div>
 							<span>Editar Perfil</span> 
 						</div>
 						<div class="bt_perfil_edit button" onClick="carrega_morador();" id="edit_moradores">
-							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px;color:#0073b7"></i></div>
+							<div id="icone"><i class="fa fa-user-circle-o" style="color:#0073b7;font-size: 23px"></i></div>
 							<span>Editar Moradores</span> 
 						</div>
 						<div class="bt_perfil_edit button" onClick="notificacao_configuracao();">
-							<div id="icone"><i class="fa fa-exclamation-circle" style="font-size: 23px;color:#0073b7"></i></div>
+							<div id="icone"><i class="fa fa-exclamation-circle" style="color:#0073b7;font-size: 23px"></i></div>
 							<span>Notificação</span> 
 						</div>
-						<div class="bt_perfil_edit button" onClick="logout();" style="color:#0073b7">
+						<div class="bt_perfil_edit button" style="color:#0073b7;" onClick="logout();">
 							<div id="icone" ><i class="material-icons">exit_to_app</i></div>
 							<span>Sair</span> 
 						</div>
@@ -441,13 +442,13 @@
 					<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 				</div>
 				<div class="col-xs-1">
-					<span class="col button button-raised button-round panel-left panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;margin-left: 1px;"><i class="fa fa-cogs"></i></span>
+					<span class="col button button-raised button-round panel-left panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;"><i class="fa fa-cogs"></i> </span>
 				</div>
 			</div>
 			
 			<div id="perfil_abre" class="perfil_abre" onClick="afed('#perfil_edit,#perfil_fecha','#perfil_abre,#perfil,#menu_perfil','','',2);"></div>
 			    <div class="page m_page" style="margin-top: 177px">
-                 <div class="page-content" style="padding-top:0px;height: 77% !important;">
+                 <div class="page-content" style="padding-top:0px;height:88%">
 					<div class="list components-list searchbar-found" style=" color: #414141">
 						<ul>
 						<li  onClick="carrega_comunicados(0);">
@@ -965,72 +966,12 @@
 							</div>
 						</li>
 					</ul>
-
-					<!--<div class="form-group mor_form">
-						<div class="item-title item-label">Nome</div>
-						<input type="text" name="nome" id="mor_nome" class="form-control">
-					</div>
-					<div class="form-group mor_form">
-						<div class="item-title item-label">RG</div>
-						<input type="text" name="rg" id="mor_rg" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
-					</div>
-					<div class="form-group mor_form">
-						<div class="item-title item-label">CPF</div>
-						<input type="text" name="cpf" id="mor_cpf" class="form-control" >
-					</div>
-					<div class="form-group mor_form ">
-						<div class="col-xs-6">
-							<div class="item-title item-label">Nascimento</div>
-							<input type="date" name="nascimento" id="mor_nascimento" class="form-control" >
-						</div>
-						<div class="col-xs-6">
-							<div class="item-title item-label">Sexo</div>
-							<input type="radio" name="masculino" value="0" id="mor_homem">
-							<img alt="" src="img/homem.png">
-							<input type="radio" name="masculino" value="1" id="mor_mulher">
-							<img alt="" src="img/mulher.png">
-						</div>
-					</div>
-					<div class="form-group mor_form">
-						<div class="item-title item-label">Parentesco</div>
-						<input type="text" name="parentesco" disabled id="mor_parentesco" class="form-control" >
-					</div>
-					<div class="form-group mor_form">
-						<div class="item-title item-label">Observação</div>
-						<textarea name="observacao" id="mor_msg" class="form-control"></textarea>
-					</div>
-
-					<input type="hidden" name="id" id="mor_id_morador">
-					<input type="button" value="" onClick="atualiza_morador();">-->
 				</form>
 			</div>
 			<!-- Second tab, should have "tab" class and unique id attribute -->
 			<div class="tab" id="tab-2">
 				<div class="list media-list">
-  					<ul id="retorno_veiculo_morador">
-    					<li>
-      						<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador">
-        						<div class="item-media"><img src="http://lorempixel.com/88/88/fashion/2" width="44"/></div>
-        						<div class="item-inner">
-          							<div class="item-title-row">
-            							<div class="item-title">Don't Stop Me Now</div>
-          							</div>
-          							<div class="item-subtitle">Queen</div>
-        						</div>
-      						</a>
-    					</li>
-    					<li>
-      						<a href="#" class="item-link item-content">
-        						<div class="item-media"><img src="http://lorempixel.com/88/88/fashion/2" width="44"/></div>
-        						<div class="item-inner">
-          							<div class="item-title-row">
-            							<div class="item-title">Don't Stop Me Now</div>
-          							</div>
-          							<div class="item-subtitle">Queen</div>
-        						</div>
-      						</a>
-    					</li>
-					</ul>
+  					<ul id="retorno_veiculo_morador"></ul>
 				</div>
 				<div class="sheet-modal veiculo-morador" style="height: 80%;">
     				<div class="toolbar">
@@ -1042,9 +983,10 @@
     				<div class="sheet-modal-inner">
       					<div class="block">
 							<form name="form_morador_veiculo" id="form_morador_veiculo" class="list">
+								<input type="hidden" name="id_veiculo" id="id_carro">
 								<ul>
 									<li class="item-content">
-										<div class="item-media" id="foto_visitante" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
+										<div class="item-media" id="foto_morador_veiculo" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
 										<div class="item-inner">
 											<p><button class="col button button-fill color-green"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
 											<p><button class="col button button-fill color-green"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
@@ -1054,7 +996,9 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Marca</div>
 											<div class="item-input-wrap">
-												<input type="text" id="mor_email" name="email" value="">
+												<select name="marca" id="marca_carro">
+
+												</select>
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -1063,7 +1007,9 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Modelo</div>
 											<div class="item-input-wrap">
-												<input type="text" id="mor_email" name="email" value="">
+												<select name="marca" id="modelo_carro">
+
+												</select>
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -1072,7 +1018,9 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Cor</div>
 											<div class="item-input-wrap">
-												<input type="text" id="mor_email" name="email" value="">
+												<select name="marca" id="cor_carro">
+
+												</select>
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -1081,7 +1029,7 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Placa</div>
 											<div class="item-input-wrap">
-												<input type="text" id="mor_email" name="email" value="">
+												<input type="text" id="placa_carro" name="placa" value="">
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -1095,7 +1043,7 @@
 			<!-- Third tab, should have "tab" class and unique id attribute -->
 			<div class="tab" id="tab-3">
 				<div class="list">
-					<ul>
+					<ul id="retorno_contato_morador">
 						<li>
 						  	<a href="#" class="item-link item-content sheet-open" data-sheet=".contato-morador">
 								<div class="item-inner">
