@@ -18,6 +18,7 @@ function carrega_ocorrencias(tipo){
     var dados = '';
 	var dado  = '';
 	var cor_status='yellow';
+	var cor  = '';
     var dados_form = $( "#form_busca_ocorrencias" ).serialize();
 	$.ajax({
 		type: 'POST',
@@ -25,7 +26,7 @@ function carrega_ocorrencias(tipo){
         crossDomain: true,
         beforeSend : function() { },
         complete   : function() { },
-        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#f_ocorrencia").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo+'&'+dados_form,
+        data       : 'id_usuario_condominio='+$( "#DADOS #ID_USER" ).val()+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#f_ocorrencia").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo+'&'+dados_form,
         dataType   : 'json',
 		
 		success: function(retorno){            
@@ -40,8 +41,17 @@ function carrega_ocorrencias(tipo){
 				}else{
 					cor_status='yellow';
 				}
+				
+				console.log(retorno[x].visualizacao);
+				if(retorno[x].visualizacao != null ){
+				    cor = 'background:#e85252 !important;color:white';
+			     }else{
+					cor = '';
+				 }
+				
+				
                 dado = '<div class="card" onClick="carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
-							+'<div class="card-header">'
+							+'<div class="card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº  <span style="background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;"">'+retorno[x].id_ocorrencia+'</span></span>'
 												
 								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x].situacao_descricao+'</label></div>'	
