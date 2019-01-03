@@ -59,6 +59,7 @@
 	<script src="model/mdl_morador.js"></script>
 	<script src="model/mdl_pet.js"></script>
 	<script src="model/mdl_cameras.js"></script>
+	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
@@ -88,6 +89,7 @@
 			});        
 			push.on('notification', function(data) {
                 //alert('Notificacao');
+				atualiza_notificacao();
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
 				localStorage.setItem("NOT_TYPE",data.additionalData.tipo);
@@ -103,9 +105,9 @@
                     },800);
                 }
                 
-				 //alert('Notificacao');
+				 
 				 if(localStorage.getItem("NOT_COND") == $( "#DADOS #ID_CONDOMINIO" ).val() ){
-
+					
 					if(titulo_notifica == 'Chat'){
 						if(localStorage.getItem('TELA_ATUAL') == 'chat'){
 							carrega_msg_eviadas($( "#DADOS #ID_USER" ).val(), $( "#DADOS #CHAT_USER" ).val());
@@ -280,7 +282,7 @@
 				</div>
 				<div style="text-align: center">
 					
-					<span class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="login_user();" style="width: 50%" >
+					<span class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="atualiza_notificacao();login_user();" style="width: 50%" >
 					<i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
 					</span>
 					
@@ -320,7 +322,7 @@
 						<div class="right"> <a href="#" onClick="afed('#info','#home','','',2,'info');"> <img alt="" src="img/help.png" width="30"> </a> </div>
 					</div>
 				</div>
-				<div id="fast_menu" class="fast_menu navbar" style="position: inherit"> 
+				<div id="fast_menu" class="fast_menu navbar" style="position: inherit" > 
 					<!-- MENU RAPIDO --> 
 				</div>
 				<div class="swiper-container corpo" id="corpo">
@@ -382,147 +384,151 @@
 		</div>
 						
 <!-- SWIPER MENU -->
+						
 		<div id="menu" class="swiper-slide menu">
-			<div id="perfil" class="perfil" style="margin-top: 111px">
-					<div class="col-xs-9">
-						<div class="user_foto"><div id="border_m"></div></div>
-						<strong class="perfil_nome">Nome do Morador</strong>
-						<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
-					</div>
-				    <div class="col-xs-1">
-						<span class="fa fa-cogs" onclick="afed('#perfil_edit,#perfil_fecha',' .m_page,#perfil_abre,#perfil,#menu_perfil','','',2);" style="font-size: 172%;color: #414141;margin-top: 11px;"></span>
-					 	<!--<i class="f7-icons size-14" onclick="afed('#perfil_edit,#perfil_fecha',' .m_page,#perfil_abre,#perfil,#menu_perfil','','',2);" style="font-size: 42px;">settings</i>-->
-					</div>
-				
-				
-			</div>
-			<div id="perfil_edit" class="perfil_edit" style="margin-top: 105px">
-				<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
-				<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
 			
-				<div class="TagUser">
-					<div class="TagUserCenter"> 
-						<span class="TagUserSindico" id="gsin" >Síndico</span> 
-						<span class="TagUserAdministracao" id="gadm">Administração</span> 
-						<span class="TagUserAdministradora" id="gadm2" >Administradora</span>
-						<br>
-						<span class="TagUserDiretoria" id="gdir">Diretoria</span> 
+			 <div class="panel panel-left panel-reveal" id="menu_lateral" style="background: #fbfbfb;margin-top: 105px;box-shadow: 1px 0px 3px #d1d1d1;">
+			  <div class="content-block">
+				<div id="perfil_edit" class="perfil_edit" style="margin-top: 8px;">
+					<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
+					<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
+                    <div class="TagUser">
+						<div class="TagUserCenter"> 
+							<span class="TagUserSindico" id="gsin" >Síndico</span> 
+							<span class="TagUserAdministracao" id="gadm">Administração</span> 
+							<span class="TagUserAdministradora" id="gadm2" >Administradora</span>
+							<br>
+							<span class="TagUserDiretoria" id="gdir">Diretoria</span> 
+						</div>
 					</div>
+					<div class="perfil_condominio" style="">Nome do Condominio</div>
+					<br>
+					<br>
+					<div style="border-bottom: 1px solid #cacaca; width: 100%; float: left; padding-bottom: 10px;">
+						<div id="bloco">Bloco</div>
+						<div id="apto">Apto</div>
+					</div>
+					<div id="perfil_fecha" class="perfil_fecha" onClick="afed('.m_page,#perfil_abre,#perfil,#menu_perfil','#perfil_edit,#perfil_fecha','','',2);"></div>
+					<div style="width: 100%">
+						<div class="bt_perfil_edit button" onClick="location.reload();" id="troca_perfil">
+							<div id="icone" ><i class="material-icons" style="color:#0073b7;font-size: 23px; float: left">sync</i></div>
+							<span>Trocar Perfil</span> 
+						</div>
+						<div class="bt_perfil_edit button" onClick="carrega_perfil();">
+							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px"></i></div>
+							<span>Editar Perfil</span> 
+						</div>
+						<div class="bt_perfil_edit button" onClick="carrega_morador();" id="edit_moradores">
+							<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px"></i></div>
+							<span>Editar Moradores</span> 
+						</div>
+						<div class="bt_perfil_edit button" onClick="notificacao_configuracao();">
+							<div id="icone"><i class="fa fa-exclamation-circle" style="font-size: 23px"></i></div>
+							<span>Notificação</span> 
+						</div>
+						<div class="bt_perfil_edit button" onClick="logout();">
+							<div id="icone" ><i class="material-icons">exit_to_app</i></div>
+							<span>Sair</span> 
+						</div>
+					</div>
+			</div>
+			</div>
+			</div>
+
+			<div id="perfil" class="perfil" style="margin-top: 111px">
+				<div class="col-xs-9">
+					<div class="user_foto"><div id="border_m"></div></div>
+					<strong class="perfil_nome">Nome do Morador</strong>
+					<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 				</div>
-				<div class="perfil_condominio" style="">Nome do Condominio</div>
-				<br>
-				<br>
-				<div style="border-bottom: 1px solid #cacaca; width: 100%; float: left; padding-bottom: 10px;">
-					<div id="bloco">Bloco</div>
-					<div id="apto">Apto</div>
-				</div>
-				<div id="perfil_fecha" class="perfil_fecha" onClick="afed('.m_page,#perfil_abre,#perfil,#menu_perfil','#perfil_edit,#perfil_fecha','','',2);"></div>
-				<div style="width: 100%">
-					<div class="bt_perfil_edit button" onClick="location.reload();" id="troca_perfil">
-						<div id="icone" ><i class="material-icons" style="font-size: 23px; float: left">sync</i></div>
-						<span>Trocar Perfil</span> 
-					</div>
-					<div class="bt_perfil_edit button" onClick="carrega_perfil();">
-						<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px"></i></div>
-						<span>Editar Perfil</span> 
-					</div>
-					<div class="bt_perfil_edit button" onClick="carrega_morador();" id="edit_moradores">
-						<div id="icone"><i class="fa fa-user-circle-o" style="font-size: 23px"></i></div>
-						<span>Editar Moradores</span> 
-					</div>
-					<div class="bt_perfil_edit button" onClick="notificacao_configuracao();">
-						<div id="icone"><i class="fa fa-exclamation-circle" style="font-size: 23px"></i></div>
-						<span>Notificação</span> 
-					</div>
-					<div class="bt_perfil_edit button" onClick="logout();">
-						<div id="icone" ><i class="material-icons">exit_to_app</i></div>
-						<span>Sair</span> 
-					</div>
+				<div class="col-xs-1">
+					<span class="panel-left fa fa-cogs panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;margin-left: 31px;"></span>
 				</div>
 			</div>
+			
 			<div id="perfil_abre" class="perfil_abre" onClick="afed('#perfil_edit,#perfil_fecha','#perfil_abre,#perfil,#menu_perfil','','',2);"></div>
 			    <div class="page m_page" style="margin-top: 177px">
                  <div class="page-content" style="padding-top:0px">
 					<div class="list components-list searchbar-found" style=" color: #414141">
 						<ul>
-						<li>
+						<li  onClick="carrega_comunicados(0);">
 						<a class="item-content item-link" href="/accordion/">
 						<div class="item-media"><i class="fa fa-bullhorn"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Comunicados</div>
-						<span class="circle_m" style="background-color: #0073b7;"><strong>1</strong></span>
+						<span class="circle_m" style="background-color: #0073b7;" id="n_comunicado"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li  onClick="inicia2(2);">
 						<a class="item-content item-link" href="/action-sheet/">
 						<div class="item-media"><i class="fa fa-unlock-alt"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Liberacao</div>
-						<span class="circle_m" style="background-color: #f49645;"><strong>2</strong></span>
+						<span class="circle_m" style="background-color: #f49645;" id="n_liberacao"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li onClick="carrega_areas();">
 						<a class="item-content item-link" href="/autocomplete/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Reservas</div>
-						<span class="circle_m" style="background-color: #00b76b;"><strong>5</strong></span>
+						<span class="circle_m" style="background-color: #00b76b;" id="n_reservas"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li onClick="carrega_entregas(0);">
 						<a class="item-content item-link" href="/badge/">
 						<div class="item-media"><i class="fa fa-envelope-o"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Entregas</div>
-						<span class="circle_m" style="background-color: #00b76b;"><strong>8</strong></span>
+						<span class="circle_m" style="background-color: green;" id="n_entregas"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li onClick="carrega_enquetes(0);">
 						<a class="item-content item-link" href="/buttons/">
 						<div class="item-media"><i class="fa fa-pie-chart"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Enquetes</div>
-						<span class="circle_m" style="background-color: #ebee39;"></span>
+						<span class="circle_m" id="n_enquetes" style="background-color: #f39c12;"></span> 
 						</div>
 						</a>
 						</li>
-						<li>
+						<li onClick="carrega_documentos(0);" >
 						<a class="item-content item-link" href="/calendar/">
 						<div class="item-media"><i class="fa fa-file"></i></div>
 						<div class="item-inner">
 						<div class="item-title" >Documentos</div>
-						<span class="circle_m" style="background-color: #f65858;"></span>
+						<span class="circle_m" id="n_documento" style="background-color: green;"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li onClick="carrega_ocorrencias(0)" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-warning"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Ocorrencias</div>
-						<span class="circle_m" style="background-color: #a850cd;"></span>
+						<span class="circle_m" id="n_ocorrencias" style="background-color: #605ca8;"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li  onClick="carrega_pets(0);" >
 						<a class="item-content item-link" href="/checkbox/">
 						<div class="item-media"><i class="fa fa-paw"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Pet's</div>
-						<span class="circle_m" style="background-color: #0073b7;"></span>
+						<span class="circle_m" id="n_pet"  style="background-color: green;"></span>
 						</div>
 						</a>
 						</li>
-						<li>
+						<li onClick="carrega_cameras();">
 						<a class="item-content item-link" href="/chips/">
 						<div class="item-media"><i class="fa fa-camera"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Camera</div>
-						<span class="circle_m" style="background-color: #00b76b;"></span>
+						<span class="circle_m" id="n_camera"  style="background-color: green;"></span>
 						</div>
 						</a>
 						</li>
@@ -2775,10 +2781,12 @@
 
 				<script type="text/javascript">
 					app.initialize();
+					
 					$(document).ajaxStart(function(){
 						var pas = localStorage.getItem('TELA_ATUAL');
 						if(pas != 'chat_msg' && pas != "chat"){
 							$("#wait").css("display", "block");
+							
 						}
 					});
 					$(document).ajaxComplete(function(){

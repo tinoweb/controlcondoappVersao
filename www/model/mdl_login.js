@@ -233,6 +233,7 @@ function select_user(id_usuario_condominio=0) {
 			data: dados,
 			success: function(retorno){
                 if(retorno[0]['usar_control_condo'] == 1){
+						
                     $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
                     $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                     $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);
@@ -335,10 +336,11 @@ function select_user(id_usuario_condominio=0) {
                     inicia(0);
                     localStorage.setItem('TELA_ATUAL','home');	
                     //carrega_liberacao(0);
+					atualiza_notificacao();
                 }else{
                     notifica('Perfil/Perfil usuário inválido/Fechar',0,0);
                 }
-             
+                
 			}
 		});
 	}else{

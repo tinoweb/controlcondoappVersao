@@ -33,6 +33,12 @@ body, html {
   	flex-direction: column;
 }
 
+.panel-backdrop {
+    width: 71% !important;
+	z-index:1;
+	display:none !important;
+}
+
 #border_m{
 	    width: 58px;
     height: 58px;
@@ -1525,7 +1531,7 @@ input, textarea {
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
-	border:3.8px solid #D6D6D6;
+    border: 2.8px solid #f1f1f1;
 	background-color:#F5F5F5;
 	display:table;
 	margin:auto;
@@ -1613,6 +1619,7 @@ input, textarea {
 	width:70%;
 	float:left;
     margin: 3.5% 0 0% 2%;
+	color:#414141;
 }
 
 .home .corpo .menu .perfil_abre {
@@ -3195,9 +3202,9 @@ input, textarea {
 	border: 1px solid #4167b2;
 }
 .TagUserSindico{
-	background-color:#a1cf77;
-	color: #000;
-	border: 1px solid #a1cf77;
+	background-color: #00b76b;
+    color: #ffffff;
+    border: 1px solid #00b76b;
 }
 .TagUserAdministracao{
 	background-color:#ee5569;
