@@ -141,11 +141,19 @@
 						);
 				 }
 				
-				push.clearNotification(() => {
+				
+				  
+				
+				
+				setTimeout(function(){
+					
+					 push.clearNotification(() => {
 						console.log('success');
 					}, () => {
 						console.log('error');
 					}, 145);
+				},3000);
+				
 				
 				  
 				}); 
