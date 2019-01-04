@@ -640,7 +640,7 @@ var app = {
         }
 
         function onFail(message) {
-            alert('Câmera Indisponível');
+            //alert('Câmera Indisponível');
         }    
     },
     

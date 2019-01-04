@@ -38,6 +38,9 @@ function carrega_morador(){
 }
 
 function carrega_morador_dados(id_morador){
+	if(id_morador == 0){
+		afed('#morador','#moradores','','',2,'morador');
+	}else{
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/morador_get.php',
@@ -54,6 +57,7 @@ function carrega_morador_dados(id_morador){
 			$( "#mor_rg" ).val(retorno[0]['rg']);
 			$( "#mor_cpf" ).val(retorno[0]['telefone']);
 			$( "#mor_nascimento" ).val(retorno[0]['nascimento']);
+			$( "#mor_unidade" ).val(retorno[0]['unidade']);
 			var paretesco_dados = '';
 			for (x in retorno[0]['parentescos']) {
 				paretesco_dados = paretesco_dados + '<option value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
@@ -119,25 +123,27 @@ function carrega_morador_dados(id_morador){
 
         }
 	});	
+	}
 
 }
 
 function atualiza_morador(){
+	
 	var dados = $( "#form_moradores" ).serialize();
-    alert(dados);
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
-//		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-//		success: function(retorno){
-//			//alert(retorno);
-//            afed('#moradores','#morador','','',2,'moradores');
-//            carrega_morador();
-//		},
-//		error: function(data){
-//			alert('erro');
-//	    }	
-//	});	
+    //alert(dados);
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
+		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+		success: function(retorno){
+			//alert(retorno);
+            afed('#moradores','#morador','','',2,'moradores');
+            carrega_morador();
+		},
+		error: function(data){
+			alert('erro');
+	    }	
+	});	
 }
 
 function insert_morador(){
