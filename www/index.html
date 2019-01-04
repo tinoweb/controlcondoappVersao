@@ -141,14 +141,11 @@
 						);
 				 }
 				
-				setTimeout( function(){ 
-                // borrar notificaciones del centro de notificaciones
-                push.clearAllNotifications(function() {
-                    console.log('success clear notifications');
-                }, function() {
-                    console.log('error clear notifications');
-                });
-            }, 3000);
+				push.clearNotification(() => {
+						console.log('success');
+					}, () => {
+						console.log('error');
+					}, 145);
 				
 				  
 				}); 
@@ -3282,4 +3279,4 @@
 </script>
 
 </body>
-</html>>>
+</html>>>>>
