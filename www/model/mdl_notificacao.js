@@ -85,7 +85,7 @@ function atualiza_notificacao(){
 }
 
 
-function atualiza_notificacao_modulo(id_modulo,id,el){
+function check_leitura(id_modulo,id){
 	
 	"use strict";
 	var id_usuario_condominio = $("#ID_USER").attr("value");
@@ -99,21 +99,13 @@ function atualiza_notificacao_modulo(id_modulo,id,el){
 						         usuario:id_usuario_condominio,
 			            tipo_notificacao:id_modulo,
 			              id_notificacao:id,
-						            tipo:'atualiza_modulo'
+						            tipo:'check_leitura'
 					 },
-		dataType   : 'json',
 		success: function(retorno){
-
-			/* Nao visualizado */
-			if(retorno['retorno']!=null){
-				$(el).css("background","red");
-			}
-
-
+			atualiza_notificacao();
 		},
 		error : function() {
 
 		}
-	});		
-		
+	});			
 }

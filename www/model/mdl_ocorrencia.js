@@ -50,7 +50,7 @@ function carrega_ocorrencias(tipo){
 				 }
 				
 				
-                dado = '<div class="card" onClick="carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
+                dado = '<div class="card" onClick="check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº  <span style="background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;"">'+retorno[x].id_ocorrencia+'</span></span>'
 												

@@ -28,6 +28,7 @@ function carrega_enquetes(tipo){
 	var dados_grupo = '';
 	var grupos 		= '';
 	var grupo  		= '';
+	var cor         = '';
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
@@ -43,6 +44,13 @@ function carrega_enquetes(tipo){
 			var cont=0;			
             for (x in retorno) {
 				cont++;
+				
+				if(retorno[x].visualizacao != null ){
+				    cor = 'background:#e85252 !important;color:white';
+			     }else{
+					cor = 'background: #1ea742;color:white;margin-bottom: 7px;';
+				 }
+				
 				dados_grupo = retorno[x]['grupo'];
                 grupos = '';
                 for(y in dados_grupo){
@@ -58,7 +66,7 @@ function carrega_enquetes(tipo){
                     grupos = '<div style="float:left; width: 100%;"enquete_votos>'+grupos+'</div>';
                 }                
 
-                dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="cabecalho_card card-header"></div> <div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span></div>';
+                dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div> <div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span></div>';
 
                 //dado = '<div class="enquete" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos"><button type="button" class="btn btn-info">VOTOS</button></span><span class="enquete_periodo">Validade<br> de '+retorno[x]['data_inicio']+' até '+retorno[x]['data_final']+'</span></div>';
                 dados = dados + dado;
@@ -350,6 +358,7 @@ function atualiza_enquete(id){
 		success: function(retorno){
 			//alert(retorno);
 			carrega_enquete(id);
+			check_leitura(3,id);
 			//alert(retorno);
 		},
         error      : function() {
