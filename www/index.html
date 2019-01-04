@@ -141,13 +141,14 @@
 						);
 				 }
 				
-				 push.clearAllNotifications();
-				
-						   push.clearAllNotifications(function() {
-						console.log('success clear notifications');
-					}, function() {
-						console.log('error clear notifications');
-					});
+				setTimeout( function(){ 
+                // borrar notificaciones del centro de notificaciones
+                push.clearAllNotifications(function() {
+                    console.log('success clear notifications');
+                }, function() {
+                    console.log('error clear notifications');
+                });
+            }, 3000);
 				
 				  
 				}); 
