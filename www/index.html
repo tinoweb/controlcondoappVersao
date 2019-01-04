@@ -90,14 +90,12 @@
 			}); 
 			
 			
-				setTimeout(function(){
 					
 					 push.clearNotification(() => {
 						alert(1);
 					}, () => {
 						alert(1);
 					}, 145);
-				},3000);
 				
 			
 			push.on('registration', function(data) { 
@@ -108,6 +106,12 @@
 			push.on('notification', function(data) {
 				
 			
+				 push.clearNotification(() => {
+						alert(1);
+					}, () => {
+						alert(1);
+					}, 145);
+				
 				
                 //alert('Notificacao');
 				atualiza_notificacao();
