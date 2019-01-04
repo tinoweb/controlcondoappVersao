@@ -2962,7 +2962,9 @@
             var icone = 'fa fa-cogs';
         }else if(localStorage.getItem("NOT_TYPE") == 21){
             var icone = 'glyphicon glyphicon-calendar';
-        }else{
+        }else if(localStorage.getItem("NOT_TYPE") == 99){
+			  var icone = 'glyphicon glyphicon-bullhorn';	 
+	    }else{
             var icone = 'glyphicon glyphicon-home';
         }
 
@@ -2975,6 +2977,11 @@
           closeButton: true,
           closeOnClick: true,
           on: {
+			  
+			notification_receive: function () {
+				
+				alert(1);
+			},
             click: function () {
 //                app2.dialog.alert('Notification closed');
                 var id_reg    = localStorage.getItem("NOT_ID");
@@ -3018,6 +3025,8 @@
                         }else if(tipo==13){
                             
                         }else if(tipo==14){
+                           
+                        }else if(tipo==99){
                            
                         }
                     }else{
@@ -3256,4 +3265,4 @@
 </script>
 
 </body>
-</html>
+</html>>>
