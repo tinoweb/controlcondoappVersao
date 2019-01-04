@@ -100,14 +100,6 @@
 			});
 			push.on('notification', function(data) {
 				
-					push.clearAllNotifications(
-					  () => {
-						alert(1);
-					  },
-					  () => {
-						alert(2);
-					  }
-					);
 			
 				
                 //alert('Notificacao');
@@ -152,6 +144,8 @@
 						['Sim','Nao']  // buttonName
 						);
 				 }
+				
+				 push.clearAllNotifications();
 				}); 
 
 			push.on('error', function(e) { 
