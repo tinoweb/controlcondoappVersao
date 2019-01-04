@@ -627,6 +627,44 @@ var app = {
             //alert('Câmera Indisponível');
         }    
     },
+	
+    foto_mor: function() {
+		alert('vai camera');
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+        function onSuccess(imageURI) { 
+            $( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#mor_foto_up' ).val(imageURI);
+        }
+
+        function onFail(message) {
+            //alert('Câmera Indisponível');
+        }    
+    },
+    
+    foto_mor2: function() {
+        
+	   navigator.camera.getPicture(onSuccess, onFail, {  
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL, 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+        }); 
+        
+        function onSuccess(imageURI) {
+            
+            $( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#mor_foto_up' ).val(imageURI);
+
+        }
+
+        function onFail(message) {
+            //alert('Câmera Indisponível');
+        }    
+    },
+
     setupPush: function() {
         console.log('calling push init');
         var push = PushNotification.init({
