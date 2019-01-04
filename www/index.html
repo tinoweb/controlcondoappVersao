@@ -72,14 +72,7 @@
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
 		
-		push.clearAllNotifications(
-		  () => {
-			alert(1);
-		  },
-		  () => {
-			alert(2);
-		  }
-		);
+	
 		
 		function onDeviceReady() { 
 
@@ -95,10 +88,28 @@
 				},
 				"windows":{}
 			}); 
+			
 			push.on('registration', function(data) { 
 				localStorage.setItem('registrationId', data.registrationId);
-			});        
+			});   
+				
+			push.on('clearAllNotifications', function(data) {
+				
+				
+				
+			});
 			push.on('notification', function(data) {
+				
+					push.clearAllNotifications(
+					  () => {
+						alert(1);
+					  },
+					  () => {
+						alert(2);
+					  }
+					);
+			
+				
                 //alert('Notificacao');
 				atualiza_notificacao();
 				var titulo_notifica = data.title;
