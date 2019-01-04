@@ -629,7 +629,6 @@ var app = {
     },
 	
     foto_mor: function() {
-		alert('vai camera');
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
@@ -641,7 +640,7 @@ var app = {
         }
 
         function onFail(message) {
-            //alert('Câmera Indisponível');
+            alert('Câmera Indisponível');
         }    
     },
     
