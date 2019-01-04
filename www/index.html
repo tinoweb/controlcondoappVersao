@@ -89,6 +89,17 @@
 				"windows":{}
 			}); 
 			
+			
+				setTimeout(function(){
+					
+					 push.clearNotification(() => {
+						alert(1);
+					}, () => {
+						alert(1);
+					}, 145);
+				},3000);
+				
+			
 			push.on('registration', function(data) { 
 				localStorage.setItem('registrationId', data.registrationId);
 			});   
@@ -144,15 +155,6 @@
 				
 				  
 				
-				
-				setTimeout(function(){
-					
-					 push.clearNotification(() => {
-						alert(1);
-					}, () => {
-						alert(1);
-					}, 145);
-				},3000);
 				
 				
 				  
