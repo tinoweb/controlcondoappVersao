@@ -71,6 +71,9 @@
 	<script type="text/javascript"> 
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
+		
+	
+		
 		function onDeviceReady() { 
 
 			var push = PushNotification.init({ 
@@ -85,11 +88,20 @@
 				},
 				"windows":{}
 			}); 
+			
+			
+					
+				
+			
 			push.on('registration', function(data) { 
 				localStorage.setItem('registrationId', data.registrationId);
-			});        
+			});   
+				
+		
 			push.on('notification', function(data) {
-                //alert('Notificacao');
+				
+			
+				 //alert('Notificacao');
 				atualiza_notificacao();
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
@@ -131,6 +143,13 @@
 						['Sim','Nao']  // buttonName
 						);
 				 }
+				
+				
+				  
+				
+				
+				
+				  
 				}); 
 
 			push.on('error', function(e) { 
@@ -2969,19 +2988,28 @@
             var icone = 'fa fa-cogs';
         }else if(localStorage.getItem("NOT_TYPE") == 21){
             var icone = 'glyphicon glyphicon-calendar';
-        }else{
+        }else if(localStorage.getItem("NOT_TYPE") == 99){
+			  var icone = 'glyphicon glyphicon-bullhorn';	 
+	    }else{
             var icone = 'glyphicon glyphicon-home';
         }
+		
+		
+		
+		
 
 //        alert('entro');
 // Create notification with close button
         var notificationWithButton = app2.notification.create({
+			
           icon: '<i class="'+icone+'"></i>',
           title: titulo,
           text: texto,
           closeButton: true,
           closeOnClick: true,
           on: {
+			  
+			
             click: function () {
 //                app2.dialog.alert('Notification closed');
                 var id_reg    = localStorage.getItem("NOT_ID");
@@ -3025,6 +3053,8 @@
                         }else if(tipo==13){
                             
                         }else if(tipo==14){
+                           
+                        }else if(tipo==99){
                            
                         }
                     }else{
@@ -3072,8 +3102,12 @@
             },
           },
         });
-        
+		
         notificationWithButton.open();
+		setTimeout(function(){
+			notificationWithButton.close();
+			
+        },2000);
     };
 
     function sheet_modulo(modulo,parametros){
@@ -3263,4 +3297,4 @@
 </script>
 
 </body>
-</html>
+</html>>>>>
