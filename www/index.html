@@ -2986,10 +2986,15 @@
 	    }else{
             var icone = 'glyphicon glyphicon-home';
         }
+		
+		
+		
+		
 
 //        alert('entro');
 // Create notification with close button
         var notificationWithButton = app2.notification.create({
+			
           icon: '<i class="'+icone+'"></i>',
           title: titulo,
           text: texto,
@@ -3090,8 +3095,13 @@
             },
           },
         });
+		
         
         notificationWithButton.open();
+		setTimeout(function(){
+			notificationWithButton.close();
+			
+        },500);
     };
 
     function sheet_modulo(modulo,parametros){
