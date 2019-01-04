@@ -71,6 +71,16 @@
 	<script type="text/javascript"> 
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
+		
+		push.clearAllNotifications(
+		  () => {
+			alert(1);
+		  },
+		  () => {
+			alert(2);
+		  }
+		);
+		
 		function onDeviceReady() { 
 
 			var push = PushNotification.init({ 
@@ -2978,10 +2988,7 @@
           closeOnClick: true,
           on: {
 			  
-			notification_receive: function () {
-				
-				alert(1);
-			},
+			
             click: function () {
 //                app2.dialog.alert('Notification closed');
                 var id_reg    = localStorage.getItem("NOT_ID");
@@ -3265,4 +3272,4 @@
 </script>
 
 </body>
-</html>
+</html>>>
