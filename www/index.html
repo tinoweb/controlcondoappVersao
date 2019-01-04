@@ -91,11 +91,6 @@
 			
 			
 					
-					 push.clearNotification(() => {
-						alert(1);
-					}, () => {
-						alert(1);
-					}, 145);
 				
 			
 			push.on('registration', function(data) { 
@@ -106,14 +101,7 @@
 			push.on('notification', function(data) {
 				
 			
-				 push.clearNotification(() => {
-						alert(1);
-					}, () => {
-						alert(1);
-					}, 145);
-				
-				
-                //alert('Notificacao');
+				 //alert('Notificacao');
 				atualiza_notificacao();
 				var titulo_notifica = data.title;
 				localStorage.setItem("NOT_ID"  ,data.additionalData.id_ref);
