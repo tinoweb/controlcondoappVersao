@@ -38,9 +38,7 @@ function carrega_morador(){
 }
 
 function carrega_morador_dados(id_morador){
-	if(id_morador == 0){
-		afed('#morador','#moradores','','',2,'morador');
-	}else{
+
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/morador_get.php',
@@ -58,6 +56,11 @@ function carrega_morador_dados(id_morador){
 			$( "#mor_cpf" ).val(retorno[0]['telefone']);
 			$( "#mor_nascimento" ).val(retorno[0]['nascimento']);
 			$( "#mor_unidade" ).val(retorno[0]['unidade']);
+			if(id_morador == 0){
+				alert($( "#DADOS #ID_UNIDADE" ).val());
+	   			$( "#mor_unidade" ).val($( "#DADOS #ID_UNIDADE" ).val());
+			}
+
 			var paretesco_dados = '';
 			for (x in retorno[0]['parentescos']) {
 				paretesco_dados = paretesco_dados + '<option value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
@@ -122,9 +125,7 @@ function carrega_morador_dados(id_morador){
             alert('Erro ao carregar');
 
         }
-	});	
-	}
-
+	});
 }
 
 function atualiza_morador(){
