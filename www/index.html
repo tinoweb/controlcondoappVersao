@@ -847,11 +847,11 @@
 				  <i class="icon material-icons md-only">person</i>
 				  <span class="tabbar-label">Dados</span>
 				</a>
-				<a href="#tab-2" class="tab-link">
+				<a href="#tab-2" class="tab-link" id="tab_add_morador_veiculo">
 				  <i class="icon material-icons md-only">directions_car</i>
 				  <span class="tabbar-label">Veiculos</span>
 				</a>
-				<a href="#tab-3" class="tab-link">
+				<a href="#tab-3" class="tab-link" id="tab_add_morador_contato">
 				  <i class="icon material-icons md-only">contact_phone</i>
 				  <span class="tabbar-label">Contatos</span>
 				</a>
@@ -1005,6 +1005,11 @@
 				<div class="list media-list">
   					<ul id="retorno_veiculo_morador"></ul>
 				</div>
+				<div class="fab fab-extended fab-right-bottom">
+    				<a href="#" class=" sheet-open" data-sheet=".veiculo-morador" onClick="veiculo_marca_modelo_cor(0,1);">
+      					<i class="icon material-icons md-only">add</i>
+    				</a>
+  				</div>
 				<div class="sheet-modal veiculo-morador" style="height: 80%;">
     				<div class="toolbar">
 					  	<div class="toolbar-inner">
@@ -1028,7 +1033,7 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Marca</div>
 											<div class="item-input-wrap">
-												<select name="marca" id="marca_carro">
+												<select name="marca" id="marca_carro" onChange="veiculo_marca_modelo_cor(0,2,$(this).val())">
 
 												</select>
 												<span class="input-clear-button"></span>

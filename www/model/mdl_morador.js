@@ -57,8 +57,12 @@ function carrega_morador_dados(id_morador){
 			$( "#mor_nascimento" ).val(retorno[0]['nascimento']);
 			$( "#mor_unidade" ).val(retorno[0]['unidade']);
 			if(id_morador == 0){
-				alert($( "#DADOS #ID_UNIDADE" ).val());
+				//alert($( "#DADOS #ID_UNIDADE" ).val());
 	   			$( "#mor_unidade" ).val($( "#DADOS #ID_UNIDADE" ).val());
+				afed('','','','',2,'morador');
+				$("#tab_add_morador_veiculo,#tab_add_morador_contato").addClass("disabled");
+			}else{
+				$("#tab_add_morador_veiculo,#tab_add_morador_contato").removeClass("disabled");
 			}
 
 			var paretesco_dados = '';
@@ -118,6 +122,7 @@ function carrega_morador_dados(id_morador){
 					'</li>';
 			}
 			$( "#retorno_contato_morador" ).html(contatos_dados);
+
             afed('#morador','#moradores','','',2,'morador');
         
         },
