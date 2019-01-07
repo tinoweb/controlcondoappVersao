@@ -220,6 +220,7 @@ function carrega_user_perfil(id) {
 
 // FUNCAO LOGIN TROCA USUARIO
 function select_user(id_usuario_condominio=0) {
+	
 	if(navigator.connection.type != 'none'){
         if(id_usuario_condominio == 0){
             var dados = $( "#form_perfil" ).serialize();
@@ -334,6 +335,8 @@ function select_user(id_usuario_condominio=0) {
                     
                     carrega_chat();
                     inicia(0);
+					altera_menu();
+					
                     localStorage.setItem('TELA_ATUAL','home');	
                     //carrega_liberacao(0);
 					atualiza_notificacao();
@@ -395,4 +398,23 @@ function perfil_notificacao(id_condominio){
             clearInterval(intervalo);
 		}
 	});
+}
+
+function altera_menu(){
+	
+	
+	
+	/* Primera opcao*/
+	$("#fast_menu span:nth-child(1)").html("<i class='material-icons'>dashboard</i>");
+	$("#fast_menu span:nth-child(1)").children().css("cssText","font-size: 1.5em;margin: 11px 0 0 16px;color: #0073b7;");
+	
+	/* SegundA opcao*/
+	$("#fast_menu span:nth-child(2)").html("<span class='glyphicon glyphicon-comment'></span>");
+	$("#fast_menu span:nth-child(2)").children().css("cssText","font-size: 1.43em;margin: 11px 0 0 16px;color: #0073b7;");
+	
+	/* terceira opcao*/ 
+	$("#fast_menu span:nth-child(3)").html("<i class='material-icons'>assignment_ind</i>");
+	$("#fast_menu span:nth-child(3)").children().css("cssText","font-size: 1.6em;margin: 11px 0 0 16px;color: #0073b7;");
+		
+		
 }
