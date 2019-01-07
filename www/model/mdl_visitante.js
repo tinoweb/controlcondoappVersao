@@ -156,3 +156,26 @@ function hidden_btn(){
 	$( "#add_liberacao #l_cadastrar" ).parent().attr("class","col-xs-12");
 	
 }
+
+function get_veiculo(placa){
+	
+	let tamanho = placa.length;
+	if(tamanho==8){
+		
+	
+		$.ajax({
+				type: 'POST',
+				url: localStorage.getItem('DOMINIO')+'appweb/veiculo_visitante_get.php',
+				crossDomain: true,
+				beforeSend : function() {  },
+				complete   : function() {  },
+				data       : 'placa='+placa+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+				dataType   : 'json',
+				success: function(retorno){
+					if(retorno.id == null ){
+ 						$("#cad_veiculo").fadeIn();
+					 }
+				}
+		});
+	}
+};

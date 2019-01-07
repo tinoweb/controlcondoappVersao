@@ -164,3 +164,9 @@ function troca_foto(campo,tipo,foto){
         $(campo).attr("src", foto);
     }
 }
+
+setTimeout(function(){
+	$("#liberacao2 #liberacao_placa").mask("AAA-9999");
+},2000);
+
+

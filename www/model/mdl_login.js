@@ -402,8 +402,6 @@ function perfil_notificacao(id_condominio){
 
 function altera_menu(){
 	
-	
-	
 	/* Primera opcao*/
 	$("#fast_menu span:nth-child(1)").html("<i class='material-icons'>dashboard</i>");
 	$("#fast_menu span:nth-child(1)").children().css("cssText","font-size: 1.5em;margin: 11px 0 0 16px;color: #0073b7;");

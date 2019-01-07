@@ -117,11 +117,11 @@ setTimeout(function(){
 		if(status.indexOf("aberto") >=0){
 			$(".panel-backdrop").next().addClass("panel-cover").removeClass("aberto");
 			$(this).removeClass("aberto");
-			alert(1);
+			//alert(1);
 		}else{
 			$(this).addClass("aberto");
 			$(".panel-backdrop").next().removeClass("panel-cover").removeClass("aberto").addClass("panel panel-left panel-reveal");
-			alert(2);
+			//alert(2);
 		}
 
 		});
