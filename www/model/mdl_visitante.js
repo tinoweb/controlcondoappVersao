@@ -179,3 +179,11 @@ function get_veiculo(placa){
 		});
 	}
 };
+
+function teste(){
+	
+	var teste = encodeURI("teste");
+	window.open("whatsapp://send?text="+teste);
+	
+	
+}
