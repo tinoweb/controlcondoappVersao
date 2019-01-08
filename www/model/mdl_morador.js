@@ -52,6 +52,7 @@ function carrega_morador_dados(id_morador){
 			$( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
             $( "#mor_id_morador" ).val(id_morador);
             $( "#mor_veiculo_id_morador" ).val(id_morador);
+            $( "#mor_contato_id_morador" ).val(id_morador);
 			$( "#mor_nome" ).val(retorno[0]['nome']);
 			$( "#mor_rg" ).val(retorno[0]['rg']);
 			$( "#mor_cpf" ).val(retorno[0]['telefone']);

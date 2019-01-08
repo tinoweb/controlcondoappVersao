@@ -60,18 +60,17 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
 function atualiza_veiculo_morador(){
 	
 	var dados = $( "#form_morador_veiculo" ).serialize();
-    alert(dados);
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
-//		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-//		success: function(retorno){
-//			//alert(retorno);
-//            afed('#moradores','#morador','','',2,'moradores');
-//            carrega_morador();
-//		},
-//		error: function(data){
-//			alert('erro');
-//	    }	
-//	});	
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
+		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+		success: function(retorno){
+			alert(retorno);
+			$(".veiculo-morador .sheet-close")[0].click();
+            carrega_morador_dados($('#mor_veiculo_id_morador').val());
+		},
+		error: function(data){
+			alert('erro');
+	    }	
+	});	
 }

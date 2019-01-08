@@ -1037,7 +1037,7 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Modelo</div>
 											<div class="item-input-wrap">
-												<select name="marca" id="modelo_carro">
+												<select name="modelo" id="modelo_carro">
 
 												</select>
 												<span class="input-clear-button"></span>
@@ -1048,7 +1048,7 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Cor</div>
 											<div class="item-input-wrap">
-												<select name="marca" id="cor_carro">
+												<select name="cor" id="cor_carro">
 
 												</select>
 												<span class="input-clear-button"></span>
@@ -1083,30 +1083,12 @@
 			<div class="tab" id="tab-3">
 				<div class="list">
 					<ul id="retorno_contato_morador">
-						<li>
-						  	<a href="#" class="item-link item-content sheet-open" data-sheet=".contato-morador">
-								<div class="item-inner">
-							  		<div class="item-title">
-										<div class="item-header">Telefone</div>
-										19 99604-2356
-							  		</div>
-							  		<div class="item-after">Edit</div>
-								</div>
-						  	</a>
-						</li>
-						<li>
-						  	<a href="#" class="item-link item-content">
-								<div class="item-inner">
-							  		<div class="item-title">
-										<div class="item-header">Email</div>
-
-										teste@teste.com.br
-							  		</div>
-							  		<div class="item-after">Edit</div>
-								</div>
-						  	</a>
-						</li>
 					</ul>
+				</div>
+				<div class="fab fab-extended fab-right-bottom">
+					<a href="#" class=" sheet-open" data-sheet=".contato-morador" onClick="contatos(0,1);">
+						<i class="icon material-icons md-only">add</i>
+					</a>
 				</div>
 				<div class="sheet-modal contato-morador" style="height: 50%;">
     				<div class="toolbar">
@@ -1124,7 +1106,7 @@
 										<div class="item-inner">
 											<div class="item-title item-label">Tipo</div>
 											<div class="item-input-wrap">
-												<select name="tipo" id="mor_tipo_contato">
+												<select name="tipo_contato" id="mor_tipo_contato">
 
 												</select>
 												<span class="input-clear-button"></span>
@@ -1140,6 +1122,16 @@
 											</div>
 										</div>
 									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												<input type="hidden" name="id_morador" id="mor_contato_id_morador">
+												<button type="button" class="col button button-fill color-green" onClick="atualiza_contato_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
+												<!--<input type="button" value="" onClick="atualiza_morador();">-->
+											</div>
+										</div>
+									</li>
+
 								</ul>
 							</form>
 						</div>
@@ -3336,4 +3328,4 @@
 </script>
 
 </body>
-</html>>>>>>>>>>>>>
+</html>
