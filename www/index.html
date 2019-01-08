@@ -1301,7 +1301,7 @@
 						</div>
 				  </div>
 			  </li>
-				 <li class="item-content item-input">
+			 <li class="item-content item-input">
 				 <div class="item-inner">
 					<div class="item-title item-label">Motivo</div>
 						<div class="item-input-wrap">
@@ -1309,56 +1309,87 @@
 							<span class="input-clear-button"></span>
 						</div>
 				  </div>
-			   </li>
-			<div class="col-xs-6" style="padding:4px">
-			 <li class="item-content item-input">
-				
-					 <div class="item-inner">
-						<div class="item-title item-label">Deste</div>
-							<div class="item-input-wrap">
-								<input type="text"  id="visita_motivo" name="motivo">
-								<span class="input-clear-button"></span>
-							</div>
-					  </div>
-				 
-			   </li>
+			 </li>
+			<div class="row">
+				<div class="col-xs-6" style="padding:4px">
+				 <li class="item-content item-input">
+
+						 <div class="item-inner">
+							<div class="item-title item-label">Deste</div>
+								<div class="item-input-wrap">
+									<input type="text"  id="visita_motivo" name="motivo">
+									<span class="input-clear-button"></span>
+								</div>
+						  </div>
+
+				   </li>
+				</div>
+				 <div class="col-xs-5">
+				   <li class="item-content item-input" style="margin-top: 5px;">
+						<div class="item-inner">
+							<div class="item-title item-label">horas</div>
+								<div class="item-input-wrap">
+									<input type="text"  id="visita_motivo" name="motivo">
+									<span class="input-clear-button"></span>
+								</div>
+						  </div>
+
+					</li>
+				</div>
 			</div>
-			 <div class="col-xs-5">
-			   <li class="item-content item-input">
-				    <div class="item-inner">
-						<div class="item-title item-label">horas</div>
-							<div class="item-input-wrap">
-								<input type="text"  id="visita_motivo" name="motivo">
-								<span class="input-clear-button"></span>
-							</div>
-					  </div>
-					
-				</li>
-			</div>
-			<div class="col-xs-6" style="padding:4px">
-			 <li class="item-content item-input">
-				
-					 <div class="item-inner">
+			<div class="row">
+				<div class="col-xs-6" style="padding:4px">
+				 <li class="item-content item-input">
+                    <div class="item-inner">
 						<div class="item-title item-label">Até</div>
 							<div class="item-input-wrap">
 								<input type="text"  name="ate" id="dt_ate" >
 								<span class="input-clear-button"></span>
-							</div>
-					  </div>
-				 
-			   </li>
+						   </div>
+					 </div>
+                  </li>
+				</div>
+				 <div class="col-xs-5">
+				   <li class="item-content item-input" style="margin-top: 5px;">
+						<div class="item-inner">
+							<div class="item-title item-label">horas</div>
+								<div class="item-input-wrap">
+									<input type="time"  name="ate_hr" id="hr_ate" >
+									<span class="input-clear-button"></span>
+								</div>
+						  </div>
+					  </li>
+				</div>
 			</div>
-			 <div class="col-xs-5">
-			   <li class="item-content item-input">
-				    <div class="item-inner">
-						<div class="item-title item-label">horas</div>
-							<div class="item-input-wrap">
-								<input type="time"  name="ate_hr" id="hr_ate" >
-								<span class="input-clear-button"></span>
-							</div>
-					  </div>
-					</div>
-				</li>
+			
+			<li class="item-content item-input">
+				 <div class="item-inner">
+					<div class="item-title item-label">Motivo</div>
+						<div class="item-input-wrap">
+							<select id="numero_acesso_perm" name="numero_acesso_perm">
+								<option value="0">Ilimitado</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+							</select>
+							<span class="input-clear-button"></span>
+						</div>
+				  </div>
+			 </li>
+					
+			<div style="margin-top: 87px;">
+				<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
+				<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
+				<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+			</div>		
+				
+					
 			</div>
 		</ul>
 	</div>
@@ -1390,11 +1421,6 @@
 						</div>
                 </div>-->
 
-				<div style="margin-top: 87px;">
-					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
-					<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-					<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
-				</div>
 			</form>
 		</div>
 		<div class="tab" id="aba2">
@@ -3389,4 +3415,4 @@
 </script>
 
 </body>
-</html>>>>>>>>>>>>>
+</html>>>>>>>>>>>>>>>>>
