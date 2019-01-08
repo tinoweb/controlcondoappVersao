@@ -537,3 +537,46 @@ function foto_visita(id_visitante){
     afed('#bg_box6','','','',1);
     localStorage.setItem("id_visitante_up_foto",id_visitante);
 }
+
+function open_acessos(){
+	
+	$("#liberacao2 #add_liberacao").fadeOut();
+	$("#liberacao2 #liberacao_acessos").fadeIn();
+    $("#liberacao2 .tab").show();
+}
+
+function open_liberacao(){
+	
+	$("#liberacao2 #liberacao_acessos").fadeOut();
+	$("#liberacao2 #add_liberacao").fadeIn();
+	$("#liberacao2 .tab").show();
+}
+
+
+function get_visitante(){
+	$("#main_acesso").html("");
+	let html = "";
+	let id_visitante =$( "#add_liberacao #visita" ).val();
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/acesso_visitante.php',
+        crossDomain: true,
+        data       : {id:id_visitante,id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val()},
+        dataType   : 'json',
+		success: function(retorno){
+			
+		   for (x in retorno) {
+				html ='<div class="card"><div class="card-header" style="background: #2196f3; color: white;">Acessos <i class="fa fa-sign-in"></i> </div><div class="card-content card-content-padding"><div class=""><p><strong>Morador - '+retorno[x].nome+'</strong></div></p>Entrada - '+retorno[x].entrada+'<p>Saida - '+retorno[x].saida+'';
+				html +='</div></div>';
+				
+				
+				$("#main_acesso").append(html);
+			}
+		},
+		
+		error:function(){
+			alerta("","Nenhum registro encontrado!");
+		}
+	});
+	
+}

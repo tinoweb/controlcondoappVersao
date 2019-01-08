@@ -169,7 +169,7 @@ setTimeout(function(){
 	$("#liberacao2 #liberacao_placa").mask("AAA-9999");
 },2000);
 
-function alerta(tipo){
+function alerta(tipo,valor=""){
 	
 	let icon = "";
 	let msg  = "";
@@ -185,6 +185,10 @@ function alerta(tipo){
 	if(tipo=="excluido"){
 		icon = '<i class="fa fa-close"></i>';
 		msg  = "Excluido com sucesso";
+	}else{
+		
+		icon = '<i class="fa fa-info"></i>';
+		msg  = valor;
 	}
 		
 	/* Estancia objeto e chama o metodo para exibir mensagem */

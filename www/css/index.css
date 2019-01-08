@@ -33,6 +33,13 @@ body, html {
   	flex-direction: column;
 }
 
+.mbl_label{
+	
+	background: #ff6a00;
+    color: white;
+    padding-left: 4px;
+}
+
 .panel-backdrop {
     width: 71% !important;
 	z-index:1;
