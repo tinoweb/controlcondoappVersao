@@ -538,19 +538,6 @@ function foto_visita(id_visitante){
     localStorage.setItem("id_visitante_up_foto",id_visitante);
 }
 
-function open_acessos(){
-	
-	$("#liberacao2 #add_liberacao").fadeOut();
-	$("#liberacao2 #liberacao_acessos").fadeIn();
-    $("#liberacao2 .tab").show();
-}
-
-function open_liberacao(){
-	
-	$("#liberacao2 #liberacao_acessos").fadeOut();
-	$("#liberacao2 #add_liberacao").fadeIn();
-	$("#liberacao2 .tab").show();
-}
 
 
 function get_visitante(){
