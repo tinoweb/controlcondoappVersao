@@ -1251,6 +1251,8 @@
 
 <!--   $LIBERACAO       -->
 
+	
+			
 <div id="liberacao2" class="pagina liberacao2">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
@@ -1263,88 +1265,92 @@
 				  <i class="fa fa-check"></i>
 				  <span class="tabbar-label">Liberação</span>
 				</a>
-				<a href="#tab-2" class="tab-link disabled" id="tab_add_morador_veiculo">
+				<a href="#tab-2" class="tab-link">
 				  <i class="fa fa-sign-in"></i>
 				  <span class="tabbar-label">Ultimos Acessos</span>
 				</a>			
-			<span class="tab-link-highlight" style="width: 33.3333%; transform: translate3d(0%, 0px, 0px);"></span></div>
-	  	</div>
-	<div class="scroll">
-		<form name="add_liberacao" id="add_liberacao" style="padding: 10px;padding-top: 74px;">
-			<input type="hidden" name="id_liberacao" id="id" value="0">
-			<input type="hidden" name="tipo" id="tipo" value="0">
-			<input type="hidden" name="id_visitante" id="visita" value="0">
-			<div id="new_visit" onClick="afed('#visitantes','#liberacao2','','','2','visitantes');$('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()">
-				
-				
-				<div class="form-group">
-					<div class="item-title item-label">Name</div>
-					<input type="text" name="nome" id="nome" disabled class="form-control">
-				</div>
-				<div class="form-group">
-					<div class="item-title item-label" style="margin-top: 15px">RG</div>
-					<input class="form-control" type="text" name="rg" id="rg" disabled >
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="item-title item-label" style="margin-top: 15px">Motivo</div>
-				<select class="form-control" id="visita_motivo" name="motivo">
-				</select>
-			</div>
-			<div class="form-group row">
-				<div class="col-xs-6" style="padding:4px">
-					<div class="item-title item-label" style="margin-top: 15px">&nbsp;&nbsp;Desde:</div>
-					<input class="form-control" type="date" name="de" id="dt_de" >
-				</div>
-				<div class="col-xs-5">
-					<div class="item-title item-label" style="margin-top: 15px">&nbsp;&nbsp;horas:</div>
-					<input class="form-control" type="time" name="de_h" id="hr_de" >
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-xs-6" style="padding:4px">
-					<div class="item-title item-label" style="margin-top: 7px;padding:0px">&nbsp;&nbsp;Até:</div>
-					<input type="date" name="ate" id="dt_ate"  class="form-control">
-				</div>
-				<div class="col-xs-5">
-					<div class="item-title item-label" style="margin-top: 7px">&nbsp;&nbsp;horas:</div>
-					<input type="time" name="ate_hr" id="hr_ate"  class="form-control">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
-				<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
-					<option value="0">Ilimitado</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-				</select>
-			</div>
-			<div class="form-group">
-					<div class="col-xs-5" style="padding-left: 0px;">
-						<div class="item-title item-label" style="margin-top: 15px">Placa</div>
-						<input type="text" class="form-control" onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa"/>
+			<span class="tab-link-highlight" style="width: 33.3333%; transform: translate3d(0%, 0px, 0px);"></span>
+		  </div>
+	</div>
+
+	<div class="tabs scroll">
+		<div  class="tab tab-active" id="tab-1">
+			<form name="add_liberacao" id="add_liberacao" style="padding: 10px;padding-top: 74px;">
+				<input type="hidden" name="id_liberacao" id="id" value="0">
+				<input type="hidden" name="tipo" id="tipo" value="0">
+				<input type="hidden" name="id_visitante" id="visita" value="0">
+				<div id="new_visit" onClick="afed('#visitantes','#liberacao2','','','2','visitantes');$('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()">
+
+
+					<div class="form-group">
+						<div class="item-title item-label">Name</div>
+						<input type="text" name="nome" id="nome" disabled class="form-control">
 					</div>
-				    <div class="col-xs-3">
-						<button id="cad_veiculo" style="margin-top: 27px;background:red;display:none" class="col button button-fill"><span class="fa fa-car"></span> </button>
-				    </div>
-				
+					<div class="form-group">
+						<div class="item-title item-label" style="margin-top: 15px">RG</div>
+						<input class="form-control" type="text" name="rg" id="rg" disabled >
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="item-title item-label" style="margin-top: 15px">Motivo</div>
+					<select class="form-control" id="visita_motivo" name="motivo">
+					</select>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-6" style="padding:4px">
+						<div class="item-title item-label" style="margin-top: 15px">&nbsp;&nbsp;Desde:</div>
+						<input class="form-control" type="date" name="de" id="dt_de" >
+					</div>
+					<div class="col-xs-5">
+						<div class="item-title item-label" style="margin-top: 15px">&nbsp;&nbsp;horas:</div>
+						<input class="form-control" type="time" name="de_h" id="hr_de" >
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-6" style="padding:4px">
+						<div class="item-title item-label" style="margin-top: 7px;padding:0px">&nbsp;&nbsp;Até:</div>
+						<input type="date" name="ate" id="dt_ate"  class="form-control">
+					</div>
+					<div class="col-xs-5">
+						<div class="item-title item-label" style="margin-top: 7px">&nbsp;&nbsp;horas:</div>
+						<input type="time" name="ate_hr" id="hr_ate"  class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
+					<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
+						<option value="0">Ilimitado</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+					</select>
+				</div>
+				<div class="form-group">
+						<div class="col-xs-5" style="padding-left: 0px;">
+							<div class="item-title item-label" style="margin-top: 15px">Placa</div>
+							<input type="text" class="form-control" onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa"/>
+						</div>
+						<div class="col-xs-3">
+							<button id="cad_veiculo" style="margin-top: 27px;background:red;display:none" class="col button button-fill"><span class="fa fa-car"></span> </button>
+						</div>
+                </div>
 
-			</div>
-
-			<div style="margin-top: 87px;">
-				<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
-				<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-				<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
-				<input onclick="teste()" value="teste"/>
-			</div>
-		</form>
+				<div style="margin-top: 87px;">
+					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
+					<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
+					<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+				</div>
+			</form>
+		</div>
+		<div class="tab" id="tab-2">
+			<h1></h1>
+		</div>
 	</div>
 </div>
 			
@@ -2888,6 +2894,8 @@
 			}
 		}
 	});
+					
+					
 	var searchbar_liberacao = app2.searchbar.create({
 		el: '#form_busca_liberacao',
 		searchContainer: '#retorno_liberacao',
@@ -3322,8 +3330,12 @@
 			$("#historico").animate({scrollTop: $("#historico").prop("scrollHeight")}, 0);
 		}
 	}; 
+	
+					
+			
+					
                     
 </script>
 
 </body>
-</html>>>>>>>>>>>>>
+</html>

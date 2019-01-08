@@ -169,4 +169,35 @@ setTimeout(function(){
 	$("#liberacao2 #liberacao_placa").mask("AAA-9999");
 },2000);
 
+function alerta(tipo){
+	
+	let icon = "";
+	let msg  = "";
+	
+	if(tipo=="cadastrado"){
+		icon = '<i class="fa fa-check-square"></i>';
+		msg  = "Salvo com sucesso";
+    }else
+	if(tipo=="alterado"){
+	    icon = '<i class="fa fa-check"></i>';
+		msg  = "Alterado com sucesso";
+	}else
+	if(tipo=="excluido"){
+		icon = '<i class="fa fa-close"></i>';
+		msg  = "Excluido com sucesso";
+	}
+		
+	/* Estancia objeto e chama o metodo para exibir mensagem */
+	var app       = new Framework7();
+	var toastIcon = app.toast.create({
+	  icon: app.theme === 'ios' ? icon : icon,
+	  text: msg,
+	  position: 'center',
+	  closeTimeout: 2000,
+	});
+
+    toastIcon.open();
+}
+
+
 
