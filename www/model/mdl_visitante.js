@@ -179,3 +179,10 @@ function get_veiculo(placa){
 		});
 	}
 };
+
+function teste(){
+	
+	window.open("https://api.whatsapp.com/send?phone=5511952511373&text=teste");
+	
+	
+}
