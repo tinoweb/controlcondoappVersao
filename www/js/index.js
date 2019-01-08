@@ -667,6 +667,42 @@ var app = {
         }    
     },
 
+    foto_veiculo: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+        function onSuccess(imageURI) { 
+            $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#foto_veiculo_img' ).val(imageURI);
+        }
+
+        function onFail(message) {
+            //alert('Câmera Indisponível');
+        }    
+    },
+    
+    foto_veiculo2: function() {
+        
+	   navigator.camera.getPicture(onSuccess, onFail, {  
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL, 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+        }); 
+        
+        function onSuccess(imageURI) {
+            
+            $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#foto_veiculo_img' ).val(imageURI);
+
+        }
+
+        function onFail(message) {
+            //alert('Câmera Indisponível');
+        }    
+    },
+
     setupPush: function() {
         console.log('calling push init');
         var push = PushNotification.init({
