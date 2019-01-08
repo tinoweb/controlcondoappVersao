@@ -42,10 +42,14 @@ function atualiza_contato_morador(){
 	
 	var dados = $( "#form_morador_contato" ).serialize();
 	//alert(dados);
-	if($('#mor_tipo_contato').val() != 0){
+	if($('#mor_tipo_contato').val() != 0 && $('#mor_contato').val() != ''){
 		alert('foi');
 	}else{
-		alert('erro');
+		if($('#mor_tipo_contato').val() == 0){
+		   	alerta('',"Informe um tipo de contato");
+		}else if($('#mor_contato').val() == ''){
+			alerta('',"Informe um contato");
+		}
 	}
 //	$.ajax({
 //		type: 'POST',

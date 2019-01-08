@@ -175,15 +175,15 @@ function alerta(tipo,valor=""){
 	let icon = "";
 	let msg  = "";
 	
-	if(tipo=="cadastrado"){
+	if(tipo==1){
 		icon = '<i class="fa fa-check-square"></i>';
 		msg  = "Salvo com sucesso";
     }else
-	if(tipo=="alterado"){
+	if(tipo==2){
 	    icon = '<i class="fa fa-check"></i>';
 		msg  = "Alterado com sucesso";
 	}else
-	if(tipo=="excluido"){
+	if(tipo==3){
 		icon = '<i class="fa fa-close"></i>';
 		msg  = "Excluido com sucesso";
 	}else{
