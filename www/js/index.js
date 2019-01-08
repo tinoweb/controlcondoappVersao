@@ -9,6 +9,7 @@ var ref_ocorrencia       = '';
 //localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
 localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/v2/');
 
+
 var app = {
 	
 	escondeTeclado: function(){
@@ -27,6 +28,8 @@ var app = {
 	
     onDeviceReady: function() {
     
+		
+		
         app.receivedEvent('deviceready');
         document.addEventListener("backbutton", onBackKeyDown, false);
 		app.remove_pull();
@@ -828,6 +831,7 @@ var app = {
 	}
 
 };
+
 
 
 
