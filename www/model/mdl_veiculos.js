@@ -41,6 +41,9 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
 				$( "#id_carro" ).val(id_veiculo);
 				$( "#placa_carro" ).val(retorno[0]['veiculo'][0]['placa']);
 				$( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['veiculo'][0]['foto']+")");
+				if(retorno[0]['veiculo'][0]['id'] == 0){
+					$( '#foto_veiculo_img' ).val('');
+				}
 			}else if(tipo == 2) {
 				$( "#modelo_carro" ).html(modelo_dados);
 			}
@@ -52,4 +55,23 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
         }
 	});	
 
+}
+
+function atualiza_veiculo_morador(){
+	
+	var dados = $( "#form_morador_veiculo" ).serialize();
+    alert(dados);
+//	$.ajax({
+//		type: 'POST',
+//		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
+//		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+//		success: function(retorno){
+//			//alert(retorno);
+//            afed('#moradores','#morador','','',2,'moradores');
+//            carrega_morador();
+//		},
+//		error: function(data){
+//			alert('erro');
+//	    }	
+//	});	
 }

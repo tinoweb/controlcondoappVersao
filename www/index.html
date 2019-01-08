@@ -1013,12 +1013,13 @@
       					<div class="block">
 							<form name="form_morador_veiculo" id="form_morador_veiculo" class="list">
 								<input type="hidden" name="id_veiculo" id="id_carro">
+								<input type="hidden" name="foto" id="foto_veiculo_img">
 								<ul>
 									<li class="item-content">
 										<div class="item-media" id="foto_morador_veiculo" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
 										<div class="item-inner">
-											<p><button class="col button button-fill color-green"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
-											<p><button class="col button button-fill color-green"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
+											<p><button type="button" class="col button button-fill color-green" onClick="app.foto_veiculo();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+											<p><button type="button" class="col button button-fill color-green" onClick="app.foto_veiculo2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
 										</div>
 									</li>
 									<li class="item-content item-input">
@@ -1060,6 +1061,15 @@
 											<div class="item-input-wrap">
 												<input type="text" id="placa_carro" name="placa" value="">
 												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												<input type="hidden" name="id_morador" id="mor_veiculo_id_morador">
+												<button type="button" class="col button button-fill color-green" onClick="atualiza_veiculo_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
+												<!--<input type="button" value="" onClick="atualiza_morador();">-->
 											</div>
 										</div>
 									</li>
