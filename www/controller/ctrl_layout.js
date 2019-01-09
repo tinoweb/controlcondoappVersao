@@ -193,15 +193,17 @@ function alerta(tipo,valor=""){
 	}
 		
 	/* Estancia objeto e chama o metodo para exibir mensagem */
-	var app       = new Framework7();
-	var toastIcon = app.toast.create({
-	  icon: app.theme === 'ios' ? icon : icon,
+	//var app       = new Framework7();
+	var toastIcon = app2.toast.create({
+	  icon: icon,
 	  text: msg,
 	  position: 'center',
 	  closeTimeout: 2000,
 	});
 
     toastIcon.open();
+
+	
 }
 
 

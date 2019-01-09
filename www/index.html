@@ -381,7 +381,7 @@
 			<div class="topo_sub" style="background-color: #333b4a"> <span>Liberações</span> </div>
 			<div class="block" style="text-align: center; margin-top: 140px" id="libt1">
 				<p class="row">
-					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao()" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#2196f3"><i class="fa fa-check"></i> Incluir Liberação</button>
+					<button class="col button button-big button-raised button-fill" onClick="adiciona_liberacao();atualiza_veiculo('',1,'')" style=" background-size: 40px;background-repeat: no-repeat;background-position: left; width: 90%;background:#2196f3"><i class="fa fa-check"></i> Incluir Liberação</button>
 				</p>
 			</div>
 			<div class="block" style="text-align: center;margin-top: 20px" id="libt2">
@@ -1016,7 +1016,7 @@
 								<input type="hidden" name="foto" id="foto_veiculo_img">
 								<ul>
 									<li class="item-content">
-										<div class="item-media" id="foto_morador_veiculo" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
+										<div class="item-media" id="foto_visitante_veiculo" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
 										<div class="item-inner">
 											<p><button type="button" class="col button button-fill color-green" onClick="app.foto_veiculo();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
 											<p><button type="button" class="col button button-fill color-green" onClick="app.foto_veiculo2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
@@ -1252,10 +1252,85 @@
 
 
 <!--   $LIBERACAO       -->
-
-	
-			
+		
 <div id="liberacao2" class="pagina liberacao2">
+	<!-- veiculo visitante -->
+	<div class="sheet-modal veiculo-visitante" style="height: 80%;">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"></div>
+				<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
+			</div>
+		</div>
+		<div class="sheet-modal-inner">
+			<div class="block">
+				<form name="form_visitante_veiculo" id="form_visitante_veiculo" class="list">
+					<input type="hidden" name="l_id_veiculo" id="l_id_carro" value="0">
+					<input type="hidden" name="l_foto" id="l_foto_veiculo_img">
+					<ul>
+						<li class="item-content">
+							<div class="item-media" id="foto_visitante_veiculo" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
+							<div class="item-inner">
+								<p><button type="button" class="col button button-fill color-green" onclick="app.foto_veiculo();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+								<p><button type="button" class="col button button-fill color-green" onclick="app.foto_veiculo2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Marca</div>
+								<div class="item-input-wrap">
+									<select name="marca" id="l_marca_carro" onchange="atualiza_veiculo(0,2,$(this).val())">
+
+									</select>
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Modelo</div>
+								<div class="item-input-wrap">
+									<select name="modelo" id="l_modelo_carro">
+
+									</select>
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Cor</div>
+								<div class="item-input-wrap">
+									<select name="cor" id="l_cor_carro">
+
+									</select>
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Placa</div>
+								<div class="item-input-wrap">
+									<input type="text" id="l_placa_carro" name="placa" value="" maxlength="8">
+									<span class="input-clear-button"></span>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-input-wrap">
+									<input type="hidden" name="id_visitante" id="vis_veiculo_id_visitante">
+									<span type="button" class="col button button-fill color-green" onclick="atualiza_veiculo_visitante();"><i class="icon material-icons color-white">save</i>Salvar</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
@@ -1277,126 +1352,142 @@
 
 	<div class="tabs scroll">
 		<div  class="tab tab-active" id="aba1">
-			<form name="add_liberacao" id="add_liberacao" style="padding: 10px;padding-top: 74px;">
+			<form name="add_liberacao" id="add_liberacao" style="padding: 10px;padding-top: 40px;">
 				<input type="hidden" name="id_liberacao" id="id" value="0">
 				<input type="hidden" name="tipo" id="tipo" value="0">
 				<input type="hidden" name="id_visitante" id="visita" value="0">
-				<div class="list no-hairlines-md" id="new_visit" onClick="afed('#visitantes','#liberacao2','','','2','visitantes');$('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()">
-				<ul>
-				<li class="item-content item-input">
-				   <div class="item-inner">
-					<div class="item-title item-label">Nome</div>
-						<div class="item-input-wrap">
-							<input type="text" name="nome" id="nome" disabled>
-							<span class="input-clear-button"></span>
-						</div>
-				  </div>
-			  </li>
-			  <li class="item-content item-input">
-				  <div class="item-inner">
-					<div class="item-title item-label">RG</div>
-						<div class="item-input-wrap">
-							<input type="text"  name="rg" id="rg" disabled >
-							<span class="input-clear-button"></span>
-						</div>
-				  </div>
-			  </li>
-			 <li class="item-content item-input">
-				 <div class="item-inner">
-					<div class="item-title item-label">Motivo</div>
-						<div class="item-input-wrap">
-							<input type="text"  id="visita_motivo" name="motivo">
-							<span class="input-clear-button"></span>
-						</div>
-				  </div>
-			 </li>
-			<div class="row">
-				<div class="col-xs-6" style="padding:4px">
-				 <li class="item-content item-input">
-
-						 <div class="item-inner">
-							<div class="item-title item-label">Deste</div>
-								<div class="item-input-wrap">
-									<input type="text"  id="visita_motivo" name="motivo">
-									<span class="input-clear-button"></span>
-								</div>
-						  </div>
-
-				   </li>
-				</div>
-				 <div class="col-xs-5">
-				   <li class="item-content item-input" style="margin-top: 5px;">
-						<div class="item-inner">
-							<div class="item-title item-label">horas</div>
-								<div class="item-input-wrap">
-									<input type="text"  id="visita_motivo" name="motivo">
-									<span class="input-clear-button"></span>
-								</div>
-						  </div>
-
-					</li>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6" style="padding:4px">
-				 <li class="item-content item-input">
-                    <div class="item-inner">
-						<div class="item-title item-label">Até</div>
+				<div class="list no-hairlines-md" id="new_visit" onClick="afed('#visitantes','#liberacao2','','','2','visitantes');$('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()"></div>
+				<div class="list no-hairlines-md">
+					<ul>
+					<li class="item-content item-input">
+					   <div class="item-inner">
+						<div class="item-title item-label">Nome</div>
 							<div class="item-input-wrap">
-								<input type="text"  name="ate" id="dt_ate" >
+								<input type="text" name="nome" id="nome" disabled>
+								<span class="input-clear-button"></span>
+							</div>
+					  </div>
+				  </li>
+				  <li class="item-content item-input">
+					  <div class="item-inner">
+						<div class="item-title item-label">RG</div>
+							<div class="item-input-wrap">
+								<input type="text"  name="rg" id="rg" disabled >
+								<span class="input-clear-button"></span>
+							</div>
+					  </div>
+				  </li>
+				 <li class="item-content item-input">
+					 <div class="item-inner">
+						<div class="item-title item-label">Motivo</div>
+							<div class="item-input-wrap">
+								<input type="text"  id="visita_motivo" >
+								<span class="input-clear-button"></span>
+							</div>
+					  </div>
+				 </li>
+				<div class="row">
+					<div class="col-xs-6" style="padding:4px">
+					 <li class="item-content item-input">
+                        <div class="item-inner">
+							<div class="item-title item-label">Deste</div>
+							<div class="item-input-wrap">
+								<input type="date"  id="visita_motivo" >
 								<span class="input-clear-button"></span>
 						   </div>
-					 </div>
-                  </li>
+						</div>
+                    </li>
+					</div>
+					 <div class="col-xs-5">
+					   <li class="item-content item-input" style="margin-top: 5px;">
+							<div class="item-inner">
+								<div class="item-title item-label">horas</div>
+									<div class="item-input-wrap">
+										<input type="text"  id="visita_motivo" name="motivo">
+										<span class="input-clear-button"></span>
+									</div>
+							  </div>
+
+						</li>
+					</div>
 				</div>
-				 <div class="col-xs-5">
-				   <li class="item-content item-input" style="margin-top: 5px;">
+				<div class="row">
+					<div class="col-xs-6" style="padding:4px">
+					 <li class="item-content item-input">
 						<div class="item-inner">
-							<div class="item-title item-label">horas</div>
+							<div class="item-title item-label">Até</div>
 								<div class="item-input-wrap">
-									<input type="time"  name="ate_hr" id="hr_ate" >
+									<input type="date"  name="ate" id="dt_ate" >
+									<span class="input-clear-button"></span>
+							   </div>
+						 </div>
+					  </li>
+					</div>
+					 <div class="col-xs-5">
+					   <li class="item-content item-input" style="margin-top: 5px;">
+							<div class="item-inner">
+								<div class="item-title item-label">horas</div>
+									<div class="item-input-wrap">
+										<input type="time"  name="ate_hr" id="hr_ate" >
+										<span class="input-clear-button"></span>
+									</div>
+							  </div>
+						  </li>
+					</div>
+				</div>
+                <li class="item-content item-input">
+					 <div class="item-inner">
+						<div class="item-title item-label">Credito</div>
+							<div class="item-input-wrap">
+								<select id="numero_acesso_perm" name="numero_acesso_perm">
+									<option value="0">Ilimitado</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+								</select>
+								<span class="input-clear-button"></span>
+							</div>
+					  </div>
+				 </li>
+				<div class="row">
+					<div class="col-xs-6" style="padding:4px">
+					 <li class="item-content item-input">
+                          <div class="item-inner">
+								<div class="item-title item-label">Placa</div>
+								<div class="item-input-wrap">
+									<input type="text"  onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa">
 									<span class="input-clear-button"></span>
 								</div>
 						  </div>
-					  </li>
+                      </li>
+					</div>
+					 <div class="col-xs-5">
+					   <span id="cad_veiculo"  data-sheet=".veiculo-visitante"  style="margin-top: 27px;background:red;display:none" class="sheet-open col button button-fill"><span class="fa fa-car"></span> </button>
+					</div>
 				</div>
-			</div>
-			
-			<li class="item-content item-input">
-				 <div class="item-inner">
-					<div class="item-title item-label">Motivo</div>
-						<div class="item-input-wrap">
-							<select id="numero_acesso_perm" name="numero_acesso_perm">
-								<option value="0">Ilimitado</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-							</select>
-							<span class="input-clear-button"></span>
-						</div>
-				  </div>
-			 </li>
-					
-			<div style="margin-top: 87px;">
-				<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
-				<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-				<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
-			</div>		
-				
-					
-			</div>
-		</ul>
+				<div style="margin-top: 24px;">
+					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
+					<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
+					<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+				</div>
+						
+						
+            </ul>
+		</div>
 	</div>
-				
-				
-				
-				<!--<div class="form-group">
+			
+	<div class="tab" id="aba2">
+		<div id="liberacao_acessos" style="margin-top: 80px;">
+			<div id="main_acesso"></div>
+		</div>
+  </div>
+			<!--<div class="form-group">
 					<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
 					<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
 						<option value="0">Ilimitado</option>
@@ -1422,12 +1513,9 @@
                 </div>-->
 
 			</form>
+		
 		</div>
-		<div class="tab" id="aba2">
-			<div id="liberacao_acessos" style="margin-top: 80px;">
-				<div id="main_acesso"></div>
-			</div>
-		</div>
+	 
 	</div>
 </div>
 			
@@ -3415,4 +3503,4 @@
 </script>
 
 </body>
-</html>>>>>>>>>>>>>>>>>
+</html>>>>>
