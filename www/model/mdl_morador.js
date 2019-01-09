@@ -67,7 +67,7 @@ function carrega_morador_dados(id_morador){
 				$("#tab_add_morador_veiculo,#tab_add_morador_contato").removeClass("disabled");
 			}
 
-			var paretesco_dados = '';
+			var paretesco_dados = '<option value="0">Selecione</option>';
 			for (x in retorno[0]['parentescos']) {
 				paretesco_dados = paretesco_dados + '<option value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
 			}
@@ -138,20 +138,43 @@ function carrega_morador_dados(id_morador){
 function atualiza_morador(){
 	
 	var dados = $( "#form_moradores" ).serialize();
-    //alert(dados);
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
-		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-		success: function(retorno){
-			//alert(retorno);
-            afed('#moradores','#morador','','',2,'moradores');
-            carrega_morador();
-		},
-		error: function(data){
-			alert('erro');
-	    }	
-	});	
+    if($('#mor_nome').val() != '' && $('#mor_rg').val() != '' && $('#mor_cpf').val() != '' && $('#mor_nascimento').val() != '' && $('#mor_parentesco').val() != 0){
+		if( $("#mor_controlcondo").is(":checked") == true && $('#mor_email').val() == '' ){
+			alert('Informe um email');
+		}else{
+//			alert('Atualiza');
+			$.ajax({
+				type: 'POST',
+				url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
+				data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+				success: function(retorno){
+					alerta('','Atualizado com sucesso');
+					afed('#moradores','#morador','','',2,'moradores');
+					carrega_morador();
+				},
+				error: function(data){
+					alert('erro');
+				}	
+			});	
+		}
+	}else{
+		if($('#mor_nome').val() == ''){
+		   	//alerta('',"Informe um tipo de contato");
+			alert('Informe um nome');
+		}else if($('#mor_rg').val() == ''){
+			//alerta('',"Informe um contato");
+			alert('Informe um rg');
+		}else if($('#mor_cpf').val() == ''){
+			//alerta('',"Informe um contato");
+			alert('Informe um cpf');
+		}else if($('#mor_nascimento').val() == ''){
+			//alerta('',"Informe um contato");
+			alert('Informe uma data nascimento');
+		}else if($('#mor_parentesco').val() == ''){
+			//alerta('',"Informe um contato");
+			alert('Informe um parentesco');
+		}
+	}
 }
 
 //function insert_morador(){

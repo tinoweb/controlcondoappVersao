@@ -1069,9 +1069,14 @@
 											<div class="item-input-wrap">
 												<input type="hidden" name="id_morador" id="mor_veiculo_id_morador">
 												<button type="button" class="col button button-fill color-green" onClick="atualiza_veiculo_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
-												<!--<input type="button" value="" onClick="atualiza_morador();">-->
 											</div>
 										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												<button type="button" class="col button button-fill color-red" onClick="delete_veiculo_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
+											</div>
+										</div>
+
 									</li>
 								</ul>
 							</form>
@@ -1127,6 +1132,11 @@
 											<div class="item-input-wrap">
 												<input type="hidden" name="id_morador" id="mor_contato_id_morador">
 												<button type="button" class="col button button-fill color-green" onClick="atualiza_contato_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
+											</div>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												<button type="button" class="col button button-fill color-red" onClick="delete_contato_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
 												<!--<input type="button" value="" onClick="atualiza_morador();">-->
 											</div>
 										</div>
@@ -3064,7 +3074,9 @@
 				//$(".block").hide();	
 			}
 		}
-	}); 
+	});
+					
+	
                     
 	
 	function closePopUp(){
@@ -3406,13 +3418,9 @@
 		if(res=="chat"){
 			$("#historico").animate({scrollTop: $("#historico").prop("scrollHeight")}, 0);
 		}
-	}; 
-	
-					
-			
-					
-                    
+	};
+                
 </script>
 
 </body>
-</html>>>>>>>>>>>>>>>>>
+</html>

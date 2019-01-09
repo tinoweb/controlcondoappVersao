@@ -43,25 +43,61 @@ function atualiza_contato_morador(){
 	var dados = $( "#form_morador_contato" ).serialize();
 	//alert(dados);
 	if($('#mor_tipo_contato').val() != 0 && $('#mor_contato').val() != ''){
-		alert('foi');
+		
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/contato_update.php',
+			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+			success: function(retorno){
+				if(retorno == 'A'){
+					//alerta(2);
+					alert('Alterado com sucesso');					
+				}else{
+					//alert(retorno);
+					alert('Cadastrado com sucesso');
+				}
+				$(".contato-morador .sheet-close")[0].click();
+			  	carrega_morador_dados($('#mor_contato_id_morador').val());
+			},
+			error: function(data){
+				alert('erro');
+			}	
+		});	
+
 	}else{
 		if($('#mor_tipo_contato').val() == 0){
-		   	alerta('',"Informe um tipo de contato");
+		   	//alerta('',"Informe um tipo de contato");
+			alert('Informe um tipo de contato');
 		}else if($('#mor_contato').val() == ''){
-			alerta('',"Informe um contato");
+			//alerta('',"Informe um contato");
+			alert('Informe um contato');
 		}
 	}
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/contato_update.php',
-//		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-//		success: function(retorno){
-//			alert(retorno);
-//			$(".veiculo-morador .sheet-close")[0].click();
-//          carrega_morador_dados($('#mor_veiculo_id_morador').val());
-//		},
-//		error: function(data){
-//			alert('erro');
-//	    }	
-//	});	
+}
+
+function delete_contato_morador(){
+	
+	app2.dialog.confirm('Confirma a exclusão','Excluir', function () {
+		var dados = $( "#form_morador_contato" ).serialize();
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/contato_update.php',
+			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+			success: function(retorno){
+				if(retorno == 'E'){
+					//alerta(2);
+					alert('Exluido com sucesso');					
+				}else{
+					//alerta(1);
+					alert('Erro ao Excluir');
+				}
+				$(".contato-morador .sheet-close")[0].click();
+			  	carrega_morador_dados($('#mor_contato_id_morador').val());
+			},
+			error: function(data){
+				alert('erro');
+			}	
+		});	
+	});
+	
 }

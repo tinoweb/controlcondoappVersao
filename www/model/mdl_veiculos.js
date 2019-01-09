@@ -12,22 +12,22 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
         dataType   : 'json',
 		success: function(retorno){
 			if(tipo == 1){
-				var marca_dados = '';
+				var marca_dados = '<option value="0">Seleciona</option>';
 				for (x in retorno[0]['marcas']) {
 					marca_dados = marca_dados + '<option value="'+retorno[0]['marcas'][x]['id']+'">'+retorno[0]['marcas'][x]['marca']+'</option>';
 				}
 			}
 			if(tipo == 1 || tipo == 2){
-				var modelo_dados = '';
+				var modelo_dados = '<option value="0">Seleciona</option>';
 				for (x in retorno[0]['modelo']) {
 					modelo_dados = modelo_dados + '<option value="'+retorno[0]['modelo'][x]['id']+'">'+retorno[0]['modelo'][x]['modelo']+'</option>';
 				}
 			}
 			if(tipo == 1){
-			var cor_dados = '';
-			for (x in retorno[0]['cor']) {
-				cor_dados = cor_dados + '<option value="'+retorno[0]['cor'][x]['id']+'">'+retorno[0]['cor'][x]['cor']+'</option>';
-			}
+				var cor_dados = '<option value="0">Seleciona</option>';
+				for (x in retorno[0]['cor']) {
+					cor_dados = cor_dados + '<option value="'+retorno[0]['cor'][x]['id']+'">'+retorno[0]['cor'][x]['cor']+'</option>';
+				}
 			}
 			
 			if(tipo == 1){
@@ -60,17 +60,69 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
 function atualiza_veiculo_morador(){
 	
 	var dados = $( "#form_morador_veiculo" ).serialize();
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
-		data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-		success: function(retorno){
-			alert(retorno);
-			$(".veiculo-morador .sheet-close")[0].click();
-            carrega_morador_dados($('#mor_veiculo_id_morador').val());
-		},
-		error: function(data){
-			alert('erro');
-	    }	
-	});	
+	if($('#marca_carro').val() != 0 && $('#modelo_carro').val() != 0 && $('#cor_carro').val() != 0 && $('#placa_carro').val() != ''){
+		//alert(dados);
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
+			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+			success: function(retorno){
+				if(retorno == 'A'){
+					//alerta(2);
+					alert('Alterado com sucesso');					
+				}else{
+					//alert(retorno);
+					alert('Cadastrado com sucesso');
+				}
+				$(".veiculo-morador .sheet-close")[0].click();
+				carrega_morador_dados($('#mor_veiculo_id_morador').val());
+			},
+			error: function(data){
+				alert('erro');
+			}	
+		});	
+	}else{
+		if($('#marca_carro').val() == 0){
+		   	//alerta('',"Informe um tipo de contato");
+			alert('Informe uma marca');
+		}else if($('#modelo_carro').val() == 0){
+			//alerta('',"Informe um contato");
+			alert('Informe um modelo');
+		}else if($('#cor_carro').val() == 0){
+			//alerta('',"Informe um contato");
+			alert('Informe uma cor');
+		}else if($('#placa_carro').val() == ''){
+			//alerta('',"Informe um contato");
+			alert('Informe a placa');
+		}
+	}
 }
+
+function delete_veiculo_morador(){
+	
+	app2.dialog.confirm('Confirma a exclusão','Excluir', function () {
+		var dados = $( "#form_morador_veiculo" ).serialize();
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
+			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+			success: function(retorno){
+				//alert(retorno);
+				if(retorno == 'E'){
+					//alerta(2);
+					alert('Exluido com sucesso');					
+				}else{
+					//alerta(1);
+					alert('Erro ao Excluir');
+				}
+				$(".veiculo-morador .sheet-close")[0].click();
+			  	carrega_morador_dados($('#mor_veiculo_id_morador').val());
+			},
+			error: function(data){
+				alert('erro');
+			}	
+		});	
+	});
+	
+}
+
