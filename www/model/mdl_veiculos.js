@@ -41,6 +41,9 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
 				$( "#id_carro" ).val(id_veiculo);
 				$( "#placa_carro" ).val(retorno[0]['veiculo'][0]['placa']);
 				$( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['veiculo'][0]['foto']+")");
+				if(retorno[0]['veiculo'][0]['foto'] == ''){
+				   $( '#foto_morador_veiculo' ).html('<i class="icon material-icons" style="margin: -30px 0 0 14px; font-size: 50px; ">directions_car</i>');
+				}
 				if(retorno[0]['veiculo'][0]['id'] == 0){
 					$( '#foto_veiculo_img' ).val('');
 				}
@@ -68,32 +71,26 @@ function atualiza_veiculo_morador(){
 			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 			success: function(retorno){
 				if(retorno == 'A'){
-					//alerta(2);
-					alert('Alterado com sucesso');					
+					alerta(2);
 				}else{
-					//alert(retorno);
-					alert('Cadastrado com sucesso');
+					alerta(1);
 				}
 				$(".veiculo-morador .sheet-close")[0].click();
 				carrega_morador_dados($('#mor_veiculo_id_morador').val());
 			},
 			error: function(data){
-				alert('erro');
+				alerta(4);
 			}	
 		});	
 	}else{
 		if($('#marca_carro').val() == 0){
-		   	//alerta('',"Informe um tipo de contato");
-			alert('Informe uma marca');
+		   	alerta('',"Informe uma marca");
 		}else if($('#modelo_carro').val() == 0){
-			//alerta('',"Informe um contato");
-			alert('Informe um modelo');
+			alerta('',"Informe um modelo");
 		}else if($('#cor_carro').val() == 0){
-			//alerta('',"Informe um contato");
-			alert('Informe uma cor');
+			alerta('',"Informe uma cor");
 		}else if($('#placa_carro').val() == ''){
-			//alerta('',"Informe um contato");
-			alert('Informe a placa');
+			alerta('',"Informe a placa");
 		}
 	}
 }
@@ -109,17 +106,15 @@ function delete_veiculo_morador(){
 			success: function(retorno){
 				//alert(retorno);
 				if(retorno == 'E'){
-					//alerta(2);
-					alert('Exluido com sucesso');					
+					alerta(3);
 				}else{
-					//alerta(1);
-					alert('Erro ao Excluir');
+					alerta(4);
 				}
 				$(".veiculo-morador .sheet-close")[0].click();
 			  	carrega_morador_dados($('#mor_veiculo_id_morador').val());
 			},
 			error: function(data){
-				alert('erro');
+				alerta(4);
 			}	
 		});	
 	});

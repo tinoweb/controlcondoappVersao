@@ -186,6 +186,10 @@ function alerta(tipo,valor=""){
 	if(tipo==3){
 		icon = '<i class="fa fa-close"></i>';
 		msg  = "Excluido com sucesso";
+	}else
+	if(tipo==4){
+		icon = '<i class="fa fa-exclamation-triangle"></i>';
+		msg  = "Erro, tente novamente";
 	}else{
 		
 		icon = '<i class="fa fa-info"></i>';

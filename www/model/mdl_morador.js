@@ -12,10 +12,14 @@ function carrega_morador(){
 		success: function(retorno){
             var dados = '';
             for (x in retorno) {
-				
+				if(retorno[x]['foto'] == ''){
+				   var foto_morador = 'img/user2.png';
+				}else{
+				   var foto_morador = 'data:image/jpeg;base64,'+retorno[x]['foto']+'';
+				}
 				var morador =  	'<div class="card morador-card" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')">'+
 									'<div class="card-header">'+
-										'<div class="morador-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div>'+
+										'<div class="morador-avatar" style="background-image:url('+foto_morador+');"></div>'+
 										'<div class="morador-name">'+retorno[x]['nome']+'</div>'+
 										'<div class="morador-date">'+retorno[x]['descricao']+'</div>'+
 									'</div>'+
@@ -30,7 +34,7 @@ function carrega_morador(){
        
         },
         error      : function() {
-            alert('Erro ao carregar');
+            alerta(4);
 
         }
 	});	
@@ -49,7 +53,13 @@ function carrega_morador_dados(id_morador){
         dataType   : 'json',
 		success: function(retorno){
             
-			$( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+			if(retorno[0]['foto'] == ''){
+			   var foto_morador = 'img/user2.png';
+			}else{
+			   var foto_morador = 'data:image/jpeg;base64,'+retorno[0]['foto']+'';
+			}
+
+			$( '#foto_morador_edit' ).css("background-image", "url("+foto_morador+")");
             $( "#mor_id_morador" ).val(id_morador);
             $( "#mor_veiculo_id_morador" ).val(id_morador);
             $( "#mor_contato_id_morador" ).val(id_morador);
@@ -93,10 +103,17 @@ function carrega_morador_dados(id_morador){
 			
 			var veiculos_dados = '';
 			for (x in retorno[0]['veiculos']) {
+				
+				if(retorno[0]['veiculos'][x]['foto'] == ""){
+					var fotov = '<i class="icon material-icons" style="margin: 0px 0 0 8px;  ">directions_car</i>';
+				}else{
+					var fotov = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[0]['veiculos'][x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
+				}
+				
 				veiculos_dados = veiculos_dados + 
 					'<li>'+
 					'<a href="#" class="item-link item-content sheet-open" data-sheet=".veiculo-morador" onClick="veiculo_marca_modelo_cor('+retorno[0]['veiculos'][x]['id']+',1)">'+
-					'<div class="item-media" style="width: 44px; height: 44px; background-size: 44px; background-position: center center; background-image:url(data:image/jpeg;base64,'+retorno[0]['veiculos'][x]['foto']+'); border-radius: 22px; margin-top:15px;"></div>'+
+					'<div class="item-media" style="width: 44px; height: 44px; margin-top:15px; border-radius: 22px; border: 2px solid #8e8e93;">'+fotov+'</div>'+
 					'<div class="item-inner">'+
 					'<div class="item-title-row">'+
 					'<div class="item-title">'+retorno[0]['veiculos'][x]['marca_desc']+' - '+retorno[0]['veiculos'][x]['modelo_desc']+' - '+retorno[0]['veiculos'][x]['cor_desc']+'</div>'+
@@ -129,7 +146,7 @@ function carrega_morador_dados(id_morador){
         
         },
         error      : function() {
-            alert('Erro ao carregar');
+            alerta(4);
 
         }
 	});
@@ -148,34 +165,64 @@ function atualiza_morador(){
 				url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
 				data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 				success: function(retorno){
-					alerta('','Atualizado com sucesso');
+					//alert(retorno);
+					if(retorno == '1A'){
+						alerta(2);
+					}else{
+						alerta(1);
+					}
+					
 					afed('#moradores','#morador','','',2,'moradores');
 					carrega_morador();
 				},
 				error: function(data){
-					alert('erro');
+					alerta(4);
 				}	
 			});	
 		}
 	}else{
 		if($('#mor_nome').val() == ''){
-		   	//alerta('',"Informe um tipo de contato");
-			alert('Informe um nome');
+		   	alerta('',"Informe um nome");
 		}else if($('#mor_rg').val() == ''){
-			//alerta('',"Informe um contato");
-			alert('Informe um rg');
+			alerta('',"Informe um rg");
 		}else if($('#mor_cpf').val() == ''){
-			//alerta('',"Informe um contato");
-			alert('Informe um cpf');
+			alerta('',"Informe um cpf");
 		}else if($('#mor_nascimento').val() == ''){
-			//alerta('',"Informe um contato");
-			alert('Informe uma data nascimento');
+			alerta('',"Informe uma data nascimento");
 		}else if($('#mor_parentesco').val() == ''){
-			//alerta('',"Informe um contato");
-			alert('Informe um parentesco');
+			alerta('',"Informe um parentesco");
 		}
 	}
 }
+
+function delete_morador(){
+	
+	app2.dialog.confirm('Confirma a exclusão','Excluir', function () {
+		var dados = $( "#form_moradores" ).serialize();
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
+			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+			success: function(retorno){
+				if(retorno == 'E'){
+					//alerta(2);
+					alerta(3);					
+				}else{
+					//alerta(1);
+					alerta(4);
+				}
+					afed('#moradores','#morador','','',2,'moradores');
+					carrega_morador();
+
+			},
+			error: function(data){
+				alerta(4);
+			}	
+		});	
+	});
+	
+}
+
 
 //function insert_morador(){
 //	var dados = $( "#form_moradores" ).serialize();

@@ -50,27 +50,27 @@ function atualiza_contato_morador(){
 			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 			success: function(retorno){
 				if(retorno == 'A'){
-					//alerta(2);
-					alert('Alterado com sucesso');					
+					alerta(2);
+					//alert('Alterado com sucesso');					
 				}else{
-					//alert(retorno);
-					alert('Cadastrado com sucesso');
+					alerta(1);
+					//alert('Cadastrado com sucesso');
 				}
 				$(".contato-morador .sheet-close")[0].click();
 			  	carrega_morador_dados($('#mor_contato_id_morador').val());
 			},
 			error: function(data){
-				alert('erro');
+				alerta(4);
 			}	
 		});	
 
 	}else{
 		if($('#mor_tipo_contato').val() == 0){
 		   	//alerta('',"Informe um tipo de contato");
-			alert('Informe um tipo de contato');
+			alerta('','Informe um tipo de contato');
 		}else if($('#mor_contato').val() == ''){
 			//alerta('',"Informe um contato");
-			alert('Informe um contato');
+			alerta('','Informe um contato');
 		}
 	}
 }
@@ -86,16 +86,16 @@ function delete_contato_morador(){
 			success: function(retorno){
 				if(retorno == 'E'){
 					//alerta(2);
-					alert('Exluido com sucesso');					
+					alerta(3);					
 				}else{
 					//alerta(1);
-					alert('Erro ao Excluir');
+					alerta(4);
 				}
 				$(".contato-morador .sheet-close")[0].click();
 			  	carrega_morador_dados($('#mor_contato_id_morador').val());
 			},
 			error: function(data){
-				alert('erro');
+				alerta(4);
 			}	
 		});	
 	});
