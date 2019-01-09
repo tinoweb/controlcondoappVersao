@@ -161,8 +161,7 @@ function get_veiculo(placa){
 	
 	let tamanho = placa.length;
 	if(tamanho==8){
-		
-	
+		$("#l_placa_carro").val(placa);	    
 		$.ajax({
 				type: 'POST',
 				url: localStorage.getItem('DOMINIO')+'appweb/veiculo_visitante_get.php',
@@ -174,6 +173,8 @@ function get_veiculo(placa){
 				success: function(retorno){
 					if(retorno.id == null ){
  						$("#cad_veiculo").fadeIn();
+					 }else{
+						$("#liberacao2 #id_veiculo").val(retorno.id);
 					 }
 				}
 		});

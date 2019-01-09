@@ -31,6 +31,7 @@ function carrega_liberacao(tipo){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg),tipo : 1,nome : $( "#busca_liberacao" ).val()},
         dataType   : 'json',
 		success: function(retorno){
+			console.log(retorno);
             for (x in retorno) {
 				cont++;
 /*                var dado = '<div class="liberado"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
@@ -74,14 +75,26 @@ function carrega_liberacao(tipo){
 					bt_convite = '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
 				}
                 
-                var foto = '';
+                var foto           = '';
+				var foto_veiculo   = '';
+				var icone_foto     = '';
+				
                 if(retorno[x]['foto'].length>0){
                     foto = 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
+				
+				if(retorno[x]['foto_veiculo'] != ""){
+					foto_veiculo = 'style="display:none;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto_veiculo']+')"';
+					icone_foto   = '<i data-sheet=".veiculo-foto_veiculo" class="sheet-open material-icons">directions_car</i>';
+                }else{
+					 foto_veiculo   = '';
+					icone_foto      = '';
+				}
+				
 
                 var dado =  '<div class="card liberado-card">'+
                                 '<div class="card-header">'+
-                                    '<div class="liberacao2-avatar" '+foto+' onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div>'+
+                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div><div style="float:right" data-img="'+foto_veiculo+'" onclick="abre_imagem_carro(this)" id="veic_foto">'+icone_foto+'</div>'+
                                     '<div class="liberacao2-name" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
@@ -404,7 +417,7 @@ function gera_qrcode(qrcode_numero,nome){
 //}
 
 function preview(){
-    //alert(globalteste);
+    //alert(globale);
     var element = $("#printscr_qrcode"); // global variable
     var getCanvas; // global variable
 	$("#share_img").html("");
@@ -628,9 +641,9 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 
 function atualiza_veiculo_visitante(){
 	
-	//var dados = $( "#form_visitante_veiculo" ).serialize();
+	var dados = $( "#form_visitante_veiculo" ).serialize();
 	let id_veiculo = $( "#l_id_carro" ).val() == "" ?0:$( "#l_id_carro" ).val();
-	let foto       = $( "#l_foto" ).val();
+	let foto       = $( "#l_foto_veiculo_img" ).val();
 	let marca      = $( "#l_marca" ).val();
 	let modelo     = $( "#l_modelo_carro" ).val();
 	let cor        = $( "#l_cor_carro" ).val();
@@ -640,15 +653,22 @@ function atualiza_veiculo_visitante(){
 	
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
-		data: '&id_morador=""&id_usuario_condominio='+id_user+'&id_veiculo='+id_veiculo+'&foto='+foto+'&modelo='+modelo+'&cor='+cor+'&placa='+placa+' &id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_insert_liberacao.php',
+		data:dados+'&id_morador=""&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 		success: function(retorno){
-			alert(retorno);
+			alerta(1);
 			$(".veiculo-morador .sheet-close")[0].click();
-            //carrega_morador_dados($('#mor_veiculo_id_morador').val());
+			$("#liberacao2 #id_veiculo").val(retorno);
 		},
 		error: function(data){
 			alert('erro');
 	    }	
 	});	
+}
+
+function abre_imagem_carro(el){
+	
+	let imagem = $(el).data("carro");
+	$(".veiculo-foto_veiculo .block").html('<div class="liberacao_img" style="'+imagem+'"></div>');
+	$(".liberacao_img").css("width","200px").css("height","200px").show();
 }

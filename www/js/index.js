@@ -681,6 +681,21 @@ var app = {
         function onFail(message) {
             //alert('Câmera Indisponível');
         }    
+    }, foto_veiculo4: function() {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            saveToPhotoAlbum: true
+        });
+        function onSuccess(imageURI) { 
+            $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#foto_veiculo_img' ).val(imageURI);
+
+        }
+
+        function onFail(message) {
+            //alert('Câmera Indisponível');
+        }    
     },
     
     foto_veiculo2: function() {
@@ -695,6 +710,25 @@ var app = {
             
             $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#foto_veiculo_img' ).val(imageURI);
+
+        }
+
+        function onFail(message) {
+            //alert('Câmera Indisponível');
+        }    
+    },
+	foto_veiculo3: function() {
+        
+	   navigator.camera.getPicture(onSuccess, onFail, {  
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL, 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+        }); 
+        
+        function onSuccess(imageURI) {
+            
+            $( '#foto_visitante_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#l_foto_veiculo_img' ).val(imageURI);
 
         }
 
