@@ -400,19 +400,3 @@ function perfil_notificacao(id_condominio){
 	});
 }
 
-function altera_menu(){
-	
-	/* Primera opcao*/
-	$("#fast_menu span:nth-child(1)").html("<i class='material-icons'>dashboard</i>");
-	$("#fast_menu span:nth-child(1)").children().css("cssText","font-size: 1.5em;margin: 11px 0 0 16px;color: #2196f3;");
-	
-	/* SegundA opcao*/
-	$("#fast_menu span:nth-child(2)").html("<span class='glyphicon glyphicon-comment'></span>");
-	$("#fast_menu span:nth-child(2)").children().css("cssText","font-size: 1.43em;margin: 11px 0 0 16px;color: #2196f3;");
-	
-	/* terceira opcao*/ 
-	$("#fast_menu span:nth-child(3)").html("<i class='material-icons'>assignment_ind</i>");
-	$("#fast_menu span:nth-child(3)").children().css("cssText","font-size: 1.6em;margin: 11px 0 0 16px;color: #2196f3;");
-		
-		
-}

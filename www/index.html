@@ -401,7 +401,7 @@
 						
 		<div id="menu" class="swiper-slide menu">
 			
-			 <div class="panel panel-left panel-reveal" id="menu_lateral" style="background: #fbfbfb;margin-top: 105px;box-shadow: 1px 0px 3px #d1d1d1;">
+			 <div class="panel panel-left panel-cover" id="menu_lateral" style="background: #fbfbfb;margin-top: 105px;box-shadow: 1px 0px 3px #d1d1d1;">
 			  <div class="content-block">
 				<div id="perfil_edit" class="perfil_edit" style="margin-top: 8px;">
 					<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
@@ -456,7 +456,7 @@
 					<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 				</div>
 				<div class="col-xs-1">
-					<span class="col button button-raised button-round panel-left panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;"><i class="fa fa-cogs"></i> </span>
+					<span class="col button button-raised button-round panel-open" onclick="abre_menu(this);afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;"><i class="fa fa-cogs"></i> </span>
 				</div>
 			</div>
 			
@@ -1267,7 +1267,7 @@
 </div>
 
 
-<!--   liberacao_placaCAO       -->
+<!--   $liberacao_placaCAO       -->
 
 		
 <div id="liberacao2" class="pagina liberacao2">
@@ -1275,7 +1275,7 @@
 	<div class="sheet-modal veiculo-foto_veiculo" style="height: 80%; display: block;">
 		<div class="toolbar">
 			<div class="toolbar-inner">
-				<div class="left"></div>
+				<div class="left"><span class="fa fa-car" style="margin-left: 10px;"></span></div>
 				<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
 			</div>
 		</div>
@@ -3046,6 +3046,7 @@
 <!---   $FUNCOES          --> 
 
 				<script type="text/javascript">
+					altera_menu();
 					app.initialize();
 					
 					$(document).ajaxStart(function(){

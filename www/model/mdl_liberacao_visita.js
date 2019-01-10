@@ -31,7 +31,6 @@ function carrega_liberacao(tipo){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg),tipo : 1,nome : $( "#busca_liberacao" ).val()},
         dataType   : 'json',
 		success: function(retorno){
-			console.log(retorno);
             for (x in retorno) {
 				cont++;
 /*                var dado = '<div class="liberado"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
@@ -78,23 +77,24 @@ function carrega_liberacao(tipo){
                 var foto           = '';
 				var foto_veiculo   = '';
 				var icone_foto     = '';
+				var modelo         = '';
+				var placa          = '';
 				
                 if(retorno[x]['foto'].length>0){
                     foto = 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
                 }
 				
 				if(retorno[x]['foto_veiculo'] != ""){
-					foto_veiculo = 'style="display:none;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto_veiculo']+')"';
+					foto_veiculo = 'display:none;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto_veiculo']+')';
 					icone_foto   = '<i data-sheet=".veiculo-foto_veiculo" class="sheet-open material-icons">directions_car</i>';
-                }else{
-					 foto_veiculo   = '';
-					icone_foto      = '';
-				}
+					modelo       = retorno[x]['modelo'];
+					placa        = retorno[x]['placa'];
+                }
 				
 
                 var dado =  '<div class="card liberado-card">'+
                                 '<div class="card-header">'+
-                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div><div style="float:right" data-img="'+foto_veiculo+'" onclick="abre_imagem_carro(this)" id="veic_foto">'+icone_foto+'</div>'+
+                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div><div style="float:right" data-img="'+foto_veiculo+'" data-modelo="'+modelo+'" data-placa="'+placa+'" onclick="abre_imagem_carro(this)" id="veic_foto">'+icone_foto+'</div>'+
                                     '<div class="liberacao2-name" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
@@ -649,8 +649,7 @@ function atualiza_veiculo_visitante(){
 	let cor        = $( "#l_cor_carro" ).val();
 	let placa      = $( "#l_placa_carro" ).val();
 	let id_user    = $( "#ID_USER" ).val();
-
-	
+    
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_insert_liberacao.php',
@@ -668,7 +667,11 @@ function atualiza_veiculo_visitante(){
 
 function abre_imagem_carro(el){
 	
-	let imagem = $(el).data("carro");
-	$(".veiculo-foto_veiculo .block").html('<div class="liberacao_img" style="'+imagem+'"></div>');
-	$(".liberacao_img").css("width","200px").css("height","200px").show();
+	let imagem = $(el).data("img");
+	let modelo = $(el).data("modelo");
+	let placa  = $(el).data("placa");
+	
+	$(".veiculo-foto_veiculo .block").html('<strong><p>Modelo - '+modelo+'</p><p> Placa - '+placa+'</p></strong><hr><div class="liberacao_img" style="'+imagem+'"></div>');
+	$(".liberacao_img").css("margin-left","57px").css("width","200px").css("height","200px").show();
+	
 }

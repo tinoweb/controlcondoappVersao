@@ -1,23 +1,5 @@
 // JavaScript Document
 
-
-/* Abre e Fecha Menu */
-setTimeout(function(){
-	$(".panel-open").on("click",function(){
-         var status = $(this).attr("class");
-		 if(status.indexOf("aberto") >=0){
-			$(".panel-backdrop").next().addClass("panel-cover").removeClass("aberto").fadeOut();
-			$(this).removeClass("aberto");
-		}else{
-			$(this).addClass("aberto");
-			$(".panel-backdrop").next().show();
-			setTimeout(function(){
-				$(".panel-backdrop").next().removeClass("panel-cover").removeClass("aberto").addClass("panel panel-left panel-reveal");
-			},100);
-		}
-	});	
-},1500);
-
 function carrega_notificacoes(tipo){
 	localStorage.setItem('TELA_ATUAL','home');
 var dados = '';
