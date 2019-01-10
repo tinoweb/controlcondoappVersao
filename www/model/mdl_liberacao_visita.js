@@ -593,6 +593,8 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_veiculo : id_veiculo, tipo_busca : tipo, marca : marca },
         dataType   : 'json',
 		success: function(retorno){
+			
+			//console.log(retorno);
 			if(tipo == 1){
 				var marca_dados = '';
 				for (x in retorno[0]['marcas']) {
@@ -642,13 +644,6 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 function atualiza_veiculo_visitante(){
 	
 	var dados = $( "#form_visitante_veiculo" ).serialize();
-	let id_veiculo = $( "#l_id_carro" ).val() == "" ?0:$( "#l_id_carro" ).val();
-	let foto       = $( "#l_foto_veiculo_img" ).val();
-	let marca      = $( "#l_marca" ).val();
-	let modelo     = $( "#l_modelo_carro" ).val();
-	let cor        = $( "#l_cor_carro" ).val();
-	let placa      = $( "#l_placa_carro" ).val();
-	let id_user    = $( "#ID_USER" ).val();
     
 	$.ajax({
 		type: 'POST',

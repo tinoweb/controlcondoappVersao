@@ -1267,12 +1267,11 @@
 </div>
 
 
-<!--   $liberacao_placaCAO       -->
-
-		
+<!--   $liberacao       -->
+	
 <div id="liberacao2" class="pagina liberacao2">
-	<!--photo lista  -->
-	<div class="sheet-modal veiculo-foto_veiculo" style="height: 80%; display: block;">
+	<!-- visualizar photo veiculo visitante  -->
+	<div class="sheet-modal veiculo-foto_veiculo" style="height: 80%;">
 		<div class="toolbar">
 			<div class="toolbar-inner">
 				<div class="left"><span class="fa fa-car" style="margin-left: 10px;"></span></div>
@@ -1285,7 +1284,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- veiculo visitante -->
+	<!-- photo veiculo visitante -->
 	<div class="sheet-modal veiculo-visitante" style="height: 80%;">
 		<div class="toolbar">
 			<div class="toolbar-inner">
@@ -1343,7 +1342,7 @@
 							<div class="item-inner">
 								<div class="item-title item-label">Placa</div>
 								<div class="item-input-wrap">
-									<input type="text" id="l_placa_carro" name="placa" value="" maxlength="8" readonly>
+									<input style="text-transform: uppercase;" type="text" id="l_placa_carro" name="placa" value="" maxlength="8" readonly>
 									<span class="input-clear-button"></span>
 								</div>
 							</div>
@@ -1367,6 +1366,8 @@
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
+	
+	<!-- Formulario -->
 	<div class="toolbar tabbar tabbar-labels" style="margin-top: -80px;">
 			<div class="toolbar-inner">
 				<a href="#aba1" class="tab-link tab-link-active" onclick="">
@@ -1431,15 +1432,14 @@
 					</div>
 					 <div class="col-xs-5">
 					   <li class="item-content item-input" style="margin-top: 5px;">
-							<div class="item-inner">
-								<div class="item-title item-label">horas</div>
-									<div class="item-input-wrap">
-										<input type="text"  name="de_h" id="hr_de">
-										<span class="input-clear-button"></span>
-									</div>
-							  </div>
-
-						</li>
+						<div class="item-inner">
+							<div class="item-title item-label">horas</div>
+								<div class="item-input-wrap">
+									<input type="time"  name="de_h" id="hr_de">
+									<span class="input-clear-button"></span>
+								</div>
+						  </div>
+                       </li>
 					</div>
 				</div>
 				<div class="row">
@@ -1492,7 +1492,7 @@
                           <div class="item-inner">
 								<div class="item-title item-label">Placa</div>
 								<div class="item-input-wrap">
-									<input type="text"  onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa">
+									<input type="text" style="text-transform: uppercase;" onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa">
 									<input type="hidden" name="id_veiculo" id="id_veiculo" >
 									<span class="input-clear-button"></span>
 								</div>
@@ -1506,51 +1506,20 @@
 				<div style="margin-top: 24px;">
 					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
 					<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-					<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+					<span type="button" id="del_lib" class="col button button-fill" style="margin-top: 6px;display: none;background-color:#F00;" onClick="liberacao_delete_notifica();"><span class="fa fa-close"></span> Remover </span>
 				</div>
-						
-						
-            </ul>
+			 </ul>
 		</div>
 	</div>
-			
 	<div class="tab" id="aba2">
 		<div id="liberacao_acessos" style="margin-top: 80px;">
 			<div id="main_acesso"></div>
 		</div>
-  </div>
-			<!--<div class="form-group">
-					<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
-					<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
-						<option value="0">Ilimitado</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-					</select>
-				</div>
-				<div class="form-group">
-						<div class="col-xs-5" style="padding-left: 0px;">
-							<div class="item-title item-label" style="margin-top: 15px">Placa</div>
-							<input type="text" class="form-control" onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa"/>
-						</div>
-						<div class="col-xs-3">
-							<button id="cad_veiculo"  data-sheet=".veiculo-morador"  style="margin-top: 27px;background:red;display:none" class="sheet-open col button button-fill"><span class="fa fa-car"></span> </button>
-						</div>
-                </div>-->
-
-			</form>
-		
-		</div>
-	 
-	</div>
+    </div>
+  </form>
+ </div>
 </div>
-		
+</div>
 			
 <div class="popup popup-liberacao" style="background-color: beige">
 	<div class="view view-liberacao"> 
