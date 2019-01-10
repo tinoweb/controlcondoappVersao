@@ -1431,15 +1431,15 @@
                     </li>
 					</div>
 					 <div class="col-xs-5">
-					   <li class="item-content item-input" style="margin-top: 5px;">
-						<div class="item-inner">
-							<div class="item-title item-label">horas</div>
-								<div class="item-input-wrap">
-									<input type="time"  name="de_h" id="hr_de">
-									<span class="input-clear-button"></span>
-								</div>
-						  </div>
-                       </li>
+						   <li class="item-content item-input" style="margin-top: 5px;">
+							<div class="item-inner">
+								<div class="item-title item-label">horas</div>
+									<div class="item-input-wrap">
+										<input type="time"  name="de_h" id="hr_de" value="08:00">
+										<span class="input-clear-button"></span>
+									</div>
+							  </div>
+						   </li>
 					</div>
 				</div>
 				<div class="row">
@@ -1459,7 +1459,7 @@
 							<div class="item-inner">
 								<div class="item-title item-label">horas</div>
 									<div class="item-input-wrap">
-										<input type="time"  name="ate_hr" id="hr_ate" >
+										<input type="time"  name="ate_hr" id="hr_ate" value="23:59" >
 										<span class="input-clear-button"></span>
 									</div>
 							  </div>
@@ -1504,9 +1504,12 @@
 					</div>
 				</div>
 				<div style="margin-top: 24px;">
-					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
-					<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-					<span type="button" id="del_lib" class="col button button-fill" style="margin-top: 6px;display: none;background-color:#F00;" onClick="liberacao_delete_notifica();"><span class="fa fa-close"></span> Remover </span>
+					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill">
+						<span class="fa fa-check"></span> Cadastrar
+					</span>
+					<span type="button" id="del_lib" class="col button button-fill" style="margin-top: 6px;display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+						<span class="fa fa-close"></span> Remover 
+				   </span>
 				</div>
 			 </ul>
 		</div>

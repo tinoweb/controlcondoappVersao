@@ -1,4 +1,20 @@
 //FUNCAO CARREGA LIBERACOES TODAS
+
+function define_hora(valor){
+	
+	var formata_h  = valor.substr(0,2);
+	var hora       = "";
+
+	if(formata_h.indexOf(":") >=0){
+	   hora = "0"+valor;						
+	}else{
+	   hora = valor;
+	}
+
+	return hora;
+	
+}
+
 function carrega_liberacao(tipo){
     //alert('teste');
 	app.controler_pull("liberacao");
@@ -242,6 +258,8 @@ function carrega_liberacao_visita(visita,tipo){
     }
 }
 
+
+
 //FUNCAO ABRE FORM E LIMPA DADOS LIBERACAO
 function adiciona_liberacao(){
 	//processando(1);
@@ -280,7 +298,7 @@ function adiciona_liberacao(){
 	var dt_1       = app.getFormattedDate(dt_atual_1);
     dt_atual_2.setDate(dt_atual_2.getDate()+1);
     var dt_2 	   = app.getFormattedDate(dt_atual_2);
-	var hora = dt_atual_1.getHours()+":"+dt_atual_1.getMinutes();
+	var hora = define_hora(dt_atual_1.getHours()+":"+dt_atual_1.getMinutes());
     //alert(hora);
     //alert(dt_2);
 	$("#new_visit").attr('onClick',"afed('#visitantes','#liberacao2','','','2', 'visitantes' ); $('#visitante_busca').val('');$('#retorno_visita').html('');$('#visitante_busca').focus()");
@@ -670,3 +688,4 @@ function abre_imagem_carro(el){
 	$(".liberacao_img").css("margin-left","57px").css("width","200px").css("height","200px").show();
 	
 }
+
