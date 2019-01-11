@@ -5,6 +5,8 @@ function aguarde(status){
 	}else{
 		$( "#wait" ).css("display","none");
 	}
+	
+	//alert(1);
 }
 
 // FUNCAO TRANSICAO DE TELA ******************************************************************/

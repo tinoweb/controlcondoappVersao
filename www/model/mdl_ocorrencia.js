@@ -51,7 +51,7 @@ function carrega_ocorrencias(tipo){
 				
 				
                 dado = '<div class="card" onClick="check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
-							+'<div class="card-header" style="'+cor+'">'
+							+'<div class="feed-ocorrencia cabecalho_card card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº  <span style="background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;"">'+retorno[x].id_ocorrencia+'</span></span>'
 												
 								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x].situacao_descricao+'</label></div>'	
@@ -62,7 +62,7 @@ function carrega_ocorrencias(tipo){
 							+'<div class="card-content card-content-padding">'
 								
 								
-								+'<div><h6 style="color: orange">Data de Criação: '+retorno[x].data_criacao+'</h6></div>'	
+								+'<div style="margin-top: 49px;"><h6 style="color: orange">Data de Criação: '+retorno[x].data_criacao+'</h6></div>'	
 								+'<div><h6>Solicitante: '+retorno[x].nome+'</h6></div>'
 								+'<div class="titulo_descricao">'
 									//+'<p style="0 0 0px"> Descrição</p>' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
@@ -663,7 +663,7 @@ function carrega_tickets(tipo){
 				$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
 				
                 dado = '<div class="card" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
-		                	+'<div class="card-header">'
+		                	+'<div class="feed-ocorrencia cabecalho_card  card-header">'
 								+'<div style="float:left">'
 									+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> <strong style="color:#cf216a;"> Ticket '+cont+'</strong>'
 								+'</div>'
