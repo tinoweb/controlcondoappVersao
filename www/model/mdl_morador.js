@@ -10,6 +10,7 @@ function carrega_morador(){
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val() },
         dataType   : 'json',
 		success: function(retorno){
+			localStorage.setItem('TEM_TITULAR','0');
             var dados = '';
             for (x in retorno) {
 				if(retorno[x]['foto'] == ''){
@@ -17,6 +18,10 @@ function carrega_morador(){
 				}else{
 				   var foto_morador = 'data:image/jpeg;base64,'+retorno[x]['foto']+'';
 				}
+				if(retorno[x]['parentesco'] == 1){
+				   localStorage.setItem('TEM_TITULAR','1');
+				}
+				
 				var morador =  	'<div class="card morador-card" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')">'+
 									'<div class="card-header">'+
 										'<div class="morador-avatar" style="background-image:url('+foto_morador+');"></div>'+
@@ -52,7 +57,7 @@ function carrega_morador_dados(id_morador){
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : id_morador },
         dataType   : 'json',
 		success: function(retorno){
-            
+            //alert(localStorage.getItem('TEM_TITULAR'));
 			if(retorno[0]['foto'] == ''){
 			   var foto_morador = 'img/user2.png';
 			}else{
@@ -71,7 +76,6 @@ function carrega_morador_dados(id_morador){
 			if(id_morador == 0){
 				//alert($( "#DADOS #ID_UNIDADE" ).val());
 	   			$( "#mor_unidade" ).val($( "#DADOS #ID_UNIDADE" ).val());
-				afed('','','','',2,'morador');
 				$("#tab_add_morador_veiculo,#tab_add_morador_contato").addClass("disabled");
 			}else{
 				$("#tab_add_morador_veiculo,#tab_add_morador_contato").removeClass("disabled");
@@ -79,10 +83,21 @@ function carrega_morador_dados(id_morador){
 
 			var paretesco_dados = '<option value="0">Selecione</option>';
 			for (x in retorno[0]['parentescos']) {
-				paretesco_dados = paretesco_dados + '<option value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
+				if(localStorage.getItem('TEM_TITULAR') == 1 && retorno[0]['parentescos'][x]['id'] == 1){
+					paretesco_dados = paretesco_dados + '<option disabled value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
+
+				}else{
+					paretesco_dados = paretesco_dados + '<option value="'+retorno[0]['parentescos'][x]['id']+'">'+retorno[0]['parentescos'][x]['descricao']+'</option>';
+				}
 			}
 			$( "#mor_parentesco" ).html(paretesco_dados);
 			$( "#mor_parentesco" ).val(retorno[0]['parentesco']);
+			$( "#mor_parentesco_hidden" ).val(retorno[0]['parentesco']);
+			if(retorno[0]['parentesco'] == 1){
+				$("#mor_parentesco").addClass("disabled");
+			}else{
+				$("#mor_parentesco").removeClass("disabled");
+			}
 			$( "#mor_email" ).val(retorno[0]['email']);
 			if(retorno[0]['masculino'] == 1){
                 document.getElementById("mor_homem").checked = true;
@@ -141,8 +156,14 @@ function carrega_morador_dados(id_morador){
 					'</li>';
 			}
 			$( "#retorno_contato_morador" ).html(contatos_dados);
-
-            afed('#morador','#moradores','','',2,'morador');
+			
+			if(localStorage.getItem('TELA_ATUAL') == 'morador_perfil'){
+				$("#voltar_morador").attr("onclick","afed('#home','#morador','','',2,'home');");
+			}else{
+				$("#voltar_morador").attr("onclick","afed('#moradores','#morador','','',2,'moradores');");
+				afed('#morador','#moradores','','',2,'morador');
+			}
+            
         
         },
         error      : function() {

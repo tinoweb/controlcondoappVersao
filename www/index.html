@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="js/jquery-3.2.1.js"></script>
-	<script src="js/jquery-ui.js"></script>		
+	<script src="js/jquery-ui.js"></script>
 	
 	<script src="js/jquery.mobile-1.4.5.js"></script>
 	<script src="lib/framework7/js/framework7.js"></script>
@@ -428,7 +428,7 @@
 							<div id="icone" ><i class="material-icons" style="color:#0073b7;font-size: 23px; float: left">sync</i></div>
 							<span>Trocar Perfil</span> 
 						</div>
-						<div class="bt_perfil_edit button" onClick="carrega_perfil();">
+						<div class="bt_perfil_edit button" onClick="carrega_perfil2();"><!--carrega_perfil();-->
 							<div id="icone"><i class="fa fa-user-circle-o" style="color:#0073b7;font-size: 23px"></i></div>
 							<span>Editar Perfil</span> 
 						</div>
@@ -829,7 +829,7 @@
 	<div id="morador" class="pagina morador2">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a href="#" onClick="afed('#moradores','#morador','','',2,'moradores');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a id="voltar_morador" href="#" onClick=""><i class="icon icon-back"></i></a> </div>
 				<div class="title">Morador</div>
 			</div>
 		</div>
@@ -931,7 +931,7 @@
 							<div class="item-inner">
 								<div class="item-title item-label">Parentesco</div>
 								<div class="item-input-wrap">
-									<!--<input type="text" id="mor_parentesco" name="parentesco" value="">-->
+									<input type="hidden" id="mor_parentesco_hidden" name="parentesco">
 									<select name="parentesco" id="mor_parentesco">
 										
 									</select>
@@ -1008,7 +1008,7 @@
       					<i class="icon material-icons md-only">add</i>
     				</a>
   				</div>
-				<div class="sheet-modal veiculo-morador" style="height: 80%;">
+				<div class="sheet-modal veiculo-morador" style="height: 100%;">
     				<div class="toolbar">
 					  	<div class="toolbar-inner">
 							<div class="left"></div>
@@ -1101,7 +1101,7 @@
 						<i class="icon material-icons md-only">add</i>
 					</a>
 				</div>
-				<div class="sheet-modal contato-morador" style="height: 50%;">
+				<div class="sheet-modal contato-morador" style="height: 60%;">
     				<div class="toolbar">
 					  	<div class="toolbar-inner">
 							<div class="left"></div>
@@ -2091,17 +2091,18 @@
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner"> <a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span> </div>
             </div>
-		    <!--<form id="form_busca_correspondencia" style="width: 100%; margin: 60px 0 0 0; float: left;">
-				<input name="busca" id="busca_correspondencia">
-				<button type="button">Buscar</button>
-			</form>-->
 			<div class="box" id="boxUp_entregas"></div>
 			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
 				<div class="ptr-preloader">
 					<div class="preloader"></div>
 					<div class="ptr-arrow"></div>
 				</div>
-				<div id="main_correspondencia" class="list media-list" style="height: 90% !important"></div>
+				<!--<div id="main_correspondencia" class="list media-list" style="height: 90% !important"></div>-->
+				<div class="list">
+				  	<ul id="main_correspondencia">
+						<!--RETORNO DOS DADOS CORRESPODENCIA-->
+				  	</ul>
+				</div>
 			</div>
 		</div>
 	</div>

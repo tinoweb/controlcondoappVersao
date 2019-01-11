@@ -37,6 +37,13 @@ function carrega_perfil(){
 
 }
 
+function carrega_perfil2(){
+	
+	afed('#morador','#home','','',2,'morador_perfil');//carrega_morador();
+	carrega_morador_dados($( "#DADOS #ID_MORADOR" ).val());
+	
+}
+
 function atualiza_perfil(){
 	var dados = $( "#form_perfil_update" ).serialize();
     //alert(dados);

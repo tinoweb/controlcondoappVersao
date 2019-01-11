@@ -49,16 +49,15 @@ function carrega_ocorrencias(tipo){
 					cor = '';
 				 }
 				
-				
                 dado = '<div class="card" onClick="check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº  <span style="background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;"">'+retorno[x].id_ocorrencia+'</span></span>'
 												
 								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x].situacao_descricao+'</label></div>'	
 							+'</div>'
-								/*
-								*CORPO Do card ocorrencia na listagem
-								*/
+								
+//								*CORPO Do card ocorrencia na listagem
+//								
 							+'<div class="card-content card-content-padding">'
 								
 								

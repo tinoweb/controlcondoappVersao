@@ -28,24 +28,91 @@ function carrega_entregas(tipo){
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), pg : parseInt(pg) },
         dataType   : 'json',
 		success: function(retorno){
-            //alert(retorno);
 			var cont = 0;
             for (x in retorno) {
 				cont++;
-                dado = '<div class="entrega" onClick=""><div class="entrega_foto" style="background-image:url(';
-				if(retorno[x]['descricao']==='SEDEX'){
-					dado+= 'img/pacote.png';
-				}else if(retorno[x]['descricao']==='CARTA'){
-					dado+= 'img/carta.png';
-				}else if(retorno[x]['descricao']==='ENTREGA'){
-					dado+= 'img/entrega.png';
+				if(retorno[x]['dataentrega'] != ''){
+					var cor_status='#a1cf77';
+				}else{
+					var cor_status='yellow';
 				}
-				dado  +=  ')"></div><span>'+retorno[x]['nome_morador']+' ('+retorno[x]['descricao']+')</span>'
-				dado  +=    '<span style="font-size:10px;width:auto; float:right;">Data Recebimento: '+retorno[x]['datarecebimento']+'</span>';
-				if(retorno[x]['dataentrega']!==''){
-					dado += '<span style="font-size:10px;width:auto; float:right;">Data da Retirada: '+retorno[x]['dataentrega']+'</span>';
-				}
-				dado += '</div>';
+				dado = '<li class="accordion-item"><a href="#" class="item-content item-link">'+
+							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;"><i class="icon material-icons" style="margin: 0px 0 0 8px;  ">camera_alt</i></div>'+
+							'<div class="item-inner">'+
+								'<div class="item-title">'+retorno[x]['descricao']+' para '+retorno[x]['nome_morador']+'</div>'+
+								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
+							'</div></a>'+
+						  	'<div class="accordion-item-content bg-color-white">'+
+								'<div class="block">'+
+									'<div class="list">'+
+  									'<ul>'+
+										'<li>'+
+										'<div class="item-inner">'+
+										'<div class="item-title">'+
+										'<div class="item-header">Data Recebimento</div>'+
+										retorno[x]['datarecebimento']+
+										'</div>'+
+										'</div>'+
+										'</li>';
+										if(retorno[x]['obsRecebimento'] != ''){
+											dado = dado +
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Obs Recebimento</div>'+
+											retorno[x]['obsRecebimento']+
+											'</div>'+
+											'</div>'+
+											'</li>';
+										}
+										if(retorno[x]['dataentrega'] != ''){
+											dado = dado +
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Data entrega</div>'+
+											retorno[x]['dataentrega']+
+											'</div>'+
+											'</div>'+
+											'</li>';
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Entregue para</div>'+
+											retorno[x]['nomeRetirada']+
+											'</div>'+
+											'</div>'+
+											'</li>';
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Obs entrega</div>'+
+											retorno[x]['obsEntrega']+
+											'</div>'+
+											'</div>'+
+											'</li>';
+										}
+									dado = dado +
+  									'</ul>'+
+									'</div>'+
+								'</div>'+
+						  	'</div>'+
+						'</li>';
+
+//                dado = '<div class="entrega" onClick=""><div class="entrega_foto" style="background-image:url(';
+//				if(retorno[x]['descricao']==='SEDEX'){
+//					dado+= 'img/pacote.png';
+//				}else if(retorno[x]['descricao']==='CARTA'){
+//					dado+= 'img/carta.png';
+//				}else if(retorno[x]['descricao']==='ENTREGA'){
+//					dado+= 'img/entrega.png';
+//				}
+//				dado  +=  ')"></div><span>'+retorno[x]['nome_morador']+' ('+retorno[x]['descricao']+')</span>'
+//				dado  +=    '<span style="font-size:10px;width:auto; float:right;">Data Recebimento: '+retorno[x]['datarecebimento']+'</span>';
+//				if(retorno[x]['dataentrega']!==''){
+//					dado += '<span style="font-size:10px;width:auto; float:right;">Data da Retirada: '+retorno[x]['dataentrega']+'</span>';
+//				}
+//				dado += '</div>';
                 dados = dados + dado;
             }
 			//dados = '<div id="main_correspondencia" class="main">'+dados+'</div>';
@@ -64,7 +131,7 @@ function carrega_entregas(tipo){
           
 		},
         error : function() {
-            //notifica('Entregas/N\u00e3o ha entrega/Fechar',0,0);
+            alert(erro);
         }
 	});	
 }
