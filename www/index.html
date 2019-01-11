@@ -2380,7 +2380,7 @@
 								</div>
 
 								<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
-									<form id="form_ocorrencia" style="float: left; width: 100%;">
+									<form id="form_ocorrencia" style="padding: 12px;float: left; width: 100%;">
 										
 										<input type="hidden" id="foto" name="foto" > 
 										<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
@@ -2393,8 +2393,8 @@
 										<input type="hidden" name="arquivo" id="arquivo">
 										<input type="hidden" name="privada" id="privada">										
 
-										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 100%; padding-bottom: 5px;" >	
-											<div style="font-size: 20px; float: left;" id="titulo_ocorrencia" >
+										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 100%; padding-bottom: 5px;" >
+											<div style="background:;color:white;font-size: 20px; float: left;" class="chip color-green" id="titulo_ocorrencia" >
 												Titulo da ocorrência 											
 											</div>
 											
@@ -2408,10 +2408,39 @@
 										
 										<label id="data_criacao" style="width: 100%; color: #fd9715; font-weight: 500;"> Data de Criação </label>
 
-										<label> Tipo </label>
-										<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>
+										<!--<label> Tipo </label>
+										<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>-->
+										
+										<div class="chip">
+											<div class="chip-media bg-color-green">
+											<i class="fa fa-angle-right"></i>
 
-										<label> Categoria </label>
+											</div>
+											<div name="txt_privada" id="txt_privada" class="chip-label"></div>
+										</div><br>
+										<div class="chip">
+											<div class="chip-media bg-color-red">
+											<i class="fa fa-th-large"></i>
+
+											</div>
+											<div name="txt_categoria" id="txt_categoria" class="chip-label"></div>
+										</div><br>
+										<div class="chip">
+											<div class="chip-media bg-color-blue">
+											<i class="fa fa-user"></i>
+
+											</div>
+											<div d="solicitante" class="chip-label"></div>
+										</div><br>
+										<div class="chip">
+											<div class="chip-media bg-color-yellow">
+											<i class="fa fa-edit"></i>
+
+											</div>
+											<div name="descricao" id="descricao" class="chip-label"></div>
+										</div><br>
+
+										<!--<label> Categoria </label>
 										<p name="txt_categoria" id="txt_categoria"> LOCAL ONDE VAI A CATEGORAI </p>
 										
 										<label style="width: 100%; font-size: 15px;font-weight: 700;">Solicitante</label>
@@ -2419,7 +2448,7 @@
 										<p id="solicitante">Local onde é preenchido o Nome do Morador</p>
 										
 										<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
-										<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>
+										<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>-->
 										
 										
 										<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
@@ -3507,4 +3536,4 @@
 </script>
 
 </body>
-</html>
+</html>>>>>>>

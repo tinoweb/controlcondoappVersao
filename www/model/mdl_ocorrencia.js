@@ -35,9 +35,9 @@ function carrega_ocorrencias(tipo){
 				cont++;
                 cor_status = retorno[x].id_situacao;
 				if(cor_status == 1){
-					cor_status = '#696969';
+					cor_status = 'rgba(238, 238, 238, 0);border: 1px solid black;border-radius: 13px;';
 				}else if(cor_status=='10'){
-					cor_status='#a1cf77';
+					cor_status='#80ce38';
 				}else{
 					cor_status='yellow';
 				}
@@ -50,28 +50,28 @@ function carrega_ocorrencias(tipo){
 				 }
 				
 				
-                dado = '<div class="card" onClick="check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
+
+                dado = '<div class="card" chiponClick="check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="feed-ocorrencia cabecalho_card card-header" style="'+cor+'">'
-								+'<span style="font-size: 15px;" >Ocorrência nº  <span style="background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;"">'+retorno[x].id_ocorrencia+'</span></span>'
+								+'<span style="font-size: 15px;" >Ocorrência nº <span style="color: white;" class="chip color-">'+retorno[x].id_ocorrencia+'</span></span>'
 												
-								+'<div style="float: right;" ><i class="fa fa-circle" style="color:'+cor_status+'"></i>&nbsp;<label style="font-size:13px;">'+retorno[x].situacao_descricao+'</label></div>'	
+								+'<div style="float: right;" ><i class="fa fa-warning"></i></div>'	
 							+'</div>'
 								/*
 								*CORPO Do card ocorrencia na listagem
 								*/
 							+'<div class="card-content card-content-padding">'
-								
-								
-								+'<div style="margin-top: 49px;"><h6 style="color: orange">Data de Criação: '+retorno[x].data_criacao+'</h6></div>'	
-								+'<div><h6>Solicitante: '+retorno[x].nome+'</h6></div>'
-								+'<div class="titulo_descricao">'
+								+'<div style="margin-top:7px" class="chip"><div class="chip-media bg-color-yellow"><span class="fa fa-calendar"></span></div><div class="chip-label">'+retorno[x].data_criacao+'</div></div>'	
+								+'<div><div style="margin-top:7px" class="chip"><div class="chip-media bg-color-blue"><span class="fa fa-user"></span></div><div class="chip-label">'+limitanome(retorno[x].nome)+'</div></div></div>'
+				                +'<div style="margin-top:7px" class="chip"><div class="chip-media bg-color-orange"><span class="fa fa-edit"></span></div><div class="chip-label">'+retorno[x].situacao_descricao+'</div></div>'
+								+'<div style="margin: 8px 0 0 6px;" class="titulo_descricao">'
 									//+'<p style="0 0 0px"> Descrição</p>' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
 								//+'<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKASURBVDhP1ZTbThNRFIbnUl/AeKGP4DOZGBMPYJQECSAIV8RoEaEUiEJbKQxMW1qkrQUplul0epgypSfKwUgoYGkpDfHKRKO/e0+2FVKQGuKFK/mzDjP7mzV77Rnu/7Knd02XexrMt3ob+Qe1St9mbdE3C400NpC4r3m8/tnt0UsMyXF9Tbxrxpn66nalUYtmvVn43q3C485gbjaLBd8avO7Md/1DfoYhOa6/1SoH1D2cJSVdxFK2RHQAKV5AJL2P+HoZykoJ0nIBhke2EEPWDk1ulJH6UD4RSB808NgeYcjaoOHU/qkd0jrNBzunYgxZDfWHtjG/+LEif3ALwfA2fOImxHAO6toBAiT3R3YqQKqhjqk4Q1ZDHYIK/qWoaXI4AKtRqsR2cxBSdAcTJPdMJypADdrpTDBkNfS9nKvqcFHeQkjZJh3mtFxJFY8BFdLxHwfltKlVHdpMQQgjJH8lavWAvKnB6OAoMKAWQDkMeRyaXC/VNBSqjdwhdoufIS8XtbWnQiOp08/hUSBVLEv8aklbdyLUTzZfJqCQmodEXiUY20U0VUA0U4Sf7OtSpgQluYdoIq9NX1Y/QVTy2jU6gxOhNj4Ch2MJIzoPPL4sRvvnwY+ImHYlYXzuhdubxviwCMvgAjzzKxjWvcWUk5wSswTTizl4xQ30tx2FtlkVizmAMQvRKPUSLNSz+KifEMKwexOwe5Yxzocq91FPfiy/v6gn9yxXepvGGvtahNazpG8RspOOmAY2tNu+/KrT9ZTDkH9nujvGqwMd9oLNFcdQ1/S3juumC+zS+ay7znjN0G7ND3W9+dFz//UNVj6/dTcIF3V1xpvd9cZ6VvqXxnE/ATLUlbEEZFlVAAAAAElFTkSuQmCC"> Descrição' //Tag <p> traz icone com o balao antes do conteudo do paragrafo
-								+'<i class="material-icons">insert_comment</i>'
+								+'<!--<i class="material-icons" style="color:#ffb734">insert_comment</i>-->'
 				
 								+'</div>'
 					
-								+'<div class="descricao_card_ocorrencia" >'+retorno[x].titulo_ocorrencia+'</div>'
+								+'<div class="descricao_card_ocorrencia" ><strong>'+retorno[x].titulo_ocorrencia+'</strong></div>'
 								
 								
 							+'</div>'
@@ -149,22 +149,22 @@ function carrega_ocorrencia(id){
                 $("#form_ocorrencia #criado_por").val(retorno[0].nome);
                 $("#form_ocorrencia #id_situacao").val(retorno[0].id_situacao);
 				
-				$("#form_ocorrencia #txt_categoria").html(retorno[0].categoria_descricao);
+				$("#form_ocorrencia #txt_categoria").html("Categoria - "+retorno[0].categoria_descricao);
 				
                 $("#form_ocorrencia #privada").val(retorno[0].privada);
 
                 if(retorno[0].privada === 1){
-                	$("#form_ocorrencia #txt_privada").html("Privada");	
+                	$("#form_ocorrencia #txt_privada").html("Tipo - Privada");	
                 }else{
-                	$("#form_ocorrencia #txt_privada").html("Pública");	
+                	$("#form_ocorrencia #txt_privada").html("Tipo - Pública");	
 				}
 				//$("#form_ocorrencia #statusbar").css('background-color', cor_status);
                 
-				$("#form_ocorrencia #solicitante").html(retorno[0].nome);
+				$("#form_ocorrencia #solicitante").html("Solicitante - "+retorno[0].nome);
                 
-                $("#form_ocorrencia #descricao").html(retorno[0].titulo_ocorrencia);
+                $("#form_ocorrencia #descricao").html("Descricao - "+retorno[0].titulo_ocorrencia);
 				
-				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrência <span style='background-color:#a1cf77;color: #fff;border: 3px solid #a1cf77; border-radius: 20%;'>"+retorno[0].id_ocorrencia+"</span>");
+				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrência&nbsp-&nbsp<span> "+retorno[0].id_ocorrencia+" </span>");
                 
 				
 				$("#form_ocorrencia #icone_ocorrencia").css('color', cor_status);
@@ -663,7 +663,7 @@ function carrega_tickets(tipo){
 				$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
 				
                 dado = '<div class="card" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
-		                	+'<div class="feed-ocorrencia cabecalho_card  card-header">'
+		                	+'<div class="card-header">'
 								+'<div style="float:left">'
 									+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> <strong style="color:#cf216a;"> Ticket '+cont+'</strong>'
 								+'</div>'
