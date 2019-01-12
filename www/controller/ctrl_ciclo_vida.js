@@ -82,7 +82,6 @@ function onBackKeyDown() {
     //REGRAS LIBERACAO   
     if(localStorage.getItem('TELA_ATUAL') == 'liberacao_add'){
 		afed('#home','#visitantes','','',2,'home');
-		
         $( '#busca_liberacao' ).val('');
     }
 
@@ -97,12 +96,14 @@ function onBackKeyDown() {
     }
 
     if(localStorage.getItem('TELA_ATUAL') == 'liberacao'){
+		alert(1);
         afed('#home','#liberacao3','','',2);
         localStorage.setItem('TELA_ATUAL','home');
         $( '#busca_liberacao' ).val('');
 		inicia2(0);
     }
 	if(localStorage.getItem('TELA_ATUAL') == 'liberacao_list'){
+		alert(2);
 		closePopUp();
         //afed('#home','#liberacao3','','',2);
         localStorage.setItem('TELA_ATUAL','liberacao');
