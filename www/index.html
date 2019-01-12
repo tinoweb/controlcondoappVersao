@@ -2222,6 +2222,8 @@
 				
   <!--   $OCORRENCIAS LISTA    -->
   <div id="ocorrencias" class="pagina ocorrencias"> 
+	  
+	   
 		<div class="view view-ocorrencias"> 
 		<div data-name="home" class="page">
 				<div class="navbar" style="height: 50px">
@@ -2346,8 +2348,9 @@
 		<div class="view"> 
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
 					<div class="title" >Detalhe da Ocorrência</div>
+					<input type="hidden" id="verifica_anexo"/>
 				</div>
 			</div>
 
@@ -2411,6 +2414,7 @@
 						</div>
 						<div name="descricao" id="descricao" class="chip-label"></div>
 					</div><br>
+					
 
 					<!--<label> Categoria </label>
 					<p name="txt_categoria" id="txt_categoria"> LOCAL ONDE VAI A CATEGORAI </p>
@@ -2430,7 +2434,7 @@
 						<li class="accordion-item"><a href="#" class="item-content item-link">
 							<div class="item-inner">
 							  <div class="item-title">&nbsp; Lista de Tickets</div>
-							<div class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
+							<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
 							</div></a>
 						  <div class="accordion-item-content">
 							<div class="block" id="main_ticket" >
@@ -2442,7 +2446,7 @@
 					</div>
 
 					<!--<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>-->
-					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
+					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(4);"> 
 						<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
 					</span>
 					<button class="col button button-fill" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> 
@@ -2517,7 +2521,21 @@
 									</div>
 
 									<div class="form-group" id="div_categoria" name="div_categoria">
-										
+										 <label for="privada">Categoria</label>
+										 <select class="form-control" id="id_categoria" name="id_categoria">
+											  <option value="99"></option>
+											  <option value="1">Barulho</option>
+											  <option value="2">Conduta de Prestador</option>
+											  <option value="3">Conduta de Visitante</option>
+											  <option value="4">Desobediência das Normas</option>
+											  <option value="5">Limite e Velocidade</option>
+											  <option value="6">Jardinagem e Paisagismo</option>
+											  <option value="7">Limpeza e Conservação</option>
+											  <option value="8">Manutenção</option>
+											  <option value="9">Sugestão</option>
+											  <option value="10">Vandalismo</option>
+											  <option value="11">Outros</option>
+									    </select>
 									    
 									</div>
 
@@ -2607,7 +2625,7 @@
 							
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-									<div class="left"> <a href="#" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
+									<div class="left"> <a href="#" id="oco_voltar" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
 									<div class="title" id="ti_titulo">Novo Ticket</div>
 								</div>
 							</div>
@@ -2689,7 +2707,7 @@
 						
 							<div class="navbar" style="height: 50px">
 								<div class="navbar-inner"> 
-									<a href="#" onClick="voltar('#ocorrencias_ticket','#ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a>
+									<a href="#" id="oco_detalhe_voltar"><i class="icon icon-back"></i></a>
 									<div class="title">Detalhe do Ticket</div>
 								</div>
 							</div>
