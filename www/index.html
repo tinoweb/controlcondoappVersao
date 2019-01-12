@@ -1522,7 +1522,7 @@
   </form>
  </div>
 </div>
-</div>
+
 			
 <div class="popup popup-liberacao" style="background-color: beige">
 	<div class="view view-liberacao"> 
@@ -2212,263 +2212,248 @@
 
 <!--
 
-				
-
-										Inicio de configuração do modulo de OCORRENCIA 
-
-
+     Inicio de configuração do modulo de OCORRENCIA 
+     Criado por Pedro.
+     Revisado Por Caio Souza  11/01/2019
 -->
 
 
 				
-<!--   $OCORRENCIAS LISTA    -->
-			
-					<div id="ocorrencias" class="pagina ocorrencias"> 
-						<div class="view view-ocorrencias"> 
-						<div data-name="home" class="page">
-								<div class="navbar" style="height: 50px">
-									<div class="navbar-inner">
-										<div class="left"> 
-											<a href="#" onClick="voltar('#home','#ocorrencias','home');">
-												<i class="icon icon-back"></i>
-											</a>
-										</div>
-
-										<div class="title">Ocorrências</div>
-										
-										<div class="right"> 											
-											<a href="#" onClick="sheet_modulo('sort_ocorrencia','');">
-												<i class="glyphicon glyphicon-sort"></i>
-											</a>
-											&nbsp;
-											<a class="link popup-open" href="#" data-popup=".popup-about">
-												<i class="fa fa-search" style="margin-right: 15px"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-				
-							
-								<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
-
-									<div class="ptr-preloader">
-										<div class="preloader"></div>
-										<div class="ptr-arrow"></div>
-									</div>
-									<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
-									<div id="main_ocorrencia" class="list media-list" style="margin-top:0;"></div>
-								</div>
-								<!-- BOTAO ADICIONAR OCORRENCIA -->
-								<div class="fab fab-right-bottom color-blue open-full">
-										<a onclick="ocorrencia_novo();" >
-									  <!-- Icons For iOS Theme -->									  
-								  			<i class="glyphicon glyphicon-plus"></i>
-									  <!-- Icons For MD Theme -->
-										</a>
-								</div>
+  <!--   $OCORRENCIAS LISTA    -->
+  <div id="ocorrencias" class="pagina ocorrencias"> 
+		<div class="view view-ocorrencias"> 
+		<div data-name="home" class="page">
+				<div class="navbar" style="height: 50px">
+					<div class="navbar-inner">
+						<div class="left"> 
+							<a href="#" onClick="voltar('#home','#ocorrencias','home');">
+								<i class="icon icon-back"></i>
+							</a>
 						</div>
+ 						<div class="title">Ocorrências</div>
+					    <div class="right"> 											
+							<a href="#" onClick="sheet_modulo('sort_ocorrencia','');">
+								<i class="glyphicon glyphicon-sort"></i>
+							</a>
+							&nbsp;
+							<a class="link popup-open" href="#" data-popup=".popup-about">
+								<i class="fa fa-search" style="margin-right: 15px"></i>
+							</a>
 						</div>
 					</div>
-					
-		
-
-								<div class="popup popup-about" style="font-size: 14px; font-weight: 100;" >
-										<div class="block-title" style="height: 5%">
-											<label style="font-size: 16px"><i class="fa fa-search"></i> Filtros de Ocorrência</label>
-										</div>
-										<div class="page-content list no-hairlines-md" style="height: 60%">
-											<form id="form_busca_ocorrencias" >
-													<div class="searchbar-backdrop">
-							
-								<div class="box" id="boxUp_ocorrencias"></div>
-								<input type="search" placeholder="Busca" name="busca" id="busca_ocorrencias">
-
-								</div>
-								
-										  <ul>
-								
-											
-												<li class="item-content item-input">
-												  <div class="item-inner">
-													<div class="item-title item-label">Número Ocorrência</div>
-													<div class="item-input-wrap">
-													  <input type="number" id="f_ocorrencia" name="f_ocorrencia" value="">
-													  <span class="input-clear-button"></span>
-													</div>
-												  </div>
-												</li>
-												<li class="item-content item-input">
-												  <div class="item-inner">
-													<div class="item-title item-label">Descrição</div>
-													<div class="item-input-wrap">
-													  <input type="text" id="f_descricao" name="f_descricao">
-													  <span class="input-clear-button"></span>
-													</div>
-												  </div>
-												</li>
-												<li>
-												  
-												<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
-													
-													  	<input type="checkbox" id="f_minhas" name="f_minhas" value="1" />
-														<i class="icon icon-checkbox"></i>
-													
-													  	<div class="item-title" style="width:100%; float:left">Minhas Ocorrências</div>
-													
-												  </label>
-													
-											  	</li>
-											  
-												  <li>
-												  <div class="item-content item-input">
-													<div class="item-inner">
-														<div class="item-title item-label">Data Inicial</div>
-													  	<div class="item-input-wrap">
-															<input type="date" id="f_inicio" name="f_inicio" placeholder="Data Inicial" style="background-color: white" value="">
-													  	</div>
-													</div>
-												  </div>
-												</li>
-											  	<li>
-											  		<div class="item-content item-input">
-														<div class="item-inner">
-															<div class="item-title item-label">Data Final</div>
-															<div class="item-input-wrap">
-																<input type="date" id="f_fim" name="f_fim" placeholder="Data Final" style="background-color: white" value="">
-															</div>
-														</div>
-													 </div>
-											  	</li>
-									
-											</ul>
-
-											</form>
-								
-										</div>
-												
-										<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
-											<div class="toolbar-inner" style="padding: 5px">
-												<div class="popup-close" type="button" style="width: 50%; padding: 10px" >
-													<i class="f7-icons">undo</i>
-													<div class="f7-demo-icon-label">Voltar</div>
-												</div>
-												<div class="popup-close" style="width: 50%; padding: 10px" type="button" onClick="carrega_ocorrencias(0)">
-													<i class="f7-icons" style="margin-top: 5px">search</i>
-													<div class="f7-demo-icon-label">Filtrar</div>
-												</div>
-											</div>
-										</div>
-									
-				
-									
-							</div>	
-			
+				</div>
 
 
+				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
 
+					<div class="ptr-preloader">
+						<div class="preloader"></div>
+						<div class="ptr-arrow"></div>
+					</div>
+					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
+					<div id="main_ocorrencia" class="list media-list" style="margin-top:0;"></div>
+				</div>
+				<!-- BOTAO ADICIONAR OCORRENCIA -->
+				<div class="fab fab-right-bottom color-blue open-full">
+						<a onclick="ocorrencia_novo();" >
+					  <!-- Icons For iOS Theme -->									  
+							<i class="glyphicon glyphicon-plus"></i>
+					  <!-- Icons For MD Theme -->
+						</a>
+				</div>
+			</div>
+		</div>
+	</div>
+						
 
-
-<!-- OCORRENCIAS PAGINA VISUALIZACAO 						-->
-
-						<div id="ocorrencia" class="pagina">
-							<div class="view"> 
-							<div data-name="home" class="page">
-								<div class="navbar" style="height: 50px">
-									<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
-										<div class="title" >Detalhe da Ocorrência</div>
-									</div>
-								</div>
-
-								<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
-									<form id="form_ocorrencia" style="padding: 12px;float: left; width: 100%;">
-										
-										<input type="hidden" id="foto" name="foto" > 
-										<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
-										<input type="hidden" name="id_condominio" id="id_condominio">
-										<input type="hidden" name="tipo_solicitante" value="1">
-										<input type="hidden" name="id_solicitante" id="id_solicitante">
-										<input type="hidden" name="id_responsavel" id="id_responsavel">
-										<input type="hidden" name="criado_por" id="criado_por">
-										<input type="hidden" name="id_situacao" id="id_situacao">
-										<input type="hidden" name="arquivo" id="arquivo">
-										<input type="hidden" name="privada" id="privada">										
-
-										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 100%; padding-bottom: 5px;" >
-											<div style="background:;color:white;font-size: 20px; float: left;" class="chip color-green" id="titulo_ocorrencia" >
-												Titulo da ocorrência 											
-											</div>
-											
-											<div style="padding-top: 5px;float: right;" id="situacao">
-											</div>
-											<div style="padding-top: 5px; float: right;">
-												<i class="fa fa-circle" id="icone_ocorrencia">&nbsp;</i>  
-											</div>
-										</div>
-										
-										
-										<label id="data_criacao" style="width: 100%; color: #fd9715; font-weight: 500;"> Data de Criação </label>
-
-										<!--<label> Tipo </label>
-										<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>-->
-										
-										<div class="chip">
-											<div class="chip-media bg-color-green">
-											<i class="fa fa-angle-right"></i>
-
-											</div>
-											<div name="txt_privada" id="txt_privada" class="chip-label"></div>
-										</div><br>
-										<div class="chip">
-											<div class="chip-media bg-color-red">
-											<i class="fa fa-th-large"></i>
-
-											</div>
-											<div name="txt_categoria" id="txt_categoria" class="chip-label"></div>
-										</div><br>
-										<div class="chip">
-											<div class="chip-media bg-color-blue">
-											<i class="fa fa-user"></i>
-
-											</div>
-											<div d="solicitante" class="chip-label"></div>
-										</div><br>
-										<div class="chip">
-											<div class="chip-media bg-color-yellow">
-											<i class="fa fa-edit"></i>
-
-											</div>
-											<div name="descricao" id="descricao" class="chip-label"></div>
-										</div><br>
-
-										<!--<label> Categoria </label>
-										<p name="txt_categoria" id="txt_categoria"> LOCAL ONDE VAI A CATEGORAI </p>
-										
-										<label style="width: 100%; font-size: 15px;font-weight: 700;">Solicitante</label>
-										
-										<p id="solicitante">Local onde é preenchido o Nome do Morador</p>
-										
-										<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
-										<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>-->
-										
-										
-										<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
-					
-										
-										<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>
-										<button class="btn btn-warning" style="margin-bottom: 4px" id="bt_oco_reabre" type="button" onclick="ticket_novo(2);"> <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
-										 </button>
-										<button class="btn btn-success" style="margin-bottom: 4px" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar </button>
-										
-									</form>
-								</div>
-							</div>
+	<div class="popup popup-about" style="font-size: 14px; font-weight: 100;" >
+		<div class="block-title" style="height: 5%">
+			<label style="font-size: 16px"><i class="fa fa-search"></i> Filtros de Ocorrência</label>
+		</div>
+		<div class="page-content list no-hairlines-md" style="height: 60%">
+			<form id="form_busca_ocorrencias" >
+			<div class="searchbar-backdrop">
+                <div class="box" id="boxUp_ocorrencias"></div>
+				<input type="search" placeholder="Busca" name="busca" id="busca_ocorrencias">
+			</div>
+            <ul>
+             <li class="item-content item-input">
+				  <div class="item-inner">
+					<div class="item-title item-label">Número Ocorrência</div>
+					<div class="item-input-wrap">
+					  <input type="number" id="f_ocorrencia" name="f_ocorrencia" value="">
+					  <span class="input-clear-button"></span>
+					</div>
+				  </div>
+				</li>
+				<li class="item-content item-input">
+				  <div class="item-inner">
+					<div class="item-title item-label">Descrição</div>
+					<div class="item-input-wrap">
+					  <input type="text" id="f_descricao" name="f_descricao">
+					  <span class="input-clear-button"></span>
+					</div>
+				  </div>
+				</li>
+				<li>
+					<label class="item-checkbox item-content" style="font-weight:100; font-size: 12px;">
+							<input type="checkbox" id="f_minhas" name="f_minhas" value="1" />
+							<i class="icon icon-checkbox"></i>
+							<div class="item-title" style="width:100%; float:left">Minhas Ocorrências</div>
+				   </label>
+               </li>
+               <li>
+				  <div class="item-content item-input">
+					<div class="item-inner">
+						<div class="item-title item-label">Data Inicial</div>
+						<div class="item-input-wrap">
+							<input type="date" id="f_inicio" name="f_inicio" placeholder="Data Inicial" style="background-color: white" value="">
+						</div>
+					</div>
+				  </div>
+				</li>
+				<li>
+					<div class="item-content item-input">
+						<div class="item-inner">
+							<div class="item-title item-label">Data Final</div>
+							<div class="item-input-wrap">
+								<input type="date" id="f_fim" name="f_fim" placeholder="Data Final" style="background-color: white" value="">
 							</div>
 						</div>
+					 </div>
+				</li>
+            </ul>
+         </form>
+        </div>
+        <div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
+			<div class="toolbar-inner" style="padding: 5px">
+				<div class="popup-close" type="button" style="width: 50%; padding: 10px" >
+					<i class="f7-icons">undo</i>
+					<div class="f7-demo-icon-label">Voltar</div>
+				</div>
+				<div class="popup-close" style="width: 50%; padding: 10px" type="button" onClick="carrega_ocorrencias(0)">
+					<i class="f7-icons" style="margin-top: 5px">search</i>
+					<div class="f7-demo-icon-label">Filtrar</div>
+				</div>
+			</div>
+		</div>
+    </div>	
+			
+    <!-- OCORRENCIAS PAGINA VISUALIZACAO -->
+
+	<div id="ocorrencia" class="pagina">
+		<div class="view"> 
+		<div data-name="home" class="page">
+			<div class="navbar" style="height: 50px">
+				<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+					<div class="title" >Detalhe da Ocorrência</div>
+				</div>
+			</div>
+
+			<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
+			    <form id="form_ocorrencia" style="padding: 12px;float: left; width: 100%;">
+
+					<input type="hidden" id="foto" name="foto" > 
+					<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
+					<input type="hidden" name="id_condominio" id="id_condominio">
+					<input type="hidden" name="tipo_solicitante" value="1">
+					<input type="hidden" name="id_solicitante" id="id_solicitante">
+					<input type="hidden" name="id_responsavel" id="id_responsavel">
+					<input type="hidden" name="criado_por" id="criado_por">
+					<input type="hidden" name="id_situacao" id="id_situacao">
+					<input type="hidden" name="arquivo" id="arquivo">
+					<input type="hidden" name="privada" id="privada">										
+
+					<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 100%; padding-bottom: 5px;" >
+						<div style="background:#6576b5;color:white;font-size: 20px; float: left;" class="chip color-green" id="titulo_ocorrencia" >
+							Titulo da ocorrência 											
+						</div>
+
+						<div style="padding-top: 5px;float: right;" id="situacao">
+						</div>
+						<div style="padding-top: 5px; float: right;">
+							<i class="fa fa-circle" id="icone_ocorrencia">&nbsp;</i>  
+						</div>
+					</div>
+
+
+					<label id="data_criacao" style="margin-left: 204px;color: #fd9715; font-weight: 500;"> Data de Criação </label>
+
+					<!--<label> Tipo </label>
+					<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>-->
+
+					<div class="chip" style="margin-top: -25px;">
+						<div class="chip-media bg-color-green">
+						<i class="fa fa-angle-right"></i>
+
+						</div>
+						<div name="txt_privada" id="txt_privada" class="chip-label"></div>
+					</div><br>
+					<div class="chip">
+						<div class="chip-media bg-color-red">
+						<i class="fa fa-th-large"></i>
+
+						</div>
+						<div name="txt_categoria" id="txt_categoria" class="chip-label"></div>
+					</div><br>
+					<div class="chip">
+						<div class="chip-media bg-color-blue">
+						<i class="fa fa-user"></i>
+
+						</div>
+						<div d="solicitante" class="chip-label"></div>
+					</div><br>
+					<div class="chip">
+						<div class="chip-media bg-color-yellow">
+						<i class="fa fa-edit"></i>
+
+						</div>
+						<div name="descricao" id="descricao" class="chip-label"></div>
+					</div><br>
+
+					<!--<label> Categoria </label>
+					<p name="txt_categoria" id="txt_categoria"> LOCAL ONDE VAI A CATEGORAI </p>
+
+					<label style="width: 100%; font-size: 15px;font-weight: 700;">Solicitante</label>
+
+					<p id="solicitante">Local onde é preenchido o Nome do Morador</p>
+
+					<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
+					<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>-->
+
+
+					<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
+ 					<!-- Separate collapsibles - omit "accordion-list" class-->
+					<div class="list" onclick="up_down()">
+					  <ul>
+						<li class="accordion-item"><a href="#" class="item-content item-link">
+							<div class="item-inner">
+							  <div class="item-title">&nbsp; Lista de Tickets</div>
+							<div class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
+							</div></a>
+						  <div class="accordion-item-content">
+							<div class="block" id="main_ticket" >
+								
+							</div>
+						  </div>
+						</li>
+                      </ul>
+					</div>
+
+					<!--<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>-->
+					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
+						<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
+					</span>
+					<button class="col button button-fill" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> 
+						<span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar 
+					</button>
+
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
 					
-
-
-
-
 
 <!--   OCORRENCIAS PAGINA INCLUSAO -->
 
@@ -2609,7 +2594,7 @@
 										<div class="preloader"></div>
 										<div class="ptr-arrow"></div>
 									</div>
-									<div id="main_ticket" class="list media-list searchbar-found" style="height: 90% !important;  margin:0; "></div>
+									<!--<div id="main_ticket" class="list media-list searchbar-found" style="height: 90% !important;  margin:0; "></div>-->
 								</div>
 							</div>
 						</div>
@@ -3063,7 +3048,7 @@
 					var app2 = new Framework7({
 		// App root element
 		root: '#app'
-	});35
+	});
 					var mainView    = app2.views.create('.view-main'       );
 					var mainLibera  = app2.views.create('.view-liberacao'  );
 					var mainLibera  = app2.views.create('.view-liberacao2'  );
@@ -3536,4 +3521,4 @@
 </script>
 
 </body>
-</html>>>>>>>
+</html>

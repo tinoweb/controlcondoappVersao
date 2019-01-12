@@ -241,7 +241,7 @@ function altera_menu(){
 	$("#fast_menu span:nth-child(3)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
 	
 	/* quarta opcao*/ 
-	$("#fast_menu span:nth-child(4)").html("<i class='material-icons'>menu</i>");
+	$("#fast_menu span:nth-child(4)").html("<i class='fa fa-bars'></i>");
 	$("#fast_menu span:nth-child(4)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
 		
 		

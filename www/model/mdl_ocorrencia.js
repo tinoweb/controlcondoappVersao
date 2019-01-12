@@ -51,7 +51,7 @@ function carrega_ocorrencias(tipo){
 				
 				
 
-                dado = '<div class="card" chiponClick="check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
+                dado = '<div class="card" onClick="carrega_tickets(0);check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="feed-ocorrencia cabecalho_card card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº <span style="color: white;" class="chip color-">'+retorno[x].id_ocorrencia+'</span></span>'
 												
@@ -606,103 +606,150 @@ function ticket_insert(){
 // FUNCAO CARREGA TODOS OS TICKETS
 function carrega_tickets(tipo){
     "use strict";
-	localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
-
 	
-	app.controler_pull("pull-tickets");
-    
-    var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
-	status = $("#form_ocorrencia #id_situacao").val();
+	setTimeout(function(){
 		
-	if(status == '10'){
-		$("#tl_botao_novo").css('display','none');
-	}else{
-		$("#tl_botao_novo").css('display','block');
-	}
-
 	
-	var pg = 0;
-    if(tipo == 0){
-        pg = 1;
-    }else{
-        var offset = $('.ocorrencias_ticket').length;
-        if(offset !== 0){
-            pg = (offset/6)+1;
-        }else{
-            pg = 1;
-        }
-    }
-    if(parseInt(pg) !== parseFloat(pg)) { 
-        pg = pg+1; 
-    }
-    var dados = '';
-	var dado  = '';
-	var cor_status='yellow';
-	var cont = 0;
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
-        data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
-        dataType   : 'json',
-		success: function(retorno){
-            //alert(retorno);
-            for (x in retorno) {
-              cont++;
-                cor_status = retorno[x]['id_situacao'];
-				if(cor_status == 1){
-					cor_status = '#696969';
-				}else if(cor_status=='10'){
-					cor_status='#a1cf77';
-				}else{
-					cor_status='yellow;'
-				}
-				
-				$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
-				
-                dado = '<div class="card" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
-		                	+'<div class="card-header">'
-								+'<div style="float:left">'
-									+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> <strong style="color:#cf216a;"> Ticket '+cont+'</strong>'
-								+'</div>'
-								+'<div style="float: right">'
-									+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> <label style="font-weight: normal;">'+retorno[x]['situacao_descricao']+'</label>'
-								+'</div>'
-							+'</div>'
+			localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
 
-					+'<div class="card-content card-content-padding">'
-						+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['data_criacao']+'</h6></div>'	
+
+			//app.controler_pull("pull-tickets");
+
+			var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
+			status = $("#form_ocorrencia #id_situacao").val();
+
+			if(status == '10'){
+				$("#tl_botao_novo").css('display','none');
+			}else{
+				$("#tl_botao_novo").css('display','block');
+			}
+
+
+			var pg = 0;
+			if(tipo == 0){
+				pg = 1;
+			}else{
+				var offset = $('.ocorrencias_ticket').length;
+				if(offset !== 0){
+					pg = (offset/6)+1;
+				}else{
+					pg = 1;
+				}
+			}
+			if(parseInt(pg) !== parseFloat(pg)) { 
+				pg = pg+1; 
+			}
+			var dados = '';
+			var dado  = '';
+			var cor_status='yellow';
+			var cont = 0;
+
+			$( "#main_ticket" ).html("");
+
+
+			$.ajax({
+				type: 'POST',
+				url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
+				crossDomain: true,
+				beforeSend : function() { },
+				complete   : function() { },
+				data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
+				dataType   : 'json',
+				success: function(retorno){
+				    console.log(retorno);
 					
-						+'<label style="font-weight: normal;">Descrição</label><br>'		
-						+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
-					+'</div>'
+					
+					
+					for (x in retorno) {
 						
-					+'<div class="card-footer">'
-						+'Autor: '+retorno[x]['nome'];
+						cor_status = retorno[x]['id_situacao'];
 						
-						if( (retorno[x]['q_anexo'] > 0) && (retorno[x]['q_anexo'] > 0) ){
-							dado = dado +'<span style="float:right; matgin-right:1%;" <i class="fa fa-paperclip"></i></span></div>';
+						if(cor_status == 1){
+							cor_status = 'gray';
+						}else if(cor_status=='10'){
+							cor_status='green';
 						}else{
-							dado = dado + ' </div>';
+							cor_status='yellow'
+						}
+						
+						$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
+						  dados += '<li class="accordion-item"><a href="#" class="item-content item-link">'
+										+'<div class="item-inner">'
+										  +'<div class="item-title">Data Criação: '+retorno[x]['data_criacao']+''
+												+'<br>Descrição: '+retorno[x]['descricao']+''
+						                        +'<br>Autor: '+limitanome(retorno[x]['nome'])+''
+												+'<br><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></div>'
+										 +'</div></a>'
+						                 
+						             
+									  +'<div class="accordion-item-content">'
+										+'<div class="block">'
+										  +'<p></p>'
+										+'</div>'
+									 +'</div>'
+									'</li>';
+
+					}
+
+					//afed('#ocorrencias_ticket','#ocorrencia','','',3,'ocorrencias_ticket');	
+				  //  $("pull-tickets").scrollTop(50);
+					$( "#main_ticket" ).append(dados);
+
+					  /*cont++;
+						cor_status = retorno[x]['id_situacao'];
+						if(cor_status == 1){
+							cor_status = '#696969';
+						}else if(cor_status=='10'){
+							cor_status='#a1cf77';
+						}else{
+							cor_status='yellow;'
 						}
 
-				dado = dado +'</div>';
-                dados = dados + dado;
-            }
-			if(tipo != 1){
-				$("#main_ticket").html("");
-			}
-			$( "#main_ticket" ).append(dados);
-			afed('#ocorrencias_ticket','#ocorrencia','','',3,'ocorrencias_ticket');	
-            
-            $("pull-tickets").scrollTop(50);
-		},
-        error      : function() {
-            alert('Erro tickets');
-        }
-	});    
+						$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
+
+						dado = '<div class="card" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
+									+'<div class="card-header">'
+										+'<div style="float:left">'
+											+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> <strong style="color:#cf216a;"> Ticket '+cont+'</strong>'
+										+'</div>'
+										+'<div style="float: right">'
+											+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> <label style="font-weight: normal;">'+retorno[x]['situacao_descricao']+'</label>'
+										+'</div>'
+									+'</div>'
+
+							+'<div class="card-content card-content-padding">'
+								+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['data_criacao']+'</h6></div>'	
+
+								+'<label style="font-weight: normal;">Descrição</label><br>'		
+								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
+							+'</div>'
+
+							+'<div class="card-footer">'
+								+'Autor: '+retorno[x]['nome'];
+
+								if( (retorno[x]['q_anexo'] > 0) && (retorno[x]['q_anexo'] > 0) ){
+									dado = dado +'<span style="float:right; matgin-right:1%;" <i class="fa fa-paperclip"></i></span></div>';
+								}else{
+									dado = dado + ' </div>';
+								}
+
+						dado = dado +'</div>';
+						dados = dados + dado;
+					}
+					if(tipo != 1){
+						$("#main_ticket").html("");
+					}
+					$( "#main_ticket" ).append(dados);
+					afed('#ocorrencias_ticket','#ocorrencia','','',3,'ocorrencias_ticket');	
+
+					$("pull-tickets").scrollTop(50);*/
+				},
+				error      : function() {
+					alert('Erro tickets');
+				}
+			});    
+	},700);	
+	
 }
 
 function carrega_ticket(id,id_ocorrencia){
@@ -797,5 +844,18 @@ function finaliza_ticket(){
         'Finalizar',            // title
         'Sim,Não'          // buttonLabels
     );    
+}
+
+
+function up_down(){
+	
+	let status = sessionStorage.getItem("up_down");
+	if(status == "open"){
+	   $("#up_down").attr("class","fa fa-angle-down");
+	   sessionStorage.setItem("up_down","close")
+	}else{
+	   $("#up_down").attr("class","fa fa-angle-up");
+	   sessionStorage.setItem("up_down","open")
+	}	
 }
 
