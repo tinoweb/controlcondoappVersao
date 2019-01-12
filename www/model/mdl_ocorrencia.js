@@ -129,6 +129,7 @@ function carrega_ocorrencia(id){
             data       : {id_ocorrencia : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
             dataType   : 'json',
             success: function(retorno){
+				//console.log(retorno);
 				var cor_status='';
 				cor_status=retorno[0]['id_situacao'];
 				//cor_status='1';
@@ -183,7 +184,8 @@ function carrega_ocorrencia(id){
                 }
 
 					
-				carrega_ocorrencia_arq(id);
+				// carrega_ocorrencia_arq(id);
+				//get_anexo();
                 localStorage.setItem('TELA_ATUAL','ocorrencia');
             },
             error : function() {
@@ -191,6 +193,10 @@ function carrega_ocorrencia(id){
             }
         });
     }
+	
+	$("#add_ticket #oco_voltar").attr("onclick","carrega_ocorrencia("+id+")");
+	$("#ticket #oco_detalhe_voltar").attr("onclick","carrega_ocorrencia("+id+")");
+	
     
 }
 
@@ -488,9 +494,7 @@ function ocorrencia_insert(){
 				
 				carrega_ocorrencia(retorno);
                 
-                
-                
-			}
+             }
 		});
 	}
 }
@@ -543,11 +547,16 @@ function ticket_novo(operacao){
 
 	if(operacao == 2){ //Reabertura
 		
-		getSituacao_incluir('#add_ticket #ti_div_situacao', '1');
+		/* Como estava getSituacao_incluir('#add_ticket #ti_div_situacao', '1');
 		$("#ti_titulo").html("Reabertura de Ocorrência");
 		
 		afed('','#v','','','2','');
+		afed('#add_ticket','#ocorrencia','','','2','add_ticket');*/
+		
+		getSituacao_incluir('#add_ticket #ti_div_situacao', '10');
+		$("#ti_titulo").html("Reabertura de Ocorrência");
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
+		afed('','#ocorrencias_ticket','','','2','');
 
 	}else if(operacao == 4){ //Finalizar
 		
@@ -606,14 +615,10 @@ function ticket_insert(){
 // FUNCAO CARREGA TODOS OS TICKETS
 function carrega_tickets(tipo){
     "use strict";
-	
 	setTimeout(function(){
 		
-	
-			localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
-
-
-			//app.controler_pull("pull-tickets");
+	       localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
+            //app.controler_pull("pull-tickets");
 
 			var id_ocorrencia = $("#form_ocorrencia #id_ocorrencia").val();
 			status = $("#form_ocorrencia #id_situacao").val();
@@ -643,6 +648,7 @@ function carrega_tickets(tipo){
 			var dado  = '';
 			var cor_status='yellow';
 			var cont = 0;
+		    var new_field = "";
 
 			$( "#main_ticket" ).html("");
 
@@ -658,8 +664,6 @@ function carrega_tickets(tipo){
 				success: function(retorno){
 				    console.log(retorno);
 					
-					
-					
 					for (x in retorno) {
 						
 						cor_status = retorno[x]['id_situacao'];
@@ -672,83 +676,36 @@ function carrega_tickets(tipo){
 							cor_status='yellow'
 						}
 						
-						$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
-						  dados += '<li class="accordion-item"><a href="#" class="item-content item-link">'
-										+'<div class="item-inner">'
-										  +'<div class="item-title">Data Criação: '+retorno[x]['data_criacao']+''
-												+'<br>Descrição: '+retorno[x]['descricao']+''
-						                        +'<br>Autor: '+limitanome(retorno[x]['nome'])+''
-												+'<br><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></div>'
-										 +'</div></a>'
-						                 
-						             
-									  +'<div class="accordion-item-content">'
-										+'<div class="block">'
-										  +'<p></p>'
-										+'</div>'
-									 +'</div>'
-									'</li>';
-
-					}
-
-					//afed('#ocorrencias_ticket','#ocorrencia','','',3,'ocorrencias_ticket');	
-				  //  $("pull-tickets").scrollTop(50);
-					$( "#main_ticket" ).append(dados);
-
-					  /*cont++;
-						cor_status = retorno[x]['id_situacao'];
-						if(cor_status == 1){
-							cor_status = '#696969';
-						}else if(cor_status=='10'){
-							cor_status='#a1cf77';
+						
+						if(retorno[x]['q_anexo'] > 0){
+							new_field = '<tr class="anexo-ticket" onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\')"><td><span class="fa fa-paperclip"></span> Anexo</td></tr>';
 						}else{
-							cor_status='yellow;'
+							new_field = "";
 						}
-
+						
 						$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
+						  dados += '<li class="accordion-item">'
+										+'<div class="item-inner">'
+										  +'<div class="item-title"><table><tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'
+						                  +'<tr><td>Data Criação: '+retorno[x]['descricao']+'</td></tr>'
+						                  +'<tr><td>Data Criação: '+limitanome(retorno[x]['nome'])+'</td></tr>'
+						                   +new_field
+						                  +'<tr><td><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></td></tr>'
+						                +'</table></div>'
+						            '</div></li>';
 
-						dado = '<div class="card" onClick="carrega_ticket(\''+retorno[x]['id_ocorrencia_ticket']+'\',\''+retorno[x]['id_ocorrencia']+'\');">'
-									+'<div class="card-header">'
-										+'<div style="float:left">'
-											+'<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhLzZO9SsRAEIDzCFYK9qIWIuIjiKAPoCIIgTN/rT+NYGfjT2FpaSN21naCvZWNlnIqCBY+gn5zzsgJyWVyG8EPhuzM7s53u8lF/5Isy9bSNH3n+VkTb8SCbvPDpg0EL3mez2qpEtausPZWUx8m4DmlpV9QX2J+jx8wITnjGeK+N+mhTpAkySrzD8Qha16LohhtJBEB8VwlEGh2xnyh42tOs+iWeAQCzZZZ80ScM+7GcTzikngFBlc2zwk2YUzyWokJuNtJLTVmoKQNgVApEQET3VCBQI85+t1p+k2bAoFeB8SlplHEC1tvWbBLPHY6nXEt9U7xwVcxrWkQpQKB4g1xrOnQ0GOnVCDIn0deEnGkpcYMFBghIpfAMBEb3FfH+m23wGgiGkpgeERBAqPvHZ1o6QeabwULjDJRqwKj7+pOee63LjBUdIHg6k8E4UTRF4p0/Md1ny5VAAAAAElFTkSuQmCC"></img> <strong style="color:#cf216a;"> Ticket '+cont+'</strong>'
-										+'</div>'
-										+'<div style="float: right">'
-											+'<i class="fa fa-circle" style="color:'+cor_status+'"></i> <label style="font-weight: normal;">'+retorno[x]['situacao_descricao']+'</label>'
-										+'</div>'
-									+'</div>'
-
-							+'<div class="card-content card-content-padding">'
-								+'<div class="data_o_criacao"><h6>Data de Criação: '+retorno[x]['data_criacao']+'</h6></div>'	
-
-								+'<label style="font-weight: normal;">Descrição</label><br>'		
-								+'<div class="descricao_card_ocorrencia" >'+retorno[x]['descricao']+'</div>'
-							+'</div>'
-
-							+'<div class="card-footer">'
-								+'Autor: '+retorno[x]['nome'];
-
-								if( (retorno[x]['q_anexo'] > 0) && (retorno[x]['q_anexo'] > 0) ){
-									dado = dado +'<span style="float:right; matgin-right:1%;" <i class="fa fa-paperclip"></i></span></div>';
-								}else{
-									dado = dado + ' </div>';
-								}
-
-						dado = dado +'</div>';
-						dados = dados + dado;
 					}
-					if(tipo != 1){
-						$("#main_ticket").html("");
-					}
-					$( "#main_ticket" ).append(dados);
-					afed('#ocorrencias_ticket','#ocorrencia','','',3,'ocorrencias_ticket');	
-
-					$("pull-tickets").scrollTop(50);*/
-				},
+					
+					$("#main_ticket").append(dados);
+				
+							   
+                },
 				error      : function() {
 					alert('Erro tickets');
 				}
-			});    
-	},700);	
+			});   
+	},800);
+	
 	
 }
 
@@ -858,4 +815,45 @@ function up_down(){
 	   sessionStorage.setItem("up_down","open")
 	}	
 }
+
+
+
+
+function get_anexo(id){
+	"use strict";
+	let status         = false;
+	let array_photo    = [];
+	let x              = 0;
+	let caminho        = "";
+	$.ajax({
+			type: 'POST',
+			dataType:'JSON',
+            url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
+            crossDomain: true,
+            data       : 'id_ocorrencia_ticket='+id+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&tipo=3',
+			success: function(retorno){
+
+			
+					for(x in retorno){
+
+						caminho        = retorno[x].caminho.substr(6);
+						array_photo[x] = localStorage.getItem('DOMINIO')+caminho;
+					}
+				
+				    //console.log(array_photo);
+					
+				    console.log(retorno);
+					abre_photo(array_photo[0]);
+				}
+     });	
+}
+
+	
+ 		
+
+
+
+
+        
+  
 

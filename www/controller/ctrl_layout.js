@@ -248,6 +248,47 @@ function altera_menu(){
 }
 
 
+//function abre_photo(link){
+
+/*=== Default standalone ===*/
+//var myPhotoBrowserStandalone = app2.photoBrowser.create({
+    /*photos : [
+        'http://lorempixel.com/1024/1024/sports/1/',
+        'http://lorempixel.com/1024/1024/sports/2/',
+        'http://lorempixel.com/1024/1024/sports/3/',
+    ]*/
+	
+	//photos:[link]
+	
+//});
+	
+//Open photo browser on click
+/*$$('.pb-standalone').on('click', function () {
+    myPhotoBrowserStandalone.open();
+});*/
+	
+//myPhotoBrowserStandalone.open();
+
+//}
+
+function abre_photo(valor){
+
+    var photo  = [];
+    var photo1 = "";
+    var photo2 = "";
+    var photo3 = "";
+	
+        
+	
+   var myPhotoBrowserStandalone = app2.photoBrowser.create({
+       photos:[valor]
+    });
+
+    myPhotoBrowserStandalone.open();
+
+}
+
+
 
 
 
