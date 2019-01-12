@@ -30,14 +30,23 @@ function carrega_entregas(tipo){
 		success: function(retorno){
 			var cont = 0;
             for (x in retorno) {
+				
 				cont++;
+				
 				if(retorno[x]['dataentrega'] != ''){
 					var cor_status='#a1cf77';
 				}else{
 					var cor_status='yellow';
 				}
+				
+				if(retorno[x]['foto'] == ""){
+					var fotoc = '<i class="icon material-icons" style="margin: 0px 0 0 8px;  ">camera_alt</i>';
+				}else{
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
+				}
+
 				dado = '<li class="accordion-item"><a href="#" class="item-content item-link">'+
-							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;"><i class="icon material-icons" style="margin: 0px 0 0 8px;  ">camera_alt</i></div>'+
+							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
 							'<div class="item-inner">'+
 								'<div class="item-title">'+retorno[x]['descricao']+' para '+retorno[x]['nome_morador']+'</div>'+
 								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
@@ -74,7 +83,7 @@ function carrega_entregas(tipo){
 											retorno[x]['dataentrega']+
 											'</div>'+
 											'</div>'+
-											'</li>';
+											'</li>'+
 											'<li>'+
 											'<div class="item-inner">'+
 											'<div class="item-title">'+
@@ -82,7 +91,7 @@ function carrega_entregas(tipo){
 											retorno[x]['nomeRetirada']+
 											'</div>'+
 											'</div>'+
-											'</li>';
+											'</li>'+
 											'<li>'+
 											'<div class="item-inner">'+
 											'<div class="item-title">'+

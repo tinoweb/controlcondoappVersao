@@ -190,10 +190,9 @@ var app = {
 		});
 		
 		$("#pull-documentos").scroll(function() { 
-			var y=(($(this).scrollTop() + $(this).height()) + 71);
+			var y=(($(this).scrollTop() + $(this).height()) + 110);
 			var x=$(this).get(0).scrollHeight;
-			//alert(y+ ' iii '+x);
-            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+            if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
                 carrega_documentos(1);
             }
 			app.ckBoxUp("#boxUp_documentos","#pull-documentos");
@@ -774,6 +773,7 @@ var app = {
 		$("#pull-enquetes"   ).removeClass("ptr-content");
 		$("#pull-enquetes" ).removeClass("ptr-refreshing");
 		$("#pull-documentos" ).removeClass("ptr-content");
+		$("#pull-documentos" ).removeClass("ptr-refreshing");
 		$("#pull-ocorrencias" ).removeClass("ptr-content");
 		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
 		$("#pull-tickets" ).removeClass("ptr-content");
