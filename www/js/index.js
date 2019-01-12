@@ -675,6 +675,7 @@ var app = {
         });
         function onSuccess(imageURI) { 
             $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+			$( '#foto_morador_veiculo' ).html('');
             $( '#foto_veiculo_img' ).val(imageURI);
         }
 
@@ -710,6 +711,7 @@ var app = {
         function onSuccess(imageURI) {
             
             $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+			$( '#foto_morador_veiculo' ).html('');
             $( '#foto_veiculo_img' ).val(imageURI);
 
         }

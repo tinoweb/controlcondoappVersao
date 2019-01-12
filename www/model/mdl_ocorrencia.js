@@ -57,9 +57,9 @@ function carrega_ocorrencias(tipo){
 												
 								+'<div style="float: right;" ><i class="fa fa-warning"></i></div>'	
 							+'</div>'
-								/*
-								*CORPO Do card ocorrencia na listagem
-								*/
+								
+//								*CORPO Do card ocorrencia na listagem
+//								
 							+'<div class="card-content card-content-padding">'
 								+'<div style="margin-top:7px" class="chip"><div class="chip-media bg-color-yellow"><span class="fa fa-calendar"></span></div><div class="chip-label">'+retorno[x].data_criacao+'</div></div>'	
 								+'<div><div style="margin-top:7px" class="chip"><div class="chip-media bg-color-blue"><span class="fa fa-user"></span></div><div class="chip-label">'+limitanome(retorno[x].nome)+'</div></div></div>'
