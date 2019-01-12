@@ -376,7 +376,7 @@ function getCategoria_incluir(){
 	
 	var dados = '';
 	var dado  = '';
-	var inicio_select = '<label for="id_situacao">Categoria</label><select class="form-control form-control-lg" name="id_categoria" id="id_categoria">'
+	var inicio_select = '<select class="form-control-lg" name="id_categoria" id="id_categoria">'
 						 +'<option value="99"></option> 	';
 	$.ajax({
 		type: 'POST',
@@ -436,7 +436,7 @@ function getSituacao_incluir(div_destino, valor_padrao){
 function ocorrencia_novo(){
 	afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
 	
-	var inicio_select = '<label for="id_situacao">Situação</label><select class="form-control" name="id_situacao" id="id_situacao">'
+	var inicio_select = '<select name="id_situacao" id="id_situacao">'
 						 +'<option value="1" selected>Aberto</option></select>';
 
     	
@@ -687,8 +687,8 @@ function carrega_tickets(tipo){
 						  dados += '<li class="accordion-item">'
 										+'<div class="item-inner">'
 										  +'<div class="item-title"><table><tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'
-						                  +'<tr><td>Data Criação: '+retorno[x]['descricao']+'</td></tr>'
-						                  +'<tr><td>Data Criação: '+limitanome(retorno[x]['nome'])+'</td></tr>'
+						                  +'<tr><td>Descrição: '+retorno[x]['descricao']+'</td></tr>'
+						                  +'<tr><td>Autor: '+limitanome(retorno[x]['nome'])+'</td></tr>'
 						                   +new_field
 						                  +'<tr><td><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></td></tr>'
 						                +'</table></div>'
@@ -833,18 +833,16 @@ function get_anexo(id){
             data       : 'id_ocorrencia_ticket='+id+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&tipo=3',
 			success: function(retorno){
 
-			
-					for(x in retorno){
+			     for(x in retorno){
 
-						caminho        = retorno[x].caminho.substr(6);
-						array_photo[x] = localStorage.getItem('DOMINIO')+caminho;
-					}
-				
-				    //console.log(array_photo);
-					
-				    console.log(retorno);
-					abre_photo(array_photo[0]);
+					caminho        = retorno[x].caminho.substr(3);
+					array_photo[x] = localStorage.getItem('DOMINIO')+caminho;
 				}
+
+				//console.log(array_photo);
+				 //console.log(array_photo[0]);
+				abre_photo(array_photo[0]);
+		   }
      });	
 }
 
