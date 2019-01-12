@@ -40,8 +40,17 @@ function carrega_documentos(tipo){
 				cont++;
                 caminho = retorno[x]['local'].split('../');
                 tipo_ = caminho[1].split('.');
-                dado  = '<div class="documento"><span>Categoria: '+retorno[x]['descricao']+'</span><div style="width:100%"><div class="documento_foto" style="background-image:url(img/'+retorno[x]['tipo']+')"></div><strong>'+retorno[x]['titulo']+'</strong></div><div style="width:100% ; float: left"><div class="block" style="margin:8px"><button style="margin-left:26%;width:50%" class="col button button-fill color-green" href="#" onClick="download_arquivo(\'';
-				dado += localStorage.getItem('DOMINIO')+caminho[1]+'\',\''+tipo_[1]+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button></div></div></div>';
+				
+				dado = 	'<div class="card padrao_card">'+
+							'<div class="card-header cabecalho_card" style="background-color: #f39c12; color:white;">'+
+								'<div>'+retorno[x]['titulo']+' ('+retorno[x]['descricao']+')</div>'+
+								'<div>'+retorno[x]['tipo']+'</div>'+
+							'</div>'+
+							'<div class="card-content card-content-padding corpo_card">'+
+								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="download_arquivo( \''+localStorage.getItem('DOMINIO')+caminho[1]+'\',\''+tipo_[1]+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
+							'</div>'+
+						'</div>';
+				
                 dados = dados + dado;
             }
 			if(tipo === 0){

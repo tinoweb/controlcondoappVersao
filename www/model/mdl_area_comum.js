@@ -1,4 +1,4 @@
-// JavaScript Document
+m// JavaScript Document
 
 //FUNCAO CARREGA TODAS AREAS COMUNS
 function carrega_areas(){
@@ -62,6 +62,7 @@ function carrega_minha_reserva(filtro=0,scroll=0){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), inicio : data_inicio, fim : data_fim, id_area : area, situacao : situacao },
         dataType   : 'json',
 		success: function(retorno){
+			//alert(retorno);
             for (x in retorno) {
                 cor_status = retorno[x]['situacao'];
 				if(cor_status=='1'){

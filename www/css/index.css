@@ -112,11 +112,25 @@ body, html {
 	background-color: #2196f3;
 }
 
+.padrao_card {
+	width: 95%;
+    float: left;
+    margin: 3.5% 0px 0px 2.5%;
+}
+
 .cabecalho_card {
 	width:96%;
 	float:left;
 	margin:2% 0 0 2%;
 }
+
+.corpo_card {
+	width:96%;
+	float:left;
+	margin:2% 0 0 2%;
+}
+
+
 
 .circle_m{
 	background-color:#00b7aff7;
