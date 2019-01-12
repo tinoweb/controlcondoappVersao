@@ -689,8 +689,9 @@ var app = {
             saveToPhotoAlbum: true
         });
         function onSuccess(imageURI) { 
-            $( '#foto_morador_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
-            $( '#foto_veiculo_img' ).val(imageURI);
+            $( '#foto_visitante_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
+            $( '#l_foto_veiculo_img' ).val(imageURI);
+			// alert('Câmera disponivel');
 
         }
 

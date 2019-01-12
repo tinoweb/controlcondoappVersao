@@ -401,7 +401,7 @@
 						
 		<div id="menu" class="swiper-slide menu">
 			
-			 <div class="panel panel-left panel-reveal" id="menu_lateral" style="background: #fbfbfb;margin-top: 105px;box-shadow: 1px 0px 3px #d1d1d1;">
+			 <div class="panel panel-left panel-cover" id="menu_lateral" style="background: #fbfbfb;margin-top: 105px;box-shadow: 1px 0px 3px #d1d1d1;">
 			  <div class="content-block">
 				<div id="perfil_edit" class="perfil_edit" style="margin-top: 8px;">
 					<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
@@ -456,7 +456,7 @@
 					<div class="perfil_condominio" style="float:left; margin: 0 0 0 4%; font-size:12px;">Nome do Condominio</div>
 				</div>
 				<div class="col-xs-1">
-					<span class="col button button-raised button-round panel-left panel-open" onclick="afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;"><i class="fa fa-cogs"></i> </span>
+					<span class="col button button-raised button-round panel-open" onclick="abre_menu(this);afed('.m_page,#perfil_edit,#perfil_fecha','#perfil_abre,#menu_perfil','','',2);" style="font-size: 130%;color: #414141;margin-top: 0px;"><i class="fa fa-cogs"></i> </span>
 				</div>
 			</div>
 			
@@ -1267,15 +1267,14 @@
 </div>
 
 
-<!--   liberacao_placaCAO       -->
-
-		
+<!--   $liberacao       -->
+	
 <div id="liberacao2" class="pagina liberacao2">
-	<!--photo lista  -->
-	<div class="sheet-modal veiculo-foto_veiculo" style="height: 80%; display: block;">
+	<!-- visualizar photo veiculo visitante  -->
+	<div class="sheet-modal veiculo-foto_veiculo" style="height: 80%;">
 		<div class="toolbar">
 			<div class="toolbar-inner">
-				<div class="left"></div>
+				<div class="left"><span class="fa fa-car" style="margin-left: 10px;"></span></div>
 				<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
 			</div>
 		</div>
@@ -1285,7 +1284,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- veiculo visitante -->
+	<!-- photo veiculo visitante -->
 	<div class="sheet-modal veiculo-visitante" style="height: 80%;">
 		<div class="toolbar">
 			<div class="toolbar-inner">
@@ -1343,7 +1342,7 @@
 							<div class="item-inner">
 								<div class="item-title item-label">Placa</div>
 								<div class="item-input-wrap">
-									<input type="text" id="l_placa_carro" name="placa" value="" maxlength="8" readonly>
+									<input style="text-transform: uppercase;" type="text" id="l_placa_carro" name="placa" value="" maxlength="8" readonly>
 									<span class="input-clear-button"></span>
 								</div>
 							</div>
@@ -1367,6 +1366,8 @@
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
+	
+	<!-- Formulario -->
 	<div class="toolbar tabbar tabbar-labels" style="margin-top: -80px;">
 			<div class="toolbar-inner">
 				<a href="#aba1" class="tab-link tab-link-active" onclick="">
@@ -1430,16 +1431,15 @@
                     </li>
 					</div>
 					 <div class="col-xs-5">
-					   <li class="item-content item-input" style="margin-top: 5px;">
+						   <li class="item-content item-input" style="margin-top: 5px;">
 							<div class="item-inner">
 								<div class="item-title item-label">horas</div>
 									<div class="item-input-wrap">
-										<input type="text"  name="de_h" id="hr_de">
+										<input type="time"  name="de_h" id="hr_de" value="08:00">
 										<span class="input-clear-button"></span>
 									</div>
 							  </div>
-
-						</li>
+						   </li>
 					</div>
 				</div>
 				<div class="row">
@@ -1459,7 +1459,7 @@
 							<div class="item-inner">
 								<div class="item-title item-label">horas</div>
 									<div class="item-input-wrap">
-										<input type="time"  name="ate_hr" id="hr_ate" >
+										<input type="time"  name="ate_hr" id="hr_ate" value="23:59" >
 										<span class="input-clear-button"></span>
 									</div>
 							  </div>
@@ -1492,7 +1492,7 @@
                           <div class="item-inner">
 								<div class="item-title item-label">Placa</div>
 								<div class="item-input-wrap">
-									<input type="text"  onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa">
+									<input type="text" style="text-transform: uppercase;" onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa">
 									<input type="hidden" name="id_veiculo" id="id_veiculo" >
 									<span class="input-clear-button"></span>
 								</div>
@@ -1504,53 +1504,25 @@
 					</div>
 				</div>
 				<div style="margin-top: 24px;">
-					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill"><span class="fa fa-check"></span> Cadastrar</span>
-					<!--<input type="button" value="" style="background-image:url(img/checked.png);" onClick="salva_liberacao()">-->
-					<input type="button" value="" id="del_lib" style="background-image:url(img/cancela.png); float:right; margin-right:5%; display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+					<span  onClick="salva_liberacao()" style="margin-top: 10px;" class="col button button-fill">
+						<span class="fa fa-check"></span> Cadastrar
+					</span>
+					<span type="button" id="del_lib" class="col button button-fill" style="margin-top: 6px;display: none;background-color:#F00;" onClick="liberacao_delete_notifica();">
+						<span class="fa fa-close"></span> Remover 
+				   </span>
 				</div>
-						
-						
-            </ul>
+			 </ul>
 		</div>
 	</div>
-			
 	<div class="tab" id="aba2">
 		<div id="liberacao_acessos" style="margin-top: 80px;">
 			<div id="main_acesso"></div>
 		</div>
-  </div>
-			<!--<div class="form-group">
-					<div class="item-title item-label" style="margin-top: 15px">Créditos</div>
-					<select class="form-control" id="numero_acesso_perm" name="numero_acesso_perm">
-						<option value="0">Ilimitado</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-					</select>
-				</div>
-				<div class="form-group">
-						<div class="col-xs-5" style="padding-left: 0px;">
-							<div class="item-title item-label" style="margin-top: 15px">Placa</div>
-							<input type="text" class="form-control" onkeyup="get_veiculo(value)" id="liberacao_placa" placeholder="Placa"/>
-						</div>
-						<div class="col-xs-3">
-							<button id="cad_veiculo"  data-sheet=".veiculo-morador"  style="margin-top: 27px;background:red;display:none" class="sheet-open col button button-fill"><span class="fa fa-car"></span> </button>
-						</div>
-                </div>-->
-
-			</form>
-		
-		</div>
-	 
-	</div>
+    </div>
+  </form>
+ </div>
 </div>
-		
+</div>
 			
 <div class="popup popup-liberacao" style="background-color: beige">
 	<div class="view view-liberacao"> 
@@ -2409,7 +2381,7 @@
 								</div>
 
 								<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
-									<form id="form_ocorrencia" style="float: left; width: 100%;">
+									<form id="form_ocorrencia" style="padding: 12px;float: left; width: 100%;">
 										
 										<input type="hidden" id="foto" name="foto" > 
 										<input type="hidden" name="id_ocorrencia" id="id_ocorrencia">
@@ -2422,8 +2394,8 @@
 										<input type="hidden" name="arquivo" id="arquivo">
 										<input type="hidden" name="privada" id="privada">										
 
-										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 100%; padding-bottom: 5px;" >	
-											<div style="font-size: 20px; float: left;" id="titulo_ocorrencia" >
+										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 100%; padding-bottom: 5px;" >
+											<div style="background:;color:white;font-size: 20px; float: left;" class="chip color-green" id="titulo_ocorrencia" >
 												Titulo da ocorrência 											
 											</div>
 											
@@ -2437,10 +2409,39 @@
 										
 										<label id="data_criacao" style="width: 100%; color: #fd9715; font-weight: 500;"> Data de Criação </label>
 
-										<label> Tipo </label>
-										<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>
+										<!--<label> Tipo </label>
+										<p name="txt_privada" id="txt_privada"> LOCAL ONDE VAI O TIPOD E PRIVACIDADE </p>-->
+										
+										<div class="chip">
+											<div class="chip-media bg-color-green">
+											<i class="fa fa-angle-right"></i>
 
-										<label> Categoria </label>
+											</div>
+											<div name="txt_privada" id="txt_privada" class="chip-label"></div>
+										</div><br>
+										<div class="chip">
+											<div class="chip-media bg-color-red">
+											<i class="fa fa-th-large"></i>
+
+											</div>
+											<div name="txt_categoria" id="txt_categoria" class="chip-label"></div>
+										</div><br>
+										<div class="chip">
+											<div class="chip-media bg-color-blue">
+											<i class="fa fa-user"></i>
+
+											</div>
+											<div d="solicitante" class="chip-label"></div>
+										</div><br>
+										<div class="chip">
+											<div class="chip-media bg-color-yellow">
+											<i class="fa fa-edit"></i>
+
+											</div>
+											<div name="descricao" id="descricao" class="chip-label"></div>
+										</div><br>
+
+										<!--<label> Categoria </label>
 										<p name="txt_categoria" id="txt_categoria"> LOCAL ONDE VAI A CATEGORAI </p>
 										
 										<label style="width: 100%; font-size: 15px;font-weight: 700;">Solicitante</label>
@@ -2448,7 +2449,7 @@
 										<p id="solicitante">Local onde é preenchido o Nome do Morador</p>
 										
 										<label style="width: 100%;font-size: 15px;font-weight: 700;"	>Descrição</label>
-										<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>
+										<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>-->
 										
 										
 										<p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
@@ -3047,6 +3048,7 @@
 <!---   $FUNCOES          --> 
 
 				<script type="text/javascript">
+					altera_menu();
 					app.initialize();
 					
 					$(document).ajaxStart(function(){
@@ -3535,4 +3537,4 @@
 </script>
 
 </body>
-</html>
+</html>>>>>>>

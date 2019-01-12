@@ -5,6 +5,8 @@ function aguarde(status){
 	}else{
 		$( "#wait" ).css("display","none");
 	}
+	
+	//alert(1);
 }
 
 // FUNCAO TRANSICAO DE TELA ******************************************************************/
@@ -197,7 +199,6 @@ function alerta(tipo,valor=""){
 	}
 		
 	/* Estancia objeto e chama o metodo para exibir mensagem */
-	//var app       = new Framework7();
 	var toastIcon = app2.toast.create({
 	  icon: icon,
 	  text: msg,
@@ -206,9 +207,48 @@ function alerta(tipo,valor=""){
 	});
 
     toastIcon.open();
-
 	
 }
+
+function abre_menu(el){
+	/* Abre e Fecha Menu */
+	var status = $(el).attr("class");
+	if(status.indexOf("aberto") >=0){
+
+		$(el).removeClass("aberto");
+		$(el).addClass("panel-open");
+		$(el).removeClass("panel-close");
+	}else{
+
+		$(el).addClass("aberto");
+		$(el).removeClass("panel-open");
+		$(el).addClass("panel-close");
+	}
+}
+
+function altera_menu(){
+	
+	/* Primera opcao*/
+	$("#fast_menu span:nth-child(1)").html("<i class='material-icons'>dashboard</i>");
+	$("#fast_menu span:nth-child(1)").children().css("cssText","font-size: 1.7em;margin: 11px 0 0 16px;color: #2196f3;");
+	
+	/* SegundA opcao*/
+	$("#fast_menu span:nth-child(2)").html("<span class='glyphicon glyphicon-comment'></span>");
+	$("#fast_menu span:nth-child(2)").children().css("cssText","font-size: 1.60em;margin: 11px 0 0 16px;color: #2196f3;");
+	
+	/* terceira opcao*/ 
+	$("#fast_menu span:nth-child(3)").html("<i class='material-icons'>assignment_ind</i>");
+	$("#fast_menu span:nth-child(3)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
+	
+	/* quarta opcao*/ 
+	$("#fast_menu span:nth-child(4)").html("<i class='material-icons'>menu</i>");
+	$("#fast_menu span:nth-child(4)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
+		
+		
+}
+
+
+
 
 
 
