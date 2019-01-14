@@ -195,7 +195,7 @@ function carrega_ocorrencia(id){
     }
 	
 	$("#add_ticket #oco_voltar").attr("onclick","carrega_ocorrencia("+id+")");
-	$("#ticket #oco_detalhe_voltar").attr("onclick","carrega_ocorrencia("+id+")");
+	$("#ticket #oco_detalhe_voltar").attr("onclick","carrega_ocorrencia("+id+");carrega_tickets(0);");
 	
     
 }
@@ -403,7 +403,7 @@ function getSituacao_incluir(div_destino, valor_padrao){
 	
 	var dados = '';
 	var dado  = '';
-	var inicio_select = '<label for="id_situacao">Situação</label><select class="form-control" name="id_situacao" id="id_situacao">'
+	var inicio_select = '<select name="id_situacao" id="id_situacao">'
 						 +'<option value="99"></option>';
 	$.ajax({
 		type: 'POST',
@@ -493,7 +493,8 @@ function ocorrencia_insert(){
 				afed('','#anexo_oco','','','','');
 				
 				carrega_ocorrencia(retorno);
-                
+				carrega_tickets(0);
+				alerta(1);
              }
 		});
 	}
@@ -593,7 +594,7 @@ function ticket_insert(){
 				openNotificacao('glyphicon glyphicon-warning-sign','Ticket Criado','','Voce Criou o Ticket'+retorno);
 				//alert("Retonro ajax de ticket_insert: "+retorno);
 				
-                
+                alerta(1);
 				afed('','#add_ticket','','','',''); //esconde ocorrencia add
 				
                 afed('','#anexo_oco','','','','','');   
@@ -662,7 +663,6 @@ function carrega_tickets(tipo){
 				data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
 				dataType   : 'json',
 				success: function(retorno){
-				    console.log(retorno);
 					
 					for (x in retorno) {
 						
@@ -676,9 +676,9 @@ function carrega_tickets(tipo){
 							cor_status='yellow'
 						}
 						
-						
 						if(retorno[x]['q_anexo'] > 0){
-							new_field = '<tr class="anexo-ticket" onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\')"><td><span class="fa fa-paperclip"></span> Anexo</td></tr>';
+							new_field = '<tr class="anexo-ticket" onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\')"><td><span class="col button button-raised button-round" style="margin: 8px 0px 8px 0;">Ver Anexo</span></td></tr>';
+							
 						}else{
 							new_field = "";
 						}
@@ -697,9 +697,7 @@ function carrega_tickets(tipo){
 					}
 					
 					$("#main_ticket").append(dados);
-				
-							   
-                },
+				},
 				error      : function() {
 					alert('Erro tickets');
 				}
@@ -808,23 +806,42 @@ function up_down(){
 	
 	let status = sessionStorage.getItem("up_down");
 	if(status == "open"){
-	   $("#up_down").attr("class","fa fa-angle-down");
+	   $("#up_down").attr("class","fa fa-angle-up");
 	   sessionStorage.setItem("up_down","close")
 	}else{
-	   $("#up_down").attr("class","fa fa-angle-up");
+	   $("#up_down").attr("class","fa fa-angle-down");
 	   sessionStorage.setItem("up_down","open")
 	}	
 }
 
+function fmt_lin(string){
+	
+	let valor   = string.substr(0,6);
+	let retorno = "";
+	
+	if(valor.indexOf("../../") >= 0){
+		retorno = string.substr(5);
+	}else 
+	if(valor.indexOf("../") >= 0){
+	    retorno = string.substr(2);
+	}else{
+		retorno = "";
+	}
+	
+	return retorno;	
+}
 
 
-
-function get_anexo(id){
+function get_anexo(id){	
 	"use strict";
 	let status         = false;
-	let array_photo    = [];
+	let array_photo    = "";
+	let formata_link   = "";
+    let caminho        = "";
+	let link           = "";
 	let x              = 0;
-	let caminho        = "";
+	let tamanho        = 0;
+	
 	$.ajax({
 			type: 'POST',
 			dataType:'JSON',
@@ -833,20 +850,23 @@ function get_anexo(id){
             data       : 'id_ocorrencia_ticket='+id+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&tipo=3',
 			success: function(retorno){
 
-			     for(x in retorno){
-
-					caminho        = retorno[x].caminho.substr(3);
-					array_photo[x] = localStorage.getItem('DOMINIO')+caminho;
+			    for(x in retorno){
+					caminho        = fmt_lin(retorno[x].caminho);
+					array_photo   += localStorage.getItem('DOMINIO')+caminho+"**";
 				}
-
-				//console.log(array_photo);
-				 //console.log(array_photo[0]);
-				abre_photo(array_photo[0]);
-		   }
+				
+				/* Formata string */
+				tamanho      = array_photo.length;
+                formata_link = array_photo.substr(0,tamanho-2);
+				link         = formata_link;
+				
+				/* Chama funcao */
+				abre_photo(link);
+			 }
      });	
 }
 
-	
+
  		
 
 

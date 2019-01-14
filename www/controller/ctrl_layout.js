@@ -101,12 +101,25 @@ function voltar(abre,fecha,pagina){
 
 // FUNCAO CARREGA VIEW PAGER*****************************************************************/
 function inicia(ini) {
+	
     swiper = new Swiper('#corpo', {
 		initialSlide: ini,
         pagination: '#fast_menu',
         paginationClickable: true,
         paginationBulletRender: function (swiper, index, className) {
-            return '<span class="'+className+'" id="item_fast_menu"><img src="img/fm_'+(index+1)+'.png"></span>';
+			
+			if(index == 0 ){
+			   return '<span class="'+className+'" id="item_fast_menu"><i class="material-icons" style="font-size: 1.7em;margin: 11px 0 0 16px;color: #2196f3;" >dashboard</i></span>';
+			}else
+			if(index == 1){
+			   return '<span class="'+className+'" id="item_fast_menu"><span class="glyphicon glyphicon-comment" style="font-size: 1.60em;margin: 11px 0 0 16px;color: #2196f3;"></span></span>';
+			}else
+			if(index == 2){
+			   return '<span class="'+className+'" id="item_fast_menu"><i class="material-icons" style="font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;">assignment_ind</i></span>';
+			}else
+			if(index == 3){
+			   return '<span class="'+className+'" id="item_fast_menu"><i class="fa fa-bars" style="font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;"></i></span>';
+			 }
         },
       	onSlideChangeStart: function(){
 			var pag = swiper.realIndex;
@@ -126,6 +139,7 @@ function inicia(ini) {
 			}
         }
     });
+
 }
 
 function inicia2(ini) {
@@ -229,65 +243,43 @@ function abre_menu(el){
 function altera_menu(){
 	
 	/* Primera opcao*/
-	$("#fast_menu span:nth-child(1)").html("<i class='material-icons'>dashboard</i>");
-	$("#fast_menu span:nth-child(1)").children().css("cssText","font-size: 1.7em;margin: 11px 0 0 16px;color: #2196f3;");
+	//$("#fast_menu span:nth-child(1)").html("<i class='material-icons'>dashboard</i>");
+	//$("#fast_menu span:nth-child(1)").children().css("cssText","font-size: 1.7em;margin: 11px 0 0 16px;color: #2196f3;");
 	
 	/* SegundA opcao*/
-	$("#fast_menu span:nth-child(2)").html("<span class='glyphicon glyphicon-comment'></span>");
-	$("#fast_menu span:nth-child(2)").children().css("cssText","font-size: 1.60em;margin: 11px 0 0 16px;color: #2196f3;");
+	//$("#fast_menu span:nth-child(2)").html("<span class='glyphicon glyphicon-comment'></span>");
+	//$("#fast_menu span:nth-child(2)").children().css("cssText","font-size: 1.60em;margin: 11px 0 0 16px;color: #2196f3;");
 	
 	/* terceira opcao*/ 
-	$("#fast_menu span:nth-child(3)").html("<i class='material-icons'>assignment_ind</i>");
-	$("#fast_menu span:nth-child(3)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
+	//$("#fast_menu span:nth-child(3)").html("<i class='material-icons'>assignment_ind</i>");
+	//$("#fast_menu span:nth-child(3)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
 	
 	/* quarta opcao*/ 
-	$("#fast_menu span:nth-child(4)").html("<i class='fa fa-bars'></i>");
-	$("#fast_menu span:nth-child(4)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
+	//$("#fast_menu span:nth-child(4)").html("<i class='fa fa-bars'></i>");
+	//$("#fast_menu span:nth-child(4)").children().css("cssText","font-size: 1.8em;margin: 11px 0 0 16px;color: #2196f3;");
 		
 		
 }
 
 
-//function abre_photo(link){
-
-/*=== Default standalone ===*/
-//var myPhotoBrowserStandalone = app2.photoBrowser.create({
-    /*photos : [
-        'http://lorempixel.com/1024/1024/sports/1/',
-        'http://lorempixel.com/1024/1024/sports/2/',
-        'http://lorempixel.com/1024/1024/sports/3/',
-    ]*/
-	
-	//photos:[link]
-	
-//});
-	
-//Open photo browser on click
-/*$$('.pb-standalone').on('click', function () {
-    myPhotoBrowserStandalone.open();
-});*/
-	
-//myPhotoBrowserStandalone.open();
-
-//}
 
 function abre_photo(valor){
 
-    var photo  = [];
-    var photo1 = "";
-    var photo2 = "";
-    var photo3 = "";
-	
-        
-	
-   var myPhotoBrowserStandalone = app2.photoBrowser.create({
-       photos:[valor]
-    });
+	let links        = valor.split("**");
+	let format_links = '';
+	let x            = 0;
 
-    myPhotoBrowserStandalone.open();
+	for(x in links){
+    	format_links += ',"'+links[x]+'"';
+    }
+
+	/* Monta funcao dinamicamente com valores do array */
+	var build_funcion_photo = new Function('', 'var myPhotoBrowserStandalone = app2.photoBrowser.create({ photos:['+format_links.substr(1)+'] });  myPhotoBrowserStandalone.open();');
+    
+	/* chama funcao */
+	build_funcion_photo();
 
 }
-
 
 
 
