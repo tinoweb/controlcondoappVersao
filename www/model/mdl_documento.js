@@ -40,10 +40,12 @@ function carrega_documentos(tipo){
 				cont++;
                 caminho = retorno[x]['local'].split('../');
                 tipo_ = caminho[1].split('.');
+				var titulo = retorno[x]['titulo']+' ('+retorno[x]['descricao']+')';
 				
+				titulo = limita_txt(titulo,20);
 				dado = 	'<div class="card padrao_card documento_card">'+
 							'<div class="card-header cabecalho_card" style="background-color: #f39c12; color:white;">'+
-								'<div>'+retorno[x]['titulo']+' ('+retorno[x]['descricao']+')</div>'+
+								'<div>'+titulo+'</div>'+
 								'<div>'+retorno[x]['tipo']+'</div>'+
 							'</div>'+
 							'<div class="card-content card-content-padding corpo_card">'+

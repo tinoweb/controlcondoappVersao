@@ -1,46 +1,18 @@
 // JavaScript Document
 
 function onBackKeyDown() {
-	//alert('Ciclo: '+localStorage.getItem("TELA_ATUAL"));
-	
-//	if($( "#home" ).css("display") == "block"){
-//        alert(localStorage.getItem('TELA_ATUAL'));
-//		if(swiper.realIndex != 0){
-//			inicia2(0);
-//		}else{
-//			//alert('minimiza');
-//			if (navigator.app && navigator.app.exitApp) {
-//    			navigator.app.exitApp();
-//			} else if (navigator.device && navigator.device.exitApp) {
-//    			navigator.device.exitApp();
-//			} else {
-//				alert('Erro');
-//			}
-//		}
-//	}else{
-        alert(localStorage.getItem('TELA_ATUAL'));
-//		afed('#home','#perfil2,#moradores,#comunicados,#liberacao,#reservas,#entregas,#enquetes,#documentos,#relatorios','','',1);
-//	}
+
+    //alert(localStorage.getItem('TELA_ATUAL'));
     
     // REGRAS HOME
     if(localStorage.getItem('TELA_ATUAL') == 'home'){
         //alert('ta na tela home');
 		if(swiper.realIndex != 0){
-//            if(swiper.realIndex == 1){
-//                afed('#fale_user','#fale_msg','','',2);
-//            }
             if(swiper.realIndex == 3){
                afed('.smenu,#perfil_abre,#perfil','#perfil_edit,#perfil_fecha','','',2);
             }
 			inicia2(0);
-		}else{
-            
-//            navigator.notification.confirm(
-//                'Deseja realmente sair',  // message
-//                sair_app,              // callback to invoke with index of button pressed
-//                'Control Condo',            // title
-//                'Sim,Não'          // buttonLabels
-//            );
+		}else{            
             return false;
 		}
     }
@@ -223,7 +195,7 @@ function onBackKeyDown() {
 	
      //REGRAS OCORRENCIA   
     if(localStorage.getItem('TELA_ATUAL') == 'ocorrencias'){
-		carrega_ocorrencias(0);
+		//carrega_ocorrencias(0);
 		afed('#home','#ocorrencias','','',2,'home');
         localStorage.setItem('TELA_ATUAL','home');
     }

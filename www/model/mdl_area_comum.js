@@ -556,7 +556,7 @@ function salva_reserva(){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
                         carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
-                        afed('#area','#reserva','','',2,'area');     
+                        afed('#area','#reserva','','',2,'area');  
                     }
                 },
                 error: function(erro){
@@ -600,6 +600,7 @@ function apaga_reserva(button){
                 }else{
                     carrega_minha_reserva();
                     $( "#rel_delete_reserva #add_reserva_id" ).val('');
+					afed('','#reserva','','',2,'');
                 }
 			},
             error: function(erro){

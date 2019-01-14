@@ -192,7 +192,7 @@ function atualiza_morador(){
 					}else{
 						alerta(1);
 					}
-					
+					$( '#mor_foto_up' ).val('');
 					afed('#moradores','#morador','','',2,'moradores');
 					carrega_morador();
 				},
