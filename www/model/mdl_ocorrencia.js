@@ -319,7 +319,8 @@ function download_arq_ocorrencia(arquivo) {
 	arquivo      = replaceAll(arquivo,"_","\/");
 
 
-    var path     = localStorage.getItem('DOMINIO')+arquivo;
+    var path     = localStorage.getItem('DOMINIO')+fmt_lin(arquivo);
+	//alert(path);
 	var extencao = arquivo.split(".");
 	var ext      = extencao[1];
     //alert(path);
