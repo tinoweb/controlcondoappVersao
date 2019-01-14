@@ -18,7 +18,7 @@ function onBackKeyDown() {
 //			}
 //		}
 //	}else{
-//        alert(localStorage.getItem('TELA_ATUAL'));
+        alert(localStorage.getItem('TELA_ATUAL'));
 //		afed('#home','#perfil2,#moradores,#comunicados,#liberacao,#reservas,#entregas,#enquetes,#documentos,#relatorios','','',1);
 //	}
     
@@ -81,7 +81,7 @@ function onBackKeyDown() {
     
     //REGRAS LIBERACAO   
     if(localStorage.getItem('TELA_ATUAL') == 'liberacao_add'){
-		afed('#home','#visitantes','','',2,'home');
+		afed('#home','#liberacao2','','',2,'liberacao_list');
         $( '#busca_liberacao' ).val('');
     }
 
@@ -96,19 +96,32 @@ function onBackKeyDown() {
     }
 
     if(localStorage.getItem('TELA_ATUAL') == 'liberacao'){
-		alert(1);
+		//alert(1);
         afed('#home','#liberacao3','','',2);
         localStorage.setItem('TELA_ATUAL','home');
         $( '#busca_liberacao' ).val('');
 		inicia2(0);
     }
+	
 	if(localStorage.getItem('TELA_ATUAL') == 'liberacao_list'){
-		alert(2);
+		//alert(2);
 		closePopUp();
         //afed('#home','#liberacao3','','',2);
         localStorage.setItem('TELA_ATUAL','liberacao');
         $( '#busca_liberacao' ).val('');
 		inicia2(2);
+    }
+    
+	if(localStorage.getItem('TELA_ATUAL') == 'eventos_liberacao'){
+		
+		liberacaoPopup2.close();
+		localStorage.setItem('TELA_ATUAL','liberacao');
+		
+    }
+    
+	if(localStorage.getItem('TELA_ATUAL') == 'evento_liberacao'){
+		app2.sheet.close();
+        localStorage.setItem('TELA_ATUAL','eventos_liberacao');
     }
     
     if(localStorage.getItem('TELA_ATUAL') == 'qrcode_gera'){	
@@ -129,6 +142,16 @@ function onBackKeyDown() {
         localStorage.setItem('TELA_ATUAL','perfil_usuario');
     }
 	
+	if(localStorage.getItem('TELA_ATUAL') == 'perfil_usuario'){
+        localStorage.setItem('TELA_ATUAL','home');
+		inicia2(0);
+    }
+	
+	if(localStorage.getItem('TELA_ATUAL') == 'config_user'){
+        //localStorage.setItem('TELA_ATUAL','home');
+		$("#bt_config_user")[0].click();
+    }
+	
 	if(localStorage.getItem('TELA_ATUAL') == 'moradores'){
 		afed('#home','#moradores','','',2);
         localStorage.setItem('TELA_ATUAL','perfil_usuario');
@@ -137,6 +160,11 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'morador'){
 		afed('#moradores','#morador','','',2);
         localStorage.setItem('TELA_ATUAL','moradores');
+    }   
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'morador_perfil'){
+		afed('#home','#morador','','',2);
+        localStorage.setItem('TELA_ATUAL','perfil_usuario');
     }   
 	
 	// NOTIFICACAO
@@ -222,6 +250,11 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'ticket'){
         afed('#ocorrencias_ticket','#ticket','','',2);
         localStorage.setItem('TELA_ATUAL','tickets');
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'cameras_condominio'){
+        afed('#home','#cameras_condominio','','',2,'home');
+        localStorage.setItem('TELA_ATUAL','home');
     }
 	
 	
