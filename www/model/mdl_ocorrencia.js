@@ -189,7 +189,7 @@ function carrega_ocorrencia(id){
                 localStorage.setItem('TELA_ATUAL','ocorrencia');
             },
             error : function() {
-                alert('Erro Ocorrencia');
+                //alert('Erro Ocorrencia');
             }
         });
     }
@@ -287,7 +287,9 @@ function carrega_ticket_anexo(id_ticket){
 				num += 1;
 				ext = replaceAll(retorno[x]['caminho'], "\/","_");
 				
-				dado = '<div onClick=download_arq_ocorrencia("'+ext+'"); > <img src="img/anexo_ocorrencia.png" width="30" height="30" alt=""/> Anexo ' +num+  ' 	<p></p> </div> ' ; 
+				
+
+				dado = '<div> <span onClick=download_arq_ocorrencia("'+ext+'"); class="col button button-raised button-round" style="margin: 8px 0px 8px 0;">Anexo ' +num+  ' </span></div> ' ; 
                 //alert(retorno[x]['caminho']);
                 dados = dados + dado;
             }
@@ -540,7 +542,9 @@ function ticket_novo(operacao){
 	$("#form_ticket_add #id_responsavel").val( $("#form_ocorrencia #id_responsavel").val() );
 	$("#form_ticket_add #id_criador").val( $("#form_ocorrencia #id_solicitante").val() );
 	
-	$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val());
+	/*$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val());*/
+	
+	
 	
 	$("#form_ticket_add #privada").val($("#form_ocorrencia #privada").val());
     $("#add_ticket #btn_anexo").html("Anexar Imagem");
@@ -572,6 +576,11 @@ function ticket_novo(operacao){
 		afed('','#ocorrencia','','','2','');
 				
     }
+	
+	setTimeout(function(){
+		$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val()).change();
+	},500);
+	
 }
 
 
@@ -700,7 +709,7 @@ function carrega_tickets(tipo){
 					$("#main_ticket").append(dados);
 				},
 				error      : function() {
-					alert('Erro tickets');
+					//alert('Erro tickets');
 				}
 			});   
 	},800);
@@ -763,7 +772,7 @@ function carrega_ticket(id,id_ocorrencia){
                 localStorage.setItem('TELA_ATUAL','ticket');
             },
             error      : function() {
-                alert('erro ticket');
+                //alert('erro ticket');
             }
         });
     }
