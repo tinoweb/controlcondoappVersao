@@ -110,9 +110,9 @@ function carrega_liberacao(tipo){
 
                 var dado =  '<div class="card liberado-card">'+
                                 '<div class="card-header">'+
-                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div><div style="float:right" data-img="'+foto_veiculo+'" data-modelo="'+modelo+'" data-placa="'+placa+'" onclick="abre_imagem_carro(this)" id="veic_foto">'+icone_foto+'</div>'+
-                                    '<div class="liberacao2-name" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
-                                    '<div class="liberacao2-date" onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
+                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div><div style="float:right" data-img="'+foto_veiculo+'" data-modelo="'+modelo+'" data-placa="'+placa+'" onclick="abre_imagem_carro(this);" id="veic_foto">'+icone_foto+'</div>'+
+                                    '<div class="liberacao2-name" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
+                                    '<div class="liberacao2-date" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
                                 '<div class="card-content card-content-padding">Validade de: '+retorno[x]['validadeInicio']+' até '+retorno[x]['validadeFim']+'<br>'+credito+bt_convite+'</div>'+
                                 
