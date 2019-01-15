@@ -174,7 +174,7 @@ function carrega_liberacao2(tipo,id_visita=0){
 					check = "Liberado Sindico";
 				}
 				
-                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'\')">'+
+                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'||'+retorno[x]['morador']+'\')">'+
                                 '<div class="card-header">'+
                                     '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>'+
                                     '<div class="liberacao2-name">'+retorno[x]['nome']+'</div>'+
