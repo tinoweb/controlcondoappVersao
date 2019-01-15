@@ -16,9 +16,9 @@ function carrega_chat(par=''){
     $.ajax({
         type       : "POST",
         url        : localStorage.getItem('DOMINIO')+"appweb/chat_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : id_condominio,nome : nome,id_usuario_condominio : id_usuario_condominio},
         dataType   : 'json',
         success    : function(retorno) {
@@ -85,9 +85,9 @@ function carrega_msg_eviadas(enviado,recebido){
     $.ajax({
         type       : "POST",
         url        : localStorage.getItem('DOMINIO')+"appweb/chat_msg_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {enviado : enviado,recebido : recebido},
         dataType   : 'json',
         success    : function(retorno) {
@@ -126,9 +126,9 @@ function envia_msg(){
         $.ajax({
             type       : "POST",
             url        : localStorage.getItem('DOMINIO')+"appweb/chat_msg_insert.php",
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_usuario_condominio : id_usuario_condominio,id_usuario_condominio_recebe : id_usuario_condominio_recebe,msg : msg},
             dataType   : 'json',
             success    : function(retorno) {

@@ -5,9 +5,9 @@ function veiculo_marca_modelo_cor(id_veiculo,tipo,marca=''){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_veiculo : id_veiculo, tipo_busca : tipo, marca : marca },
         dataType   : 'json',
 		success: function(retorno){
@@ -69,6 +69,9 @@ function atualiza_veiculo_morador(){
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
 			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
 				if(retorno == 'A'){
 					alerta(2);
@@ -103,6 +106,9 @@ function delete_veiculo_morador(){
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/veiculo_update.php',
 			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
 				//alert(retorno);
 				if(retorno == 'E'){

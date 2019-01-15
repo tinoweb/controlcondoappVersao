@@ -28,9 +28,9 @@ function carrega_documentos(tipo){
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/documento_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_usuario_condominio : $( "#DADOS #ID_USER" ).val(), pg : parseInt(pg), busca_doc : $('#busca_documento').val() },
         dataType   : 'json',
 		success: function(retorno){

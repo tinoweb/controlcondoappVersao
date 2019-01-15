@@ -13,9 +13,9 @@ function login_user_device(){
             type       : "POST",
             //url        : "https://leo.controlcondo.com.br/controlcondo/appweb/login.php",
             url        : localStorage.getItem('DOMINIO')+"appweb/login.php",
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             //data       : {uuid : '123456'}, //local
             data       : {uuid : UUID}, //APP
             dataType   : 'json',
@@ -171,9 +171,9 @@ function login_user() {
 		$.ajax({
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             dataType   : 'json',
 			//data: dados+'&nome=local&sistema=windows&uuid=123456&versao=10', //local
 			data: dados+'&nome='+device.model+'&sistema='+device.platform+'&uuid='+UUID+'&versao='+device.version+'&id_notificacao='+localStorage.getItem('registrationId'), //APP
@@ -201,9 +201,9 @@ function carrega_user_perfil(id) {
 		$.ajax({
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_usuario : id},
             dataType   : 'json',
 			success: function(retorno){
@@ -234,6 +234,9 @@ function select_user(id_usuario_condominio=0) {
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
 			data: dados,
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
                 if(retorno[0]['usar_control_condo'] == 1){
 						
@@ -363,6 +366,9 @@ function logout(){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/logout.php',
 		data: 'id='+$( "#DADOS #ID_USER_L" ).val(),
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
 			afed('#login_ini','#home','','',2,'tela_login');
           
@@ -376,9 +382,9 @@ function perfil_notificacao(id_condominio){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/usuario_perfil_get.php',
 		data: 'id_usuario='+$( "#DADOS #ID_USER_L" ).val()+'&id_condominio='+id_condominio,
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         dataType   : 'json',
 		success: function(retorno){
             //alert(retorno[0]['id_usuario_condominio']);

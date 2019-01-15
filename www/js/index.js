@@ -322,9 +322,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     //$("#erro_box").html(retorno); 
@@ -356,9 +356,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     //$("#erro_box").html(retorno); 
@@ -389,9 +389,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
@@ -430,9 +430,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
@@ -471,9 +471,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"");
@@ -510,9 +510,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
@@ -580,9 +580,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_visitante_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_visitante: localStorage.getItem("id_visitante_up_foto"), foto: imageURI }, 
                 success: function(retorno){ 
                     carrega_liberacao(0);
@@ -611,9 +611,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_visitante_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_visitante: localStorage.getItem("id_visitante_up_foto"), foto: imageURI }, 
                 success: function(retorno){ 
                     carrega_liberacao(0);

@@ -31,9 +31,9 @@ function carrega_enquetes(tipo){
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
        // data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_usuario_condominio : $( "#DADOS #ID_USER" ).val(),pg : parseInt(pg), busca_enq},
 		
 		data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&'+busca_enq,
@@ -97,9 +97,9 @@ function carrega_enquete(id){
     $.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_enquete : id, id_usuario_condominio : $( "#DADOS #ID_USER" ).val(), tipo : 1},
         dataType   : 'json',
 		success: function(retorno){
@@ -202,9 +202,9 @@ function carrega_perguntas(id,id_usuario_condominio){
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_enquete : id, id_usuario_condominio : id_usuario_condominio, tipo : 2},
         dataType   : 'json',
 		success: function(retorno){
@@ -246,9 +246,9 @@ function carrega_resposta(id){
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_enquete : id, tipo : 3},
         dataType   : 'json',
 		success: function(retorno){
@@ -350,9 +350,9 @@ function atualiza_enquete(id){
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_insert.php",
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : dados,
 		success: function(retorno){
 			//alert(retorno);

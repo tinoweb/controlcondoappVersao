@@ -26,9 +26,9 @@ function carrega_pets(tipo){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/pet_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },        
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo,
         dataType   : 'json',
 		
@@ -129,9 +129,9 @@ function carrega_pet(id){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/pet_get.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_pet : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
             dataType   : 'json',
             success: function(retorno){
@@ -190,9 +190,9 @@ function getEspecie_editar(id_especie){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/especie_pet_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
         dataType   : 'json',
 		success: function(retorno){
@@ -219,9 +219,9 @@ function getEspecie_incluir(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/especie_pet_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
         dataType   : 'json',
 		success: function(retorno){
@@ -269,9 +269,9 @@ function pet_insert(){
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/pet_insert.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_unidade='+$( "#DADOS #ID_UNIDADE" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
 				//alert(retorno);

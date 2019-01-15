@@ -8,7 +8,9 @@ function carrega_visitantes(sql){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/visitante_get.php',
-            crossDomain: true,
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : localStorage.getItem('TIPO_BUSCA_VISITANTE'), sql : sql},
             dataType   : 'json',
             success: function(retorno){
@@ -105,9 +107,9 @@ function salva_visitante(){
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/visitante_insert.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
             //data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),sql : sql},
             dataType   : 'json',
@@ -166,8 +168,8 @@ function get_veiculo(placa){
 				type: 'POST',
 				url: localStorage.getItem('DOMINIO')+'appweb/veiculo_visitante_get.php',
 				crossDomain: true,
-				beforeSend : function() {  },
-				complete   : function() {  },
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
 				data       : 'placa='+placa+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 				dataType   : 'json',
 				success: function(retorno){

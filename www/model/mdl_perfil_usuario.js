@@ -4,9 +4,9 @@ function carrega_perfil(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/perfil_usuario_get.php',
-        crossDomain: true,
-        beforeSend : function() {  },
-        complete   : function() {  },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id : $( "#DADOS #ID_MORADOR" ).val() },
         dataType   : 'json',
 		success: function(retorno){
@@ -51,6 +51,9 @@ function atualiza_perfil(){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/perfil_usuario_update.php',
 		data: dados+'&id='+$( "#DADOS #ID_MORADOR" ).val()+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
 			//alert(retorno);
             //afed('#home','#perfil2','','',2);

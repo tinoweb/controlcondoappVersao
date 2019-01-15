@@ -254,9 +254,11 @@
 				</div>
 			</div>
 		</div>			
-		<div id="wait" style="text-align: center; width: 100%; height: 100%;z-index: 19000;display: none; position: absolute; background-color: #51525475;"> 
-			<img alt="" src="img/aguarde.gif" width="50" style="margin-top: 70%"> 
+		<div id="wait" style="text-align: center; width: 100%; height: 100%;z-index: 19000; position: absolute; background-color: #51525475; display: none;">
+			<div class="preloader color-multi" style="margin-top: 70%"><span class="preloader-inner"><span class="preloader-inner-gap"></span><span class="preloader-inner-left"><span class="preloader-inner-half-circle"></span></span><span class="preloader-inner-right"><span class="preloader-inner-half-circle"></span></span></span></div>
+			<!--<img alt="" src="img/aguarde.gif" width="50" style="margin-top: 70%">-->
 		</div>
+
 		<div id="downloadProgress">
 			<div class="block-strong">
 				<p>Download</p>
@@ -3068,12 +3070,14 @@
 					$(document).ajaxStart(function(){
 						var pas = localStorage.getItem('TELA_ATUAL');
 						if(pas != 'chat_msg' && pas != "chat"){
-							$("#wait").css("display", "block");
+							//$("#wait").css("display", "block");
+							//app2.preloader.show('#007aff');
 							
 						}
 					});
 					$(document).ajaxComplete(function(){
-						$("#wait").css("display", "none");
+						//$("#wait").css("display", "none");
+						//app2.preloader.hide();
 					});
 					
 					var app2 = new Framework7({
@@ -3598,4 +3602,4 @@
 </script>
 
 </body>
-</html>>>
+</html>

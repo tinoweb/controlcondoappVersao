@@ -3,9 +3,9 @@ function notificacao_configuracao(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/notificacao_conf_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_usuario_condominio : $( "#DADOS #ID_USER" ).val() },
         dataType   : 'json',
 		success: function(retorno){
@@ -146,9 +146,9 @@ function notificacao_conf_update(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/notificacao_conf_update.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : 'id_usuario_condominio='+$( "#DADOS #ID_USER" ).val()+'&'+dados,
 		success: function(retorno){
             //alert(retorno);
