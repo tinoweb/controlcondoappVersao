@@ -2070,7 +2070,7 @@
                 <div class="navbar-inner"> <a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span> </div>
             </div>
 			<div class="box" id="boxUp_entregas"></div>
-			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
+			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
 				<div class="ptr-preloader">
 					<div class="preloader"></div>
 					<div class="ptr-arrow"></div>
@@ -2081,6 +2081,7 @@
 						<!--RETORNO DOS DADOS CORRESPODENCIA-->
 				  	</ul>
 				</div>
+				<!--<div class="preloader infinite-scroll-preloader"></div>-->
 			</div>
 		</div>
 	</div>
@@ -2206,7 +2207,7 @@
 							<!-- Searchbar backdrop -->
 							<div class="searchbar-backdrop"></div>
 							<div class="box" id="boxUp_documentos"></div>
-							<div class="page-content ptr-content" data-ptr-distance="55" id="pull-documentos" style="background-color: #EAEBED;">
+							<div class="page-content ptr-content pull-documentos" data-ptr-distance="55" id="pull-documentos" style="background-color: #EAEBED;">
 								<div class="ptr-preloader">
 									<div class="preloader"></div>
 									<div class="ptr-arrow"></div>
@@ -3074,6 +3075,7 @@
 					$(document).ajaxComplete(function(){
 						$("#wait").css("display", "none");
 					});
+					
 					var app2 = new Framework7({
 		// App root element
 		root: '#app'
@@ -3095,6 +3097,51 @@
 						
 						app2.ptr.done();
 					});
+///*******NEW SCROLL INFINITO***************************************************************************/
+//		var allowInfinite = true;			
+		
+
+//		
+//		$$('.infinite-scroll-content').on('infinite', function () {
+//		  var lastItemIndex = $$('#pull-entregas .list li').length;
+//			
+//		  alert(lastItemIndex);
+//		  // Exit, if loading in progress
+//		  if (!allowInfinite) return;
+//
+//		  // Set loading flag
+//		  allowInfinite = false;
+//
+//		  // Emulate 1s loading
+//		  setTimeout(function () {
+//			// Reset loading flag
+//		  allowInfinite = true;
+//
+//			if (lastItemIndex >= maxItems) {
+//			  // Nothing more to load, detach infinite scroll events to prevent unnecessary loadings
+//			  app2.infiniteScroll.destroy('.infinite-scroll-content');
+//			  //app2.infiniteScroll.create('.infinite-scroll-content');
+//			  // Remove preloader
+//			  $$('.infinite-scroll-preloader').remove();
+//			  return;
+//			}
+//
+//			// Generate new items HTML
+////			var html = '';
+////			for (var i = lastItemIndex + 1; i <= lastItemIndex + itemsPerLoad; i++) {
+////			  html += '<li>Item ' + i + '</li>';
+////			}
+//
+//			// Append new items
+////			$$('.list ul').append(html);
+//
+//			// Update last loaded index
+//			lastItemIndex = $$('#pull-entregas .list li').length;
+//			alert(lastItemIndex);
+//		  }, 1000);
+//		});
+///**********************************************************************************************/
+
 	// create searchbar
 	var searchbar = app2.searchbar.create({
 		el: '#busca_chat',
@@ -3551,4 +3598,4 @@
 </script>
 
 </body>
-</html>
+</html>>>

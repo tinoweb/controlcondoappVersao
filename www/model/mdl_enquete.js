@@ -3,7 +3,6 @@
 function carrega_enquetes(tipo){
     //alert(tipo);
 	"use strict";
-	
 	localStorage.setItem('TELA_ATUAL','enquetes');
 	
 	var busca_enq = $('#form_busca_enquete').serialize();

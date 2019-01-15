@@ -181,7 +181,7 @@ var app = {
                 carrega_entregas(1);
             }
 			app.ckBoxUp("#boxUp_entregas","#pull-entregas");
-		});		
+		});			
 		
 		$('#boxUp_entregas').click(function(){
 			$('#pull-entregas').animate({
