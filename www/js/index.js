@@ -531,6 +531,53 @@ var app = {
         function onFail(message) {
             //alert('Camera Indisponivel');
         }    
+		var foto_src = "";
+		/* Tratativa para identificar quando a mais de 3 fotos anexadas na ocorrencia*/
+		$("#anexo_oco img[name='foto']").each(function(){
+			foto_src += "**";
+		});
+		
+		if(foto_src.length > 4){
+			alerta("","Impossivel anexar mais que 3 imagens.")
+		}else{
+		
+		    var dominio = localStorage.getItem('DOMINIO'); 
+			var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+			navigator.camera.getPicture(onSuccess, onFail, { 
+				quality: 50, 
+				destinationType: Camera.DestinationType.DATA_URL, 
+				sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+			});
+
+			function onSuccess(imageURI) {
+
+				$.ajax({ 
+					type: 'POST', 
+					url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+					crossDomain: true, 
+					beforeSend : function() { }, 
+					complete   : function() { }, 
+					data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+					success: function(retorno){ 
+						retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+					   // $("#form_ocorrencia_add #btn_anexo").html("Alterar Imagem");
+						$("#form_ocorrencia_add #foto_oco").val(''+retorno+'');
+						//$("#anexo_foto").html(retorno);
+
+						$("#form_ocorrencia_add #anexo_oco").append('<img src='+dominio+caminho+retorno+' data-src="'+retorno+'" name="foto" class="img-responsive img-rounded"/>');
+						afed('#anexo_oco,#limpa_anexo','','','','');
+
+
+					}, 
+					error      : function() { 
+						//alert('Erro'); 
+					} 
+				}); 
+			}
+			function onFail(message) {
+				//alert('Camera Indisponivel');
+			}
+		}
     },
 	
 	

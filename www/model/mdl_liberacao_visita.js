@@ -158,6 +158,7 @@ function carrega_liberacao2(tipo,id_visita=0){
 		}
 	}
     var dados = '';
+	var check = '';
     //alert($( "#busca_liberacao2" ).val());
 	$.ajax({
 		type: 'POST',
@@ -169,8 +170,15 @@ function carrega_liberacao2(tipo,id_visita=0){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val(), id_visita : id_visita},
         dataType   : 'json',
 		success: function(retorno){
+			
             for (x in retorno) {
-                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+'\')">'+
+				if(retorno[x]['check_acesso'].indexOf("QR Code") >=0){
+					check = "Acesso por QR Code";
+			    }else{
+					check = "Liberado Sindico";
+				}
+				
+                var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'\')">'+
                                 '<div class="card-header">'+
                                     '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>'+
                                     '<div class="liberacao2-name">'+retorno[x]['nome']+'</div>'+

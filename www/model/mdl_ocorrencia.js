@@ -2,6 +2,8 @@
 
 // FUNCAO CARREGA TODOS OS COMUNICADOS
 function carrega_ocorrencias(tipo){
+	$("#anexo_oco img[name='foto']").remove();
+	$("#anexo_oco").hide();
 	"use strict";
 	localStorage.setItem('TELA_ATUAL','ocorrencias');
 	$("#ol_ordem").val(tipo);
@@ -468,7 +470,26 @@ function ocorrencia_novo(){
 
 }
 
+function clean_picture(){
+	
+	$("#anexo_oco img[name='foto']").fadeOut();
+	$("#anexo_oco").fadeOut();
+	$("#limpa_anexo").fadeOut();
+	
+	setTimeout(function(){
+	  $("#anexo_oco img[name='foto']").remove();
+	},500);
+}
+
 function ocorrencia_insert(){
+	/* Monta string com fotos inseridas pelo usuario*/
+	var foto_src = "";
+	$("#anexo_oco img[name='foto']").each(function(){
+
+		 foto_src += $(this).data("src")+"**";
+	});
+
+	
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
 	}else if($( "#form_ocorrencia_add #titulo_ocorrencia" ).val() == ''){
@@ -488,6 +509,7 @@ function ocorrencia_insert(){
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
+            data       : 'str_img='+foto_src+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
 				
 				//notifica('Ocorrência Criada/Você criou a ocorrência: '+retorno+'/Ok',1000,0);
