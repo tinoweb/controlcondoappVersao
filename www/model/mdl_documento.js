@@ -39,7 +39,7 @@ function carrega_documentos(tipo){
             for (x in retorno) {
 				cont++;
                 caminho = retorno[x]['local'].split('../');
-                tipo_ = caminho[1].split('.');
+                tipo_ = retorno[x]['local'];
 				var titulo = retorno[x]['titulo']+' ('+retorno[x]['descricao']+')';
 				
 				titulo = limita_txt(titulo,20);
@@ -49,7 +49,7 @@ function carrega_documentos(tipo){
 								'<div>'+retorno[x]['tipo']+'</div>'+
 							'</div>'+
 							'<div class="card-content card-content-padding corpo_card">'+
-								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="download_arquivo( \''+localStorage.getItem('DOMINIO')+caminho[1]+'\',\''+tipo_[1]+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
+								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="download_arquivo( \''+localStorage.getItem('DOMINIO')+caminho[1]+'\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
 							'</div>'+
 						'</div>';
 				
