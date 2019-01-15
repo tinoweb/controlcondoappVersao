@@ -39,6 +39,8 @@ function login_user_device(){
                             //alert($( "#DADOS #ID_CONDOMINIO" ).val());                    
                             $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                             localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
+                            localStorage.setItem('QTD_CONTROL_CONDO',retorno[0]['qtd_control_condo']);
+							alert(localStorage.getItem('QTD_CONTROL_CONDO'));
                             if(retorno[0]['tipo_busca_visitante'] == 0){
                                 afed('#btipo_nome','#btipo_rg','','',3,'home');
                             }else{
@@ -243,6 +245,8 @@ function select_user(id_usuario_condominio=0) {
                     //alert($( "#DADOS #ID_CONDOMINIO" ).val());
                     $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                     localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
+					localStorage.setItem('QTD_CONTROL_CONDO',retorno[0]['qtd_control_condo']);
+					//alert(localStorage.getItem('QTD_CONTROL_CONDO'));
                     if(retorno[0]['tipo_busca_visitante'] == 0){
                         afed('#btipo_nome','#btipo_rg','','',3,'home');
                     }else{

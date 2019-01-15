@@ -181,7 +181,7 @@ var app = {
                 carrega_entregas(1);
             }
 			app.ckBoxUp("#boxUp_entregas","#pull-entregas");
-		});		
+		});			
 		
 		$('#boxUp_entregas').click(function(){
 			$('#pull-entregas').animate({
@@ -779,10 +779,13 @@ var app = {
     remove_pull: function(){
 		$("#notificacoes"    ).removeClass("ptr-content");
 		$("#pull-liberacao"  ).removeClass("ptr-content");
+		$("#pull-liberacao" ).removeClass("ptr-refreshing");
 		$("#pull-liberacao2"  ).removeClass("ptr-content");
+		$("#pull-liberacao2" ).removeClass("ptr-refreshing");
 		$("#pull-comunicados").removeClass("ptr-content");
 		$("#pull-mreserva").removeClass("ptr-content");
 		$("#pull-entregas"   ).removeClass("ptr-content");
+		$("#pull-entregas" ).removeClass("ptr-refreshing");
 		$("#pull-enquetes"   ).removeClass("ptr-content");
 		$("#pull-enquetes" ).removeClass("ptr-refreshing");
 		$("#pull-documentos" ).removeClass("ptr-content");

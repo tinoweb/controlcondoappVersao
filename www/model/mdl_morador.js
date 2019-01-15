@@ -1,6 +1,7 @@
 // JavaScript Document
 
 function carrega_morador(){
+	//alert(1);
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/morador_get.php',
@@ -10,7 +11,9 @@ function carrega_morador(){
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val() },
         dataType   : 'json',
 		success: function(retorno){
+			//alert(2);
 			localStorage.setItem('TEM_TITULAR','0');
+			var qtd_u_cc = 0;
             var dados = '';
             for (x in retorno) {
 				if(retorno[x]['foto'] == ''){
@@ -20,6 +23,12 @@ function carrega_morador(){
 				}
 				if(retorno[x]['parentesco'] == 1){
 				   localStorage.setItem('TEM_TITULAR','1');
+				}
+				if(retorno[x]['usar_control_condo'] == 1){
+				
+				   qtd_u_cc++;
+					
+				   localStorage.setItem('QTD_USUARIO_CC',qtd_u_cc);
 				}
 				
 				var morador =  	'<div class="card morador-card" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')">'+
@@ -33,12 +42,14 @@ function carrega_morador(){
                 /*var morador = '<div class="morador" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')"><div class="morador_foto" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><strong style="font-family: \'Roboto Condensed\';font-size: 12px;font-weight: bold; color: #0078d0;">'+retorno[x]['nome']+'</strong><span style="font-size:11px">'+retorno[x]['descricao']+'</span></div>';*/
                 dados = dados + morador;
             }
+			//alert(localStorage.getItem('QTD_USUARIO_CC'));
             $( "#morador_retorno" ).html(dados);
             //alert(retorno);
             afed('#moradores','#home','','',2,'moradores');
        
         },
         error      : function() {
+			alert(3);
             alerta(4);
 
         }
@@ -176,9 +187,12 @@ function carrega_morador_dados(id_morador){
 function atualiza_morador(){
 	
 	var dados = $( "#form_moradores" ).serialize();
-    if($('#mor_nome').val() != '' && $('#mor_rg').val() != '' && $('#mor_cpf').val() != '' && $('#mor_nascimento').val() != '' && $('#mor_parentesco').val() != 0){
+    if($('#mor_nome').val() != '' && $('#mor_rg').val() != '' && $('#mor_cpf').val() != '' && $('#mor_nascimento').val() != '' && $('#mor_parentesco').val() != 0 && localStorage.getItem('QTD_USUARIO_CC') < localStorage.getItem('QTD_CONTROL_CONDO')){
+	
 		if( $("#mor_controlcondo").is(":checked") == true && $('#mor_email').val() == '' ){
-			alert('Informe um email');
+			alerta('',"Informe um email");
+		}else if($("#mor_id_morador").val() == $( "#DADOS #ID_MORADOR" ).val() && $("#mor_controlcondo").is(":checked") == false){
+			alerta('',"Você não pode desativar seu perfil, contate o administrador");	 
 		}else{
 //			alert('Atualiza');
 			$.ajax({
@@ -192,7 +206,7 @@ function atualiza_morador(){
 					}else{
 						alerta(1);
 					}
-					
+					$( '#mor_foto_up' ).val('');
 					afed('#moradores','#morador','','',2,'moradores');
 					carrega_morador();
 				},
@@ -212,35 +226,40 @@ function atualiza_morador(){
 			alerta('',"Informe uma data nascimento");
 		}else if($('#mor_parentesco').val() == ''){
 			alerta('',"Informe um parentesco");
+		}else if(localStorage.getItem('QTD_USUARIO_CC') >= localStorage.getItem('QTD_CONTROL_CONDO')){
+			alerta('',"Você ja possui "+localStorage.getItem('QTD_USUARIO_CC')+", contate o administrador. ");
 		}
 	}
 }
 
 function delete_morador(){
-	
-	app2.dialog.confirm('Confirma a exclusão','Excluir', function () {
-		var dados = $( "#form_moradores" ).serialize();
-		$.ajax({
-			type: 'POST',
-			url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
-			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
-			success: function(retorno){
-				if(retorno == 'E'){
-					//alerta(2);
-					alerta(3);					
-				}else{
-					//alerta(1);
-					alerta(4);
-				}
-					afed('#moradores','#morador','','',2,'moradores');
-					carrega_morador();
+	if($("#mor_id_morador").val() == $( "#DADOS #ID_MORADOR" ).val()){
+			alerta('',"Você não pode desativar seu perfil, contate o administrador</em>");	 
+	}else{
+		app2.dialog.confirm('Confirma a exclusão','Excluir', function () {
+			var dados = $( "#form_moradores" ).serialize();
+			$.ajax({
+				type: 'POST',
+				url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
+				data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+				success: function(retorno){
+					if(retorno == 'E'){
+						//alerta(2);
+						alerta(3);					
+					}else{
+						//alerta(1);
+						alerta(4);
+					}
+						afed('#moradores','#morador','','',2,'moradores');
+						carrega_morador();
 
-			},
-			error: function(data){
-				alerta(4);
-			}	
-		});	
-	});
+				},
+				error: function(data){
+					alerta(4);
+				}	
+			});	
+		});
+	}
 	
 }
 

@@ -293,6 +293,13 @@ function abre_photo(valor){
 
 }
 
+function limita_txt(titulo,qtd){
+	if(titulo.length > qtd){
+		$(this).text($(this).text().substr(0,qtd)+'...');
+		titulo = titulo.substr(0,qtd)+'...';
+	}
+	return titulo;
+}
 
 
 
