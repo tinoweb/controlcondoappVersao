@@ -25,9 +25,9 @@ function carrega_ocorrencias(tipo){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : 'id_usuario_condominio='+$( "#DADOS #ID_USER" ).val()+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#f_ocorrencia").val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val()+'&tipo='+tipo+'&'+dados_form,
         dataType   : 'json',
 		
@@ -125,9 +125,9 @@ function carrega_ocorrencia(id){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_ocorrencia : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
             dataType   : 'json',
             success: function(retorno){
@@ -219,9 +219,9 @@ function finaliza_ocorrencia2(res){
  		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_update.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
                 voltar('#ocorrencias','#ocorrencia','ocorrencias');
@@ -243,9 +243,9 @@ function carrega_ocorrencia_arq(id){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_ocorrencia : id, tipo : '2', id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
@@ -278,9 +278,9 @@ function carrega_ticket_anexo(id_ticket){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_ocorrencia_ticket : id_ticket, tipo : '2', id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
@@ -386,9 +386,9 @@ function getCategoria_incluir(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/categoria_ocorrencia_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
         dataType   : 'json',
 		success: function(retorno){
@@ -413,9 +413,9 @@ function getSituacao_incluir(div_destino, valor_padrao){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/situacao_ocorrencia_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
         dataType   : 'json',
 		success: function(retorno){
@@ -505,9 +505,10 @@ function ocorrencia_insert(){
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_insert.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
+            data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
             data       : 'str_img='+foto_src+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_solicitante='+$( "#DADOS #ID_MORADOR" ).val()+'&'+dados,
 			success: function(retorno){
 				
@@ -534,9 +535,9 @@ function getCategoria_incluir(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/categoria_ocorrencia_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo:0 },
         dataType   : 'json',
 		success: function(retorno){
@@ -616,9 +617,9 @@ function ticket_insert(){
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/ticket_insert.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
 				//notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
@@ -689,8 +690,8 @@ function carrega_tickets(tipo){
 				type: 'POST',
 				url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
 				crossDomain: true,
-				beforeSend : function() { },
-				complete   : function() { },
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
 				data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
 				dataType   : 'json',
 				success: function(retorno){
@@ -749,9 +750,9 @@ function carrega_ticket(id,id_ocorrencia){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_ocorrencia_ticket : id, id_ocorrencia : id_ocorrencia, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
             dataType   : 'json',
             success: function(retorno){
@@ -807,9 +808,9 @@ function getHistorico_Situacao_Ticket(id,id_ocorrencia){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ticket_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_ocorrencia_ticket : id, id_ocorrencia : id_ocorrencia, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '7'},
         dataType   : 'json',
 		success: function(retorno){	
@@ -877,7 +878,9 @@ function get_anexo(id){
 			type: 'POST',
 			dataType:'JSON',
             url: localStorage.getItem('DOMINIO')+'appweb/ocorrencia_get.php',
-            crossDomain: true,
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'id_ocorrencia_ticket='+id+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&tipo=3',
 			success: function(retorno){
 

@@ -251,6 +251,9 @@ function recuperaEmail(){
 		type: 'post',
 		data: dados,
 		url: localStorage.getItem('DOMINIO')+'ajax/mail2.php',
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
             //alert(retorno);
             notifica('Recuperacao de senha/'+retorno+'/Fechar',0,0);

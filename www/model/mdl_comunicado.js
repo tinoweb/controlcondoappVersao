@@ -30,9 +30,9 @@ function carrega_comunicados(tipo){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         //data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val() },
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&titulo='+$("#busca_comunicados").val()+'&id_usuario_condominio='+$( "#DADOS #ID_USER" ).val(),
         dataType   : 'json',
@@ -107,9 +107,9 @@ function carrega_comunicado(id){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_comunicado : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1', id_usuario_condominio : $( "#DADOS #ID_USER" ).val()},
         dataType   : 'json',
 		success: function(retorno){
@@ -171,9 +171,9 @@ function carrega_comunicado_arq(id){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_comunicado : id, tipo : '2'},
         dataType   : 'json',
 		success: function(retorno){
@@ -203,9 +203,9 @@ function carrega_comunicado_comentario(id){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_comunicado : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '3'},
         dataType   : 'json',
 		success: function(retorno){
@@ -235,9 +235,9 @@ function carrega_comunicado_curtida(id){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_comunicado : id, tipo : '4', id_usuario_condominio : $( "#DADOS #ID_USER" ).val()},
         dataType   : 'json',
 		success: function(retorno){
@@ -265,6 +265,9 @@ function curtir_descurtir(id){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/comunicado_curtida.php',
         data       : {id_comunicado : id, id_comentario : '0', id_usuario_condominio : $( "#DADOS #ID_USER" ).val()},
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
             //alert(retorno);
             carrega_comunicado_curtida(id);
@@ -282,6 +285,9 @@ function comentar(){
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/comunicado_comentar.php',
             data: dados,
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             success: function(retorno){
                 //alert(retorno);
                 $( "#txt_comenta" ).val('');
@@ -340,7 +346,10 @@ function comentario_excluir(buttonIndex) {
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/comunicado_comentar_delete.php',
             data: {id : localStorage.getItem('COMENTARIO')},
-            success: function(retorno){
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
+           success: function(retorno){
                 //alert(retorno);
                 carrega_comunicado_comentario($( "#id_comunicado_comentario" ).val());
             },
@@ -356,6 +365,9 @@ function comentario_update() {
         type: 'POST',
         url: localStorage.getItem('DOMINIO')+'appweb/comunicado_comentar_update.php',
         data: {id_comentario : localStorage.getItem('COMENTARIO'),comentario : $('#comentario_edit').val()},
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         success: function(retorno){
             //alert(retorno);
             carrega_comunicado_comentario($( "#id_comunicado_comentario" ).val());

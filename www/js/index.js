@@ -322,9 +322,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     //$("#erro_box").html(retorno); 
@@ -356,9 +356,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     //$("#erro_box").html(retorno); 
@@ -389,9 +389,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
@@ -430,9 +430,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
@@ -471,9 +471,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
                 success: function(retorno){ 
                     retorno = retorno.replace(/(\r\n|\n|\r)/gm,"");
@@ -497,6 +497,40 @@ var app = {
 
 
 	foto_ocorrencia_galeira: function() {
+		var dominio = localStorage.getItem('DOMINIO'); 
+		var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL, 
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+        });
+
+    	function onSuccess(imageURI) {
+            
+            $.ajax({ 
+                type: 'POST', 
+                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
+                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+                success: function(retorno){ 
+                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+                    $("#form_ocorrencia_add #btn_anexo").html("Alterar Imagem");
+				    $("#form_ocorrencia_add #foto_oco").val(''+retorno+'');
+                    //$("#anexo_foto").html(retorno);
+					$("#form_ocorrencia_add #anexo_foto").attr("src", dominio+caminho+retorno);
+                    afed('#anexo_oco','','','','');
+    
+                }, 
+                error      : function() { 
+                    //alert('Erro'); 
+                } 
+            }); 
+        }
+        function onFail(message) {
+            //alert('Camera Indisponivel');
+        }    
 		var foto_src = "";
 		/* Tratativa para identificar quando a mais de 3 fotos anexadas na ocorrencia*/
 		$("#anexo_oco img[name='foto']").each(function(){
@@ -593,9 +627,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_visitante_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_visitante: localStorage.getItem("id_visitante_up_foto"), foto: imageURI }, 
                 success: function(retorno){ 
                     carrega_liberacao(0);
@@ -624,9 +658,9 @@ var app = {
             $.ajax({ 
                 type: 'POST', 
                 url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_visitante_insert.php", 
-                crossDomain: true, 
-                beforeSend : function() { }, 
-                complete   : function() { }, 
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_visitante: localStorage.getItem("id_visitante_up_foto"), foto: imageURI }, 
                 success: function(retorno){ 
                     carrega_liberacao(0);

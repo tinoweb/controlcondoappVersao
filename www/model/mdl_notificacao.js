@@ -8,8 +8,8 @@ function atualiza_notificacao(){
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/atualiza_notificacao.php',
 			crossDomain: true,
-			beforeSend : function() { },
-			complete   : function() { },
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			data       : { 
 							usuario:id_usuario_condominio,
 							   tipo:'atualiza'
@@ -93,8 +93,8 @@ function check_leitura(id_modulo,id){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/atualiza_notificacao.php',
 		crossDomain: true,
-		beforeSend : function() { },
-		complete   : function() { },
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
 		data       : { 
 						         usuario:id_usuario_condominio,
 			            tipo_notificacao:id_modulo,

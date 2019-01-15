@@ -18,6 +18,9 @@ function login_user_device() {
 			type: 'POST',
 			url: SERVIDOR_CAMINHO+'appweb/login.php',
 			data: 'uuid='+device.uuid,
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
 				//alert(retorno);
 				if(retorno == ''){

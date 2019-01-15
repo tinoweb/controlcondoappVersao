@@ -33,11 +33,12 @@ $.ajax({
     type       : "POST",
     url        : localStorage.getItem('DOMINIO')+"appweb/feed_get.php",
     crossDomain: true,
-    beforeSend : function() { },
-    complete   : function() { },
+    beforeSend : function() { $("#wait").css("display", "block"); },
+    complete   : function() { $("#wait").css("display", "none"); },
     data       : {id_condominio : id_condominio,id_usuario_condominio : id_usuario_condominio, pg : parseInt(pg)},
     dataType   : 'json',
     success    : function(retorno) {
+	
 		var cont =0;
         for (x in retorno) {
 			cont++;

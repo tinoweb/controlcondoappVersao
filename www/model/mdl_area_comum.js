@@ -7,9 +7,9 @@ function carrega_areas(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
@@ -56,9 +56,9 @@ function carrega_minha_reserva(filtro=0,scroll=0){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/minha_reserva_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), inicio : data_inicio, fim : data_fim, id_area : area, situacao : situacao },
         dataType   : 'json',
 		success: function(retorno){
@@ -142,9 +142,9 @@ function carrega_area(id,cale_view,nome){
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_areacomum : $( "#DADOS #AREA_COMUM" ).val(), dt_festa : dt_festa},
             dataType   : 'json',
 			success: function(retorno){
@@ -542,8 +542,9 @@ function salva_reserva(){
             $.ajax({
                 type: 'POST',
                 url: localStorage.getItem('DOMINIO')+'appweb/reserva_insert.php',
-                beforeSend : function() { },
-                complete   : function() { },
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&morador='+$( "#DADOS #ID_MORADOR" ).val()+'&area='+$( "#DADOS #AREA_COMUM" ).val()+'&observacao=',
                 success: function(retorno){
 
@@ -590,8 +591,9 @@ function apaga_reserva(button){
 		$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/reserva_delete.php',
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data:'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_reserva='+id_reserva,
 			success: function(retorno){
                 if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){

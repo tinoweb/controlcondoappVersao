@@ -43,9 +43,11 @@ function carrega_liberacao(tipo){
 		type: 'POST',
 		//url: localStorage.getItem('DOMINIO')+"appweb/liberacao_get.php",
 		url: localStorage.getItem('DOMINIO')+'appweb/liberacao_get.php',
-        crossDomain: true,
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg),tipo : 1,nome : $( "#busca_liberacao" ).val()},
         dataType   : 'json',
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
             for (x in retorno) {
 				cont++;
@@ -162,7 +164,9 @@ function carrega_liberacao2(tipo,id_visita=0){
 		type: 'POST',
 		//url: localStorage.getItem('DOMINIO')+"appweb/liberacao_get.php",
 		url: localStorage.getItem('DOMINIO')+'appweb/liberacao2_get.php',
-        crossDomain: true,
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val(), id_visita : id_visita},
         dataType   : 'json',
 		success: function(retorno){
@@ -211,9 +215,9 @@ function carrega_liberacao_visita(visita,tipo){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/liberacao_get.php',
-            crossDomain: true,
-            beforeSend : function() { },
-            complete   : function() { },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),id_liberacao : visita},
             dataType   : 'json',
             success: function(retorno){
@@ -277,9 +281,9 @@ function adiciona_liberacao(){
     $.ajax({
         type: 'POST',
         url: localStorage.getItem('DOMINIO')+'appweb/motivo_get.php',
-        crossDomain: true,
-        beforeSend : function() {  },
-        complete   : function() {  },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
         success: function(retorno){
@@ -355,7 +359,9 @@ function salva_liberacao(){
             $.ajax({
                 type: 'POST',
                 url: localStorage.getItem('DOMINIO')+'appweb/liberacao_insert.php',
-                crossDomain: true,
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
                 data       : dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val(),
                 success: function(retorno){
                         //alert(retorno);
@@ -378,9 +384,9 @@ function gera_qrcode(qrcode_numero,nome){
     $.ajax({
         type: 'POST',
         url: localStorage.getItem('DOMINIO')+'appweb/qrcode_insert.php',
-        crossDomain: true,
-        beforeSend : function() {  },
-        complete   : function() {  },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_autorizacao_visita : qrcode_numero},
         dataType   : 'json',
         success: function(retorno){
@@ -549,9 +555,9 @@ function liberacao_delete(buttonIndex){
         $.ajax({
             type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/liberacao_delete.php',
-            crossDomain: true,
-            beforeSend : function() {  },
-            complete   : function() {  },
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
             data       : dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
             success: function(retorno){
                 //alert(retorno);
@@ -586,7 +592,9 @@ function get_visitante(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/acesso_visitante.php',
-        crossDomain: true,
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : {id:id_visitante,id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){

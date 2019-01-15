@@ -4,9 +4,9 @@ function contatos(id_contato,tipo){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/contato_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_contato : id_contato },
         dataType   : 'json',
 		success: function(retorno){
@@ -48,6 +48,9 @@ function atualiza_contato_morador(){
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/contato_update.php',
 			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
 				if(retorno == 'A'){
 					alerta(2);
@@ -83,6 +86,9 @@ function delete_contato_morador(){
 			type: 'POST',
 			url: localStorage.getItem('DOMINIO')+'appweb/contato_update.php',
 			data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+			crossDomain: true,
+			beforeSend : function() { $("#wait").css("display", "block"); },
+			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
 				if(retorno == 'E'){
 					//alerta(2);

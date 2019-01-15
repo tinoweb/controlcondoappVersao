@@ -5,9 +5,9 @@ function carrega_morador(){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/morador_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val() },
         dataType   : 'json',
 		success: function(retorno){
@@ -62,9 +62,9 @@ function carrega_morador_dados(id_morador){
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/morador_get.php',
-        crossDomain: true,
-        beforeSend : function() { },
-        complete   : function() { },
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
         data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : id_morador },
         dataType   : 'json',
 		success: function(retorno){
@@ -199,6 +199,9 @@ function atualiza_morador(){
 				type: 'POST',
 				url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
 				data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
 				success: function(retorno){
 					//alert(retorno);
 					if(retorno == '1A'){
