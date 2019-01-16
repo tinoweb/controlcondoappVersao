@@ -151,6 +151,12 @@ function onBackKeyDown() {
   
     }
 	
+    //REGRAS minhas reserva   
+    if(localStorage.getItem('TELA_ATUAL') == 'minha_reserva'){
+        afed('#reservas','#minha_reservas','','',2,'reservas');
+  
+    }
+	
 	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
         afed('#area','#reserva','','',2,'area');
   
