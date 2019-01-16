@@ -632,6 +632,8 @@ function get_visitante(){
 
 function atualiza_veiculo(id_veiculo,tipo,marca=''){
 	//alert(marca+'???'+modelo+'???'+cor+'???'+tipo);
+	
+	
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_get.php',
@@ -643,6 +645,7 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 		success: function(retorno){
 			
 			//console.log(retorno);
+			
 			
 			if(tipo == 1){
 				
@@ -667,7 +670,7 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 			
 			if(tipo == 1){
 				$( "#l_id_carro" ).val(retorno[0]['veiculo'][0]['id']);
-				$( "#l_marca_carro" ).append(marca_dados);
+				$( "#l_marca_carro" ).html(marca_dados);
 				$( "#l_marca_carro" ).val(retorno[0]['veiculo'][0]['marca']);
 				$( "#l_modelo_carro" ).html(modelo_dados);
 				$( "#l_modelo_carro" ).val(retorno[0]['veiculo'][0]['modelo']);
@@ -684,7 +687,8 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 			}
 			
 			//$( '#l_marca_carro option[value=""]').attr("selected","selected");
-			$( '#l_marca_carro').val("").change();
+			//$( '#l_marca_carro').val("").change();
+			//$( '#l_cor_carro').val("").change();
 						        
         },
         error      : function() {
@@ -697,21 +701,31 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 function atualiza_veiculo_visitante(){
 	
 	var dados = $( "#form_visitante_veiculo" ).serialize();
-    
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_insert_liberacao.php',
-		data:dados+'&id_morador=""&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-		success: function(retorno){
-			alerta(1);
-			$(".veiculo-morador .sheet-close")[0].click();
-			$("#liberacao2 #id_veiculo").val(retorno);
-		},
-		error: function(data){
-			alert('erro');
-			$("#wait").css("display", "none");
-	    }	
-	});	
+    if($("#l_marca_carro").val() == ""){
+		alerta("","Preencha a marca");
+	}else 
+	if($("#l_modelo_carro").val() == 0){
+		alerta("","Preencha o modelo");	 
+	}else 
+	if($("#l_cor_carro").val() == ""){
+		alerta("","Preencha a cor");
+	}else{
+			
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/veiculo_insert_liberacao.php',
+			data:dados+'&id_morador=""&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+			success: function(retorno){
+				alerta(1);
+				$(".veiculo-morador .sheet-close")[0].click();
+				$("#liberacao2 #id_veiculo").val(retorno);
+			},
+			error: function(data){
+				alert('erro');
+				$("#wait").css("display", "none");
+			}	
+		});	
+	}
 }
 
 function abre_imagem_carro(el){
