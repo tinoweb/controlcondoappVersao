@@ -73,7 +73,7 @@ function carrega_ocorrencias(tipo){
 				
 								+'</div>'
 					
-								+'<div class="descricao_card_ocorrencia" ><strong>'+retorno[x].titulo_ocorrencia+'</strong></div>'
+								+'<div class="descricao_card_ocorrencia" ><strong>'+retorno[x].titulo_ocorrencia.substr(0,45)+'</strong></div>'
 								
 								
 							+'</div>'
