@@ -175,7 +175,7 @@ function carrega_liberacao2(tipo,id_visita=0){
 				if(retorno[x]['check_acesso'].indexOf("QR Code") >=0){
 					check = "Acesso por QR Code";
 			    }else{
-					check = "Liberado Sindico";
+					check = "Liberado Pela Portaria";
 				}
 				
                 var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'||'+retorno[x]['morador']+'\')">'+
@@ -207,6 +207,7 @@ function carrega_liberacao_visita(visita,tipo){
 	
 	$( "#add_liberacao #l_deletar" ).show();
 	$( "#add_liberacao #l_cadastrar" ).parent().attr("class","col-xs-6");
+	$( "#add_liberacao #savarLib").html('<span class="fa fa-check"></span> Alterar');
 
 	if(tipo == 0){
 		
@@ -247,6 +248,7 @@ function carrega_liberacao_visita(visita,tipo){
                 $( "#add_liberacao #visita" ).val(retorno[0]['visitante']);
                 if(retorno[0]['numero_acesso_perm'] == null){ retorno[0]['numero_acesso_perm'] = 0;}
                 $( "#add_liberacao #numero_acesso_perm" ).val(retorno[0]['numero_acesso_perm']);
+				$( "#add_liberacao #liberacao_placa" ).val(retorno[0]['placa']);
 				closePopUp();
                 afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
           		
@@ -573,8 +575,11 @@ function liberacao_delete(buttonIndex){
 }
 function moreInformation(){
 	
-		$("#more_information").css({"display":"block"});
-		$("#collapse_more").css({"display":"none"});
+	$("#more_information").fadeIn("slow");
+	setTimeout(function(){
+		$("#collapse_more").hide();
+	},300);
+	
 
 }
 
@@ -629,11 +634,14 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 		success: function(retorno){
 			
 			//console.log(retorno);
+			
 			if(tipo == 1){
+				
 				var marca_dados = '';
 				for (x in retorno[0]['marcas']) {
 					marca_dados = marca_dados + '<option value="'+retorno[0]['marcas'][x]['id']+'">'+retorno[0]['marcas'][x]['marca']+'</option>';
 				}
+				
 			}
 			if(tipo == 1 || tipo == 2){
 				var modelo_dados = '';
@@ -650,7 +658,7 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 			
 			if(tipo == 1){
 				$( "#l_id_carro" ).val(retorno[0]['veiculo'][0]['id']);
-				$( "#l_marca_carro" ).html(marca_dados);
+				$( "#l_marca_carro" ).append(marca_dados);
 				$( "#l_marca_carro" ).val(retorno[0]['veiculo'][0]['marca']);
 				$( "#l_modelo_carro" ).html(modelo_dados);
 				$( "#l_modelo_carro" ).val(retorno[0]['veiculo'][0]['modelo']);
@@ -665,10 +673,13 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 			}else if(tipo == 2) {
 				$( "#l_modelo_carro" ).html(modelo_dados);
 			}
+			
+			//$( '#l_marca_carro option[value=""]').attr("selected","selected");
+			$( '#l_marca_carro').val("").change();
 						        
         },
         error      : function() {
-            alert('Erro ao carregar');
+            //alert('Erro ao carregar');
 
         }
 	});	
@@ -701,7 +712,7 @@ function abre_imagem_carro(el){
 	let placa  = $(el).data("placa");
 	
 	$(".veiculo-foto_veiculo .block").html('<strong><p>Modelo - '+modelo+'</p><p> Placa - '+placa+'</p></strong><hr><div class="liberacao_img" style="'+imagem+'"></div>');
-	$(".liberacao_img").css("margin-left","57px").css("width","200px").css("height","200px").show();
-	
+	$(".liberacao_img").css("margin-left","57px").css("width","200px").css("height","200px").css("background-repeat","no-repeat").show();
+		
 }
 

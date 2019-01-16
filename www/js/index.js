@@ -590,6 +590,7 @@ var app = {
         function onSuccess(imageURI) { 
             $( '#foto_visitante' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#foto_up_visitante' ).val(imageURI);
+			$( '#nophoto' ).hide();
         }
 
         function onFail(message) {
@@ -609,6 +610,7 @@ var app = {
             
             $( '#foto_visitante' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#foto_up_visitante' ).val(imageURI);
+			$( '#nophoto' ).hide();
 
         }
 
@@ -737,6 +739,7 @@ var app = {
         function onSuccess(imageURI) { 
             $( '#foto_visitante_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#l_foto_veiculo_img' ).val(imageURI);
+			$( '.visitante_car').hide();
 			// alert('Câmera disponivel');
 
         }
@@ -778,6 +781,7 @@ var app = {
             
             $( '#foto_visitante_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#l_foto_veiculo_img' ).val(imageURI);
+			$( '.visitante_car').hide();
 
         }
 
