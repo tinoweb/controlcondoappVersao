@@ -245,6 +245,9 @@ function delete_morador(){
 				type: 'POST',
 				url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
 				data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&excluir=1',
+				crossDomain: true,
+				beforeSend : function() { $("#wait").css("display", "block"); },
+				complete   : function() { $("#wait").css("display", "none"); },
 				success: function(retorno){
 					if(retorno == 'E'){
 						//alerta(2);

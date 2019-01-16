@@ -17,7 +17,7 @@ function login_user_device(){
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
             //data       : {uuid : '123456'}, //local
-            data       : {uuid : UUID}, //APP
+            data       : {uuid : UUID, id_notificacao : localStorage.getItem('registrationId')}, //APP
             dataType   : 'json',
             success    : function(retorno) {
 

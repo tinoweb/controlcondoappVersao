@@ -193,9 +193,11 @@ function carrega_liberacao2(tipo,id_visita=0){
 				$("#retorno_liberacao2").html("");
 			}
 			$( "#retorno_liberacao2" ).append(dados);
+			$("#wait").css("display", "none");
 		},
         error   : function() {
             //alert('Erro ao carregar liberacao 2');
+			$("#wait").css("display", "none");
         }
 	});
     localStorage.setItem('TELA_ATUAL','liberacao_list2');
