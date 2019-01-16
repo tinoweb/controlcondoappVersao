@@ -701,13 +701,13 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 function atualiza_veiculo_visitante(){
 	
 	var dados = $( "#form_visitante_veiculo" ).serialize();
-    if($("#l_marca_carro").val() == ""){
+    if($("#l_marca_carro").val() == "" || $("#l_marca_carro").val() == null ){
 		alerta("","Preencha a marca");
 	}else 
 	if($("#l_modelo_carro").val() == 0){
 		alerta("","Preencha o modelo");	 
 	}else 
-	if($("#l_cor_carro").val() == ""){
+	if($("#l_cor_carro").val() == "" || $("#l_cor_carro").val() == null){
 		alerta("","Preencha a cor");
 	}else{
 			
