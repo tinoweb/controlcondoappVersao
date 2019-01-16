@@ -131,6 +131,7 @@ function carrega_liberacao(tipo){
 		},
         error   : function() {
             //alert('Erro ao carregar liberacao');
+			$("#wait").css("display", "none");
         }
 	});
     localStorage.setItem('TELA_ATUAL','liberacao_list');
@@ -264,6 +265,7 @@ function carrega_liberacao_visita(visita,tipo){
             },
             error      : function() {
                 //alert('Erro ao carregar liberacao');
+				$("#wait").css("display", "none");
             }
         });
 		
@@ -301,6 +303,7 @@ function adiciona_liberacao(){
         },
         error      : function() {
             //alert('Erro ao carregar motivos');
+			$("#wait").css("display", "none");
         }
     });
     
@@ -373,6 +376,7 @@ function salva_liberacao(){
                 },
                 error      : function() {
                     //alert('Erro ao carregar liberacao');
+					$("#wait").css("display", "none");
                 }
             });           
         }
@@ -412,6 +416,7 @@ function gera_qrcode(qrcode_numero,nome){
         },
         error      : function() {
             //alert('Erro ao carregar qcode');
+			$("#wait").css("display", "none");
         }
     });
    
@@ -569,6 +574,7 @@ function liberacao_delete(buttonIndex){
             },
             error      : function() {
                 alert('erro');
+				$("#wait").css("display", "none");
             }
         });  
     }
@@ -612,6 +618,7 @@ function get_visitante(){
 		
 		error:function(){
 			alerta("","Nenhum registro encontrado!");
+			$("#wait").css("display", "none");
 		}
 	});
 	
@@ -671,6 +678,7 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
         },
         error      : function() {
             alert('Erro ao carregar');
+			$("#wait").css("display", "none");
 
         }
 	});	
@@ -692,6 +700,7 @@ function atualiza_veiculo_visitante(){
 		},
 		error: function(data){
 			alert('erro');
+			$("#wait").css("display", "none");
 	    }	
 	});	
 }
