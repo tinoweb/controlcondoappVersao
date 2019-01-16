@@ -57,6 +57,9 @@ function escolhe_visita(id,nome,rg){
 	afed('#liberacao2','#visitantes','','',3,'liberacao_add');
 	$( "#add_liberacao #savarLib").html('<span class="fa fa-check"></span> Salvar');
 	$("#liberacao_placa").val("");
+	$("#cad_veiculo").hide();
+	
+	
 
 }
 
