@@ -97,6 +97,7 @@ function carrega_liberacao(tipo){
 				var icone_foto     = '';
 				var modelo         = '';
 				var placa          = '';
+				var icon           = '';
 				
                 if(retorno[x]['foto'].length>0){
                     foto = 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
@@ -109,10 +110,16 @@ function carrega_liberacao(tipo){
 					placa        = retorno[x]['placa'];
                 }
 				
+				if(foto == ""){
+					icon = '<span class="fa fa-user-circle" style="font-size: 2.5em;color: gray;"></span>';
+				}else{
+					icon = '';
+				}
+				
 
                 var dado =  '<div class="card liberado-card">'+
                                 '<div class="card-header">'+
-                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')"></div><div style="float:right" data-img="'+foto_veiculo+'" data-modelo="'+modelo+'" data-placa="'+placa+'" onclick="abre_imagem_carro(this);" id="veic_foto">'+icone_foto+'</div>'+
+                                    '<div class="liberacao2-avatar" '+foto+'  onClick="foto_visita(\''+retorno[x]['visitante']+'\')">'+icon+'</div><div style="float:right" data-img="'+foto_veiculo+'" data-modelo="'+modelo+'" data-placa="'+placa+'" onclick="abre_imagem_carro(this);" id="veic_foto">'+icone_foto+'</div>'+
                                     '<div class="liberacao2-name" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
@@ -722,6 +729,10 @@ function atualiza_veiculo_visitante(){
 				alerta(1);
 				$(".veiculo-morador .sheet-close")[0].click();
 				$("#liberacao2 #id_veiculo").val(retorno);
+				$("#cad_veiculo").hide();
+				$("#cad_veiculo_ok").fadeIn();
+				get_veiculo($("#liberacao_placa").val());
+				
 			},
 			error: function(data){
 				alert('erro');

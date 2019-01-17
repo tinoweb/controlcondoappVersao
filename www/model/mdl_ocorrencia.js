@@ -171,7 +171,7 @@ function carrega_ocorrencia(id){
                 
 				$("#form_ocorrencia #solicitante").html("Solicitante - "+limitanome(responsavel));
                 
-                $("#form_ocorrencia #descricao").html("Descricao - "+retorno[0].titulo_ocorrencia);
+                $("#form_ocorrencia #descricao").html("Descrição - "+retorno[0].titulo_ocorrencia);
 				
 				$("#form_ocorrencia #titulo_ocorrencia").html("Ocorrência&nbsp-&nbsp<span> "+retorno[0].id_ocorrencia+" </span>");
                 
@@ -465,32 +465,35 @@ function ocorrencia_novo(){
 	getCategoria_incluir();
 
 	$( "#add_ocorrencia #nome" ).val('');    
-
     $( "#add_ocorrencia #descricao" ).val('');
     $( "#add_ocorrencia #titulo_ocorrencia" ).val('');
-
     $( "#add_ocorrencia #anexo_foto" ).html('');
-
 	$( "#add_ocorrencia #id_condominio" ).val( $( "#DADOS #ID_CONDOMINIO" ).val() );
 	$( "#add_ocorrencia #id_solicitante" ).val( $( "#DADOS #ID_MORADOR" ).val() );
 	$( "#add_ocorrencia #criado_por" ).val(localStorage.getItem('MORADOR_NOME'));
+	$( "#form_ocorrencia_add #id_categoria").val("99").change();
+	$("#form_ocorrencia_add #privada").val("99").change();
 
-	
     afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
 
 }
 
 function clean_picture(){
 	
-	$("#anexo_oco img[name='foto']").fadeOut();
-	$("#anexo_oco").fadeOut();
-	$("#limpa_anexo").fadeOut();
-	$("#limpa_anexo2").fadeOut();
-	$("#labelfoto").fadeOut();
+	app2.dialog.confirm('Deseja realmente limpar anexos ?','Excluir', function () {
+		
+		$("#anexo_oco img[name='foto']").fadeOut();
+		$("#anexo_oco").fadeOut();
+		$("#limpa_anexo").fadeOut();
+		$("#limpa_anexo2").fadeOut();
+		$("#labelfoto").fadeOut();
+
+		setTimeout(function(){
+		  $("#anexo_oco img[name='foto']").remove();
+		},500);
+			
+	});
 	
-	setTimeout(function(){
-	  $("#anexo_oco img[name='foto']").remove();
-	},500);
 }
 
 function ocorrencia_insert(){
@@ -591,8 +594,16 @@ function ticket_novo(operacao){
 	$("#add_ticket #labelfoto").hide();
 	$("#add_ticket #limpa_anexo2").hide();
 	
-
-	if(operacao == 2){ //Reabertura
+    if(operacao == 0){ //nova ocorrencia
+		getSituacao_incluir('#add_ticket #ti_div_situacao', '1');
+	    $("#ti_titulo").html("Novo ticket");
+		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
+		afed('','#ocorrencias_ticket','','','2','');
+		setTimeout(function(){
+			$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val()).change();
+	    },500);
+		
+	}else if(operacao == 2){ //Reabertura
 		
 		/* Como estava getSituacao_incluir('#add_ticket #ti_div_situacao', '1');
 		$("#ti_titulo").html("Reabertura de Ocorrência");
@@ -619,10 +630,7 @@ function ticket_novo(operacao){
 		afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
 		afed('','#ocorrencia','','','2','');
 				
-    }
-	
-	
-	
+    }	
 }
 
 
@@ -926,6 +934,7 @@ function get_anexo(id){
 			 }
      });	
 }
+
 
 
  		

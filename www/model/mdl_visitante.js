@@ -170,8 +170,12 @@ function hidden_btn(){
 
 function get_veiculo(placa){
 	
-	let tamanho = placa.length;
+	let tamanho    = placa.length;
+	let parametro1 = "";
+	let parametro2 = "";
+	
 	if(tamanho==8){
+		sessionStorage.setItem("completo","true");
 		$("#l_placa_carro").val(placa);	    
 		$.ajax({
 				type: 'POST',
@@ -182,14 +186,39 @@ function get_veiculo(placa){
 				data       : 'placa='+placa+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
 				dataType   : 'json',
 				success: function(retorno){
+					
+					if(retorno.marca == null){
+				        parametro1 = "Não informado";	   
+					}else{
+						parametro1 = retorno.marca.toLowerCase();
+					}
+					
+					if(retorno.modelo == null){
+				        parametro2 = "Não informado";	   
+					}
+					
+					console.log(retorno);
 					if(retorno.id == null ){
  						$("#cad_veiculo").fadeIn();
+						$("#cad_veiculo_ok").hide();
 					 }else{
 						$("#liberacao2 #id_veiculo").val(retorno.id);
-					 }
+						$("#cad_veiculo_ok").fadeIn();
+						$("#cad_veiculo").hide();
+						$("#libMarca").html("Marca: "+parametro1).fadeIn();
+						$("#libModelo").html("Modelo: "+retorno.modelo.toLowerCase()).fadeIn();
+						$("#libCor").html("Cor: "+retorno.cor.toLowerCase()).fadeIn();
+					}
 				}
-		});
-	}
-};
+		   });
+	   }else{
+		   $("#cad_veiculo").hide();
+		   $("#cad_veiculo_ok").hide();
+		   $("#libMarca").hide();
+	       $("#libModelo").hide();
+		   $("#libCor").hide();
+		   
+	  }
+  };
 
 

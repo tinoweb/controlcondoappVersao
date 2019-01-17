@@ -2592,7 +2592,7 @@ input, textarea {
     height: 40px;
     float: left;
 	border-radius:50%;
-	background-image:url(../img/user2.png);
+	/*background-image:url(../img/user2.png);*/
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
