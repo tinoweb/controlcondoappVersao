@@ -1,8 +1,5 @@
 function carrega_entregas(tipo){
 	"use strict";
-    //alert(tipo);
-    // alert($('#retorno_entregas').scrollTop());
-	//app2.infiniteScroll.create('.infinite-scroll-content');
 	app.controler_pull("entregas");
 	var pg = 0;
     if(tipo === 0){
