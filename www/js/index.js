@@ -376,43 +376,71 @@ var app = {
 
 
     foto_ticket_camera: function() {
-        navigator.camera.getPicture(onSuccess, onFail, { 
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            saveToPhotoAlbum: true
-        });
+		
+		var foto_src = "";
+		/* Tratativa para identificar quando a mais de 3 fotos anexadas na ocorrencia*/
+		$("#anexo_oco img[name='foto']").each(function(){
+			foto_src += "**";
+		});
+		
+		if(foto_src.length > 4){
+			alerta("","Impossivel anexar mais que 3 imagens.");
+		}else{
+			
+		
+			navigator.camera.getPicture(onSuccess, onFail, { 
+				quality: 50,
+				destinationType: Camera.DestinationType.DATA_URL,
+				saveToPhotoAlbum: true
+			});
 
-		function onSuccess(imageURI) {
-            var dominio = localStorage.getItem('DOMINIO'); 
-            var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
-            
-            $.ajax({ 
-                type: 'POST', 
-                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
-                success: function(retorno){ 
-                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
-                    $("#add_ticket #btn_anexo").html("Alterar Imagem");
-                    
-                    $("#add_ticket #foto").val(retorno);
-                    
-                    $("#add_ticket #anexo_foto").attr("src", dominio+caminho+retorno);
-                    
-                    afed('#add_ticket #anexo_oco','','','','');
-                    
-                }, 
-                error      : function() { 
-                    //alert('Erro'); 
-                } 
-            }); 
-        }
-        function onFail(message) {
-            //alert('Camera Indisponivel');
-              //alert('Camera Indisponivel');
-        }    
+			function onSuccess(imageURI) {
+				var dominio = localStorage.getItem('DOMINIO'); 
+				var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+
+				$.ajax({ 
+					type: 'POST', 
+					url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+					crossDomain: true,
+					beforeSend : function() { $("#wait").css("display", "block"); },
+					complete   : function() { $("#wait").css("display", "none"); },
+					data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+					success: function(retorno){ 
+						/*retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+						$("#add_ticket #btn_anexo").html("Alterar Imagem");
+
+						$("#add_ticket #foto").val(retorno);
+
+						$("#add_ticket #anexo_foto").attr("src", dominio+caminho+retorno);
+
+						afed('#add_ticket #anexo_oco','','','','');*/
+						
+						retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+						//$("#add_ticket #btn_anexo").html("Alterar Imagem");
+
+						$("#add_ticket #foto").val(retorno);
+
+						/*$("#add_ticket #anexo_foto").attr("src", dominio+""+caminho+""+retorno);
+
+						afed('#add_ticket #anexo_oco','','','','');*/
+						$("#add_ticket #anexo_oco").append('<img src='+dominio+caminho+retorno+' data-src="'+retorno+'" name="foto" class="img-responsive img-rounded"/>');
+
+						$("#add_ticket #labelfoto").show();
+						
+						afed('#anexo_oco,#add_ticket #limpa_anexo2','','','','');
+
+					}, 
+					error      : function() { 
+						//alert('Erro'); 
+					} 
+				}); 
+			}
+			function onFail(message) {
+				//alert('Camera Indisponivel');
+				  //alert('Camera Indisponivel');
+			} 
+			
+		}
     },
     
 
@@ -457,7 +485,8 @@ var app = {
 						$("#add_ticket #anexo_oco").append('<img src='+dominio+caminho+retorno+' data-src="'+retorno+'" name="foto" class="img-responsive img-rounded"/>');
 
 						$("#add_ticket #labelfoto").show();
-						afed('#anexo_oco,#add_ticket #limpa_anexo','','','','');
+						
+						afed('#anexo_oco,#add_ticket #limpa_anexo2','','','','');
 
 					}, 
 					error      : function() { 

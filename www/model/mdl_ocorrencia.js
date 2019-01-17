@@ -485,6 +485,8 @@ function clean_picture(){
 	$("#anexo_oco img[name='foto']").fadeOut();
 	$("#anexo_oco").fadeOut();
 	$("#limpa_anexo").fadeOut();
+	$("#limpa_anexo2").fadeOut();
+	$("#labelfoto").fadeOut();
 	
 	setTimeout(function(){
 	  $("#anexo_oco img[name='foto']").remove();
