@@ -589,6 +589,8 @@ function ticket_novo(operacao){
 	$("#add_ticket #foto_oco").val("");
 	$("#add_ticket #anexo_foto").attr("src", "");
 	$("#add_ticket #labelfoto").hide();
+	$("#add_ticket #limpa_anexo2").hide();
+	
 
 	if(operacao == 2){ //Reabertura
 		
