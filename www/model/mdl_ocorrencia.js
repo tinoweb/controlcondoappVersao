@@ -489,7 +489,7 @@ function ocorrencia_insert(){
 		 foto_src += $(this).data("src")+"**";
 	});
 
-	
+	$("#limpa_anexo").hide();
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
 	}else if($( "#form_ocorrencia_add #titulo_ocorrencia" ).val() == ''){
@@ -572,6 +572,7 @@ function ticket_novo(operacao){
     $("#add_ticket #btn_anexo").html("Anexar Imagem");
 	$("#add_ticket #foto_oco").val("");
 	$("#add_ticket #anexo_foto").attr("src", "");
+	$("#add_ticket #labelfoto").hide();
 
 	if(operacao == 2){ //Reabertura
 		
@@ -608,6 +609,13 @@ function ticket_novo(operacao){
 
 function ticket_insert(){
 	var operacao = $( "#form_ticket_add #operacao" ).val();
+	/* Monta string com fotos inseridas pelo usuario*/
+	var foto_src = "";
+	$("#anexo_oco img[name='foto']").each(function(){
+
+		 foto_src += $(this).data("src")+"**";
+	});
+
 	
 	if($( "#form_ticket_add #ti_descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
@@ -620,7 +628,7 @@ function ticket_insert(){
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
-            data       : 'id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
+            data       : 'str_img='+foto_src+'&id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
 				//notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
 				openNotificacao('glyphicon glyphicon-warning-sign','Ticket Criado','','Voce Criou o Ticket'+retorno);
