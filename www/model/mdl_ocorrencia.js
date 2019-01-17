@@ -439,8 +439,12 @@ function getSituacao_incluir(div_destino, valor_padrao){
 
 //FUNCAO CARREGA PAGINA NOVA OCORRENCIA
 function ocorrencia_novo(){
-	afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
+	$("#anexo_oco img[name='foto']").each(function(){
+
+		 $(this).remove();
+    });
 	
+	afed('#add_ocorrencia','#ocorrencias, #anexo_foto2, #form_ocorrencia_add #limpa_anexo','','','2','add_ocorrencia');
 	var inicio_select = '<select name="id_situacao" id="id_situacao">'
 						 +'<option value="1" selected>Aberto</option></select>';
 
@@ -582,7 +586,7 @@ function ticket_novo(operacao){
 		afed('','#v','','','2','');
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');*/
 		
-		getSituacao_incluir('#add_ticket #ti_div_situacao', '10');
+		getSituacao_incluir('#add_ticket #ti_div_situacao', '1');
 		$("#ti_titulo").html("Reabertura de Ocorrência");
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
 		afed('','#ocorrencias_ticket','','','2','');
@@ -594,15 +598,16 @@ function ticket_novo(operacao){
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
 		afed('','#ocorrencias_ticket','','','2','');
 	}else{ //Novo
-		getSituacao_incluir('#add_ticket #ti_div_situacao', $("#form_ocorrencia #id_situacao").val() );
+		//getSituacao_incluir('#add_ticket #ti_div_situacao', $("#form_ocorrencia #id_situacao").val() );
+		setTimeout(function(){
+			$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val()).change();
+	    },500);
 		afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
 		afed('','#ocorrencia','','','2','');
 				
     }
 	
-	setTimeout(function(){
-		$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val()).change();
-	},500);
+	
 	
 }
 
