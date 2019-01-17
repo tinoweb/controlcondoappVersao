@@ -84,8 +84,8 @@ function login_user_device(){
                             localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                             localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
 
-                            $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
-
+                            //$( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+							
                             localStorage.setItem('CHAT_EMAIL',retorno[0]['CHAT_EMAIL']);
                             localStorage.setItem('CHAT_TOCA' ,retorno[0]['CHAT_TOCA']);
                             localStorage.setItem('CHAT_VIBRA',retorno[0]['CHAT_VIBRA']);
@@ -291,8 +291,17 @@ function select_user(id_usuario_condominio=0) {
 
                     localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                     localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
+					
+					if(retorno[0]['foto']==""){
+						
+						$( '.user_foto' ).html('<span class="fa fa-user-circle icone_sem_foto" style="color:#c2c2c2;font-size: 3.1em;" ></span>');
+					}else{
+						$( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+					}
 
-                    $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+                   
+					
+					
                     localStorage.setItem('CHAT_EMAIL',retorno[0]['CHAT_EMAIL']);
                     localStorage.setItem('CHAT_TOCA',retorno[0]['CHAT_TOCA']);
                     localStorage.setItem('CHAT_VIBRA',retorno[0]['CHAT_VIBRA']);

@@ -342,6 +342,10 @@ function adiciona_liberacao(){
     $( "#add_liberacao #numero_acesso_permc" ).val('0');
 	$("#numero_acesso_perm").val(0).change();
 	$("#add_liberacao #id_veiculo").val("");
+	$("#libMarca").hide();
+    $("#libModelo").hide();
+    $("#libCor").hide();
+	$("#cad_veiculo_ok").hide();
     
 	afed('#liberacao2','#home,#del_lib','','',3,'liberacao_add');
     //localStorage.setItem('TELA_ATUAL','liberacao_add');
