@@ -2484,7 +2484,7 @@
 						<i class="fa fa-user"></i>
 
 						</div>
-						<div d="solicitante" class="chip-label"></div>
+						<div id="solicitante" class="chip-label"></div>
 					</div><br>
 					<div class="chip">
 						<div class="chip-media bg-color-yellow">
@@ -2513,12 +2513,16 @@
 					</div>
 
 					<!--<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>-->
+					
 					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
 						<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
 					</span>
 					<button class="col button button-fill" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> 
 						<span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar 
 					</button>
+					<span class="col button button-fill" id="bt_oco_novo" type="button" style="background-color: #4caf50;margin-top: 4px;" onClick="ticket_novo(2);"> 
+						<span class="glyphicon glyphicon-plus"></span>&nbsp;Novo Ticket 
+					</span>
 
 				</form>
 			</div>

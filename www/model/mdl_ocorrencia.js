@@ -132,7 +132,8 @@ function carrega_ocorrencia(id){
             dataType   : 'json',
             success: function(retorno){
 				//console.log(retorno);
-				var cor_status='';
+				var cor_status  ='';
+				var responsavel = '';
 				cor_status=retorno[0]['id_situacao'];
 				//cor_status='1';
 				
@@ -144,6 +145,11 @@ function carrega_ocorrencia(id){
 					cor_status='yellow';
 				}
 				
+				if(retorno[0].nome==null){
+					responsavel = "Não atribuido";
+				}else{
+					responsavel = retorno[0].nome;
+				} 				
 				//Preenche dados do form form_ocorrencia da pagina index.html
                 $("#form_ocorrencia #id_ocorrencia").val(retorno[0].id_ocorrencia);
                 $("#form_ocorrencia #id_condominio").val(retorno[0].id_condominio);
@@ -163,7 +169,7 @@ function carrega_ocorrencia(id){
 				}
 				//$("#form_ocorrencia #statusbar").css('background-color', cor_status);
                 
-				$("#form_ocorrencia #solicitante").html("Solicitante - "+retorno[0].nome);
+				$("#form_ocorrencia #solicitante").html("Solicitante - "+limitanome(responsavel));
                 
                 $("#form_ocorrencia #descricao").html("Descricao - "+retorno[0].titulo_ocorrencia);
 				
