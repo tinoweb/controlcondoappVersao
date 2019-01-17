@@ -559,6 +559,10 @@ function getCategoria_incluir(){
 //FUNCAO CARREGA PAGINA NOVO TICKET
 function ticket_novo(operacao){
 	
+	$("#anexo_oco img[name='foto']").each(function(){
+       $(this).remove();
+    });
+	
     $("#form_ticket_add #ti_descricao" ).val('');  
       
     $("#form_ticket_add #operacao").val(operacao);
