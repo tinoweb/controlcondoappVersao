@@ -132,7 +132,8 @@ function carrega_ocorrencia(id){
             dataType   : 'json',
             success: function(retorno){
 				//console.log(retorno);
-				var cor_status='';
+				var cor_status  ='';
+				var responsavel = '';
 				cor_status=retorno[0]['id_situacao'];
 				//cor_status='1';
 				
@@ -144,6 +145,11 @@ function carrega_ocorrencia(id){
 					cor_status='yellow';
 				}
 				
+				if(retorno[0].nome==null){
+					responsavel = "Não atribuido";
+				}else{
+					responsavel = retorno[0].nome;
+				} 				
 				//Preenche dados do form form_ocorrencia da pagina index.html
                 $("#form_ocorrencia #id_ocorrencia").val(retorno[0].id_ocorrencia);
                 $("#form_ocorrencia #id_condominio").val(retorno[0].id_condominio);
@@ -163,7 +169,7 @@ function carrega_ocorrencia(id){
 				}
 				//$("#form_ocorrencia #statusbar").css('background-color', cor_status);
                 
-				$("#form_ocorrencia #solicitante").html("Solicitante - "+retorno[0].nome);
+				$("#form_ocorrencia #solicitante").html("Solicitante - "+limitanome(responsavel));
                 
                 $("#form_ocorrencia #descricao").html("Descricao - "+retorno[0].titulo_ocorrencia);
 				
@@ -439,8 +445,12 @@ function getSituacao_incluir(div_destino, valor_padrao){
 
 //FUNCAO CARREGA PAGINA NOVA OCORRENCIA
 function ocorrencia_novo(){
-	afed('#add_ocorrencia','#ocorrencias','','','2','add_ocorrencia');
+	$("#anexo_oco img[name='foto']").each(function(){
+
+		 $(this).remove();
+    });
 	
+	afed('#add_ocorrencia','#ocorrencias, #anexo_foto2, #form_ocorrencia_add #limpa_anexo','','','2','add_ocorrencia');
 	var inicio_select = '<select name="id_situacao" id="id_situacao">'
 						 +'<option value="1" selected>Aberto</option></select>';
 
@@ -475,6 +485,8 @@ function clean_picture(){
 	$("#anexo_oco img[name='foto']").fadeOut();
 	$("#anexo_oco").fadeOut();
 	$("#limpa_anexo").fadeOut();
+	$("#limpa_anexo2").fadeOut();
+	$("#labelfoto").fadeOut();
 	
 	setTimeout(function(){
 	  $("#anexo_oco img[name='foto']").remove();
@@ -489,7 +501,7 @@ function ocorrencia_insert(){
 		 foto_src += $(this).data("src")+"**";
 	});
 
-	
+	$("#limpa_anexo").hide();
 	if($( "#form_ocorrencia_add #descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
 	}else if($( "#form_ocorrencia_add #titulo_ocorrencia" ).val() == ''){
@@ -555,6 +567,10 @@ function getCategoria_incluir(){
 //FUNCAO CARREGA PAGINA NOVO TICKET
 function ticket_novo(operacao){
 	
+	$("#anexo_oco img[name='foto']").each(function(){
+       $(this).remove();
+    });
+	
     $("#form_ticket_add #ti_descricao" ).val('');  
       
     $("#form_ticket_add #operacao").val(operacao);
@@ -572,6 +588,7 @@ function ticket_novo(operacao){
     $("#add_ticket #btn_anexo").html("Anexar Imagem");
 	$("#add_ticket #foto_oco").val("");
 	$("#add_ticket #anexo_foto").attr("src", "");
+	$("#add_ticket #labelfoto").hide();
 
 	if(operacao == 2){ //Reabertura
 		
@@ -581,7 +598,7 @@ function ticket_novo(operacao){
 		afed('','#v','','','2','');
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');*/
 		
-		getSituacao_incluir('#add_ticket #ti_div_situacao', '10');
+		getSituacao_incluir('#add_ticket #ti_div_situacao', '1');
 		$("#ti_titulo").html("Reabertura de Ocorrência");
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
 		afed('','#ocorrencias_ticket','','','2','');
@@ -593,21 +610,29 @@ function ticket_novo(operacao){
 		afed('#add_ticket','#ocorrencia','','','2','add_ticket');
 		afed('','#ocorrencias_ticket','','','2','');
 	}else{ //Novo
-		getSituacao_incluir('#add_ticket #ti_div_situacao', $("#form_ocorrencia #id_situacao").val() );
+		//getSituacao_incluir('#add_ticket #ti_div_situacao', $("#form_ocorrencia #id_situacao").val() );
+		setTimeout(function(){
+			$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val()).change();
+	    },500);
 		afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
 		afed('','#ocorrencia','','','2','');
 				
     }
 	
-	setTimeout(function(){
-		$("#form_ticket_add #id_situacao").val($("#form_ocorrencia #id_situacao").val()).change();
-	},500);
+	
 	
 }
 
 
 function ticket_insert(){
 	var operacao = $( "#form_ticket_add #operacao" ).val();
+	/* Monta string com fotos inseridas pelo usuario*/
+	var foto_src = "";
+	$("#anexo_oco img[name='foto']").each(function(){
+
+		 foto_src += $(this).data("src")+"**";
+	});
+
 	
 	if($( "#form_ticket_add #ti_descricao" ).val() == ''){
 		notifica('Preencha o campo/Preencha o campo Descrição/Ok',1000,0);
@@ -620,7 +645,7 @@ function ticket_insert(){
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
-            data       : 'id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
+            data       : 'str_img='+foto_src+'&id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
 				//notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
 				openNotificacao('glyphicon glyphicon-warning-sign','Ticket Criado','','Voce Criou o Ticket'+retorno);

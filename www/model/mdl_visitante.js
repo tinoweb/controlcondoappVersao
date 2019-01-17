@@ -55,13 +55,18 @@ function escolhe_visita(id,nome,rg){
 	$( "#add_liberacao #visita" ).val(id);
 	$( "#add_liberacao #visita" ).val(id);
 	afed('#liberacao2','#visitantes','','',3,'liberacao_add');
+	$( "#add_liberacao #savarLib").html('<span class="fa fa-check"></span> Salvar');
+	$("#liberacao_placa").val("");
+	$("#cad_veiculo").hide();
+	
+	
 
 }
 
 //FUNCAO NOVO VISITANETE
 function novo_visitante(){
 
-    $( '#foto_visitante' ).css("background-image", "url(img/user2.png)");
+   /* $( '#foto_visitante' ).css("background-image", "url(img/user2.png)");*/
     $( "#add_visitante #nome" ).val('');    
     $( "#add_visitante #rg" ).val('');
     $( "#add_visitante #cpf" ).val('');
@@ -85,7 +90,7 @@ function novo_visitante(){
     afed('#visitante','#visitantes','','','2','visitante');
     $("#visi_scroll").scrollTop(0);
 
-	("#add_visitante #nome").focus();
+	$("#add_visitante #nome").focus();
 }
 
 //FUNCAO SALVA CADASTRO VISITANETE
@@ -128,6 +133,10 @@ function salva_visitante(){
 
 				}
 				//alert(retorno);
+			},
+			error:function(){
+				
+				alerta("","RG já cadastrado");
 			}
 		});
 	}

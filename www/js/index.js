@@ -376,83 +376,128 @@ var app = {
 
 
     foto_ticket_camera: function() {
-        navigator.camera.getPicture(onSuccess, onFail, { 
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            saveToPhotoAlbum: true
-        });
+		
+		var foto_src = "";
+		/* Tratativa para identificar quando a mais de 3 fotos anexadas na ocorrencia*/
+		$("#anexo_oco img[name='foto']").each(function(){
+			foto_src += "**";
+		});
+		
+		if(foto_src.length > 4){
+			alerta("","Impossivel anexar mais que 3 imagens.");
+		}else{
+			
+		
+			navigator.camera.getPicture(onSuccess, onFail, { 
+				quality: 50,
+				destinationType: Camera.DestinationType.DATA_URL,
+				saveToPhotoAlbum: true
+			});
 
-		function onSuccess(imageURI) {
-            var dominio = localStorage.getItem('DOMINIO'); 
-            var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
-            
-            $.ajax({ 
-                type: 'POST', 
-                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
-                success: function(retorno){ 
-                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
-                    $("#add_ticket #btn_anexo").html("Alterar Imagem");
-                    
-                    $("#add_ticket #foto").val(retorno);
-                    
-                    $("#add_ticket #anexo_foto").attr("src", dominio+caminho+retorno);
-                    
-                    afed('#add_ticket #anexo_oco','','','','');
-                    
-                }, 
-                error      : function() { 
-                    //alert('Erro'); 
-                } 
-            }); 
-        }
-        function onFail(message) {
-            //alert('Camera Indisponivel');
-              //alert('Camera Indisponivel');
-        }    
+			function onSuccess(imageURI) {
+				var dominio = localStorage.getItem('DOMINIO'); 
+				var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+
+				$.ajax({ 
+					type: 'POST', 
+					url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+					crossDomain: true,
+					beforeSend : function() { $("#wait").css("display", "block"); },
+					complete   : function() { $("#wait").css("display", "none"); },
+					data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+					success: function(retorno){ 
+						/*retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+						$("#add_ticket #btn_anexo").html("Alterar Imagem");
+
+						$("#add_ticket #foto").val(retorno);
+
+						$("#add_ticket #anexo_foto").attr("src", dominio+caminho+retorno);
+
+						afed('#add_ticket #anexo_oco','','','','');*/
+						
+						retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+						//$("#add_ticket #btn_anexo").html("Alterar Imagem");
+
+						$("#add_ticket #foto").val(retorno);
+
+						/*$("#add_ticket #anexo_foto").attr("src", dominio+""+caminho+""+retorno);
+
+						afed('#add_ticket #anexo_oco','','','','');*/
+						$("#add_ticket #anexo_oco").append('<img src='+dominio+caminho+retorno+' data-src="'+retorno+'" name="foto" class="img-responsive img-rounded"/>');
+
+						$("#add_ticket #labelfoto").show();
+						
+						afed('#anexo_oco,#add_ticket #limpa_anexo2','','','','');
+
+					}, 
+					error      : function() { 
+						//alert('Erro'); 
+					} 
+				}); 
+			}
+			function onFail(message) {
+				//alert('Camera Indisponivel');
+				  //alert('Camera Indisponivel');
+			} 
+			
+		}
     },
     
 
     foto_ticket_galeria: function() {
-        navigator.camera.getPicture(onSuccess, onFail, { 
-            quality: 50, 
-            destinationType: Camera.DestinationType.DATA_URL, 
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
-        });
+		
+		var foto_src = "";
+		/* Tratativa para identificar quando a mais de 3 fotos anexadas na ocorrencia*/
+		$("#anexo_oco img[name='foto']").each(function(){
+			foto_src += "**";
+		});
+		
+		if(foto_src.length > 4){
+			alerta("","Impossivel anexar mais que 3 imagens.");
+		}else{
+			
+			navigator.camera.getPicture(onSuccess, onFail, { 
+				quality: 50, 
+				destinationType: Camera.DestinationType.DATA_URL, 
+				sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
+			});
 
-    	function onSuccess(imageURI) {
-            var dominio = localStorage.getItem('DOMINIO'); 
-            var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
-            
-            $.ajax({ 
-                type: 'POST', 
-                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
-                success: function(retorno){ 
-                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
-                    $("#add_ticket #btn_anexo").html("Alterar Imagem");
-                  
-                    $("#add_ticket #foto").val(retorno);
-                    
-                    $("#add_ticket #anexo_foto").attr("src", dominio+""+caminho+""+retorno);
-                    
-                    afed('#add_ticket #anexo_oco','','','','');
-                    
-                }, 
-                error      : function() { 
-                    alert('Erro'); 
-                } 
-            }); 
-        }
-        function onFail(message) {
-            //alert('Camera Indisponivel');
-        }    
+			function onSuccess(imageURI) {
+				var dominio = localStorage.getItem('DOMINIO'); 
+				var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
+
+				$.ajax({ 
+					type: 'POST', 
+					url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
+					crossDomain: true,
+					beforeSend : function() { $("#wait").css("display", "block"); },
+					complete   : function() { $("#wait").css("display", "none"); },
+					data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
+					success: function(retorno){ 
+						retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
+						//$("#add_ticket #btn_anexo").html("Alterar Imagem");
+
+						$("#add_ticket #foto").val(retorno);
+
+						/*$("#add_ticket #anexo_foto").attr("src", dominio+""+caminho+""+retorno);
+
+						afed('#add_ticket #anexo_oco','','','','');*/
+						$("#add_ticket #anexo_oco").append('<img src='+dominio+caminho+retorno+' data-src="'+retorno+'" name="foto" class="img-responsive img-rounded"/>');
+
+						$("#add_ticket #labelfoto").show();
+						
+						afed('#anexo_oco,#add_ticket #limpa_anexo2','','','','');
+
+					}, 
+					error      : function() { 
+						alert('Erro'); 
+					} 
+				}); 
+			}
+			function onFail(message) {
+				//alert('Camera Indisponivel');
+			} 
+		}
     },
     
 
@@ -497,40 +542,7 @@ var app = {
 
 
 	foto_ocorrencia_galeira: function() {
-		var dominio = localStorage.getItem('DOMINIO'); 
-		var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
-        navigator.camera.getPicture(onSuccess, onFail, { 
-            quality: 50, 
-            destinationType: Camera.DestinationType.DATA_URL, 
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
-        });
-
-    	function onSuccess(imageURI) {
-            
-            $.ajax({ 
-                type: 'POST', 
-                url        : localStorage.getItem('DOMINIO')+"appweb/foto/foto_ocorrencia_insert.php", 
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-                data       : { id_condominio: $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador: $( "#DADOS #ID_MORADOR" ).val(), foto: imageURI }, 
-                success: function(retorno){ 
-                    retorno = retorno.replace(/(\r\n|\n|\r)/gm,"")
-                    $("#form_ocorrencia_add #btn_anexo").html("Alterar Imagem");
-				    $("#form_ocorrencia_add #foto_oco").val(''+retorno+'');
-                    //$("#anexo_foto").html(retorno);
-					$("#form_ocorrencia_add #anexo_foto").attr("src", dominio+caminho+retorno);
-                    afed('#anexo_oco','','','','');
-    
-                }, 
-                error      : function() { 
-                    //alert('Erro'); 
-                } 
-            }); 
-        }
-        function onFail(message) {
-            //alert('Camera Indisponivel');
-        }    
+		    
 		var foto_src = "";
 		/* Tratativa para identificar quando a mais de 3 fotos anexadas na ocorrencia*/
 		$("#anexo_oco img[name='foto']").each(function(){
@@ -590,6 +602,7 @@ var app = {
         function onSuccess(imageURI) { 
             $( '#foto_visitante' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#foto_up_visitante' ).val(imageURI);
+			$( '#nophoto' ).hide();
         }
 
         function onFail(message) {
@@ -609,6 +622,7 @@ var app = {
             
             $( '#foto_visitante' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#foto_up_visitante' ).val(imageURI);
+			$( '#nophoto' ).hide();
 
         }
 
@@ -737,6 +751,7 @@ var app = {
         function onSuccess(imageURI) { 
             $( '#foto_visitante_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#l_foto_veiculo_img' ).val(imageURI);
+			$( '.visitante_car').hide();
 			// alert('Câmera disponivel');
 
         }
@@ -778,6 +793,7 @@ var app = {
             
             $( '#foto_visitante_veiculo' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
             $( '#l_foto_veiculo_img' ).val(imageURI);
+			$( '.visitante_car').hide();
 
         }
 

@@ -176,7 +176,7 @@ function carrega_liberacao2(tipo,id_visita=0){
 				if(retorno[x]['check_acesso'].indexOf("QR Code") >=0){
 					check = "Acesso por QR Code";
 			    }else{
-					check = "Liberado Sindico";
+					check = "Liberado Pela Portaria";
 				}
 				
                 var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'||'+retorno[x]['morador']+'\')">'+
@@ -210,6 +210,7 @@ function carrega_liberacao_visita(visita,tipo){
 	
 	$( "#add_liberacao #l_deletar" ).show();
 	$( "#add_liberacao #l_cadastrar" ).parent().attr("class","col-xs-6");
+	$( "#add_liberacao #savarLib").html('<span class="fa fa-check"></span> Alterar');
 
 	if(tipo == 0){
 		
@@ -250,6 +251,7 @@ function carrega_liberacao_visita(visita,tipo){
                 $( "#add_liberacao #visita" ).val(retorno[0]['visitante']);
                 if(retorno[0]['numero_acesso_perm'] == null){ retorno[0]['numero_acesso_perm'] = 0;}
                 $( "#add_liberacao #numero_acesso_perm" ).val(retorno[0]['numero_acesso_perm']);
+				$( "#add_liberacao #liberacao_placa" ).val(retorno[0]['placa']);
 				closePopUp();
                 afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
           		
@@ -331,10 +333,13 @@ function adiciona_liberacao(){
 	$( "#add_liberacao #hr_ate" ).val(hora);
 	$( "#add_liberacao #visita" ).val('0');
     $( "#add_liberacao #numero_acesso_permc" ).val('0');
+	$("#numero_acesso_perm").val(0).change();
+	$("#add_liberacao #id_veiculo").val("");
     
 	afed('#liberacao2','#home,#del_lib','','',3,'liberacao_add');
     //localStorage.setItem('TELA_ATUAL','liberacao_add');
 	$("#new_visit").click();
+	
 }
 
 //FUNCAO ADICIONA LIBERACAO
@@ -581,8 +586,11 @@ function liberacao_delete(buttonIndex){
 }
 function moreInformation(){
 	
-		$("#more_information").css({"display":"block"});
-		$("#collapse_more").css({"display":"none"});
+	$("#more_information").fadeIn("slow");
+	setTimeout(function(){
+		$("#collapse_more").hide();
+	},300);
+	
 
 }
 
@@ -627,6 +635,8 @@ function get_visitante(){
 
 function atualiza_veiculo(id_veiculo,tipo,marca=''){
 	//alert(marca+'???'+modelo+'???'+cor+'???'+tipo);
+	
+	
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_get.php',
@@ -638,11 +648,15 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 		success: function(retorno){
 			
 			//console.log(retorno);
+			
+			
 			if(tipo == 1){
+				
 				var marca_dados = '';
 				for (x in retorno[0]['marcas']) {
 					marca_dados = marca_dados + '<option value="'+retorno[0]['marcas'][x]['id']+'">'+retorno[0]['marcas'][x]['marca']+'</option>';
 				}
+				
 			}
 			if(tipo == 1 || tipo == 2){
 				var modelo_dados = '';
@@ -674,13 +688,15 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 			}else if(tipo == 2) {
 				$( "#l_modelo_carro" ).html(modelo_dados);
 			}
+			
+			//$( '#l_marca_carro option[value=""]').attr("selected","selected");
+			//$( '#l_marca_carro').val("").change();
+			//$( '#l_cor_carro').val("").change();
 						        
         },
         error      : function() {
-            alert('Erro ao carregar');
 			$("#wait").css("display", "none");
-
-        }
+       }
 	});	
 
 }
@@ -688,21 +704,31 @@ function atualiza_veiculo(id_veiculo,tipo,marca=''){
 function atualiza_veiculo_visitante(){
 	
 	var dados = $( "#form_visitante_veiculo" ).serialize();
-    
-	$.ajax({
-		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/veiculo_insert_liberacao.php',
-		data:dados+'&id_morador=""&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-		success: function(retorno){
-			alerta(1);
-			$(".veiculo-morador .sheet-close")[0].click();
-			$("#liberacao2 #id_veiculo").val(retorno);
-		},
-		error: function(data){
-			alert('erro');
-			$("#wait").css("display", "none");
-	    }	
-	});	
+    if($("#l_marca_carro").val() == "" || $("#l_marca_carro").val() == null ){
+		alerta("","Preencha a marca");
+	}else 
+	if($("#l_modelo_carro").val() == 0){
+		alerta("","Preencha o modelo");	 
+	}else 
+	if($("#l_cor_carro").val() == "" || $("#l_cor_carro").val() == null){
+		alerta("","Preencha a cor");
+	}else{
+			
+		$.ajax({
+			type: 'POST',
+			url: localStorage.getItem('DOMINIO')+'appweb/veiculo_insert_liberacao.php',
+			data:dados+'&id_morador=""&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+			success: function(retorno){
+				alerta(1);
+				$(".veiculo-morador .sheet-close")[0].click();
+				$("#liberacao2 #id_veiculo").val(retorno);
+			},
+			error: function(data){
+				alert('erro');
+				$("#wait").css("display", "none");
+			}	
+		});	
+	}
 }
 
 function abre_imagem_carro(el){
@@ -712,7 +738,7 @@ function abre_imagem_carro(el){
 	let placa  = $(el).data("placa");
 	
 	$(".veiculo-foto_veiculo .block").html('<strong><p>Modelo - '+modelo+'</p><p> Placa - '+placa+'</p></strong><hr><div class="liberacao_img" style="'+imagem+'"></div>');
-	$(".liberacao_img").css("margin-left","57px").css("width","200px").css("height","200px").show();
-	
+	$(".liberacao_img").css("margin-left","57px").css("width","200px").css("height","200px").css("background-repeat","no-repeat").show();
+		
 }
 
