@@ -44,16 +44,13 @@ function carrega_ocorrencias(tipo){
 					cor_status='yellow';
 				}
 				
-				console.log(retorno[x].visualizacao);
 				if(retorno[x].visualizacao != null ){
 				    cor = 'background:#e85252 !important;color:white';
 			     }else{
 					cor = '';
 				 }
-				
-				
-
-                dado = '<div class="card" onClick="carrega_tickets(0);check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
+							
+                 dado = '<div class="card" onClick="carrega_tickets(0);check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="feed-ocorrencia cabecalho_card card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº <span style="color: white;" class="chip color-">'+retorno[x].id_ocorrencia+'</span></span>'
 												
@@ -717,6 +714,7 @@ function carrega_tickets(tipo){
 			var cor_status='yellow';
 			var cont = 0;
 		    var new_field = "";
+		    var descricao  = "";
 
 			$( "#main_ticket" ).html("");
 
@@ -750,7 +748,7 @@ function carrega_tickets(tipo){
 							new_field = "";
 						}
 						
-						$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
+					   $("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
 						  dados += '<li class="accordion-item">'
 										+'<div class="item-inner">'
 										  +'<div class="item-title"><table><tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'

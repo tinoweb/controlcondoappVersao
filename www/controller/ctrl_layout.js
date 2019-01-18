@@ -302,6 +302,42 @@ function limita_txt(titulo,qtd){
 	return titulo;
 }
 
+function quebra_linha(texto,qtd_linha){
+	/* Funcao para quebrar linha, recebe como parametro quantidade por linha */
+	var formata      = "";
+	var tamanho      = texto.length;
+	var resto        = "";
+	var inicio_resto = "";
+	var y            = 0;
+	
+	if(tamanho < qtd_linha ){
+		return texto;
+	}else{
+
+		for(x = 0; x<=tamanho; x++){
+
+			 if(y==qtd_linha){
+				if(x == qtd_linha){
+				   formata += texto.substr(0,x)+"</br>";
+				   y = 0;
+				}else{
+				   formata += texto.substr(x-qtd_linha,qtd_linha)+"</br>";
+					y     = 0;
+					resto = x-qtd_linha;
+				 }
+
+				 if(tamanho-qtd_linha){
+					 inicio_resto = texto.substr((resto) + qtd_linha);
+				 }
+		   }
+
+		   y = y+1;  
+		}
+	  return String(formata+inicio_resto);
+	}
+}
+
+
 
 
 

@@ -19,7 +19,7 @@ function atualiza_notificacao(){
 				console.log(retorno);
 
 				/* Preenche qtde de notificacao */
-				if(retorno.Ocorrencia == "0"){
+				if(retorno.Ocorrencia == "0" || retorno.Ocorrencia == null){
 				   $("#n_ocorrencias").css("display","none");
 				}else{
 				   $("#n_ocorrencias").html("<strong>"+retorno.Ocorrencia+"</strong>").show();
