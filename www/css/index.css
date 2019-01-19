@@ -33,6 +33,28 @@ body, html {
   	flex-direction: column;
 }
 
+#perfil_edit .back{
+	border-radius: 71px;
+	background: white;
+	width: 75%;  
+	height: 122px;
+	margin-left: 32px;
+}
+
+.fundo2{
+	
+	background: #2196f3;
+    height: 91px;
+    margin-bottom: 9px;
+    border-bottom: 3px solid #e1e1e1;
+	padding-top: 20px;
+}
+
+.fundo1{
+	height: 164px;
+	background: #f6f6f6;
+}
+
 .mbl_label{
 	
 	background: #ff6a00;
@@ -933,12 +955,12 @@ input, textarea {
 	float:left;
 	margin:2% 0 0 2%;
 	border-radius:50%;
-	background-image:url(../img/user2.png);
+	/*background-image:url(../img/user2.png);*/
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
-	border:1.2px solid #D6D6D6;
-	background-color:#FBFBFB;
+	/*border:1.2px solid #D6D6D6;*/
+	/*background-color:#FBFBFB;*/
 }
 
 .home .corpo .notificacoes .notificacao .noti_corpo .topo_comunicado strong {
@@ -1564,7 +1586,7 @@ input, textarea {
 	display:none;
 	margin-top: 50px;
 	overflow:auto;
-	max-height: 452px;
+	max-height: 465px;
 	padding-bottom: 58px;
 
 }
@@ -1585,9 +1607,9 @@ input, textarea {
 }
 
 .home .corpo .menu .perfil_edit .icone_sem_foto {
-	color:#c2c2c2 !important;
+	color: #c2c2c2 !important;
     font-size: 7.1em !important;
-    margin: 5px 0 0 14px;
+    margin: -4px 0 0 -19px;
 }
 
 .home .corpo .menu .perfil_edit .perfil_nome {
@@ -1603,7 +1625,8 @@ input, textarea {
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;	
+    max-width: 100%;
+	margin-top: 4px;
 }
 
 .home .corpo .menu .perfil_edit .grupo_edit {
@@ -1622,7 +1645,7 @@ input, textarea {
 .home .corpo .menu .perfil_edit .perfil_condominio {
 	width:100%; 
 	float:left; 
-	margin-top: 5px;
+	margin-top: -4px;
 	text-align:center;
 	color:#666;
     font-size: 12px;
@@ -1632,18 +1655,18 @@ input, textarea {
 .home .corpo .menu .perfil_edit #bloco {
 	width:30%;
 	float:left;
-	margin:2% 0 0 18%;
+	margin:2% 0 0 -8%;
 	text-align:right;
 	color:#666;
     font-size: 11px;
 }
 
 .home .corpo .menu .perfil_edit #apto {
-	width:30%;
-	float:left;
-	margin:2% 0 0 4%;
-	color:#666;
+    float: left;
+    margin: -8% 0 0 79%;
+    color: #666;
     font-size: 11px;
+    padding-top: 3.1px;
 }
 
 .home .corpo .menu .perfil_edit .bt_perfil_edit {
@@ -2575,7 +2598,7 @@ input, textarea {
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
-    background-color:#F5F5F5;
+    /*background-color:#F5F5F5;*/
 }
 
 .liberacao2-card .liberacao2-name {

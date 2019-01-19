@@ -405,24 +405,34 @@
 			
 			 <div class="panel panel-left panel-cover" id="menu_lateral" style="background: #fbfbfb;margin-top: 105px;box-shadow: 1px 0px 3px #d1d1d1;">
 			  <div class="content-block">
-				<div id="perfil_edit" class="perfil_edit" style="margin-top: 8px;">
-					<div class="user_foto" onClick="afed('#bg_box3','','','',1);"></div>
+				<div id="perfil_edit" class="perfil_edit" style="margin-top: 0px;">
+					<div class="fundo1">
+						
+						<div class="fundo2">
+							<div class="user_foto" style="border: 2px solid white;" onClick="afed('#bg_box3','','','',1);"></div>
+						</div>
+						<div class="fundo3">
+							<div id="bloco">Bloco</div>
+						    <div id="apto">Apto</div>
+						</div>
+						
+					</div>
 					<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
                     <div class="TagUser">
-						<div class="TagUserCenter"> 
-							<span class="TagUserSindico" id="gsin" >Síndico</span> 
-							<span class="TagUserAdministracao" id="gadm">Administração</span> 
-							<span class="TagUserAdministradora" id="gadm2" >Administradora</span>
+						<div class="TagUserCenter" style="margin-left: 79px;"> 
+							<span class="TagUserSindico" style="margin-bottom: 3px;" id="gsin" >Síndico</span> 
+							<span class="TagUserAdministracao" style="margin-bottom: 3px;" id="gadm">Administração</span> 
+							<span class="TagUserAdministradora" style="margin-bottom: 3px;" id="gadm2" >Administradora</span>
 							<br>
-							<span class="TagUserDiretoria" id="gdir">Diretoria</span> 
+							<span class="TagUserDiretoria" style="margin-bottom: 3px;" id="gdir">Diretoria</span> 
 						</div>
 					</div>
 					<div class="perfil_condominio" style="">Nome do Condominio</div>
 					<br>
 					<br>
 					<div style="border-bottom: 1px solid #cacaca; width: 100%; float: left; padding-bottom: 10px;">
-						<div id="bloco">Bloco</div>
-						<div id="apto">Apto</div>
+						<!--<div id="bloco">Bloco</div>
+						<div id="apto">Apto</div>-->
 					</div>
 					<div id="perfil_fecha" class="perfil_fecha" onClick="afed('.m_page,#perfil_abre,#perfil,#menu_perfil','#perfil_edit,#perfil_fecha','','',2);"></div>
 					<div style="width: 100%">
@@ -3498,8 +3508,13 @@
                 var foto  = 'img/user3.png';
 				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
             }else{
+			    var icone = '';
+				if(foto == 'img/user3.png' || foto == ''){
+				   icone = '';
+				}else{
+				   icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
+				}
                 var foto  = 'data:image/jpeg;base64,'+dados[0]+'';
-				var icone = foto == 'img/user3.png' ? '':'<img class="sheet_visita_foto" style="background-image:url('+foto+')" />';
             }
             //alert(dados[0]);
             if(dados[1].length > 0 ){

@@ -178,7 +178,7 @@ function carrega_liberacao2(tipo,id_visita=0){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val(), id_visita : id_visita},
         dataType   : 'json',
 		success: function(retorno){
-			
+			var icone = "";
             for (x in retorno) {
 				if(retorno[x]['check_acesso'].indexOf("QR Code") >=0){
 					check = "Acesso por QR Code";
@@ -186,9 +186,14 @@ function carrega_liberacao2(tipo,id_visita=0){
 					check = "Liberado Pela Portaria";
 				}
 				
+				if(retorno[x]['foto'].indexOf("iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5Emoz") >=0){
+				   		icone = "<span style='font-size: 2em;color: #b9b9b9;' class='fa fa-user-circle'></span>";
+					    retorno[x]['foto'] = '';				   
+				  }
+				
                 var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'||'+retorno[x]['morador']+'\')">'+
                                 '<div class="card-header">'+
-                                    '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>'+
+                                    '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')">'+icone+'</div>'+
                                     '<div class="liberacao2-name">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
@@ -243,6 +248,7 @@ function carrega_liberacao_visita(visita,tipo){
                     }
                     todo_motivos = todo_motivos + motivo;
                 }
+				//console.log(retorno[0]['placa']);
 				$( "#new_visit" ).attr('onClick',"");
                 $( "#add_liberacao #visita_motivo" ).html(todo_motivos);
                 $( "#add_liberacao #id" ).val(retorno[0]['id']);

@@ -293,15 +293,21 @@ function select_user(id_usuario_condominio=0) {
                     localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
 					
 					if(retorno[0]['foto']==""){
-						
-						$( '.user_foto' ).html('<span class="fa fa-user-circle icone_sem_foto" style="color:#c2c2c2;font-size: 3.1em;" ></span>');
+						$( '.back' ).hide();
+						$( '.fundo1 #bloco' ).css('margin','2% 0 0 -3%');
+						$( '.fundo1 #apto' ).css('margin','-8% 0 0 81%;');
+						$( '.user_foto' ).attr("style","");
+						$( '.user_foto' ).css('border','none').html('<div class="back" style=""><span class="fa fa-user-circle icone_sem_foto" style="color:#c2c2c2;font-size: 3.1em;" ></span></div>');
 					}else{
+						$( '.back' ).hide();
 						$( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+						$( '.fundo1 .user_foto' ).css("border","2px solid white");
+						$( '.fundo1 #bloco' ).css('margin','2% 0 0 -8%');
+
 					}
 
-                   
-					
-					
+                  
+			
                     localStorage.setItem('CHAT_EMAIL',retorno[0]['CHAT_EMAIL']);
                     localStorage.setItem('CHAT_TOCA',retorno[0]['CHAT_TOCA']);
                     localStorage.setItem('CHAT_VIBRA',retorno[0]['CHAT_VIBRA']);
@@ -331,8 +337,8 @@ function select_user(id_usuario_condominio=0) {
 
                     $( ".perfil_condominio" ).html(retorno[0]['nome_condominio']);
                     $( ".perfil_nome" ).html(MORADOR_NOME);
-                    $( "#bloco" ).html(QUADRA);
-                    $( "#apto" ).html(LOTE);
+                    $( "#bloco" ).html("<strong> "+QUADRA+"</storng>");
+                    $( "#apto" ).html("<strong> "+LOTE+"</storng>");
     //					$( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
                     if(MORADOR_PARENTESCO == 1){ $( "#edit_moradores" ).css("display","block"); }
                     //carrega_notificacoes(1);
