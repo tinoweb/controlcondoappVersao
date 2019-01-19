@@ -142,6 +142,7 @@ function login_user_device(){
                             inicia(0);
                             localStorage.setItem('TELA_ATUAL','home');	
                             //carrega_liberacao(0);
+							atualiza_notificacao(0);
                         }else{
                             notifica('Perfil/Perfil usuário inválido/Fechar',0,0);
                         }
