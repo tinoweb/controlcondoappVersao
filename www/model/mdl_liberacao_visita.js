@@ -264,7 +264,13 @@ function carrega_liberacao_visita(visita,tipo){
                 $( "#add_liberacao #visita" ).val(retorno[0]['visitante']);
                 if(retorno[0]['numero_acesso_perm'] == null){ retorno[0]['numero_acesso_perm'] = 0;}
                 $( "#add_liberacao #numero_acesso_perm" ).val(retorno[0]['numero_acesso_perm']);
-				$( "#add_liberacao #liberacao_placa" ).val(retorno[0]['placa']);
+				if(retorno[0]['placa'] == "-"){
+				   
+				   var placa_lib = "";
+				}else{
+				   var placa_lib = retorno[0]['placa'];
+				}
+				$( "#add_liberacao #liberacao_placa" ).val(placa_lib);
 				closePopUp();
                 afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
           		

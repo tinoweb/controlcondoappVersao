@@ -52,7 +52,8 @@ $.ajax({
 					icone = '<span style="margin-top: 10px;color:#c2c2c2;font-size: 3.2em;" class="fa fa-user-circle"></span>';
                 }
             }else{
-                foto = 'background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');';
+                foto  = 'background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');';
+				icone = '';
             }
             dados_grupo = retorno[x]['grupo'];
             //alert(dados_grupo);

@@ -28,7 +28,9 @@ function login_user_device(){
                         carrega_user_perfil(retorno[0]['id_usuario']);
                         
                         $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
-                    }else{                        
+						
+                    }else{    
+						
                         if(retorno[0]['usar_control_condo'] == 1){
                             //alert('Perfil:'+retorno[0]['usar_control_condo']);
                             $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
@@ -40,7 +42,8 @@ function login_user_device(){
                             $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                             localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
                             localStorage.setItem('QTD_CONTROL_CONDO',retorno[0]['qtd_control_condo']);
-							alert(localStorage.getItem('QTD_CONTROL_CONDO'));
+							//alert(localStorage.getItem('QTD_CONTROL_CONDO'));
+							localStorage.getItem('QTD_CONTROL_CONDO');
                             if(retorno[0]['tipo_busca_visitante'] == 0){
                                 afed('#btipo_nome','#btipo_rg','','',3,'home');
                             }else{
@@ -84,7 +87,7 @@ function login_user_device(){
                             localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                             localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
 
-                            //$( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+                            $( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
 							
                             localStorage.setItem('CHAT_EMAIL',retorno[0]['CHAT_EMAIL']);
                             localStorage.setItem('CHAT_TOCA' ,retorno[0]['CHAT_TOCA']);
@@ -303,8 +306,8 @@ function select_user(id_usuario_condominio=0) {
 						$( '.user_foto' ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
 						$( '.fundo1 .user_foto' ).css("border","2px solid white");
 						$( '.fundo1 #bloco' ).css('margin','2% 0 0 -8%');
-
-					}
+						$( '#perfil .user_foto').html('<div id="border_m"></div>');
+                    }
 
                   
 			
