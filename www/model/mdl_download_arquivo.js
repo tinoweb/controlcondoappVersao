@@ -28,6 +28,7 @@ function download_arquivo(path,tipo,nome){
         uri,
         filePath,
         function(entry) {
+			$('#downloadProgress').css({"display":"none"});
            /* console.log("download complete: " + entry.fullPath);
 			$('#downloadProgress').css({"display":"none"});
             //notifica('Download/Download Concluído90 /ok',0,0);
@@ -45,11 +46,15 @@ function download_arquivo(path,tipo,nome){
 			//alert('sucesso');
 		    //alert(filePath);*/
 			
-			var ref = cordova.InAppBrowser.open(uri, '_system', 'hidden=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			// some time later...
-			ref.show();
 			
-			$('#downloadProgress').css({"display":"none"});
+			setTimeout(function(){
+				ref.show();
+			},100);
+			
+			
+			
 			
 		 },
         function(error) {
