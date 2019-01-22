@@ -80,6 +80,8 @@ function novo_visitante(){
     $( "#add_visitante #fone" ).val('');
     $( "#add_visitante #email" ).val('');
     $( "#add_visitante #obs" ).val('');
+	$( '#foto_visitante' ).css("background-image", "url()");
+	$( "#foto_visitante" ).html('<span class="fa fa-user-circle" id="nophoto" style="font-size: 7em;margin-left: 18px;color: #cecece;"></span>');
     
     if(localStorage.getItem('TIPO_BUSCA_VISITANTE') == 0){
         $( "#add_visitante #nome" ).val($("#visitante_busca").val());
