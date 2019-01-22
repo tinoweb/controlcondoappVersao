@@ -45,11 +45,11 @@ function download_arquivo(path,tipo,nome){
 			//alert('sucesso');
 		    //alert(filePath);*/
 			
-			var ref = cordova.InAppBrowser.open(uri, '_blank', 'hidden=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'hidden=yes');
 			// some time later...
 			ref.show();
 			
-			alert('sucesso');
+			$('#downloadProgress').css({"display":"none"});
 			
 		 },
         function(error) {
