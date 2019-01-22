@@ -1,23 +1,6 @@
 // JavaScript Document
 
-function downloadURI(uri, name) 
-{
-    var link = document.createElement("a");
-    link.download = name;
-    link.href = uri;
-    link.click();
-}
-
 function download_arquivo(path,tipo,nome){
-	 downloadURI("https://www.cdn.renault.com/content/dam/Renault/BR/universo-renault/salao-do-automovel/salao-do-automovel-2016-gama.jpg.ximg.l_8_m.smart.jpg", "teste");
-	alert("teste");
-}
-
-
-/*
-
-function download_arquivo(path,tipo,nome){
-	 downloadURI("http://192.168.0.48:3000/img/bg_home.jpg", "teste");
     //salert(path);
     console.log(cordova.file.externalRootDirectory);
 	statusDom    = document.querySelector('#status');
@@ -61,9 +44,10 @@ function download_arquivo(path,tipo,nome){
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
 			alert('error');
-			alert(error);
+			alert(uri);
+			alert(filePath);
 			
-          
+            //console.log("upload error code" + error.code);
         },
         false,
         {
@@ -72,6 +56,6 @@ function download_arquivo(path,tipo,nome){
             }
         }
     );
-}*/
+}
 
 
