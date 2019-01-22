@@ -53,12 +53,6 @@ function download_arquivo(path,tipo,nome){
 			alert(error.code);
 			alert(filePath);
 	
-        },
-        false,
-        {
-            headers: {
-                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-            }
         }
     );
 }
