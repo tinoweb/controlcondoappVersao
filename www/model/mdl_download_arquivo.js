@@ -38,18 +38,11 @@ function download_arquivo(path,tipo,nome){
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
 			ref.removeEventListener('loadstart', myCallback);
-			//window.open(path, "_system");
+			window.open(filePath, "_system");
 			//alert('sucesso');
 		    //alert(filePath);
 			
-			   function readDataUrl(uri) {
-        var reader = new FileReader();
-        reader.onloadend = function(evt) {
-            console.log("Read as data URL");
-            console.log(evt.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
+			
 			
             
 
