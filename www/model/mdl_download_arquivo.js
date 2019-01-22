@@ -35,6 +35,7 @@ function download_arquivo(path,tipo,nome){
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
 			ref.removeEventListener('loadstart', myCallback);
+			alert('sucesso');
             //window.open(path, "_system");
 
         },
@@ -42,6 +43,7 @@ function download_arquivo(path,tipo,nome){
 			$('#downloadProgress').css({"display":"none"});
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
+			alert('error');
             //console.log("upload error code" + error.code);
         },
         false,
