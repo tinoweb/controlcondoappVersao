@@ -28,7 +28,7 @@ function download_arquivo(path,tipo,nome){
         uri,
         filePath,
         function(entry) {
-            console.log("download complete: " + entry.fullPath);
+           /* console.log("download complete: " + entry.fullPath);
 			$('#downloadProgress').css({"display":"none"});
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
@@ -43,7 +43,12 @@ function download_arquivo(path,tipo,nome){
 			//window.open(path, "_system");
 			window.open(path, "_system");
 			//alert('sucesso');
-		    //alert(filePath);
+		    //alert(filePath);*/
+			
+			var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
+             ref.addEventListener('loadstart', function(event) { alert(event.url); });
+			
+			alert('sucesso');
 			
 		 },
         function(error) {

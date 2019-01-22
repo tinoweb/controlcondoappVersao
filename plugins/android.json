@@ -70,6 +70,12 @@
     "phonegap-plugin-push": {
       "FCM_VERSION": "11.6.2",
       "PACKAGE_NAME": "com.controlcondo.phonega"
+    },
+    "cordova-plugin-fileopener": {
+      "PACKAGE_NAME": "com.controlcondo.phonega"
+    },
+    "cordova-plugin-vha-fileopener2": {
+      "PACKAGE_NAME": "com.controlcondo.phonega"
     }
   },
   "dependent_plugins": {
