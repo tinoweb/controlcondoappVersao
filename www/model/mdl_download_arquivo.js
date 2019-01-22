@@ -33,6 +33,7 @@ function download_arquivo(path,tipo,nome){
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			alert(path);
+			alert(filePath);
 			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
 			var myCallback = function(event) { console.log('envio ok'); }
 			ref.addEventListener('loadstart', myCallback);
