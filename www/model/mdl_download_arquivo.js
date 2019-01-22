@@ -41,7 +41,7 @@ function download_arquivo(path,tipo,nome){
 			alert('sucesso');
 		    alert(filePath);
 			
-            //window.open(path, "_system");
+            window.open(path, "_system");
 
         },
         function(error) {
