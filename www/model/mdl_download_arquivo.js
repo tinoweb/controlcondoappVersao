@@ -38,10 +38,11 @@ function download_arquivo(path,tipo,nome){
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
 			ref.removeEventListener('loadstart', myCallback);
-			alert('sucesso');
-		    alert(filePath);
+			window.open(path, "_system");
+			//alert('sucesso');
+		    //alert(filePath);
 			
-            window.open(path, "_system");
+            
 
         },
         function(error) {
