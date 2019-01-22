@@ -132,5 +132,5 @@
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
-    <plugin name="cordova-plugin-file-transfer" spec="8.1.2" />
+    <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
 </widget>
