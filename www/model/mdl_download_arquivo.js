@@ -44,18 +44,14 @@ function download_arquivo(path,tipo,nome){
 			//alert('sucesso');
 		    //alert(filePath);
 			
-			
-			
-            
-
-
-        },
+		 },
         function(error) {
 			$('#downloadProgress').css({"display":"none"});
 			alert('erro');
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
 			alert(error.code);
+			alert(filePath);
 	
         },
         false,
