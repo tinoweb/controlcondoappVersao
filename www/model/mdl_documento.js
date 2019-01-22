@@ -64,6 +64,8 @@ function carrega_documentos(tipo){
 							'</div>'+
 						'</div>';
 				
+		
+				
                 dados = dados + dado;
             }
 			if(tipo === 0){
