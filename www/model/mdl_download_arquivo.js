@@ -38,6 +38,8 @@ function download_arquivo(path,tipo,nome){
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
 			ref.removeEventListener('loadstart', myCallback);
+			alert('sucesso');           
+			//window.open(path, "_system");
 			window.open(path, "_system");
 			//alert('sucesso');
 		    //alert(filePath);
@@ -45,6 +47,7 @@ function download_arquivo(path,tipo,nome){
 			
 			
             
+
 
         },
         function(error) {
