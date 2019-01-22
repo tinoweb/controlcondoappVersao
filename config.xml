@@ -126,6 +126,12 @@
     <plugin name="phonegap-plugin-push" spec="^1.8.4">
         <variable name="SENDER_ID" value="572833270659" />
     </plugin>
+	<gap:config-file platform="android" parent="/manifest" mode="delete">
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+</gap:config-file>  
     <plugin name="cordova-plugin-media" spec="2.2.0" />
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
     <plugin name="cordova-plugin-ionic-keyboard" source="npm" />
