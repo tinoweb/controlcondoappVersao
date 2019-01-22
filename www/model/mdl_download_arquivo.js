@@ -45,8 +45,9 @@ function download_arquivo(path,tipo,nome){
 			//alert('sucesso');
 		    //alert(filePath);*/
 			
-			var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-             ref.addEventListener('loadstart', function(event) { alert(event.url); });
+			var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'hidden=yes');
+			// some time later...
+			ref.show();
 			
 			alert('sucesso');
 			
