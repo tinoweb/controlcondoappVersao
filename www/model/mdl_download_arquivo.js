@@ -45,13 +45,13 @@ function download_arquivo(path,tipo,nome){
 			window.open(path, "_system");
 			//alert('sucesso');
 		    //alert(filePath);*/
-			var path = entry.toURL();
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			// some time later...
 			
-			setTimeout(function(){
+			/*setTimeout(function(){
 				ref.show();
-			},100);
+			},100);*/
 			
 			
 			
