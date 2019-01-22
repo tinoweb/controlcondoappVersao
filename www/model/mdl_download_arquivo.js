@@ -39,6 +39,8 @@ function download_arquivo(path,tipo,nome){
 			ref.addEventListener('loaderror', myCallback);
 			ref.removeEventListener('loadstart', myCallback);
 			alert('sucesso');
+		    alert(filePath);
+			
             //window.open(path, "_system");
 
         },
