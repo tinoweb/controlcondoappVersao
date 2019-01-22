@@ -8,7 +8,7 @@
        First Control Sistemas Inteligentes Ltda. Epp
     </author>
     <content src="index.html" />
-    <preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="phonegap-version" value="cli-7.1.1" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
