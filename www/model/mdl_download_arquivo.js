@@ -44,10 +44,9 @@ function download_arquivo(path,tipo,nome){
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
 			alert('error');
-			alert(uri);
-			alert(filePath);
+			alert(error);
 			
-            //console.log("upload error code" + error.code);
+          
         },
         false,
         {
