@@ -44,19 +44,7 @@ function download_arquivo(path,tipo,nome){
         },
         function(error) {
 			$('#downloadProgress').css({"display":"none"});
-<<<<<<< HEAD
-            //console.log("download error source " + error.source);
-            //console.log("download error target " + error.target);
-=======
-            console.log("download error source " + error.source);
-            console.log("download error target " + error.target);
-			alert(error.code);
->>>>>>> origin/master
-			alert('error');
-			//alert(uri);
-			//alert(filePath);
-			
-            //console.log("upload error code" + error.code);
+            alert(error.code);
         },
         false,
         {
