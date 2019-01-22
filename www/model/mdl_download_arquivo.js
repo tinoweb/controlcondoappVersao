@@ -22,7 +22,7 @@ function download_arquivo(path,tipo,nome){
 		}
 	};
 	
-	uri = 'www.controlcondo.com.br/controlcondo/v2/docs/63/documento/e7a387e37a2d815cf143003d21e9fb5c.pdf';
+	uri = encodeURI('www.controlcondo.com.br/controlcondo/v2/docs/63/documento/e7a387e37a2d815cf143003d21e9fb5c.pdf');
 	
     fileTransfer.download(
         uri,
