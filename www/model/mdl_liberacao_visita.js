@@ -51,28 +51,6 @@ function carrega_liberacao(tipo){
 		success: function(retorno){
             for (x in retorno) {
 				cont++;
-/*                var dado = '<div class="liberado"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
-                if(retorno[x]['foto'].length>0){
-                    dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
-                }
-                dado = dado +'></div><div onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')"><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['validadeInicio']+' a '+retorno[x]['validadeFim']+'</span><br>';
-                if(retorno[x]['numero_acesso_perm'] != null){
-                    if(retorno[x]['numero_acesso_perm'] == 0){
-                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Ilimitados</span><br>';
-                    }else{
-                        //dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos: '+retorno[x]['numero_acesso_perm']+'</span><br>';
-                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Usados: '+retorno[x]['numero_acesso']+' de '+retorno[x]['numero_acesso_perm']+'</span><br>';
-                    }
-                }
-                
-                dado = dado + '</div>';
-                
-				if(retorno[x]['valido']==1){
-					dado = dado + '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
-				}else{
-					dado = dado + '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
-				}
-				dado  = dado + '</div>';*/
                 var credito = '';
                 if(retorno[x]['numero_acesso_perm'] != null){
                     if(retorno[x]['numero_acesso_perm'] == 0){
@@ -123,8 +101,7 @@ function carrega_liberacao(tipo){
                                     '<div class="liberacao2-name" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
-                                '<div class="card-content card-content-padding">Validade de: '+retorno[x]['validadeInicio']+' até '+retorno[x]['validadeFim']+'<br>'+credito+bt_convite+'</div>'+
-                                
+                                '<div class="card-content card-content-padding">Validade de: '+retorno[x]['validadeInicio']+' até '+retorno[x]['validadeFim']+'<br>'+credito+bt_convite+'</div>'+ 
                             '</div>';
                 dados = dados + dado;
             }
@@ -190,11 +167,6 @@ function carrega_liberacao2(tipo,id_visita=0){
 				}else{
 					icone = "";
 				}
-//				alert(retorno[x]['foto']);
-//				if(retorno[x]['foto'].indexOf("iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5Emoz") >=0){
-//				   		icone = "<span style='font-size: 2em;color: #b9b9b9;' class='fa fa-user-circle'></span>";
-//					    retorno[x]['foto'] = '';				   
-//				  }
 				
                 var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'||'+retorno[x]['morador']+'\')">'+
                                 '<div class="card-header">'+
@@ -270,12 +242,12 @@ function carrega_liberacao_visita(visita,tipo){
                 if(retorno[0]['numero_acesso_perm'] == null){ retorno[0]['numero_acesso_perm'] = 0;}
                 $( "#add_liberacao #numero_acesso_perm" ).val(retorno[0]['numero_acesso_perm']);
 				if(retorno[0]['placa'] == "-"){
-				   
 				   var placa_lib = "";
 				}else{
 				   var placa_lib = retorno[0]['placa'];
 				}
 				$( "#add_liberacao #liberacao_placa" ).val(placa_lib);
+				get_veiculo(placa_lib);
 				closePopUp();
                 afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
           		
