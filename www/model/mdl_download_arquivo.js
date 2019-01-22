@@ -22,7 +22,7 @@ function download_arquivo(path,tipo,nome){
 		}
 	};
 	
-	uri = encodeURI('www.controlcondo.com.br/controlcondo/v2/docs/63/documento/e7a387e37a2d815cf143003d21e9fb5c.pdf');
+	uri = encodeURI('https://www.controlcondo.com.br/controlcondo/v2/docs/63/documento/e7a387e37a2d815cf143003d21e9fb5c.pdf');
 	
     fileTransfer.download(
         uri,
@@ -44,7 +44,11 @@ function download_arquivo(path,tipo,nome){
         },
         function(error) {
 			$('#downloadProgress').css({"display":"none"});
-            alert(error.code);
+			alert('erro');
+            console.log("download error source " + error.source);
+            console.log("download error target " + error.target);
+			alert(error.code);
+	
         },
         false,
         {
