@@ -32,13 +32,13 @@ function download_arquivo(path,tipo,nome){
 			$('#downloadProgress').css({"display":"none"});
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
-			//alert(path);
+			alert(path);
 			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
 			var myCallback = function(event) { console.log('envio ok'); }
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
 			ref.removeEventListener('loadstart', myCallback);
-			window.open(filePath, "_system");
+			window.open(path, "_system");
 			//alert('sucesso');
 		    //alert(filePath);
 			
