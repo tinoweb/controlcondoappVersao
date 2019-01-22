@@ -45,8 +45,8 @@ function download_arquivo(path,tipo,nome){
 			window.open(path, "_system");
 			//alert('sucesso');
 		    //alert(filePath);*/
-			var path = entry.toURL(); 
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			// some time later...
 			
 			/*setTimeout(function(){
@@ -65,6 +65,12 @@ function download_arquivo(path,tipo,nome){
 			alert(error.code);
 			alert(filePath);
 	
+        },
+        false,
+        {
+            headers: {
+                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+            }
         }
     );
 }
