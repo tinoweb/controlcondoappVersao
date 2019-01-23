@@ -190,7 +190,13 @@ function get_veiculo(placa){
 				success: function(retorno){
 					
 					if(retorno.marca == null){
-				        parametro1 = "Não informado";	   
+				        parametro1 = "Não informado"; 
+						var marca_dados = '<option value="0">Seleciona</option>';
+						for (x in retorno['all_marca']) {
+							//alert(retorno['all_marca'][x]['id']);
+							//marca_dados = marca_dados + '<option value="'+retorno[0]['all_marcas'][x]['id']+'">'+retorno[0]['all_marcas'][x]['marca']+'</option>';
+						}
+						//alert(marca_dados);
 					}else{
 						parametro1 = retorno.marca.toLowerCase();
 					}
