@@ -24,6 +24,7 @@ function download_arquivo(path,tipo,nome){
 			$('#downloadProgress').css({"display":"none"});
             var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			//var ref = cordova.InAppBrowser.open(uri, '_blank', 'location=yes');
+			window.open(path, "_system");
 			
 		 },
         function(error) {

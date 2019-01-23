@@ -363,7 +363,7 @@ function download_arq_ocorrencia(arquivo) {
 			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			//alert(JSON.stringify(ref, null, 4));
             //window.open(path, "_system");
-			alert("ok");
+			//alert("ok");
 			
 
         },
@@ -372,7 +372,7 @@ function download_arq_ocorrencia(arquivo) {
             console.log("download error target " + error.target);
 			$('#downloadProgress').css({"display":"none"});
             //console.log("upload error code" + error.code);
-			alert("erro");
+			//alert("erro");
         },
         false,
         {
