@@ -525,7 +525,7 @@ function download_qrcode(){
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
-			var ref = cordova.InAppBrowser.open(uri, '_blank', 'location=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_blank', 'location=yes,hideurlbar=yes');
 			/*var myCallback = function(event) { console.log('envio ok'); }
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
