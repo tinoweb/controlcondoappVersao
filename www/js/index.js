@@ -434,10 +434,8 @@ var app = {
 					} 
 				}); 
 				
-				alert(1);
 			}
 			function onFail(message) {
-				alert(2);
 				//alert('Camera Indisponivel');
 				  //alert('Camera Indisponivel');
 			} 
