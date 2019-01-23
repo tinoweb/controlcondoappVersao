@@ -342,7 +342,7 @@ function download_arq_ocorrencia(arquivo) {
     var uri = encodeURI(path);
 	
     var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+fmt_lin(arquivo);
-	alert(filePath);
+	//alert(filePath);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
