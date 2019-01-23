@@ -506,7 +506,7 @@ function download_qrcode(){
     //var canvas = document.getElementById('qr_s_teste');
     var dataURL = localStorage.getItem("img_share");
     var uri = encodeURI(dataURL);
-    var filePath = cordova.file.externalRootDirectory+'Download/qrcode.png';
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/qrcode.png';
     console.log('2');
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
@@ -524,7 +524,7 @@ function download_qrcode(){
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			var myCallback = function(event) { console.log('envio ok'); }
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
@@ -534,6 +534,8 @@ function download_qrcode(){
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
             //console.log("upload error code" + error.code);
+			alert("erro");
+			$('#downloadProgress').css({"display":"none"});
         },
         false,
         {
