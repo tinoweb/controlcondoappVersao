@@ -138,9 +138,10 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
 	<feature name="File">
-    <param name="android-package" value="org.apache.cordova.file.FileUtils" />
-</feature>
-<feature name="FileTransfer">
-    <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
-</feature>
+    	<param name="android-package" value="org.apache.cordova.file.FileUtils" />
+    </feature>
+	<feature name="FileTransfer">
+		<param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+	</feature>
+	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 </widget>
