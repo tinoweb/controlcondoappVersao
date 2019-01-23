@@ -342,6 +342,7 @@ function download_arq_ocorrencia(arquivo) {
     var uri = encodeURI(path);
 	
     var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+arquivo;
+	alert(filePath);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -362,12 +363,15 @@ function download_arq_ocorrencia(arquivo) {
 			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			//alert(JSON.stringify(ref, null, 4));
             //window.open(path, "_system");
+			alert("ok");
+			
 
         },
         function(error) {
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
             //console.log("upload error code" + error.code);
+			alert("erro");
         },
         false,
         {
