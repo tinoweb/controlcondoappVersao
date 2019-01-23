@@ -42,7 +42,7 @@
         <allow-intent href="market:*" />
         <resource-file src="google-services.json" target="app/google-services.json" />
         <!--<framework src="com.google.android.gms:play-services-location:9.4.0" />-->
-        <framework src="com.google.android.gms:play-services-location:9.4.0" />
+        <framework src="com.google.android.gms:play-services-location:11.8.0" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
