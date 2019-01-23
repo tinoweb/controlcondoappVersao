@@ -508,6 +508,7 @@ function download_qrcode(){
     var uri = encodeURI(dataURL);
     var filePath = cordova.file.externalApplicationStorageDirectory+'Download/qrcode.png';
     console.log('2');
+	alert(uri);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -525,10 +526,10 @@ function download_qrcode(){
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
 			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
-			var myCallback = function(event) { console.log('envio ok'); }
+			/*var myCallback = function(event) { console.log('envio ok'); }
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
-			ref.removeEventListener('loadstart', myCallback);
+			ref.removeEventListener('loadstart', myCallback);*/
         },
         function(error) {
             console.log("download error source " + error.source);
