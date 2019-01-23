@@ -5,7 +5,7 @@ function download_arquivo(path,tipo,nome){
   	app2.progressbar.set('#status', "0");
 	
     var fileTransfer = new FileTransfer();
-    var uri          =  encodeURI(path);
+    var uri          = encodeURI(path);
 	var statusDom    = document.querySelector('#status');
 	var filePath     = cordova.file.externalApplicationStorageDirectory+'Download/'+nome+'.'+tipo;
    
