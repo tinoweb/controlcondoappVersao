@@ -341,7 +341,7 @@ function download_arq_ocorrencia(arquivo) {
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
 	
-    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+arquivo;
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+fmt_lin(arquivo);
 	alert(filePath);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
@@ -370,6 +370,7 @@ function download_arq_ocorrencia(arquivo) {
         function(error) {
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
+			$('#downloadProgress').css({"display":"none"});
             //console.log("upload error code" + error.code);
 			alert("erro");
         },
