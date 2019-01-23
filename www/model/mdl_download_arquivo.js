@@ -11,7 +11,7 @@ function download_arquivo(path,tipo,nome){
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
 	
-    var filePath = cordova.file.externalRootDirectory+'Download/teste.png';
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/teste.png';
     //var filePath = cordova.file.applicationStorageDirectory+'Download/'+nome+'.'+tipo;
 	//$("#wait").show();
 	fileTransfer.onprogress = function(progressEvent) {
@@ -46,7 +46,7 @@ function download_arquivo(path,tipo,nome){
 			//alert('sucesso');
 		    //alert(filePath);*/
 			
-			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
+			var ref = cordova.InAppBrowser.open(filePath, '_system', 'location=yes');
 			// some time later...
 			
 			/*setTimeout(function(){
