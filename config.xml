@@ -138,5 +138,4 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
 	<feature name="http://api.phonegap.com/1.0/file" />
- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </widget>
