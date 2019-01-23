@@ -387,7 +387,6 @@ var app = {
 			alerta("","Impossivel anexar mais que 3 imagens.");
 		}else{
 			
-		
 			navigator.camera.getPicture(onSuccess, onFail, { 
 				quality: 50,
 				destinationType: Camera.DestinationType.DATA_URL,
@@ -434,8 +433,11 @@ var app = {
 						//alert('Erro'); 
 					} 
 				}); 
+				
+				alert(1);
 			}
 			function onFail(message) {
+				alert(2);
 				//alert('Camera Indisponivel');
 				  //alert('Camera Indisponivel');
 			} 
