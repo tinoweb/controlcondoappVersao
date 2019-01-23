@@ -7,34 +7,35 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>572833270659-5a6cjk6u5ti2m2vri6522qn2g50e46fq.apps.googleusercontent.com</string>
+	<string>484379421838-mmsoo2ca1ghk267amvlg5gpv1tc9tuhs.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.572833270659-5a6cjk6u5ti2m2vri6522qn2g50e46fq</string>
+	<string>com.googleusercontent.apps.484379421838-mmsoo2ca1ghk267amvlg5gpv1tc9tuhs</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAa2CkLwmqz5KliCEp722eu9vQaG4Mb0VQ</string>
+	<string>AIzaSyDMORuPUPuKspnL7SXRap4DftoEyPHdWxo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>572833270659</string>
+	<string>484379421838</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.controlcondo.phonega</string>
+	<string>com.controlcondo.ios</string>
 	<key>PROJECT_ID</key>
-	<string>push-284f8</string>
+	<string>controlcondo-cb11c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>push-284f8.appspot.com</string>
+	<string>controlcondo-cb11c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:572833270659:ios:7e68445456a2d8c6</string>
+	<string>1:484379421838:ios:95847eb2a9b34aaa</string>
 	<key>DATABASE_URL</key>
-	<string>https://push-284f8.firebaseio.com</string>
+	<string>https://controlcondo-cb11c.firebaseio.com</string>
+
 </dict>
 </plist>

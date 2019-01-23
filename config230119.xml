@@ -41,6 +41,7 @@
         <splash density="port-xxxhdpi" src="www/img/screen.png" />
         <allow-intent href="market:*" />
         <resource-file src="google-services.json" target="app/google-services.json" />
+        <!--<framework src="com.google.android.gms:play-services-location:9.4.0" />-->
         <framework src="com.google.android.gms:play-services-location:11.8.0" />
     </platform>
     <platform name="ios">
@@ -115,7 +116,7 @@
         </edit-config>
     </platform>
     <plugin name="cordova-plugin-battery-status" spec="^1.2.5" />
-    <plugin name="cordova-plugin-camera" spec="~4.0.2" />
+    <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <variable name="CAMERA_USAGE_DESCRIPTION" value="YOUR-PERMISSION-REQUEST" />
     <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="YOUR-PERMISSION-REQUEST" />
     <plugin name="cordova-plugin-battery-status" spec="^1.2.5" />
