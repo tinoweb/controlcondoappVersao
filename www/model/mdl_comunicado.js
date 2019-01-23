@@ -409,7 +409,7 @@ function download_arq_comunicado(caminho,arquivo) {
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
 	
-    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+fmt_lin(arquivo);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -427,9 +427,9 @@ function download_arq_comunicado(caminho,arquivo) {
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			//alert(JSON.stringify(ref, null, 4));
-            window.open(path, "_system");
+            //window.open(path, "_system");
 			//alert(1);
 
         },
