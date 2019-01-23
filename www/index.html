@@ -86,7 +86,11 @@
 					"badge": true
 				},
 				"windows":{}
-			});  
+			}); 
+			
+			push.on('registration', function(data) { 
+				localStorage.setItem('registrationId', data.registrationId);
+			}); 
 				
 			push.on('notification', function(data) {
 				
@@ -3774,4 +3778,4 @@
 </script>
 
 </body>
-</html>>>
+</html>
