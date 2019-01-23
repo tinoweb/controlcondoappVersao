@@ -187,5 +187,21 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "cordova-plugin-fileopener": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-fileopener@^1.0.5"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-vha-fileopener2": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-vha-fileopener2"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
