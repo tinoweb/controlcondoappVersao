@@ -2,7 +2,7 @@
 
 function onBackKeyDown() {
 
-    //alert(localStorage.getItem('TELA_ATUAL'));
+    alert(localStorage.getItem('TELA_ATUAL'));
     
     // REGRAS HOME
     if(localStorage.getItem('TELA_ATUAL') == 'home'){
@@ -228,6 +228,12 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'ticket'){
         afed('#ocorrencias_ticket','#ticket','','',2);
         localStorage.setItem('TELA_ATUAL','tickets');
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'ocorrencia_ticket_foto'){
+        //afed('#ocorrencias_ticket','#ticket','','',2);
+        localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
+		//app2.myPhotoBrowserStandalone.close();
     }
 	
     if(localStorage.getItem('TELA_ATUAL') == 'cameras_condominio'){

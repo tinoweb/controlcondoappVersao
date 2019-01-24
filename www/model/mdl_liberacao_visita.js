@@ -351,47 +351,44 @@ function salva_liberacao(){
 		
 		var visivel  = $('#cad_veiculo').is(':visible');
 		if (visivel){
-			alert('Sim!');
+			alerta('','Cadastre esse veiculo para continuar!');
 		}else{
-			alert('Não :( ...');
+			var dt_atual = new Date();
+			dt_atual.setMinutes(dt_atual.getMinutes()-30);
+			var dt_de = new Date($('#add_liberacao #dt_de').val()+ " "+$('#add_liberacao #hr_de').val() );
+			var dt_ate = new Date($('#add_liberacao #dt_ate').val()+ " "+$('#add_liberacao #hr_ate').val() );
+			var tipo = $('#add_liberacao #tipo').val();
+
+			if(dt_de < dt_atual && tipo != 1){
+			   notifica('Data Inválida/Data INICIAL não pode ser inferior a data atual/Ok',0,0);
+			}else if(dt_ate < dt_atual){
+			   notifica('Data Inválida/Data FINAL não pode ser inferior a data atual/Ok',0,0);
+			}else if(dt_ate <= dt_de){
+			   notifica('Data Inválida/Data FINAL não pode ser inferior a data INICIAL/Ok',0,0);
+			}else{
+				var dados = $( "#add_liberacao" ).serialize();
+
+				$.ajax({
+					type: 'POST',
+					url: localStorage.getItem('DOMINIO')+'appweb/liberacao_insert.php',
+					crossDomain: true,
+					beforeSend : function() { $("#wait").css("display", "block"); },
+					complete   : function() { $("#wait").css("display", "none"); },
+					data       : dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val(),
+					success: function(retorno){
+							//alert(retorno);
+							carrega_liberacao(0);
+							openPopUp();
+							afed('#home','#liberacao2','','',3,'liberacao_list');
+					},
+					error      : function() {
+						//alert('Erro ao carregar liberacao');
+						$("#wait").css("display", "none");
+					}
+				});           
+			}
 		} 
         
-        var dt_atual = new Date();
-        dt_atual.setMinutes(dt_atual.getMinutes()-30);
-        var dt_de = new Date($('#add_liberacao #dt_de').val()+ " "+$('#add_liberacao #hr_de').val() );
-        var dt_ate = new Date($('#add_liberacao #dt_ate').val()+ " "+$('#add_liberacao #hr_ate').val() );
-        var tipo = $('#add_liberacao #tipo').val();
-        //alert(dt_atual+'\n'+dt_de+'\n'+dt_ate);
-        
-        
-        if(dt_de < dt_atual && tipo != 1){
-           notifica('Data Inválida/Data INICIAL não pode ser inferior a data atual/Ok',0,0);
-        }else if(dt_ate < dt_atual){
-           notifica('Data Inválida/Data FINAL não pode ser inferior a data atual/Ok',0,0);
-        }else if(dt_ate <= dt_de){
-           notifica('Data Inválida/Data FINAL não pode ser inferior a data INICIAL/Ok',0,0);
-        }else{
-            var dados = $( "#add_liberacao" ).serialize();
-
-            $.ajax({
-                type: 'POST',
-                url: localStorage.getItem('DOMINIO')+'appweb/liberacao_insert.php',
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-                data       : dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val(),
-                success: function(retorno){
-                        //alert(retorno);
-                        carrega_liberacao(0);
-						openPopUp();
-                        afed('#home','#liberacao2','','',3,'liberacao_list');
-                },
-                error      : function() {
-                    //alert('Erro ao carregar liberacao');
-					$("#wait").css("display", "none");
-                }
-            });           
-        }
         
 	}
 }

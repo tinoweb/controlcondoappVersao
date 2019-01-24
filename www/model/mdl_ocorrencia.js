@@ -934,6 +934,7 @@ function get_anexo(id){
 				
 				/* Chama funcao */
 				abre_photo(link);
+				localStorage.setItem('TELA_ATUAL','ocorrencia_ticket_foto');
 			 }
      });	
 }
