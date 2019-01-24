@@ -88,25 +88,27 @@
 				"windows":{}
 			}); 
 			
-			PushNotification.createChannel(
-			  () => {
-				console.log('success notification channes');
-				alert('success notification channes');
-			  },
-			  () => {
-				console.log('error');
-				alert('error notification channes');
-			  },
-			  {
-				id: 'testchannel1',
-				description: 'My first test channel',
-				importance: 3,
-				vibration: true
-			  }
-			);
+//			PushNotification.createChannel(
+//			  () => {
+//				console.log('success notification channes');
+//				alert('success notification channes');
+//			  },
+//			  () => {
+//				console.log('error');
+//				alert('error notification channes');
+//			  },
+//			  {
+//				id: 'testchannel1',
+//				description: 'My first test channel',
+//				importance: 3,
+//				vibration: true
+//			  }
+//			);
 			
 			push.on('registration', function(data) { 
+				alert('teste push');
 				localStorage.setItem('registrationId', data.registrationId);
+				alert(data.registrationId);
 			}); 
 				
 			push.on('notification', function(data) {
@@ -3795,4 +3797,4 @@
 </script>
 
 </body>
-</html>>>
+</html>>>>>
