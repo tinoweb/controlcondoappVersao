@@ -115,7 +115,7 @@
         </edit-config>
     </platform>
     <plugin name="cordova-plugin-battery-status" spec="^1.2.5" />
-    <plugin name="cordova-plugin-camera" spec="^2.4.1" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.2" />
     <variable name="CAMERA_USAGE_DESCRIPTION" value="YOUR-PERMISSION-REQUEST" />
     <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="YOUR-PERMISSION-REQUEST" />
     <plugin name="cordova-plugin-battery-status" spec="^1.2.5" />
