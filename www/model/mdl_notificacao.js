@@ -109,3 +109,23 @@ function check_leitura(id_modulo,id){
 		}
 	});			
 }
+
+//function update_firebase_key(uuid,id_notificacao){
+//	
+//	$.ajax({
+//		type: 'POST',
+//		url: localStorage.getItem('DOMINIO')+'appweb/atualiza_firebase.php',
+//		crossDomain: true,
+//		beforeSend : function() { },
+//		complete   : function() { },
+//		data       : { uuid:uuid, id_notificacao:id_notificacao },
+//		success: function(retorno){
+//			
+//		},
+//		error : function() {
+//
+//		}
+//	});			
+//
+//	
+//}
