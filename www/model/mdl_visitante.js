@@ -191,24 +191,36 @@ function get_veiculo(placa){
 					
 					if(retorno.marca == null){
 				        parametro1 = "Não informado"; 
-						var marca_dados = '<option value="0">Seleciona</option>';
+						var marca_dados = '<option value="0">Selecione</option>';
 						for (x in retorno['all_marca']) {
-							//alert(retorno['all_marca'][x]['id']);
-							//marca_dados = marca_dados + '<option value="'+retorno[0]['all_marcas'][x]['id']+'">'+retorno[0]['all_marcas'][x]['marca']+'</option>';
+							marca_dados = marca_dados + '<option value="'+retorno['all_marca'][x]['id']+'">'+retorno['all_marca'][x]['marca']+'</option>';
 						}
-						//alert(marca_dados);
+						$('#l_marca_carro').html(marca_dados);
 					}else{
 						parametro1 = retorno.marca.toLowerCase();
 					}
 					
 					if(retorno.modelo == null){
-				        parametro2 = "Não informado";	   
+				        parametro2 = "Não informado";
+						$('#l_modelo_carro').html('<option value="0">Selecione</option>');
+					}
+					
+					if(retorno.cor == null){
+						var cor_dados = '<option value="0">Selecione</option>';
+						for (x in retorno['all_cor']) {
+							cor_dados = cor_dados + '<option value="'+retorno['all_cor'][x]['id']+'">'+retorno['all_cor'][x]['cor']+'</option>';
+						}
+						//alert(cor_dados);
+						$('#l_cor_carro').html(cor_dados);
 					}
 					
 					console.log(retorno);
 					if(retorno.id == null ){
  						$("#cad_veiculo").fadeIn();
 						$("#cad_veiculo_ok").hide();
+						app2.dialog.confirm('Para continuar e necessário cadastrar esse veiculo. Deseja cadastrar agora?','Cadastro', function () {
+							$("#cad_veiculo")[0].click();
+						});
 					 }else{
 						$("#liberacao2 #id_veiculo").val(retorno.id);
 						$("#cad_veiculo_ok").fadeIn();

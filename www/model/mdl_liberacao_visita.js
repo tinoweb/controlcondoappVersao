@@ -348,6 +348,13 @@ function salva_liberacao(){
 	if($( "#add_liberacao #visita" ).val() == 0 || $( "#add_liberacao #dt_de" ).val() == '' || $( "#add_liberacao #hr_de" ).val() == '' || $( "#add_liberacao #dt_ate" ).val() == '' || $( "#add_liberacao #hr_ate" ).val() == ''){
 		notifica('Preencha o campo/Preencha todos os campos/Ok',1000,0);
 	}else{
+		
+		var visivel  = $('#cad_veiculo').is(':visible');
+		if (visivel){
+			alert('Sim!');
+		}else{
+			alert('Não :( ...');
+		} 
         
         var dt_atual = new Date();
         dt_atual.setMinutes(dt_atual.getMinutes()-30);
