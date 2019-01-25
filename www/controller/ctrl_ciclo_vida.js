@@ -2,7 +2,7 @@
 
 function onBackKeyDown() {
 
-    alert(localStorage.getItem('TELA_ATUAL'));
+    //alert(localStorage.getItem('TELA_ATUAL'));
     
     // REGRAS HOME
     if(localStorage.getItem('TELA_ATUAL') == 'home'){
