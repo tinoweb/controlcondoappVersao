@@ -57,6 +57,11 @@ function onBackKeyDown() {
         $( '#busca_liberacao' ).val('');
     }
 
+    if(localStorage.getItem('TELA_ATUAL') == 'foto_veiculo_visitante'){
+		afed('','','','',2,'liberacao_list');
+		$(".veiculo-visitante .sheet-close")[0].click();
+    }
+
     if(localStorage.getItem('TELA_ATUAL') === 'visitante'){
 
         afed('#visitantes','#visitante','','',2);
@@ -99,6 +104,12 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'qrcode_gera'){	
 		openPopUp();
         afed('#home','#qrcode','','',2);
+        localStorage.setItem('TELA_ATUAL','liberacao_list');
+    }
+    
+    if(localStorage.getItem('TELA_ATUAL') == 'qrcode'){
+		openPopUp();
+		afed('#home','#qrcode','','',2,'liberacao_list');
         localStorage.setItem('TELA_ATUAL','liberacao_list');
     }
     
@@ -153,23 +164,25 @@ function onBackKeyDown() {
 	
     //REGRAS minhas reserva   
     if(localStorage.getItem('TELA_ATUAL') == 'minha_reserva'){
-        afed('#reservas','#minha_reservas','','',2,'reservas');
-  
+		afed('#reservas','#m_reserva','','',2,'reservas');
+    }
+	
+    //REGRAS minhas reserva   
+    if(localStorage.getItem('TELA_ATUAL') == 'minha_reserva_unica'){
+        afed('','','','',2,'minha_reserva');
+		$(".minha_reserva .sheet-close")[0].click();
     }
 	
 	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
         afed('#area','#reserva','','',2,'area');
-  
     }
 	
     if(localStorage.getItem('TELA_ATUAL') == 'calendario'){
-        afed('#reservas','#area','','',2,'reservas');
-       
+        afed('#reservas','#area','','',2,'reservas');    
     }
 
     if(localStorage.getItem('TELA_ATUAL') == 'area'){
-		afed('#reservas','#area','','',2,'reservas');
-       
+		afed('#reservas','#area','','',2,'reservas');      
     }
     
      //REGRAS ENTREGAS   
@@ -184,7 +197,6 @@ function onBackKeyDown() {
         localStorage.setItem('TELA_ATUAL','home');
         $("#busca_enquete").val("");
         document.getElementById("tipob").checked = true;
-
     }
    
     if(localStorage.getItem('TELA_ATUAL') == 'enquete'){
@@ -233,7 +245,8 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'ocorrencia_ticket_foto'){
         //afed('#ocorrencias_ticket','#ticket','','',2);
         localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
-		//app2.myPhotoBrowserStandalone.close();
+		//myPhotoBrowserStandalone.close();
+		$(".photo-browser-popup .popup-close")[0].click();
     }
 	
     if(localStorage.getItem('TELA_ATUAL') == 'cameras_condominio'){

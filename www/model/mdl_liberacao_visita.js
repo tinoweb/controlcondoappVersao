@@ -83,7 +83,7 @@ function carrega_liberacao(tipo){
 				
 				if(retorno[x]['foto_veiculo'] != ""){
 					foto_veiculo = 'display:none;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto_veiculo']+')';
-					icone_foto   = '<i data-sheet=".veiculo-foto_veiculo" class="sheet-open material-icons">directions_car</i>';
+					icone_foto   = '<i onClick="afed(\'\',\'\',\'\',\'\',2,\'foto_veiculo_visitante\')" data-sheet=".veiculo-foto_veiculo" class="sheet-open material-icons">directions_car</i>';
 					modelo       = retorno[x]['modelo'];
 					placa        = retorno[x]['placa'];
                 }

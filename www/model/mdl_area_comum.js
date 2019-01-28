@@ -99,7 +99,7 @@ function carrega_minha_reserva_unica(retorno){
     var dataout = dados[5].split('/');
     var dt = new Date(dataout[2]+'-'+dataout[1]+'-'+dataout[0]+' 00:00:00');
     var dt_hoje = new Date();
-    
+    afed('','','','',2,'minha_reserva_unica');
     if(dados[8] == 0){
         var status = '<i class="fa fa-circle" style="color:#ffc107;"></i> PENDENTE';
     }else if(dados[8] == 1){
