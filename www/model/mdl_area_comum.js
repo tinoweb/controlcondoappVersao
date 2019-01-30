@@ -1,4 +1,4 @@
-m// JavaScript Document
+// JavaScript Document
 
 //FUNCAO CARREGA TODAS AREAS COMUNS
 function carrega_areas(){
@@ -13,7 +13,8 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
-            dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
+            dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>'+
+					'<div class="area col button button-big button-raised button-fill link" style=" margin-bottom: 4%;" onClick="new_calendario(\'teste\');">Novo Calendario</div>';
             for (x in retorno) {
                 var dado = '<div class="area" onClick="carrega_area(\''+retorno[x]['id_area_comum']+'\',\'1\',\''+retorno[x]['nome']+'\');"><strong>'+retorno[x]['nome']+'</strong></div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
@@ -612,8 +613,94 @@ function apaga_reserva(button){
     }
 }
 
-
 function pad(str, length) {
   const resto = length - String(str).length;
   return '0'.repeat(resto > 0 ? resto : '0') + str;
+}
+
+/***********************************FUNCOES NOVO CALENDARIO******************************/
+
+
+function new_calendario(id_area_comum) {
+	
+//	$.ajax({
+//		type: 'POST',
+//		url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
+//		crossDomain: true,
+//		beforeSend : function() { $("#wait").css("display", "block"); },
+//		complete   : function() { $("#wait").css("display", "none"); },
+//		data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_areacomum : $( "#DADOS #AREA_COMUM" ).val(), dt_festa : dt_festa},
+//		dataType   : 'json',
+//		success: function(retorno){
+//
+//		}
+//	});	
+
+	
+var hoje = new Date();
+//var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+var evento = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+var ontem = new Date().setDate(hoje.getDate() - 1);
+var eventos_data = new Array (); 	
+for (i = 0; i < 5; i++) {
+	//var dt_festa = new Date().setDate(hoje.getDate() + i)
+	var dt_teste = i+1;
+	eventos_data[i] = new Date(2019, 0, dt_teste);
+}
+//alert(eventos_data);
+afed('#area_comum_new','#reservas','','',2,'new_area');
+
+var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
+var calendarInline = app2.calendar.create({
+		containerEl: '#demo-calendar-inline-container',
+		dateFormat: 'M dd yyyy',
+		events: eventos_data , 
+//		[
+//			alert('teste jquery');
+//			new Date(2019, 0, 1),
+//			new Date(2019, 0, 5),
+//			new Date(2019, 0, 8),
+//			new Date(2019, 0, 10),
+//		],
+  		//value: [new Date()],
+  		disabled: {
+  			from: new Date(1990, 0, 1),
+    		to: ontem
+  		},
+  		weekHeader: false,
+  		renderToolbar: function () {
+			return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
+			  '<div class="toolbar-inner">' +
+				'<div class="left">' +
+				  '<a href="#" class="link icon-only"><i class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+				'</div>' +
+				'<div class="center"></div>' +
+				'<div class="right">' +
+				  '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+				'</div>' +
+			  '</div>' +
+			'</div>';
+ 		},
+  		on: {
+    		init: function (c) {
+      			$$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
+      			$$('.calendar-custom-toolbar .left .link').on('click', function () {
+        			calendarInline.prevMonth();
+      			});
+      			$$('.calendar-custom-toolbar .right .link').on('click', function () {
+        			calendarInline.nextMonth();
+      			});
+	  			//alert(123);
+      			$$('.calendar-month .calendar-day').on('click', function () {
+					setTimeout(function(){
+        				alert(c.getValue());
+					},300);
+      			});
+
+    		},
+    		monthYearChangeStart: function (c) {
+      			$$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
+    		}
+  		}
+	});
 }
