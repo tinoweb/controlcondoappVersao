@@ -62,6 +62,7 @@
 	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
 	<script src="model/mdl_contatos.js"></script>
+	<script src="model/mdl_mudanca.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -570,6 +571,15 @@
 						<div class="item-inner">
 						<div class="item-title">Ocorrências</div>
 						<span class="circle_m" id="n_ocorrencias" style="background-color: #605ca8;"></span>
+						</div>
+						</a>
+						</li>
+						<li onClick="carrega_mudancas(0)" >
+						<a class="item-content item-link" href="/cards/">
+						<div class="item-media"><i class="fa fa-exchange"></i></div>
+						<div class="item-inner">
+						<div class="item-title">Mudança</div>
+						<span class="circle_m" id="n_mudanca" style="background-color: cadetblue;"></span>
 						</div>
 						</a>
 						</li>
@@ -3201,7 +3211,7 @@
 			</div>
 		</div>
 	</div>
-        <!---   $CAMERAS        -->
+    <!---   $CAMERAS        -->
 
     <div id="cameras_condominio" class="pagina cameras_condominio">
         <div class="navbar" style="height: 50px">
@@ -3215,17 +3225,170 @@
             </div>
         </div>
     </div>
-		
-<!-------- $RELATORIOS -->
-
-				<div id="relatorios" class="pagina relatorios">
-					<div class="topo_sub" style="background-color:#53c7ec;"> <img alt="" onClick="afed('#home','#relatorios','','',2,'home');" src="img/voltar.png"> <span>Relatorios</span> </div>
-						<div class="scroll">
-							<div class="relatorio"> <strong>Em Desenvolvimento</strong> </div>
+	
+	<!-- $MUDANCA  
+         Autor: Caio Souza.
+         Data: 29/01/2019.
+    -->
+	<div id="mudanca" class="pagina mudanca"> 
+		<div class="view view-mudanca"> 
+			<div data-name="home" class="page">
+					<div class="navbar" style="height: 50px">
+						<div class="navbar-inner">
+							<div class="left"> 
+								<a href="#" onClick="voltar('#home','#ocorrencias','home');">
+									<i class="icon icon-back"></i>
+								</a>
+							</div>
+							<div class="title">Mudança</div>
+							<div class="right"> 											
+								<a class="link popup-open" href="#" data-popup=".popup-about">
+									<i class="fa fa-search" style="margin-right: 15px"></i>
+								</a>
+							</div>
 						</div>
-					</div>				
+					</div>
+                    <div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+
+						<div class="ptr-preloader">
+							<div class="preloader"></div>
+							<div class="ptr-arrow"></div>
+						</div>
+						<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
+						<div id="main_mudanca" class="list media-list" style="margin-top:0;"></div>
+					</div>
+					<div class="row" style="margin-top: -61px;">
+						<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
+							<a onclick="mudanca_novo();" >
+								<i class="glyphicon glyphicon-plus"></i>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<div class="box" id="boxUp_ocorrencias"></div>
+						</div>
+				   </div>	
 				</div>
-<!---   $FUNCOES          --> 
+		  </div>
+	</div>
+	
+	<!-- Mudanca Inclusao -->
+	<div id="add_mudanca" class="pagina view">
+		<div class="navbar" style="height: 50px">
+			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
+				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
+				<div class="title">Nova Solicitação</div>
+			</div>
+		</div>
+		
+		<div class="page-content ptr-content" style="max-height: 85%;padding: 56px 7px 7px 7px;">
+              <form id="form_mudanca_add">		
+				<input type="hidden" name="id_unidade" />
+				<input type="hidden" name="nome_morador" />
+				<input type="hidden" name="id_usuario_condominio" />
+                <div class="list no-hairlines-md">
+					<ul>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Tipo Mudança:</div>
+								<div class="item-input-wrap">
+									<div id="div_tipo" name="div_tipo">
+										<select name="tipo_mudanca">
+											<option value="1">Entrada</option>
+											<option value="2">Saida</option>
+										</select>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					  
+					   <div class="row">
+						    <div class="col-xs-4">
+						   		<li class="item-content item-input">
+								   <div class="item-inner">
+									<div class="item-title item-label">Data Mudança:</div>
+										<div class="item-input-wrap">
+											<div id="div_data_mudanca" name="div_data_mudanca" >
+												<input id="data_mudanca" type="date" name="data_mudanca" placeholder="Data Mudança" style="width: 113px;"/>
+											</div>
+										</div>
+								  </div>
+							   </li>
+                            </div>
+							<div class="col-xs-4">
+						   		<li class="item-content item-input">
+								   <div class="item-inner">
+										<div class="item-title item-label">Hora Inicio:</div>
+										<div class="item-input-wrap">
+											<div id="div_hora_inicio" name="div_hora_inicio" >
+												<input id="hora_inicio" type="time" name="hora_inicio" placeholder="Hora Inicio" style="width: 79px;"/>
+											</div>
+										</div>
+								  </div>
+							    </li>
+							</div>
+							<div class="col-xs-4">
+						   		  <li class="item-content item-input">
+								   <div class="item-inner" style="margin-left: -18px;">
+									<div class="item-title item-label">Hora Fim:</div>
+										<div class="item-input-wrap">
+											<div id="div_hora_fim" name="div_hora_fim" >
+												<input id="hora_fim" type="time" name="hora_fim" placeholder="Hora Fim" style="width: 79px;"/>
+											</div>
+										</div>
+								  </div>
+							   </li>
+                           </div>
+					   </div>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Termo de mudança:</div>
+								<div class="item-input-wrap">
+									<textarea id="termo" placeholder="Termo de mudança" disabled></textarea>
+								</div>
+						   </div>
+					   </li>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Observação:</div>
+								<div class="item-input-wrap">
+									<div id="div_situacao" name="div_situacao" >
+										<input id="observacao" type="text" name="observacao" placeholder="Observação" style="height: 76px;"/>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					</ul>
+					<span onclick="salva_mudanca()" style="margin-top: 10px;width: 92%;left: 4%;" class="col button button-fill">
+						<span class="fa fa-check"></span> Cadastrar
+					</span>
+				</div>		  
+			</form>
+		</div>
+	</div>	
+		
+	<!-- Mudanca Informacoes -->
+	<div id="mudanca_info" class="pagina view">
+		<div class="navbar" style="height: 50px">
+			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
+				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
+				<div class="title">Mudança</div>
+			</div>
+		</div>
+		<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="padding-left: 9px;padding-top: 84px; padding-bottom: 10px; background-color: #f0f0f04d">
+			<div id="detalhe_mudanca"></div>
+		</div>
+	</div>
+		
+		
+   <!-- $RELATORIOS -->
+	<div id="relatorios" class="pagina relatorios">
+		<div class="topo_sub" style="background-color:#53c7ec;"> <img alt="" onClick="afed('#home','#relatorios','','',2,'home');" src="img/voltar.png"> <span>Relatorios</span> </div>
+			<div class="scroll">
+				<div class="relatorio"> <strong>Em Desenvolvimento</strong> </div>
+			</div>
+		</div>				
+	</div>
+    <!---   $FUNCOES          --> 
 
 				<script type="text/javascript">
 					altera_menu();
@@ -3842,4 +4005,4 @@
                 
 </script>
 </body>
-</html>
+</html>>>>>>>
