@@ -1,5 +1,4 @@
 function carrega_mudancas(tipo){
-	
 	"use strict";	
 	let dado  = '';
 	let cor   = '';
@@ -17,7 +16,7 @@ function carrega_mudancas(tipo){
 			
 			for (x in retorno){
 				
-				dado += '<div class="card" onClick="carrega_mudanca(\''+retorno[x].codigo+'\');" >'
+				dado += '<div class="card" onClick="carrega_feedback(\''+retorno[x].codigo+'\');carrega_mudanca(\''+retorno[x].codigo+'\');" >'
 							+'<div class="feed-mudanca cabecalho_card card-header" style="background-color:'+retorno[x].cor+'">'
 								+'<span style="font-size: 15px;" >Cód. <span style="color: white;" class="chip color-">'+retorno[x].codigo+'</span></span>'
 				               +'<span>'+retorno[x].status+'</span>'
@@ -59,7 +58,7 @@ function carrega_mudanca(id){
 	let a_cor   = ['yellow'     ,'blue'       ,'orange'    ,'red'    ,'green'     ,'blue'];
 	let a_valor = [];
 	
-	
+	$("#id_mudanca").val(id);
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/mudanca_get.php',
@@ -118,4 +117,121 @@ function salva_mudanca(){
 
 function mudanca_novo(){	
 	afed('#add_mudanca','#mudanca','','');
+}
+
+function carrega_feedback(id){	
+	"use strict";	
+	let dados        = '';
+	let cor          = '';
+	let pg           = '';
+	let btn_sugestao = '';
+	let values_      = '';
+	let x            = 0;
+	
+	$("#main_feedback").html("");
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/mudanca_feedback.php',
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+        data       : {id_mudanca:id },
+        dataType   : 'json',
+		success: function(retorno){
+			for (x in retorno){
+				 
+				  if(retorno[x].aprovado == 2  ){
+					values_   = 'data-data_sugerida = '+retorno[x].data_sugerida+' data-hora_inicio_sugerida = '+retorno[x].hora_ini_sugerida+' data-hora_fim_sugerida = '+retorno[x].hora_fim_sugerida;
+					  
+					btn_sugestao = '<tr class="anexo-ticket" onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\')"><td><span class="sheet-open col button button-raised button-round" onclick="carrega_data_sugerida(this)" '+values_+' data-sheet=".mudanca_sugestao" style="width: 158px;background: #ff8700;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-calendar"></span> Data Sugerida</span></td></tr>';
+				  }else{
+					btn_sugestao = '';
+					values_      = '';
+				  }
+				
+				  dados += '<li class="accordion-item">'
+								+'<div class="item-inner">'
+								  +'<div class="item-title"><table><tr><td>Status: '+retorno[x].status+'</td></tr>'
+								  +'<tr><td>Observação: '+retorno[x].obs+'</td></tr>'
+								  +'<tr><td>Data Hora: '+retorno[x].data_hora+'</td></tr>'
+				                  +'<tr><td>'+btn_sugestao+'</td></tr>'
+								+'</table></div>'
+				         	+'</div></li>';
+
+			}
+			
+			$("#main_feedback").html(dados);
+		},
+        error      : function() {
+           alerta("","Erro ao carregar feedback.");
+        }
+	});    	
+}
+
+
+function carrega_data_sugerida(el){
+	
+	let data_sugerida        = $(el).data("data_sugerida");
+	let hora_inicio_sugerida = $(el).data("hora_inicio_sugerida");
+	let hora_fim_sugerida    = $(el).data("hora_fim_sugerida");
+	
+	$("#s_data").val(data_sugerida);
+	$("#s_hora_inicio").val(hora_inicio_sugerida);
+	$("#s_hora_fim").val(hora_fim_sugerida);
+	$("#data_sugerida_mudanca").html("Data Mudança: "+data_sugerida);
+	$("#hora_sugerida_inicio_mudanca").html("Horario: "+hora_inicio_sugerida+" ás "+hora_fim_sugerida);
+}
+
+
+			 
+function aprova_mudanca(tipo_aprovacao){
+	
+	let id          = $("#id_mudanca").val();
+	let observacao  = 'Aprovada';
+	let data        = $("#s_data").val();
+	let hora_inicio = $("#s_hora_inicio").val();
+	let hora_fim    = $("#s_hora_fim").val();
+	
+	if(tipo_aprovacao == 0){
+		
+		  $.ajax({
+		   
+		   url:localStorage.getItem('DOMINIO')+'appweb/mudanca_insert.php',
+		   type:'POST',
+		   data:{
+			   		operacao:10,
+			        id_condominio:$('#DADOS #ID_CONDOMINIO').val(),
+			        id_usuario_condominio:$('#DADOS #ID_USER').val(),
+			        id_mudanca:id,
+			        aprovado:tipo_aprovacao,
+			        observacao:observacao,
+			        data_sugerida:data,
+			        hora_inicio_sugerida:hora_inicio,
+			        hora_fim_sugerida:hora_fim,
+			        administrador:''
+			   },
+		  success:function(retorno){
+			  alerta("","Solicitação Aprovada.");
+		  }
+	  })
+   }
+	
+}
+
+function hab_campo_mudanca(){
+	let status = $("#check_sugerir").is(":checked");
+	if(status){
+		$(".mudanca_sugestao input").removeAttr("disabled");
+	}else{
+		$(".mudanca_sugestao input").attr("disabled","disabled");
+	}
+}
+	
+function reprova_mudanca(){
+	
+		app2.dialog.confirm('Deseja realmente reprovar a solicitação de mudança ?','Sugestão de Data', function () {
+			$("#apv_mudanca, .mudanca_sugestao .chip").hide();
+			$("#sugestao_mudanca").fadeIn();
+
+		});
+	
 }
