@@ -871,6 +871,18 @@ input, textarea {
 	
 }
 
+.feed-mudanca{
+	
+	background-color: #ff9800;
+    padding-left: 6px;
+    padding-top: 5px;
+    margin-top: 8px !important;
+	color:white;
+	
+}
+
+
+
 /*
 *********************** SESSAO DE CSS PARA OCORRENCIAS **********************
 */
