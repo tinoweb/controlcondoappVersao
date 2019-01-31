@@ -337,6 +337,22 @@ function quebra_linha(texto,qtd_linha){
 	}
 }
 
+function formatdata(tipo,valor){
+	
+	var data = valor.replace('-','/').replace('-','/');
+var v_array  = data.split("/");
+	
+	/* mes dia ano*/
+	if(tipo == 0){
+		return v_array[1]+"-"+v_array[0]+"-"+v_array[2];
+	}
+	
+	/* ano mes dia*/
+	if(tipo == 1){
+		return v_array[2]+"/"+v_array[1]+"/"+v_array[0];
+	}
+}
+
 
 
 

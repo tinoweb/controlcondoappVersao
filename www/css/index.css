@@ -33,6 +33,7 @@ body, html {
   	flex-direction: column;
 }
 
+
 #perfil_edit .back{
 	border-radius: 71px;
 	background: white;
@@ -54,6 +55,7 @@ body, html {
 	height: 164px;
 	background: #f6f6f6;
 }
+
 
 .mbl_label{
 	

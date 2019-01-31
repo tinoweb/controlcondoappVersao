@@ -3233,16 +3233,16 @@
 				<div class="navbar" style="height: 50px">
 					<div class="navbar-inner">
 						<div class="left"> 
-							<a href="#" onClick="voltar('#home','#ocorrencias','home');">
+							<a href="#" onClick="$('.any_found').hide();voltar('#home','#ocorrencias','home');">
 								<i class="icon icon-back"></i>
 							</a>
 						</div>
 						<div class="title">Mudança</div>
-						<div class="right"> 											
+						<!--<div class="right"> 											
 							<a class="link popup-open" href="#" data-popup=".popup-about">
 								<i class="fa fa-search" style="margin-right: 15px"></i>
 							</a>
-						</div>
+						</div>-->
 					</div>
 				</div>
 				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
@@ -3252,7 +3252,11 @@
 						<div class="ptr-arrow"></div>
 					</div>
 					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
-					<div id="main_mudanca" class="list media-list" style="margin-top:0;"></div>
+					<div id="main_mudanca" class="list media-list" style="margin-top:0;">
+						
+					</div>
+					<span class="fa fa-exchange" id="mudanca_semft" style="color:#ffd900;margin: 18% 0 0 31%;font-size: 9em;display:none"></span>
+					<p id="any_found" class="any_found" style="margin-left: 12%;font-size: 23px;display:none"></p>
 				</div>
 				<div class="row" style="margin-top: -61px;">
 					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
@@ -3277,11 +3281,12 @@
 			</div>
 		</div>
 		
-		<div class="page-content ptr-content" style="max-height: 85%;padding: 56px 7px 7px 7px;">
+		<div class="page-content ptr-content" style="padding: 56px 7px 7px 7px;">
               <form id="form_mudanca_add">		
 				<input type="hidden" name="id_unidade" />
 				<input type="hidden" name="nome_morador" />
 				<input type="hidden" name="id_usuario_condominio" />
+				<input type="hidden" name="id_condominio" />
                 <div class="list no-hairlines-md">
 					<ul>
 					   <li class="item-content item-input">
@@ -3290,6 +3295,7 @@
 								<div class="item-input-wrap">
 									<div id="div_tipo" name="div_tipo">
 										<select name="tipo_mudanca">
+											<option value="0">Selecione uma opção...</option>
 											<option value="1">Entrada</option>
 											<option value="2">Saida</option>
 										</select>
@@ -3305,7 +3311,7 @@
 									<div class="item-title item-label">Data Mudança:</div>
 										<div class="item-input-wrap">
 											<div id="div_data_mudanca" name="div_data_mudanca" >
-												<input id="data_mudanca" type="date" name="data_mudanca" placeholder="Data Mudança" style="width: 113px;"/>
+												<input id="data_mudanca" onChange="verifica_data(this)" type="date" name="data_mudanca" placeholder="Data Mudança" style="width: 113px;"/>
 											</div>
 										</div>
 								  </div>
@@ -3340,7 +3346,7 @@
 						   <div class="item-inner">
 							<div class="item-title item-label">Termo de mudança:</div>
 								<div class="item-input-wrap">
-									<textarea id="termo" placeholder="Termo de mudança" disabled></textarea>
+									<textarea style="background: #f6f6f6;padding: 8px;" id="termo" placeholder="Termo de mudança" disabled></textarea>
 								</div>
 						   </div>
 					   </li>
@@ -3367,18 +3373,26 @@
 	<div id="mudanca_info" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="carrega_mudancas(0);voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
 				<div class="title">Mudança</div>
 			</div>
 		</div>
 		<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="padding-left: 9px;padding-top: 84px; padding-bottom: 10px; background-color: #f0f0f04d">
-			<div id="detalhe_mudanca"></div>
-			<div class="list" onclick="up_down()">
+			<div class="row">
+				<div class="col-md-6" style="margin-left: -24px;margin-top: -5%;"><div id="detalhe_mudanca"></div></div>
+				<div class="col-md-6">
+					<span id="icon_status_mudanca" style="display:none;font-size: 8em;" class="fa fa-check-square"></span>
+					<p id="lb_status_mudanca" style="margin-left: 25px;"></p>
+				</div>
+				
+			</div>
+			
+			<div class="list" onclick="up_down_mudanca()">
 			  <ul>
 				<li class="accordion-item"><a href="#" class="item-content item-link">
 					  <div class="item-inner">
 						<div class="item-title"><span class="fa fa-exchange"></span> Feedback</div>
-						<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
+						<div style="display:block" class="item-title"><span id="up_down_mudanca" class="fa fa-angle-down"></span></div>
 					  </div></a>
 					  <div class="accordion-item-content">
 						<div class="block" id="main_feedback" ></div>
@@ -3392,11 +3406,11 @@
 		<div class="toolbar">
 			<div class="toolbar-inner">
 				<div class="left"></div>
-				<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
+				<div class="right"><span style="margin-right: 8px;" class="link sheet-close" href="#">Fechar</span></div>
 			</div>
 		</div>
 		<div class="sheet-modal-inner">
-			<div class="block">
+			<div class="block" style="overflow:auto;max-height: 348px;">
 				<div class="chip">
 					<div class="chip-media bg-color-yellow">
 						<i class="fa fa-calendar"></i>
@@ -3413,14 +3427,14 @@
 						<span id="hora_sugerida_inicio_mudanca"></span>
 					</div>
 				</div></br>
-		        <div class="list no-hairlines-md" style="display:none" id="sugestao_mudanca">
+		        <div class="list no-hairlines-md" style="margin-top: -50px;display:none" id="sugestao_mudanca">
 					<ul>
 					   <li class="item-content item-input">
 						   <div class="item-inner">
 							<div class="item-title item-label">Data:</div>
 								<div class="item-input-wrap">
 									<div id="div_tipo" name="div_tipo">
-										<input type="text" name="data_mudanca" disabled/>
+										<input type="date" name="data_sug" id="data_sug" disabled/>
 									</div>
 								</div>
 						  </div>
@@ -3430,7 +3444,7 @@
 							<div class="item-title item-label">Hora Inicio:</div>
 								<div class="item-input-wrap">
 									<div id="div_tipo" name="div_tipo">
-										<input type="time" name="data_mudanca" disabled/>
+										<input type="time" name="hora_inicio_sug" id="hora_inicio_sug" disabled/>
 									</div>
 								</div>
 						  </div>
@@ -3440,22 +3454,33 @@
 							<div class="item-title item-label">Hora Fim:</div>
 								<div class="item-input-wrap">
 									<div id="div_tipo" name="div_tipo">
-										<input type="time" name="data_mudanca" disabled/>
+										<input type="time" name="hora_fim_sug" id="hora_fim_sug" disabled/>
+									</div>
+								</div>
+						  </div>
+					   </li><br>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Observação:</div>
+								<div class="item-input-wrap">
+									<div id="div_tipo" name="div_tipo">
+										<input type="text" name="observacao_sug" id="observacao_sug" style="height: 66px;" disabled/>
 									</div>
 								</div>
 						  </div>
 					   </li><br>
 					   <li>
-						   <label class="item-checkbox item-content" onclick="hab_campo_mudanca()" style="font-weight:100; font-size: 12px;">
-								<input type="checkbox" id="check_sugerir">
+						<label class="item-checkbox item-content" onclick="hab_campo_mudanca()" style="font-weight:100; font-size: 12px;">
+							    <input type="checkbox" id="check_sugerir" name="f_minhas" />
 								<i class="icon icon-checkbox"></i>
-								<div class="item-title" style="width:100%; float:left">Sugerir nova data</div>
-						   </label>
+								<div class="item-title" style="width:100%; float:left"> Sugerir nova data</div>
+					   </label>
 					   </li>
 					</ul>
 		        </div>
 		 		<span class="col button button-fill" id="apv_mudanca" onclick="aprova_mudanca(0)"style="background: #4caf50;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Aprovar</span>
-		        <span class="col button button-fill" id="rpv_mudanca" onclick="reprova_mudanca()" style="background: #f44336;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-close"></span> Reprovar</span>
+		        <span class="col button button-fill" id="rpv_mudanca_verifica" onclick="reprova_verifica()" style="background: #f44336;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-close"></span> Reprovar</span>
+		        <span class="col button button-fill" id="rpv_mudanca" onclick="reprova_mudanca()" style="display:none;background: #f44336;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-close"></span> Reprovar</span>
 			    <span class="col button button-fill" id="cad_mudanca" onclick="" style="display:none;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Cadastrar</span>
 			</div>
 		</div>
