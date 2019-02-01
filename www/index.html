@@ -579,7 +579,8 @@
 						<div class="item-media"><i class="fa fa-exchange"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Mudança</div>
-						<span class="circle_m" id="n_mudanca" style="background-color: cadetblue;"></span>
+						<span class="circle_m" id="n_mudanca" style="margin-left:40%;background-color: cadetblue;"></span>
+						<span class="circle_m" style="background:#00a65a"><span style="color: #ffffff;"><strong>Novo</strong></span><span></span></span>
 						</div>
 						</a>
 						</li>
@@ -3238,14 +3239,9 @@
 							</a>
 						</div>
 						<div class="title">Mudança</div>
-						<!--<div class="right"> 											
-							<a class="link popup-open" href="#" data-popup=".popup-about">
-								<i class="fa fa-search" style="margin-right: 15px"></i>
-							</a>
-						</div>-->
 					</div>
 				</div>
-				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-mudancas"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
 
 					<div class="ptr-preloader">
 						<div class="preloader"></div>
@@ -3350,6 +3346,13 @@
 								</div>
 						   </div>
 					   </li>
+					   <li>
+							<label class="item-checkbox item-content" onclick="confirma_mudanca()" style="font-weight:100; font-size: 12px;">
+								<input type="checkbox" id="check_confirma_mudanca" name="check_confirma_mudanca">
+								<i class="icon icon-checkbox"></i>
+								<div class="item-title" style="width:100%; float:left"> Aceitar termo de mudança</div>
+						   </label>
+					   </li>
 					   <li class="item-content item-input">
 						   <div class="item-inner">
 							<div class="item-title item-label">Observação:</div>
@@ -3361,9 +3364,9 @@
 						  </div>
 					   </li>
 					</ul>
-					<span onclick="salva_mudanca()" style="margin-top: 10px;width: 92%;left: 4%;" class="col button button-fill">
+					<button type="button" onclick="salva_mudanca()" style="margin-top: 10px;width: 92%;left: 4%;" class="col button button-fill" disabled>
 						<span class="fa fa-check"></span> Cadastrar
-					</span>
+					</button>
 				</div>		  
 			</form>
 		</div>
@@ -3377,7 +3380,7 @@
 				<div class="title">Mudança</div>
 			</div>
 		</div>
-		<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="padding-left: 9px;padding-top: 84px; padding-bottom: 10px; background-color: #f0f0f04d">
+		<div class="page-content ptr-content" data-ptr-distance="55" id="pull-mudancas" style="padding-left: 9px;padding-top: 84px; padding-bottom: 10px; background-color: #f0f0f04d">
 			<div class="row">
 				<div class="col-md-6" style="margin-left: -24px;margin-top: -5%;"><div id="detalhe_mudanca"></div></div>
 				<div class="col-md-6">
@@ -3410,6 +3413,7 @@
 			</div>
 		</div>
 		<div class="sheet-modal-inner">
+			<input type="hidden" id="id_movto_mudanca" />
 			<div class="block" style="overflow:auto;max-height: 348px;">
 				<div class="chip">
 					<div class="chip-media bg-color-yellow">
@@ -3528,6 +3532,8 @@
 					var mainDocume  = app2.views.create('.view-documentos' );
 					var mainOcorem  = app2.views.create('.view-ocorrencias' );
 					var mainTicket  = app2.views.create('.view-tickets' );
+					var mainMudanca = app2.views.create('.view-mudanca' );
+					
 					var $$          = Dom7;
 					var $ptrContent = $$('.ptr-content');
 					$ptrContent.on('ptr:refresh', function (e) {
@@ -4118,4 +4124,4 @@
                 
 </script>
 </body>
-</html>>>>>
+</html>

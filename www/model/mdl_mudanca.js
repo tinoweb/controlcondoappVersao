@@ -13,8 +13,9 @@ function carrega_mudancas(tipo){
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_usuario_condominio='+$( "#DADOS #ID_USER" ).val(),
         dataType   : 'json',
 		success: function(retorno){
+			$("#pull-mudancas" ).removeClass("ptr-content");
+		    $("#pull-mudancas" ).removeClass("ptr-refreshing");
 			if(retorno !=''){
-				
 			  
 				$('#add_mudanca #termo').html(retorno[0].termo);
 				for (x in retorno){
@@ -42,6 +43,7 @@ function carrega_mudancas(tipo){
 				$("#main_mudanca").html(dado).show();
 				$('.any_found').hide();
 				$('#mudanca_semft').hide();
+				localStorage.setItem('TELA_ATUAL','mudancas');
 				
 			}else{
 				
@@ -49,6 +51,7 @@ function carrega_mudancas(tipo){
 				$('#main_mudanca').hide();
 				$('#mudanca_semft').show();
 				$('#any_found').show().html('Olá, '+nome+'. <p style="margin-top: 8px;font-size: 18px;">Você não tem solicitações de Mudança cadastrada no sistema !');
+				preenche_termo_mudanca();
 			}
 			afed('#mudanca','#home','','');		
 				
@@ -193,6 +196,7 @@ function carrega_feedback(id){
 	let btn_sugestao = '';
 	let values_      = '';
 	let x            = 0;
+	let check        = '';
 	
 	$("#main_feedback").html("");
 	$.ajax({
@@ -208,7 +212,13 @@ function carrega_feedback(id){
 				  if(retorno[x].aprovado == 2  ){
 					values_   = 'data-data_sugerida = '+retorno[x].data_sugerida+' data-hora_inicio_sugerida = '+retorno[x].hora_ini_sugerida+' data-hora_fim_sugerida = '+retorno[x].hora_fim_sugerida;
 					  
-					btn_sugestao = '<tr><td><span class="sheet-open col button button-raised button-round" onclick="carrega_data_sugerida(this)" '+values_+' data-sheet=".mudanca_sugestao" style="width: 158px;background: #ff8700;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-calendar"></span> Data Sugerida</span></td></tr>';
+					if(retorno[x].retorno_usuario != '' && retorno[x].retorno_usuario != null ){
+						check = 'disabled'
+					}else{
+						check = ''
+					}
+					  
+					btn_sugestao = '<tr><td><button '+check+' class="sheet-open col button button-raised button-round" onclick="carrega_data_sugerida(this,'+retorno[x].id_movto_mudanca+')" '+values_+' data-sheet=".mudanca_sugestao" style="width: 158px;background: #ff8700;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-calendar"></span> Data Sugerida</button></td></tr>';
 				  }else{
 					btn_sugestao = '';
 					values_      = '';
@@ -233,8 +243,9 @@ function carrega_feedback(id){
 	});    	
 }
 
-function carrega_data_sugerida(el){
+function carrega_data_sugerida(el,id_movto_mudanca){
 	
+	$('#id_movto_mudanca').val(id_movto_mudanca);
 	let data_sugerida        = $(el).data("data_sugerida");
 	let hora_inicio_sugerida = $(el).data("hora_inicio_sugerida");
 	let hora_fim_sugerida    = $(el).data("hora_fim_sugerida");
@@ -277,7 +288,8 @@ function aprova_mudanca(tipo_aprovacao){
 			        data_sugerida:data,
 			        hora_inicio_sugerida:hora_inicio,
 			        hora_fim_sugerida:hora_fim,
-			        administrador:''
+			        administrador:'',
+			        id_movto_mudanca:$('#id_movto_mudanca').val()
 			   },
 		  success:function(retorno){
 			  alerta("","Solicitação Aprovada.");
@@ -347,7 +359,8 @@ function reprova_mudanca(){
 					data_sugerida:data,
 					hora_inicio_sugerida:hora_inicio,
 					hora_fim_sugerida:hora_fim,
-					administrador:''
+					administrador:'',
+			        id_movto_mudanca:$('#id_movto_mudanca').val()
 			   },
 		  success:function(retorno){
 			  $(".mudanca_sugestao .sheet-close").click();
@@ -408,6 +421,8 @@ function limpa_campo_mudanca(tipo){
 		$('#add_mudanca #hora_inicio').val('');
 		$('#add_mudanca #hora_fim').val('');
 		$('#add_mudanca #observacao').val('');
+		$('#check_confirma_mudanca').prop('checked',false);
+		$('#form_mudanca_add button').attr('disabled','disabled');
 	}
 }
 
@@ -421,4 +436,32 @@ function up_down_mudanca(){
 	   $("#up_down_mudanca").attr("class","fa fa-angle-down");
 	   sessionStorage.setItem("up_down_mudanca","open")
 	}	
+}
+
+function confirma_mudanca(){
+	
+	setTimeout(function(){
+		if($('#check_confirma_mudanca').is(':checked')){
+			$('#form_mudanca_add button').removeAttr('disabled')
+		}else{
+			$('#form_mudanca_add button').attr('disabled','disabled')
+		}
+	},300);
+}
+
+function preenche_termo_mudanca(){
+	
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/mudanca_get.php',
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+        data       : 'termo_mudanca=""&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+        dataType   : 'json',
+		success: function(retorno){
+			$('#add_mudanca #termo').html(retorno.descricao);
+		},
+        error      : function() {
+        }
+	}); 	
 }

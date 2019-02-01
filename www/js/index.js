@@ -28,9 +28,7 @@ var app = {
 	
     onDeviceReady: function() {
     
-		
-		
-        app.receivedEvent('deviceready');
+		app.receivedEvent('deviceready');
         document.addEventListener("backbutton", onBackKeyDown, false);
 		app.remove_pull();
         
@@ -848,6 +846,8 @@ var app = {
     },
         
     remove_pull: function(){
+		$("#pull-mudancas" ).removeClass("ptr-content");
+		$("#pull-mudancas" ).removeClass("ptr-refreshing");
 		$("#notificacoes"    ).removeClass("ptr-content");
 		$("#pull-liberacao"  ).removeClass("ptr-content");
 		$("#pull-liberacao" ).removeClass("ptr-refreshing");
@@ -865,6 +865,7 @@ var app = {
 		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
 		$("#pull-tickets" ).removeClass("ptr-content");
 		$("#pull-tickets" ).removeClass("ptr-refreshing");
+		
 		//$("#pull-minha-reserva" ).removeClass("ptr-content");
 	},
 	controler_pull: function(pag){
@@ -899,6 +900,9 @@ var app = {
 		}else if(pag==='minha_reserva'){
 			$("#pull-mreserva").addClass("ptr-content");
 			//alert('saindo do controler_pull');
+		}else if(pag==='mudancas'){
+			$("#pull-mudancas").addClass("ptr-content");
+			//alert('saindo do controler_pull');
 		}
 	},
 	pull_to_refresh: function(res){
@@ -927,6 +931,9 @@ var app = {
 		}else if(res==='minha_reserva'){
 			//carrega_tickets(0);
             carrega_minha_reserva(0);
+		}else if(res==='mudancas'){
+			//carrega_tickets(0);
+            carrega_mudancas(0);
 		}
 		//alert('terminado');
 	},
