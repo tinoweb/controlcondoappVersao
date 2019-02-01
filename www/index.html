@@ -3794,6 +3794,8 @@
                            
                         }else if(tipo==99){
                            
+                        }else if(tipo==27){
+                           carrega_mudanca(id_reg);
                         }
                     }else{
                         if(tipo==20){
@@ -3842,10 +3844,11 @@
         });
 		
         notificationWithButton.open();
-		setTimeout(function(){
-			notificationWithButton.close();
-			
-        },2000);
+		if(tipo==99){
+			setTimeout(function(){
+				notificationWithButton.close();
+            },2000);
+		}
     };
 
     function sheet_modulo(modulo,parametros){
@@ -4112,4 +4115,4 @@
                 
 </script>
 </body>
-</html>>>
+</html>>>>>
