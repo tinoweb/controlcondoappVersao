@@ -3795,7 +3795,10 @@
                         }else if(tipo==99){
                            
                         }else if(tipo==27){
-                           carrega_mudanca(id_reg);
+						    window.setTimeout(function() {
+                                carrega_mudanca(id_reg);
+                            },500);   
+                          
                         }
                     }else{
                         if(tipo==20){
