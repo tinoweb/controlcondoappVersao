@@ -72,6 +72,12 @@ function atualiza_notificacao(){
 				}else{
 				   $("#n_comunicado").html("<strong>"+retorno.Comunicado+"</strong>").show();
 				}
+				
+				if(retorno.Mudanca == "0" || retorno.Mudanca == null){
+				   $("#n_mudanca").css("display","none");
+				}else{
+				   $("#n_mudanca").html("<strong>"+retorno.Mudanca+"</strong>").show();
+				}
 
 				
 
