@@ -9,12 +9,14 @@ function carrega_mudancas(tipo){
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/mudanca_get.php',
 		beforeSend : function() { $("#wait").css("display", "block"); },
-		complete   : function() { $("#wait").css("display", "none"); },
+		complete   : function() { $("#wait").css("display", "none");},
         data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_usuario_condominio='+$( "#DADOS #ID_USER" ).val(),
         dataType   : 'json',
 		success: function(retorno){
+			localStorage.setItem('TELA_ATUAL','mudancas');
 			$("#pull-mudancas" ).removeClass("ptr-content");
 		    $("#pull-mudancas" ).removeClass("ptr-refreshing");
+			
 			if(retorno !=''){
 			  
 				$('#add_mudanca #termo').html(retorno[0].termo);
@@ -43,7 +45,6 @@ function carrega_mudancas(tipo){
 				$("#main_mudanca").html(dado).show();
 				$('.any_found').hide();
 				$('#mudanca_semft').hide();
-				localStorage.setItem('TELA_ATUAL','mudancas');
 				
 			}else{
 				

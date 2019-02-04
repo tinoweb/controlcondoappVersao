@@ -46,7 +46,8 @@ var app = {
 		$("#boxUp_entregas"   ).hide();
 		$("#boxUp_enquetes"   ).hide();
 		$("#boxUp_documentos" ).hide();
-		$("#boxUp_ocorrencias").hide();		
+		$("#boxUp_ocorrencias").hide();	
+		$("#boxUp_mudancas").hide();	
 		$("#boxUp_tickets").hide();
 		$("#boxUp_mreserva").hide();
 		
@@ -235,6 +236,25 @@ var app = {
 				scrollTop: 0
 			},600)
 		});
+		
+		$("#pull-mudancas").scroll(function() { 
+			var ordem = $("#ol_ordem").val();
+			var y=(($(this).scrollTop() + $(this).height()) + 71);
+			var x=$(this).get(0).scrollHeight;
+			//alert(y+ ' iii '+x);
+            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+				//alert('recive event'+ordem);
+                carrega_mudancas(ordem);
+            }
+			app.ckBoxUp("#boxUp_mudancas","#pull-mudancas");
+		});	
+		
+		$('#boxUp_mudancas').click(function(){
+			$('#pull-mudancas').animate({
+				scrollTop: 0
+			},600)
+		});
+		
 		
 		$("#pull-tickets").scroll(function() { 
 			var y=(($(this).scrollTop() + $(this).height()) + 71);
