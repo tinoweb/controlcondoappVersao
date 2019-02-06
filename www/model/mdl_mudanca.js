@@ -140,48 +140,83 @@ function carrega_mudanca(id){
 }
 
 function salva_mudanca(){
-	 let id_usuario_condominio = $("#DADOS #ID_USER").val();
-	 let id_unidade            = $("#DADOS #ID_UNIDADE").val();
-	 let nome_morador          = $("#DADOS #NOME_MORADOR").val();
-	 let id_condominio         = $("#DADOS #ID_CONDOMINIO").val();
-
-	 $("#form_mudanca_add input[name='id_usuario_condominio']").val(id_usuario_condominio);
-	 $("#form_mudanca_add input[name='id_unidade']").val(id_unidade);
-	 $("#form_mudanca_add input[name='nome_morador']").val(nome_morador);
-	 $("#form_mudanca_add input[name='id_condominio']").val(id_condominio);
 	
-	 if($('select[name="tipo_mudanca"]').val() == 0){
-		alerta("","Escolha o tipo da mudança.");
+	 if(check_horario_mudanca() == 1){
+		 alerta('','Horário inicial não pode ser menor que horário atual.')
 	 }else
-	 if($("#add_mudanca #data_mudanca").val() == ""){
-		alerta("","Preencha a data de mudança.");
-	 }else
-	 if( $("#add_mudanca #hora_inicio").val() == ""){
-		alerta("","Preencha a hora inicial."); 
-	 }else
-	 if( $("#add_mudanca #hora_fim").val() == ""){
-		alerta("","Preencha a hora final."); 
+	 if(check_horario_mudanca() == 2){
+		 alerta('','Horário final não pode ser menor que horário inicial.')
 	 }else{
-		 setTimeout(function(){
-			let dados = $("#form_mudanca_add").serialize();	
-			$.ajax({
-				 url        : localStorage.getItem('DOMINIO')+'appweb/mudanca_insert.php',
-				 type       : 'POST',
-				 beforeSend : function() { $("#wait").css("display", "block"); },
-				 complete   : function() { $("#wait").css("display", "none"); },
-				 data       : dados,
-				 success    : function(e){
-					 alerta(1);
-					 carrega_mudanca(e);
-			         carrega_feedback(e);
-					 afed('','#add_mudanca','');
-				 },
-				 error       : function(e){
-					 alerta("","Erro ao salvar.");
-				 }
-			 });	 
-		 },500); 
-	 }
+		 
+		 let id_usuario_condominio = $("#DADOS #ID_USER").val();
+		 let id_unidade            = $("#DADOS #ID_UNIDADE").val();
+		 let nome_morador          = $("#DADOS #NOME_MORADOR").val();
+		 let id_condominio         = $("#DADOS #ID_CONDOMINIO").val();
+
+		 $("#form_mudanca_add input[name='id_usuario_condominio']").val(id_usuario_condominio);
+		 $("#form_mudanca_add input[name='id_unidade']").val(id_unidade);
+		 $("#form_mudanca_add input[name='nome_morador']").val(nome_morador);
+		 $("#form_mudanca_add input[name='id_condominio']").val(id_condominio);
+
+		 if($('select[name="tipo_mudanca"]').val() == 0){
+			alerta("","Escolha o tipo da mudança.");
+		 }else
+		 if($("#add_mudanca #data_mudanca").val() == ""){
+			alerta("","Preencha a data de mudança.");
+		 }else
+		 if( $("#add_mudanca #hora_inicio").val() == ""){
+			alerta("","Preencha a hora inicial."); 
+		 }else
+		 if( $("#add_mudanca #hora_fim").val() == ""){
+			alerta("","Preencha a hora final."); 
+		 }else{
+			 setTimeout(function(){
+				let dados = $("#form_mudanca_add").serialize();	
+				$.ajax({
+					 url        : localStorage.getItem('DOMINIO')+'appweb/mudanca_insert.php',
+					 type       : 'POST',
+					 beforeSend : function() { $("#wait").css("display", "block"); },
+					 complete   : function() { $("#wait").css("display", "none"); },
+					 data       : dados,
+					 success    : function(e){
+						 alerta(1);
+						 carrega_mudanca(e);
+						 carrega_feedback(e);
+						 afed('','#add_mudanca','');
+					 },
+					 error       : function(e){
+						 alerta("","Erro ao salvar.");
+					 }
+				 });	 
+			 },500); 
+		 }	 
+     }
+}
+
+function check_horario_mudanca(){
+	var hora_at          = new Date()
+	var hora_ini         = $('#form_mudanca_add #hora_inicio').val();
+	var hora_fim         = $('#form_mudanca_add #hora_fim').val();
+	var hora_atual       = hora_at.getHours();
+    var minu_atual       = hora_at.getMinutes();
+    var hora_esc         = hora_ini.substr(0,2);
+    var min_esc          = hora_ini.substr(3);
+    var hora_esc_fim     = hora_fim.substr(0,2);
+    var min_esc_fim      = hora_fim.substr(3);
+    var horario_esc      = hora_esc+''+min_esc; 
+    var horario_esc_fim  = hora_esc_fim+''+min_esc_fim; 
+ 
+    if(minu_atual<=9){
+		minu_atual = '0'+minu_atual;
+    }
+	
+    var horario = hora_atual+''+minu_atual;  
+    if(parseInt(horario_esc) < horario){
+		return 1
+    }else
+    if(parseInt(horario_esc_fim) < horario_esc){
+		return 2
+    } 
 }
 
 function mudanca_novo(){	

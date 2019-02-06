@@ -635,8 +635,7 @@ function get_visitante(){
 			alerta("","Nenhum registro encontrado!");
 			$("#wait").css("display", "none");
 		}
-	});
-	
+	});	
 }
 
 

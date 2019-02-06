@@ -866,8 +866,7 @@ var app = {
     },
         
     remove_pull: function(){
-		$("#pull-mudancas" ).removeClass("ptr-content");
-		$("#pull-mudancas" ).removeClass("ptr-refreshing");
+		
 		$("#notificacoes"    ).removeClass("ptr-content");
 		$("#pull-liberacao"  ).removeClass("ptr-content");
 		$("#pull-liberacao" ).removeClass("ptr-refreshing");
@@ -885,6 +884,8 @@ var app = {
 		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
 		$("#pull-tickets" ).removeClass("ptr-content");
 		$("#pull-tickets" ).removeClass("ptr-refreshing");
+		$("#pull-mudancas" ).removeClass("ptr-content");
+		$("#pull-mudancas" ).removeClass("ptr-refreshing");
 		
 		//$("#pull-minha-reserva" ).removeClass("ptr-content");
 	},

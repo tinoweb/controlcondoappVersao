@@ -3433,36 +3433,45 @@
 				</div></br>
 		        <div class="list no-hairlines-md" style="margin-top: -50px;display:none" id="sugestao_mudanca">
 					<ul>
-					   <li class="item-content item-input">
-						   <div class="item-inner">
-							<div class="item-title item-label">Data:</div>
-								<div class="item-input-wrap">
-									<div id="div_tipo" name="div_tipo">
-										<input type="date" name="data_sug" id="data_sug" disabled/>
+					<div class="row">
+						<div class="col-xs-5">
+							  <li class="item-content item-input">
+								   <div class="item-inner">
+									<div class="item-title item-label">Data:</div>
+										<div class="item-input-wrap">
+											<div id="div_tipo" name="div_tipo">
+												<input type="date" name="data_sug" id="data_sug" style="width: 130px;" disabled/>
+											</div>
+										</div>
+								  </div>
+							   </li>
+						</div>
+						<div class="col-xs-4">
+							 <li class="item-content item-input">
+								   <div class="item-inner">
+									<div class="item-title item-label">Hora Inicio:</div>
+										<div class="item-input-wrap">
+											<div id="div_tipo" name="div_tipo">
+												<input type="time" name="hora_inicio_sug" id="hora_inicio_sug"  style="width: 52px;" disabled/>
+											</div>
+										</div>
+								  </div>
+							   </li>
+						</div>
+						<div class="col-xs-3" style="padding-left: 0px;">
+							 <li class="item-content item-input" style="padding-left: 0;">
+							   <div class="item-inner">
+								<div class="item-title item-label">Hora Fim:</div>
+									<div class="item-input-wrap">
+										<div id="div_tipo" name="div_tipo">
+											<input type="time" name="hora_fim_sug" id="hora_fim_sug" style="width: 52px;" disabled/>
+										</div>
 									</div>
-								</div>
-						  </div>
-					   </li><br>
-					   <li class="item-content item-input">
-						   <div class="item-inner">
-							<div class="item-title item-label">Hora Inicio:</div>
-								<div class="item-input-wrap">
-									<div id="div_tipo" name="div_tipo">
-										<input type="time" name="hora_inicio_sug" id="hora_inicio_sug" disabled/>
-									</div>
-								</div>
-						  </div>
-					   </li><br>
-					   <li class="item-content item-input">
-						   <div class="item-inner">
-							<div class="item-title item-label">Hora Fim:</div>
-								<div class="item-input-wrap">
-									<div id="div_tipo" name="div_tipo">
-										<input type="time" name="hora_fim_sug" id="hora_fim_sug" disabled/>
-									</div>
-								</div>
-						  </div>
-					   </li><br>
+							  </div>
+						   </li>
+						</div>
+					</div>
+					  
 					   <li class="item-content item-input">
 						   <div class="item-inner">
 							<div class="item-title item-label">Observação:</div>
@@ -3484,7 +3493,7 @@
 		        </div>
 		 		<span class="col button button-fill" id="apv_mudanca" onclick="aprova_mudanca(0)"style="background: #4caf50;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Aprovar</span>
 		        <span class="col button button-fill" id="rpv_mudanca_verifica" onclick="reprova_verifica()" style="background: #f44336;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-close"></span> Reprovar</span>
-		        <span class="col button button-fill" id="rpv_mudanca" onclick="reprova_mudanca()" style="display:none;background: #f44336;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-close"></span> Reprovar</span>
+		        <span class="col button button-fill" id="rpv_mudanca" onclick="reprova_mudanca()" style="display:none;background: #4caf50;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Confirmar</span>
 			    <span class="col button button-fill" id="cad_mudanca" onclick="" style="display:none;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Cadastrar</span>
 			</div>
 		</div>
@@ -4124,4 +4133,4 @@
                 
 </script>
 </body>
-</html>>>
+</html>
