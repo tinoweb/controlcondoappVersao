@@ -2401,7 +2401,7 @@
 				<div class="navbar" style="height: 50px">
 					<div class="navbar-inner">
 						<div class="left"> 
-							<a href="#" onClick="voltar('#home','#ocorrencias','home');">
+							<a href="#" onClick="$('#add_ticket').hide();voltar('#home','#ocorrencias','home');">
 								<i class="icon icon-back"></i>
 							</a>
 						</div>
@@ -2525,7 +2525,7 @@
 		<div class="view"> 
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
 					<div class="title" >Detalhe da Ocorrência</div>
 					<input type="hidden" id="verifica_anexo"/>
 				</div>
@@ -2804,7 +2804,7 @@
 
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-					<div class="left"> <a href="#" id="oco_voltar" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
+					<div class="left"> <a href="#" id="oco_voltar" onClick="$('#add_ticket').hide();voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
 					<div class="title" id="ti_titulo">Novo Ticket</div>
 				</div>
 			</div>
