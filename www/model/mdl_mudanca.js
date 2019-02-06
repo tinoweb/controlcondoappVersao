@@ -412,7 +412,7 @@ function reprova_mudanca(){
 
 function check_day(dia){	
 	
-	var data_selecionada = formatdata(1,dia);
+	var data_selecionada = format_data(1,dia);
 	var data             = new Date(data_selecionada);
 	var dia_semana       = data.getDay();
 	var dia_disponivel   = sessionStorage.getItem("arraydias");
@@ -433,7 +433,7 @@ function verifica_data(el){
 		let ano              = $(el).val().substr(0,4);
 		let mes              = $(el).val().substr(5,2);
 		let dia              = $(el).val().substr(8,2);
-		let fmt_choose_date  = formatdata(0,dia+"/"+mes+"/"+ano)+' 23:59';
+		let fmt_choose_date  = format_data(0,dia+"/"+mes+"/"+ano)+' 23:59';
 		let choose_date      = new Date(fmt_choose_date);
 		let current_date     = new Date();
 		let date             = $(el).val();      

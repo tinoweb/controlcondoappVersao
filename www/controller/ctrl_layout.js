@@ -337,7 +337,7 @@ function quebra_linha(texto,qtd_linha){
 	}
 }
 
-function formatdata(tipo,valor){
+function format_data(tipo,valor){
 	
 	var data = valor.replace('-','/').replace('-','/');
 var v_array  = data.split("/");
