@@ -2307,7 +2307,7 @@
 			<div class="enquete_subtitulo">stitulo</div>
 			<div class="enquete_periodo ">Validade de </div>
 			<div class="enquete_votos">Votos </div>
-			<form name="enquete_voto" id="enquete_voto">
+			<form name="enquete_voto" id="enquete_voto"style="height: 392px;">
 			</form>
 	</div>
 	</div>
@@ -2738,12 +2738,7 @@
 					<label id="anexo_foto2" for="anexo_foto">Imagem</label>
 					<img id="anexo_foto" name="anexo_foto" class="img-responsive img-rounded"  >
 				</div>
-
-
 				<p></p>
-
-				
-
 					<div id="modal-anexo-ocorrencia" class="sheet-modal modal-anexo-ocorrencia" style="height: 35%" >
 					<div class="sheet-modal-inner">
 					  <div class="block">
@@ -2974,77 +2969,73 @@
 				</div>
 			</div>
 	</div>
+    <!-- $PETS PAGINA VISUALIZACAO  -->
+	<div id="pet" class="pagina view">
 
-<!-- $PETS PAGINA VISUALIZACAO  -->
-						<div id="pet" class="pagina view">
+		<div class="navbar" style="height: 50px">
+			<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');"><i class="icon icon-back"></i></a>
+				<div class="title" >CADASTRO DO PET</div>
+			</div>
+		</div>
 
-							<div class="navbar" style="height: 50px">
-								<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');"><i class="icon icon-back"></i></a>
-									<div class="title" >CADASTRO DO PET</div>
-								</div>
-							</div>
-							
-							<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
-								<div class="toolbar-inner" style="padding: 5px">
-									<div style="width: 50%" onClick="excluir_pet();">
-										<!--<i class="fa fa-trash fa-2x"></i>-->
-										<i class="glyphicon glyphicon-trash"></i>
-										<br>
-										<label>Excluir</label>
-									</div>
-									<div style="width: 50%" type="button" onClick="editar_pet()">
-										<i class="glyphicon glyphicon-pencil"></i>										
-										<br>
-										<label>Editar</label>
-									</div>
-								</div>
-							</div>
+		<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
+			<div class="toolbar-inner" style="padding: 5px">
+				<div style="width: 50%" onClick="excluir_pet();">
+					<!--<i class="fa fa-trash fa-2x"></i>-->
+					<i class="glyphicon glyphicon-trash"></i>
+					<br>
+					<label>Excluir</label>
+				</div>
+				<div style="width: 50%" type="button" onClick="editar_pet()">
+					<i class="glyphicon glyphicon-pencil"></i>										
+					<br>
+					<label>Editar</label>
+				</div>
+			</div>
+		</div>
 
-							<div class="page-content">
-								<div style="padding: 0px 20px 20px 20px;">
-									<form id="form_pet" style="float: left; width: 100%;">
-										<input type="hidden" name="foto_up" id="foto_up" > 
-										<input type="hidden" name="id_pet" id="id_pet">
-										<input type="hidden" name="id_condominio" id="id_condominio">
-										<input type="hidden" name="nome" id="nome">
-										
-										<input type="hidden" name="id_especie" id="id_especie">
-										<input type="hidden" name="sexo" id="sexo">
-										<input type="hidden" name="cor" id="cor">
-										<input type="hidden" name="observacao" id="observacao">
-										<input type="hidden" name="raca" id="raca">
-																																			
-										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
-											<div style="font-size: 20px; float: left;" id="nome_pet" name="nome_pet" >
-												PET nome  											
-											</div>
-											
-											<div id="unidade" style="padding-top: 5px; float: right;">
-												Local de preenchimento da unidade
-											</div>
-										
-										</div>
-										
-										<p align="center" id="foto"> </p>
-										
-										<div align="center">
-											
-										<span id="desc_especie">Local onde é preenchido a ESPECIE do pet - </span>
-										<span id="lbl_raca">Local onde é preenchido a RAÃƒâ€¡A do pet - </span>
-										<span id="lbl_cor">Local onde é preenchido a COR do pet - </span>
-										<span id="lbl_sexo">Local onde é preenchido o SEXO do pet</span>
-										</div>										
-										
-										<h4 style="width: 100%;" ><strong>Observacao</strong></h4>
-										<span id="lbl_observacao" style="width: 100%;font-size: 15px;" ></span>										
-									</form>									
-								</div>
-		
-							</div>
-		
+		<div class="page-content">
+			<div style="padding: 0px 20px 20px 20px;">
+				<form id="form_pet" style="float: left; width: 100%;">
+					<input type="hidden" name="foto_up" id="foto_up" > 
+					<input type="hidden" name="id_pet" id="id_pet">
+					<input type="hidden" name="id_condominio" id="id_condominio">
+					<input type="hidden" name="nome" id="nome">
+
+					<input type="hidden" name="id_especie" id="id_especie">
+					<input type="hidden" name="sexo" id="sexo">
+					<input type="hidden" name="cor" id="cor">
+					<input type="hidden" name="observacao" id="observacao">
+					<input type="hidden" name="raca" id="raca">
+
+					<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
+						<div style="font-size: 20px; float: left;" id="nome_pet" name="nome_pet" >
+							PET nome  											
 						</div>
-					
-<!--  Pets INCLUSAO  -->
+
+						<div id="unidade" style="padding-top: 5px; float: right;">
+							Local de preenchimento da unidade
+						</div>
+
+					</div>
+
+					<p align="center" id="foto"> </p>
+
+					<div align="center">
+
+					<span id="desc_especie">Local onde é preenchido a ESPECIE do pet - </span>
+					<span id="lbl_raca">Local onde é preenchido a RAÃƒâ€¡A do pet - </span>
+					<span id="lbl_cor">Local onde é preenchido a COR do pet - </span>
+					<span id="lbl_sexo">Local onde é preenchido o SEXO do pet</span>
+					</div>										
+
+					<h4 style="width: 100%;" ><strong>Observacao</strong></h4>
+					<span id="lbl_observacao" style="width: 100%;font-size: 15px;" ></span>										
+				</form>									
+			</div>
+		</div>
+	</div>			
+    <!--  Pets INCLUSAO  -->
 	<div id="add_pet" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
@@ -3113,7 +3104,6 @@
 				
 			</form>
 		</div>
-	
 	</div>
 	
 <!--$ Pets EDICAO ----------->
@@ -3219,6 +3209,51 @@
             </div>
         </div>
     </div>
+		
+	<!-- $AGENDA  
+         Autor: Caio Souza.
+         Data: 06/02/2019.
+    -->
+		
+	<div id="agenda" class="pagina agenda"> 
+		<div class="view view-agenda"> 
+			<div data-name="home" class="page">
+				<div class="navbar" style="height: 50px">
+					<div class="navbar-inner">
+						<div class="left"> 
+							<a href="#" onClick="voltar('#home','#agenda','home');">
+								<i class="icon icon-back"></i>
+							</a>
+						</div>
+						<div class="title">Agenda Tarefas</div>
+					</div>
+				</div>
+				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-agenda" style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+
+					<div class="ptr-preloader">
+						<div class="preloader"></div>
+						<div class="ptr-arrow"></div>
+					</div>
+					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
+					<div id="main_agenda" class="list media-list" style="margin-top:0;">
+						
+					</div>
+					<span class="fa fa-exchange" id="agenda_semft" style="color:#ffd900;margin: 18% 0 0 31%;font-size: 9em;display:none"></span>
+					<p id="any_found" class="any_found" style="margin-left: 12%;font-size: 23px;display:none"></p>
+				</div>
+				<div class="row" style="margin-top: -61px;">
+					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
+						<a onclick="agenda_novo();" >
+							<i class="glyphicon glyphicon-plus"></i>
+						</a>
+					</div>
+			   </div>	
+		    </div>
+		</div>
+	</div>
+		
+		
+		
 	
 	<!-- $MUDANCA  
          Autor: Caio Souza.
@@ -4133,4 +4168,4 @@
                 
 </script>
 </body>
-</html>
+</html>>>>>

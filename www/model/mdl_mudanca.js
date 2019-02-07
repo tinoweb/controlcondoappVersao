@@ -194,9 +194,14 @@ function salva_mudanca(){
 }
 
 function check_horario_mudanca(){
-	var hora_at          = new Date()
+	var hora_at          = new Date();
 	var hora_ini         = $('#form_mudanca_add #hora_inicio').val();
 	var hora_fim         = $('#form_mudanca_add #hora_fim').val();
+	var dia              = $('#data_mudanca').val().substr(8);
+    var mes              = $('#data_mudanca').val().substr(5,2);
+    var ano              = $('#data_mudanca').val().substr(0,4);
+   	var data             = dia+'/'+mes+'/'+ano;
+	
 	var hora_atual       = hora_at.getHours();
     var minu_atual       = hora_at.getMinutes();
     var hora_esc         = hora_ini.substr(0,2);
@@ -205,17 +210,20 @@ function check_horario_mudanca(){
     var min_esc_fim      = hora_fim.substr(3);
     var horario_esc      = hora_esc+''+min_esc; 
     var horario_esc_fim  = hora_esc_fim+''+min_esc_fim; 
+    var dt_atual         = new Date();
+    var dt_esc           = new Date(format_data(0,data)+' 23:59');
  
     if(minu_atual<=9){
 		minu_atual = '0'+minu_atual;
     }
 	
+
     var horario = hora_atual+''+minu_atual;  
-    if(parseInt(horario_esc) < horario){
-		return 1
+    if(parseInt(horario_esc) < horario && dt_esc <= dt_atual){
+		return 1 /*Horario escolhido menor que horario atual*/
     }else
     if(parseInt(horario_esc_fim) < horario_esc){
-		return 2
+		return 2 /*Horario fim menor que horario inicial*/
     } 
 }
 
