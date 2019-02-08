@@ -2861,14 +2861,14 @@ input, textarea {
 	height:25px;
 	float:left;
 	margin:0;
-	border:1px solid #666;
-	border-left: 4px solid;
+	/*border:1px solid #666;
+	border-left: 4px solid;*/
 	text-align:center;
-	font-size:11px;
+	font-size:13px;
 	background-color:#ee5569;
 	color: black;
 	padding-top: 4px;
-    border-radius: 7px;
+    border-radius: 15px;
 	margin-bottom: 1px;
 }
 
