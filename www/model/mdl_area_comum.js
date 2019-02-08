@@ -144,7 +144,7 @@ function carrega_minha_reserva_unica(retorno){
 function carrega_area(view=1){
 	//processando(1);
 	
-	alert($( "#dt_festa" ).val());
+	//alert($( "#dt_festa" ).val());
 
 	var dt_festa = $( "#dt_festa" ).val();
 	$.ajax({
@@ -578,7 +578,6 @@ function adiciona_reserva(h){
 
 //FUNCAO EDITA RESERVA
 function edite_reserva(id_reserva,data,inicio,fim){ 
-	alert(id_reserva);
 	var dt_festa = $( "#dt_festa" ).val();
 	afed('#reserva','#area','','',2,'reserva')
 	$( "#add_reserva_dt" ).val(data);
@@ -596,7 +595,6 @@ function salva_reserva(){
 	if($("#concordo").is(':checked')){
         afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'reserva');
 		var dados = $( "#add_reserva" ).serialize();
-		alert(dados);
         var dt_ini = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_inicio").val());
         var dt_fim = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_fim").val());
         var dt_atual = new Date();
@@ -633,11 +631,20 @@ function salva_reserva(){
                     }else if(retorno != ''){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
-                        carrega_area();
-						fecha_calendario();
-						new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
-                        afed('#area','#reserva','','',2,'area');  
-                    }
+						if(localStorage.getItem('periodo_integral') == 1){
+							//alert(0);
+							carrega_area(0);
+							fecha_calendario();
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
+							afed('#area_comum_new','#reserva','','',2,'area');  
+						}else{
+							//alert(1);
+                        	carrega_area();
+							fecha_calendario();
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
+							afed('#area','#reserva','','',2,'area');  
+						}
+					}
                 },
                 error: function(erro){
                     //alert('erro');
