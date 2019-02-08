@@ -579,7 +579,8 @@
 						<div class="item-media"><i class="fa fa-exchange"></i></div>
 						<div class="item-inner">
 						<div class="item-title">Mudança</div>
-						<span class="circle_m" id="n_mudanca" style="background-color: cadetblue;"></span>
+						<span class="circle_m" id="n_mudanca" style="margin-left:40%;background-color: cadetblue;"></span>
+						<span class="circle_m" style="background:#00a65a"><span style="color: #ffffff;"><strong>Novo</strong></span><span></span></span>
 						</div>
 						</a>
 						</li>
@@ -2361,7 +2362,7 @@
 			<div class="enquete_subtitulo">stitulo</div>
 			<div class="enquete_periodo ">Validade de </div>
 			<div class="enquete_votos">Votos </div>
-			<form name="enquete_voto" id="enquete_voto">
+			<form name="enquete_voto" id="enquete_voto"style="height: 392px;">
 			</form>
 	</div>
 	</div>
@@ -2455,7 +2456,7 @@
 				<div class="navbar" style="height: 50px">
 					<div class="navbar-inner">
 						<div class="left"> 
-							<a href="#" onClick="voltar('#home','#ocorrencias','home');">
+							<a href="#" onClick="$('#add_ticket').hide();voltar('#home','#ocorrencias','home');">
 								<i class="icon icon-back"></i>
 							</a>
 						</div>
@@ -2559,16 +2560,16 @@
          </form>
 	 </div>
 	 <div align="center" class="oco_filtro toolbar toolbar-bottom-md tabbar-labels" style="position:absolute;bottom:0;width:100%">
-			<div class="toolbar-inner" style="padding: 5px">
-				<div class="popup-close" type="button" style="width: 50%; padding: 10px" >
-					<i class="f7-icons">undo</i>
-					<div class="f7-demo-icon-label">Voltar</div>
-				</div>
-				<div class="popup-close" style="width: 50%; padding: 10px" type="button" onClick="carrega_ocorrencias(0)">
-					<i class="f7-icons" style="margin-top: 5px">search</i>
-					<div class="f7-demo-icon-label">Filtrar</div>
-				</div>
+		<div class="toolbar-inner" style="padding: 5px">
+			<div class="popup-close" type="button" style="width: 50%; padding: 10px" >
+				<i class="f7-icons">undo</i>
+				<div class="f7-demo-icon-label">Voltar</div>
 			</div>
+			<div class="popup-close" style="width: 50%; padding: 10px" type="button" onClick="carrega_ocorrencias(0)">
+				<i class="f7-icons" style="margin-top: 5px">search</i>
+				<div class="f7-demo-icon-label">Filtrar</div>
+			</div>
+		</div>
 	</div>
         
     </div>	
@@ -2579,7 +2580,7 @@
 		<div class="view"> 
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner"> <a class="left" href="#" onClick="carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
 					<div class="title" >Detalhe da Ocorrência</div>
 					<input type="hidden" id="verifica_anexo"/>
 				</div>
@@ -2682,8 +2683,7 @@
 		</div>
 	</div>
 					
-
-<!--   OCORRENCIAS PAGINA INCLUSAO -->
+   <!--   OCORRENCIAS PAGINA INCLUSAO -->
 
 	<div id="add_ocorrencia" class="pagina view">
 		<div class="navbar" style="height: 50px">
@@ -2709,8 +2709,6 @@
 					<i class="glyphicon glyphicon-floppy-disk"></i>
 					<br>
 					<label>Salvar</label>
-
-
 				</div>
 			</div>
 		</div>
@@ -2795,12 +2793,7 @@
 					<label id="anexo_foto2" for="anexo_foto">Imagem</label>
 					<img id="anexo_foto" name="anexo_foto" class="img-responsive img-rounded"  >
 				</div>
-
-
 				<p></p>
-
-				
-
 					<div id="modal-anexo-ocorrencia" class="sheet-modal modal-anexo-ocorrencia" style="height: 35%" >
 					<div class="sheet-modal-inner">
 					  <div class="block">
@@ -2817,183 +2810,179 @@
 					</div>
 				 </div>
 				<p></p>
-
-
 			</form>
 		</div>
 		</div>	
 			
+        <!--  LISTA TICKET  -->
 
-<!--  LISTA TICKET                         -->
+		<div id="ocorrencias_ticket" class="pagina">
+			<div class="view view-tickets"> 
+				<!-- Initial Page, "data-name" contains page name -->
+				<div data-name="home" class="page">
+					<div class="navbar" style="height: 50px">
 
-
-					<div id="ocorrencias_ticket" class="pagina">
-						<div class="view view-tickets"> 
-							<!-- Initial Page, "data-name" contains page name -->
-							<div data-name="home" class="page">
-								<div class="navbar" style="height: 50px">
-									
-									<div class="navbar-inner">
-										<div class="left"> 
-											<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class="icon icon-back"></i></a>
-										</div>
-										<div class="title">Tickets</div>
-										<div class="right">
-											<a id="tl_botao_novo" href="#" onClick="ticket_novo(0);">
-												<span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span>
-											</a>
-										</div>
-									</div>
-								</div>
-								
-								
-								<div class="box" id="boxUp_tickets"></div>
-								<div class="page-content ptr-content" data-ptr-distance="55" id="pull-tickets" style="padding-top:60px; padding-bottom: 10px">
-									
-									<div class="ptr-preloader">
-										<div class="preloader"></div>
-										<div class="ptr-arrow"></div>
-									</div>
-								</div>
+						<div class="navbar-inner">
+							<div class="left"> 
+								<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class="icon icon-back"></i></a>
+							</div>
+							<div class="title">Tickets</div>
+							<div class="right">
+								<a id="tl_botao_novo" href="#" onClick="ticket_novo(0);">
+									<span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span>
+								</a>
 							</div>
 						</div>
 					</div>
+
+
+					<div class="box" id="boxUp_tickets"></div>
+					<div class="page-content ptr-content" data-ptr-distance="55" id="pull-tickets" style="padding-top:60px; padding-bottom: 10px">
+
+						<div class="ptr-preloader">
+							<div class="preloader"></div>
+							<div class="ptr-arrow"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
+		<!--   TICKET INCLUSAO  -->	
+		
+		<div id="add_ticket" class="view pagina">
 
-                    <!--   TICKET INCLUSAO  -->						
-					<div id="add_ticket" class="view pagina">
+			<div class="navbar" style="height: 50px">
+				<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
+					<div class="left"> <a href="#" id="oco_voltar" onClick="$('#add_ticket').hide();voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
+					<div class="title" id="ti_titulo">Novo Ticket</div>
+				</div>
+			</div>
 
-						<div class="navbar" style="height: 50px">
-							<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-								<div class="left"> <a href="#" id="oco_voltar" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
-								<div class="title" id="ti_titulo">Novo Ticket</div>
-							</div>
-						</div>
-
-						<!-- Menu Rodapé -->
-						<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
-							<div class="toolbar-inner" style="padding: 5px">
-								<div style="width: 50%" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');" >
-									<!--<i class="fa fa-trash fa-2x"></i>-->
-									<i class="glyphicon glyphicon-log-out"></i>
-									<br>
-									<label>Sair</label>
-								</div>
-								<div style="width: 50%" type="button" onClick="ticket_insert();" >
-									<i class="glyphicon glyphicon-floppy-saved"></i>
-									<br>
-									<label>Salvar</label>
-
-								</div>
-							</div>
-						</div>
-
-
-						<div class="list no-hairlines-md" style="padding: 55px 10px 0 10px;">
-							<form id="form_ticket_add">
-								<input type="hidden" name="operacao" id='operacao' value="">
-								<input type="hidden" name="id_ocorrencia" id='id_ocorrencia' value="">
-								<input type="hidden" name="id_condominio" id="id_condominio"  value="">
-								<input type="hidden" name="id_solicitante" id="id_solicitante"  value="">
-								<input type="hidden" name="id_criador" id="id_criador"  value="">
-								<input type="hidden" name="id_responsavel" id="id_responsavel" value="">									
-								<input type="hidden" name="privada" id="privada" value="">
-								<input type="hidden" name="foto" id="foto">
-								<ul>
-									<li class="item-content item-input">
-										<div class="item-inner">
-											<div class="item-title item-label">Situacao</div>
-											<div class="item-input-wrap">
-												<div id="ti_div_situacao" name="ti_div_situacao"></div>
-											</div>
-										</div>
-									</li>
-									<li class="item-content item-input">
-										<div class="item-inner">
-											<div class="item-title item-label">Descrição do Ticket</div>
-											<div class="item-input-wrap">
-												<input id="ti_descricao" name="ti_descricao" style="height: 69px;" type="text" placeholder="Descrição do ticket" />
-											</div>
-										</div>
-									</li>
-                                </ul>
-							</form
-							<p></p> 
-							<button style="left: 4%; width: 91%;" class="col button button-fill color-bluelink link sheet-open" href="#" data-sheet=".modal-anexo-ticket" id="btn_anexo" style="margin-bottom: 10px:">Anexar Arquivo</button>
-							
-							<span style="left: 4%; width: 91%; display: none; margin-top: 6px;" class="col button button-fill color-red" href="#" id="limpa_anexo2" onclick="clean_picture()"><span class="fa fa-trash"></span> Limpar Anexo</span>
-							
-							<label style="margin-left: 135px;display:none" id="labelfoto" for="anexo_foto">Imagem</label>
-							<div class="form-group" id="anexo_oco" style="overflow:auto;max-height: 256px;width: 100%;display: none;" align="center" >
-								<img id="anexo_foto" name="anexo_foto" class="img-responsive img-rounded"  >
-							</div>
-
-
-							<div id="modal-anexo-ticket" class="sheet-modal modal-anexo-ticket" style="height: 35%">
-								<div class="sheet-modal-inner">
-								  <div class="block">
-										<h4 class="modal-title">Origem</h4>
-										<div id="foto_menu" class="foto_menu" style="text-align: center">
-										<button class="btn btn-success link sheet-close" type="button" onClick="app.foto_ticket_camera();"> <img alt="" width="20" src="data:image/png;base64,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"> Câmera </button>
-										<button class="btn btn-success link sheet-close" type="button" onClick="app.foto_ticket_galeria();" style="margin-top: 10px"> <img alt="" width="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAS8SURBVFhH7ZdrU5NHFMeZfoW+bb9A3/TDtG/6ETqAUBAdLxRHBy0lF0IioJD7k4SE3OBBJhLul1wgCojINYAFVIKAlUqlXP7dsyRAJJAgqcx0cmZ+wz5nd9hfzj67m2RlIhOZ+D+EMlv/tSRbWyO5ZOiS/2LsSxsFgr+yyBIiZAVGXyxfcdkcjOUJeaHJL83VtpTnqn+MKsUHySmumNcNhiDShcBwWUMQbSE4LIMwRvMWYQBNLEd5gsbQ2DpV56Y0R7sj+VnzbVTrMKSXdD6jPgjv7NaJNA+twhv+mLDvUzrmtjC+uofZd8DI8i7aovn+hW2E18HzBI2hsdQXWNwGE4QkW5P3W+7Db6Jq+yHLNwwkEnS2zzOp/bbskh6Nvle87WB5z9ifcWNjfJbcEutjORLcR7Mjzdb+ENVLLPh48i/I8w2wNo7x55igGHwDVnG4ul7GjSfOI0d5kpvz29BSY/rA3klPVO8TQVYxz/gGb5usw9DV9vN2bIntnmloqrp4jj4EQe3zyh0V9DVYoMjXDUT14gUd7XO8ciRHz0Rj/xLM9hEu93hqk+dcnS+hKLJA+6A3LXJESoLemY+od47yielZMASgumqAWCdAd9eEqlt2eF68h00chyAMon3qQ1rkiNQEj9AUXIbqigEbs7XACiNSC1e1AIPWz/vTVbkYSQUfPX0LWZ6BQ22r+AIOlXFfLkq4vw4P7ol8wuriBrCXGR7v9LnliOQVZJugsW+RQ21X1x94WGzEzptDwR6bHlq2SWji4ak1dAaWDjbKeeSoL+UlFgcjsDVP8B1dWybCXG7AmLcOHSY9FIVGDI6vIfQsgt6h5bRUjvpoTEqC7p4FyHL1h0cJ27W0o9VyD/R1/QhNrfN/KorP+XlocYymRY7GpiRIZ6C7d2Fflv3llWRtmpAmDo1G0OKZ4JVrCryGNxRJWS68voeZ1d3DZ0ZMjkh5iYnW6U1UXrNCz3YsTVj9q529c+to65nnFW4eXDlT5QKhJSivWiDP08Mjjh6TI84kSC8+PwsnNvjEtFu7B1/xyhn1AbQNr6Ys5x9YRAU7/OXqRtyxu/hFYLM+iZuPOJMgEVtWmoSOktbP2K0HcjoRBQMuTrHbCVm+HoIpFDffmQSPyp12CAefv4WK3S7yIgFi61RSuRg33Y5jkikLpi63gorLAhT3rai0saqwXd3RMZlULsYNVwOXtDSMpC54ZrmaBlTPeVE974Wy2c0lnSZ/UrkY18UGVLn7UhM8j1wMhYZdf2wima4podBJqEafnS5IvwvOK6fqFNmS6VCqsSaUSMaJgvJC4amb/Xihg7Qn9Bpu9m2Z7uGe8CZm1tjhPLKM4JMldPTOcjn5bRPudzczxAP48jK5snsCrjfazkRRl+N0QcU186RC3QylzwcpO0hpIJ17CmcblH7/Ye4/okxpx52hbt5OKCjN0/Xfrq4/VvIvSmC/gvOBRII5mpvs4v+nrNS0+3upaU9yAchuCNsVedrN9zOO44IlJSVfSXLUPzFRA32KTsH8xSGpyKgdWwtO3maywajeYZTnqr8jweFH9XvhXhsuCuGu/p0kR2OPasWHNFtTJs3V/E2iF8iENEf9fVQpE5nIxMmRlfUvK3uRn0rF/kIAAAAASUVORK5CYII="> Galeria </button>
-										</div>
-								   </div>
-								</div>
-							 </div>
-						  </div>
-					  </div>
-						
-				
-            <!--  VISUALIZACAO TICKET  -->
-					<div id="ticket" class="view pagina">
-						
-							<div class="navbar" style="height: 50px">
-								<div class="navbar-inner"> 
-									<a href="#" id="oco_detalhe_voltar"><i class="icon icon-back"></i></a>
-									<div class="title">Detalhe do Ticket</div>
-								</div>
-							</div>
-							
-							<div  class="page-content ptr-content" style="padding: 48px 7px 0 10px;">
-								<div class="card" >
-									<form id="form_ticket" style="float: left; width: 100%;">
-										<div class="card-header">
-													<h4 style="float:left" >Ticket </h4>
-													<p style="float:right" id="situacao" name="situacao">situacao</p>										
-										</div>
-
-										<div class="card-content" style="float: left;width: 100%; ">
-
-										<!-- detalhes do ticket -->
-											<input type="hidden" name="id_ocorrencia_ticket" id="id_ocorrencia_ticket">
-											<input type="hidden" name="id_condominio" id="id_condominio">
-											<input type="hidden" name="id_situacao" value="10">
-											<input type="hidden" name="id_situacao_atual" id="id_situacao_atual">
-											<input type="hidden" name="data_conclusao" value="1">
-											<div style="color: #d45507;">
-												Criado em <span id="data_ticket" name="data_ticket"></span>
-											</div>
-
-											<div>
-												<label style="width: 100%;font-size: 15px;font-weight: 700;">Status Anterior</label>
-												<span  id="div_historico" name="div_historico"></span>
-											</div>
-
-											<div>
-												<label style="width: 100%;font-size: 15px;font-weight: 700;">Descrição</label>
-												<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>
-											</div>
-											
-											<div class="form-group" id="tv_anexo" >
-											</div>
-
-										</div>
-									</form>
-								</div>
-									
-							</div>
-						
+			<!-- Menu Rodapé -->
+			<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
+				<div class="toolbar-inner" style="padding: 5px">
+					<div style="width: 50%" onClick="voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');" >
+						<!--<i class="fa fa-trash fa-2x"></i>-->
+						<i class="glyphicon glyphicon-log-out"></i>
+						<br>
+						<label>Sair</label>
 					</div>
+					<div style="width: 50%" type="button" onClick="ticket_insert();" >
+						<i class="glyphicon glyphicon-floppy-saved"></i>
+						<br>
+						<label>Salvar</label>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="list no-hairlines-md" style="padding: 55px 10px 0 10px;">
+				<form id="form_ticket_add">
+					<input type="hidden" name="operacao" id='operacao' value="">
+					<input type="hidden" name="id_ocorrencia" id='id_ocorrencia' value="">
+					<input type="hidden" name="id_condominio" id="id_condominio"  value="">
+					<input type="hidden" name="id_solicitante" id="id_solicitante"  value="">
+					<input type="hidden" name="id_criador" id="id_criador"  value="">
+					<input type="hidden" name="id_responsavel" id="id_responsavel" value="">									
+					<input type="hidden" name="privada" id="privada" value="">
+					<input type="hidden" name="foto" id="foto">
+					<ul>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Situacao</div>
+								<div class="item-input-wrap">
+									<div id="ti_div_situacao" name="ti_div_situacao"></div>
+								</div>
+							</div>
+						</li>
+						<li class="item-content item-input">
+							<div class="item-inner">
+								<div class="item-title item-label">Descrição do Ticket</div>
+								<div class="item-input-wrap">
+									<input id="ti_descricao" name="ti_descricao" style="height: 69px;" type="text" placeholder="Descrição do ticket" />
+								</div>
+							</div>
+						</li>
+					</ul>
+				</form
+				<p></p> 
+				<button style="left: 4%; width: 91%;" class="col button button-fill color-bluelink link sheet-open" href="#" data-sheet=".modal-anexo-ticket" id="btn_anexo" style="margin-bottom: 10px:">Anexar Arquivo</button>
+
+				<span style="left: 4%; width: 91%; display: none; margin-top: 6px;" class="col button button-fill color-red" href="#" id="limpa_anexo2" onclick="clean_picture()"><span class="fa fa-trash"></span> Limpar Anexo</span>
+
+				<label style="margin-left: 135px;display:none" id="labelfoto" for="anexo_foto">Imagem</label>
+				<div class="form-group" id="anexo_oco" style="overflow:auto;max-height: 256px;width: 100%;display: none;" align="center" >
+					<img id="anexo_foto" name="anexo_foto" class="img-responsive img-rounded"  >
+				</div>
+
+
+				<div id="modal-anexo-ticket" class="sheet-modal modal-anexo-ticket" style="height: 35%">
+					<div class="sheet-modal-inner">
+					  <div class="block">
+							<h4 class="modal-title">Origem</h4>
+							<div id="foto_menu" class="foto_menu" style="text-align: center">
+							<button class="btn btn-success link sheet-close" type="button" onClick="app.foto_ticket_camera();"> <img alt="" width="20" src="data:image/png;base64,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"> Câmera </button>
+							<button class="btn btn-success link sheet-close" type="button" onClick="app.foto_ticket_galeria();" style="margin-top: 10px"> <img alt="" width="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAS8SURBVFhH7ZdrU5NHFMeZfoW+bb9A3/TDtG/6ETqAUBAdLxRHBy0lF0IioJD7k4SE3OBBJhLul1wgCojINYAFVIKAlUqlXP7dsyRAJJAgqcx0cmZ+wz5nd9hfzj67m2RlIhOZ+D+EMlv/tSRbWyO5ZOiS/2LsSxsFgr+yyBIiZAVGXyxfcdkcjOUJeaHJL83VtpTnqn+MKsUHySmumNcNhiDShcBwWUMQbSE4LIMwRvMWYQBNLEd5gsbQ2DpV56Y0R7sj+VnzbVTrMKSXdD6jPgjv7NaJNA+twhv+mLDvUzrmtjC+uofZd8DI8i7aovn+hW2E18HzBI2hsdQXWNwGE4QkW5P3W+7Db6Jq+yHLNwwkEnS2zzOp/bbskh6Nvle87WB5z9ifcWNjfJbcEutjORLcR7Mjzdb+ENVLLPh48i/I8w2wNo7x55igGHwDVnG4ul7GjSfOI0d5kpvz29BSY/rA3klPVO8TQVYxz/gGb5usw9DV9vN2bIntnmloqrp4jj4EQe3zyh0V9DVYoMjXDUT14gUd7XO8ciRHz0Rj/xLM9hEu93hqk+dcnS+hKLJA+6A3LXJESoLemY+od47yielZMASgumqAWCdAd9eEqlt2eF68h00chyAMon3qQ1rkiNQEj9AUXIbqigEbs7XACiNSC1e1AIPWz/vTVbkYSQUfPX0LWZ6BQ22r+AIOlXFfLkq4vw4P7ol8wuriBrCXGR7v9LnliOQVZJugsW+RQ21X1x94WGzEzptDwR6bHlq2SWji4ak1dAaWDjbKeeSoL+UlFgcjsDVP8B1dWybCXG7AmLcOHSY9FIVGDI6vIfQsgt6h5bRUjvpoTEqC7p4FyHL1h0cJ27W0o9VyD/R1/QhNrfN/KorP+XlocYymRY7GpiRIZ6C7d2Fflv3llWRtmpAmDo1G0OKZ4JVrCryGNxRJWS68voeZ1d3DZ0ZMjkh5iYnW6U1UXrNCz3YsTVj9q529c+to65nnFW4eXDlT5QKhJSivWiDP08Mjjh6TI84kSC8+PwsnNvjEtFu7B1/xyhn1AbQNr6Ys5x9YRAU7/OXqRtyxu/hFYLM+iZuPOJMgEVtWmoSOktbP2K0HcjoRBQMuTrHbCVm+HoIpFDffmQSPyp12CAefv4WK3S7yIgFi61RSuRg33Y5jkikLpi63gorLAhT3rai0saqwXd3RMZlULsYNVwOXtDSMpC54ZrmaBlTPeVE974Wy2c0lnSZ/UrkY18UGVLn7UhM8j1wMhYZdf2wima4podBJqEafnS5IvwvOK6fqFNmS6VCqsSaUSMaJgvJC4amb/Xihg7Qn9Bpu9m2Z7uGe8CZm1tjhPLKM4JMldPTOcjn5bRPudzczxAP48jK5snsCrjfazkRRl+N0QcU186RC3QylzwcpO0hpIJ17CmcblH7/Ye4/okxpx52hbt5OKCjN0/Xfrq4/VvIvSmC/gvOBRII5mpvs4v+nrNS0+3upaU9yAchuCNsVedrN9zOO44IlJSVfSXLUPzFRA32KTsH8xSGpyKgdWwtO3maywajeYZTnqr8jweFH9XvhXhsuCuGu/p0kR2OPasWHNFtTJs3V/E2iF8iENEf9fVQpE5nIxMmRlfUvK3uRn0rF/kIAAAAASUVORK5CYII="> Galeria </button>
+							</div>
+					   </div>
+					</div>
+				 </div>
+			  </div>
+		  </div>
+
+         <!--  VISUALIZACAO TICKET  -->
+		
+		<div id="ticket" class="view pagina">
+
+				<div class="navbar" style="height: 50px">
+					<div class="navbar-inner"> 
+						<a href="#" id="oco_detalhe_voltar"><i class="icon icon-back"></i></a>
+						<div class="title">Detalhe do Ticket</div>
+					</div>
+				</div>
+
+				<div  class="page-content ptr-content" style="padding: 48px 7px 0 10px;">
+					<div class="card" >
+						<form id="form_ticket" style="float: left; width: 100%;">
+							<div class="card-header">
+										<h4 style="float:left" >Ticket </h4>
+										<p style="float:right" id="situacao" name="situacao">situacao</p>										
+							</div>
+
+							<div class="card-content" style="float: left;width: 100%; ">
+
+							<!-- detalhes do ticket -->
+								<input type="hidden" name="id_ocorrencia_ticket" id="id_ocorrencia_ticket">
+								<input type="hidden" name="id_condominio" id="id_condominio">
+								<input type="hidden" name="id_situacao" value="10">
+								<input type="hidden" name="id_situacao_atual" id="id_situacao_atual">
+								<input type="hidden" name="data_conclusao" value="1">
+								<div style="color: #d45507;">
+									Criado em <span id="data_ticket" name="data_ticket"></span>
+								</div>
+
+								<div>
+									<label style="width: 100%;font-size: 15px;font-weight: 700;">Status Anterior</label>
+									<span  id="div_historico" name="div_historico"></span>
+								</div>
+
+								<div>
+									<label style="width: 100%;font-size: 15px;font-weight: 700;">Descrição</label>
+									<span name="descricao" style="width: 100%;font-size: 15px;" id="descricao"></span>
+								</div>
+
+								<div class="form-group" id="tv_anexo" >
+								</div>
+
+							</div>
+						</form>
+					</div>
+
+				</div>
+
+		</div>
 	
 
 <!--  $PET LISTA  -->
@@ -3035,77 +3024,73 @@
 				</div>
 			</div>
 	</div>
+    <!-- $PETS PAGINA VISUALIZACAO  -->
+	<div id="pet" class="pagina view">
 
-<!-- $PETS PAGINA VISUALIZACAO  -->
-						<div id="pet" class="pagina view">
+		<div class="navbar" style="height: 50px">
+			<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');"><i class="icon icon-back"></i></a>
+				<div class="title" >CADASTRO DO PET</div>
+			</div>
+		</div>
 
-							<div class="navbar" style="height: 50px">
-								<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');"><i class="icon icon-back"></i></a>
-									<div class="title" >CADASTRO DO PET</div>
-								</div>
-							</div>
-							
-							<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
-								<div class="toolbar-inner" style="padding: 5px">
-									<div style="width: 50%" onClick="excluir_pet();">
-										<!--<i class="fa fa-trash fa-2x"></i>-->
-										<i class="glyphicon glyphicon-trash"></i>
-										<br>
-										<label>Excluir</label>
-									</div>
-									<div style="width: 50%" type="button" onClick="editar_pet()">
-										<i class="glyphicon glyphicon-pencil"></i>										
-										<br>
-										<label>Editar</label>
-									</div>
-								</div>
-							</div>
+		<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
+			<div class="toolbar-inner" style="padding: 5px">
+				<div style="width: 50%" onClick="excluir_pet();">
+					<!--<i class="fa fa-trash fa-2x"></i>-->
+					<i class="glyphicon glyphicon-trash"></i>
+					<br>
+					<label>Excluir</label>
+				</div>
+				<div style="width: 50%" type="button" onClick="editar_pet()">
+					<i class="glyphicon glyphicon-pencil"></i>										
+					<br>
+					<label>Editar</label>
+				</div>
+			</div>
+		</div>
 
-							<div class="page-content">
-								<div style="padding: 0px 20px 20px 20px;">
-									<form id="form_pet" style="float: left; width: 100%;">
-										<input type="hidden" name="foto_up" id="foto_up" > 
-										<input type="hidden" name="id_pet" id="id_pet">
-										<input type="hidden" name="id_condominio" id="id_condominio">
-										<input type="hidden" name="nome" id="nome">
-										
-										<input type="hidden" name="id_especie" id="id_especie">
-										<input type="hidden" name="sexo" id="sexo">
-										<input type="hidden" name="cor" id="cor">
-										<input type="hidden" name="observacao" id="observacao">
-										<input type="hidden" name="raca" id="raca">
-																																			
-										<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
-											<div style="font-size: 20px; float: left;" id="nome_pet" name="nome_pet" >
-												PET nome  											
-											</div>
-											
-											<div id="unidade" style="padding-top: 5px; float: right;">
-												Local de preenchimento da unidade
-											</div>
-										
-										</div>
-										
-										<p align="center" id="foto"> </p>
-										
-										<div align="center">
-											
-										<span id="desc_especie">Local onde é preenchido a ESPECIE do pet - </span>
-										<span id="lbl_raca">Local onde é preenchido a RAÃƒâ€¡A do pet - </span>
-										<span id="lbl_cor">Local onde é preenchido a COR do pet - </span>
-										<span id="lbl_sexo">Local onde é preenchido o SEXO do pet</span>
-										</div>										
-										
-										<h4 style="width: 100%;" ><strong>Observacao</strong></h4>
-										<span id="lbl_observacao" style="width: 100%;font-size: 15px;" ></span>										
-									</form>									
-								</div>
-		
-							</div>
-		
+		<div class="page-content">
+			<div style="padding: 0px 20px 20px 20px;">
+				<form id="form_pet" style="float: left; width: 100%;">
+					<input type="hidden" name="foto_up" id="foto_up" > 
+					<input type="hidden" name="id_pet" id="id_pet">
+					<input type="hidden" name="id_condominio" id="id_condominio">
+					<input type="hidden" name="nome" id="nome">
+
+					<input type="hidden" name="id_especie" id="id_especie">
+					<input type="hidden" name="sexo" id="sexo">
+					<input type="hidden" name="cor" id="cor">
+					<input type="hidden" name="observacao" id="observacao">
+					<input type="hidden" name="raca" id="raca">
+
+					<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
+						<div style="font-size: 20px; float: left;" id="nome_pet" name="nome_pet" >
+							PET nome  											
 						</div>
-					
-<!--  Pets INCLUSAO  -->
+
+						<div id="unidade" style="padding-top: 5px; float: right;">
+							Local de preenchimento da unidade
+						</div>
+
+					</div>
+
+					<p align="center" id="foto"> </p>
+
+					<div align="center">
+
+					<span id="desc_especie">Local onde é preenchido a ESPECIE do pet - </span>
+					<span id="lbl_raca">Local onde é preenchido a RAÃƒâ€¡A do pet - </span>
+					<span id="lbl_cor">Local onde é preenchido a COR do pet - </span>
+					<span id="lbl_sexo">Local onde é preenchido o SEXO do pet</span>
+					</div>										
+
+					<h4 style="width: 100%;" ><strong>Observacao</strong></h4>
+					<span id="lbl_observacao" style="width: 100%;font-size: 15px;" ></span>										
+				</form>									
+			</div>
+		</div>
+	</div>			
+    <!--  Pets INCLUSAO  -->
 	<div id="add_pet" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
@@ -3174,7 +3159,6 @@
 				
 			</form>
 		</div>
-	
 	</div>
 	
 <!--$ Pets EDICAO ----------->
@@ -3280,50 +3264,98 @@
             </div>
         </div>
     </div>
+		
+	<!-- $AGENDA  
+         Autor: Caio Souza.
+         Data: 06/02/2019.
+    -->
+		
+	<div id="agenda" class="pagina agenda"> 
+		<div class="view view-agenda"> 
+			<div data-name="home" class="page">
+				<div class="navbar" style="height: 50px">
+					<div class="navbar-inner">
+						<div class="left"> 
+							<a href="#" onClick="voltar('#home','#agenda','home');">
+								<i class="icon icon-back"></i>
+							</a>
+						</div>
+						<div class="title">Agenda Tarefas</div>
+					</div>
+				</div>
+				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-agenda" style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+
+					<div class="ptr-preloader">
+						<div class="preloader"></div>
+						<div class="ptr-arrow"></div>
+					</div>
+					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
+					<div id="main_agenda" class="list media-list" style="margin-top:0;">
+						
+					</div>
+					<span class="fa fa-exchange" id="agenda_semft" style="color:#ffd900;margin: 18% 0 0 31%;font-size: 9em;display:none"></span>
+					<p id="any_found" class="any_found" style="margin-left: 12%;font-size: 23px;display:none"></p>
+				</div>
+				<div class="row" style="margin-top: -61px;">
+					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
+						<a onclick="agenda_novo();" >
+							<i class="glyphicon glyphicon-plus"></i>
+						</a>
+					</div>
+			   </div>	
+		    </div>
+		</div>
+	</div>
+		
+		
+		
 	
 	<!-- $MUDANCA  
          Autor: Caio Souza.
          Data: 29/01/2019.
     -->
 	<div id="mudanca" class="pagina mudanca"> 
+		<input type="hidden" id="id_mudanca" />
+		<input type="hidden" id="s_data" />
+		<input type="hidden" id="s_hora_inicio" />
+		<input type="hidden" id="s_hora_fim" />
 		<div class="view view-mudanca"> 
 			<div data-name="home" class="page">
-					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner">
-							<div class="left"> 
-								<a href="#" onClick="voltar('#home','#ocorrencias','home');">
-									<i class="icon icon-back"></i>
-								</a>
-							</div>
-							<div class="title">Mudança</div>
-							<div class="right"> 											
-								<a class="link popup-open" href="#" data-popup=".popup-about">
-									<i class="fa fa-search" style="margin-right: 15px"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-                    <div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
-
-						<div class="ptr-preloader">
-							<div class="preloader"></div>
-							<div class="ptr-arrow"></div>
-						</div>
-						<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
-						<div id="main_mudanca" class="list media-list" style="margin-top:0;"></div>
-					</div>
-					<div class="row" style="margin-top: -61px;">
-						<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
-							<a onclick="mudanca_novo();" >
-								<i class="glyphicon glyphicon-plus"></i>
+				<div class="navbar" style="height: 50px">
+					<div class="navbar-inner">
+						<div class="left"> 
+							<a href="#" onClick="$('.any_found').hide();voltar('#home','#mudanca','home');">
+								<i class="icon icon-back"></i>
 							</a>
 						</div>
-						<div class="col-md-2">
-							<div class="box" id="boxUp_ocorrencias"></div>
-						</div>
-				   </div>	
+						<div class="title">Mudança</div>
+					</div>
 				</div>
-		  </div>
+				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-mudancas"  style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+
+					<div class="ptr-preloader">
+						<div class="preloader"></div>
+						<div class="ptr-arrow"></div>
+					</div>
+					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
+					<div id="main_mudanca" class="list media-list" style="margin-top:0;">
+						
+					</div>
+					<span class="fa fa-exchange" id="mudanca_semft" style="color:#ffd900;margin: 18% 0 0 31%;font-size: 9em;display:none"></span>
+					<p id="any_found" class="any_found" style="margin-left: 12%;font-size: 23px;display:none"></p>
+				</div>
+				<div class="row" style="margin-top: -61px;">
+					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
+						<a onclick="mudanca_novo();" >
+							<i class="glyphicon glyphicon-plus"></i>
+						</a>
+					</div>
+					<div class="col-md-2">
+						<div class="box" id="boxUp_mudancas"></div>
+					</div>
+			   </div>	
+		    </div>
+		</div>
 	</div>
 	
 	<!-- Mudanca Inclusao -->
@@ -3335,11 +3367,12 @@
 			</div>
 		</div>
 		
-		<div class="page-content ptr-content" style="max-height: 85%;padding: 56px 7px 7px 7px;">
+		<div class="page-content ptr-content" style="padding: 56px 7px 7px 7px;">
               <form id="form_mudanca_add">		
 				<input type="hidden" name="id_unidade" />
 				<input type="hidden" name="nome_morador" />
 				<input type="hidden" name="id_usuario_condominio" />
+				<input type="hidden" name="id_condominio" />
                 <div class="list no-hairlines-md">
 					<ul>
 					   <li class="item-content item-input">
@@ -3348,6 +3381,7 @@
 								<div class="item-input-wrap">
 									<div id="div_tipo" name="div_tipo">
 										<select name="tipo_mudanca">
+											<option value="0">Selecione uma opção...</option>
 											<option value="1">Entrada</option>
 											<option value="2">Saida</option>
 										</select>
@@ -3363,7 +3397,7 @@
 									<div class="item-title item-label">Data Mudança:</div>
 										<div class="item-input-wrap">
 											<div id="div_data_mudanca" name="div_data_mudanca" >
-												<input id="data_mudanca" type="date" name="data_mudanca" placeholder="Data Mudança" style="width: 113px;"/>
+												<input id="data_mudanca" onChange="verifica_data(this)" type="date" name="data_mudanca" placeholder="Data Mudança" style="width: 113px;"/>
 											</div>
 										</div>
 								  </div>
@@ -3398,9 +3432,16 @@
 						   <div class="item-inner">
 							<div class="item-title item-label">Termo de mudança:</div>
 								<div class="item-input-wrap">
-									<textarea id="termo" placeholder="Termo de mudança" disabled></textarea>
+									<textarea style="background: #f6f6f6;padding: 8px;" id="termo" placeholder="Termo de mudança" disabled></textarea>
 								</div>
 						   </div>
+					   </li>
+					   <li>
+							<label class="item-checkbox item-content" onclick="confirma_mudanca()" style="font-weight:100; font-size: 12px;">
+								<input type="checkbox" id="check_confirma_mudanca" name="check_confirma_mudanca">
+								<i class="icon icon-checkbox"></i>
+								<div class="item-title" style="width:100%; float:left"> Aceitar termo de mudança</div>
+						   </label>
 					   </li>
 					   <li class="item-content item-input">
 						   <div class="item-inner">
@@ -3413,9 +3454,9 @@
 						  </div>
 					   </li>
 					</ul>
-					<span onclick="salva_mudanca()" style="margin-top: 10px;width: 92%;left: 4%;" class="col button button-fill">
+					<button type="button" onclick="salva_mudanca()" style="margin-top: 10px;width: 92%;left: 4%;" class="col button button-fill" disabled>
 						<span class="fa fa-check"></span> Cadastrar
-					</span>
+					</button>
 				</div>		  
 			</form>
 		</div>
@@ -3425,12 +3466,126 @@
 	<div id="mudanca_info" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="carrega_mudancas(0);voltar('#mudanca','#mudanca_info','');"><i class="icon icon-back"></i></a> </div>
 				<div class="title">Mudança</div>
 			</div>
 		</div>
-		<div class="page-content ptr-content" data-ptr-distance="55" id="pull-ocorrencias" style="padding-left: 9px;padding-top: 84px; padding-bottom: 10px; background-color: #f0f0f04d">
-			<div id="detalhe_mudanca"></div>
+		<div class="page-content ptr-content" data-ptr-distance="55" id="pull-mudancas" style="padding-left: 9px;padding-top: 84px; padding-bottom: 10px; background-color: #f0f0f04d">
+			<div class="row">
+				<div class="col-md-6" style="margin-left: -24px;margin-top: -5%;"><div id="detalhe_mudanca"></div></div>
+				<div class="col-md-6">
+					<span id="icon_status_mudanca" style="display:none;font-size: 8em;" class="fa fa-check-square"></span>
+					<p id="lb_status_mudanca" style="margin-left: 25px;"></p>
+				</div>
+				
+			</div>
+			
+			<div class="list" onclick="up_down_mudanca()">
+			  <ul>
+				<li class="accordion-item"><a href="#" class="item-content item-link">
+					  <div class="item-inner">
+						<div class="item-title"><span class="fa fa-exchange"></span> Feedback</div>
+						<div style="display:block" class="item-title"><span id="up_down_mudanca" class="fa fa-angle-down"></span></div>
+					  </div></a>
+					  <div class="accordion-item-content">
+						<div class="block" id="main_feedback" ></div>
+					  </div>
+				 </li>
+			  </ul>
+		   </div>
+		</div>
+	</div>
+	<div class="sheet-modal mudanca_sugestao" style="height: 80%;">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"></div>
+				<div class="right"><span style="margin-right: 8px;" class="link sheet-close" href="#">Fechar</span></div>
+			</div>
+		</div>
+		<div class="sheet-modal-inner">
+			<input type="hidden" id="id_movto_mudanca" />
+			<div class="block" style="overflow:auto;max-height: 348px;">
+				<div class="chip">
+					<div class="chip-media bg-color-yellow">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<div class="chip-label">
+						<span id="data_sugerida_mudanca"></span>
+					</div>
+				</div></br>
+				<div class="chip">
+					<div class="chip-media bg-color-blue">
+						<i class="fa fa-clock-o"></i>
+					</div>
+					<div class="chip-label">
+						<span id="hora_sugerida_inicio_mudanca"></span>
+					</div>
+				</div></br>
+		        <div class="list no-hairlines-md" style="margin-top: -50px;display:none" id="sugestao_mudanca">
+					<ul>
+					<div class="row">
+						<div class="col-xs-5">
+							  <li class="item-content item-input">
+								   <div class="item-inner">
+									<div class="item-title item-label">Data:</div>
+										<div class="item-input-wrap">
+											<div id="div_tipo" name="div_tipo">
+												<input type="date" name="data_sug" id="data_sug" style="width: 130px;" disabled/>
+											</div>
+										</div>
+								  </div>
+							   </li>
+						</div>
+						<div class="col-xs-4">
+							 <li class="item-content item-input">
+								   <div class="item-inner">
+									<div class="item-title item-label">Hora Inicio:</div>
+										<div class="item-input-wrap">
+											<div id="div_tipo" name="div_tipo">
+												<input type="time" name="hora_inicio_sug" id="hora_inicio_sug"  style="width: 52px;" disabled/>
+											</div>
+										</div>
+								  </div>
+							   </li>
+						</div>
+						<div class="col-xs-3" style="padding-left: 0px;">
+							 <li class="item-content item-input" style="padding-left: 0;">
+							   <div class="item-inner">
+								<div class="item-title item-label">Hora Fim:</div>
+									<div class="item-input-wrap">
+										<div id="div_tipo" name="div_tipo">
+											<input type="time" name="hora_fim_sug" id="hora_fim_sug" style="width: 52px;" disabled/>
+										</div>
+									</div>
+							  </div>
+						   </li>
+						</div>
+					</div>
+					  
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Observação:</div>
+								<div class="item-input-wrap">
+									<div id="div_tipo" name="div_tipo">
+										<input type="text" name="observacao_sug" id="observacao_sug" style="height: 66px;" disabled/>
+									</div>
+								</div>
+						  </div>
+					   </li><br>
+					   <li>
+						<label class="item-checkbox item-content" onclick="hab_campo_mudanca()" style="font-weight:100; font-size: 12px;">
+							    <input type="checkbox" id="check_sugerir" name="f_minhas" />
+								<i class="icon icon-checkbox"></i>
+								<div class="item-title" style="width:100%; float:left"> Sugerir nova data</div>
+					   </label>
+					   </li>
+					</ul>
+		        </div>
+		 		<span class="col button button-fill" id="apv_mudanca" onclick="aprova_mudanca(0)"style="background: #4caf50;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Aprovar</span>
+		        <span class="col button button-fill" id="rpv_mudanca_verifica" onclick="reprova_verifica()" style="background: #f44336;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-close"></span> Reprovar</span>
+		        <span class="col button button-fill" id="rpv_mudanca" onclick="reprova_mudanca()" style="display:none;background: #4caf50;color:white;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Confirmar</span>
+			    <span class="col button button-fill" id="cad_mudanca" onclick="" style="display:none;margin: 8px 0px 8px 0;"><span class="fa fa-check"></span> Cadastrar</span>
+			</div>
 		</div>
 	</div>
 		
@@ -3476,6 +3631,8 @@
 					var mainDocume  = app2.views.create('.view-documentos' );
 					var mainOcorem  = app2.views.create('.view-ocorrencias' );
 					var mainTicket  = app2.views.create('.view-tickets' );
+					var mainMudanca = app2.views.create('.view-mudanca' );
+					
 					var $$          = Dom7;
 					var $ptrContent = $$('.ptr-content');
 					$ptrContent.on('ptr:refresh', function (e) {
@@ -3742,6 +3899,11 @@
                            
                         }else if(tipo==99){
                            
+                        }else if(tipo==27){
+						    window.setTimeout(function() {
+                                carrega_mudanca(id_reg);
+                            },500);   
+                          
                         }
                     }else{
                         if(tipo==20){
@@ -3790,10 +3952,11 @@
         });
 		
         notificationWithButton.open();
-		setTimeout(function(){
-			notificationWithButton.close();
-			
-        },2000);
+		if(tipo==99){
+			setTimeout(function(){
+				notificationWithButton.close();
+            },2000);
+		}
     };
 
     function sheet_modulo(modulo,parametros){

@@ -28,9 +28,7 @@ var app = {
 	
     onDeviceReady: function() {
     
-		
-		
-        app.receivedEvent('deviceready');
+		app.receivedEvent('deviceready');
         document.addEventListener("backbutton", onBackKeyDown, false);
 		app.remove_pull();
         
@@ -48,7 +46,8 @@ var app = {
 		$("#boxUp_entregas"   ).hide();
 		$("#boxUp_enquetes"   ).hide();
 		$("#boxUp_documentos" ).hide();
-		$("#boxUp_ocorrencias").hide();		
+		$("#boxUp_ocorrencias").hide();	
+		$("#boxUp_mudancas").hide();	
 		$("#boxUp_tickets").hide();
 		$("#boxUp_mreserva").hide();
 		
@@ -237,6 +236,25 @@ var app = {
 				scrollTop: 0
 			},600)
 		});
+		
+		$("#pull-mudancas").scroll(function() { 
+			var ordem = $("#ol_ordem").val();
+			var y=(($(this).scrollTop() + $(this).height()) + 71);
+			var x=$(this).get(0).scrollHeight;
+			//alert(y+ ' iii '+x);
+            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+				//alert('recive event'+ordem);
+                carrega_mudancas(ordem);
+            }
+			app.ckBoxUp("#boxUp_mudancas","#pull-mudancas");
+		});	
+		
+		$('#boxUp_mudancas').click(function(){
+			$('#pull-mudancas').animate({
+				scrollTop: 0
+			},600)
+		});
+		
 		
 		$("#pull-tickets").scroll(function() { 
 			var y=(($(this).scrollTop() + $(this).height()) + 71);
@@ -848,6 +866,7 @@ var app = {
     },
         
     remove_pull: function(){
+		
 		$("#notificacoes"    ).removeClass("ptr-content");
 		$("#pull-liberacao"  ).removeClass("ptr-content");
 		$("#pull-liberacao" ).removeClass("ptr-refreshing");
@@ -865,6 +884,9 @@ var app = {
 		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
 		$("#pull-tickets" ).removeClass("ptr-content");
 		$("#pull-tickets" ).removeClass("ptr-refreshing");
+		$("#pull-mudancas" ).removeClass("ptr-content");
+		$("#pull-mudancas" ).removeClass("ptr-refreshing");
+		
 		//$("#pull-minha-reserva" ).removeClass("ptr-content");
 	},
 	controler_pull: function(pag){
@@ -899,6 +921,9 @@ var app = {
 		}else if(pag==='minha_reserva'){
 			$("#pull-mreserva").addClass("ptr-content");
 			//alert('saindo do controler_pull');
+		}else if(pag==='mudancas'){
+			$("#pull-mudancas").addClass("ptr-content");
+			//alert('saindo do controler_pull');
 		}
 	},
 	pull_to_refresh: function(res){
@@ -927,6 +952,9 @@ var app = {
 		}else if(res==='minha_reserva'){
 			//carrega_tickets(0);
             carrega_minha_reserva(0);
+		}else if(res==='mudancas'){
+			//carrega_tickets(0);
+            carrega_mudancas(0);
 		}
 		//alert('terminado');
 	},
