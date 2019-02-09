@@ -26,7 +26,7 @@ function carrega_areas(){
   							'</div>'+
   							//'<div style="background-image:url(http://lorempixel.com/1000/600/nature/3/)" class="card-header align-items-flex-end"></div>'+
   							'<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>'+
-  							'<div class="card-footer"><a href="#" class="link"></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\');">Reservar</a></div>'+
+  							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\');">Reservar</a></div>'+
 							'</div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
                 dados = dados + dado;
@@ -587,6 +587,14 @@ function edite_reserva(id_reserva,data,inicio,fim){
 	$( "#add_reserva_hora_fim" ).val(fim);
 	$( "#add_reserva_tipo" ).val("1");
     $("#concordo").attr('checked','checked');
+	var bt_add_voltar = document.getElementById('voltar_add_reserva');
+	if(localStorage.getItem('periodo_integral') == 1){
+		bt_add_voltar.setAttribute("onclick", "afed('#area_comum_new,#bt_add_reserva2','#reserva,#bt_add_reserva','','',2,'area');");
+		afed('','','','#add_reserva_hora_inicio,#add_reserva_hora_fim',2,'');
+	}else{
+		bt_add_voltar.setAttribute("onclick", "afed('#area,#bt_add_reserva','#reserva,#bt_add_reserva2','','',2,'area');");
+		afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'');
+	}
 }
 
 // FUNCAO SALVA RESERVA AREA COMUM
@@ -631,17 +639,18 @@ function salva_reserva(){
                     }else if(retorno != ''){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
+						alert(localStorage.getItem('dsa'));
 						if(localStorage.getItem('periodo_integral') == 1){
 							//alert(0);
 							carrega_area(0);
 							fecha_calendario();
-							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','',localStorage.getItem('dsa'));
 							afed('#area_comum_new','#reserva','','',2,'area');  
 						}else{
 							//alert(1);
                         	carrega_area();
 							fecha_calendario();
-							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','',localStorage.getItem('dsa'));
 							afed('#area','#reserva','','',2,'area');  
 						}
 					}
@@ -670,7 +679,7 @@ function delete_reserva(){
 function apaga_reserva(button){
     if(button == 1){
         if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){
-            var id_reserva = $( "#add_reserva_id" ).val();
+            var id_reserva = $( "#add_reserva #add_reserva_id" ).val();
         }else{
             var id_reserva = $( "#rel_delete_reserva #add_reserva_id" ).val();
         }
@@ -682,9 +691,24 @@ function apaga_reserva(button){
 			complete   : function() { $("#wait").css("display", "none"); },
             data:'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_reserva='+id_reserva,
 			success: function(retorno){
+				alert(retorno);
                 if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){
-                    afed('#area','#reserva','','',2,'area');
-                    carrega_area();
+					if(localStorage.getItem('periodo_integral') == 1){
+						//alert(0);
+						carrega_area(0);
+						fecha_calendario();
+						new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
+						afed('#area_comum_new','#reserva','','',2,'area');  
+					}else{
+						//alert(1);
+						carrega_area();
+						fecha_calendario();
+						new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','');
+						afed('#area','#reserva','','',2,'area');  
+					}
+					
+                    //afed('#area','#reserva','','',2,'area');
+                    //carrega_area();
                 }else{
                     carrega_minha_reserva();
                     $( "#rel_delete_reserva #add_reserva_id" ).val('');
@@ -730,7 +754,9 @@ $.ajax({
 	data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), area : id_area_comum, data_evento : data_evento},
 	dataType   : 'json',
 	success: function(retorno){
+		localStorage.setItem('dsa',ativos);
 		var dia_semana = ativos.split('**');
+		
 		if(tipo==1){
 		var eventos_data = new Array ();
 		for (x in retorno) {
@@ -804,12 +830,13 @@ $.ajax({
 					$$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
 				},
 				dayClick: function(calendar, dayEl, year, month, day) {
+					//alert(day+'/'+month+'/'+year);
 					var rds = new Date(year,month,day);
 					//alert(dia_semana[rds.getDay()]);
 					if(dia_semana[rds.getDay()] == 1){
 						$('#retorno_reservas_dia').html('');
 						var data_select = year+'-'+(parseInt(month)+1)+'-'+day;
-						new_calendario(id_area_comum,data_select,2,integral);
+						new_calendario(id_area_comum,data_select,2,integral,min,max,ativos);
 						if(integral == 1){
 							afed('#bt_add_reserva2','#bt_add_reserva','','',2,'');
 						}else{
@@ -849,8 +876,12 @@ $.ajax({
 				afed('#bt_add_reserva','#bt_add_reserva2','','',2,'');
 			}
 		}
-			
-		var	dado_reserva = '<li class="item-content" style="border-left: 7px solid #2196f3">'+
+		if(retorno[x]['id_morador'] == $( "#DADOS #ID_MORADOR" ).val()){
+			var oc = 'carrega_area(0); edite_reserva(\''+retorno[x]['id_reserva']+'\',\''+reserva_inicio[0]+'\',\''+reserva_inicio[1]+'\',\''+reserva_fim[1]+'\')';
+		}else{
+			var oc = "alerta('0','Essa reserva não pode ser alterada!');";
+		}
+		var	dado_reserva = '<li onclick="'+oc+'" class="item-content" style="border-left: 7px solid #2196f3">'+
 							'<div class="event-color" style="background-color: #2196f3"></div>'+
 							'<div class="item-inner">'+
 							'<div class="item-media" style="width: 44px; height: 44px; margin:4px 4px 0 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotov+'</div>'+
