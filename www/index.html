@@ -63,6 +63,7 @@
 	<script src="model/mdl_veiculos.js"></script>
 	<script src="model/mdl_contatos.js"></script>
 	<script src="model/mdl_mudanca.js"></script>
+	<script src="model/mdl_agenda.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -581,6 +582,14 @@
 						<div class="item-title">Mudança</div>
 						<span class="circle_m" id="n_mudanca" style="margin-left:40%;background-color: cadetblue;"></span>
 						<span class="circle_m" style="background:#00a65a"><span style="color: #ffffff;"><strong>Novo</strong></span><span></span></span>
+						</div>
+						</a>
+						</li>
+						<li onClick="carrega_agenda_eventos(0)" >
+						<a class="item-content item-link" href="/cards/">
+						<div class="item-media"><i class="fa fa-calendar"></i></div>
+						<div class="item-inner">
+						<div class="item-title">Agenda Tarefas</div>
 						</div>
 						</a>
 						</li>
@@ -3301,20 +3310,33 @@
 					</div>
 				</div>
 				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-agenda" style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
-
-					<div class="ptr-preloader">
+                    <div class="ptr-preloader">
 						<div class="preloader"></div>
 						<div class="ptr-arrow"></div>
 					</div>
 					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
-					<div id="main_agenda" class="list media-list" style="margin-top:0;">
-						
+					
+					<!-- Calendario -->
+					<div id="agenda_calendario" style="display: block;margin-top: -30px;" class="pagina view">
+						<div class="block block-strong no-padding">
+							 <div id="calendario_agenda"></div>	 
+						</div>
+						<!-- informacoes evento -->
+						<div id="info_agenda_evento" style="padding: 0px 0 41% 11px; overflow: auto; max-height: 48%;">
+							<div class="chip color-red" style="width: 96%;">
+								<div class="chip-label">1 - Festa na piscina</div>
+							</div><br>
+							<div class="chip color-red" style="background: #0ee000;width: 96%;">
+								<div class="chip-label">2 - Manutencao do portao</div>
+							</div><br>
+							<div class="chip color-red" style="background: #f0b716;width: 96%;">
+								<div class="chip-label">3 - Indulto de natal rs</div>
+							</div><br><br>
+						 </div>
 					</div>
-					<span class="fa fa-exchange" id="agenda_semft" style="color:#ffd900;margin: 18% 0 0 31%;font-size: 9em;display:none"></span>
-					<p id="any_found" class="any_found" style="margin-left: 12%;font-size: 23px;display:none"></p>
 				</div>
 				<div class="row" style="margin-top: -61px;">
-					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 168px;">
+					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 225px;">
 						<a onclick="agenda_novo();" >
 							<i class="glyphicon glyphicon-plus"></i>
 						</a>
@@ -3322,9 +3344,7 @@
 			   </div>	
 		    </div>
 		</div>
-	</div>
-		
-		
+	</div>	
 		
 	
 	<!-- $MUDANCA  
@@ -4240,4 +4260,4 @@
                 
 </script>
 </body>
-</html>
+</html>>>
