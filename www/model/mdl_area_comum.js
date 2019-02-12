@@ -658,13 +658,13 @@ function salva_reserva(){
 							//alert(0);
 							carrega_area(0);
 							fecha_calendario();
-							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','',localStorage.getItem('dsa'));
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
 							afed('#area_comum_new','#reserva','','',2,'area');  
 						}else{
 							//alert(1);
                         	carrega_area();
 							fecha_calendario();
-							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,0,'','',localStorage.getItem('dsa'));
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
 							afed('#area','#reserva','','',2,'area');  
 						}
 					}
@@ -768,6 +768,7 @@ $.ajax({
 	data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), area : id_area_comum, data_evento : data_evento},
 	dataType   : 'json',
 	success: function(retorno){
+		$("#wait").css("display", "block");
 		localStorage.setItem('dsa',ativos);
 		var dia_semana = ativos.split('**');
 		

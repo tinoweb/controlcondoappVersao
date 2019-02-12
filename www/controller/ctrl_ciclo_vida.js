@@ -174,7 +174,7 @@ function onBackKeyDown() {
     }
 	
     if(localStorage.getItem('TELA_ATUAL') == 'new_area'){
-        afed('#reservas','#new_area','','',2,'reservas'); 
+        afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas'); 
 		fecha_calendario();
     }
 	
