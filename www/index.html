@@ -2037,12 +2037,28 @@
 				<div class="cale2_title" onClick="cale('#dt_festa','','');"></div>
 				<div class="cale2_next" id="cale2_next"><img alt="" width="30" style="margin-top: -5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKcSURBVFhH7ZfJihRBEIYb9eJyGsVHcGXc8KBeXRF9AnEB9wVhmLP7Q7jg0YNP4YJnt4Pg7k29uJx0Btfvkw4oGruysqqmew79wwfdSUZkkBUZGdkZaaRqWgjjsLmLvx0bmubCbrgJr+BPH17CDdgJ2sy45sEJeAf/C6iMt3Ac9DEj2ghPobjoD7gDF+Eo7Oni70twF35C0eYJrINWdQSmIBZ5D+7kGKS0GE6BNmH/HQ5BK5qE36Bjd+wcLIBcLYLzoA996VPfjeSniuA+w3ZoKn3oK4LcD7W0AaZBR19gObSlFfAV9O3nXgtZ8qTFgTDJt0KZlkFuGXEn4wA9hiz7k6ChXHCgRO70J7gNuUF60mMd06mSXCTqnCcvdSAeQCySG6S3zQfQ9g3MgaR2QSzoTqa0FJ5B3SDPQNhWOoReX042P6rUOdUkSOtk5OI1B1J6DU72hshRkyDvgTbe3aWymEbdM4FzVTfIy+B81y7N+VUQziufqh7VCfIYxPyVDvTTFoiJex2oqd4gb0FZkK4Vc+0n+2rWBzjrP7GFc5iH5BckO6VhlJn7oM2Lf/8Sug5OHlShXgJZhdoHTix02oGEmgSnilfdNgdS0rkPHA1sFlLPxybNghfDR9DW1KrULCjfG7HooNqtww5UlQ2rTaSG5keqy6jTsJpKkXsPIde+sx5sx3Vge26b3pasddHyf4M1UEsHofho2gFN5c75xtGnvvdBIxWfnX4SH+kmd660uQLxWfU5Aa3IR3Z8bvF0Wx6sYSk55yz0PtwPQKvyafgIYhFxN2w2vaq8T730xd+OeUPEjgUeiNo5l5Kn2yYi6mQO1jlLSeVa10SWBKu+16L3Z+RoEceew1Vw7kAC66f5sBo2dfG3YyONVK5O5y8aMCI935Z1rgAAAABJRU5ErkJggg=="></div>
 			</div>-->
+			<div id="dt_reserva_aberta" class="block-title block-title-medium" style="text-align: center; margin-top: -45px;">01/01/2019</div>
 			<div class="area_legendas">
-				<div class="area_legenda" style="background-color:red; ">Inválido</div>
+				<div class="chip color-red">
+    				<div class="chip-label">Inválido</div>
+  				</div>
+				<div class="chip color-green">
+    				<div class="chip-label">Livre</div>
+  				</div>
+				<div class="chip color-blue">
+    				<div class="chip-label">Minhas</div>
+  				</div>
+				<div class="chip color-yellow">
+    				<div class="chip-label" style="color: black;">Aguardando</div>
+  				</div>
+				<div class="chip" style="background-color:#8c72cd;">
+    				<div class="chip-label" style="color: white;">Outras</div>
+  				</div>
+				<!--<div class="area_legenda" style="background-color:red; ">Inválido</div>
 				<div class="area_legenda" style="background-color:#4caf50; color: white">Livre</div>
 				<div class="area_legenda" style="background-color:#53c7ec; color: black;">Minhas</div>
 				<div class="area_legenda" style="background-color:#f5db00; color: black;">Aguardando</div>
-				<div class="area_legenda" style="background-color:#8c72cd;">Outras</div>
+				<div class="area_legenda" style="background-color:#8c72cd;">Outras</div>-->
 			</div>
 			<div class="horas">
 				<div class="horas_colunas">
@@ -2190,7 +2206,8 @@
 			
 			<div class="row">
 				<div type="button" value="" class="col button button-fill color-green" onClick="salva_reserva();" style="margin-top: 10px;">CONFIRMA</div>
-				<button type="button" value="" class="col button button-fill color-red" onClick="delete_reserva();" style="margin-top: 10px;">CANCELA </button>
+				<button id="bt_re_ex" type="button" value="" class="col button button-fill color-red" onClick="delete_reserva();" style="margin-top: 10px;">EXCLUIR </button>
+				<button id="bt_re_ca" type="button" value="" class="col button button-fill color-red" onClick="" style="margin-top: 10px;">CANCELA </button>
 			</div>
 		</div>
 			
