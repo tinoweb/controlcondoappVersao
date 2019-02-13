@@ -13,19 +13,22 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
-			
 			//alert(retorno);
             //dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
             for (x in retorno) {
 				var ativos = retorno[x]['domingo']+'**'+retorno[x]['segunda']+'**'+retorno[x]['terca']+'**'+retorno[x]['quarta']+'**'+retorno[x]['quinta']+'**'+retorno[x]['sexta']+'**'+retorno[x]['sabado'];
                 //var dado = '<div class="area" onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+');"><strong>'+retorno[x]['nome']+'</strong></div>';
-				//alert(retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']);
+				if(retorno[x]['fotos'].length > 0){
+					var foto_area = '<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>';
+				}else{
+					var foto_area = '<div style=" height: 200px; background-size: 100%;" class="card-header align-items-flex-end"><i class="f7-icons" style="font-size: 150px; display: table; margin:auto;">images</i></div>';
+				}
 				var dado = 	'<div class="card demo-card-header-pic">'+
   							'<div class="card-content card-content-padding">'+
     						'<p>'+retorno[x]['nome']+'</p>'+
-  							'</div>'+
+  							'</div>'+foto_area+
   							//'<div style="background-image:url(http://lorempixel.com/1000/600/nature/3/)" class="card-header align-items-flex-end"></div>'+
-  							'<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>'+
+  							//'<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>'+
   							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\');">Reservar</a></div>'+
 							'</div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
@@ -172,9 +175,12 @@ function carrega_area(view=1){
 			$( "#reserva .topo_sub span" ).html(retorno[0]['nome']);
 			$( "#reserva #add_reserva #add_reserva_valor" ).html("R$ "+retorno[0]['valor']);
 			$( "#reserva #add_reserva #add_reserva_termo" ).html(retorno[0]['termo']);
+			$( "#add_reserva_hora_inicio" ).val(retorno[0]['inicio']);
+			$( "#add_reserva_hora_fim" ).val(retorno[0]['fim']);
 			localStorage.setItem('TIPO_PERIODO',retorno[0]['periodo_integral']);
 			limpa_calendario();
-			if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){                    
+			if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){  
+				//alert(retorno[0]['inicio']+' '+retorno[0]['fim']);
 				verifica_data_ativas(retorno[0]['inicio'],retorno[0]['fim'],retorno[0]['ativo']);
 			}
 			verifica_data_usadas(retorno[0]['reservas']);
@@ -896,6 +902,7 @@ $.ajax({
 		}else{
 			var oc = "alerta('0','Essa reserva não pode ser alterada!');";
 		}
+		//alert(reserva_inicio[1]+' '+reserva_fim[1]);
 		var	dado_reserva = '<li onclick="'+oc+'" class="item-content" style="border-left: 7px solid #2196f3">'+
 							'<div class="event-color" style="background-color: #2196f3"></div>'+
 							'<div class="item-inner">'+
