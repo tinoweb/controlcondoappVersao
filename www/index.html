@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
-		<!-- framework7 -->
+	<!-- framework7 -->
 	<meta name="theme-color" content="#2196f3">
 	<link rel="stylesheet" href="lib/framework7/css/framework7.css">
 	<link rel="stylesheet" href="lib/framework7/css/framework7-icons.css">
@@ -3292,7 +3292,7 @@
 						<div class="title">Agenda Tarefas</div>
 					</div>
 				</div>
-				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-agenda" style="padding-top: 50px; padding-bottom: 10px; background-color: #f0f0f04d" >
+				<div class="page-content ptr-content" data-ptr-distance="55" id="pull-agenda" style="background-color: #f0f0f04d" >
                     <div class="ptr-preloader">
 						<div class="preloader"></div>
 						<div class="ptr-arrow"></div>
@@ -3300,12 +3300,12 @@
 					<input type="hidden" id="ol_ordem" name="ol_ordem" value="0">
 					
 					<!-- Calendario -->
-					<div id="agenda_calendario" style="display: block;margin-top: -30px;" class="pagina view">
-						<div class="block block-strong no-padding">
+					<div id="agenda_calendario" style="display: block;" class="pagina view">
+						<div class="block block-strong no-padding" style="margin-top:0px">
 							 <div id="calendario_agenda"></div>	 
 						</div>
 						<!-- informacoes evento -->
-						<div id="info_agenda_evento" style="padding: 0px 0 41% 11px; overflow: auto; max-height: 48%;">
+						<div id="info_agenda_evento" style="padding: 0px 0 41% 11px; overflow: auto; max-height: 59%;">
 							<div class="chip color-red" style="width: 96%;">
 								<div class="chip-label">1 - Festa na piscina</div>
 							</div><br>
@@ -3320,12 +3320,533 @@
 				</div>
 				<div class="row" style="margin-top: -61px;">
 					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 225px;">
-						<a onclick="agenda_novo();" >
+						<a onclick="agenda_novo();limpa_campo_ag();" >
 							<i class="glyphicon glyphicon-plus"></i>
 						</a>
 					</div>
 			   </div>	
 		    </div>
+		</div>
+		
+		<!-- Modal confirmacao eventos criados -->
+		<div class="sheet-modal confirmacao_agenda" style="height: 80%;">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left"></div>
+					<div class="right"><span style="margin-right: 8px;" class="link sheet-close" onclick="cancela_evento()" href="#">Fechar</span></div>
+				</div>
+			</div>
+			<div class="sheet-modal-inner">
+				<div class="block" style="overflow:auto;max-height: 305px;">
+					<table style="width:100%">
+						<thead>
+							<tr>
+								<th>Data Inicio</th>
+								<th>Hora Inicio</th>
+								<th>Hora Fim</th>
+								<th>Até</th>
+							</tr>
+						</thead>
+						<tbody class="ev-confirma">
+
+						</tbody>
+				   </table>			
+				</div>
+				<button class="col button button-fill sheet-close" onclick="confirma_evento()" style="width: 89%;margin-bottom: 4px;margin-left: 18px;"><span class="fa fa-check"></span> Confirmar</button>
+				<button style="background:red;width: 89%;margin-left: 18px;" onclick="cancela_evento()" class="col button button-fill sheet-close"><span class="fa fa-close"></span> Cancelar</button>
+			</div>
+		</div>
+		
+	
+		<div class="sheet-modal evento_detalhe" style="height: 80%;">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left"></div>
+					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
+				</div>
+			</div>
+			<div class="sheet-modal-inner">
+				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
+					<form id="form_agenda_editar">
+					<ul>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Cor:</div>
+								<div class="item-input-wrap">
+									<div>
+										<select name="agenda_cor_detalhe" id="agenda_cor_detalhe">
+											<option value="99">Selecione uma opção...</option>
+											<option value="#2196f3">Azul</option>
+											<option value="red">Vermelho</option>
+											<option value="orange">Laranja</option>
+											<option value="pinky">Rosa</option>
+											<option value="#39cc6a">Verde</option>
+											<option value="#dcd329">Amarelo</option>
+										</select>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					  <li class="item-content item-input">
+						   <div class="item-inner">
+							    <div class="item-title item-label">Titulo:</div>
+								<div class="item-input-wrap">
+									<div>
+										<input type="text" placeholder="Titulo" name="agenda_descricao_detalhe" id="agenda_titulo_detalhe"/>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					  
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Descrição:</div>
+								<div class="item-input-wrap">
+									<div>
+										<input id="agenda_descricao_detalhe" type="text" name="agenda_descricao_detalhe" placeholder="Descrição" style="height: 76px;"/>
+									</div>
+								</div>
+						   </div>
+					   </li>
+					  <li style="width: 94%;" class="check1agenda">
+						  <label class="item-radio item-content" onclick="check_intervalo(1)">
+							<input type="radio" value="fixo" name="intervalo_detalhe" id="ag_intervalo_fixo_detalhe"/>
+							<i class="icon icon-radio"></i>
+							<div class="item-inner" style="font-weight: 100;font-size: 12px;">
+							  <div class="item-title">Intervalo Fixo:</div>
+							</div>
+						  </label>
+					   </li>
+					   <li style="width: 94%;"  class="check2agenda">
+						  <label class="item-radio item-content" onclick="check_intervalo(2)">
+							<input type="radio" value="personalizado" name="intervalo_detalhe" id="ag_intervalo_perso_detalhe" />
+							<i class="icon icon-radio"></i>
+							<div class="item-inner" style="font-weight: 100;font-size: 12px;">
+							  <div class="item-title">Intervalo Personalizado:</div>
+							</div>
+						  </label>
+					   </li>
+					  <!-- Mudanca edit Screen -->
+					   <div id="ag_form_mudanca" style="display:none">
+							<div class="row">
+									<div class="col-xs-4" style="margin-left: -21px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agenda" name="div_dt_agenda_detalhe" >
+														<input id="ag_data_mudanca" onChange="" type="date" name="ag_data_inicio_fixo_detalhe" style="width: 120px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4" style="margin-left: -13px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
+														<input id="ag_hora_mudanca" onChange="" style="width: 77px;" type="time" name="ag_hr_inicio_fixoDetalhe"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+								  </div>
+								  <div class="col-xs-4" style="margin-left: -59px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
+														<input id="ag_hora_agenda_fimDetalhe_mudanca" onChange="" style="width: 77px;" type="time" name="ag_hr_fim_fixoDetalhe"/> 
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+					          </div>
+						</div>
+						<!-- Intervalo Fixo edit Screen -->
+					   <div id="intervalorFixoDetalhe" style="display:none">
+							<div class="row">
+									<div class="col-xs-4" style="margin-left: -86px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agenda" name="div_dt_agenda_detalhe" >
+														<input id="ag_agendaDetalhe" onChange="" type="date" name="ag_data_inicio_fixo_detalhe" style="width: 128px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4" style="margin-left: -56px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
+														<input id="ag_hora_agendaDetalhe" onChange="" style="width: 77px;" type="time" name="ag_hr_inicio_fixoDetalhe"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+					          </div>
+						      <div class="row">
+									<div class="col-xs-4" style="margin-left: -85px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agendaDetalhe" name="div_dt_agendaDetalhe" >
+														<input id="ag_data_fimDetalhe" onChange="" type="date" name="ag_data_fimDetalhe" style="width: 128px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4" style="margin-left: -59px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
+														<input id="ag_hora_agenda_fimDetalhe" onChange="" style="width: 77px;" type="time" name="ag_hr_fim_fixoDetalhe"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+							  </div>
+						</div>
+						
+					   <!-- Intervalo Personalizado edit Screen -->
+					   <div id="intervaloGrupoDetalhe" style="display:none">
+							<div class="row item1">
+									<div class="col-xs-4">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agendaDetalhe" name="div_dt_agendaDetalhe" >
+														<input id="ag_agendaDetalhePerso" onChange="" type="date"  style="width: 113px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
+														<input id="ag_hora_agendaDetalhePerso" onChange="" style="width: 77px;" type="time" name="ag_hora_agenda"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+									<div class="col-xs-4" style="padding-left: 0px;left: -12px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_horafim_agendaDetalhe" name="div_horafim_agendaDetalhe" >
+														<input id="ag_periodo_fimDetalhePerso" onChange="" type="time" />
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   
+									<li class="item-content item-input" id="intervaloAgendaDetalhe" style="display:none">
+									   <div class="item-inner" style="padding-left: 15px;">
+										<div class="item-title item-label">Repetir:</div>
+											<div class="item-input-wrap">
+												<div id="div_intervalo_agendaDetalhe" name="div_intervalo_agendaDetalhe">
+													<select id="iterval_detalhe" onChange="check_rpt(value,'',1)" style="width: 130px;">
+														<option value="99">Selecione ...</option>
+														<option value="0">Evento Unico</option>
+														<option value="1">Diariamente</option>
+														<option value="2">Quinzenalmente</option>
+														<option value="3">Semanalmente</option>
+														<option value="4">Mensalmente</option>
+														<option value="5">Anualmente</option>
+													</select>
+												</div>
+											</div>
+									  </div>
+								   </li>
+								   <li class="item-content item-input repetirAte" style="margin-left: -45px;display:none">
+									   <div class="item-inner" style="padding-left: 15px;">
+										<div class="item-title item-label">até</div>
+											<div class="item-input-wrap">
+												<div id="div_repetir_agendaDetalhe" name="div_repetir_agendaDetalhe" >
+													<input type="date" id="agenda_repetirDetalhe"/>
+												</div>
+											</div>
+									  </div>
+								   </li>
+								  
+								   <li style="display:none">
+									  <input type="text" id="id_evento"/>	
+								   </li>
+					          </div>
+					   </div>
+					   <span style="margin-top: 10px;width: 91%;margin-left: 15px;background:#f8cf1f;display:none" onclick="eventos_relacionados()" class="ag_btn_relacionados col button button-fill">
+							<span class="fa fa-list-ul "></span> Ver relacionados
+					   </span>
+					   <input id="id_evento_relacionado" style="display:none" />
+					   <li class="item-content item-input" id="ag_dia_notificar" style="display:none">
+						   <div class="item-inner">
+							<div class="item-title item-label">Dia para notificar:</div>
+								<div class="item-input-wrap">
+									<div>
+										<input id="agenda_dnotifica_detalhe" type="number" name="agenda_dnotifica_detalhe" placeholder="Descrição" />
+									</div>
+								</div>
+						   </div>
+					    </li>
+					   <div>
+						    <span onclick="desabilita_campo_ag(2)" style="margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_edit"><span class="fa fa-edit "></span> Editar</span>
+						    <span onclick="desabilita_campo_ag(3)" style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_cancel"><span class="fa fa-close"></span> Cancelar</span>
+							<span onclick="editar_evento()" style="display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_save"><span class="fa fa-save"></span> Salvar</span>
+					   </div>
+					</ul>
+				  </form>
+				</div>
+			</div>
+	    </div>
+	</div>	
+		
+	<!-- Formulario evento Agenda -->
+	<div id="add_agenda" class="pagina view">
+		<div class="navbar" style="height: 50px">
+			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
+				<div class="left"> <a href="#" onClick="voltar('#agenda','#add_agenda','');"><i class="icon icon-back"></i></a> </div>
+				<div class="title">Novo Evento</div>
+			</div>
+		</div>
+		
+		<div class="page-content ptr-content" style="padding: 46px 7px 7px 7px;">
+              <form id="form_agenda_add">		
+				<input type="text" value="0" name="operacao"  style="display:none"/>
+				<input type="text" value="0" name="Intervalo" class="intervaloAgenda" style="display:none"/>
+                <div class="list no-hairlines-md">
+					<ul>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Cor:</div>
+								<div class="item-input-wrap">
+									<div id="div_cor_agenda" name="div_cor_agenda">
+										<select name="ag_cor" id="ag_cor" onBlur="habilita_sheet()">
+											<option value="99">Selecione uma opção...</option>
+											<option value="#2196f3">Azul</option>
+											<option value="red">Vermelho</option>
+											<option value="orange">Laranja</option>
+											<option value="pinky">Rosa</option>
+											<option value="#39cc6a">Verde</option>
+											<option value="#dcd329">Amarelo</option>
+										</select>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							    <div class="item-title item-label">Titulo:</div>
+								<div class="item-input-wrap">
+									<div id="div_titulo" name="div_titulo">
+										<input type="text" placeholder="Titulo" name="titulo"  onBlur="habilita_sheet()" id="agenda_titulo"/>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					  
+					   <li class="item-content item-input">
+						   <div class="item-inner">
+							<div class="item-title item-label">Descrição:</div>
+								<div class="item-input-wrap">
+									<div id="div_descricao" name="div_descricao" id="ag_descricao" >
+										<input id="ag_descricao" type="text" name="ag_descricao" placeholder="Descrição" style="height: 76px;"/>
+									</div>
+								</div>
+						  </div>
+					   </li>
+					   <li style="width: 94%;">
+						  <label class="item-radio item-content" onclick="confirma_mudanca();check_intervalo(1)">
+							<input type="radio" value="fixo" name="intervalo"/>
+							<i class="icon icon-radio"></i>
+							<div class="item-inner" style="font-weight: 100;font-size: 12px;">
+							  <div class="item-title">Intervalo Fixo:</div>
+							</div>
+						  </label>
+					   </li>
+					   <li style="width: 94%;">
+						  <label class="item-radio item-content" onclick="confirma_mudanca();check_intervalo(2)">
+							<input type="radio" value="personalizado" name="intervalo" id="ag_intervalo_perso" />
+							<i class="icon icon-radio"></i>
+							<div class="item-inner" style="font-weight: 100;font-size: 12px;">
+							  <div class="item-title">Intervalo Personalizado:</div>
+							</div>
+						  </label>
+					   </li>
+						
+					   <!-- Intervalo Fixo -->
+					   <div id="intervalorFixo" style="display:none">
+							<div class="row">
+									<div class="col-xs-4" style="margin-left: -86px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agenda" name="div_dt_agenda" >
+														<input id="ag_agenda" onChange="" type="date" name="ag_data_inicio_fixo" style="width: 128px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4" style="margin-left: -56px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agenda" name="div_hora_agenda" >
+														<input id="ag_hora_agenda" onChange="" style="width: 77px;" type="time" name="ag_hr_inicio_fixo"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+					          </div>
+						      <div class="row">
+									<div class="col-xs-4" style="margin-left: -85px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agenda" name="div_dt_agenda" >
+														<input id="ag_data_fim" onChange="" type="date" name="ag_data_fim" style="width: 128px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4" style="margin-left: -59px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agenda" name="div_hora_agenda" >
+														<input id="ag_hora_agenda" onChange="" style="width: 77px;" type="time" name="ag_hr_fim_fixo"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+							  </div>
+						</div>
+						
+					   <!-- Intervalo Personalizado -->
+					   <div id="intervaloGrupo" style="display:none">
+							<div class="row item1">
+									<div class="col-xs-4">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Data Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_dt_agenda" name="div_dt_agenda" >
+														<input id="ag_agenda" onChange="" type="date" name="ag_mudanca" style="width: 113px;"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   <div class="col-xs-4">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Inicio:</div>
+												<div class="item-input-wrap">
+													<div id="div_hora_agenda" name="div_hora_agenda" >
+														<input id="ag_hora_agenda" onChange="" style="width: 77px;" type="time" name="ag_hora_agenda"/>
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+									<div class="col-xs-4" style="padding-left: 0px;left: -12px;">
+										<li class="item-content item-input">
+										   <div class="item-inner">
+											<div class="item-title item-label">Hora Fim:</div>
+												<div class="item-input-wrap">
+													<div id="div_horafim_agenda" name="div_horafim_agenda" >
+														<input id="ag_periodo_fim" onChange="" type="time" />
+													</div>
+												</div>
+										  </div>
+									   </li>
+									</div>
+								   
+									<li class="item-content item-input" id="intervaloAgenda" style="display:none">
+									   <div class="item-inner" style="padding-left: 15px;">
+										<div class="item-title item-label">Repetir:</div>
+											<div class="item-input-wrap">
+												<div id="div_intervalo_agenda" name="div_intervalo_agenda">
+													<select onChange="check_rpt(value,1)" style="width: 130px;">
+														<option value="99">Selecione ...</option>
+														<option value="0">Evento Unico</option>
+														<option value="1">Diariamente</option>
+														<option value="2">Quinzenalmente</option>
+														<option value="3">Semanalmente</option>
+														<option value="4">Mensalmente</option>
+														<option value="5">Anualmente</option>
+													</select>
+												</div>
+											</div>
+									  </div>
+								   </li>
+								   <li class="item-content item-input repetirAte1" style="margin-left: -45px;display:none">
+									   <div class="item-inner" style="padding-left: 15px;">
+										<div class="item-title item-label">até</div>
+											<div class="item-input-wrap">
+												<div id="div_repetir_agenda" name="div_repetir_agenda" >
+													<input type="date" id="agenda_repetir"/>
+												</div>
+											</div>
+									  </div>
+								   </li>
+								   <li style="display:none">
+									  <input type="text" id="id_evento"/>	
+								   </li>
+					          </div>
+						       <div class="col-xs-7 adicionaEvent" style="padding: 4px 0 3px 17px;">
+									 <button type="button" onclick="adiciona_campo()" class="col button button-fill" style="background:red"><span class="fa fa-plus"></span> Adicionar Evento</button>
+							   </div>
+					   </div>
+					   <div class="col-xs-8" style="margin-left: -13px;">
+						   <li class="item-content item-input">
+							   <div class="item-inner">
+								<div class="item-title item-label">Dias para Notificar:</div>
+									<div class="item-input-wrap">
+										<div id="div_noti_agenda" name="div_noti_agenda" >
+											<input type="number" id="n_dia_notifica"  onBlur="habilita_sheet()" name="n_dia_notifica" placeholder="Dias para Notificar"/>
+										</div>
+									</div>
+							  </div>
+						   </li>
+					  </div>
+					</ul>
+					<div id="agendaContador" style="display:none">1</div>
+					<button type="button" onclick="salva_evento();limpa_campo_ag()" style="margin-top: 10px;width: 92%;left: 4%;" class="btn_cria_evento col button button-fill" >
+						<span class="fa fa-calendar-check-o"></span> Criar Evento
+					</button>
+				</div>		  
+			</form>
 		</div>
 	</div>	
 		
@@ -4243,4 +4764,4 @@
                 
 </script>
 </body>
-</html>>>
+</html>
