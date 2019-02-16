@@ -173,12 +173,23 @@ function onBackKeyDown() {
 		$(".minha_reserva .sheet-close")[0].click();
     }
 	
-	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
-        afed('#area','#reserva','','',2,'area');
+    if(localStorage.getItem('TELA_ATUAL') == 'new_area'){
+        afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas'); 
+		fecha_calendario();
     }
 	
     if(localStorage.getItem('TELA_ATUAL') == 'calendario'){
-        afed('#reservas','#area','','',2,'reservas');    
+        afed('#area_comum_new','#area','','',2,'new_area');    
+        //afed('#reservas','#area','','',2,'reservas');    
+    }
+
+	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
+		if(localStorage.getItem('periodo_integral') == 1){
+        	afed('#new_area','#reserva','','',2,'new_area');
+		}else{
+			afed('#area','#reserva','','',2,'calendario');
+		}
+        //afed('#area','#reserva','','',2,'area');
     }
 
     if(localStorage.getItem('TELA_ATUAL') == 'area'){
