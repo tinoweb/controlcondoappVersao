@@ -360,8 +360,7 @@ function check_intervalo(tipo){
 	    $('#intervalorFixoDetalhe').fadeIn();
 	    $('.intervaloAgenda').val('intervalo fixo');
 	    $('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
-	    /*$('.btn_cria_evento').removeClass('sheet-open');
-	    /*$('.btn_cria_evento').attr('onclick','salva_evento()');*/
+	    $('.adicionaEven').hide();
    }else
    if(tipo == 2){ /* Intervalo Personalizado */
 		$('#intervaloGrupo').fadeIn();
@@ -372,163 +371,164 @@ function check_intervalo(tipo){
 	    $('#intervaloGrupoDetalhe').fadeIn();
 	    $('.intervaloAgenda').val('intervalo personalizado');
 	    $('.btn_cria_evento').attr('data-sheet','.confirmacao_agenda');
-	   /* $('.btn_cria_evento').addClass('sheet-open');
-	   /* $('.btn_cria_evento').attr('onclick','salva_evento()');*/
-	   
-	   
-	   
+	    $('.adicionaEven').fadeIn();
+	    $('.item1').fadeIn();  
    }	
 }
 
 function salva_evento() { 
 	
 	
-			if(verifica_cad_agenda()){
+			if(verifica_cad_agenda()){ /* Check register information */
 				
-			    var datainicial         =  $('#form_agenda_inc #ag_data_inicio').val();
-		        var datafinal           =  $('#form_agenda_inc #ag_data_fim').val();
+			    var datainicial         =  $('input[name="ag_data_inicio_fixo"]').val();
+		        var datafinal           =  $('input[name="ag_data_fim"]').val();
 		        var tipo_acao           =  $("operacao").html();
 				var check_personalizado =  $('#ag_intervalo_perso').is(':checked');
-				
-				if(check_personalizado)
-				 {
-					var nome_campo        = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
-					var json_cabecalho    = '{"cabecalho":['
-					var json              = '{"eventos":[';
-					var json_body         = "";
-					var json_col_ini      = "";
-					var json_col_fim      = "";
-					var json_para_um      = "";
-					var json_para_dois    = "";
-					var tamanho_string    = "";
-					var qtd_campo         = "";
-					var string_json       = "";
-					var p_array           = "";
-					var ctipo             = $("#ag_tipo").val();
-					var ctitulo           = $("#agenda_titulo").val();
-					var cnotificacao_dias = $("#agenda_n_dia_notifica").val();
-					var cgestor           = $("#ag_gestor").val();
-					var cfornecedor       = $("#ag_fornecedor").val();
-					var ccontrato         = $("#ag_contrato").val();
-					var cor               = $("#ag_cor").val();
-					var descricao         = $("#ag_descricao").val();
-					var gestor            = $("#ag_gestor").val();
-					var fornecedor        = $("#ag_fornecedor").data("id");
-					var ag_contrato       = $("#ag_contrato").val();
-					var dia_notifica      = $("#n_dia_notifica").val();
-					var p_fim             = $("#ag_periodo_fim").val();
-					var tipo_operacao     = $("#operacao").val();
-					var idEvento          = $("#id_evento").val();
-					var ag_id_filtro      = $("#id_filtro").val();
-					var idModulo          = $("#id_modulo").val();
-					var iid_gestor        = $("#id_gestor").val();
-					var iid_fornecedor    = $("#id_fornecedor").val();
-					var iid_contrato      = $("#id_contrato").val();
-					var contador          = "";
-					var qtd_campo         = "";
-					var p_array           = "";
+				var hora_inicio_fixo    =  $('input[name="ag_hr_inicio_fixo"]').val();
+				var hora_fim_fixo       =  $('input[name="ag_hr_fim_fixo"]').val();
 
-					/* Pega Valores Preenchidos E monta string Json*/
-					$("#intervaloGrupo > div").each(function(e){
-						 json_col_ini = "{";
-						 contador     = e+1;
-						 $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").each(function(x){
-							 /* Tratativa para quebrar string dinamicamente*/
-							 qtd_campo = $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").length;	 
-							 if(qtd_campo == 7){
-								p_array = 6;
-							}else
-							 if(qtd_campo == 6){
-								p_array = 5;
-							 }
+					if(check_personalizado) /* Check type of the event (fixo ou personalizado) */
+					 {
+ 
+						    var nome_campo      = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
+							var json_cabecalho    = '{"cabecalho":['
+							var json              = '{"eventos":[';
+							var json_body         = "";
+							var json_col_ini      = "";
+							var json_col_fim      = "";
+							var json_para_um      = "";
+							var json_para_dois    = "";
+							var tamanho_string    = "";
+							var qtd_campo         = "";
+							var string_json       = "";
+							var p_array           = "";
+							var ctipo             = $("#ag_tipo").val();
+							var ctitulo           = $("#agenda_titulo").val();
+							var cnotificacao_dias = $("#agenda_n_dia_notifica").val();
+							var cgestor           = $("#ag_gestor").val();
+							var cfornecedor       = $("#ag_fornecedor").val();
+							var ccontrato         = $("#ag_contrato").val();
+							var cor               = $("#ag_cor").val();
+							var descricao         = $("#ag_descricao").val();
+							var gestor            = $("#ag_gestor").val();
+							var fornecedor        = $("#ag_fornecedor").data("id");
+							var ag_contrato       = $("#ag_contrato").val();
+							var dia_notifica      = $("#n_dia_notifica").val();
+							var p_fim             = $("#ag_periodo_fim").val();
+							var tipo_operacao     = $("#operacao").val();
+							var idEvento          = $("#id_evento").val();
+							var ag_id_filtro      = $("#id_filtro").val();
+							var idModulo          = $("#id_modulo").val();
+							var iid_gestor        = $("#id_gestor").val();
+							var iid_fornecedor    = $("#id_fornecedor").val();
+							var iid_contrato      = $("#id_contrato").val();
+							var contador          = "";
+							var qtd_campo         = "";
+							var p_array           = "";
 
-							if($(this).attr("style")!="display: none" || $(this).attr("name")=="ag_periodo_fim" ){
-									  if(x===p_array){
-										   json_col_fim = "}"; 
-										}
+							$("#intervaloGrupo > div").each(function(e){ /* Pega Valores Preenchidos E monta string Json*/
+								 json_col_ini = "{";
+								 contador     = e+1;
+								 $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").each(function(x){
+									 /* Tratativa para quebrar string dinamicamente*/
+									 qtd_campo = $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").length;	 
+									 if(qtd_campo == 7){
+										p_array = 6;
+									}else
+									 if(qtd_campo == 6){
+										p_array = 5;
+									 }
 
-									 json_body+= json_col_ini+'"'+nome_campo[x]+'":"'+$(this).val()+'"'+json_col_fim+',';
-									 json_col_ini="";
-									  if(x===p_array){
-										   json_col_fim = "";
-										}
-								 }
-							 });
-					});
+									if($(this).attr("style")!="display: none" || $(this).attr("name")=="ag_periodo_fim" ){
+											  if(x===p_array){
+												   json_col_fim = "}"; 
+												}
 
-					tamanho_string = json_body.length;
-					string_json    = json+json_body.substr(0,tamanho_string-2)+"}]}";
+											 json_body+= json_col_ini+'"'+nome_campo[x]+'":"'+$(this).val()+'"'+json_col_fim+',';
+											 json_col_ini="";
+											  if(x===p_array){
+												   json_col_fim = "";
+												}
+										 }
+									 });
+							});
 
-					console.log(string_json);	
+							tamanho_string = json_body.length;
+							string_json    = json+json_body.substr(0,tamanho_string-2)+"}]}";
 
-					$.ajax({
-							   type:'POST',
-							   data:{
-									   dados_json      :string_json,
-									   titulo          :ctitulo,
-									   notificacao_dias:cnotificacao_dias,
-									   gestor          :cgestor,
-									   fornecedor      :cfornecedor,
-									   contrato        :ccontrato,
-									   Intervalo       :'intervalo personalizado',
-									   id_condominio   :$( "#DADOS #ID_CONDOMINIO" ).val(),
-									   id_usuario_condominio:$( "#DADOS #ID_USER" ).val(),
-									   id_morador      :$( "#DADOS #ID_MORADOR" ).val(),
-									   ag_tipo         :ctipo, 
-									   ag_cor          :cor, 
-									   ag_descricao    :descricao,
-									   ag_periordo_rpt :'',
-									   ag_periodo_fim  :p_fim,
-									   ag_gestor       :gestor,
-									   ag_fornecedor   :fornecedor,
-									   ag_contrato     :ag_contrato,
-									   n_dia_notifica  :dia_notifica,
-									   id_modulo       :'',
-									   ag_data_fim     :'',
-									   id_pai          :'',
-									   operacao        :tipo_operacao,
-									   id_evento       :idEvento,
-									   id_filtro       :ag_id_filtro,
-									   id_gestor       :'',
-									   id_fornecedor   :'',
-									   id_contrato     :'',
-									   tipo_usuario    :'morador'
+							console.log(string_json);	
 
+							$.ajax({
+									   type:'POST',
+									   data:{
+											   dados_json      :string_json,
+											   titulo          :ctitulo,
+											   notificacao_dias:cnotificacao_dias,
+											   gestor          :cgestor,
+											   fornecedor      :cfornecedor,
+											   contrato        :ccontrato,
+											   Intervalo       :'intervalo personalizado',
+											   id_condominio   :$( "#DADOS #ID_CONDOMINIO" ).val(),
+											   id_usuario_condominio:$( "#DADOS #ID_USER" ).val(),
+											   id_morador      :$( "#DADOS #ID_MORADOR" ).val(),
+											   ag_tipo         :ctipo, 
+											   ag_cor          :cor, 
+											   ag_descricao    :descricao,
+											   ag_periordo_rpt :'',
+											   ag_periodo_fim  :p_fim,
+											   ag_gestor       :gestor,
+											   ag_fornecedor   :fornecedor,
+											   ag_contrato     :ag_contrato,
+											   n_dia_notifica  :dia_notifica,
+											   id_modulo       :'',
+											   ag_data_fim     :'',
+											   id_pai          :'',
+											   operacao        :tipo_operacao,
+											   id_evento       :idEvento,
+											   id_filtro       :ag_id_filtro,
+											   id_gestor       :'',
+											   id_fornecedor   :'',
+											   id_contrato     :'',
+											   tipo_usuario    :'morador'
+
+											},
+										url:localStorage.getItem("DOMINIO")+"appweb/agenda_insert.php",
+									success:function(retorno){
+										 confirmacao_agenda(retorno);
+										 limpa_campo_ag();
 									},
-								url:localStorage.getItem("DOMINIO")+"appweb/agenda_insert.php",
-							success:function(retorno){
-								 confirmacao_agenda(retorno);
-							},
-							error:function(){
+									error:function(){
 
-								  alerta('','Erro ao salvar evento.')
+										  alerta('','Erro ao salvar evento.')
+									}
+						 }) 
+				}else{
+					
+					if(check_data_agenda(datainicial,datafinal,'salvar_fixo',hora_inicio_fixo,hora_fim_fixo))
+				    { 
+						let dados = $('#form_agenda_add').serialize();
+						$.ajax({
+
+							url     :localStorage.getItem("DOMINIO")+"appweb/agenda_insert_unico.php",
+							type    :'POST',
+							dataType:'JSON',
+							data    :dados+'&id_morador='+$("#DADOS #ID_MORADOR").val()+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&id_condominio='+$("#DADOS #ID_CONDOMINIO").val(),
+							success :function(e){
+								carrega_agenda_eventos();
+								alerta("1");
+								limpa_campo_ag();		
+
+							},
+							error:function(r){
+								alerta("","Falha ao salvar.")
 							}
-				 }) 
-		    }else{
-				
-				let dados = $('#form_agenda_add').serialize();
-				$.ajax({
-					
-					url     :localStorage.getItem("DOMINIO")+"appweb/agenda_insert_unico.php",
-					type    :'POST',
-					dataType:'JSON',
-					data    :dados+'&id_morador='+$("#DADOS #ID_MORADOR").val()+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&id_condominio='+$("#DADOS #ID_CONDOMINIO").val(),
-					success :function(e){
-					
-				 		alerta("1");
-						setTimeout(function(){
-							carrega_agenda_eventos();
-							
-						},500);
-						
-				    },
-					error:function(r){
-						alerta("","Falha ao salvar.")
+						});
 					}
-				});
+			   }
 		  }
 	 }
-}
+
 
 
 
@@ -543,7 +543,7 @@ function editar_evento() {
 		        var tipo_acao           =  $("operacao").html();
 				var check_personalizado =  $('#ag_intervalo_perso_detalhe').is(':checked');
 				
-				var nome_campo        = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
+				    var nome_campo        = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
 					var json_cabecalho    = '{"cabecalho":['
 					var json              = '{"eventos":[';
 					var json_body         = "";
@@ -905,7 +905,7 @@ let adiciona_campo = () => {
 							+'<div class="item-title item-label">Data Inicio:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_dt_agendaDetalhe" name="div_dt_agendaDetalhe" >'
-										+'<input id="ag_agendaDetalhePerso" onChange="" type="date"  style="width: 113px;" />'
+										+'<input id="ag_agendaDetalhePerso" onChange="verifica_data_retroativa(this)" type="date"  style="width: 113px;" />'
 									+'</div>'
 								+'</div>'
 						  +'</div>'
@@ -970,7 +970,7 @@ let adiciona_campo = () => {
 			  +'</div>'
           +'</div>'
 	      +'<div class="col-xs-7 adicionaEvent" style="padding: 4px 0px 3px 17px;">'
-			 +'<button type="button" onclick="adiciona_campo()" class="col button button-fill" style="background:red">'
+			 +'<button type="button" onclick="adiciona_campo()" class="adicionaEven col button button-fill" style="background:red">'
 	         +'<span class="fa fa-plus"></span> Adicionar Evento</button>'
 		  +'</div>'
 	
@@ -1204,6 +1204,8 @@ let eventos_relacionados = () => {
 
 
 let limpa_campo_ag = () =>{
+	let contador = 0;
+	let x        = 0;
 	
 	$('#ag_descricao').val('');
 	$('#agenda_titulo').val('');
@@ -1213,8 +1215,64 @@ let limpa_campo_ag = () =>{
 	$('#ag_hora_agenda').val('');
 	$('input[name="ag_hr_fim_fixo"]').val('');
 	$('input[name="intervalo"]').prop('checked',false);
-	
+	$('.adicionaEven').hide();
+	$('.item1').hide();
+	for(x=0;x<=20;x++){
+	    contador = parseInt(x)+2;
+		$('.item'+contador).remove()
+	}
+
 }
+
+let check_horario_agenda = (hora,screen) => {
+	
+	let data_e           = $('input[name="ag_data_inicio_fixo"]').val();
+	let hora_ini         = hora;
+    let hora_at          = new Date();
+    let dia              = data_e.substr(8);
+    let mes              = data_e.substr(5,2);
+    let ano              = data_e.substr(0,4);
+    let data             = dia+'/'+mes+'/'+ano;
+    let hora_atual       = hora_at.getHours();
+    let hora_esc         = hora_ini.substr(0,2);
+    let min_esc          = hora_ini.substr(3);
+    let horario_esc      = hora_esc+''+min_esc; 
+    let dt_atual         = new Date();
+    let minu_atual       = dt_atual.getMinutes();
+    let hour_atual       = dt_atual.getHours();
+    let dt_esc           = new Date(format_data(0,data)+' '+hour_atual+':'+minu_atual);
+   
+    if(minu_atual<=9){
+        minu_atual = '0'+minu_atual;
+    }
+    
+    let horario          = hora_atual+''+minu_atual; 
+	let hora_tolerancia  = parseInt(horario)-5;
+    if(parseInt(horario_esc) < hora_tolerancia && dt_esc <= dt_atual){
+        return false;
+    }else{
+		return true;
+	}	
+}
+
+let check_data_agenda = (data_inicio,data_fim,screen,hora_inicio,hora_fim) => {
+
+	let hora_inicial = hora_inicio.replace(':','');
+	let hora_final   = hora_fim.replace(':','');
+	
+	alert(data_inicio);alert(data_fim);alert(hora_inicio);alert(hora_fim);
+	if(data_fim < data_inicio){
+          alerta('','Data Final menor que a Data Inicial.');
+     }else
+	 if(data_fim == data_inicio && parseInt(hora_final) < parseInt(hora_inicial)){
+		  alerta('','Hora Final menor que a Hora Inicial');
+	 }else
+	 if(check_horario_agenda(hora_inicio,screen) == false){
+		  alerta('','Horario Inicial menor que horario atual. Max. 5 Min de tolerância');	
+	 }else{
+		  return true
+	 }
+ }
 
 
 

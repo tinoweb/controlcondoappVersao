@@ -3452,7 +3452,7 @@
 											<div class="item-title item-label">Data Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_dt_agenda" name="div_dt_agenda_detalhe" >
-														<input id="ag_data_mudanca" onChange="" type="date" name="ag_data_inicio_fixo_detalhe" style="width: 120px;"/>
+														<input id="ag_data_mudanca" onChange="verifica_data_retroativa(this)" type="date" name="ag_data_inicio_fixo_detalhe" style="width: 120px;"/>
 													</div>
 												</div>
 										  </div>
@@ -3464,7 +3464,7 @@
 											<div class="item-title item-label">Hora Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
-														<input id="ag_hora_mudanca" onChange="" style="width: 77px;" type="time" name="ag_hr_inicio_fixoDetalhe"/>
+														<input id="ag_hora_mudanca" onChange="check_horario_agenda(this)"  style="width: 77px;" type="time" name="ag_hr_inicio_fixoDetalhe"/>
 													</div>
 												</div>
 										  </div>
@@ -3493,7 +3493,7 @@
 											<div class="item-title item-label">Data Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_dt_agenda" name="div_dt_agenda_detalhe" >
-														<input id="ag_agendaDetalhe" onChange="" type="date" name="ag_data_inicio_fixo_detalhe" style="width: 128px;"/>
+														<input id="ag_agendaDetalhe" onChange="verifica_data_retroativa(this)" type="date" name="ag_data_inicio_fixo_detalhe" style="width: 128px;"/>
 													</div>
 												</div>
 										  </div>
@@ -3505,7 +3505,7 @@
 											<div class="item-title item-label">Hora Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
-														<input id="ag_hora_agendaDetalhe" onChange="" style="width: 77px;" type="time" name="ag_hr_inicio_fixoDetalhe"/>
+														<input id="ag_hora_agendaDetalhe" onChange="check_horario_agenda(this)" style="width: 77px;" type="time" name="ag_hr_inicio_fixoDetalhe"/>
 													</div>
 												</div>
 										  </div>
@@ -3549,7 +3549,7 @@
 											<div class="item-title item-label">Data Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_dt_agendaDetalhe" name="div_dt_agendaDetalhe" >
-														<input id="ag_agendaDetalhePerso" onChange="" type="date"  style="width: 113px;"/>
+														<input id="ag_agendaDetalhePerso" onChange="verifica_data_retroativa(this)" type="date"  style="width: 113px;"/>
 													</div>
 												</div>
 										  </div>
@@ -3561,7 +3561,7 @@
 											<div class="item-title item-label">Hora Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >
-														<input id="ag_hora_agendaDetalhePerso" onChange="" style="width: 77px;" type="time" name="ag_hora_agenda"/>
+														<input id="ag_hora_agendaDetalhePerso" onChange="check_horario_agenda(this)" style="width: 77px;" type="time" name="ag_hora_agenda"/>
 													</div>
 												</div>
 										  </div>
@@ -3722,7 +3722,7 @@
 											<div class="item-title item-label">Data Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_dt_agenda" name="div_dt_agenda" >
-														<input id="ag_agenda" onChange="" type="date" name="ag_data_inicio_fixo" style="width: 128px;"/>
+														<input id="ag_agenda" onChange="verifica_data_retroativa(this)" type="date" name="ag_data_inicio_fixo" style="width: 128px;"/>
 													</div>
 												</div>
 										  </div>
@@ -3734,7 +3734,7 @@
 											<div class="item-title item-label">Hora Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_hora_agenda" name="div_hora_agenda" >
-														<input id="ag_hora_agenda" onChange="" style="width: 77px;" type="time" name="ag_hr_inicio_fixo"/>
+														<input id="ag_hora_agenda" onBlur="" style="width: 77px;" type="time" name="ag_hr_inicio_fixo"/>
 													</div>
 												</div>
 										  </div>
@@ -3778,7 +3778,7 @@
 											<div class="item-title item-label">Data Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_dt_agenda" name="div_dt_agenda" >
-														<input id="ag_agenda" onChange="" type="date" name="ag_mudanca" style="width: 113px;"/>
+														<input id="ag_agenda" onChange="verifica_data_retroativa(this)" type="date" name="ag_mudanca" style="width: 113px;"/>
 													</div>
 												</div>
 										  </div>
@@ -3842,7 +3842,7 @@
 								   </li>
 					          </div>
 						       <div class="col-xs-7 adicionaEvent" style="padding: 4px 0 3px 17px;">
-									 <button type="button" onclick="adiciona_campo()" class="col button button-fill" style="background:red"><span class="fa fa-plus"></span> Adicionar Evento</button>
+									 <button type="button" onclick="adiciona_campo()" class="adicionaEven col button button-fill" style="background:red"><span class="fa fa-plus"></span> Adicionar Evento</button>
 							   </div>
 					   </div>
 					   <div class="col-xs-8" style="margin-left: -13px;">
@@ -3859,7 +3859,7 @@
 					  </div>
 					</ul>
 					<div id="agendaContador" style="display:none">1</div>
-					<button type="button" onclick="salva_evento();limpa_campo_ag()" style="margin-top: 10px;width: 92%;left: 4%;" class="btn_cria_evento col button button-fill" >
+					<button type="button" onclick="salva_evento();" style="margin-top: 10px;width: 92%;left: 4%;" class="btn_cria_evento col button button-fill" >
 						<span class="fa fa-calendar-check-o"></span> Criar Evento
 					</button>
 				</div>		  
