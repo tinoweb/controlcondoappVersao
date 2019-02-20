@@ -360,9 +360,11 @@ function check_intervalo(tipo){
 	    $('#intervalorFixoDetalhe').fadeIn();
 	    $('.intervaloAgenda').val('intervalo fixo');
 	    $('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+	    $('.btn_cria_evento').removeClass('sheet-open');
 	    $('.adicionaEven').hide();
    }else
    if(tipo == 2){ /* Intervalo Personalizado */
+	    
 		$('#intervaloGrupo').fadeIn();
         $('#intervaloAgenda').fadeIn();
 	    $('#intervaloAgendaDetalhe').fadeIn();
@@ -370,26 +372,27 @@ function check_intervalo(tipo){
 	    $('#intervalorFixoDetalhe').fadeOut();
 	    $('#intervaloGrupoDetalhe').fadeIn();
 	    $('.intervaloAgenda').val('intervalo personalizado');
-	    $('.btn_cria_evento').attr('data-sheet','.confirmacao_agenda');
+	    /*$('.btn_cria_evento').Attr('data-sheet','.confirmacao_agenda');
+	   	$('.btn_cria_evento').addClass('sheet-open');*/
 	    $('.adicionaEven').fadeIn();
 	    $('.item1').fadeIn();  
    }	
 }
 
 function salva_evento() { 
-	
-	
-			if(verifica_cad_agenda()){ /* Check register information */
-				
+			
 			    var datainicial         =  $('input[name="ag_data_inicio_fixo"]').val();
 		        var datafinal           =  $('input[name="ag_data_fim"]').val();
 		        var tipo_acao           =  $("operacao").html();
 				var check_personalizado =  $('#ag_intervalo_perso').is(':checked');
+	            var check_fixo          =  $('input[value="fixo"]').is(':checked');
 				var hora_inicio_fixo    =  $('input[name="ag_hr_inicio_fixo"]').val();
 				var hora_fim_fixo       =  $('input[name="ag_hr_fim_fixo"]').val();
 
 					if(check_personalizado) /* Check type of the event (fixo ou personalizado) */
 					 {
+						 
+						 if(verifica_cad_agenda()){ /* Check register information */
  
 						    var nome_campo      = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
 							var json_cabecalho    = '{"cabecalho":['
@@ -496,44 +499,47 @@ function salva_evento() {
 										url:localStorage.getItem("DOMINIO")+"appweb/agenda_insert.php",
 									success:function(retorno){
 										 confirmacao_agenda(retorno);
-										 limpa_campo_ag();
 									},
 									error:function(){
 
 										  alerta('','Erro ao salvar evento.')
 									}
-						 }) 
-				}else{
-					
-					if(check_data_agenda(datainicial,datafinal,'salvar_fixo',hora_inicio_fixo,hora_fim_fixo))
-				    { 
-						let dados = $('#form_agenda_add').serialize();
-						$.ajax({
-
-							url     :localStorage.getItem("DOMINIO")+"appweb/agenda_insert_unico.php",
-							type    :'POST',
-							dataType:'JSON',
-							data    :dados+'&id_morador='+$("#DADOS #ID_MORADOR").val()+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&id_condominio='+$("#DADOS #ID_CONDOMINIO").val(),
-							success :function(e){
-								carrega_agenda_eventos();
-								alerta("1");
-								limpa_campo_ag();		
-
-							},
-							error:function(r){
-								alerta("","Falha ao salvar.")
-							}
-						});
+						 })
 					}
+				}else
+				if(check_fixo){
+					
+					if(check_campo_vazio_ag(0)){
+					
+						if(check_data_agenda(datainicial,datafinal,'salvar_fixo',hora_inicio_fixo,hora_fim_fixo))
+						{ 
+							let dados = $('#form_agenda_add').serialize();
+							$.ajax({
+
+								url     :localStorage.getItem("DOMINIO")+"appweb/agenda_insert_unico.php",
+								type    :'POST',
+								dataType:'JSON',
+								data    :dados+'&id_morador='+$("#DADOS #ID_MORADOR").val()+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&id_condominio='+$("#DADOS #ID_CONDOMINIO").val(),
+								success :function(e){
+									carrega_agenda_eventos();
+									alerta("1");
+									limpa_campo_ag();		
+
+								},
+								error:function(r){
+									alerta("","Falha ao salvar.")
+								}
+							});
+						}
+					}
+			   }else{				   
+				   alerta('','Escolha um intervalo.');
 			   }
-		  }
-	 }
+}
 
 
 
-
-
-function editar_evento() { 
+let editar_evento = () => { 
 	
 	        $('.lineAgenda').hide();
 			if(verifica_cad_agenda(1)){
@@ -542,43 +548,42 @@ function editar_evento() {
 		        var datafinal           =  $('#form_agenda_inc #ag_data_fim').val();
 		        var tipo_acao           =  $("operacao").html();
 				var check_personalizado =  $('#ag_intervalo_perso_detalhe').is(':checked');
-				
-				    var nome_campo        = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
-					var json_cabecalho    = '{"cabecalho":['
-					var json              = '{"eventos":[';
-					var json_body         = "";
-					var json_col_ini      = "";
-					var json_col_fim      = "";
-					var json_para_um      = "";
-					var json_para_dois    = "";
-					var tamanho_string    = "";
-					var qtd_campo         = "";
-					var string_json       = "";
-					var p_array           = "";
-					var ctipo             = $("#agenda_tipo_detalhe").val();
-					var ctitulo           = $("#agenda_titulo_detalhe").val();
-					var cnotificacao_dias = $("#agenda_n_dia_notifica_detalhe").val();
-					var cgestor           = $("#ag_gestor_detalhe").val();
-					var cfornecedor       = $("#ag_fornecedor_detalhe").val();
-					var ccontrato         = $("#ag_contrato_detalhe").val();
-					var cor               = $("#agenda_cor_detalhe").val();
-					var descricao         = $("#agenda_descricao_detalhe").val();
-					var gestor            = $("#ag_gestor_detalhe").val();
-					var fornecedor        = $("#ag_fornecedor_detalhe").data("id");
-					var ag_contrato       = $("#ag_contrato_detalhe").val();
-					var dia_notifica      = $("#agenda_dnotifica_detalhe").val();
-					var p_fim             = $("#agenda_periodo_fim_detalhe").val();
-					var tipo_operacao     = $("#operacao_detalhe").val();
-					var idEvento          = $("#id_evento_detalhe").val();
-					var ag_id_filtro      = $("#id_filtro_detalhe").val();
-					var idModulo          = $("#id_modulo_detalhe").val();
-					var iid_gestor        = $("#id_gestor_detalhe").val();
-					var iid_fornecedor    = $("#id_fornecedor_detalhe").val();
-					var iid_contrato      = $("#id_contrato_detalhe").val();
-					var contador          = "";
-					var qtd_campo         = "";
-					var p_array           = "";
-				
+				var nome_campo        = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
+				var json_cabecalho    = '{"cabecalho":['
+				var json              = '{"eventos":[';
+				var json_body         = "";
+				var json_col_ini      = "";
+				var json_col_fim      = "";
+				var json_para_um      = "";
+				var json_para_dois    = "";
+				var tamanho_string    = "";
+				var qtd_campo         = "";
+				var string_json       = "";
+				var p_array           = "";
+				var ctipo             = $("#agenda_tipo_detalhe").val();
+				var ctitulo           = $("#agenda_titulo_detalhe").val();
+				var cnotificacao_dias = $("#agenda_n_dia_notifica_detalhe").val();
+				var cgestor           = $("#ag_gestor_detalhe").val();
+				var cfornecedor       = $("#ag_fornecedor_detalhe").val();
+				var ccontrato         = $("#ag_contrato_detalhe").val();
+				var cor               = $("#agenda_cor_detalhe").val();
+				var descricao         = $("#agenda_descricao_detalhe").val();
+				var gestor            = $("#ag_gestor_detalhe").val();
+				var fornecedor        = $("#ag_fornecedor_detalhe").data("id");
+				var ag_contrato       = $("#ag_contrato_detalhe").val();
+				var dia_notifica      = $("#agenda_dnotifica_detalhe").val();
+				var p_fim             = $("#agenda_periodo_fim_detalhe").val();
+				var tipo_operacao     = $("#operacao_detalhe").val();
+				var idEvento          = $("#id_evento_detalhe").val();
+				var ag_id_filtro      = $("#id_filtro_detalhe").val();
+				var idModulo          = $("#id_modulo_detalhe").val();
+				var iid_gestor        = $("#id_gestor_detalhe").val();
+				var iid_fornecedor    = $("#id_fornecedor_detalhe").val();
+				var iid_contrato      = $("#id_contrato_detalhe").val();
+				var contador          = "";
+				var qtd_campo         = "";
+				var p_array           = "";
+
 				if(check_personalizado)
 				 {
 
@@ -719,72 +724,188 @@ function editar_evento() {
 	 }
 }
 
-function check_rpt(val,tamanho,op=0){
 
-	if(op==0){ /* insert*/
-	   	if(val == 0 || val == 99 ){
-			$('.repetirAte'+tamanho).fadeOut()
-		}else{
-			$('.repetirAte'+tamanho).fadeIn()
-		} 
-	}else{ /* update */
-		if(val == 0 || val == 99 ){
-			$('#intervaloGrupoDetalhe .repetirAte'+tamanho).fadeOut()
-		}else{
-			$('#intervaloGrupoDetalhe .repetirAte'+tamanho).fadeIn()
+function check_rpt(val,tamanho,op=0,el){
+
+	
+		if(op==0){ /* insert*/
+
+			if(val == 0){
+			   $(el).css('border','1px solid rgb(169, 169, 169)');
+			   $('.repetirAte'+tamanho).fadeOut();
+			   $('.repetirAte'+tamanho+' input').attr('data-verifica','no');   
+			}else
+			if(val == 99 ){
+				$('.repetirAte'+tamanho).fadeOut();
+				$('.repetirAte'+tamanho+' input').attr('data-verifica','no');
+			}else{
+				$('.repetirAte'+tamanho).fadeIn();
+				$('.repetirAte'+tamanho+' input').attr('data-verifica','yes');
+				$(el).css('border','1px solid rgb(169, 169, 169)');
+
+			} 
+		}else{ /* update */
+			if(val == 0 || val == 99 ){
+				$('#intervaloGrupoDetalhe .repetirAte'+tamanho).fadeOut()
+			}else{
+				$('#intervaloGrupoDetalhe .repetirAte'+tamanho).fadeIn();
+				$(el).css('border','1px solid rgb(169, 169, 169)');
+			}
 		}
-	}
 }
 
 let verifica_cad_agenda = (tipo) => {
 	
-	if(tipo == 1){
-	   if($('#ag_cor_detalhe').val() == 99){
-			alerta('','Escolha uma cor')
-		}else
-		if($('#agenda_titulo_detalhe').val() == ''){
-			alerta('','Preencha o Titulo')
-		}else
-		if($('#n_dia_notifica_detalhe').val() == ''){
-			alerta('','Preencha os dias para notificação')
+	
+		/* Tratativa para verificar campos adicionados (eventos a mais. personalizados) */
+		let verifica  = '0';
+		let verifica2 = '0';
+
+		$('#intervaloGrupo input,#intervaloGrupo select').each(function(){
+			if($(this).attr('class') != 'noshow'){
+				if($(this).val() == 99 || $(this).val() == ''){ 
+					verifica += '1';  
+				}else{
+					verifica += '0';
+				}	   
+			}	
+		});   
+
+		$('.repetirAte-inp input').each(function(){ /* Tratativa para verificar dias até */
+			if($(this).attr('data-verifica') == 'yes' && $(this).val() == '' ){
+				verifica2 += '1';  
+			}else
+			if($(this).attr('data-verifica') == 'yes' && $(this).val() != '' ){
+				verifica2 += '0';
+			}	
+		}); 
+
+		if(tipo == 1){
+		   if($('#ag_cor_detalhe').val() == 99){
+				alerta('','Escolha uma cor')
+			}else
+			if($('#agenda_titulo_detalhe').val() == ''){
+				alerta('','Preencha o Titulo')
+			}else
+			if($('#n_dia_notifica_detalhe').val() == ''){
+				alerta('','Preencha os dias para notificação')
+			}else{
+				$('.btn_cria_evento').addClass('sheet-open');
+				return true;
+			}
+
 		}else{
-			$('.btn_cria_evento').addClass('sheet-open');
-			return true;
+			if($('#ag_cor').val() == 99){
+				alerta('','Escolha uma cor')
+			}else
+			if($('#agenda_titulo').val() == ''){
+				alerta('','Preencha o Titulo')
+			}else
+			if(verifica.indexOf('1') >=0 ){ 
+
+				$('#intervaloGrupo input,#intervaloGrupo select').each(function(){
+
+					if($(this).val() == '' && $(this).attr('data-verifica') != 'yes' || $(this).val() == 99  ){
+						$(this).css('border','1px solid red');
+					}else{
+						$(this).css('border','1px solid rgb(169, 169, 169)');	
+					}
+				}); 
+
+				$('.repetirAte-inp input').each(function(){
+					if($(this).attr('data-verifica') == 'yes' ){
+						$(this).css('border','1px solid red');
+					}else{
+						$(this).css('border','1px solid rgb(169, 169, 169)');
+					}	
+				}); 
+
+				alerta('','Preencha os campos em vermelho');
+
+			}else
+			if(verifica2.indexOf('1') >=0){ /* Tratativa para verificar dias até */
+
+				$('.repetirAte-inp input').each(function(){
+					if($(this).attr('data-verifica') == 'yes' && $(this).val() == '' ){
+						$(this).css('border','1px solid red');
+
+					}else
+					if($(this).attr('data-verifica') == 'yes' && $(this).val() != '' ){
+						$(this).css('border','1px solid rgb(169, 169, 169)');	
+					}	
+				}); 
+
+				alerta('','Preencha os campos em vermelho');
+
+			}else
+			if($('#n_dia_notifica').val() == ''){
+				alerta('','Preencha os dias para notificação')
+			}else{
+				return true;
+			}			
 		}
-	   	
-	}else{
-		if($('#ag_cor').val() == 99){
-			alerta('','Escolha uma cor')
-		}else
-		if($('#agenda_titulo').val() == ''){
-			alerta('','Preencha o Titulo')
-		}else
-		if($('#n_dia_notifica').val() == ''){
-			alerta('','Preencha os dias para notificação')
-		}else{
-			$('.btn_cria_evento').addClass('sheet-open');
-			return true;
-		}			
-	}	
 }
 
 let habilita_sheet = () => {
-	
-	if($('#ag_cor').val() == 99){
-        return false;
-	    $('.btn_cria_evento').removeClass('sheet-open');
-    }else
-    if($('#agenda_titulo').val() == ''){
-        return false;
-		$('.btn_cria_evento').removeClass('sheet-open');
-    }else
-    if($('#n_dia_notifica').val() == ''){
-        return false;
-		$('.btn_cria_evento').removeClass('sheet-open');
-    }else{
-		$('.btn_cria_evento').addClass('sheet-open');
-		return true;
-    }
+		
+	setTimeout(function(){
+		
+		let verifica           = '0';
+		let verifica2          = '0';
+		let tipo_personalizado = $('#ag_intervalo_perso').is(':checked');
+
+		$('#intervaloGrupo input,#intervaloGrupo select').each(function(){
+			if($(this).attr('class') != 'noshow'){
+				if($(this).val() == 99 || $(this).val() == ''){ 
+					verifica += '1';  
+				}else{
+					verifica += '0';
+				}	   
+			}	
+		});   
+
+		$('.repetirAte-inp input').each(function(){ /* Tratativa para verificar dias até */
+			if($(this).attr('data-verifica') == 'yes' && $(this).val() == '' ){
+				verifica2 += '1';  
+			}else
+			if($(this).attr('data-verifica') == 'yes' && $(this).val() != '' ){
+				verifica2 += '0';
+			}	
+		}); 
+		
+		
+		if($('#ag_cor').val() == 99){
+			$('.btn_cria_evento').removeClass('sheet-open');
+			$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+		}else
+		if($('#agenda_titulo').val() == ''){
+			$('.btn_cria_evento').removeClass('sheet-open');
+			$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+		}else
+		if($('#n_dia_notifica').val() == ''){
+			$('.btn_cria_evento').removeClass('sheet-open');
+			$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+		}else
+		if(verifica.indexOf('1')>=0){
+		    $('.btn_cria_evento').removeClass('sheet-open');
+			$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+		   
+		}else
+		if(verifica2.indexOf('1')>=0 ){
+		    $('.btn_cria_evento').removeClass('sheet-open');
+			$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+		   
+		}else{
+
+			if(tipo_personalizado){
+				$('.btn_cria_evento').addClass('sheet-open');
+				$('.btn_cria_evento').attr('data-sheet','.confirmacao_agenda');
+			}else{
+				$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+				$('.btn_cria_evento').removeClass('sheet-open');
+			}
+		}				
+	},500);
 }
 
 let desabilita_campo_ag = (op) => {
@@ -844,7 +965,7 @@ let carrega_evento_detalhe = (id) => {
 					   $('#intervaloGrupoDetalhe #agenda_repetirDetalhe').val(e.periodo_fim);
 					   $('#intervaloGrupoDetalhe #id_evento').val(e.id_evento);
 					   $('#intervaloGrupoDetalhe #iterval_detalhe').attr('disabled','disabled').css('background','#ebebe4');
-					   check_rpt(1,'',1);/* just for the field be able*/
+					   check_rpt(1,'',1,'');/* just for the field be able*/
 						
 					   if(e.qtd_ev_relacionado > 0){
 						   $('.ag_btn_relacionados').fadeIn();
@@ -898,14 +1019,14 @@ let adiciona_campo = () => {
 	 let tamanho      = $('#agendaContador').text();
 	 let div_anterior = parseInt(tamanho)-1;
 	 
-     html     = '<div class="row item'+tamanho+'">'
+     html     = '<hr class="item'+tamanho+'"><div class="row item'+tamanho+'">'
 					+'<div class="col-xs-4">'
 						+'<li class="item-content item-input">'
 						   +'<div class="item-inner">'
 							+'<div class="item-title item-label">Data Inicio:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_dt_agendaDetalhe" name="div_dt_agendaDetalhe" >'
-										+'<input id="ag_agendaDetalhePerso" onChange="verifica_data_retroativa(this)" type="date"  style="width: 113px;" />'
+										+'<input id="ag_agendaPerso" onChange="habilita_sheet();verifica_data_retroativa(this);" type="date"  style="width: 113px;" />'
 									+'</div>'
 								+'</div>'
 						  +'</div>'
@@ -917,7 +1038,7 @@ let adiciona_campo = () => {
 							+'<div class="item-title item-label">Hora Inicio:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >'
-										+'<input id="ag_hora_agendaDetalhePerso" onChange="" style="width: 77px;" type="time" name="ag_hora_agenda"/>'
+										+'<input id="ag_hora_agendaPerso" onChange="check_horario_agenda_personalizado(this.value,'+tamanho+',this,1)" style="width: 77px;" type="time" name="ag_hora_agenda"/>'
 									+'</div>'
 								+'</div>'
 						  +'</div>'
@@ -929,7 +1050,7 @@ let adiciona_campo = () => {
 							+'<div class="item-title item-label">Hora Fim:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_horafim_agendaDetalhe" name="div_horafim_agendaDetalhe" >'
-										+'<input id="ag_periodo_fimDetalhePerso" onChange="" type="time" />'
+										+'<input id="ag_periodo_fimPerso" onChange="check_horario_agenda_personalizado(this.value,'+tamanho+',this,2)" type="time" />'
 									+'</div>'
 								+'</div>'
 						  +'</div>'
@@ -941,7 +1062,7 @@ let adiciona_campo = () => {
 					   +'<div class="item-title item-label">Repetir:</div>'
 							+'<div class="item-input-wrap">'
 								+'<div id="div_intervalo_agendaDetalhe" name="div_intervalo_agendaDetalhe">'
-									+'<select onChange="check_rpt(value,'+tamanho+')" style="width: 130px;">'
+									+'<select onChange="check_rpt(value,'+tamanho+',0,this)" style="width: 130px;">'
 										+'<option value="99">Selecione ...</option>'
 										+'<option value="0">Evento Unico</option>'
 										+'<option value="1">Diariamente</option>'
@@ -954,18 +1075,18 @@ let adiciona_campo = () => {
 							+'</div>'
 					  +'</div>'
 				   +'</li></div>'
-				   +'<div class="col-xs-4"><li class="item-content item-input repetirAte'+tamanho+'" style="display:none;margin-left: 11px;">'
+				   +'<div class="col-xs-4"><li class="item-content item-input repetirAte-inp repetirAte'+tamanho+'" style="display:none;margin-left: 11px;">'
 					   +'<div class="item-inner" style="">'
 					   +'<div class="item-title item-label">até</div>'
 							+'<div class="item-input-wrap">'
 								+'<div id="div_repetir_agendaDetalhe" name="div_repetir_agendaDetalhe" >'
-									+'<input type="date" id="agenda_repetirDetalhe" style="width: 129px;" />'
+									+'<input type="date" class="noshow" data-verifica="no" id="agenda_repetirDetalhe" onChange="habilita_sheet();check_dia_repeticao(this.value,'+tamanho+',this)" style="width: 129px;" />'
 								+'</div>'
 							+'</div>'
 					  +'</div>'
 				   +'</li></div><div class="col-xs-4"><div onclick="remove_event('+tamanho+')" style="margin: 26px 0 0 51px;"><span class="fa fa-close"></span></div>'
 				   +'</div><li style="display:none">'
-					  +'<input type="text" />'
+					  +'<input type="text" class="noshow"/>'
 				   +'</li>'
 			  +'</div>'
           +'</div>'
@@ -1166,7 +1287,7 @@ let eventos_relacionados = () => {
 								   +'<div class="item-title item-label">Repetir:</div>'
 										+'<div class="item-input-wrap">'
 											+'<div id="div_intervalo_agendaDetalhe" name="div_intervalo_agendaDetalhe">'
-												+'<select onChange="check_rpt(value,'+y+')" style="width: 130px;" disabled="disabled">'
+												+'<select onChange="check_rpt(value,'+y+',1,this)" style="width: 130px;" disabled="disabled">'
 													+'<option value="99">Selecione ...</option>'
 													+'<option value="0" '+op1+'>Evento Unico</option>'
 													+'<option value="1" '+op2+'>Diariamente</option>'
@@ -1207,6 +1328,7 @@ let limpa_campo_ag = () =>{
 	let contador = 0;
 	let x        = 0;
 	
+	$('#n_dia_notifica').val('');
 	$('#ag_descricao').val('');
 	$('#agenda_titulo').val('');
 	$('#ag_cor').val(99).change();
@@ -1215,6 +1337,7 @@ let limpa_campo_ag = () =>{
 	$('#ag_hora_agenda').val('');
 	$('input[name="ag_hr_fim_fixo"]').val('');
 	$('input[name="intervalo"]').prop('checked',false);
+	$('#intervalorFixo').hide();
 	$('.adicionaEven').hide();
 	$('.item1').hide();
 	for(x=0;x<=20;x++){
@@ -1224,35 +1347,44 @@ let limpa_campo_ag = () =>{
 
 }
 
-let check_horario_agenda = (hora,screen) => {
+let check_horario_agenda = (hora,screen,indice=1) => {
+	   
+		let tipo_evento = '';
+		if(screen == 'salvar_personalizado'){
+		   tipo_evento =  $('.item'+indice+' #ag_agendaDetalhePerso').val();
+		}else
+		if(screen == 'salvar_fixo'){
+		   tipo_evento =  $('input[name="ag_data_inicio_fixo"]').val();
+		}
 	
-	let data_e           = $('input[name="ag_data_inicio_fixo"]').val();
-	let hora_ini         = hora;
-    let hora_at          = new Date();
-    let dia              = data_e.substr(8);
-    let mes              = data_e.substr(5,2);
-    let ano              = data_e.substr(0,4);
-    let data             = dia+'/'+mes+'/'+ano;
-    let hora_atual       = hora_at.getHours();
-    let hora_esc         = hora_ini.substr(0,2);
-    let min_esc          = hora_ini.substr(3);
-    let horario_esc      = hora_esc+''+min_esc; 
-    let dt_atual         = new Date();
-    let minu_atual       = dt_atual.getMinutes();
-    let hour_atual       = dt_atual.getHours();
-    let dt_esc           = new Date(format_data(0,data)+' '+hour_atual+':'+minu_atual);
-   
-    if(minu_atual<=9){
-        minu_atual = '0'+minu_atual;
-    }
-    
-    let horario          = hora_atual+''+minu_atual; 
-	let hora_tolerancia  = parseInt(horario)-5;
-    if(parseInt(horario_esc) < hora_tolerancia && dt_esc <= dt_atual){
-        return false;
-    }else{
-		return true;
-	}	
+		let data_e           = tipo_evento;
+		let hora_ini         = hora;
+		let hora_at          = new Date();
+		let dia              = data_e.substr(8);
+		let mes              = data_e.substr(5,2);
+		let ano              = data_e.substr(0,4);
+		let data             = dia+'/'+mes+'/'+ano;
+		let hora_atual       = hora_at.getHours();
+		let hora_esc         = hora_ini.substr(0,2);
+		let min_esc          = hora_ini.substr(3);
+		let horario_esc      = hora_esc+''+min_esc; 
+		let dt_atual         = new Date();
+		let minu_atual       = dt_atual.getMinutes();
+		let hour_atual       = dt_atual.getHours();
+		let dt_esc           = new Date(format_data(0,data)+' '+hour_atual+':'+minu_atual);
+
+		if(minu_atual<=9){
+			minu_atual = '0'+minu_atual;
+		}
+
+		let horario          = hora_atual+''+minu_atual; 
+		let hora_tolerancia  = parseInt(horario)-5;
+		/* check actuly date with the ate chooded by user */
+		if(parseInt(horario_esc) < hora_tolerancia && dt_esc <= dt_atual){
+			return false;
+		}else{
+			return true;
+		}	
 }
 
 let check_data_agenda = (data_inicio,data_fim,screen,hora_inicio,hora_fim) => {
@@ -1260,19 +1392,178 @@ let check_data_agenda = (data_inicio,data_fim,screen,hora_inicio,hora_fim) => {
 	let hora_inicial = hora_inicio.replace(':','');
 	let hora_final   = hora_fim.replace(':','');
 	
-	alert(data_inicio);alert(data_fim);alert(hora_inicio);alert(hora_fim);
+	if(data_inicio == ''){   
+	      alerta('','Preencha a Data Inicio');
+		  return false;
+	}else
+	if(data_fim == ''){
+          alerta('','Preencha a Data Fim');
+		  return false;
+     }else
 	if(data_fim < data_inicio){
           alerta('','Data Final menor que a Data Inicial.');
+		  return false;
      }else
 	 if(data_fim == data_inicio && parseInt(hora_final) < parseInt(hora_inicial)){
 		  alerta('','Hora Final menor que a Hora Inicial');
+		  return false;
 	 }else
 	 if(check_horario_agenda(hora_inicio,screen) == false){
-		  alerta('','Horario Inicial menor que horario atual. Max. 5 Min de tolerância');	
+		  alerta('','Horario Inicial menor que horario atual. Max. 5 Min de tolerância');
+		  return false;
 	 }else{
 		  return true
 	 }
- }
+}
+
+let check_campo_vazio_ag = (tipo = 0) => {
+	
+	if(tipo == 1){
+	   if($('#ag_cor_detalhe').val() == 99){
+			alerta('','Escolha uma cor')
+		}else
+		if($('#agenda_titulo_detalhe').val() == ''){
+			alerta('','Preencha o Titulo')
+		}else
+		if($('#n_dia_notifica_detalhe').val() == ''){
+			alerta('','Preencha os dias para notificação')
+		}else{
+			$('.btn_cria_evento').addClass('sheet-open');
+			return true;
+		}
+
+	}else{
+		
+		if($('#ag_cor').val() == 99){
+			alerta('','Escolha uma cor');
+			return false;
+		}else
+		if($('#agenda_titulo').val() == ''){
+			alerta('','Preencha o Titulo');
+			return false;
+		}
+		if($('#n_dia_notifica').val() == ''){
+			alerta('','Preencha os dias para notificação');
+			return false;
+		}else{
+			return true;
+		}			
+	}
+}
+
+
+let check_horario_agenda_personalizado = (hora,indice=1,el,tipo) => {
+	
+	if(hora.length == 5){
+		
+		let dt_atual         = new Date();		
+		let minu_atual       = dt_atual.getMinutes();
+		let hour_atual       = dt_atual.getHours();
+		let data_incicio     = $('#intervaloGrupo .item'+indice+' #ag_agendaPerso').val();
+		let hora_ini_esc     = $('#intervaloGrupo .item'+indice+' #ag_hora_agendaPerso').val();
+		let data_ate         = new Date(hora+' '+hour_atual+':'+minu_atual);
+		let data_e           = data_incicio;
+		let hora_ini         = hora;
+		let hora_at          = new Date();
+		let dia              = data_e.substr(8);
+		let mes              = data_e.substr(5,2);
+		let ano              = data_e.substr(0,4);
+		let data             = dia+'/'+mes+'/'+ano;
+		let hora_atual       = hora_at.getHours();
+		let hora_esc         = hora_ini.substr(0,2);
+		let min_esc          = hora_ini.substr(3);
+		let horario_esc      = hora_esc+''+min_esc; 
+		let dt_esc           = new Date(format_data(0,data)+' '+hour_atual+':'+minu_atual);
+		
+
+		if(minu_atual<=9){
+			minu_atual = '0'+minu_atual;
+		}
+
+		let horario          = hora_atual+''+minu_atual; 
+		let hora_tolerancia  = parseInt(horario)-5;
+		
+		if(tipo==1){
+			/* check actuly date with the date chooded by user (init date)*/
+			if(parseInt(horario_esc) < hora_tolerancia && dt_esc <= dt_atual){
+				alerta('','Horario Inicial menor que horario atual. Max. 5 Min de tolerância');
+				$(el).val('');
+			}else{
+				$(el).css('border','1px solid rgb(169, 169, 169)');	
+				habilita_sheet();
+
+			}
+			
+			if(data_incicio == ''){
+  				alerta('','Preencha a data do evento.');
+				$(el).val('');
+			}	
+		}else
+		if(tipo==2){
+		   /* check actuly date with the date chooded by user (end date)*/
+			if(parseInt(horario_esc) < parseInt(hora_ini_esc.replace(':',''))){
+				alerta('','Horario Final menor que Horario Inicial');
+				$(el).val('');
+			}else{
+				$(el).css('border','1px solid rgb(169, 169, 169)');
+				habilita_sheet();
+			}
+			
+			if(data_incicio == ''){
+  				alerta('','Preencha a data do evento.');
+				$(el).val('');
+			}
+		}else
+		if(tipo==3){
+		   /* check actuly date with the date chooded by user (end date)*/
+			if(data_ate < dt_esc){
+				alerta('','Data escolhida menor que a data inicial');
+				$(el).val('');
+			}else{
+				$(el).css('border','1px solid rgb(169, 169, 169)');	
+			}
+			
+			if(data_incicio == ''){
+  				alerta('','Preencha a data do evento.');
+				$(el).val('');
+			}
+		}		
+	}
+}
+
+
+
+let check_dia_repeticao = (data_,indice=1,el) => {
+        
+	if(data_.length == 10){
+	    let hora        = new Date();
+	    let hora_atual  = hora.getHours();
+	    let minu_atual  = hora.getMinutes();
+	    let dia_esc     = data_.substr(8);
+		let mes_esc     = data_.substr(5,2);
+		let ano_esc     = data_.substr(0,4);
+		let data_esc    = dia_esc+'/'+mes_esc+'/'+ano_esc;
+	    let data_ate    = new Date(format_data(0,data_esc)+' '+hora_atual+':'+minu_atual);
+	
+		let data_e      = $('#intervaloGrupo .item'+indice+' #ag_agendaPerso').val();
+		let dia         = data_e.substr(8);
+		let mes         = data_e.substr(5,2);
+		let ano         = data_e.substr(0,4);
+		let data        = dia+'/'+mes+'/'+ano;
+		let dt_esc      = new Date(format_data(0,data)+' '+hora_atual+':'+minu_atual);
+
+		if(data_ate < dt_esc){
+			alerta('','Data escolhida menor que a data inicial');
+			$(el).css('border','1px solid red');
+			$(el).val('');
+		}else{
+			$(el).css('border','1px solid rgb(169, 169, 169)');	
+			habilita_sheet();
+		}
+    }
+}
+
+
 
 
 

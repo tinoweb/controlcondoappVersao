@@ -3695,7 +3695,7 @@
 						  </div>
 					   </li>
 					   <li style="width: 94%;">
-						  <label class="item-radio item-content" onclick="confirma_mudanca();check_intervalo(1)">
+						  <label class="item-radio item-content" onclick="check_intervalo(1)">
 							<input type="radio" value="fixo" name="intervalo"/>
 							<i class="icon icon-radio"></i>
 							<div class="item-inner" style="font-weight: 100;font-size: 12px;">
@@ -3704,7 +3704,7 @@
 						  </label>
 					   </li>
 					   <li style="width: 94%;">
-						  <label class="item-radio item-content" onclick="confirma_mudanca();check_intervalo(2)">
+						  <label class="item-radio item-content" onclick="habilita_sheet();check_intervalo(2);">
 							<input type="radio" value="personalizado" name="intervalo" id="ag_intervalo_perso" />
 							<i class="icon icon-radio"></i>
 							<div class="item-inner" style="font-weight: 100;font-size: 12px;">
@@ -3778,7 +3778,7 @@
 											<div class="item-title item-label">Data Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_dt_agenda" name="div_dt_agenda" >
-														<input id="ag_agenda" onChange="verifica_data_retroativa(this)" type="date" name="ag_mudanca" style="width: 113px;"/>
+														<input id="ag_agendaPerso" onChange="habilita_sheet();verifica_data_retroativa(this)" type="date" name="ag_mudanca" style="width: 113px;"/>
 													</div>
 												</div>
 										  </div>
@@ -3790,7 +3790,7 @@
 											<div class="item-title item-label">Hora Inicio:</div>
 												<div class="item-input-wrap">
 													<div id="div_hora_agenda" name="div_hora_agenda" >
-														<input id="ag_hora_agenda" onChange="" style="width: 77px;" type="time" name="ag_hora_agenda"/>
+														<input id="ag_hora_agendaPerso" onChange="habilita_sheet();check_horario_agenda_personalizado(this.value,1,this,1)" style="width: 77px;" type="time" name="ag_hora_agenda"/>
 													</div>
 												</div>
 										  </div>
@@ -3802,7 +3802,7 @@
 											<div class="item-title item-label">Hora Fim:</div>
 												<div class="item-input-wrap">
 													<div id="div_horafim_agenda" name="div_horafim_agenda" >
-														<input id="ag_periodo_fim" onChange="" type="time" />
+														<input id="ag_periodo_fim" onChange="habilita_sheet();check_horario_agenda_personalizado(this.value,1,this,2)" type="time" />
 													</div>
 												</div>
 										  </div>
@@ -3814,7 +3814,7 @@
 										<div class="item-title item-label">Repetir:</div>
 											<div class="item-input-wrap">
 												<div id="div_intervalo_agenda" name="div_intervalo_agenda">
-													<select onChange="check_rpt(value,1)" style="width: 130px;">
+													<select onChange="habilita_sheet();check_rpt(value,1,0,this)" style="width: 130px;">
 														<option value="99">Selecione ...</option>
 														<option value="0">Evento Unico</option>
 														<option value="1">Diariamente</option>
@@ -3827,18 +3827,18 @@
 											</div>
 									  </div>
 								   </li>
-								   <li class="item-content item-input repetirAte1" style="margin-left: -45px;display:none">
+								   <li class="item-content item-input repetirAte-inp repetirAte1" style="margin-left: -45px;display:none">
 									   <div class="item-inner" style="padding-left: 15px;">
 										<div class="item-title item-label">até</div>
 											<div class="item-input-wrap">
 												<div id="div_repetir_agenda" name="div_repetir_agenda" >
-													<input type="date" id="agenda_repetir"/>
+													<input type="date" data-verifica="no" class="noshow" onChange="habilita_sheet();check_dia_repeticao(this.value,1,this)" id="agenda_repetir"/>
 												</div>
 											</div>
 									  </div>
 								   </li>
 								   <li style="display:none">
-									  <input type="text" id="id_evento"/>	
+									  <input class="noshow" type="text" id="id_evento"/>	
 								   </li>
 					          </div>
 						       <div class="col-xs-7 adicionaEvent" style="padding: 4px 0 3px 17px;">
@@ -3851,7 +3851,7 @@
 								<div class="item-title item-label">Dias para Notificar:</div>
 									<div class="item-input-wrap">
 										<div id="div_noti_agenda" name="div_noti_agenda" >
-											<input type="number" id="n_dia_notifica"  onBlur="habilita_sheet()" name="n_dia_notifica" placeholder="Dias para Notificar"/>
+											<input type="number" id="n_dia_notifica" onChange="habilita_sheet()" name="n_dia_notifica" placeholder="Dias para Notificar"/>
 										</div>
 									</div>
 							  </div>
@@ -4781,4 +4781,4 @@
                 
 </script>
 </body>
-</html>
+</html>>>>>>>>>>>

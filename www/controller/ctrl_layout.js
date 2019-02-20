@@ -368,9 +368,16 @@ function verifica_data_retroativa(el){
 		if(choose_date < current_date){
 		   alerta('','Nao é permitido dias retroativos');
 		   $(el).val('')
+		}else{
+		   $(el).css('border','1px solid rgb(169, 169, 169)');	
 		}
 	}
 }
+
+
+
+  
+
 
 
 
