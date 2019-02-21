@@ -286,15 +286,17 @@ function recuperaEmail(){
 	$.ajax({
 		type: 'post',
 		data: dados,
-		url: localStorage.getItem('DOMINIO')+'ajax/mail2.php',
+		url: localStorage.getItem('DOMINIO')+'mail_template/pt-br/recupera_senha.php',
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
-            //alert(retorno);
+
             notifica('Recuperacao de senha/'+retorno+'/Fechar',0,0);
 			//alertify.alert(retorno);
 			afed('','#bg_box5','','');
+		},
+		error: function(){
 		}
 	})
     }
