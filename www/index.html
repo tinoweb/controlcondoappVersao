@@ -890,7 +890,7 @@
 			</div>
 		</div>
 		<div id="morador_retorno" class="scroll" ></div>
-		<div class="fab fab-extended fab-right-bottom">
+		<div class="fab fab-extended fab-right-bottom" id="bt_mor_add">
 			<a href="#" onClick="carrega_morador_dados(0)">
 				<i class="icon material-icons md-only">add</i>
 			</a>
@@ -932,8 +932,8 @@
 						<li class="item-content">
 							<div class="item-media" id="foto_morador_edit" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
 							<div class="item-inner">
-								<p><button type="button" class="col button button-fill color-green" onClick="app.foto_mor();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
-								<p><button type="button" class="col button button-fill color-green" onClick="app.foto_mor2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
+								<p><button id="bt_mor_ft1" type="button" class="col button button-fill color-green" onClick="app.foto_mor();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+								<p><button id="bt_mor_ft2" type="button" class="col button button-fill color-green" onClick="app.foto_mor2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
 							</div>							
 						</li>
 						<li class="item-content item-input">
@@ -1050,13 +1050,13 @@
 							<div class="item-inner">
 								<div class="item-input-wrap">
 									<input type="hidden" name="id_morador" id="mor_id_morador">
-									<button type="button" class="col button button-fill color-green" onClick="atualiza_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
+									<button id="bt_mor_atu" type="button" class="col button button-fill color-green" onClick="atualiza_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
 									<!--<input type="button" value="" onClick="atualiza_morador();">-->
 								</div>
 							</div>
 							<div class="item-inner">
 								<div class="item-input-wrap">
-									<button type="button" class="col button button-fill color-red" onClick="delete_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
+									<button id="bt_mor_del" type="button" class="col button button-fill color-red" onClick="delete_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
 								</div>
 							</div>
 
@@ -1069,7 +1069,7 @@
 				<div class="list media-list">
   					<ul id="retorno_veiculo_morador"></ul>
 				</div>
-				<div class="fab fab-extended fab-right-bottom">
+				<div class="fab fab-extended fab-right-bottom" id="bt_mv_add">
     				<a href="#" class=" sheet-open" data-sheet=".veiculo-morador" onClick="veiculo_marca_modelo_cor(0,1);">
       					<i class="icon material-icons md-only">add</i>
     				</a>
@@ -1090,8 +1090,8 @@
 									<li class="item-content">
 										<div class="item-media" id="foto_morador_veiculo" style="width: 80px; height: 80px; background-size: 80px; background-position: center center; background-image:url(img/user2.png); border-radius: 40px; border: 1px solid #B2B2B2;"></div>
 										<div class="item-inner">
-											<p><button type="button" class="col button button-fill color-green" onClick="app.foto_veiculo();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
-											<p><button type="button" class="col button button-fill color-green" onClick="app.foto_veiculo2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
+											<p><button id="bt_mv_ft1" type="button" class="col button button-fill color-green" onClick="app.foto_veiculo();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+											<p><button id="bt_mv_ft2" type="button" class="col button button-fill color-green" onClick="app.foto_veiculo2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>
 										</div>
 									</li>
 									<li class="item-content item-input">
@@ -1140,12 +1140,12 @@
 										<div class="item-inner">
 											<div class="item-input-wrap">
 												<input type="hidden" name="id_morador" id="mor_veiculo_id_morador">
-												<button type="button" class="col button button-fill color-green" onClick="atualiza_veiculo_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
+												<button id="bt_mv_atu" type="button" class="col button button-fill color-green" onClick="atualiza_veiculo_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
 											</div>
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												<button type="button" class="col button button-fill color-red" onClick="delete_veiculo_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
+												<button id="bt_mv_del" type="button" class="col button button-fill color-red" onClick="delete_veiculo_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
 											</div>
 										</div>
 
@@ -1162,7 +1162,7 @@
 					<ul id="retorno_contato_morador">
 					</ul>
 				</div>
-				<div class="fab fab-extended fab-right-bottom">
+				<div class="fab fab-extended fab-right-bottom" id="bt_mc_add">
 					<a href="#" class=" sheet-open" data-sheet=".contato-morador" onClick="contatos(0,1);">
 						<i class="icon material-icons md-only">add</i>
 					</a>
@@ -1203,12 +1203,12 @@
 										<div class="item-inner">
 											<div class="item-input-wrap">
 												<input type="hidden" name="id_morador" id="mor_contato_id_morador">
-												<button type="button" class="col button button-fill color-green" onClick="atualiza_contato_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
+												<button id="bt_mc_atu" type="button" class="col button button-fill color-green" onClick="atualiza_contato_morador();"><i class="icon material-icons color-white">save</i>Salvar</button>
 											</div>
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												<button type="button" class="col button button-fill color-red" onClick="delete_contato_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
+												<button id="bt_mc_del" type="button" class="col button button-fill color-red" onClick="delete_contato_morador();"><i class="icon material-icons color-white">delete</i>Excluir</button>
 												<!--<input type="button" value="" onClick="atualiza_morador();">-->
 											</div>
 										</div>
