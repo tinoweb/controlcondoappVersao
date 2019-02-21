@@ -1,6 +1,5 @@
 <!doctype html>
-<html>
-<head>
+<html><head>
 	<title>Control Condo</title>
 	<link rel="stylesheet" type="text/css" href="css/calendario.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css"/>
@@ -585,7 +584,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_agenda_eventos(0)" >
+						<li onClick="carrega_agenda_eventos()" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
@@ -3293,10 +3292,12 @@
 		
 	<!-- $AGENDA  
          Autor: Caio Souza.
-         Data: 06/02/2019.
+         Data: 06/02/2019.#add_agenda
     -->
 		
 	<div id="agenda" class="pagina agenda"> 
+		<div style="display:none" class="my_events_ag"></div>
+		<input type="hidden" id="dia_selecionado_ag"/>
 		<div class="view view-agenda"> 
 			<div data-name="home" class="page">
 				<div class="navbar" style="height: 50px">
@@ -3337,7 +3338,7 @@
 				</div>
 				<div class="row" style="margin-top: -61px;">
 					<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 225px;">
-						<a onclick="agenda_novo();limpa_campo_ag();" >
+						<a onclick="verifica_dia_selecionado();agenda_novo();limpa_campo_ag();" >
 							<i class="glyphicon glyphicon-plus"></i>
 						</a>
 					</div>
@@ -3361,7 +3362,7 @@
 								<th>Data Inicio</th>
 								<th>Hora Inicio</th>
 								<th>Hora Fim</th>
-								<th>Até</th>
+								<th class="ag_check_ev">Até</th>
 							</tr>
 						</thead>
 						<tbody class="ev-confirma">
@@ -3393,12 +3394,19 @@
 									<div>
 										<select name="agenda_cor_detalhe" id="agenda_cor_detalhe">
 											<option value="99">Selecione uma opção...</option>
-											<option value="#2196f3">Azul</option>
-											<option value="red">Vermelho</option>
-											<option value="orange">Laranja</option>
-											<option value="pinky">Rosa</option>
-											<option value="#39cc6a">Verde</option>
-											<option value="#dcd329">Amarelo</option>
+											<option value="rgb(0, 192, 239)">Azul Claro</option>
+											<option value="rgb(0, 115, 186)">Azul Marinho</option>
+											<option value="rgb(60, 141, 188)">Azul</option>
+											<option value="rgb(57, 204, 204)">Aqua</option>
+											<option value="rgb(243, 156, 18)">Amarelo</option>
+											<option value="rgb(255, 133, 27)">Laranja</option>
+											<option value="rgb(0, 166, 90)">Verde</option>
+											<option value="rgb(1, 255, 112)">Verde Claro</option>
+											<option value="rgb(221, 75, 57)">Vermelho</option>
+											<option value="rgb(96, 92, 168)">Roxo</option>
+											<option value="rgb(240, 18, 190)">Rosa</option>
+											<option value="rgb(199, 199, 199)">Cinza</option>
+											<option value="rgb(0, 31, 63)">Preto</option>
 										</select>
 									</div>
 								</div>
@@ -3614,7 +3622,7 @@
 								   </li>
 					          </div>
 					   </div>
-					   <span style="margin-top: 10px;width: 91%;margin-left: 15px;background:#f8cf1f;display:none" onclick="eventos_relacionados()" class="ag_btn_relacionados col button button-fill">
+					   <span style="margin-top: 10px;width: 91%;margin-left: 15px;background:#f8cf1f;display:none" onclick="eventos_relacionados(this)" class="ag_btn_relacionados col button button-fill">
 							<span class="fa fa-list-ul "></span> Ver relacionados
 					   </span>
 					   <input id="id_evento_relacionado" style="display:none" />
@@ -3629,8 +3637,12 @@
 						   </div>
 					    </li>
 					   <div>
+						    <span style="display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_aprovar"><span class="fa fa-edit "></span> Aprovar</span>
+						    <span  style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_reprovar"><span class="fa fa-edit "></span> Reprovar
+						    </span>
 						    <span onclick="desabilita_campo_ag(2)" style="margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_edit"><span class="fa fa-edit "></span> Editar</span>
-						    <span onclick="desabilita_campo_ag(3)" style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_cancel"><span class="fa fa-close"></span> Cancelar</span>
+						    <span onclick="" style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_deletar"><span class="fa fa-edit "></span> Deletar</span>
+						    <span onclick="desabilita_campo_ag(3)" style="display:none;background:#f0e50a;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_cancel"><span class="fa fa-close"></span> Cancelar</span>
 							<span onclick="editar_evento()" style="display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_save"><span class="fa fa-save"></span> Salvar</span>
 					   </div>
 					</ul>
@@ -3644,7 +3656,7 @@
 	<div id="add_agenda" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#agenda','#add_agenda','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="$('#dia_selecionado_ag').val('');voltar('#agenda','#add_agenda','');"><i class="icon icon-back"></i></a> </div>
 				<div class="title">Novo Evento</div>
 			</div>
 		</div>
@@ -3662,12 +3674,19 @@
 									<div id="div_cor_agenda" name="div_cor_agenda">
 										<select name="ag_cor" id="ag_cor" onBlur="habilita_sheet()">
 											<option value="99">Selecione uma opção...</option>
-											<option value="#2196f3">Azul</option>
-											<option value="red">Vermelho</option>
-											<option value="orange">Laranja</option>
-											<option value="pinky">Rosa</option>
-											<option value="#39cc6a">Verde</option>
-											<option value="#dcd329">Amarelo</option>
+											<option value="rgb(0, 192, 239)">Azul Claro</option>
+											<option value="rgb(0, 115, 186)">Azul Marinho</option>
+											<option value="rgb(60, 141, 188)">Azul</option>
+											<option value="rgb(57, 204, 204)">Aqua</option>
+											<option value="rgb(243, 156, 18)">Amarelo</option>
+											<option value="rgb(255, 133, 27)">Laranja</option>
+											<option value="rgb(0, 166, 90)">Verde</option>
+											<option value="rgb(1, 255, 112)">Verde Claro</option>
+											<option value="rgb(221, 75, 57)">Vermelho</option>
+											<option value="rgb(96, 92, 168)">Roxo</option>
+											<option value="rgb(240, 18, 190)">Rosa</option>
+											<option value="rgb(199, 199, 199)">Cinza</option>
+											<option value="rgb(0, 31, 63)">Preto</option>
 										</select>
 									</div>
 								</div>
@@ -3842,7 +3861,7 @@
 								   </li>
 					          </div>
 						       <div class="col-xs-7 adicionaEvent" style="padding: 4px 0 3px 17px;">
-									 <button type="button" onclick="adiciona_campo()" class="adicionaEven col button button-fill" style="background:red"><span class="fa fa-plus"></span> Adicionar Evento</button>
+									 <button type="button" onclick="adiciona_campo();habilita_sheet()" class="adicionaEven col button button-fill" style="background:red"><span class="fa fa-plus"></span> Adicionar Evento</button>
 							   </div>
 					   </div>
 					   <div class="col-xs-8" style="margin-left: -13px;">
@@ -4781,4 +4800,4 @@
                 
 </script>
 </body>
-</html>>>>>>>>>>>
+</html>

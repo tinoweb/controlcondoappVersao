@@ -143,8 +143,6 @@ let event_days = (data) => {
 	
 	$.ajax({
 		url        : localStorage.getItem('DOMINIO')+'appweb/agenda_get.php',
-		beforeSend : function() { $("#wait").css("display", "block"); },
-		complete   : function() { $("#wait").css("display", "none"); },
 		dataType   : 'JSON',
 		type       : 'POST',
 		data       : {operacao:3,id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val(),id_morador:$( "#DADOS #ID_MORADOR" ).val()},
@@ -154,9 +152,8 @@ let event_days = (data) => {
 				days +=','+retorno[x].DataEvento;				
 			}
 			
-			sessionStorage.setItem('DiasAgenda',days);
-		
-	    },
+			sessionStorage.setItem('my_events',days);
+		},
 		error      :function(){
 			alerta('','Erro ao carregar os dias.')
 		}
@@ -165,14 +162,25 @@ let event_days = (data) => {
 }
 
 
-let carrega_agenda_eventos = () => {
+let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
+	
+	let direciona_mes = '';
+	let verifica      = 0;
+    app2.calendar.close("#calendario_agenda");
 	
     $('#calendario_agenda').html('');
+	$('#dia_selecionado_ag').val('');
 	event_days();
+	
+	if(pano != '' && pmes != ''){
+	   direciona_mes = ' /*calendarInline.setValue(["'+pano+'-'+pmes+'-'+pdia+'"]);*/calendarInline.setYearMonth('+pano+', '+pmes+', 2)';
+	   verifica = 1;	   
+	}
+					  
 	
 	setTimeout(function(){
 		
-		let d_eventos        = sessionStorage.getItem('DiasAgenda');	
+		let d_eventos        = sessionStorage.getItem('my_events');
 		let a_dias           = d_eventos.split(',');
 		let s_dias           = '';
 		let s_dias_formatado = '';
@@ -191,7 +199,7 @@ let carrega_agenda_eventos = () => {
 		let header_calendar = '<div class="toolbar calendar-custom-toolbar no-shadow">' +
 								  '<div class="toolbar-inner">' +
 									'<div class="left">' +
-									  '<a href="#" class="link icon-only"><i style="width: 28px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+									  '<a href="#" class="link icon-only"><i style="width: 24px;height: 24px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
 									'</div>' +
 									'<div class="center" style="margin-left: -23px;"></div>' +
 									'<div class="right">' +
@@ -246,8 +254,8 @@ let carrega_agenda_eventos = () => {
 											   +'/*take the day thay the user click*/'
 											   +'dayClick: function(calendar, dayEl, year, month, day){'
 													 +' $("#info_agenda_evento").html(""); html = "";'
-								                        
-								                     +'let data_formatada = trata_data_agenda(day+"/"+month+"/"+year);'
+								                     +'let data_formatada = trata_data_agenda(day+"/"+month+"/"+year,1);'
+								                     +' $("#dia_selecionado_ag").val(trata_data_agenda(day+"/"+month+"/"+year,2));' 
 													 +'$.ajax({'
 														 +'url        : localStorage.getItem("DOMINIO")+"appweb/agenda_get.php",'
 														 +'beforeSend : function() { $("#wait").css("display", "block"); },'
@@ -256,32 +264,54 @@ let carrega_agenda_eventos = () => {
 														 +'type       : "POST",'
 														 +'dataType   : "JSON",'
 														 +'success    : function(e){'
-
+                                                             +'let hidden1 = "";'
+														     +'let titulo  = "";'
+															 +'let id      = "";'
 															 +'for(x in e){'
 																 +'contador = parseInt(x)+1;'
 																 +'if(e[x].titulo == "Mudanca"){'
 
+								                                     +'titulo   = e[x].titulo;'
 																	 +'cor     = "background:  #ffc906";'
 																	 +'icon    = \'fa fa-exchange\';'
 																	 +'vclasse = "icon-mudanca";'
+								 								     +'hidden1  = "display:block;";'
+								                                     +'$(".ag_btn_relacionados").hide()'
 
-																 +'}else{'
-
-																	 +'icon    = \'fa fa-calendar;\';'
-																	 +'vclasse = "icon-evento";'
-																	 +'cor     = "background:"+e[x].cor;'
+																 +'}else '
+								                                 +'if(e[x].titulo == "Comunicado"){'
+								
+																	 +'titulo   = e[x].titulo_descricao;'
+																	 +'cor      = "background:"+e[x].cor;'
+																	 +'icon     = \'fa fa-bullhorn\';'
+																	 +'vclasse  = "icon-comunicado";'
+																     +'hidden1  = "display:none;";'
+																     +'id       = " N° "+e[x].id;'
+								                                     +'$(".ag_btn_relacionados").hide()'
+								
+								                                 +'}'
+								                                 +'else{'
+								
+																	 +'titulo   = e[x].titulo;'
+																	 +'icon     = \'fa fa-calendar;\';'
+																	 +'vclasse  = "icon-evento";'
+								 									 +'hidden1  = "display:block;";'
+																	 +'cor      = "background:"+e[x].cor;'
+																	 +'id       = ""'
+															
 
 																 +'}'
 
 																+'html += "<div data-sheet=\'.evento_detalhe\' onclick=\'carrega_evento_detalhe("+e[x].id_evento+") \'class=\'sheet-open background-btn chip color-red\' style=\'height: 35px;width: 96%;"+cor+"  \'>'
-																			+'<div style=\'padding-left: 5px;\' class=\'chip-label col-xs-6\'>"+contador+" - "+e[x].titulo+"</div>'
-																			+'<div class=\'col-xs-6\'><span>"+ e[x].hora_inicio+" ás "+e[x].hora_fim+"</span></div>'
+																			+'<div style=\'padding-left: 5px;\' class=\'chip-label col-xs-6\'>"+contador+" - "+titulo+id+"</div>'
+																			+'<div class=\'col-xs-6\'><span style="+hidden1+">"+ e[x].hora_inicio+" ás "+e[x].hora_fim+"</span></div>'
 																			+'<div><span class="+vclasse+"></span></div>'
 																	   +'</div><br>"'
 															+'}; '
 															+' $(\'#info_agenda_evento\').html(html);'
 															+' $(\'.icon-evento\').addClass(\'fa fa-calendar\');'
 															+' $(\'.icon-mudanca\').addClass(\'fa fa-exchange\');'
+								                            +' $(\'.icon-comunicado\').addClass(\'fa fa-bullhorn\');'
 
 														+'},'
 														+'error : function(){'				
@@ -291,7 +321,6 @@ let carrega_agenda_eventos = () => {
 											   +'},'
 
 											  +'init: function (c) {'
-
 												  +'/*Write week name*/'
 												  +'for(x = 0;x <=7; x++){'
 													 +'$(\'.calendar-week-header\').children().eq(x).html(dayNames[x])'
@@ -311,17 +340,24 @@ let carrega_agenda_eventos = () => {
 
 											+'}'
 										 +'}'
-									 +'});');
-		
+									 +'});'+direciona_mes)
+								 
 		gera();
 		afed('#agenda','#home','','');
 		
 	},700);
 	
+	setTimeout(function(){
+		if(verifica == 1){
+		  $('.calendar-month-current div[data-date="'+pano+'-'+pmes+'-'+parseInt(pdia)+'"]').click();	
+	    }else{
+		  $('.calendar-month-current div[data-date="2019-1-21"]').click();
+		}		
+	},1000);
 	
 }
 
-function trata_data_agenda(valor){
+function trata_data_agenda(valor,op){
 
     let a_numero      = ['0','1','2','3','4','5','6','7','8','9'];
     let a_data        = valor.split('/'); 
@@ -342,12 +378,23 @@ function trata_data_agenda(valor){
        valor_mes  = parseInt(a_data[1])+1;			
     }
 	
-    return valor_dia+'/'+valor_mes+'/'+a_data[2];
+	if(op == 1){
+	   return valor_dia+'/'+valor_mes+'/'+a_data[2];
+	}else
+	if(op == 2){
+		return a_data[2]+'-'+valor_mes+'-'+valor_dia;
+	}
+	
+    
 }
 
 function agenda_novo(){
 	
 	afed('#add_agenda','#agenda','','');	
+	$(":input").bind('keyup mouseup', function () {
+		habilita_sheet();           
+	});
+
 }
 
 function check_intervalo(tipo){
@@ -381,160 +428,169 @@ function check_intervalo(tipo){
 
 function salva_evento() { 
 			
-			    var datainicial         =  $('input[name="ag_data_inicio_fixo"]').val();
-		        var datafinal           =  $('input[name="ag_data_fim"]').val();
-		        var tipo_acao           =  $("operacao").html();
-				var check_personalizado =  $('#ag_intervalo_perso').is(':checked');
-	            var check_fixo          =  $('input[value="fixo"]').is(':checked');
-				var hora_inicio_fixo    =  $('input[name="ag_hr_inicio_fixo"]').val();
-				var hora_fim_fixo       =  $('input[name="ag_hr_fim_fixo"]').val();
+		var datainicial         =  $('input[name="ag_data_inicio_fixo"]').val();
+		var datafinal           =  $('input[name="ag_data_fim"]').val();
+		var tipo_acao           =  $("operacao").html();
+		var check_personalizado =  $('#ag_intervalo_perso').is(':checked');
+		var check_fixo          =  $('input[value="fixo"]').is(':checked');
+		var hora_inicio_fixo    =  $('input[name="ag_hr_inicio_fixo"]').val();
+		var hora_fim_fixo       =  $('input[name="ag_hr_fim_fixo"]').val();
+	    $('#dia_selecionado_ag').val('');
 
-					if(check_personalizado) /* Check type of the event (fixo ou personalizado) */
-					 {
-						 
-						 if(verifica_cad_agenda()){ /* Check register information */
- 
-						    var nome_campo      = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
-							var json_cabecalho    = '{"cabecalho":['
-							var json              = '{"eventos":[';
-							var json_body         = "";
-							var json_col_ini      = "";
-							var json_col_fim      = "";
-							var json_para_um      = "";
-							var json_para_dois    = "";
-							var tamanho_string    = "";
-							var qtd_campo         = "";
-							var string_json       = "";
-							var p_array           = "";
-							var ctipo             = $("#ag_tipo").val();
-							var ctitulo           = $("#agenda_titulo").val();
-							var cnotificacao_dias = $("#agenda_n_dia_notifica").val();
-							var cgestor           = $("#ag_gestor").val();
-							var cfornecedor       = $("#ag_fornecedor").val();
-							var ccontrato         = $("#ag_contrato").val();
-							var cor               = $("#ag_cor").val();
-							var descricao         = $("#ag_descricao").val();
-							var gestor            = $("#ag_gestor").val();
-							var fornecedor        = $("#ag_fornecedor").data("id");
-							var ag_contrato       = $("#ag_contrato").val();
-							var dia_notifica      = $("#n_dia_notifica").val();
-							var p_fim             = $("#ag_periodo_fim").val();
-							var tipo_operacao     = $("#operacao").val();
-							var idEvento          = $("#id_evento").val();
-							var ag_id_filtro      = $("#id_filtro").val();
-							var idModulo          = $("#id_modulo").val();
-							var iid_gestor        = $("#id_gestor").val();
-							var iid_fornecedor    = $("#id_fornecedor").val();
-							var iid_contrato      = $("#id_contrato").val();
-							var contador          = "";
-							var qtd_campo         = "";
-							var p_array           = "";
+			if(check_personalizado) /* Check type of the event (fixo ou personalizado) */
+			 {
 
-							$("#intervaloGrupo > div").each(function(e){ /* Pega Valores Preenchidos E monta string Json*/
-								 json_col_ini = "{";
-								 contador     = e+1;
-								 $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").each(function(x){
-									 /* Tratativa para quebrar string dinamicamente*/
-									 qtd_campo = $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").length;	 
-									 if(qtd_campo == 7){
-										p_array = 6;
-									}else
-									 if(qtd_campo == 6){
-										p_array = 5;
-									 }
+				 if(verifica_cad_agenda()){ /* Check register information */
 
-									if($(this).attr("style")!="display: none" || $(this).attr("name")=="ag_periodo_fim" ){
-											  if(x===p_array){
-												   json_col_fim = "}"; 
-												}
+					var nome_campo      = ["DataInicio","HoraInicio","HoraFim","Repetir","RepetirAte","id_evento","evento_operacao"];
+					var json_cabecalho    = '{"cabecalho":['
+					var json              = '{"eventos":[';
+					var json_body         = "";
+					var json_col_ini      = "";
+					var json_col_fim      = "";
+					var json_para_um      = "";
+					var json_para_dois    = "";
+					var tamanho_string    = "";
+					var qtd_campo         = "";
+					var string_json       = "";
+					var p_array           = "";
+					var ctipo             = $("#ag_tipo").val();
+					var ctitulo           = $("#agenda_titulo").val();
+					var cnotificacao_dias = $("#agenda_n_dia_notifica").val();
+					var cgestor           = $("#ag_gestor").val();
+					var cfornecedor       = $("#ag_fornecedor").val();
+					var ccontrato         = $("#ag_contrato").val();
+					var cor               = $("#ag_cor").val();
+					var descricao         = $("#ag_descricao").val();
+					var gestor            = $("#ag_gestor").val();
+					var fornecedor        = $("#ag_fornecedor").data("id");
+					var ag_contrato       = $("#ag_contrato").val();
+					var dia_notifica      = $("#n_dia_notifica").val();
+					var p_fim             = $("#ag_periodo_fim").val();
+					var tipo_operacao     = $("#operacao").val();
+					var idEvento          = $("#id_evento").val();
+					var ag_id_filtro      = $("#id_filtro").val();
+					var idModulo          = $("#id_modulo").val();
+					var iid_gestor        = $("#id_gestor").val();
+					var iid_fornecedor    = $("#id_fornecedor").val();
+					var iid_contrato      = $("#id_contrato").val();
+					var contador          = "";
+					var qtd_campo         = "";
+					var p_array           = "";
 
-											 json_body+= json_col_ini+'"'+nome_campo[x]+'":"'+$(this).val()+'"'+json_col_fim+',';
-											 json_col_ini="";
-											  if(x===p_array){
-												   json_col_fim = "";
-												}
-										 }
-									 });
-							});
+					$("#intervaloGrupo > div").each(function(e){ /* Pega Valores Preenchidos E monta string Json*/
+						 json_col_ini = "{";
+						 contador     = e+1;
+						 $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").each(function(x){
+							 /* Tratativa para quebrar string dinamicamente*/
+							 qtd_campo = $("#intervaloGrupo .item"+contador+" input,#intervaloGrupo .item"+contador+" select ").length;	 
+							 if(qtd_campo == 7){
+								p_array = 6;
+							}else
+							 if(qtd_campo == 6){
+								p_array = 5;
+							 }
 
-							tamanho_string = json_body.length;
-							string_json    = json+json_body.substr(0,tamanho_string-2)+"}]}";
+							if($(this).attr("style")!="display: none" || $(this).attr("name")=="ag_periodo_fim" ){
+									  if(x===p_array){
+										   json_col_fim = "}"; 
+										}
 
-							console.log(string_json);	
+									 json_body+= json_col_ini+'"'+nome_campo[x]+'":"'+$(this).val()+'"'+json_col_fim+',';
+									 json_col_ini="";
+									  if(x===p_array){
+										   json_col_fim = "";
+										}
+								 }
+							 });
+					});
 
-							$.ajax({
-									   type:'POST',
-									   data:{
-											   dados_json      :string_json,
-											   titulo          :ctitulo,
-											   notificacao_dias:cnotificacao_dias,
-											   gestor          :cgestor,
-											   fornecedor      :cfornecedor,
-											   contrato        :ccontrato,
-											   Intervalo       :'intervalo personalizado',
-											   id_condominio   :$( "#DADOS #ID_CONDOMINIO" ).val(),
-											   id_usuario_condominio:$( "#DADOS #ID_USER" ).val(),
-											   id_morador      :$( "#DADOS #ID_MORADOR" ).val(),
-											   ag_tipo         :ctipo, 
-											   ag_cor          :cor, 
-											   ag_descricao    :descricao,
-											   ag_periordo_rpt :'',
-											   ag_periodo_fim  :p_fim,
-											   ag_gestor       :gestor,
-											   ag_fornecedor   :fornecedor,
-											   ag_contrato     :ag_contrato,
-											   n_dia_notifica  :dia_notifica,
-											   id_modulo       :'',
-											   ag_data_fim     :'',
-											   id_pai          :'',
-											   operacao        :tipo_operacao,
-											   id_evento       :idEvento,
-											   id_filtro       :ag_id_filtro,
-											   id_gestor       :'',
-											   id_fornecedor   :'',
-											   id_contrato     :'',
-											   tipo_usuario    :'morador'
+					tamanho_string = json_body.length;
+					string_json    = json+json_body.substr(0,tamanho_string-2)+"}]}";
 
-											},
-										url:localStorage.getItem("DOMINIO")+"appweb/agenda_insert.php",
-									success:function(retorno){
-										 confirmacao_agenda(retorno);
+					console.log(string_json);	
+
+					$.ajax({
+							   type:'POST',
+							   data:{
+									   dados_json      :string_json,
+									   titulo          :ctitulo,
+									   notificacao_dias:cnotificacao_dias,
+									   gestor          :cgestor,
+									   fornecedor      :cfornecedor,
+									   contrato        :ccontrato,
+									   Intervalo       :'intervalo personalizado',
+									   id_condominio   :$( "#DADOS #ID_CONDOMINIO" ).val(),
+									   id_usuario_condominio:$( "#DADOS #ID_USER" ).val(),
+									   id_morador      :$( "#DADOS #ID_MORADOR" ).val(),
+									   ag_tipo         :ctipo, 
+									   ag_cor          :cor, 
+									   ag_descricao    :descricao,
+									   ag_periordo_rpt :'',
+									   ag_periodo_fim  :p_fim,
+									   ag_gestor       :gestor,
+									   ag_fornecedor   :fornecedor,
+									   ag_contrato     :ag_contrato,
+									   n_dia_notifica  :dia_notifica,
+									   id_modulo       :'',
+									   ag_data_fim     :'',
+									   id_pai          :'',
+									   operacao        :tipo_operacao,
+									   id_evento       :idEvento,
+									   id_filtro       :ag_id_filtro,
+									   id_gestor       :'',
+									   id_fornecedor   :'',
+									   id_contrato     :'',
+									   tipo_usuario    :'morador'
+
 									},
-									error:function(){
+								url:localStorage.getItem("DOMINIO")+"appweb/agenda_insert.php",
+							success:function(retorno){
+								confirmacao_agenda(retorno);
+								
+							},
+							error:function(){
 
-										  alerta('','Erro ao salvar evento.')
-									}
-						 })
-					}
-				}else
-				if(check_fixo){
-					
-					if(check_campo_vazio_ag(0)){
-					
-						if(check_data_agenda(datainicial,datafinal,'salvar_fixo',hora_inicio_fixo,hora_fim_fixo))
-						{ 
-							let dados = $('#form_agenda_add').serialize();
-							$.ajax({
+								  alerta('','Erro ao salvar evento.')
+							}
+				 })
+			}
+		}else
+		if(check_fixo){
 
-								url     :localStorage.getItem("DOMINIO")+"appweb/agenda_insert_unico.php",
-								type    :'POST',
-								dataType:'JSON',
-								data    :dados+'&id_morador='+$("#DADOS #ID_MORADOR").val()+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&id_condominio='+$("#DADOS #ID_CONDOMINIO").val(),
-								success :function(e){
-									carrega_agenda_eventos();
-									alerta("1");
-									limpa_campo_ag();		
+			if(check_campo_vazio_ag(0)){
 
-								},
-								error:function(r){
-									alerta("","Falha ao salvar.")
-								}
-							});
+				if(check_data_agenda(datainicial,datafinal,'salvar_fixo',hora_inicio_fixo,hora_fim_fixo))
+				{ 
+					let dados = $('#form_agenda_add').serialize();
+					let ano   = datainicial.substr(0,4);
+					let mes   = parseInt(datainicial.substr(5,2))-1;
+					let dia   = datainicial.substr(8,2);
+					$.ajax({
+
+						url     :localStorage.getItem("DOMINIO")+"appweb/agenda_insert_unico.php",
+						type    :'POST',
+						dataType:'JSON',
+						data    :dados+'&id_morador='+$("#DADOS #ID_MORADOR").val()+'&id_usuario_condominio='+$("#DADOS #ID_USER").val()+'&id_condominio='+$("#DADOS #ID_CONDOMINIO").val(),
+						success :function(e){
+							event_days();
+							$("#wait").css("display", "block");
+							setTimeout(function(){
+								carrega_agenda_eventos(ano,mes,dia);
+							    alerta("1");
+							    limpa_campo_ag();	
+								$("#wait").css("display", "none");
+							},2000);
+						},
+						error:function(r){
+							alerta("","Falha ao salvar.")
 						}
-					}
-			   }else{				   
-				   alerta('','Escolha um intervalo.');
-			   }
+					});
+				}
+			}
+	   }else{				   
+		   alerta('','Escolha um intervalo.');
+	   }
 }
 
 
@@ -654,6 +710,7 @@ let editar_evento = () => {
 									},
 								url:localStorage.getItem("DOMINIO")+"appweb/agenda_insert.php",
 							success:function(retorno){
+
 								 alerta(2);
 								 carrega_agenda_eventos();
 								 $('.fechaAgenda').click();
@@ -689,12 +746,12 @@ let editar_evento = () => {
 									   ag_contrato     :ag_contrato,
 									   n_dia_notifica  :dia_notifica,
 									   id_modulo       :'',
-									   ag_data_fim     :'',
+									   ag_data_fim     :$('#intervalorFixoDetalhe #ag_data_fimDetalhe').val(),
 								       ag_data_inicio_fixo:$('#intervalorFixoDetalhe #ag_agendaDetalhe').val(),
 								       ag_hr_inicio_fixo :$('#intervalorFixoDetalhe #ag_hora_agendaDetalhe').val(),
 								       ag_hr_fim_fixo:$('#intervalorFixoDetalhe input[name="ag_hr_fim_fixoDetalhe"]').val(), 
 								       ag_tipo :0,
-								       ag_periodo_fim:$('#intervalorFixoDetalhe #ag_data_fimDetalhe').val(), 
+								       ag_periodo_fim  :'', 
 								       id_evento:$('#id_evento_relacionado').val(),
 									   id_pai          :'',
 									   operacao        :1,
@@ -709,9 +766,9 @@ let editar_evento = () => {
 							success:function(retorno){
 								alerta("1");
 								setTimeout(function(){
+									$('.fechaAgenda').click();
 									carrega_agenda_eventos();
-									 $('.fechaAgenda').click();
-								},500);
+								},1000);
 								
 							},
 							error:function(){
@@ -787,6 +844,7 @@ let verifica_cad_agenda = (tipo) => {
 			if($('#agenda_titulo_detalhe').val() == ''){
 				alerta('','Preencha o Titulo')
 			}else
+
 			if($('#n_dia_notifica_detalhe').val() == ''){
 				alerta('','Preencha os dias para notificação')
 			}else{
@@ -813,7 +871,7 @@ let verifica_cad_agenda = (tipo) => {
 				}); 
 
 				$('.repetirAte-inp input').each(function(){
-					if($(this).attr('data-verifica') == 'yes' ){
+					if($(this).attr('data-verifica') == 'yes' && $(this).val() == ''){
 						$(this).css('border','1px solid red');
 					}else{
 						$(this).css('border','1px solid rgb(169, 169, 169)');
@@ -920,16 +978,17 @@ let desabilita_campo_ag = (op) => {
 		$('.ag_edit').fadeOut();
 		$('#intervaloGrupoDetalhe #agenda_repetirDetalhe').attr('disabled','disabled');
         $('#intervaloGrupoDetalhe #iterval_detalhe').attr('disabled','disabled').css('background','#ebebe4');
+		$('.ag_deletar').fadeIn();
 		
 	 }else
 	 if(op == 3){
 	    $('.evento_detalhe input,.evento_detalhe select').attr('disabled','disabled');
 		$('.ag_cancel').fadeOut();
+		$('.ag_deletar').fadeOut();
 		$('.ag_save').fadeOut();
 		$('.ag_edit').fadeIn();
 		$('#intervaloGrupoDetalhe .childrenEvents').html('');
-		$('.lineAgenda').hide();
-		
+		$('.lineAgenda').hide();	
 	 }
 }
 
@@ -943,7 +1002,7 @@ let carrega_evento_detalhe = (id) => {
 				dataType:'JSON',
 				data    :{operacao:4,id_evento:id},
 				success :function(e){
-					
+				
 					if(e.tipo_intervalo == 'intervalo fixo'){
 					   $('#ag_intervalo_fixo_detalhe').prop('checked','true');
 					   $('#intervalorFixoDetalhe').fadeIn();
@@ -984,12 +1043,14 @@ let carrega_evento_detalhe = (id) => {
 						$('#ag_data_fimDetalhe').val(e.data_fim_evento);
 						$('#ag_hora_mudanca').val(e.hora_inicio);
 						$('#ag_hora_agenda_fimDetalhe_mudanca').val(e.hora_fim);
-						$('#agenda_cor_detalhe').val('#dcd329');
+						$('#agenda_cor_detalhe').val('rgb(243, 156, 18)');
+						$('.ag_edit').hide();
 						$('#agenda_titulo_detalhe').val(e.titulo);
 						$('#agenda_descricao_detalhe').val(e.descricao);
-						$('.ag_btn_relacionados').fadeIn();
+						$('.ag_btn_relacionados').hide();
 						
 					}else{
+						
 						$('.check1agenda').fadeIn();
 						$('.check2agenda').fadeIn();
 						$('#ag_dia_notificar').fadeIn();
@@ -1021,11 +1082,13 @@ let adiciona_campo = () => {
 	 
      html     = '<hr class="item'+tamanho+'"><div class="row item'+tamanho+'">'
 					+'<div class="col-xs-4">'
+
 						+'<li class="item-content item-input">'
 						   +'<div class="item-inner">'
 							+'<div class="item-title item-label">Data Inicio:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_dt_agendaDetalhe" name="div_dt_agendaDetalhe" >'
+
 										+'<input id="ag_agendaPerso" onChange="habilita_sheet();verifica_data_retroativa(this);" type="date"  style="width: 113px;" />'
 									+'</div>'
 								+'</div>'
@@ -1038,7 +1101,7 @@ let adiciona_campo = () => {
 							+'<div class="item-title item-label">Hora Inicio:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_hora_agendaDetalhe" name="div_hora_agendaDetalhe" >'
-										+'<input id="ag_hora_agendaPerso" onChange="check_horario_agenda_personalizado(this.value,'+tamanho+',this,1)" style="width: 77px;" type="time" name="ag_hora_agenda"/>'
+										+'<input id="ag_hora_agendaPerso" onChange="habilita_sheet();check_horario_agenda_personalizado(this.value,'+tamanho+',this,1)" style="width: 77px;" type="time" name="ag_hora_agenda"/>'
 									+'</div>'
 								+'</div>'
 						  +'</div>'
@@ -1050,7 +1113,7 @@ let adiciona_campo = () => {
 							+'<div class="item-title item-label">Hora Fim:</div>'
 								+'<div class="item-input-wrap">'
 									+'<div id="div_horafim_agendaDetalhe" name="div_horafim_agendaDetalhe" >'
-										+'<input id="ag_periodo_fimPerso" onChange="check_horario_agenda_personalizado(this.value,'+tamanho+',this,2)" type="time" />'
+										+'<input id="ag_periodo_fimPerso" onChange="habilita_sheet();check_horario_agenda_personalizado(this.value,'+tamanho+',this,2)" type="time" />'
 									+'</div>'
 								+'</div>'
 						  +'</div>'
@@ -1062,7 +1125,7 @@ let adiciona_campo = () => {
 					   +'<div class="item-title item-label">Repetir:</div>'
 							+'<div class="item-input-wrap">'
 								+'<div id="div_intervalo_agendaDetalhe" name="div_intervalo_agendaDetalhe">'
-									+'<select onChange="check_rpt(value,'+tamanho+',0,this)" style="width: 130px;">'
+									+'<select onChange="habilita_sheet();check_rpt(value,'+tamanho+',0,this)" style="width: 130px;">'
 										+'<option value="99">Selecione ...</option>'
 										+'<option value="0">Evento Unico</option>'
 										+'<option value="1">Diariamente</option>'
@@ -1084,14 +1147,14 @@ let adiciona_campo = () => {
 								+'</div>'
 							+'</div>'
 					  +'</div>'
-				   +'</li></div><div class="col-xs-4"><div onclick="remove_event('+tamanho+')" style="margin: 26px 0 0 51px;"><span class="fa fa-close"></span></div>'
+				   +'</li></div><div class="col-xs-4"><div onclick="habilita_sheet();remove_event('+tamanho+')" style="margin: 26px 0 0 51px;"><span class="fa fa-close"></span></div>'
 				   +'</div><li style="display:none">'
 					  +'<input type="text" class="noshow"/>'
 				   +'</li>'
 			  +'</div>'
           +'</div>'
 	      +'<div class="col-xs-7 adicionaEvent" style="padding: 4px 0px 3px 17px;">'
-			 +'<button type="button" onclick="adiciona_campo()" class="adicionaEven col button button-fill" style="background:red">'
+			 +'<button type="button" onclick="adiciona_campo();habilita_sheet()" class="adicionaEven col button button-fill" style="background:red">'
 	         +'<span class="fa fa-plus"></span> Adicionar Evento</button>'
 		  +'</div>'
 	
@@ -1100,18 +1163,26 @@ let adiciona_campo = () => {
 	   
 }
 
-let remove_event = (posicao) =>{
+let remove_event = (id_evento = 0, posicao) => {
 	
-	$('.item'+posicao).remove();
-	let contador = $('#agendaContador').text();
-	$('#agendaContador').text(parseInt(contador)-1);
-	$('.lineGroup'+posicao).remove();
-	
+	app2.dialog.confirm('Deseja realmente deletar o evento ?','Excluir', function () {
+			
+		$('.item'+posicao).remove();
+		let contador = $('#agendaContador').text();
+		$('#agendaContador').text(parseInt(contador)-1);
+		$('.lineGroup'+posicao).remove();
+
+		if(id_evento != 0){   
+		   delete_evento(id_evento);   
+		}
+
+	});
+		
 }
 
 let confirmacao_agenda = (id) => {
 	
-	
+	let hidden = '';
 	$.ajax({
 				type:'POST',
 				 url:localStorage.getItem("DOMINIO")+'appweb/agenda_get.php',
@@ -1129,9 +1200,16 @@ let confirmacao_agenda = (id) => {
 				var grupo         = "";
 
 				$(".ev-confirma").html("");
+				
 
 				for(var x=0; x< tamanho_array; x++ ){
-
+					if(ret_json[x].periodo_repetir == 'Unico'){
+						hidden = 'display:none';  
+				    }else{
+						hidden = 'dislay:block';  
+					}
+					
+				 
 					if(grupo != ret_json[x].periodo_repetir){
 						 row_col += "<tr style='background: #f6f6f6;'><td style='padding-left: 7px;'><strong>"+ret_json[x].periodo_repetir+"</strong></td></tr>";
 					 }
@@ -1139,7 +1217,7 @@ let confirmacao_agenda = (id) => {
 					row_col += "<tr><td>"+ret_json[x].data_inicio_evento+"</td>";
 					row_col += "<td>"+ret_json[x].hora_inicio+"</td>";
 					row_col += "<td>"+ret_json[x].hora_fim+"</td>";
-					row_col += "<td>"+ret_json[x].periodo_fim+"</td>";
+					row_col += "<td style="+hidden+">"+ret_json[x].periodo_fim+"</td>";
 					grupo    = ret_json[x].periodo_repetir;
 
 				}
@@ -1153,6 +1231,11 @@ let confirmacao_agenda = (id) => {
 
 let confirma_evento = () => {
 	
+	let data = $('.item1 #ag_agendaPerso').val();
+	let dia  = data.substr(8);
+    let mes  = parseInt(data.substr(5,2))-1;
+	let ano  = data.substr(0,4);
+	
 	$.ajax({
 				type: 'POST',
 				 url:localStorage.getItem("DOMINIO")+'appweb/agenda_get.php',
@@ -1162,14 +1245,18 @@ let confirma_evento = () => {
 					    id_usuario_condominio:$("#DADOS #ID_USER").val()
 					 },
 			 success: function(retorno){
-
-				   alerta(1);
-				   carrega_agenda_eventos()
+					event_days();
+					$("#wait").css("display", "block");
+					setTimeout(function(){
+						alerta(1);
+						$("#wait").css("display", "none");
+						carrega_agenda_eventos(ano,mes,dia);
+					},2000);
 			 },
 		     error:function(){
 				   alerta('','Erro ao confirmar eventos.')
 			 }
-		});
+	 });
 }
 
 let cancela_evento = () => {
@@ -1191,8 +1278,9 @@ let cancela_evento = () => {
 		});
 }
 
-let eventos_relacionados = () => {
+let eventos_relacionados = (el) => {
 	$('#intervaloGrupoDetalhe .childrenEvents').html('');
+	$(el).text('Ocultar eventos');
 	$('.lineAgenda').remove();
 	let id_evento = $('#id_evento_relacionado').val();
 	let x         = 0;
@@ -1217,7 +1305,7 @@ let eventos_relacionados = () => {
 			 success:function(retorno){
 				 
 					for(x in retorno){
-						
+						$('.item'+x+' #div_intervalo_agendaDetalhe select option').removeAttr('selected');
 					    y = parseInt(x)+2;
 						if(retorno[x].periodo_repetir == 0){
 						   op1 = 'selected';
@@ -1309,7 +1397,7 @@ let eventos_relacionados = () => {
 											+'</div>'
 										+'</div>'
 								  +'</div>'
-							   +'</li></div><div class="col-xs-4"><div onclick="remove_event('+y+')" style="margin: 26px 0 0 51px;"><span class="fa fa-close"></span></div>'
+							   +'</li></div><div class="col-xs-4"><div onclick="remove_event('+retorno[x].id_evento+','+y+')" style="margin: 26px 0 0 51px;"><span class="fa fa-close"></span></div>'
 							   +'</div><li style="display:none">'
 								  +'<input type="text" value="'+retorno[x].id_evento+'" />'
 							   +'</li>'
@@ -1340,10 +1428,13 @@ let limpa_campo_ag = () =>{
 	$('#intervalorFixo').hide();
 	$('.adicionaEven').hide();
 	$('.item1').hide();
+	
 	for(x=0;x<=20;x++){
 	    contador = parseInt(x)+2;
 		$('.item'+contador).remove()
 	}
+	
+	verifica_dia_selecionado();
 
 }
 
@@ -1399,7 +1490,15 @@ let check_data_agenda = (data_inicio,data_fim,screen,hora_inicio,hora_fim) => {
 	if(data_fim == ''){
           alerta('','Preencha a Data Fim');
 		  return false;
-     }else
+    }else
+	if(hora_inicio == ''){
+          alerta('','Preencha a Hora Inicio');
+		  return false;
+    }else
+	if(hora_fim == ''){
+          alerta('','Preencha a Hora Fim');
+		  return false;
+    }else
 	if(data_fim < data_inicio){
           alerta('','Data Final menor que a Data Inicial.');
 		  return false;
@@ -1562,6 +1661,77 @@ let check_dia_repeticao = (data_,indice=1,el) => {
 		}
     }
 }
+
+
+let verifica_dia_selecionado = () => {
+	
+	let dia_atual   = new Date();
+    let dia         = dia_atual.getDate();
+    let mes         = parseInt(dia_atual.getMonth())+1;
+    let year        = dia_atual.getFullYear();
+    let mes_fmt     = '';
+	let dia_selec   = $('#dia_selecionado_ag').val();
+	let hora        = dia_atual.getHours();
+	let minutos     = dia_atual.getMinutes();
+	let minutos_fmt = '';
+	let hora_fmt    = '';
+	
+    if(mes < 9){	
+		mes_fmt = '0'+mes;
+    }else{
+		mes_fmt = mes;
+    }
+	
+	if(minutos < 9){	
+		minutos_fmt = '0'+minutos;
+    }else{
+		minutos_fmt = minutos;
+    }
+	
+	if(hora < 9){	
+		hora_fmt = '0'+hora;
+    }else{
+		hora_fmt = hora;
+    }
+	
+	$('input[name="ag_hr_inicio_fixo"]').val(hora_fmt+":"+minutos_fmt);
+	$('input[name="ag_hr_fim_fixo"]').val(hora_fmt+":"+minutos_fmt);
+	$('#intervaloGrupo #ag_hora_agendaPerso').val(hora_fmt+":"+minutos_fmt);
+	$('#intervaloGrupo #ag_periodo_fim').val(hora_fmt+":"+minutos_fmt);
+	
+	if(dia_selec == ''){
+		$('#ag_agendaPerso').val(year+'-'+mes_fmt+'-'+dia);
+		$('#intervalorFixo #ag_agenda').val(year+'-'+mes_fmt+'-'+dia);
+		$('#intervalorFixo #ag_data_fim').val(year+'-'+mes_fmt+'-'+dia);
+	}else{
+		$('#ag_agendaPerso').val(dia_selec);
+		$('#intervalorFixo #ag_agenda').val(dia_selec);
+		$('#intervalorFixo #ag_data_fim').val(dia_selec);
+	}	
+}
+
+
+let delete_evento = (id_evento) => {
+	
+	$.ajax({
+				type: 'POST',
+				 url:localStorage.getItem("DOMINIO")+'appweb/agenda_get.php',
+				data:{
+						operacao:9,
+						id_condominio:$("#DADOS #ID_CONDOMINIO").val(),
+					    id_evento:id_evento
+					 },
+			 success: function(retorno){
+				  alerta('','Deletado com sucesso.')
+			 },
+		     error:function(){
+				  alerta('','Erro ao deletar evento.')
+			 }
+		});
+}
+
+
+
 
 
 
