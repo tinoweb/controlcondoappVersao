@@ -46,6 +46,12 @@ function carrega_morador(){
             $( "#morador_retorno" ).html(dados);
             //alert(retorno);
             afed('#moradores','#home','','',2,'moradores');
+			if(localStorage.getItem('MMORADOR') != 1){
+				afed('','#bt_mor_add','','',2,'');
+			}else{
+				afed('#bt_mor_add','','','',2,'');
+			}
+//alert(localStorage.getItem('MMORADOR')+localStorage.getItem('MVEICULOS')+localStorage.getItem('MCONTATOS')+localStorage.getItem('MFPERFIL'));
        
         },
         error      : function() {
@@ -127,6 +133,23 @@ function carrega_morador_dados(id_morador){
 			}
 			$( "#mor_msg" ).val(retorno[0]['observacao']);
 			
+			if(localStorage.getItem('MMORADOR') != 1){
+				afed('','#bt_mor_atu,#bt_mor_del','','',2,'');
+				$("#form_moradores input,#form_moradores textarea").prop("disabled", true);
+			}else{
+				afed('#bt_mor_atu,#bt_mor_del','','','',2,'');
+				$("#form_moradores input,#form_moradores textarea").prop("disabled", false);
+			}
+			
+			if(localStorage.getItem('MFPERFIL') != 1){
+				afed('','#bt_mor_ft1,#bt_mor_ft2','','',2,'');
+			}else{
+				afed('#bt_mor_ft1,#bt_mor_ft2','','','',2,'');
+			}
+			//alert(localStorage.getItem('MMORADOR')+localStorage.getItem('MVEICULOS')+localStorage.getItem('MCONTATOS')+localStorage.getItem('MFPERFIL'));
+			
+			
+			
 			var veiculos_dados = '';
 			for (x in retorno[0]['veiculos']) {
 				
@@ -150,6 +173,14 @@ function carrega_morador_dados(id_morador){
 					'</li>';
 			}
 			$( "#retorno_veiculo_morador" ).html(veiculos_dados);
+			if(localStorage.getItem('MVEICULOS') != 1){
+				afed('','#bt_mv_atu,#bt_mv_del,#bt_mv_add,#bt_mv_ft1,#bt_mv_ft2','','',2,'');
+				$("#form_morador_veiculo input,#form_morador_veiculo textarea,#form_morador_veiculo select").prop("disabled", true);
+			}else{
+				afed('#bt_mv_atu,#bt_mv_del,#bt_mv_add,#bt_mv_ft1,#bt_mv_ft2','','','',2,'');
+				$("#form_morador_veiculo input,#form_morador_veiculo textarea,#form_morador_veiculo select").prop("disabled", false);
+			}
+
 			
 			var contatos_dados = '';
 			for (x in retorno[0]['contatos']) {
@@ -167,6 +198,14 @@ function carrega_morador_dados(id_morador){
 					'</li>';
 			}
 			$( "#retorno_contato_morador" ).html(contatos_dados);
+			if(localStorage.getItem('MCONTATOS') != 1){
+				afed('','#bt_mc_atu,#bt_mc_del,#bt_mc_add','','',2,'');
+				$("#form_morador_contato input,#form_morador_contato textarea,#form_morador_contato select").prop("disabled", true);
+			}else{
+				afed('#bt_mc_atu,#bt_mc_del,#bt_mc_add','','','',2,'');
+				$("#form_morador_contato input,#form_morador_contato textarea,#form_morador_contato select").prop("disabled", false);
+			}
+
 			
 			if(localStorage.getItem('TELA_ATUAL') == 'morador_perfil'){
 				$("#voltar_morador").attr("onclick","afed('#home','#morador','','',2,'home');");

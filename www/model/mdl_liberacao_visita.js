@@ -225,6 +225,19 @@ function carrega_liberacao_visita(visita,tipo){
                     }
                     todo_motivos = todo_motivos + motivo;
                 }
+				var qtd_cred = '';
+				if(localStorage.getItem('QTD_CREDITO') == 0){
+					var qtd_max = 9;
+					qtd_cred += '<option value="0">Ilimitado</option>';			
+				}else{
+					var qtd_max = localStorage.getItem('QTD_CREDITO')
+				}
+				for (i = 1; i <= qtd_max; i++) {
+					qtd_cred += '<option value="'+i+'">'+i+'</option>';
+				}
+
+				$( "#add_liberacao #numero_acesso_perm" ).html(qtd_cred);
+
 				//console.log(retorno[0]['placa']);
 				$( "#new_visit" ).attr('onClick',"");
                 $( "#add_liberacao #visita_motivo" ).html(todo_motivos);
@@ -295,8 +308,20 @@ function adiciona_liberacao(){
                 var motivo = '<option value="'+retorno[x]['id']+'">'+retorno[x]['motivo']+'</option>';
                 motivos = motivos + motivo;
             };
+			var qtd_cred = '';
+			if(localStorage.getItem('QTD_CREDITO') == 0){
+				var qtd_max = 9;
+				qtd_cred += '<option value="0">Ilimitado</option>';			
+			}else{
+				var qtd_max = localStorage.getItem('QTD_CREDITO')
+			}
+			for (i = 1; i <= qtd_max; i++) {
+				qtd_cred += '<option value="'+i+'">'+i+'</option>';
+			}
+
             //alert(motivos);
             $( "#add_liberacao #visita_motivo" ).html(motivos);
+            $( "#add_liberacao #numero_acesso_perm" ).html(qtd_cred);
             //localStorage.setItem('TELA_ATUAL','visitantes');
         },
         error      : function() {
@@ -357,6 +382,14 @@ function salva_liberacao(){
 			dt_atual.setMinutes(dt_atual.getMinutes()-30);
 			var dt_de = new Date($('#add_liberacao #dt_de').val()+ " "+$('#add_liberacao #hr_de').val() );
 			var dt_ate = new Date($('#add_liberacao #dt_ate').val()+ " "+$('#add_liberacao #hr_ate').val() );
+			var dt_limite = new Date(dt_de.getFullYear(),dt_de.getMonth(),dt_de.getDate(),23,59,59,0);
+			
+			if(localStorage.getItem('PERIODO_MAX') == 0){
+				dt_limite.setDate(dt_limite.getDate() + 1460);
+			}else{
+				dt_limite.setDate(dt_limite.getDate() + (localStorage.getItem('PERIODO_MAX') - 1));
+			}
+			//alert(dt_limite);											 
 			var tipo = $('#add_liberacao #tipo').val();
 
 			if(dt_de < dt_atual && tipo != 1){
@@ -365,6 +398,8 @@ function salva_liberacao(){
 			   notifica('Data Inválida/Data FINAL não pode ser inferior a data atual/Ok',0,0);
 			}else if(dt_ate <= dt_de){
 			   notifica('Data Inválida/Data FINAL não pode ser inferior a data INICIAL/Ok',0,0);
+			}else if(dt_ate > dt_limite ){
+			   notifica('Data Inválida/Data FINAL não pode ser superior a '+dt_limite.getDate()+'-'+(dt_limite.getMonth()+1)+'-'+dt_limite.getFullYear()+' '+dt_limite.getHours()+':'+dt_limite.getMinutes()+'/Ok',0,0);
 			}else{
 				var dados = $( "#add_liberacao" ).serialize();
 

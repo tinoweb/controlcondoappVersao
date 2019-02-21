@@ -32,7 +32,7 @@ function login_user_device(){
                     }else{    
 						
                         if(retorno[0]['usar_control_condo'] == 1){
-                            //alert('Perfil:'+retorno[0]['usar_control_condo']);
+                            alert('credito:'+retorno[0]['qtd_credito_liberacao']);
                             $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
                             $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                             $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);
@@ -42,8 +42,11 @@ function login_user_device(){
                             $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                             localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
                             localStorage.setItem('QTD_CONTROL_CONDO',retorno[0]['qtd_control_condo']);
+							localStorage.setItem('QTD_CREDITO',retorno[0]['qtd_credito_liberacao']);
+							localStorage.setItem('PERIODO_MAX',retorno[0]['periodo_max_liberacao']);
+							localStorage.setItem('EXIBIR_NOME',retorno[0]['exibir_nome_qrcode']);
 							//alert(localStorage.getItem('QTD_CONTROL_CONDO'));
-							localStorage.getItem('QTD_CONTROL_CONDO');
+							//localStorage.getItem('QTD_CONTROL_CONDO');
                             if(retorno[0]['tipo_busca_visitante'] == 0){
                                 afed('#btipo_nome','#btipo_rg','','',3,'home');
                             }else{
@@ -67,6 +70,10 @@ function login_user_device(){
                             localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
                             localStorage.setItem('MPET',retorno[0]['MPET']);
                             localStorage.setItem('MCAM',retorno[0]['MCAM']);
+                            localStorage.setItem('MMORADOR',retorno[0]['MMORADOR']);
+                            localStorage.setItem('MVEICULOS',retorno[0]['MVEICULOS']);
+                            localStorage.setItem('MCONTATOS',retorno[0]['MCONTATOS']);
+                            localStorage.setItem('MFPERFIL',retorno[0]['MFPERFIL']);
                             $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                             $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                             $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -243,7 +250,9 @@ function select_user(id_usuario_condominio=0) {
 			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
                 if(retorno[0]['usar_control_condo'] == 1){
-						
+//					alert('credito:'+retorno[0]['qtd_credito_liberacao']);	
+//					alert('periodo:'+retorno[0]['periodo_max_liberacao']);	
+//					alert('nome qrcode:'+retorno[0]['exibir_nome_qrcode']);
                     $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
                     $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                     $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);
@@ -253,6 +262,9 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
                     localStorage.setItem('TIPO_BUSCA_VISITANTE',retorno[0]['tipo_busca_visitante']);
 					localStorage.setItem('QTD_CONTROL_CONDO',retorno[0]['qtd_control_condo']);
+					localStorage.setItem('QTD_CREDITO',retorno[0]['qtd_credito_liberacao']);
+					localStorage.setItem('PERIODO_MAX',retorno[0]['periodo_max_liberacao']);
+					localStorage.setItem('EXIBIR_NOME',retorno[0]['exibir_nome_qrcode']);
 					//alert(localStorage.getItem('QTD_CONTROL_CONDO'));
                     if(retorno[0]['tipo_busca_visitante'] == 0){
                         afed('#btipo_nome','#btipo_rg','','',3,'home');
@@ -277,6 +289,10 @@ function select_user(id_usuario_condominio=0) {
                     localStorage.setItem('MOCORRENCIA',retorno[0]['MOCORRENCIA']);
                     localStorage.setItem('MPET',retorno[0]['MPET']);
                     localStorage.setItem('MCAM',retorno[0]['MCAM']);
+					localStorage.setItem('MMORADOR',retorno[0]['MMORADOR']);
+					localStorage.setItem('MVEICULOS',retorno[0]['MVEICULOS']);
+					localStorage.setItem('MCONTATOS',retorno[0]['MCONTATOS']);
+					localStorage.setItem('MFPERFIL',retorno[0]['MFPERFIL']);
                     $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                     $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                     $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
