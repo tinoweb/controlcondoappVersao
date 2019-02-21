@@ -353,6 +353,32 @@ var v_array  = data.split("/");
 	}
 }
 
+function verifica_data_retroativa(el){
+	
+	let tamanho = $(el).val().length;
+	if(tamanho == 10 && $(el).val().substr(0,1) != 0){
+		let ano              = $(el).val().substr(0,4);
+		let mes              = $(el).val().substr(5,2);
+		let dia              = $(el).val().substr(8,2);
+		let fmt_choose_date  = format_data(0,dia+"/"+mes+"/"+ano)+' 23:59';
+		let choose_date      = new Date(fmt_choose_date);
+		let current_date     = new Date();
+		let date             = $(el).val();      
+
+		if(choose_date < current_date){
+		   alerta('','Nao é permitido dias retroativos');
+		   $(el).val('')
+		}else{
+		   $(el).css('border','1px solid rgb(169, 169, 169)');	
+		}
+	}
+}
+
+
+
+  
+
+
 
 
 

@@ -41,7 +41,7 @@ function carrega_documentos(tipo){
             for (x in retorno) {
 				cont++;
                 caminho = retorno[x]['local'].split('../');
-                tipo_ = retorno[x]['local'];
+                tipo_   = retorno[x]['local'];
 				
 				if(retorno[x].visualizacao != null ){
 				    cor = 'background:#e85252 !important;color:white;';
@@ -49,8 +49,6 @@ function carrega_documentos(tipo){
 					cor = '';
 				 }
 					
-				
-				//alert(retorno[x]['local']);
 				var titulo = retorno[x]['titulo']+' ('+retorno[x]['descricao']+')';
 				
 				titulo = limita_txt(titulo,20);
