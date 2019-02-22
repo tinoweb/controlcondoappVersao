@@ -3386,6 +3386,8 @@
 			<div class="sheet-modal-inner">
 				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
 					<form id="form_agenda_editar">
+					<input id="generic_id_ag" type="hidden" />
+					<input id="ag_id_movto_mudanca" type="hidden" />
 					<ul>
 					   <li class="item-content item-input">
 						   <div class="item-inner">
@@ -3422,7 +3424,16 @@
 								</div>
 						  </div>
 					   </li>
-					  
+					   <li class="item-content item-input sit_mudanca_ag" style="display:none">
+						   <div class="item-inner">
+							    <div class="item-title item-label">Situação:</div>
+								<div class="item-input-wrap">
+									<div>
+										<input type="text" placeholder="Situação" name="sit_mudanca_ag" id="sit_mudanca_ag"/>
+									</div>
+								</div>
+						  </div>
+					   </li>
 					   <li class="item-content item-input">
 						   <div class="item-inner">
 							<div class="item-title item-label">Descrição:</div>
@@ -3637,12 +3648,16 @@
 						   </div>
 					    </li>
 					   <div>
-						    <span style="display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_aprovar"><span class="fa fa-edit "></span> Aprovar</span>
-						    <span  style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_reprovar"><span class="fa fa-edit "></span> Reprovar
+						    <span onclick="ag_aprova_mudanca(0)" style="display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_aprovar"><span class="fa fa-check"></span> Aprovar</span>
+						    <span onclick="conf_reagmudanca()" style="background-color:#13c968;display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_confirmar"><span class="fa fa-check"></span> Confirmar</span>
+						    <span  onclick="reprova_mudanca()" style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_reprovar"><span class="fa fa-edit "></span> Reprovar
 						    </span>
+						     <span  onclick="ag_sugerir_mudanca()" style="display:none;background:#ff9400;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_sugerir"><span class="fa fa-calendar"></span> Sugerir nova data
+						     </span>
 						    <span onclick="desabilita_campo_ag(2)" style="margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_edit"><span class="fa fa-edit "></span> Editar</span>
 						    <span onclick="" style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_deletar"><span class="fa fa-edit "></span> Deletar</span>
 						    <span onclick="desabilita_campo_ag(3)" style="display:none;background:#f0e50a;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_cancel"><span class="fa fa-close"></span> Cancelar</span>
+						    <span onclick="desabilita_campo_ag(4)" style="display:none;background:red;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_cancel2"><span class="fa fa-close"></span> Cancelar</span>
 							<span onclick="editar_evento()" style="display:none;margin-top: 10px;width: 91%;margin-left: 15px;" class="col button button-fill ag_save"><span class="fa fa-save"></span> Salvar</span>
 					   </div>
 					</ul>

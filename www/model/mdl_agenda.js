@@ -164,8 +164,12 @@ let event_days = (data) => {
 
 let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
 	
-	let direciona_mes = '';
-	let verifica      = 0;
+	let currently_data = new Date();
+	let currently_dia  = currently_data.getDate();
+	let currently_mes  = currently_data.getMonth();
+	let currently_ano  = currently_data.getFullYear();
+	let direciona_mes  = '';
+	let verifica       = 0;
     app2.calendar.close("#calendario_agenda");
 	
     $('#calendario_agenda').html('');
@@ -264,30 +268,34 @@ let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
 														 +'type       : "POST",'
 														 +'dataType   : "JSON",'
 														 +'success    : function(e){'
-                                                             +'let hidden1 = "";'
-														     +'let titulo  = "";'
-															 +'let id      = "";'
+                                                             +'let hidden1   = "";'
+														     +'let titulo    = "";'
+															 +'let id        = "";'
+															 +'let id_modulo = 0;'
 															 +'for(x in e){'
 																 +'contador = parseInt(x)+1;'
 																 +'if(e[x].titulo == "Mudanca"){'
 
-								                                     +'titulo   = e[x].titulo;'
-																	 +'cor     = "background:  #ffc906";'
-																	 +'icon    = \'fa fa-exchange\';'
-																	 +'vclasse = "icon-mudanca";'
-								 								     +'hidden1  = "display:block;";'
-								                                     +'$(".ag_btn_relacionados").hide()'
+								                                     +'titulo    = e[x].titulo;'
+																	 +'cor       = "background:  #ffc906";'
+																	 +'icon      = \'fa fa-exchange\';'
+																	 +'vclasse   = "icon-mudanca";'
+								 								     +'hidden1   = "display:block;";'
+								                                     +'$(".ag_btn_relacionados").hide();'
+																	 +'id_modulo = 1;'
+								
 
 																 +'}else '
 								                                 +'if(e[x].titulo == "Comunicado"){'
 								
-																	 +'titulo   = e[x].titulo_descricao;'
-																	 +'cor      = "background:"+e[x].cor;'
-																	 +'icon     = \'fa fa-bullhorn\';'
-																	 +'vclasse  = "icon-comunicado";'
-																     +'hidden1  = "display:none;";'
-																     +'id       = " N° "+e[x].id;'
-								                                     +'$(".ag_btn_relacionados").hide()'
+																	 +'titulo    = e[x].titulo_descricao;'
+																	 +'cor       = "background:"+e[x].cor;'
+																	 +'icon      = \'fa fa-bullhorn\';'
+																	 +'vclasse   = "icon-comunicado";'
+																     +'hidden1   = "display:none;";'
+																     +'id        = " N° "+e[x].id;'
+								                                     +'$(".ag_btn_relacionados").hide();'
+																	 +'id_modulo = 2;'
 								
 								                                 +'}'
 								                                 +'else{'
@@ -302,7 +310,7 @@ let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
 
 																 +'}'
 
-																+'html += "<div data-sheet=\'.evento_detalhe\' onclick=\'carrega_evento_detalhe("+e[x].id_evento+") \'class=\'sheet-open background-btn chip color-red\' style=\'height: 35px;width: 96%;"+cor+"  \'>'
+																+'html += "<div data-sheet=\'.evento_detalhe\' onclick=\'carrega_evento_detalhe("+e[x].id_evento+","+id_modulo+") \'class=\'sheet-open background-btn chip color-red\' style=\'height: 35px;width: 96%;"+cor+"  \'>'
 																			+'<div style=\'padding-left: 5px;\' class=\'chip-label col-xs-6\'>"+contador+" - "+titulo+id+"</div>'
 																			+'<div class=\'col-xs-6\'><span style="+hidden1+">"+ e[x].hora_inicio+" ás "+e[x].hora_fim+"</span></div>'
 																			+'<div><span class="+vclasse+"></span></div>'
@@ -351,7 +359,7 @@ let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
 		if(verifica == 1){
 		  $('.calendar-month-current div[data-date="'+pano+'-'+pmes+'-'+parseInt(pdia)+'"]').click();	
 	    }else{
-		  $('.calendar-month-current div[data-date="2019-1-21"]').click();
+		  $('.calendar-month-current div[data-date="'+currently_ano+'-'+currently_mes+'-'+currently_dia+'"]').click();
 		}		
 	},1000);
 	
@@ -989,20 +997,90 @@ let desabilita_campo_ag = (op) => {
 		$('.ag_edit').fadeIn();
 		$('#intervaloGrupoDetalhe .childrenEvents').html('');
 		$('.lineAgenda').hide();	
-	 }
+		$('.ag_confirmar').fadeOut();
+	 }else
+	 if(op == 4){
+		 
+		var status = $('#sit_mudanca_ag').val();
+		$('.ag_confirmar').fadeOut();
+		$('.ag_cancelar2').fadeOut();
+		$('.ag_sugerir').fadeIn();
+		$('#ag_data_mudanca').attr('disabled','disabled');
+        $('#ag_hora_mudanca').attr('disabled','disabled');
+        $('#ag_hora_agenda_fimDetalhe_mudanca').attr('disabled','disabled');
+		if(status == "Aprovado"){
+
+			$('.ag_aprovar').fadeOut();
+			$('.ag_reprovar').fadeIn();
+
+		}else
+		if(status == "Reprovado"){
+
+			$('.ag_aprovar').fadeIn();
+			$('.ag_reprovar').fadeOut();
+
+
+		}    
+	}
 }
 
-let carrega_evento_detalhe = (id) => {
+let carrega_evento_detalhe = (id,tipo) => {
 	//desabilita_campo_ag(1);
 	desabilita_campo_ag(3);
 	$('#id_evento_relacionado').val(id);
+	$("#generic_id_ag").val(id);
+	$('.ag_cancel2').hide();
+	let situacao  = '';
+	let desc_tipo = '';
+	
+	if(tipo == 1){
+		desc_tipo = 'Mudanca';
+	}else{
+		desc_tipo = '';
+	}
 	$.ajax({
 				url     :localStorage.getItem("DOMINIO")+"appweb/agenda_get.php",
 				type    :'POST',
 				dataType:'JSON',
-				data    :{operacao:4,id_evento:id},
+				data    :{operacao:4,id_evento:id,desc_tipo:desc_tipo},
 				success :function(e){
 				
+					if(e.sit_mudanca == 0){					
+					   situacao = 'Aprovado';
+					   $('.ag_aprovar').hide();
+					   $('.ag_reprovar').hide();
+					   $('.ag_sugerir').hide();
+					   $('.ag_confirmar').fadeOut();
+					   $('#sit_mudanca_ag').css('color','green');
+					}else
+					if(e.sit_mudanca == 1){
+					   situacao = 'Reprovado';
+					   $('.ag_reprovar').hide();
+					   $('.ag_aprovar').hide();
+					   $('.ag_sugerir').hide();
+					   $('.ag_confirmar').fadeOut();
+					   $('#sit_mudanca_ag').css('color','red');
+						
+					}else
+					if(e.sit_mudanca == 2){
+					   situacao = 'Solicitação de Reagendamento';
+					   $('.ag_reprovar').fadeIn();
+					   $('.ag_aprovar').fadeIn();
+					   $('.ag_sugerir').fadeOut();
+					   $('.ag_confirmar').fadeOut();
+					   $('#sit_mudanca_ag').css('color','red');
+						
+					}else
+					if(e.sit_mudanca == null){
+					   situacao = 'Aguardando Aprovação';
+					   $('.ag_aprovar').hide();
+					   $('.ag_reprovar').hide();
+					   $('.ag_sugerir').hide();
+					   $('.ag_confirmar').fadeOut();
+					   $('#sit_mudanca_ag').css('color','orange');
+					}
+					   
+					   
 					if(e.tipo_intervalo == 'intervalo fixo'){
 					   $('#ag_intervalo_fixo_detalhe').prop('checked','true');
 					   $('#intervalorFixoDetalhe').fadeIn();
@@ -1033,6 +1111,9 @@ let carrega_evento_detalhe = (id) => {
 					}
 					
 					if(e.titulo == 'Mudanca'){
+						$(".sit_mudanca_ag").show();
+						$("#sit_mudanca_ag").val(situacao);
+						$("#ag_id_movto_mudanca").val(e.id_movto_mudanca);
 						$('#ag_form_mudanca').show();
 						$('.check1agenda').hide();
 						$('.check2agenda').hide();
@@ -1046,7 +1127,7 @@ let carrega_evento_detalhe = (id) => {
 						$('#agenda_cor_detalhe').val('rgb(243, 156, 18)');
 						$('.ag_edit').hide();
 						$('#agenda_titulo_detalhe').val(e.titulo);
-						$('#agenda_descricao_detalhe').val(e.descricao);
+						$('#agenda_descricao_detalhe').val(e.descricao.replace('<p>','').replace('</p>',''));
 						$('.ag_btn_relacionados').hide();
 						
 					}else{
@@ -1061,8 +1142,12 @@ let carrega_evento_detalhe = (id) => {
 						$('#ag_hora_agenda_fimDetalhe').val(e.hora_fim);
 						$('#agenda_cor_detalhe').val(e.cor);
 						$('#agenda_titulo_detalhe').val(e.titulo);
-						$('#agenda_descricao_detalhe').val(e.descricao);
+						$('#agenda_descricao_detalhe').val(e.descricao.replace('<p>','').replace('</p>',''));
 					    $('#agenda_dnotifica_detalhe').val(e.dia_notifi);
+						$('.ag_aprovar').fadeOut();
+						$('.ag_reprovar').fadeOut();
+						$('.ag_sugerir').fadeOut();
+						$('.sit_mudanca_ag').hide();
 					}
 				},
 				error:function(r){
@@ -1730,10 +1815,144 @@ let delete_evento = (id_evento) => {
 		});
 }
 
+let ag_aprova_mudanca = () => {
+	
+	let id          = $("#generic_id_ag").val();
+	let observacao  = 'Aprovada';
+	let data        = $("#ag_data_mudanca").val();
+	let hora_inicio = $("#ag_hora_mudanca").val();
+	let hora_fim    = $("#ag_hora_agenda_fimDetalhe_mudanca").val();
+			
+	$.ajax({
+		   
+		   url       :localStorage.getItem('DOMINIO')+'appweb/mudanca_insert.php',
+		   type      :'POST',
+		   beforeSend: function() { $("#wait").css("display", "block"); },
+		   complete  : function() { $("#wait").css("display", "none"); },
+		   data:{
+			   		operacao:10,
+			        id_condominio:$('#DADOS #ID_CONDOMINIO').val(),
+			        id_usuario_condominio:$('#DADOS #ID_USER').val(),
+			        id_mudanca:id,
+			        aprovado:0,
+			        observacao:observacao,
+			        data_sugerida:data,
+			        hora_inicio_sugerida:hora_inicio,
+			        hora_fim_sugerida:hora_fim,
+			        administrador:'',
+			        id_movto_mudanca:$("#ag_id_movto_mudanca").val()
+			   },
+		  success:function(retorno){
+			  alerta("","Solicitação Aprovada.");
+			  carrega_agenda_eventos();
+			  $('.fechaAgenda').click();
+			 
+		  },
+		  error:function(retorno){
+			  alerta('','Erro ao aprovar.')
+		  }
+	  })
+} 
 
 
+function reprova_mudanca(){
+		  
+		app2.dialog.confirm('Deseja Realmente reprovar a solicitação de Mudança ?','Mudança', function () {
+			  let id          = $("#generic_id_ag").val();
+			  let observacao  = 'Reprovada';
+		      let data        = $("#ag_data_mudanca").val();
+			  let hora_inicio = $("#ag_hora_mudanca").val();
+			  let hora_fim    = $("#ag_hora_agenda_fimDetalhe_mudanca").val();
+			  let ano         = $('#dia_selecionado_ag').val().substr(0,4);
+			  let mes         = $('#dia_selecionado_ag').val().substr(5,2);
+			  let dia         = $('#dia_selecionado_ag').val().substr(8);
+	
+			$.ajax({
+				   url:localStorage.getItem('DOMINIO')+'appweb/mudanca_insert.php',
+				   type:'POST',
+				   beforeSend : function() { $("#wait").css("display", "block"); },
+				   complete   : function() { $("#wait").css("display", "none"); },
+				   data:{
+							operacao:10,
+							id_condominio:$('#DADOS #ID_CONDOMINIO').val(),
+							id_usuario_condominio:$('#DADOS #ID_USER').val(),
+							id_mudanca:id,
+							aprovado:1,
+							observacao:observacao,
+							data_sugerida:data,
+							hora_inicio_sugerida:hora_inicio,
+							hora_fim_sugerida:hora_fim,
+							administrador:'',
+							id_movto_mudanca:$('#id_movto_mudanca').val()
+					   },
+				  success:function(retorno){
+					   alerta("","Solicitação Reprovada.");
+					   carrega_agenda_eventos(ano,parseInt(mes)-1,dia);
+					   $('.fechaAgenda').click();
+				  },
+				  error:function(retorno){
+					  alerta("","Erro.");
+				  }
+			  });
+        })
+}
 
+let ag_sugerir_mudanca = () =>{
+	
+	$('input[name="ag_data_inicio_fixo_detalhe"]').removeAttr('disabled');
+	$('input[name="ag_hr_inicio_fixoDetalhe"]').removeAttr('disabled');
+	$('input[name="ag_hr_fim_fixoDetalhe"]').removeAttr('disabled');
+	$('.ag_aprovar').fadeOut();
+	$('.ag_reprovar').fadeOut();
+	$('.ag_cancel2').fadeIn();
+	$('.ag_confirmar').fadeIn();
+	$('.ag_sugerir').fadeOut();
+	
+}
 
-
+let conf_reagmudanca = () => {
+	
+	app2.dialog.confirm('Deseja Realmente confirmar a solicitação de reagendamento ?','Mudança', function () {
+		
+			  let id          = $("#generic_id_ag").val();
+			  let observacao  = 'Solicitação de Reagendamento';
+		      let data        = $("#ag_data_mudanca").val();
+			  let hora_inicio = $("#ag_hora_mudanca").val();
+			  let hora_fim    = $("#ag_hora_agenda_fimDetalhe_mudanca").val();
+			  let ano         = $('#dia_selecionado_ag').val().substr(0,4);
+			  let mes         = $('#dia_selecionado_ag').val().substr(5,2);
+			  let dia         = $('#dia_selecionado_ag').val().substr(8);
+	
+			$.ajax({
+				   url:localStorage.getItem('DOMINIO')+'appweb/mudanca_insert.php',
+				   type:'POST',
+				   beforeSend : function() { $("#wait").css("display", "block"); },
+				   complete   : function() { $("#wait").css("display", "none"); },
+				   data:{
+							operacao:10,
+							id_condominio:$('#DADOS #ID_CONDOMINIO').val(),
+							id_usuario_condominio:$('#DADOS #ID_USER').val(),
+							id_mudanca:id,
+							aprovado:2,
+							observacao:observacao,
+							data_sugerida:data,
+							hora_inicio_sugerida:hora_inicio,
+							hora_fim_sugerida:hora_fim,
+							administrador:'',
+							id_movto_mudanca:$('#id_movto_mudanca').val()
+					   },
+				  success:function(retorno){
+					   alerta("","Confirmado com sucesso.");
+					   carrega_agenda_eventos(ano,parseInt(mes)-1,dia);
+					   $('.fechaAgenda').click();
+				  },
+				  error:function(retorno){
+					  alerta("","Erro.");
+				  }
+			  });
+        })
+	
+	
+}
 
 
