@@ -1,7 +1,7 @@
 // JavaScript Document
 /*function carrega_agenda_eventos(){
 	$('#calendario_agenda').html('');
-	let html       = '';
+	let html       = ''; 
 	let icon       = '';
     let cor        = '';
 	let now        = new Date();
