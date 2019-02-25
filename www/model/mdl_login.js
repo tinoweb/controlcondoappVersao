@@ -32,7 +32,7 @@ function login_user_device(){
                     }else{    
 						
                         if(retorno[0]['usar_control_condo'] == 1){
-                            alert('credito:'+retorno[0]['qtd_credito_liberacao']);
+                            //alert('credito:'+retorno[0]['qtd_credito_liberacao']);
                             $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
                             $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                             $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);

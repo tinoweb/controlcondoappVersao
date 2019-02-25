@@ -13,11 +13,8 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
-			//alert(retorno);
-            //dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
             for (x in retorno) {
 				var ativos = retorno[x]['domingo']+'**'+retorno[x]['segunda']+'**'+retorno[x]['terca']+'**'+retorno[x]['quarta']+'**'+retorno[x]['quinta']+'**'+retorno[x]['sexta']+'**'+retorno[x]['sabado'];
-                //var dado = '<div class="area" onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+');"><strong>'+retorno[x]['nome']+'</strong></div>';
 				if(retorno[x]['fotos'].length > 0){
 					var foto_area = '<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>';
 				}else{
@@ -27,8 +24,6 @@ function carrega_areas(){
   							'<div class="card-content card-content-padding">'+
     						'<p>'+retorno[x]['nome']+'</p>'+
   							'</div>'+foto_area+
-  							//'<div style="background-image:url(http://lorempixel.com/1000/600/nature/3/)" class="card-header align-items-flex-end"></div>'+
-  							//'<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>'+
   							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\');">Reservar</a></div>'+
 							'</div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
@@ -753,17 +748,6 @@ function pad(str, length) {
 function new_calendario(id_area_comum,data_evento='',tipo=1,integral=0,min='',max='',ativos='') {
 $( "#DADOS #AREA_COMUM" ).val(id_area_comum);
 localStorage.setItem('periodo_integral',integral);
-//if(data_evento == ''){
-//	
-//	var dt_atual = new Date();
-//	
-//}else{
-//	
-//	data_evento_split = data_evento.split('-');
-//	//alert(dt_evento[2]);
-//	var data_selecionada = new Date(parseInt(data_evento_split[0]), parseInt(data_evento_split[1])-1, parseInt(data_evento_split[2]));
-//	
-//}
 	
 $.ajax({
 	type: 'POST',
@@ -814,9 +798,6 @@ $.ajax({
 			maxDate: dt_max,
 			weekHeader: false,
 			events: eventos_data,
-//			events:  [
-//				new Date(2019, 1, 1),
-//			],
 			renderToolbar: function () {
 				return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
 				  '<div class="toolbar-inner">' +
@@ -839,12 +820,6 @@ $.ajax({
 					$$('.calendar-custom-toolbar .right .link').on('click', function () {
 						calendarInline.nextMonth();
 					});
-					//alert(123);
-//					$$('.calendar-month .calendar-day').on('click', function () {
-////						setTimeout(function(){
-////							alert(c.getValue());
-////						},300);
-//					});
 
 				},
 				monthYearChangeStart: function (c) {
