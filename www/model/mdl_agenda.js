@@ -1951,8 +1951,38 @@ let conf_reagmudanca = () => {
 				  }
 			  });
         })
+}
+
+
+let deleta_evento = () => {
 	
-	
+	app2.dialog.confirm('Deseja Realmente excluir o evento ?','Evento', function () {
+		
+	        let ano         = $('#dia_selecionado_ag').val().substr(0,4);
+		    let mes         = $('#dia_selecionado_ag').val().substr(5,2);
+			let dia         = $('#dia_selecionado_ag').val().substr(8);
+		    let id          = $("#generic_id_ag").val();
+			$.ajax({
+				   url:localStorage.getItem('DOMINIO')+'appweb/agenda_get.php',
+				   type:'POST',
+				   beforeSend : function() { $("#wait").css("display", "block"); },
+				   complete   : function() { $("#wait").css("display", "none"); },
+				   data:{
+							operacao:9,
+							id_evento:id,
+							id_usuario_condominio:$('#DADOS #ID_USER').val(),
+					        id_condominio:$('#DADOS #ID_CONDOMINIO').val()
+					   },
+				  success:function(retorno){
+					   alerta("","Evento excluido com sucesso.");
+					   carrega_agenda_eventos(ano,parseInt(mes)-1,dia);
+					   $('.fechaAgenda').click();
+				  },
+				  error:function(retorno){
+					  alerta("","Erro.");
+				  }
+			  });
+        })
 }
 
 
