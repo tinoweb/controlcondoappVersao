@@ -792,7 +792,7 @@ $.ajax({
 		afed('#area_comum_new','#reservas','','',2,'new_area');
 
 		var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
-		data_evento = '2019-04-22';
+			
 		if(data_evento == ''){
 			var dt_value = new Date();
 		}else{
@@ -859,10 +859,16 @@ $.ajax({
   				}
 			}
 		});
-//		calendarInline.done(function () {
-//    		alert('carrego');
-//		});
-			//$('.calendar-month-current div[data-date="'+data_evento+'"]').click();
+			
+			/* Tratativa para selecionar dia */
+			setTimeout(function(){ 
+				calendarInline.setYearMonth(ndt[0], (ndt[1]-1), ndt[2]);
+	        }, 500);
+		
+		   setTimeout(function(){ 
+				 $('.calendar-month-current div[data-date="'+ndt[0]+'-'+(ndt[1]-1)+'-'+ndt[2]+'"]').click();	
+	        }, 1000);
+				
 	}else if(tipo == 2){
 		var dados_reserva = '';
 		var xx = 0;
@@ -909,17 +915,20 @@ $.ajax({
 		dados_reserva = dados_reserva + dado_reserva;
 		}
 		$('#retorno_reservas_dia').html(dados_reserva);
-	}
+			
+	  }
+		
 	},
 	error:function(){
 		alert('erro');
 	}
 }).done(function () {
     //alert('teste');
-	setTimeout(function(){ 
+	/*setTimeout(function(){ 
 		alert('teste');
+		
 		$('.calendar-month-current div[data-date="2019-4-22"]').click();
-	}, 1000);
+	}, 1000);*/
 });	
 }
 
