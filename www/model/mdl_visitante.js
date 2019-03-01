@@ -80,6 +80,8 @@ function novo_visitante(){
     $( "#add_visitante #fone" ).val('');
     $( "#add_visitante #email" ).val('');
     $( "#add_visitante #obs" ).val('');
+	$( '#foto_visitante' ).css("background-image", "url()");
+	$( "#foto_visitante" ).html('<span class="fa fa-user-circle" id="nophoto" style="font-size: 7em;margin-left: 18px;color: #cecece;"></span>');
     
     if(localStorage.getItem('TIPO_BUSCA_VISITANTE') == 0){
         $( "#add_visitante #nome" ).val($("#visitante_busca").val());
@@ -188,19 +190,37 @@ function get_veiculo(placa){
 				success: function(retorno){
 					
 					if(retorno.marca == null){
-				        parametro1 = "Não informado";	   
+				        parametro1 = "Não informado"; 
+						var marca_dados = '<option value="0">Selecione</option>';
+						for (x in retorno['all_marca']) {
+							marca_dados = marca_dados + '<option value="'+retorno['all_marca'][x]['id']+'">'+retorno['all_marca'][x]['marca']+'</option>';
+						}
+						$('#l_marca_carro').html(marca_dados);
 					}else{
 						parametro1 = retorno.marca.toLowerCase();
 					}
 					
 					if(retorno.modelo == null){
-				        parametro2 = "Não informado";	   
+				        parametro2 = "Não informado";
+						$('#l_modelo_carro').html('<option value="0">Selecione</option>');
+					}
+					
+					if(retorno.cor == null){
+						var cor_dados = '<option value="0">Selecione</option>';
+						for (x in retorno['all_cor']) {
+							cor_dados = cor_dados + '<option value="'+retorno['all_cor'][x]['id']+'">'+retorno['all_cor'][x]['cor']+'</option>';
+						}
+						//alert(cor_dados);
+						$('#l_cor_carro').html(cor_dados);
 					}
 					
 					console.log(retorno);
 					if(retorno.id == null ){
  						$("#cad_veiculo").fadeIn();
 						$("#cad_veiculo_ok").hide();
+						app2.dialog.confirm('Para continuar e necessário cadastrar esse veiculo. Deseja cadastrar agora?','Cadastro', function () {
+							$("#cad_veiculo")[0].click();
+						});
 					 }else{
 						$("#liberacao2 #id_veiculo").val(retorno.id);
 						$("#cad_veiculo_ok").fadeIn();

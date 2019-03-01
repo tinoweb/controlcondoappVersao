@@ -57,6 +57,11 @@ function onBackKeyDown() {
         $( '#busca_liberacao' ).val('');
     }
 
+    if(localStorage.getItem('TELA_ATUAL') == 'foto_veiculo_visitante'){
+		afed('','','','',2,'liberacao_list');
+		$(".veiculo-visitante .sheet-close")[0].click();
+    }
+
     if(localStorage.getItem('TELA_ATUAL') === 'visitante'){
 
         afed('#visitantes','#visitante','','',2);
@@ -99,6 +104,12 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'qrcode_gera'){	
 		openPopUp();
         afed('#home','#qrcode','','',2);
+        localStorage.setItem('TELA_ATUAL','liberacao_list');
+    }
+    
+    if(localStorage.getItem('TELA_ATUAL') == 'qrcode'){
+		openPopUp();
+		afed('#home','#qrcode','','',2,'liberacao_list');
         localStorage.setItem('TELA_ATUAL','liberacao_list');
     }
     
@@ -153,23 +164,36 @@ function onBackKeyDown() {
 	
     //REGRAS minhas reserva   
     if(localStorage.getItem('TELA_ATUAL') == 'minha_reserva'){
-        afed('#reservas','#minha_reservas','','',2,'reservas');
-  
+		afed('#reservas','#m_reserva','','',2,'reservas');
     }
 	
-	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
-        afed('#area','#reserva','','',2,'area');
-  
+    //REGRAS minhas reserva   
+    if(localStorage.getItem('TELA_ATUAL') == 'minha_reserva_unica'){
+        afed('','','','',2,'minha_reserva');
+		$(".minha_reserva .sheet-close")[0].click();
+    }
+	
+    if(localStorage.getItem('TELA_ATUAL') == 'new_area'){
+        afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas'); 
+		fecha_calendario();
     }
 	
     if(localStorage.getItem('TELA_ATUAL') == 'calendario'){
-        afed('#reservas','#area','','',2,'reservas');
-       
+        afed('#area_comum_new','#area','','',2,'new_area');    
+        //afed('#reservas','#area','','',2,'reservas');    
+    }
+
+	if(localStorage.getItem('TELA_ATUAL') == 'reserva'){
+		if(localStorage.getItem('periodo_integral') == 1){
+        	afed('#new_area','#reserva','','',2,'new_area');
+		}else{
+			afed('#area','#reserva','','',2,'calendario');
+		}
+        //afed('#area','#reserva','','',2,'area');
     }
 
     if(localStorage.getItem('TELA_ATUAL') == 'area'){
-		afed('#reservas','#area','','',2,'reservas');
-       
+		afed('#reservas','#area','','',2,'reservas');      
     }
     
      //REGRAS ENTREGAS   
@@ -184,7 +208,6 @@ function onBackKeyDown() {
         localStorage.setItem('TELA_ATUAL','home');
         $("#busca_enquete").val("");
         document.getElementById("tipob").checked = true;
-
     }
    
     if(localStorage.getItem('TELA_ATUAL') == 'enquete'){
@@ -230,6 +253,13 @@ function onBackKeyDown() {
         localStorage.setItem('TELA_ATUAL','tickets');
     }
 	
+    if(localStorage.getItem('TELA_ATUAL') == 'ocorrencia_ticket_foto'){
+        //afed('#ocorrencias_ticket','#ticket','','',2);
+        localStorage.setItem('TELA_ATUAL','ocorrencias_ticket');
+		//myPhotoBrowserStandalone.close();
+		$(".photo-browser-popup .popup-close")[0].click();
+    }
+	
     if(localStorage.getItem('TELA_ATUAL') == 'cameras_condominio'){
         afed('#home','#cameras_condominio','','',2,'home');
         localStorage.setItem('TELA_ATUAL','home');
@@ -256,15 +286,17 @@ function recuperaEmail(){
 	$.ajax({
 		type: 'post',
 		data: dados,
-		url: localStorage.getItem('DOMINIO')+'ajax/mail2.php',
+		url: localStorage.getItem('DOMINIO')+'mail_template/pt-br/recupera_senha.php',
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
-            //alert(retorno);
+
             notifica('Recuperacao de senha/'+retorno+'/Fechar',0,0);
 			//alertify.alert(retorno);
 			afed('','#bg_box5','','');
+		},
+		error: function(){
 		}
 	})
     }

@@ -39,17 +39,21 @@ $.ajax({
     dataType   : 'json',
     success    : function(retorno) {
 	
-		var cont =0;
+		var cont  =0;
+		var icone ="";
         for (x in retorno) {
 			cont++;
             if(retorno[x]['foto'] == ''){
                 if(retorno[x]['masculino'] == 1){
-                    foto = 'background-image:url(img/user2.png);';
+                    foto  = '';
+					icone = '<span style="margin-top: 9px;color:#c2c2c2;font-size: 3.2em;" class="fa fa-user-circle"></span>';
                 }else{
-                    foto = 'background-image:url(img/user2.png);';
+                    foto = '';
+					icone = '<span style="margin-top: 10px;color:#c2c2c2;font-size: 3.2em;" class="fa fa-user-circle"></span>';
                 }
             }else{
-                foto = 'background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');';
+                foto  = 'background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');';
+				icone = '';
             }
             dados_grupo = retorno[x]['grupo'];
             //alert(dados_grupo);
@@ -77,7 +81,7 @@ $.ajax({
             }
             //alert(retorno[x]['id']);
             if(retorno[x]['tipo'] == 'Comunicado'){
-                feed = '<div class="notificacao card" onClick="carrega_comunicado(\''+retorno[x]['id']+'\');"><div class="feed-comunicado noti_titulo card-header"><div class="noti_tipo">'+retorno[x]['tipo']+'</div><div><i class="fa fa-bullhorn"></i></div></div><div class="noti_corpo card-content card-content-padding"><div class="topo_comunicado"><div class="morador_foto" style="'+foto+'"></div><span>'+retorno[x]['datanormal']+'</span><strong>'+limitanome(retorno[x]['autor'])+'</strong>'+grupos+'<span class="criou">Criou um Comunicado</span></div><div style="float: left; width: 90%; padding: 10px;font-size: 14px;">'+retorno[x]['titulo1'].substr(0,39)+'</div><div class="feed_home" style="padding-top: 3%;">';
+                feed = '<div class="notificacao card" onClick="carrega_comunicado(\''+retorno[x]['id']+'\');"><div class="feed-comunicado noti_titulo card-header"><div class="noti_tipo">'+retorno[x]['tipo']+'</div><div><i class="fa fa-bullhorn"></i></div></div><div class="noti_corpo card-content card-content-padding"><div class="topo_comunicado"><div class="morador_foto" style="'+foto+'">'+icone+'</div><span>'+retorno[x]['datanormal']+'</span><strong>'+limitanome(retorno[x]['autor'])+'</strong>'+grupos+'<span class="criou">Criou um Comunicado</span></div><div style="float: left; width: 90%; padding: 10px;font-size: 14px;">'+retorno[x]['titulo1'].substr(0,39)+'</div><div class="feed_home" style="padding-top: 3%;">';
                 
                 if(retorno[x]['comentario']>0){
                    /* feed = feed + '<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKFSURBVHhe7ZpNThwxEIUni5A7kEjJ6YgghAMEqXsLsi3Ekmsku5A1YcHfVTJiP7E7hdSUbeia107NdPuT3oJx+fnVUDM9Cy8qlUqlUqlUOG3b7rTGHbXWXXs9eq02XI+Nsb8ba7+E7NTGerSnp7ve6D5xyHbIuLvQA7Uj4+v5+bvW2Iek8RbJ/wNv15oE/+4dpgy3UsYdUFvD8RvDZ75nZL9/c+49LW8sIWNj3I9+9vCdQMvD8Ruff+GdnHygpY0nZH2W3bolLQ2HGazo5a0Bzg8bKAPnhw2UgfPDBsrA+WEDZeD8sIEycH6pAa8vLTo2i7Q+QmrA60uLjs0irY+QGvD60qJjs0jrI6QGvL606Ngs0voI2EAZOD9soAycHzZQBs4PGygD55ca8PrSomOzSOsjpAa8vrTo2CzS+gipAa8vLTo2i7Q+QmrA60uLjs0irY+ADZSB88MGysD5YQNl4PywgTJwfqkBr5eKbEYD9pca8HqpyGY0YH+pAa+XimxGA/aXGvB6qchmNGB/2EAZOD9soAycHzZQBs4PGygD54cNlIHzwwbKwPn9pnlfkAjXSvom4drJvK7I/L9LUsvGuc+L1eoNHZ0ksW+41rok9e+C5F3SsIAaay+PjflIx0ek9gzUzd7FxVuykUEXJW8TpqWUnYZE7RDdrH1R8okwCd21U2uvvOGSHVBEqWlI1WXkM9or77EPX5UtTXt29sl/zH4lmuga6U8DX+8MJoFvMDQaGuZNdjLuZ5gG/jrtng6hyTD6vNEg/xj7w1+jbRPjtWnoiXZMk5em4UlUOmFemQaqmj65aaDlmZCYBlqZF93j0D8WZ/sGdPhp8L/09uivSmUUFou/iNJ/GAhnlLQAAAAASUVORK5CYII="><span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['comentario']+'&nbsp; &nbsp; &nbsp; </span>';*/
@@ -131,7 +135,7 @@ $.ajax({
 				}
                 /*feed = '<div class="notificacao" onClick="carrega_ocorrencia(\''+retorno[x]['id']+'\');" ><div class="feed-ocorrencia noti_titulo"><div class="noti_tipo">Ocorrência</div><div class="noti_icone" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP4SURBVGhD1ZlNSBRhGMdH0F1BKghCOhRBhEZ0iuhQhocCCQzKDAqiTt018NSlQxpFeQ3rZoc+zY7t+rGrblsY+ZHZx+oKFZmBUOImrtv79jzTMzaz++zsfO26/uGHu+/Mzvt7dt533plVKaaInopKEfaPi5B/DF9T8/qJCPs6ZNgvEXxNzesjIlS2F7791P8C/Clso83FHxHyPdfkV4uANtpc3BH9/rp0eQ3cRrsVZ2S/UgqTdoKTR9RtsA/t7iyBqZVjgenk12B8RXrN5HgHK24g5L9IKs4SiCe/cJ27pX96Xi4PbTPInqs9oKJvgyvSd/FS2Ug69sN17gXxkcsGUYQrAIGr0lXSsR+uc7cMxuLyz8CmDFGTApbkYPl2UrIX7PB6cE5WNUdVbgR/sFJ2+DZ8PkMSyVYAApfVTlKylqe9keHuvojU0/5oSFZfiq6K3BlJ2qb7dRSEyjMEEfMC/EKESveTXu509w29Si/g1kP3BcxGallBxKwABCb0IOlZD4risKmG4YPyN3ucD6Gxd49ZMY1cBSAwlE6SmrVwIk7ojSdkIrKbldKwVEDYF5MTio/0coeTccLH8XZWyAliwNdEernDydglNDUnk4NbWRk9rRf2qHDb9MCEnhcvlM2kaB5OSIObpBxvo82sSDpWC0CgiHZSNA+KZlsHONl07o4syVQ4c9FyCy5upMjHyjpglbnhRuiUv/Y7QV0Twv4uUuVjZR3IJ6ThPngwr9YBO1D37sMdvBBQ9+7DHVyDm7ReQd27DyeuwXXsFdS9+3DihYC6dx88mNfPA1ag7p3Hy3XACaThPIVaB3piv+XYg/tytuWsXDxdJVNHKlTEIeU9cA84JfcpZaRlP9hJtnWAm3x2CHR2yV8ndkpZo5gCRcTEQaWelOxFk+XgpCzxZlmOXmlhZbMhahQBhbTB2CohNWvhxN0yc82evB4sgtSshRNww+iTLikPlxjFjldmtiHYhtt0beqZsDOcOAmn4IRNNKSN+cYdUs7OSPnstrEIfI1tuA330X0GzsInyxMbO/ZqHcCrjV5E1m/5J6hFK0KT14L74L66z+LViRT55ON3oVjTGYNEhigG33Nt+rMDwFAy/6ErH78L/WzYZZBQ4YrQh5FHoIAPpGoeFPXqeSB1dEOGiEq2IrLII1DAAimahxNxyrovING4BkPIy39w4P2OQYSTx/dcW1oROSexluDMSl0wnvzMCdmloJfRfAQXH3UR0onkfSHzOngbAKdf6IXyeiuRj8A32KaXsgN8tpUOs3bBW2IsIuNMmKB+805up/MZdTjBwwonrAf3WfNhky3qxK5RGkASHx/xMXIR3i/A30m1DbbxE1ZR/gJq5jn26XdcegAAAABJRU5ErkJggg==);"></div></div><div class="noti_corpo"><div class="topo_comunicado"><span>'+retorno[x]['datanormal']+'</span><strong>'+retorno[x]['autor']+'</strong><span class="criou">Ocorrência ('+retorno[x]['id']+')</span></div><div style="float: left; width: 90%; padding: 10px;font-size: 14px;">'+titulo1+'</div></div></div>';*/
 				
-				 feed = '<div class="notificacao card" onClick="carrega_ocorrencia(\''+retorno[x]['id']+'\');carrega_tickets(0);"><div class="feed-ocorrencia noti_titulo card-header"><div class="noti_tipo">Ocorrência</div><div><i class="fa fa-warning"></i></div></div><div class="noti_corpo card-content card-content-padding"><div class="topo_comunicado"><div class="morador_foto" style="'+foto+'"></div><span>'+retorno[x]['datanormal']+'</span><strong>'+limitanome(retorno[x]['autor'])+'</strong>'+grupos+'<span class="criou">Criou uma Ocorrência </span></div><div style="float: left; width: 90%; padding: 10px;font-size: 14px;">'+retorno[x]['titulo1'].substr(0,45)+'</div><div class="feed_home" style="padding-top: 3%;"></div></div></div>';
+				 feed = '<div class="notificacao card" onClick="carrega_ocorrencia(\''+retorno[x]['id']+'\');carrega_tickets(0);"><div class="feed-ocorrencia noti_titulo card-header"><div class="noti_tipo">Ocorrência</div><div><i class="fa fa-warning"></i></div></div><div class="noti_corpo card-content card-content-padding"><div class="topo_comunicado"><div class="morador_foto" style="'+foto+'">'+icone+'</div><span>'+retorno[x]['datanormal']+'</span><strong>'+limitanome(retorno[x]['autor'])+'</strong>'+grupos+'<span class="criou">Criou uma Ocorrência </span></div><div style="float: left; width: 90%; padding: 10px;font-size: 14px;">'+retorno[x]['titulo1'].substr(0,45)+'</div><div class="feed_home" style="padding-top: 3%;"></div></div></div>';
 				
 				
 				 /*feed = '<div class="notificacao card" onClick="carrega_ocorrencia(\''+retorno[x]['id']+'\');" ><div class="feed-ocorrencia noti_titulo card-header"><div class="noti_tipo">Ocorrência</div><div class="" style=""><i class="fa fa-warning"></i></div></div><div class="noti_corpo card-content card-content-padding"><div class="topo_comunicado"><div class="morador_foto" style="'+foto+'"></div><div class="topo_comunicado"><span>'+retorno[x]['datanormal']+'</span><strong>'+retorno[x]['autor']+'</strong><span class="criou">Ocorrência ('+retorno[x]['id']+')</span></div><div style="float: left; width: 90%; padding: 10px;font-size: 14px;">'+titulo1+'</div></div></div>';*/

@@ -64,7 +64,14 @@ function carrega_comunicados(tipo){
                 if(grupos.length>0){
                     grupos = '<div style="float:left; width: 60%;margin-left: 6px;">'+grupos+'</div>';
                 }
-                dado = '<div class="comunicado card" onClick="check_leitura(1,'+retorno[x]['id_comunicado']+');carrega_comunicado(\''+retorno[x]['id_comunicado']+'\');"><div class="feed-comunicado cabecalho_card card-header" style="'+cor+'" onload="atualiza_notificacao_modulo(5,236,this)"><div class="noti_tipo">'+retorno[x]['titulo']+'</div><div><i class="fa fa-bullhorn"></i></div></div><div class="p_comunicado" style="margin: 19% 0 0 3%;"><div class="topo_comunicado"><div class="morador_foto" style="margin-right: 8px;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span>'+retorno[x]['data_criacao']+'</span><strong>'+retorno[x]['criado']+'</strong>'+grupos+'</div><div class="comunicado_titulo" style="margin-top:20px">'+retorno[x]['texto'].substr(0,50)+'</div></div><div class="feed_home" >';
+				
+				if(retorno[x]['titulo'].length > 32){
+					
+					var txt_titulo = retorno[x]['titulo'].substr(0,32)+'...';
+				}else{
+					var txt_titulo = retorno[x]['titulo'];
+				}
+                dado = '<div class="comunicado card" onClick="check_leitura(1,'+retorno[x]['id_comunicado']+');carrega_comunicado(\''+retorno[x]['id_comunicado']+'\');"><div class="feed-comunicado cabecalho_card card-header" style="'+cor+'" onload="atualiza_notificacao_modulo(5,236,this)"><div class="noti_tipo">'+txt_titulo+'</div><div><i class="fa fa-bullhorn"></i></div></div><div class="p_comunicado" style="margin: 19% 0 0 3%;"><div class="topo_comunicado"><div class="morador_foto" style="margin-right: 8px;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span>'+retorno[x]['data_criacao']+'</span><strong>'+retorno[x]['criado']+'</strong>'+grupos+'</div><div class="comunicado_titulo" style="margin-top:20px">'+retorno[x]['texto'].substr(0,50)+'</div></div><div class="feed_home" >';
 				if(retorno[x]['comentario']>0){
                     dado = dado + '<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKFSURBVHhe7ZpNThwxEIUni5A7kEjJ6YgghAMEqXsLsi3Ekmsku5A1YcHfVTJiP7E7hdSUbeia107NdPuT3oJx+fnVUDM9Cy8qlUqlUqlUOG3b7rTGHbXWXXs9eq02XI+Nsb8ba7+E7NTGerSnp7ve6D5xyHbIuLvQA7Uj4+v5+bvW2Iek8RbJ/wNv15oE/+4dpgy3UsYdUFvD8RvDZ75nZL9/c+49LW8sIWNj3I9+9vCdQMvD8Ruff+GdnHygpY0nZH2W3bolLQ2HGazo5a0Bzg8bKAPnhw2UgfPDBsrA+WEDZeD8sIEycH6pAa8vLTo2i7Q+QmrA60uLjs0irY+QGvD60qJjs0jrI6QGvL606Ngs0voI2EAZOD9soAycHzZQBs4PGygD55ca8PrSomOzSOsjpAa8vrTo2CzS+gipAa8vLTo2i7Q+QmrA60uLjs0irY+ADZSB88MGysD5YQNl4PywgTJwfqkBr5eKbEYD9pca8HqpyGY0YH+pAa+XimxGA/aXGvB6qchmNGB/2EAZOD9soAycHzZQBs4PGygD54cNlIHzwwbKwPn9pnlfkAjXSvom4drJvK7I/L9LUsvGuc+L1eoNHZ0ksW+41rok9e+C5F3SsIAaay+PjflIx0ek9gzUzd7FxVuykUEXJW8TpqWUnYZE7RDdrH1R8okwCd21U2uvvOGSHVBEqWlI1WXkM9or77EPX5UtTXt29sl/zH4lmuga6U8DX+8MJoFvMDQaGuZNdjLuZ5gG/jrtng6hyTD6vNEg/xj7w1+jbRPjtWnoiXZMk5em4UlUOmFemQaqmj65aaDlmZCYBlqZF93j0D8WZ/sGdPhp8L/09uivSmUUFou/iNJ/GAhnlLQAAAAASUVORK5CYII="><span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['comentario']+'&nbsp; &nbsp; &nbsp; </span>';
                 }
@@ -74,7 +81,7 @@ function carrega_comunicados(tipo){
                 if(retorno[x]['anexo']>0){
                     dado = dado + '<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASkSURBVHhe7Zr7ixNXFMejVeuzP0gfouCzLfZhtegvohSkFFFBRBFKi7+0ICgrRcUf7Ca5UKiYufcmG7u2u7oiiiDkLxAR/UXQForV1QqyylZrH2uhLYIIbd1+z+TcZPLYvDY7mZudDwwk58zcnM/cO3deiYSEhISEhIRYiUilFgqtN8aV+jgm5SZ8fpVT7YsQYpJQ6hMh1U2h9HCZ5Y6QugPrTeFN2geRSMyNS/VtGenSBTuo03GW8Kb2g15/HVI/G8G41I+wfBlT6v2oUu/GtF6HQ0HElX6Y3xHqj7Y4LIrlMcQzIp1+gdMF7NV6GtY/ZtbFDrmFw2Eqp4NJVOvlkPpCOM4cDuUolVc9keHhCZwekcKdoD7jcPBAoWtxXD/OyumvOewSTSRea0SecEdCfttBDgeLQnn1DN+3cKpEHr34Ta3yBmwTM9sLKd/mcDAolseE9imnmiJPxJzkGtMGJsltHG491eQxcT0YrTwRTaXeMO3gN3dyuLXUI+/OCQ3KExj275m2AjECKsnT+bqZ8gTaiOfaU2oph1tDPfIY9kdHLS96p+N3fuE2BzjcGvyWJ/AbJ02bGAkdHPafSvJ0rT5G8ol8m/p6y26M6pFHL3U3Wx6/OSSSycWc8pexkN+eyTyHdiRNkOV6taDncbMknNQKTvlLNXkI3M8VqtRXtcpju4zZDneBH3DKpVie7i845S9+yGO7a947PCvk6Vhshjza/QG/8yKn7ZTH5yO1yKOXJ9Uqj9xQ28sfTKdf4rQ98hjqP5lC8TkdylehWJ4uZKyT75RykR/ywnHe4ZS/1CMPoa4Gh/2NcSuPnu+vMuyXccpfqskjPpgvdBzJu+/oPPIYBanxI4+bEgh/n5doTB7t3rROnoDwrlyhSvWNhXzLHmnT0xoU8RcXUiJPYOdcoTyG78MDicQsDo9IOXkIvszp4Mjvl3IGirnNhZSVJ5B7Susgf4JDI2KNPIGh3ZkrRqlDHC4Bhf6bLRizfgWK5TFiblWSjyaTb3HKf+jNK4b2n1woPVObyKkSsN5dLvw7DpVglTwR13p7viC5lcNloVk/t26Zty87e3snF8sf7Op6hdMF8sj93nJ5AkW5j5Rp9t+TTj/P4bJ8rvU8rPe3K+EeDkrFnNRqXBgtwOctZpLk/I+BlydQdPZvKFJf4FBFILoZcu5kONICwX4r5AkU5V7VYUec4lBVqNdxOFwzUmaB3D/YOT2iu3smrxpseQKF3XMLlPoMh2oDF0EimVyF7XZD8oBw9EfeyY4olkf+TU4FBxR3lQu8xKGmYIU8gWM6+/8aqZ7QS0YOjwpr5AmavXPFSrmDww3jlcdO/S3Q8gRfBj/iogdwIdPwy0Xr5A0YBftM4ZA4zuG6sFaeQK9P9Z7WICMrXRJ7oas/bHvUK0//1+G0PYjDXfNR/FBeRJ+vds52T4NKXbZe3kDCEBkwQpjB/8OOOIce3kNvaLGsxLIek+VeyF7E8syzbj+9EOWm7EVoPRvCZ71yFZfsPUGf9+qvLaB/ZUPwtOcMUbCgx3+lCdOqya4R6JU1PaSMSbkBh8OHdAi40jU8DwwJCQkJCQkKkcj/IsxYDdBU2bkAAAAASUVORK5CYII="><span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['anexo']+'&nbsp;&nbsp;</span>';
                 }
-				dado = dado +'</div></div>';
+				dado = dado +'</div></div></div>';
                 dados = dados + dado;
             }
             //alert(retorno);
@@ -114,7 +121,13 @@ function carrega_comunicado(id){
         dataType   : 'json',
 		success: function(retorno){
             //alert(retorno);
-            $( ".comunicado_titulo" ).html(retorno[0]['titulo']);
+			if(retorno[0]['titulo'].length > 24){
+				var txt_titulo = retorno[0]['titulo'].substr(0,24)+'...';
+			}else{
+				var txt_titulo = retorno[0]['titulo'];
+			}
+			
+            $( ".comunicado_titulo" ).html(txt_titulo);
 			//alert('classe titulo');
             $( "#comunicados_comentario span" ).html(retorno[0]['titulo'].substring(0,53));
             $( "#comunicados2 .comunicado .topo_comunicado .morador_foto" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
@@ -396,7 +409,7 @@ function download_arq_comunicado(caminho,arquivo) {
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
 	
-    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+fmt_lin(arquivo);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -414,9 +427,9 @@ function download_arq_comunicado(caminho,arquivo) {
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			//alert(JSON.stringify(ref, null, 4));
-            window.open(path, "_system");
+            //window.open(path, "_system");
 			//alert(1);
 
         },
@@ -434,6 +447,23 @@ function download_arq_comunicado(caminho,arquivo) {
             }
         }
     );
+}
+
+
+function visualiza_comunicado(id) {
+
+        $.ajax({
+            type: 'POST',
+            url: localStorage.getItem('DOMINIO')+'appweb/visualiza_comunicado.php',
+            data: {id : id,id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_usuario_condominio: $( "#DADOS #ID_USER" ).val()},
+			crossDomain: true,
+           success: function(retorno){
+                
+            },
+            error      : function() {
+               
+            }
+        });	
 }
 
 

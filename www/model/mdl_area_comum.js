@@ -1,4 +1,4 @@
-m// JavaScript Document
+// JavaScript Document
 
 //FUNCAO CARREGA TODAS AREAS COMUNS
 function carrega_areas(){
@@ -13,9 +13,19 @@ function carrega_areas(){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val()},
         dataType   : 'json',
 		success: function(retorno){
-            dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
             for (x in retorno) {
-                var dado = '<div class="area" onClick="carrega_area(\''+retorno[x]['id_area_comum']+'\',\'1\',\''+retorno[x]['nome']+'\');"><strong>'+retorno[x]['nome']+'</strong></div>';
+				var ativos = retorno[x]['domingo']+'**'+retorno[x]['segunda']+'**'+retorno[x]['terca']+'**'+retorno[x]['quarta']+'**'+retorno[x]['quinta']+'**'+retorno[x]['sexta']+'**'+retorno[x]['sabado'];
+				if(retorno[x]['fotos'].length > 0){
+					var foto_area = '<div style="background-image:url('+retorno[x]['fotos'][0]['caminho']+retorno[x]['fotos'][0]['nome_arquivo']+'); height: 200px; background-size: 100%; background-position: center center;" class="card-header align-items-flex-end"></div>';
+				}else{
+					var foto_area = '<div style=" height: 200px; background-size: 100%;" class="card-header align-items-flex-end"><i class="f7-icons" style="font-size: 150px; display: table; margin:auto;">images</i></div>';
+				}
+				var dado = 	'<div class="card demo-card-header-pic">'+
+  							'<div class="card-content card-content-padding">'+
+    						'<p>'+retorno[x]['nome']+'</p>'+
+  							'</div>'+foto_area+
+  							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\');">Reservar</a></div>'+
+							'</div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
                 dados = dados + dado;
                 dados_select = dados_select + dado_select;
@@ -24,6 +34,9 @@ function carrega_areas(){
 			$( "#filtro_r_area" ).html(dados_select);
 			afed('#reservas','#home','','',3,'reservas');
 
+		},
+		error: function(){
+			//alert('Erro teste');
 		}
 	});	
 }
@@ -99,7 +112,7 @@ function carrega_minha_reserva_unica(retorno){
     var dataout = dados[5].split('/');
     var dt = new Date(dataout[2]+'-'+dataout[1]+'-'+dataout[0]+' 00:00:00');
     var dt_hoje = new Date();
-    
+    afed('','','','',2,'minha_reserva_unica');
     if(dados[8] == 0){
         var status = '<i class="fa fa-circle" style="color:#ffc107;"></i> PENDENTE';
     }else if(dados[8] == 1){
@@ -126,55 +139,105 @@ function carrega_minha_reserva_unica(retorno){
 }
 
 //FUNCAO CARREGA UMA AREA COMUM ESPECIFICA 
-function carrega_area(id,cale_view,nome){
+function carrega_area(view=1){
 	//processando(1);
-	if(cale_view == 1){
-        var dtini = new Date();
-        //$( "#dt_festa" ).val(dtini.getDate()+'/'+(dtini.getMonth()+1)+'/'+dtini.getFullYear());
-        select_data('#dt_festa','',dtini.getDate(),dtini.getMonth(),dtini.getFullYear());
-		$( "#DADOS #AREA_COMUM" ).val(id);
-		$( "#area .topo_sub span" ).html(nome);
-		cale('#dt_festa','','');
-		afed('#area','#reservas','','',3,'area');
+	
+	//alert($( "#dt_festa" ).val());
 
-	}else{
-		var dt_festa = $( "#dt_festa" ).val();
-		$.ajax({
-			type: 'POST',
-            url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
-			crossDomain: true,
-			beforeSend : function() { $("#wait").css("display", "block"); },
-			complete   : function() { $("#wait").css("display", "none"); },
-            data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_areacomum : $( "#DADOS #AREA_COMUM" ).val(), dt_festa : dt_festa},
-            dataType   : 'json',
-			success: function(retorno){
-                var dt_mim_age = new Date();
-                dt_mim_age.setDate(dt_mim_age.getDate()+parseInt(retorno[0]['data_minima']));
-                var hora = dt_mim_age.getHours()+":"+dt_mim_age.getMinutes();
-                var dt_max_age = new Date();
-                if(retorno[0]['data_maxima'] == 0){
-                    dt_max_age.setDate(dt_max_age.getDate()+365);
-                }else{
-                    dt_max_age.setDate(dt_max_age.getDate()+parseInt(retorno[0]['data_maxima']));
-                }
-                var dt = dt_festa.split("/");
-                var dt_festa_new = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " "+hora );
-                dt_festa_new.setMinutes(dt_festa_new.getMinutes()+5);
-                $( "#area .topo_sub span" ).html(retorno[0]['nome']);
-                $( "#reserva .topo_sub span" ).html(retorno[0]['nome']);
-				$( "#reserva #add_reserva #add_reserva_valor" ).html("R$ "+retorno[0]['valor']);
-				$( "#reserva #add_reserva #add_reserva_termo" ).html(retorno[0]['termo']);
-                localStorage.setItem('TIPO_PERIODO',retorno[0]['periodo_integral']);
-                limpa_calendario();
-                if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){                    
-                    verifica_data_ativas(retorno[0]['inicio'],retorno[0]['fim'],retorno[0]['ativo']);
-                }
-                verifica_data_usadas(retorno[0]['reservas']);
-                localStorage.setItem('TELA_ATUAL','calendario');
+	var dt_festa = $( "#dt_festa" ).val();
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+		data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_areacomum : $( "#DADOS #AREA_COMUM" ).val(), dt_festa : dt_festa},
+		dataType   : 'json',
+		success: function(retorno){
+			var dt_mim_age = new Date();
+			dt_mim_age.setDate(dt_mim_age.getDate()+parseInt(retorno[0]['data_minima']));
+			var hora = dt_mim_age.getHours()+":"+dt_mim_age.getMinutes();
+			var dt_max_age = new Date();
+			if(retorno[0]['data_maxima'] == 0){
+				dt_max_age.setDate(dt_max_age.getDate()+365);
+			}else{
+				dt_max_age.setDate(dt_max_age.getDate()+parseInt(retorno[0]['data_maxima']));
 			}
-		});	
-	}
+			var dt = dt_festa.split("/");
+			var dt_festa_new = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " "+hora );
+			dt_festa_new.setMinutes(dt_festa_new.getMinutes()+5);
+			$( "#area .topo_sub span" ).html(retorno[0]['nome']);
+			$( "#reserva .topo_sub span" ).html(retorno[0]['nome']);
+			$( "#reserva #add_reserva #add_reserva_valor" ).html("R$ "+retorno[0]['valor']);
+			$( "#reserva #add_reserva #add_reserva_termo" ).html(retorno[0]['termo']);
+			$( "#add_reserva_hora_inicio" ).val(retorno[0]['inicio']);
+			$( "#add_reserva_hora_fim" ).val(retorno[0]['fim']);
+			localStorage.setItem('TIPO_PERIODO',retorno[0]['periodo_integral']);
+			limpa_calendario();
+			if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){  
+				//alert(retorno[0]['inicio']+' '+retorno[0]['fim']);
+				verifica_data_ativas(retorno[0]['inicio'],retorno[0]['fim'],retorno[0]['ativo']);
+			}
+			verifica_data_usadas(retorno[0]['reservas']);
+			//localStorage.setItem('TELA_ATUAL','calendario');
+			//alert('foi tudo');
+			if(view == 1){
+				afed('#area','#area_comum_new','','',2,'calendario');
+			}
+		}
+	});	
 }
+
+////FUNCAO CARREGA UMA AREA COMUM ESPECIFICA 
+//function carrega_area(id,cale_view,nome){
+//	//processando(1);
+//	if(cale_view == 1){
+//        var dtini = new Date();
+//        //$( "#dt_festa" ).val(dtini.getDate()+'/'+(dtini.getMonth()+1)+'/'+dtini.getFullYear());
+//        select_data('#dt_festa','',dtini.getDate(),dtini.getMonth(),dtini.getFullYear());
+//		$( "#DADOS #AREA_COMUM" ).val(id);
+//		$( "#area .topo_sub span" ).html(nome);
+//		cale('#dt_festa','','');
+//		afed('#area','#reservas','','',3,'area');
+//
+//	}else{
+//		var dt_festa = $( "#dt_festa" ).val();
+//		$.ajax({
+//			type: 'POST',
+//            url: localStorage.getItem('DOMINIO')+'appweb/area_comum_get.php',
+//			crossDomain: true,
+//			beforeSend : function() { $("#wait").css("display", "block"); },
+//			complete   : function() { $("#wait").css("display", "none"); },
+//            data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_areacomum : $( "#DADOS #AREA_COMUM" ).val(), dt_festa : dt_festa},
+//            dataType   : 'json',
+//			success: function(retorno){
+//                var dt_mim_age = new Date();
+//                dt_mim_age.setDate(dt_mim_age.getDate()+parseInt(retorno[0]['data_minima']));
+//                var hora = dt_mim_age.getHours()+":"+dt_mim_age.getMinutes();
+//                var dt_max_age = new Date();
+//                if(retorno[0]['data_maxima'] == 0){
+//                    dt_max_age.setDate(dt_max_age.getDate()+365);
+//                }else{
+//                    dt_max_age.setDate(dt_max_age.getDate()+parseInt(retorno[0]['data_maxima']));
+//                }
+//                var dt = dt_festa.split("/");
+//                var dt_festa_new = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " "+hora );
+//                dt_festa_new.setMinutes(dt_festa_new.getMinutes()+5);
+//                $( "#area .topo_sub span" ).html(retorno[0]['nome']);
+//                $( "#reserva .topo_sub span" ).html(retorno[0]['nome']);
+//				$( "#reserva #add_reserva #add_reserva_valor" ).html("R$ "+retorno[0]['valor']);
+//				$( "#reserva #add_reserva #add_reserva_termo" ).html(retorno[0]['termo']);
+//                localStorage.setItem('TIPO_PERIODO',retorno[0]['periodo_integral']);
+//                limpa_calendario();
+//                if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){                    
+//                    verifica_data_ativas(retorno[0]['inicio'],retorno[0]['fim'],retorno[0]['ativo']);
+//                }
+//                verifica_data_usadas(retorno[0]['reservas']);
+//                localStorage.setItem('TELA_ATUAL','calendario');
+//			}
+//		});	
+//	}
+//}
 
 //FUNCAO VERIFICA DATA ATIVA NA AREA COMUM
 function verifica_data_ativas(ini,fim,ativo) {
@@ -188,9 +251,9 @@ function verifica_data_ativas(ini,fim,ativo) {
 	for (i = 0; i < 48; i++) {
 		if(iniDate >= startDate && iniDate < endDate && ativo == 1) {
 			//alert(iniDate);
-			$( "#h_"+i ).css("background-color","white");
-			$( "#h_"+i ).css("color","black");
-			$( "#h_"+i ).css("border-color","#4caf50")
+			$( "#h_"+i ).css("background-color","rgb(76, 175, 80)");
+			$( "#h_"+i ).css("color","#FFF");
+			//$( "#h_"+i ).css("border-color","#4caf50")
 			var bt_add = document.getElementById('h_'+i);
 			bt_add.setAttribute("onclick", "adiciona_reserva('"+i+"')");
 		}
@@ -215,27 +278,31 @@ function verifica_data_usadas(dados){
                 
 				if(dados[x]['morador'] == $( "#DADOS #ID_MORADOR" ).val() ){
 					if(conta_agrupa != 0){
-						$( "#h_"+ii ).css("border-top-color","#53c7ec");
+						//$( "#h_"+ii ).css("border-top-color","#53c7ec");
 					}
-					$( "#h_"+ii ).css("background-color","#ddd");
+					//$( "#h_"+ii ).css("background-color","#ddd");
                     //alert(dados[x]['situacao']);
                     if(dados[x]['situacao'] == 0){
                         //alert('sim');
-                        $( "#h_"+ii ).css("border-color","#f5db00");
+                        $( "#h_"+ii ).css("background-color","#ffeb3b");
+                        $( "#h_"+ii ).css("color","#000");
+						//$( "#h_"+ii ).css("border-color","#f5db00");
                     }else{
                         //alert('nao');
-                        $( "#h_"+ii ).css("border-color","#53c7ec");
+						$( "#h_"+ii ).css("background-color","#2196f3");
+						$( "#h_"+ii ).css("color","#FFF");
+                        //$( "#h_"+ii ).css("border-color","#53c7ec");
                     }
 					//$( "#h_"+ii ).css("border-color","#53c7ec");
 					var bt_edit = document.getElementById('h_'+ii);
 					bt_edit.setAttribute("onclick", "edite_reserva('"+dados[x]['id_reserva']+"','"+startHora[0]+"','"+startHora[1]+"','"+endHora[1]+"')");
 				}else{
 					if(conta_agrupa != 0){
-						$( "#h_"+ii ).css("border-top-color","#8c72cd");
+						//$( "#h_"+ii ).css("border-top-color","#8c72cd");
 					}
-					$( "#h_"+ii ).css("background-color","#ddd");
-					$( "#h_"+ii ).css("border-color","#8c72cd");
-					$( "#h_"+ii ).css("color","black");
+					$( "#h_"+ii ).css("background-color","#8c72cd");
+					//$( "#h_"+ii ).css("border-color","#8c72cd");
+					$( "#h_"+ii ).css("color","#FFF");
 					var bt_edit = document.getElementById('h_'+ii);
 					bt_edit.setAttribute("onclick", "");
 				}
@@ -246,7 +313,7 @@ function verifica_data_usadas(dados){
                         $( "#h_"+ii ).html(startHora[1]+" - "+endHora[1]+"<br>");
                     }else{
                         $( "#h_"+ii ).html(startHora[1]+" - "+endHora[1]+"<br>");
-                        $( "#h_"+ii ).css("border-radius","11px 11px 0 0");
+                        $( "#h_"+ii ).css("border-radius","15px 15px 0 0");
 						$("#h_"+ii).css("margin-bottom","0");
 						$("#h_"+ii).css("height","26px");
 						$("#h_"+ii).css("border-bottom","0");
@@ -255,11 +322,22 @@ function verifica_data_usadas(dados){
 				}else{
                     if((ttHoras-1) == conta_agrupa){
                         $( "#h_"+ii ).html(" ");
-                        $( "#h_"+ii ).css("border-radius","0 0 11px 11px");   
+                        $( "#h_"+ii ).css("border-radius","0 0 15px 15px");   
 						$("#h_"+ii).css("border-top","0");
                     }else{
 						$("#h_"+ii).css("margin-bottom","0");
-                        $( "#h_"+ii ).html(" ");
+						if(ii == 15){
+							$( "#h_"+ii ).html("<i class='f7-icons' style='font-size: 10px'>arrow_down</i>");
+						}else if(ii == 16){
+							$( "#h_"+ii ).html("<i class='f7-icons' style='font-size: 10px'>arrow_up</i>");
+						}else if(ii == 31){
+							$( "#h_"+ii ).html("<i class='f7-icons' style='font-size: 10px'>arrow_down</i>");
+						}else if(ii == 32){
+							$( "#h_"+ii ).html("<i class='f7-icons' style='font-size: 10px'>arrow_up</i>");
+						}else{
+							$( "#h_"+ii ).html(" ");
+						}
+                        
                         $( "#h_"+ii ).css("border-radius","0 0 0 0");
 						$("#h_"+ii).css("height","26px");
 						$("#h_"+ii).css("border-bottom","0");
@@ -275,13 +353,14 @@ function verifica_data_usadas(dados){
 
 //FUNCAO LIMPA CALENDARIO
 function limpa_calendario(){
-	$( ".hora" ).css("background-color","white");
-	$( ".hora" ).css("border-color","red");
-	$( ".hora" ).css("border-radius","7px");
+	$( ".hora" ).css("background-color","rgb(244, 67, 54)");
+	$( ".hora" ).css("color","#FFF");
+//	$( ".hora" ).css("border-color","red");
+	$( ".hora" ).css("border-radius","15px");
 	$( ".hora" ).css("margin-bottom","1px");
 	$( ".hora" ).css("height","25px");
-	$( ".hora" ).css("border-bottom","1px solid red");
-	$( ".hora" ).css("border-top"   ,"1px solid red");
+//	$( ".hora" ).css("border-bottom","1px solid red");
+//	$( ".hora" ).css("border-top"   ,"1px solid red");
 	$( "#h_0" ).html("00:00");
 	var bt_clear = document.getElementById("h_0");
 	bt_clear.setAttribute("onclick", "");
@@ -477,6 +556,7 @@ function limpa_calendario(){
 
 //FUNCAO ADICIONA RESERVA
 function adiciona_reserva(h){ 
+	//alert(localStorage.getItem('periodo_integral'));
     afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'reserva');
 	var dt_festa = $( "#dt_festa" ).val();
 	var dt = dt_festa.split("/");
@@ -484,20 +564,30 @@ function adiciona_reserva(h){
 	var iniDate = new Date(dt[2] +"-"+ dt[1] +"-"+ dt[0] + " "+hora_ini);
 	iniDate.setMinutes(iniDate.getMinutes()+30);
     var hora_fim = pad(iniDate.getHours(),2)+":"+pad(iniDate.getMinutes(),2);
-    if(localStorage.getItem('TIPO_PERIODO') == 1){
+    if(localStorage.getItem('periodo_integral') == 1){
         var hora_ini_int = localStorage.getItem('RESERVA_ATUAL_INI').split(" ");
         var hora_fim_int = localStorage.getItem('RESERVA_ATUAL_FIM').split(" ");
         hora_ini = hora_ini_int[1];
         hora_fim = hora_fim_int[1];
         afed('','','','#add_reserva_hora_inicio,#add_reserva_hora_fim',2,'reserva');
     }
-	afed('#reserva','#area','','',2,'reserva');
+	afed('#reserva,#bt_re_ca','#area,#bt_add_reserva,#bt_add_reserva2,#bt_re_ex','','',2,'reserva');
 	$( "#add_reserva_dt" ).val(dt[2] +"-"+ dt[1] +"-"+ dt[0]);
 	$( "#add_reserva_data" ).html(dt_festa);
 	$( "#add_reserva_hora_inicio" ).val(hora_ini);
 	$( "#add_reserva_hora_fim" ).val(hora_fim);
 	$( "#add_reserva_tipo" ).val("0");
     $("#concordo").prop("checked",false);
+	
+	var bt_add_voltar = document.getElementById('voltar_add_reserva');
+	var bt_add_cancela = document.getElementById('bt_re_ca');
+	if(localStorage.getItem('periodo_integral') == 1){
+		bt_add_voltar.setAttribute("onclick", "afed('#area_comum_new,#bt_add_reserva2','#reserva,#bt_add_reserva','','',2,'area');");
+		bt_add_cancela.setAttribute("onclick", "afed('#area_comum_new,#bt_add_reserva2','#reserva,#bt_add_reserva','','',2,'area');");
+	}else{
+		bt_add_voltar.setAttribute("onclick", "afed('#area,#bt_add_reserva','#reserva,#bt_add_reserva2','','',2,'area');");
+		bt_add_cancela.setAttribute("onclick", "afed('#area,#bt_add_reserva','#reserva,#bt_add_reserva2','','',2,'area');");
+	}
 
 }
 
@@ -506,12 +596,20 @@ function edite_reserva(id_reserva,data,inicio,fim){
 	var dt_festa = $( "#dt_festa" ).val();
 	afed('#reserva','#area','','',2,'reserva')
 	$( "#add_reserva_dt" ).val(data);
-	$( "#add_reserva_id" ).val(id_reserva);
+	$( "#add_reserva #add_reserva_id" ).val(id_reserva);
     $( "#add_reserva_data" ).html(dt_festa);
 	$( "#add_reserva_hora_inicio" ).val(inicio);
 	$( "#add_reserva_hora_fim" ).val(fim);
 	$( "#add_reserva_tipo" ).val("1");
     $("#concordo").attr('checked','checked');
+	var bt_add_voltar = document.getElementById('voltar_add_reserva');
+	if(localStorage.getItem('periodo_integral') == 1){
+		bt_add_voltar.setAttribute("onclick", "afed('#area_comum_new,#bt_add_reserva2','#reserva,#bt_add_reserva','','',2,'area');");
+		afed('#bt_re_ex','#bt_re_ca','','#add_reserva_hora_inicio,#add_reserva_hora_fim',2,'');
+	}else{
+		bt_add_voltar.setAttribute("onclick", "afed('#area,#bt_add_reserva','#reserva,#bt_add_reserva2','','',2,'area');");
+		afed('#bt_re_ex','#bt_re_ca','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'');
+	}
 }
 
 // FUNCAO SALVA RESERVA AREA COMUM
@@ -520,6 +618,8 @@ function salva_reserva(){
 	if($("#concordo").is(':checked')){
         afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'reserva');
 		var dados = $( "#add_reserva" ).serialize();
+		var dt_res = $("#add_reserva_dt").val();
+		//alert(dt_res);
         var dt_ini = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_inicio").val());
         var dt_fim = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_fim").val());
         var dt_atual = new Date();
@@ -556,9 +656,21 @@ function salva_reserva(){
                     }else if(retorno != ''){
                         notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
                     }else{
-                        carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
-                        afed('#area','#reserva','','',2,'area');  
-                    }
+						//alert(localStorage.getItem('dsa'));
+						if(localStorage.getItem('periodo_integral') == 1){
+							//alert(0);
+							carrega_area(0);
+							fecha_calendario();
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),dt_res,1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
+							afed('#area_comum_new','#reserva','','',2,'area');  
+						}else{
+							//alert(1);
+                        	carrega_area();
+							fecha_calendario();
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),dt_res,1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
+							afed('#area','#reserva','','',2,'area');  
+						}
+					}
                 },
                 error: function(erro){
                     //alert('erro');
@@ -584,7 +696,7 @@ function delete_reserva(){
 function apaga_reserva(button){
     if(button == 1){
         if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){
-            var id_reserva = $( "#add_reserva_id" ).val();
+            var id_reserva = $( "#add_reserva #add_reserva_id" ).val();
         }else{
             var id_reserva = $( "#rel_delete_reserva #add_reserva_id" ).val();
         }
@@ -597,8 +709,23 @@ function apaga_reserva(button){
             data:'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_reserva='+id_reserva,
 			success: function(retorno){
                 if($( "#rel_delete_reserva #add_reserva_id" ).val() == ''){
-                    afed('#area','#reserva','','',2,'area');
-                    carrega_area($( "#DADOS #AREA_COMUM" ).val(),'0');
+					
+					if(localStorage.getItem('periodo_integral') == 1){
+						//alert(0);
+						carrega_area(0);
+						fecha_calendario();
+						new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
+						afed('#area_comum_new','#reserva','','',2,'area');  
+					}else{
+						//alert(1);
+						carrega_area();
+						fecha_calendario();
+						new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
+						afed('#area','#reserva','','',2,'area');  
+					}
+					
+                    //afed('#area','#reserva','','',2,'area');
+                    //carrega_area();
                 }else{
                     carrega_minha_reserva();
                     $( "#rel_delete_reserva #add_reserva_id" ).val('');
@@ -612,8 +739,200 @@ function apaga_reserva(button){
     }
 }
 
-
 function pad(str, length) {
   const resto = length - String(str).length;
   return '0'.repeat(resto > 0 ? resto : '0') + str;
+}
+
+/***********************************FUNCOES NOVO CALENDARIO******************************/
+
+
+function new_calendario(id_area_comum,data_evento='',tipo=1,integral=0,min='',max='',ativos='') {
+$( "#DADOS #AREA_COMUM" ).val(id_area_comum);
+localStorage.setItem('periodo_integral',integral);
+	
+$.ajax({
+	type: 'POST',
+	url: localStorage.getItem('DOMINIO')+'appweb/reserva_get.php',
+	crossDomain: true,
+	beforeSend : function() { $("#wait").css("display", "block"); },
+	complete   : function() { $("#wait").css("display", "none"); },
+	data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), area : id_area_comum, data_evento : data_evento},
+	dataType   : 'json',
+	success: function(retorno){
+		$("#wait").css("display", "block");
+		localStorage.setItem('dsa',ativos);
+		var dia_semana = ativos.split('**');
+		
+		if(tipo==1){
+		var eventos_data = new Array ();
+		for (x in retorno) {
+			//alert(retorno[x]['morador']);
+			var evento_agenda = retorno[x]['inicio'].split(' ');
+			var dt_evento = evento_agenda[0].split('-');
+			var hr_evento = evento_agenda[1];
+			eventos_data[x] = new Date(parseInt(dt_evento[0]), parseInt(dt_evento[1])-1, parseInt(dt_evento[2]));
+		}
+			
+		if(x >= 0){
+			//alert('foi');
+		}else{
+			eventos_data[0] = new Date(2000, 0, 1);
+		}
+		
+		var hoje = new Date();
+		var evento = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+		var ontem = new Date().setDate((hoje.getDate() - 1) + min);
+		if(max == ''){
+			var dt_max = new Date().setDate((hoje.getDate() + 365));
+		}else{
+			var dt_max = new Date().setDate((hoje.getDate() - 1) + max);
+		}
+
+		afed('#area_comum_new','#reservas','','',2,'new_area');
+
+		var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
+			
+		if(data_evento == ''){
+			var dt_value = new Date();
+		}else{
+			var ndt = data_evento.split('-');
+			var dt_value = new Date(ndt[0],(ndt[1]-1),ndt[2]);
+		}
+		var calendarInline = app2.calendar.create({
+			containerEl: '#demo-calendar-inline-container',
+			dateFormat: 'M dd yyyy',
+			minDate: ontem,
+			maxDate: dt_max,
+			weekHeader: false,
+			events: eventos_data,
+			value: [dt_value],
+			renderToolbar: function () {
+				return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
+				  '<div class="toolbar-inner">' +
+					'<div class="left">' +
+					  '<a href="#" class="link icon-only"><i style="width: 24px; height: 24px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+					'</div>' +
+					'<div class="center"></div>' +
+					'<div class="right">' +
+					  '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+					'</div>' +
+				  '</div>' +
+				'</div>';
+			},
+			on: {
+				init: function (c) {
+					$$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
+					$$('.calendar-custom-toolbar .left .link').on('click', function () {
+						calendarInline.prevMonth();
+					});
+					$$('.calendar-custom-toolbar .right .link').on('click', function () {
+						calendarInline.nextMonth();
+					});
+
+				},
+				monthYearChangeStart: function (c) {
+					$$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
+				},
+				dayClick: function(calendar, dayEl, year, month, day) {
+					//alert(day+'/'+month+'/'+year);
+					var rds = new Date(year,month,day);
+					//alert(dia_semana[rds.getDay()]);
+					if(dia_semana[rds.getDay()] == 1){
+						$('#retorno_reservas_dia').html('');
+						var data_select = year+'-'+(parseInt(month)+1)+'-'+day;
+						new_calendario(id_area_comum,data_select,2,integral,min,max,ativos);
+						if(integral == 1){
+							afed('#bt_add_reserva2','#bt_add_reserva','','',2,'');
+						}else{
+							afed('#bt_add_reserva','#bt_add_reserva2','','',2,'');
+						}
+
+						$( "#DADOS #AREA_COMUM" ).val(id_area_comum);
+						$( "#dt_festa" ).val(day+'/'+(parseInt(month)+1)+'/'+year);
+					}else{
+						//alert('teste block');
+						$('#retorno_reservas_dia').html('<li><div class="row"><i class="fa fa-exclamation-triangle" style="font-size: 50px;"></i></div><div class="row"><span>Data Indisponivel</span></div></li>');
+						afed('','#bt_add_reserva,#bt_add_reserva2','','',2,'');
+						alerta('0','Data Indisponivel');
+					}
+  				}
+			}
+		});
+			
+			/* Tratativa para selecionar dia */
+			setTimeout(function(){ 
+				calendarInline.setYearMonth(ndt[0], (ndt[1]-1), ndt[2]);
+	        }, 500);
+		
+		   setTimeout(function(){ 
+				 $('.calendar-month-current div[data-date="'+ndt[0]+'-'+(ndt[1]-1)+'-'+ndt[2]+'"]').click();	
+	        }, 1000);
+				
+	}else if(tipo == 2){
+		var dados_reserva = '';
+		var xx = 0;
+		for (x in retorno) {
+			xx = xx+1;
+		var reserva_inicio = retorno[x]['inicio'].split(' ');
+		var reserva_fim = retorno[x]['fim'].split(' ');
+		
+		if(retorno[x]['foto_morador'] == ""){
+			var fotov = '<i class="icon material-icons" style="margin: 0px 0 0 8px;  ">directions_car</i>';
+		}else{
+			var fotov = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto_morador']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
+		}
+		if(xx > 0 && integral == 1){
+			afed('','#bt_add_reserva,#bt_add_reserva2','','',2,'');
+		}else{
+			if(integral == 1){
+				afed('#bt_add_reserva2','#bt_add_reserva','','',2,'');
+			}else{
+				afed('#bt_add_reserva','#bt_add_reserva2','','',2,'');
+			}
+		}
+		if(retorno[x]['id_morador'] == $( "#DADOS #ID_MORADOR" ).val()){
+			var oc = 'carrega_area(0); edite_reserva(\''+retorno[x]['id_reserva']+'\',\''+reserva_inicio[0]+'\',\''+reserva_inicio[1]+'\',\''+reserva_fim[1]+'\')';
+		}else{
+			var oc = "alerta('0','Essa reserva não pode ser alterada!');";
+		}
+		//alert(reserva_inicio[1]+' '+reserva_fim[1]);
+		var	dado_reserva = '<li onclick="'+oc+'" class="item-content" style="border-left: 7px solid #2196f3">'+
+							'<div class="event-color" style="background-color: #2196f3"></div>'+
+							'<div class="item-inner">'+
+							'<div class="item-media" style="width: 44px; height: 44px; margin:4px 4px 0 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotov+'</div>'+
+							'<div class="item-title">'+retorno[x]['morador']+'</div>'+
+							'<div class="item-after">'+reserva_inicio[1]+' as '+reserva_fim[1]+'</div>'+
+							'</div>'+
+							'</li>';
+			
+//			alert(retorno[x]['morador']);
+//			var evento_agenda = retorno[x]['inicio'].split(' ');
+//			var dt_evento = evento_agenda[0].split('-');
+//			var hr_evento = evento_agenda[1];
+//			eventos_data[x] = new Date(parseInt(dt_evento[0]), parseInt(dt_evento[1])-1, parseInt(dt_evento[2]));
+			
+		dados_reserva = dados_reserva + dado_reserva;
+		}
+		$('#retorno_reservas_dia').html(dados_reserva);
+			
+	  }
+		
+	},
+	error:function(){
+		alert('erro');
+	}
+}).done(function () {
+    //alert('teste');
+	/*setTimeout(function(){ 
+		alert('teste');
+		
+		$('.calendar-month-current div[data-date="2019-4-22"]').click();
+	}, 1000);*/
+});	
+}
+
+function fecha_calendario(){
+	$('#demo-calendar-inline-container').html('');
+	$('#retorno_reservas_dia').html('');
 }

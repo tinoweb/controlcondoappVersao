@@ -44,16 +44,13 @@ function carrega_ocorrencias(tipo){
 					cor_status='yellow';
 				}
 				
-				console.log(retorno[x].visualizacao);
 				if(retorno[x].visualizacao != null ){
 				    cor = 'background:#e85252 !important;color:white';
 			     }else{
 					cor = '';
 				 }
-				
-				
-
-                dado = '<div class="card" onClick="carrega_tickets(0);check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
+							
+                 dado = '<div class="card" onClick="carrega_tickets(0);check_leitura(5,'+retorno[x].id_ocorrencia+');carrega_ocorrencia(\''+retorno[x].id_ocorrencia+'\');"  >'
 							+'<div class="feed-ocorrencia cabecalho_card card-header" style="'+cor+'">'
 								+'<span style="font-size: 15px;" >Ocorrência nº <span style="color: white;" class="chip color-">'+retorno[x].id_ocorrencia+'</span></span>'
 												
@@ -344,7 +341,8 @@ function download_arq_ocorrencia(arquivo) {
     //var uri = encodeURI("http://portal.mec.gov.br/seb/arquivos/pdf/Profa/apres.pdf");
     var uri = encodeURI(path);
 	
-    var filePath = cordova.file.externalRootDirectory+'Download/'+arquivo;
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+fmt_lin(arquivo);
+	//alert(filePath);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -362,15 +360,19 @@ function download_arq_ocorrencia(arquivo) {
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
+			var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
 			//alert(JSON.stringify(ref, null, 4));
             //window.open(path, "_system");
+			//alert("ok");
+			
 
         },
         function(error) {
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
+			$('#downloadProgress').css({"display":"none"});
             //console.log("upload error code" + error.code);
+			//alert("erro");
         },
         false,
         {
@@ -657,6 +659,13 @@ function ticket_insert(){
 			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'str_img='+foto_src+'&id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
+				
+				$(".disabled-button").show();
+				setTimeout(function(){
+					
+					$(".disabled-button").hide();
+					
+				},7000);
 				//notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
 				openNotificacao('glyphicon glyphicon-warning-sign','Ticket Criado','','Voce Criou o Ticket'+retorno);
 				//alert("Retonro ajax de ticket_insert: "+retorno);
@@ -717,6 +726,7 @@ function carrega_tickets(tipo){
 			var cor_status='yellow';
 			var cont = 0;
 		    var new_field = "";
+		    var descricao  = "";
 
 			$( "#main_ticket" ).html("");
 
@@ -750,7 +760,7 @@ function carrega_tickets(tipo){
 							new_field = "";
 						}
 						
-						$("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
+					   $("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
 						  dados += '<li class="accordion-item">'
 										+'<div class="item-inner">'
 										  +'<div class="item-title"><table><tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'
@@ -931,6 +941,7 @@ function get_anexo(id){
 				
 				/* Chama funcao */
 				abre_photo(link);
+				localStorage.setItem('TELA_ATUAL','ocorrencia_ticket_foto');
 			 }
      });	
 }

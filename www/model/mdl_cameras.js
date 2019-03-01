@@ -3,6 +3,7 @@
 //FUNCAO CARREGA TODAS AREAS COMUNS
 function carrega_cameras(){
     afed('#cameras_condominio','#home','','',3,'cameras_condominio');
+	$("#add_ticket").hide();
     var tamanhow = $("#cameras_scroll").width();
     var tamanhoh = (tamanhow * 0.56);
     $(".caixa_camera").width(tamanhow/2)

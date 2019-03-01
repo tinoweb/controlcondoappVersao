@@ -51,28 +51,6 @@ function carrega_liberacao(tipo){
 		success: function(retorno){
             for (x in retorno) {
 				cont++;
-/*                var dado = '<div class="liberado"><div class="liberado_foto" onClick="foto_visita(\''+retorno[x]['visitante']+'\')" ';
-                if(retorno[x]['foto'].length>0){
-                    dado = dado + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"';
-                }
-                dado = dado +'></div><div onClick="carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')"><strong style="font-size:11px" >'+retorno[x]['nome']+'</strong><p style="font-size: 9px;margin-left: 73px">'+retorno[x]['motivo']+'</p><span style="font-size: 10px;margin-left: 8px;">'+retorno[x]['validadeInicio']+' a '+retorno[x]['validadeFim']+'</span><br>';
-                if(retorno[x]['numero_acesso_perm'] != null){
-                    if(retorno[x]['numero_acesso_perm'] == 0){
-                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Ilimitados</span><br>';
-                    }else{
-                        //dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos: '+retorno[x]['numero_acesso_perm']+'</span><br>';
-                        dado = dado + '<span style="font-size: 10px;margin-left: 8px;">Créditos Usados: '+retorno[x]['numero_acesso']+' de '+retorno[x]['numero_acesso_perm']+'</span><br>';
-                    }
-                }
-                
-                dado = dado + '</div>';
-                
-				if(retorno[x]['valido']==1){
-					dado = dado + '<button type="button" onClick="gera_qrcode(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\')" class="col button button-fill color-green">Enviar Convite</button>';
-				}else{
-					dado = dado + '<button type="button" class="col button button-fill color-red">CONVITE VENCIDO</button>';	
-				}
-				dado  = dado + '</div>';*/
                 var credito = '';
                 if(retorno[x]['numero_acesso_perm'] != null){
                     if(retorno[x]['numero_acesso_perm'] == 0){
@@ -105,7 +83,7 @@ function carrega_liberacao(tipo){
 				
 				if(retorno[x]['foto_veiculo'] != ""){
 					foto_veiculo = 'display:none;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto_veiculo']+')';
-					icone_foto   = '<i data-sheet=".veiculo-foto_veiculo" class="sheet-open material-icons">directions_car</i>';
+					icone_foto   = '<i onClick="afed(\'\',\'\',\'\',\'\',2,\'foto_veiculo_visitante\')" data-sheet=".veiculo-foto_veiculo" class="sheet-open material-icons">directions_car</i>';
 					modelo       = retorno[x]['modelo'];
 					placa        = retorno[x]['placa'];
                 }
@@ -123,8 +101,7 @@ function carrega_liberacao(tipo){
                                     '<div class="liberacao2-name" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date" onClick="$(\'#cad_veiculo\').hide();carrega_liberacao_visita(\''+retorno[x]['id']+'\',\'1\')">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
-                                '<div class="card-content card-content-padding">Validade de: '+retorno[x]['validadeInicio']+' até '+retorno[x]['validadeFim']+'<br>'+credito+bt_convite+'</div>'+
-                                
+                                '<div class="card-content card-content-padding">Validade de: '+retorno[x]['validadeInicio']+' até '+retorno[x]['validadeFim']+'<br>'+credito+bt_convite+'</div>'+ 
                             '</div>';
                 dados = dados + dado;
             }
@@ -178,17 +155,22 @@ function carrega_liberacao2(tipo,id_visita=0){
         data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_morador : $( "#DADOS #ID_MORADOR" ).val(),pg : parseInt(pg), nome : $( "#busca_liberacao2" ).val(), id_visita : id_visita},
         dataType   : 'json',
 		success: function(retorno){
-			
+			var icone = "";
             for (x in retorno) {
 				if(retorno[x]['check_acesso'].indexOf("QR Code") >=0){
 					check = "Acesso por QR Code";
 			    }else{
 					check = "Liberado Pela Portaria";
 				}
+				if(retorno[x]['foto'] == ''){
+					icone = "<span style='font-size: 2em;color: #b9b9b9;' class='fa fa-user-circle'></span>";
+				}else{
+					icone = "";
+				}
 				
                 var dado =  '<div class="card liberacao2-card liberado2-card" onclick="sheet_modulo(\'visita\',\''+retorno[x]['foto']+'||'+retorno[x]['foto_entrada']+'||'+retorno[x]['nome']+'||'+retorno[x]['dt_entrada']+'||'+retorno[x]['dt_saida']+'||'+retorno[x]['periodo']+'||'+retorno[x]['foto_saida']+retorno[x]['motivo']+'||'+check+'||'+retorno[x]['morador']+'\')">'+
                                 '<div class="card-header">'+
-                                    '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>'+
+                                    '<div class="liberacao2-avatar" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')">'+icone+'</div>'+
                                     '<div class="liberacao2-name">'+retorno[x]['nome']+'</div>'+
                                     '<div class="liberacao2-date">'+retorno[x]['motivo']+'</div>'+
                                 '</div>'+
@@ -243,6 +225,20 @@ function carrega_liberacao_visita(visita,tipo){
                     }
                     todo_motivos = todo_motivos + motivo;
                 }
+				var qtd_cred = '';
+				if(localStorage.getItem('QTD_CREDITO') == 0){
+					var qtd_max = 9;
+					qtd_cred += '<option value="0">Ilimitado</option>';			
+				}else{
+					var qtd_max = localStorage.getItem('QTD_CREDITO')
+				}
+				for (i = 1; i <= qtd_max; i++) {
+					qtd_cred += '<option value="'+i+'">'+i+'</option>';
+				}
+
+				$( "#add_liberacao #numero_acesso_perm" ).html(qtd_cred);
+
+				//console.log(retorno[0]['placa']);
 				$( "#new_visit" ).attr('onClick',"");
                 $( "#add_liberacao #visita_motivo" ).html(todo_motivos);
                 $( "#add_liberacao #id" ).val(retorno[0]['id']);
@@ -258,7 +254,13 @@ function carrega_liberacao_visita(visita,tipo){
                 $( "#add_liberacao #visita" ).val(retorno[0]['visitante']);
                 if(retorno[0]['numero_acesso_perm'] == null){ retorno[0]['numero_acesso_perm'] = 0;}
                 $( "#add_liberacao #numero_acesso_perm" ).val(retorno[0]['numero_acesso_perm']);
-				$( "#add_liberacao #liberacao_placa" ).val(retorno[0]['placa']);
+				if(retorno[0]['placa'] == "-"){
+				   var placa_lib = "";
+				}else{
+				   var placa_lib = retorno[0]['placa'];
+				}
+				$( "#add_liberacao #liberacao_placa" ).val(placa_lib);
+				get_veiculo(placa_lib);
 				closePopUp();
                 afed('#liberacao2,#del_lib','#home,#liberacao3','','',3,'liberacao_add');
           		
@@ -306,8 +308,20 @@ function adiciona_liberacao(){
                 var motivo = '<option value="'+retorno[x]['id']+'">'+retorno[x]['motivo']+'</option>';
                 motivos = motivos + motivo;
             };
+			var qtd_cred = '';
+			if(localStorage.getItem('QTD_CREDITO') == 0){
+				var qtd_max = 9;
+				qtd_cred += '<option value="0">Ilimitado</option>';			
+			}else{
+				var qtd_max = localStorage.getItem('QTD_CREDITO')
+			}
+			for (i = 1; i <= qtd_max; i++) {
+				qtd_cred += '<option value="'+i+'">'+i+'</option>';
+			}
+
             //alert(motivos);
             $( "#add_liberacao #visita_motivo" ).html(motivos);
+            $( "#add_liberacao #numero_acesso_perm" ).html(qtd_cred);
             //localStorage.setItem('TELA_ATUAL','visitantes');
         },
         error      : function() {
@@ -342,6 +356,10 @@ function adiciona_liberacao(){
     $( "#add_liberacao #numero_acesso_permc" ).val('0');
 	$("#numero_acesso_perm").val(0).change();
 	$("#add_liberacao #id_veiculo").val("");
+	$("#libMarca").hide();
+    $("#libModelo").hide();
+    $("#libCor").hide();
+	$("#cad_veiculo_ok").hide();
     
 	afed('#liberacao2','#home,#del_lib','','',3,'liberacao_add');
     //localStorage.setItem('TELA_ATUAL','liberacao_add');
@@ -355,43 +373,57 @@ function salva_liberacao(){
 	if($( "#add_liberacao #visita" ).val() == 0 || $( "#add_liberacao #dt_de" ).val() == '' || $( "#add_liberacao #hr_de" ).val() == '' || $( "#add_liberacao #dt_ate" ).val() == '' || $( "#add_liberacao #hr_ate" ).val() == ''){
 		notifica('Preencha o campo/Preencha todos os campos/Ok',1000,0);
 	}else{
-        
-        var dt_atual = new Date();
-        dt_atual.setMinutes(dt_atual.getMinutes()-30);
-        var dt_de = new Date($('#add_liberacao #dt_de').val()+ " "+$('#add_liberacao #hr_de').val() );
-        var dt_ate = new Date($('#add_liberacao #dt_ate').val()+ " "+$('#add_liberacao #hr_ate').val() );
-        var tipo = $('#add_liberacao #tipo').val();
-        //alert(dt_atual+'\n'+dt_de+'\n'+dt_ate);
-        
-        
-        if(dt_de < dt_atual && tipo != 1){
-           notifica('Data Inválida/Data INICIAL não pode ser inferior a data atual/Ok',0,0);
-        }else if(dt_ate < dt_atual){
-           notifica('Data Inválida/Data FINAL não pode ser inferior a data atual/Ok',0,0);
-        }else if(dt_ate <= dt_de){
-           notifica('Data Inválida/Data FINAL não pode ser inferior a data INICIAL/Ok',0,0);
-        }else{
-            var dados = $( "#add_liberacao" ).serialize();
+		
+		var visivel  = $('#cad_veiculo').is(':visible');
+		if (visivel){
+			alerta('','Cadastre esse veiculo para continuar!');
+		}else{
+			var dt_atual = new Date();
+			dt_atual.setMinutes(dt_atual.getMinutes()-30);
+			var dt_de = new Date($('#add_liberacao #dt_de').val()+ " "+$('#add_liberacao #hr_de').val() );
+			var dt_ate = new Date($('#add_liberacao #dt_ate').val()+ " "+$('#add_liberacao #hr_ate').val() );
+			var dt_limite = new Date(dt_de.getFullYear(),dt_de.getMonth(),dt_de.getDate(),23,59,59,0);
+			
+			if(localStorage.getItem('PERIODO_MAX') == 0){
+				dt_limite.setDate(dt_limite.getDate() + 1460);
+			}else{
+				dt_limite.setDate(dt_limite.getDate() + (localStorage.getItem('PERIODO_MAX') - 1));
+			}
+			//alert(dt_limite);											 
+			var tipo = $('#add_liberacao #tipo').val();
 
-            $.ajax({
-                type: 'POST',
-                url: localStorage.getItem('DOMINIO')+'appweb/liberacao_insert.php',
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-                data       : dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val(),
-                success: function(retorno){
-                        //alert(retorno);
-                        carrega_liberacao(0);
-						openPopUp();
-                        afed('#home','#liberacao2','','',3,'liberacao_list');
-                },
-                error      : function() {
-                    //alert('Erro ao carregar liberacao');
-					$("#wait").css("display", "none");
-                }
-            });           
-        }
+			if(dt_de < dt_atual && tipo != 1){
+			   notifica('Data Inválida/Data INICIAL não pode ser inferior a data atual/Ok',0,0);
+			}else if(dt_ate < dt_atual){
+			   notifica('Data Inválida/Data FINAL não pode ser inferior a data atual/Ok',0,0);
+			}else if(dt_ate <= dt_de){
+			   notifica('Data Inválida/Data FINAL não pode ser inferior a data INICIAL/Ok',0,0);
+			}else if(dt_ate > dt_limite ){
+			   notifica('Data Inválida/Data FINAL não pode ser superior a '+dt_limite.getDate()+'-'+(dt_limite.getMonth()+1)+'-'+dt_limite.getFullYear()+' '+dt_limite.getHours()+':'+dt_limite.getMinutes()+'/Ok',0,0);
+			}else{
+				var dados = $( "#add_liberacao" ).serialize();
+
+				$.ajax({
+					type: 'POST',
+					url: localStorage.getItem('DOMINIO')+'appweb/liberacao_insert.php',
+					crossDomain: true,
+					beforeSend : function() { $("#wait").css("display", "block"); },
+					complete   : function() { $("#wait").css("display", "none"); },
+					data       : dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&id_morador='+$( "#DADOS #ID_MORADOR" ).val(),
+					success: function(retorno){
+							//alert(retorno);
+							carrega_liberacao(0);
+							openPopUp();
+							afed('#home','#liberacao2','','',3,'liberacao_list');
+					},
+					error      : function() {
+						//alert('Erro ao carregar liberacao');
+						$("#wait").css("display", "none");
+					}
+				});           
+			}
+		} 
+        
         
 	}
 }
@@ -513,8 +545,9 @@ function download_qrcode(){
     //var canvas = document.getElementById('qr_s_teste');
     var dataURL = localStorage.getItem("img_share");
     var uri = encodeURI(dataURL);
-    var filePath = cordova.file.externalRootDirectory+'Download/qrcode.png';
+    var filePath = cordova.file.externalApplicationStorageDirectory+'Download/qrcode.png';
     console.log('2');
+	//alert(uri);
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -531,16 +564,18 @@ function download_qrcode(){
             //notifica('Download/Download Concluído90 /ok',0,0);
 			var path = entry.toURL(); //**THIS IS WHAT I NEED**
 			//alert(path);
-			var ref = cordova.InAppBrowser.open(path, '_system', 'location=yes');
-			var myCallback = function(event) { console.log('envio ok'); }
+			var ref = cordova.InAppBrowser.open(uri, '_blank', 'location=no,hideurlbar=yes');
+			/*var myCallback = function(event) { console.log('envio ok'); }
 			ref.addEventListener('loadstart', myCallback);
 			ref.addEventListener('loaderror', myCallback);
-			ref.removeEventListener('loadstart', myCallback);
+			ref.removeEventListener('loadstart', myCallback);*/
         },
         function(error) {
             console.log("download error source " + error.source);
             console.log("download error target " + error.target);
             //console.log("upload error code" + error.code);
+			alert("erro");
+			$('#downloadProgress').css({"display":"none"});
         },
         false,
         {
@@ -635,8 +670,7 @@ function get_visitante(){
 			alerta("","Nenhum registro encontrado!");
 			$("#wait").css("display", "none");
 		}
-	});
-	
+	});	
 }
 
 

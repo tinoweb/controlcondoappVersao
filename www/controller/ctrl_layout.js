@@ -302,6 +302,84 @@ function limita_txt(titulo,qtd){
 	return titulo;
 }
 
+function quebra_linha(texto,qtd_linha){
+	/* Funcao para quebrar linha, recebe como parametro quantidade por linha */
+	var formata      = "";
+	var tamanho      = texto.length;
+	var resto        = "";
+	var inicio_resto = "";
+	var y            = 0;
+	
+	if(tamanho < qtd_linha ){
+		return texto;
+	}else{
+
+		for(x = 0; x<=tamanho; x++){
+
+			 if(y==qtd_linha){
+				if(x == qtd_linha){
+				   formata += texto.substr(0,x)+"</br>";
+				   y = 0;
+				}else{
+				   formata += texto.substr(x-qtd_linha,qtd_linha)+"</br>";
+					y     = 0;
+					resto = x-qtd_linha;
+				 }
+
+				 if(tamanho-qtd_linha){
+					 inicio_resto = texto.substr((resto) + qtd_linha);
+				 }
+		   }
+
+		   y = y+1;  
+		}
+	  return String(formata+inicio_resto);
+	}
+}
+
+function format_data(tipo,valor){
+	
+	var data = valor.replace('-','/').replace('-','/');
+var v_array  = data.split("/");
+	
+	/* mes dia ano*/
+	if(tipo == 0){
+		return v_array[1]+"-"+v_array[0]+"-"+v_array[2];
+	}
+	
+	/* ano mes dia*/
+	if(tipo == 1){
+		return v_array[2]+"/"+v_array[1]+"/"+v_array[0];
+	}
+}
+
+function verifica_data_retroativa(el){
+	
+	let tamanho = $(el).val().length;
+	if(tamanho == 10 && $(el).val().substr(0,1) != 0){
+		let ano              = $(el).val().substr(0,4);
+		let mes              = $(el).val().substr(5,2);
+		let dia              = $(el).val().substr(8,2);
+		let fmt_choose_date  = format_data(0,dia+"/"+mes+"/"+ano)+' 23:59';
+		let choose_date      = new Date(fmt_choose_date);
+		let current_date     = new Date();
+		let date             = $(el).val();      
+
+		if(choose_date < current_date){
+		   alerta('','Nao é permitido dias retroativos');
+		   $(el).val('')
+		}else{
+		   $(el).css('border','1px solid rgb(169, 169, 169)');	
+		}
+	}
+}
+
+
+
+  
+
+
+
 
 
 

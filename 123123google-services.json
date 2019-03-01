@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "484379421838",
+    "firebase_url": "https://controlcondo-cb11c.firebaseio.com",
+    "project_id": "controlcondo-cb11c",
+    "storage_bucket": "controlcondo-cb11c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484379421838:android:7e68445456a2d8c6",
+        "android_client_info": {
+          "package_name": "com.controlcondo.phonega"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484379421838-721veulg2f3chdcaoif6qgomhghh876g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDglQlvx_SFhdHUKxQ54HbwzTVXMWaRnRE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -25,6 +25,7 @@ function carrega_documentos(tipo){
 	var dado      = '';
 	var tipo_     = '';  
 	var caminho   = '';
+	var cor       = '';
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/documento_get.php",
@@ -35,25 +36,33 @@ function carrega_documentos(tipo){
         dataType   : 'json',
 		success: function(retorno){
             //alert(retorno);
+			
 			var cont = 0;
             for (x in retorno) {
 				cont++;
                 caminho = retorno[x]['local'].split('../');
-                tipo_ = retorno[x]['local'];
+                tipo_   = retorno[x]['local'];
 				
-				//alert(retorno[x]['local']);
+				if(retorno[x].visualizacao != null ){
+				    cor = 'background:#e85252 !important;color:white;';
+			     }else{
+					cor = '';
+				 }
+					
 				var titulo = retorno[x]['titulo']+' ('+retorno[x]['descricao']+')';
 				
 				titulo = limita_txt(titulo,20);
 				dado = 	'<div class="card padrao_card documento_card">'+
-							'<div class="card-header cabecalho_card" style="background-color: #f39c12; color:white;">'+
+							'<div class="card-header cabecalho_card" style="'+cor+'background-color: #f39c12; color:white;">'+
 								'<div>'+titulo+'</div>'+
 								'<div>'+retorno[x]['tipo']+'</div>'+
 							'</div>'+
 							'<div class="card-content card-content-padding corpo_card">'+
-								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="download_arquivo( \''+localStorage.getItem('DOMINIO')+caminho[1]+fmt_lin(tipo_)+'\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
+								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="check_leitura(2,'+retorno[x]['id_documento']+');download_arquivo( \''+localStorage.getItem('DOMINIO')+caminho[1]+fmt_lin(tipo_)+'\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
 							'</div>'+
 						'</div>';
+				
+		
 				
                 dados = dados + dado;
             }

@@ -19,7 +19,7 @@ function atualiza_notificacao(){
 				console.log(retorno);
 
 				/* Preenche qtde de notificacao */
-				if(retorno.Ocorrencia == "0"){
+				if(retorno.Ocorrencia == "0" || retorno.Ocorrencia == null){
 				   $("#n_ocorrencias").css("display","none");
 				}else{
 				   $("#n_ocorrencias").html("<strong>"+retorno.Ocorrencia+"</strong>").show();
@@ -72,6 +72,12 @@ function atualiza_notificacao(){
 				}else{
 				   $("#n_comunicado").html("<strong>"+retorno.Comunicado+"</strong>").show();
 				}
+				
+				if(retorno.Mudanca == "0" || retorno.Mudanca == null){
+				   $("#n_mudanca").css("display","none");
+				}else{
+				   $("#n_mudanca").html("<strong>"+retorno.Mudanca+"</strong>").show();
+				}
 
 				
 
@@ -109,3 +115,23 @@ function check_leitura(id_modulo,id){
 		}
 	});			
 }
+
+//function update_firebase_key(uuid,id_notificacao){
+//	
+//	$.ajax({
+//		type: 'POST',
+//		url: localStorage.getItem('DOMINIO')+'appweb/atualiza_firebase.php',
+//		crossDomain: true,
+//		beforeSend : function() { },
+//		complete   : function() { },
+//		data       : { uuid:uuid, id_notificacao:id_notificacao },
+//		success: function(retorno){
+//			
+//		},
+//		error : function() {
+//
+//		}
+//	});			
+//
+//	
+//}
