@@ -618,6 +618,8 @@ function salva_reserva(){
 	if($("#concordo").is(':checked')){
         afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'reserva');
 		var dados = $( "#add_reserva" ).serialize();
+		var dt_res = $("#add_reserva_dt").val();
+		//alert(dt_res);
         var dt_ini = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_inicio").val());
         var dt_fim = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_fim").val());
         var dt_atual = new Date();
@@ -659,13 +661,13 @@ function salva_reserva(){
 							//alert(0);
 							carrega_area(0);
 							fecha_calendario();
-							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),dt_res,1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
 							afed('#area_comum_new','#reserva','','',2,'area');  
 						}else{
 							//alert(1);
                         	carrega_area();
 							fecha_calendario();
-							new_calendario($( "#DADOS #AREA_COMUM" ).val(),'',1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
+							new_calendario($( "#DADOS #AREA_COMUM" ).val(),dt_res,1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
 							afed('#area','#reserva','','',2,'area');  
 						}
 					}
@@ -790,7 +792,13 @@ $.ajax({
 		afed('#area_comum_new','#reservas','','',2,'new_area');
 
 		var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
-
+		data_evento = '2019-04-22';
+		if(data_evento == ''){
+			var dt_value = new Date();
+		}else{
+			var ndt = data_evento.split('-');
+			var dt_value = new Date(ndt[0],(ndt[1]-1),ndt[2]);
+		}
 		var calendarInline = app2.calendar.create({
 			containerEl: '#demo-calendar-inline-container',
 			dateFormat: 'M dd yyyy',
@@ -798,6 +806,7 @@ $.ajax({
 			maxDate: dt_max,
 			weekHeader: false,
 			events: eventos_data,
+			value: [dt_value],
 			renderToolbar: function () {
 				return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
 				  '<div class="toolbar-inner">' +
@@ -850,6 +859,10 @@ $.ajax({
   				}
 			}
 		});
+//		calendarInline.done(function () {
+//    		alert('carrego');
+//		});
+			//$('.calendar-month-current div[data-date="'+data_evento+'"]').click();
 	}else if(tipo == 2){
 		var dados_reserva = '';
 		var xx = 0;
@@ -901,6 +914,12 @@ $.ajax({
 	error:function(){
 		alert('erro');
 	}
+}).done(function () {
+    //alert('teste');
+	setTimeout(function(){ 
+		alert('teste');
+		$('.calendar-month-current div[data-date="2019-4-22"]').click();
+	}, 1000);
 });	
 }
 
