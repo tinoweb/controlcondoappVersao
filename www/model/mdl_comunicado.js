@@ -450,3 +450,20 @@ function download_arq_comunicado(caminho,arquivo) {
 }
 
 
+function visualiza_comunicado(id) {
+
+        $.ajax({
+            type: 'POST',
+            url: localStorage.getItem('DOMINIO')+'appweb/visualiza_comunicado.php',
+            data: {id : id,id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),id_usuario_condominio: $( "#DADOS #ID_USER" ).val()},
+			crossDomain: true,
+           success: function(retorno){
+                
+            },
+            error      : function() {
+               
+            }
+        });	
+}
+
+

@@ -659,6 +659,13 @@ function ticket_insert(){
 			complete   : function() { $("#wait").css("display", "none"); },
             data       : 'str_img='+foto_src+'&id_condominio='+$("#DADOS #ID_CONDOMINIO" ).val()+'&criado_por='+localStorage.getItem('MORADOR_NOME')+'&'+dados,
 			success: function(retorno){
+				
+				$(".disabled-button").show();
+				setTimeout(function(){
+					
+					$(".disabled-button").hide();
+					
+				},7000);
 				//notifica('Tocket Criado/Você criou o ticket: '+retorno+'/Ok',1000,0);
 				openNotificacao('glyphicon glyphicon-warning-sign','Ticket Criado','','Voce Criou o Ticket'+retorno);
 				//alert("Retonro ajax de ticket_insert: "+retorno);
