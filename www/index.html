@@ -143,7 +143,13 @@
 					}
 					if(localStorage.getItem('TELA_ATUAL') != 'chat'){
 						if(localStorage.getItem('TELA_ATUAL') != 'chat_msg'){
-                            openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);	
+                            
+							if(localStorage.getItem("NOT_TYPE") == 123){
+								alert(localStorage.getItem("NOT_ID"));
+							}else{
+								openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);
+							}
+							
                         }
 					}  
 
@@ -4659,10 +4665,7 @@
                                 carrega_mudanca(id_reg);
                             },500);   
                           
-                        }else if(tipo==123){
-							alert("teste1");
-							alert(id_reg);
-						}
+                        }
                     }else{
                         if(tipo==20){
                             var val_confg = id_reg.split(';');
@@ -4702,10 +4705,7 @@
                             afed('#m_reserva','#reservas, #home','','',3,'minha_reserva');
                             //alert('foi');
                             //alert(id_reg);
-                        }else if(tipo == 123){
-							alert("teste2");
-							alert(id_reg);
-						}
+                        }
                     }
                 }
             },
@@ -4985,4 +4985,4 @@
 </script>
 </body>
 
-</html>>>
+</html>
