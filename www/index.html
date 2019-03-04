@@ -143,7 +143,43 @@
 					}
 					if(localStorage.getItem('TELA_ATUAL') != 'chat'){
 						if(localStorage.getItem('TELA_ATUAL') != 'chat_msg'){
-                            openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);	
+                            
+							if(localStorage.getItem("NOT_TYPE") == 123){
+								
+								var val_confg = localStorage.getItem("NOT_ID").split(';');
+								
+								localStorage.setItem('MMORADOR',val_confg[2]);
+								localStorage.setItem('MFPERFIL',val_confg[3]);
+								localStorage.setItem('MVEICULOS',val_confg[4]);
+								localStorage.setItem('MCONTATOS',val_confg[5]);
+                                $( "#DADOS #MCOMUNICADOS" ).val(val_confg[6]);
+                                $( "#DADOS #MLUNICA" ).val(val_confg[7]);
+                                $( "#DADOS #MLRECORRENTE" ).val(val_confg[8]);
+                                $( "#DADOS #MRESERVA" ).val(val_confg[9]);
+                                $( "#DADOS #MENTREGAS" ).val(val_confg[10]);
+                                $( "#DADOS #MFALE" ).val(val_confg[11]);
+                                $( "#DADOS #MENQUENTE" ).val(val_confg[12]);
+                                $( "#DADOS #MDOCUMENTOS" ).val(val_confg[13]);
+								$( "#DADOS #MRELATORIOS" ).val(val_confg[14]);
+                                localStorage.setItem('MOCORRENCIA',val_confg[15]);
+                                localStorage.setItem('MPET',val_confg[16]);
+								localStorage.setItem('MCAM',val_confg[17]);
+								//localStorage.setItem('MAGENDA',retorno[0]['MAGENDA']);
+								//localStorage.setItem('MMUDANCA',retorno[0]['MMUDANCA']);
+                                if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
+                                if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
+                                if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
+                                if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
+                                //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
+                                if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
+                                if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
+                                if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
+                                if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
+
+							}else{
+								openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);
+							}
+							
                         }
 					}  
 
@@ -511,7 +547,7 @@
                  <div class="page-content" style="padding-top:0px;height:69%;overflow:auto">
 					<div class="list components-list searchbar-found" style=" color: #414141">
 						<ul>
-						<li  onClick="carrega_comunicados(0);">
+						<li id="menu_comunicado"  onClick="carrega_comunicados(0);">
 						<a class="item-content item-link" href="/accordion/">
 						<div class="item-media"><i class="fa fa-bullhorn"></i></div>
 						<div class="item-inner">
@@ -520,7 +556,7 @@
 						</div>
 						</a>
 						</li>
-						<li  onClick="inicia2(2);">
+						<li id="menu_liberacao" onClick="inicia2(2);">
 						<a class="item-content item-link" href="/action-sheet/">
 						<div class="item-media"><i class="fa fa-unlock-alt"></i></div>
 						<div class="item-inner">
@@ -529,7 +565,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_areas();">
+						<li id="menu_area" onClick="carrega_areas();">
 						<a class="item-content item-link" href="/autocomplete/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
@@ -538,7 +574,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_entregas(0);">
+						<li id="menu_entregas" onClick="carrega_entregas(0);">
 						<a class="item-content item-link" href="/badge/">
 						<div class="item-media"><i class="fa fa-envelope-o"></i></div>
 						<div class="item-inner">
@@ -547,7 +583,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_enquetes(0);">
+						<li id="menu_enquete" onClick="carrega_enquetes(0);">
 						<a class="item-content item-link" href="/buttons/">
 						<div class="item-media"><i class="fa fa-pie-chart"></i></div>
 						<div class="item-inner">
@@ -556,7 +592,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_documentos(0);" >
+						<li id="menu_documentos" onClick="carrega_documentos(0);" >
 						<a class="item-content item-link" href="/calendar/">
 						<div class="item-media"><i class="fa fa-file"></i></div>
 						<div class="item-inner">
@@ -565,7 +601,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_ocorrencias(0)" >
+						<li id="menu_ocorrencia" onClick="carrega_ocorrencias(0)" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-warning"></i></div>
 						<div class="item-inner">
@@ -574,7 +610,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_mudancas(0)" >
+						<li id="menu_mudanca" onClick="carrega_mudancas(0)" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-exchange"></i></div>
 						<div class="item-inner">
@@ -584,7 +620,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_agenda_eventos()" >
+						<li id="menu_agenda" onClick="carrega_agenda_eventos()" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
@@ -592,7 +628,7 @@
 						</div>
 						</a>
 						</li>
-						<!--<li  onClick="carrega_pets(0);" >
+						<li id="menu_pet" onClick="carrega_pets(0);" >
 						<a class="item-content item-link" href="/checkbox/">
 						<div class="item-media"><i class="fa fa-paw"></i></div>
 						<div class="item-inner">
@@ -600,8 +636,8 @@
 						<span class="circle_m" id="n_pet"  style="background-color: green;"></span>
 						</div>
 						</a>
-						</li>-->
-						<li onClick="carrega_cameras();">
+						</li>
+						<li id="menu_cameras" onClick="carrega_cameras();">
 						<a class="item-content item-link" href="/chips/">
 						<div class="item-media"><i class="fa fa-video-camera"></i></div>
 						<div class="item-inner">
@@ -3016,7 +3052,7 @@
 	
 
 <!--  $PET LISTA  -->
-<div id="pet_lista" class="pagina ocorrencias" >
+<div id="pet_lista" class="pagina pet" >
 	<div class="view"> 
 		<!-- Initial Page, "data-name" contains page name -->
 		<div data-name="home" class="page">
@@ -3027,98 +3063,165 @@
 					</div>
 					<div class="title">Pets</div>
 					<div class="right"> 
-						<a href="#" onClick="carrega_pet_novo();"> <span class="glyphicon glyphicon-plus" style="margin-right: 15px"></span> </a> 
+						<a href="#" data-sheet=".buscar_pets" class="sheet-open material-icons"> <span class="fa fa-filter" onClick="getEspecie_incluir();" style="margin-right: 15px"></span> </a> 
 					</div>
 				</div>
 			</div>
-			<form class="searchbar" id="form_busca_pets" style="width: 100%; margin-top: -7px">
-				<div class="searchbar-inner">
-					<div class="searchbar-input-wrap">
-						<input type="search" placeholder="Busca" name="busca" id="busca_pets">
-						<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_pets(4)"></span> </div>
-						<span class="searchbar-disable-button" onClick="carrega_pets(3)">Cancela</span> </div>
-						<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
-					</form>
-					<!-- Searchbar backdrop -->
-					<div class="searchbar-backdrop"></div>
-
-					<!-- Scrollable page content -->
-					<div class="box" id="boxUp_pets"></div>
-					<div class="page-content ptr-content" data-ptr-distance="55" id="pull-pets" style="background-color: #f0f0f04d" >
-						<div class="ptr-preloader">
-							<div class="preloader"></div>
-							<div class="ptr-arrow"></div>
-						</div>
-						<div id="main_pet" class="list media-list searchbar-found " style="height: 90% !important; margin:0;"></div>
-					</div>
-				</div>
-			</div>
+			<div class="toolbar tabbar tabbar-labels" style="margin-top: -7px;">
+			<div class="toolbar-inner">
+				<a href="#abapet1"  id="meus_pets" class="tab-link " onclick="carrega_pets(5)">
+				  <i class="fa  fa-chevron-down"></i>
+				   <span class="tabbar-label">Meus Pets</span>
+				</a>
+				<a href="#abapet2" id="todos_pets" class="tab-link tab-link-active" onclick="carrega_pets(0)">
+				  <i class="fa  fa-chevron-down"></i>
+				 <span class="tabbar-label" >Todos os Pets</span>
+				</a>			
+			<span class="tab-link-highlight" style="width: 33.3333%; transform: translate3d(0%, 0px, 0px);"></span>
+		  </div>
 	</div>
+
+	<div class="tabs scroll">
+		<div  class="tab" id="abapet1">
+			<div class="page-content ptr-content" data-ptr-distance="55" id="pull-pet1" style="padding-bottom: 10px;margin-top: -122px;height: 827px;">	
+			<div id="main_pet1" class="list media-list searchbar-found " style="height: 90% !important;margin-top: 35% !important; margin:0;"></div>
+				</div>
+		<div class="box" id="boxUp_pet1"></div>
+		<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 287px; margin-bottom: 1%; position: fixed;">
+		<a onclick="carrega_pet_novo();">
+						<!-- Icons For iOS Theme -->									  
+		<i class="glyphicon glyphicon-plus"></i>
+						<!-- Icons For MD Theme -->
+		</a>
+		</div>
+		 
+	</div>
+	<div class="tab tab-active"  data-ptr-distance="55" id="abapet2">
+		
+	<div  data-ptr-distance="5" class="page-content ptr-content" id="pull-pet" style="padding-bottom: 10px;margin-top: -122px;height: 827px;">
+		<div id="main_pet" class="list media-list searchbar-found " style="height: 90% !important;margin-top: 35% !important; margin:0;"></div>	
+		
+		
+		</div>
+		
+		<div class="col-md-2">
+						<div class="box" id="boxUp_pet"></div>
+					</div>
+		<div class="col-md-10 fab fab-right-bottom color-blue open-full" style="margin-right: 287px; margin-bottom: 1%; position: fixed;">
+						<a onclick="carrega_pet_novo();">
+						<!-- Icons For iOS Theme -->									  
+							<i class="glyphicon glyphicon-plus"></i>
+						<!-- Icons For MD Theme -->
+						</a>
+		</div>
+		
+  
+ </div>
+</div>   <div class="searchbar-backdrop"></div>
+							<!-- Scrollable page content -->
+				    
+                 
+				</div>
+			</div>
+		</div>
+
     <!-- $PETS PAGINA VISUALIZACAO  -->
 	<div id="pet" class="pagina view">
 
-		<div class="navbar" style="height: 50px">
-			<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');"><i class="icon icon-back"></i></a>
-				<div class="title" >CADASTRO DO PET</div>
-			</div>
-		</div>
+							<div class="navbar" style="height: 50px">
+								<div class="navbar-inner"> <a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');"><i class="icon icon-back"></i></a>
+									<div class="title" >INFORMAÇÕES DO PET</div>
+								</div>
+							</div>
+							
+							<div align="center" id="edit_exclui" class="toolbar toolbar-bottom-md tabbar-labels">
+								<div  class="toolbar-inner" style="padding: 5px">
+									<div id="exclui_pet" style="width: 50%" onClick="excluir_pet();">
+										<!--<i class="fa fa-trash fa-2x"></i>-->
+										<i class="glyphicon glyphicon-trash"></i>
+										<br>
+										<label>Excluir</label>
+									</div>
+									<div style="width: 50%" type="button" onClick="editar_pet()">
+										<i class="glyphicon glyphicon-pencil"></i>										
+										<br>
+										<label>Editar</label>
+									</div>
+								</div>
+							</div>
 
-		<div align="center" class="toolbar toolbar-bottom-md tabbar-labels">
-			<div class="toolbar-inner" style="padding: 5px">
-				<div style="width: 50%" onClick="excluir_pet();">
-					<!--<i class="fa fa-trash fa-2x"></i>-->
-					<i class="glyphicon glyphicon-trash"></i>
-					<br>
-					<label>Excluir</label>
-				</div>
-				<div style="width: 50%" type="button" onClick="editar_pet()">
-					<i class="glyphicon glyphicon-pencil"></i>										
-					<br>
-					<label>Editar</label>
-				</div>
-			</div>
-		</div>
+							<div class="page-content"style="height:108% ">
+								<div style="padding: 0px 20px 20px 20px;">
+									<form id="form_pet" style="float: left; width: 100%;">
+										<input type="hidden" name="foto_up" id="foto_up" > 
+										
+										<input type="hidden" name="id_condominio" id="id_condominio">
+										<input type="hidden" name="nome" id="nome">
+										
+										<input type="hidden" name="id_especie" id="id_especie">
+										<input type="hidden" name="sexo" id="sexo">
+										<input type="hidden" name="cor" id="cor">
+										<input type="hidden" name="observacao" id="observacao">
+										<input type="hidden" name="raca" id="raca">
+																																			
+										
+										<label type="hidden" id="id_espec" name="id_espec" style="margin-top:-6px;color:#f5f5f500" ></label>
+										<div type="hidden" id="id_pet" name="id_pet" style="margin-top:-6px;color:#f5f5f500" ></div>
+										<div id="linha_pet" class="item-content" style="margin-top:-51px; margin-left: -14px;border-top: 1.8px solid;border-bottom: 1.8px solid; border-color: #f8f8f8;">
+										<p id="foto" style="width: 92px;"></p>
+										<p style=" width:26%; position: absolute; margin-left: 25%; margin-top: -15%;"><button type="button" class="col button button-fill color-green" id="cam_pet" onClick="app.foto_pet_edicao();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+										<p style="width: 26%; position: absolute; margin-left: 61%; margin-top: -15%;"><button type="button" class="col button button-fill color-green" id="gal_pet" onClick="app.foto_mor2();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>	
+											
+										</div>
+										<div class="row" style="margin-right: 0px; margin-left: 0px;">
+											<label class="col-100">Nome</label> 
+											<div class="item-input-wrap" type="text" id="nome_pet" name="nome_pet" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;" >
+												PET Nome  											
+											</div>
+											<label class="col-100">Especie</label>  <br>
+											<div class="item-input-wrap" type="text" id="desc_especie" name="desc_especie" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;" >
+													PET Especie 										
+											</div>
+											<label class="col-100">Raça</label>
+											<div class="item-input-wrap" type="text" id="lbl_raca" name="lbl_raca" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;" >
+												PET Raça  											
+											</div>
+											
+											<label class="col-100">Cor</label>  <br>
+											<div class="item-input-wrap " type="text" id="lbl_cor" name="lbl_cor"~ style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;" >
+												PET Cor  											
+											</div>	
+											<label class="col-100" >Sexo</label> <br>
+												
+											<label class="item-radio item-content" id="lb_sxx1" style="width:50%">
+				  								<input type="radio" name="sexo_desc" id="lbl_sexo" value="1">Macho
+												<i class="icon icon-radio"></i>
+											</label>
+											<label class="item-radio item-content" id="lb_sxx0" style="width:49%">
+				 								 <input type="radio" name="sexo_desc" id="lbl_sexo" value="0">Fêmea
+												 <i class="icon icon-radio"></i>
+											</label>
+											
+											<label class="col-100">Unidade</label>
+											<div class="item-input-wrap" type="text" id="unidade" name="unidade"  style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;" >
+												PET Unidade  											
+											</div>
+										
+											<div class="form-group col-100">
+												<label for="solicitante">Observacao</label>
+												<textarea class="item-input-wrap" id="lbl_observacao" style="width: 100%;border: 0.5px solid #a4a4a4; padding: 7px; margin-bottom: 20%" name="observacao" rows="4"></textarea>
+											</div>
+											
+										</div>										
+										
+																			
+									</form>									
+								</div>
+		
+							</div>
 
-		<div class="page-content">
-			<div style="padding: 0px 20px 20px 20px;">
-				<form id="form_pet" style="float: left; width: 100%;">
-					<input type="hidden" name="foto_up" id="foto_up" > 
-					<input type="hidden" name="id_pet" id="id_pet">
-					<input type="hidden" name="id_condominio" id="id_condominio">
-					<input type="hidden" name="nome" id="nome">
 
-					<input type="hidden" name="id_especie" id="id_especie">
-					<input type="hidden" name="sexo" id="sexo">
-					<input type="hidden" name="cor" id="cor">
-					<input type="hidden" name="observacao" id="observacao">
-					<input type="hidden" name="raca" id="raca">
-
-					<div style="float: inherit; vertical-align: bottom; border-bottom: 1px solid #d6d6d6; width: 96%" >	
-						<div style="font-size: 20px; float: left;" id="nome_pet" name="nome_pet" >
-							PET nome  											
-						</div>
-
-						<div id="unidade" style="padding-top: 5px; float: right;">
-							Local de preenchimento da unidade
-						</div>
-
-					</div>
-
-					<p align="center" id="foto"> </p>
-
-					<div align="center">
-
-					<span id="desc_especie">Local onde é preenchido a ESPECIE do pet - </span>
-					<span id="lbl_raca">Local onde é preenchido a RAÃƒâ€¡A do pet - </span>
-					<span id="lbl_cor">Local onde é preenchido a COR do pet - </span>
-					<span id="lbl_sexo">Local onde é preenchido o SEXO do pet</span>
-					</div>										
-
-					<h4 style="width: 100%;" ><strong>Observacao</strong></h4>
-					<span id="lbl_observacao" style="width: 100%;font-size: 15px;" ></span>										
-				</form>									
-			</div>
-		</div>
+		
 	</div>			
     <!--  Pets INCLUSAO  -->
 	<div id="add_pet" class="pagina view">
@@ -3137,7 +3240,7 @@
 					<br>
 					<label>Sair</label>
 				</div>
-				<div style="width: 50%" type="button" onClick="pet_insert();" >
+				<div style="width: 50%" type="button" onClick="pet_insert();salvarfoto_pet();" >
 					<i class="glyphicon glyphicon-floppy-saved"></i>
 					<br>
 					<label>Salvar</label>
@@ -3151,41 +3254,42 @@
 				
 				<input type="hidden" id="foto_up_pet" name="foto_up_pet">
 				<input type="hidden" name="data_cadastro" id="data_cadastro">
-		
-				<div align="center" class="perfil_edit" style="width: 100%" onClick="app.foto_pet_inclusao();" >
-					
-					<img name="pet_foto" id="pet_foto" class="perfil_edit" style="border-radius:10px; max-width:50%; height:100px; margin-top:10px;" class="lazy lazy-fade-in demo-lazy" src="img/pet_foto_perfil.png">
+				<input type="hidden" name="id_pet" id="id_pet">				
+				<div id="linha_pet" class="item-content" style="margin-top:-10px; margin-left: -2px;border-top: 1.8px solid;border-bottom: 1.8px solid; border-color: #f8f8f8;">
+					<img  id="pet_foto" class="circle_pts"  style="width: 80px; margin-top:2%" src="img/pet_foto_perfil.png">
+					<p style=" width:26%; position: absolute; margin-left: 25%; margin-top: -15%;"><button type="button" class="col button button-fill color-green" id="cam_pet" onClick="app.foto_pet_inclusao();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+					<p style="width: 26%; position: absolute; margin-left: 61%; margin-top: -15%;"><button type="button" class="col button button-fill color-green" id="gal_pet" onClick="app.foto_pet_inclusao_galeria();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>	
 				</div>
 				<br>
-				
-				Nome 
-				<input class="form-control" type="text" name="nome" id="nome">
-				Espécie
-				<div id="div_especie">
-				
-				</div>
-				Raça
-				<input class="form-control" type="text" name="raca" id="raca">
-				Cor
-				<input class="form-control" type="text" name="cor" id="cor">
-				Sexo
-				<label class="radio-inline">
+				<label class="col-100">Nome</label> 
+				<input class="item-input-wrap" type="text" name="nome" id="nome" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;">
+				<label class="col-100">Espécie</label>
+				<div id="div_especie"></div>
+				<label class="col-100">Raça</label>
+				<input class="item-input-wrap" type="text" name="raca" id="raca" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;">
+				<label class="col-100">Cor</label>
+				<input class="item-input-wrap" type="text" name="cor" id="cor" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;">
+								
+							
+				<label class="col-100">Sexo</label> <br>
+				<label class="item-radio item-content" style="width:50%">
 				  <input type="radio" name="sexo" id="sexo" value="1">Macho
+					<i class="icon icon-radio"></i>
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="sexo" id="sexo" value="0">Femea
+				<label class="item-radio item-content" style="width:49%">
+				  <input type="radio" name="sexo" id="sexo" value="0">Fêmea
+					<i class="icon icon-radio"></i>
 				</label>
 				<br>
+				
+			
+				
 				<div class="form-group">
 					<label for="solicitante">Observacao</label>
-					<textarea class="form-control" id="observacao" name="observacao" rows="4"></textarea>
+					<textarea class="item-input-wrap" id="observacao" name="observacao" rows="4" style="width: 100%;border: 0.5px solid #a4a4a4; padding: 7px;margin-bottom: 2%;"></textarea>
 				</div>
 				
-				<div class="form-group" id="anexo_oco" style="display:none;">
-					<label for="solicitante">Anexo</label>
-					<label id="anexo_foto"></label>
-					</div>
-				<p></p>
+				
 				
 			</form>
 		</div>
@@ -3208,7 +3312,7 @@
 					<br>
 					<label>Sair</label>
 				</div>
-				<div style="width: 50%" type="button" onClick="pet_insert();" >
+				<div style="width: 50%" type="button" onClick="edit_pet();" >
 					<i class="glyphicon glyphicon-floppy-saved"></i>
 					<br>
 					<label>Salvar</label>
@@ -3221,41 +3325,45 @@
 			<form id="form_pet_update" name="form_pet_update" style="padding-left: 10px; padding-right: 10px;margin-bottom: 20px; ">
 				<input type="hidden" name="id_condominio" id="id_condominio">
 				<input type="hidden" name="id_pet" id="id_pet">
-				
 				<input type="hidden" id="foto_up_pet" name="foto_up_pet">
 				<input type="hidden" name="data_cadastro" id="data_cadastro">
-				
 				<input type="hidden" name="id_especie" id="id_especie">
-				<input type="hidden" name="sexo" id="sexo">
+				<input type="hidden" name="sexo" id="sexo">			
+			  <div id="linha_pets" class="item-content" style="margin-top:-3px; margin-left: -3px;border-top: 1.8px solid;border-bottom: 1.8px solid; border-color: #f8f8f8;">
+				<img  id="pet_foto" class="circle_pts"  style="width: 80px; margin-top:2%" src="img/pet_foto_perfil.png">
+				<p style=" width:26%; position: absolute; margin-left: 25%; margin-top: -15%;"><button type="button" class="col button button-fill color-green" id="cam_pet" onClick="app.foto_pet_up();"><i class="f7-icons" style="font-size: 20px;">camera_fill</i> Camera</button></p>
+				  
+				<p style="width: 26%; position: absolute; margin-left: 61%; margin-top: -15%;"><button type="button" class="col button button-fill color-green" id="gal_pet" onClick="app.foto_pet_up_galeria();"><i class="f7-icons" style="font-size: 20px;">images_fill</i> Galeria</button></p>	
+			  </div><br>
 				
-				<div align="center" onClick="app.foto_pet_edicao();" > 
-					<img name="pet_foto" id="pet_foto" style="border-radius:10px; max-width:50%; height:100px; margin-top:10px;"  src="img/pet_foto_perfil.png">
-				</div>
 				
-				<br>
+				<label class="col-100">Nome</label> 
+				<input class="item-input-wrap" type="text" name="nome" id="nome" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;">			
 				
-				Nome 
-				<input class="form-control" type="text" name="nome" id="nome">
-				Espécie
+				
+				<label class="col-100">Espécie</label> 
 				<!--<input class="form-control" type="text" name="especie_desc" id="especie_desc">-->
-				<div id="div_especie" >
+				<div id="div_especie">
 					
 				</div>
 				
-				Raça
-				<input class="form-control" type="text" name="raca" id="raca">
-				Cor
-				<input class="form-control" type="text" name="cor" id="cor">
-				Sexo 
-				<label class="radio-inline">
+				<label class="col-100">Raça</label> 
+				<input class="item-input-wrap" type="text" name="raca" id="raca" style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;">
+				<label class="col-100">Cor</label> 
+				<input class="item-input-wrap" type="text" name="cor" id="cor"  style="width: 100%;height: 34px;border: 0.5px solid #a4a4a4; padding: 7px;">
+				<label class="col-100">Sexo</label> <br>
+				<label class="item-radio item-content" style="width:50%">
 				  <input type="radio" name="sexo_desc" id="sexo_desc" value="1">Macho
+					<i class="icon icon-radio"></i>
 				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="sexo_desc" id="sexo_desc" value="0">Femea
+				<label class="item-radio item-content" style="width:49%">
+				  <input type="radio" name="sexo_desc" id="sexo_desc" value="0">Fêmea
+					<i class="icon icon-radio"></i>
 				</label>
 				<br>
-				Observação
-				<textarea class="form-control" id="observacao" name="observacao" style="height: 100px; margin-bottom: 10px;">
+								
+				<label class="col-100">Observação</label> 
+				<textarea class="item-input-wrap" id="observacao" name="observacao"  style="width: 100%;height:111px;border: 0.5px solid #a4a4a4; padding: 7px;">
 				
 				</textarea>
 			</form>
@@ -3280,6 +3388,36 @@
 			</div>
 		</div>
 	</div>
+		<!--BUCAR PET-->
+	<div class="sheet-modal buscar_pets" id="busca_pet_abre" style="height: 80%; display: block;">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa-paw" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
+			</div>
+          
+		</div>
+		<div class="item-input-wrap">
+			<form id="busca_dpet" style="margin-top:10%;margin-left: 10%;margin-right: 10%;"> 
+   					 <label>Buscar por:</label><br>
+   					 <label>Nome:</label><br>
+  						<input type="text" id="pets_nome_busca" name="nome" class="form-control" value="" style="width: 100%;">
+      				 <label>Raça:</label><br>
+  						<input type="text" id="pets_raca_busca" name="nome" class="form-control" value="" style="width: 100%;">
+      				 <label>Cor:</label><br>
+  						<input type="text" id="pets_cor_busca"  name="nome" class="form-control" value="" style="width: 100%;">
+      				 <label>Espécie:</label><br>
+  						<select type="text" id="pets_especie_busca" class="form-control" name="nome" value="" style="width: 100%;"></select>
+       				
+				
+				<span type="text" style="width: 100%;margin-top: 10%;"  class="button button-fill color-green link sheet-close" onclick="get_filtro_pet();"><i class="fa fa-search" style="margin-right: 1%;"></i>BUSCAR</span>
+			</form>
+		</div>
+		
+    
+	</div>
+		
+		
     <!---   $CAMERAS        -->
 
     <div id="cameras_condominio" class="pagina cameras_condominio">
@@ -4820,4 +4958,10 @@
                 
 </script>
 </body>
+
+<<<<<<< HEAD
 </html>
+>>>>>>
+=======
+</html>
+>>>>>>> origin/master

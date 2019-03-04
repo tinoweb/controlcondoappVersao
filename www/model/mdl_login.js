@@ -74,6 +74,8 @@ function login_user_device(){
                             localStorage.setItem('MVEICULOS',retorno[0]['MVEICULOS']);
                             localStorage.setItem('MCONTATOS',retorno[0]['MCONTATOS']);
                             localStorage.setItem('MFPERFIL',retorno[0]['MFPERFIL']);
+                            localStorage.setItem('MAGENDA',retorno[0]['MAGENDA']);
+                            localStorage.setItem('MMUDANCA',retorno[0]['MMUDANCA']);
                             $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                             $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                             $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -144,6 +146,8 @@ function login_user_device(){
                             if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
                             if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }    
                             if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }
+                            if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }
+                            if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }
                             
                             carrega_chat();
                             inicia(0);
@@ -293,6 +297,8 @@ function select_user(id_usuario_condominio=0) {
 					localStorage.setItem('MVEICULOS',retorno[0]['MVEICULOS']);
 					localStorage.setItem('MCONTATOS',retorno[0]['MCONTATOS']);
 					localStorage.setItem('MFPERFIL',retorno[0]['MFPERFIL']);
+					localStorage.setItem('MMUDANCA',retorno[0]['MMUDANCA']);
+					localStorage.setItem('MAGENDA',retorno[0]['MAGENDA']);
                     $( "#DADOS #CCOMUNICADOS" ).val(retorno[0]['CCOMUNICADOS']);
                     $( "#DADOS #CUNIDADES" ).val(retorno[0]['CUNIDADES']);
                     $( "#DADOS #CMORADORES" ).val(retorno[0]['CMORADORES']);
@@ -366,7 +372,7 @@ function select_user(id_usuario_condominio=0) {
                     
                     if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
                     if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
-                    if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
+                    if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3);} 
                     if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
                     if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
                     if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
@@ -374,6 +380,8 @@ function select_user(id_usuario_condominio=0) {
                     if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
                     if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }    
                     if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }    
+                    if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }    
+                    if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }    
                     
                     carrega_chat();
                     inicia(0);

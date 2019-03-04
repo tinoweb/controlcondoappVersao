@@ -50,6 +50,8 @@ var app = {
 		$("#boxUp_mudancas").hide();	
 		$("#boxUp_tickets").hide();
 		$("#boxUp_mreserva").hide();
+		$("#boxUp_pet").hide();
+		$("#boxUp_pet1").hide(); 
 		
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
@@ -202,6 +204,38 @@ var app = {
 				scrollTop: 0
 			},600)
 		});
+		
+		$("#pull-pet").scroll(function() {
+			//alert('pull');
+			var y=(($(this).scrollTop() + $(this).height()) + 110);
+			var x=$(this).get(0).scrollHeight;
+            if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
+                carrega_pets(0);
+            }
+			app.ckBoxUp("#boxUp_pet","#pull-pet");
+		});		
+		
+		$('#boxUp_pet').click(function(){
+			$('#pull-pet').animate({
+				scrollTop: 0
+			},400)
+		});
+		
+		$("#pull-pet1").scroll(function() {
+			//alert('pull');
+			var y=(($(this).scrollTop() + $(this).height()) + 110);
+			var x=$(this).get(0).scrollHeight;
+            if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
+                carrega_pets(0);
+            }
+			app.ckBoxUp("#boxUp_pet1","#pull-pet1");
+		});		
+		
+		$('#boxUp_pet1').click(function(){
+			$('#pull-pet1').animate({
+				scrollTop: 0
+			},400)
+		});
         
 		$("#pull-enquetes").scroll(function() { 
 			var y=(($(this).scrollTop() + $(this).height()) + 71);
@@ -300,8 +334,9 @@ var app = {
 
         function onSuccess(imageURI) {
            
-			$( '#form_pet_update #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+" ");
-			$( '#form_pet_update #foto_up_pet' ).val(imageURI);
+			$( '#form_pet_update #foto_up_pet' ).attr("src", "data:image/jpeg;base64,"+imageURI+" ");
+			$( '#form_pet_update #pet_foto' ).val(imageURI);
+			
 
         }
         function onFail(message) {
@@ -310,20 +345,103 @@ var app = {
     },
 	
 	foto_pet_inclusao: function() {
+		
+     
         navigator.camera.getPicture(onSuccess, onFail, { 
-            quality: 50,  
-			destinationType: Camera.DestinationType.DATA_URL,
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+			//sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            //saveToPhotoAlbum: true
+        });
+
+        function onSuccess(imageURI) {
+           
+		$( '#form_pet_add #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+"");
+		$( '#form_pet_add #foto_up_pet' ).val(imageURI);
+	
+
+        }
+		
+        function onFail(message) {
+			
+            alert('Camera Indisponivel');
+			
+			
+        }    
+    },
+	foto_pet_inclusao_galeria: function() {
+		
+     
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             saveToPhotoAlbum: true
         });
 
         function onSuccess(imageURI) {
            
-			$( '#form_pet_add #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+" ");
-			$( '#form_pet_add #foto_up_pet' ).val(imageURI);
+		$( '#form_pet_add #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+"");
+		$( '#form_pet_add #foto_up_pet' ).val(imageURI);
+		
+			
+        }
+		
+        function onFail(message) {
+			
+            alert('Camera Indisponivel');
+			
+			
+        }    
+    },
+	foto_pet_up: function() {
+		
+     
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+			//sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            //saveToPhotoAlbum: true
+        });
+
+        function onSuccess(imageURI) {
+           
+		$( '#form_pet_update #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+"");
+		$( '#form_pet_update #foto_up_pet' ).val(imageURI);
+	
 
         }
+		
         function onFail(message) {
+			
             alert('Camera Indisponivel');
+			
+			
+        }    
+    },
+	foto_pet_up_galeria: function() {
+		
+     
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            saveToPhotoAlbum: true
+        });
+
+        function onSuccess(imageURI) {
+           
+		$( '#form_pet_update #pet_foto' ).attr("src", "data:image/jpeg;base64,"+imageURI+"");
+		$( '#form_pet_update #foto_up_pet' ).val(imageURI);
+		
+			
+        }
+		
+        function onFail(message) {
+			
+            alert('Camera Indisponivel');
+			
+			
         }    
     },
 	
@@ -884,6 +1002,7 @@ var app = {
 		$("#pull-ocorrencias" ).removeClass("ptr-refreshing");
 		$("#pull-tickets" ).removeClass("ptr-content");
 		$("#pull-tickets" ).removeClass("ptr-refreshing");
+		$("#pull-pet" ).removeClass("ptr-refreshing");
 		$("#pull-mudancas" ).removeClass("ptr-content");
 		$("#pull-mudancas" ).removeClass("ptr-refreshing");
 		
@@ -921,6 +1040,9 @@ var app = {
 		}else if(pag==='minha_reserva'){
 			$("#pull-mreserva").addClass("ptr-content");
 			//alert('saindo do controler_pull');
+		}else if(pag==='pet'){
+			$("#pull-pet").addClass("ptr-content");
+
 		}else if(pag==='mudancas'){
 			$("#pull-mudancas").addClass("ptr-content");
 			//alert('saindo do controler_pull');
@@ -952,6 +1074,9 @@ var app = {
 		}else if(res==='minha_reserva'){
 			//carrega_tickets(0);
             carrega_minha_reserva(0);
+		}else if(res==='pet'){
+			//carrega_tickets(0);
+            carrega_pets(0);
 		}else if(res==='mudancas'){
 			//carrega_tickets(0);
             carrega_mudancas(0);
