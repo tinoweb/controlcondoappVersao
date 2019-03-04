@@ -185,17 +185,20 @@ function carrega_pet(id){
             data       : {id_pet : id, id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : '1'},
             dataType   : 'json',
             success: function(retorno)
-			{
+			{ 
 				var cont=0;
 				var x =0; 
 				var id_unidades = $( "#DADOS #ID_UNIDADE" ).val();
-					if(retorno[x]['id_unidade']== id_unidades)
+					if(retorno[x]['id_unidade'] == id_unidades)
 					{
 						afed('#edit_exclui','','','');
+						
 					} 
 				else{
 						afed('','#edit_exclui','','');
+					
 					}
+				
 				if (retorno[x]['sexo'] == 1)
 					{
 						var sexo = 1;
@@ -446,6 +449,7 @@ function get_filtro_pet()
 	var busca_nome = $("#busca_dpet #pets_nome_busca").val();
 	//alert(busca_nome);
 	var busca_raca = $("#busca_dpet #pets_raca_busca").val();
+ 	busca_raca.toUpperCase();
 	//alert(busca_raca);
 	var busca_cor = $("#busca_dpet #pets_cor_busca").val();
 	//alert(busca_cor);
@@ -458,7 +462,7 @@ function get_filtro_pet()
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
-            data       :{id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),nome: busca_nome, cor: busca_cor, id_especie: busca_especie,raca: busca_raca,},
+            data       :{id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),nome: busca_nome, cor: busca_cor, id_especie: busca_especie,raca: busca_raca},
 			dataType   : 'json',
 			success: function(retorno){  
 				afed('#pet_lista','#home','','',3,'');
