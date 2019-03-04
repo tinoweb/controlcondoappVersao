@@ -143,7 +143,43 @@
 					}
 					if(localStorage.getItem('TELA_ATUAL') != 'chat'){
 						if(localStorage.getItem('TELA_ATUAL') != 'chat_msg'){
-                            openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);	
+                            
+							if(localStorage.getItem("NOT_TYPE") == 123){
+								
+								var val_confg = localStorage.getItem("NOT_ID").split(';');
+								
+								localStorage.setItem('MMORADOR',val_confg[2]);
+								localStorage.setItem('MFPERFIL',val_confg[3]);
+								localStorage.setItem('MVEICULOS',val_confg[4]);
+								localStorage.setItem('MCONTATOS',val_confg[5]);
+                                $( "#DADOS #MCOMUNICADOS" ).val(val_confg[6]);
+                                $( "#DADOS #MLUNICA" ).val(val_confg[7]);
+                                $( "#DADOS #MLRECORRENTE" ).val(val_confg[8]);
+                                $( "#DADOS #MRESERVA" ).val(val_confg[9]);
+                                $( "#DADOS #MENTREGAS" ).val(val_confg[10]);
+                                $( "#DADOS #MFALE" ).val(val_confg[11]);
+                                $( "#DADOS #MENQUENTE" ).val(val_confg[12]);
+                                $( "#DADOS #MDOCUMENTOS" ).val(val_confg[13]);
+								$( "#DADOS #MRELATORIOS" ).val(val_confg[14]);
+                                localStorage.setItem('MOCORRENCIA',val_confg[15]);
+                                localStorage.setItem('MPET',val_confg[16]);
+								localStorage.setItem('MCAM',val_confg[17]);
+								//localStorage.setItem('MAGENDA',retorno[0]['MAGENDA']);
+								//localStorage.setItem('MMUDANCA',retorno[0]['MMUDANCA']);
+                                if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
+                                if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
+                                if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
+                                if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
+                                //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
+                                if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
+                                if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
+                                if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
+                                if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
+
+							}else{
+								openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);
+							}
+							
                         }
 					}  
 
@@ -511,7 +547,7 @@
                  <div class="page-content" style="padding-top:0px;height:69%;overflow:auto">
 					<div class="list components-list searchbar-found" style=" color: #414141">
 						<ul>
-						<li  onClick="carrega_comunicados(0);">
+						<li id="menu_comunicado"  onClick="carrega_comunicados(0);">
 						<a class="item-content item-link" href="/accordion/">
 						<div class="item-media"><i class="fa fa-bullhorn"></i></div>
 						<div class="item-inner">
@@ -520,7 +556,7 @@
 						</div>
 						</a>
 						</li>
-						<li  onClick="inicia2(2);">
+						<li id="menu_liberacao" onClick="inicia2(2);">
 						<a class="item-content item-link" href="/action-sheet/">
 						<div class="item-media"><i class="fa fa-unlock-alt"></i></div>
 						<div class="item-inner">
@@ -529,7 +565,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_areas();">
+						<li id="menu_area" onClick="carrega_areas();">
 						<a class="item-content item-link" href="/autocomplete/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
@@ -538,7 +574,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_entregas(0);">
+						<li id="menu_entregas" onClick="carrega_entregas(0);">
 						<a class="item-content item-link" href="/badge/">
 						<div class="item-media"><i class="fa fa-envelope-o"></i></div>
 						<div class="item-inner">
@@ -547,7 +583,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_enquetes(0);">
+						<li id="menu_enquete" onClick="carrega_enquetes(0);">
 						<a class="item-content item-link" href="/buttons/">
 						<div class="item-media"><i class="fa fa-pie-chart"></i></div>
 						<div class="item-inner">
@@ -556,7 +592,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_documentos(0);" >
+						<li id="menu_documentos" onClick="carrega_documentos(0);" >
 						<a class="item-content item-link" href="/calendar/">
 						<div class="item-media"><i class="fa fa-file"></i></div>
 						<div class="item-inner">
@@ -565,7 +601,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_ocorrencias(0)" >
+						<li id="menu_ocorrencia" onClick="carrega_ocorrencias(0)" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-warning"></i></div>
 						<div class="item-inner">
@@ -574,7 +610,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_mudancas(0)" >
+						<li id="menu_mudanca" onClick="carrega_mudancas(0)" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-exchange"></i></div>
 						<div class="item-inner">
@@ -584,7 +620,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_agenda_eventos()" >
+						<li id="menu_agenda" onClick="carrega_agenda_eventos()" >
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
@@ -592,7 +628,7 @@
 						</div>
 						</a>
 						</li>
-						<li  onClick="carrega_pets(0);" >
+						<li id="menu_pet" onClick="carrega_pets(0);" >
 						<a class="item-content item-link" href="/checkbox/">
 						<div class="item-media"><i class="fa fa-paw"></i></div>
 						<div class="item-inner">
@@ -601,7 +637,7 @@
 						</div>
 						</a>
 						</li>
-						<li onClick="carrega_cameras();">
+						<li id="menu_cameras" onClick="carrega_cameras();">
 						<a class="item-content item-link" href="/chips/">
 						<div class="item-media"><i class="fa fa-video-camera"></i></div>
 						<div class="item-inner">
@@ -4923,5 +4959,9 @@
 </script>
 </body>
 
+<<<<<<< HEAD
 </html>
 >>>>>>
+=======
+</html>
+>>>>>>> origin/master
