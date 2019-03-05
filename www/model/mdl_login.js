@@ -148,6 +148,11 @@ function login_user_device(){
                             if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }
                             if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }
                             if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }
+                            if(localStorage.getItem('MFPERFIL') == 1){ 
+							$("#foto_user_mor").attr("onclick","afed('#bg_box3','','','',1);");
+							}else{ 
+							$("#foto_user_mor").attr("onclick","alerta('','Para alterar a foto, entre em contato com administração');"); }
+
                             
                             carrega_chat();
                             inicia(0);
@@ -381,7 +386,12 @@ function select_user(id_usuario_condominio=0) {
                     if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }    
                     if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }    
                     if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }    
-                    if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }    
+                    if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }  
+					if(localStorage.getItem('MFPERFIL') == 1){ 
+					$("#foto_user_mor").attr("onclick","afed('#bg_box3','','','',1);");
+					}else{ 
+					$("#foto_user_mor").attr("onclick","alerta('','Para alterar a foto, entre em contato com administração');"); }
+
                     
                     carrega_chat();
                     inicia(0);

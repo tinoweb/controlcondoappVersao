@@ -92,6 +92,7 @@ function carrega_enquetes(tipo){
 	});	
 }
 
+
 function carrega_enquete(id){
 
     $.ajax({
@@ -104,7 +105,7 @@ function carrega_enquete(id){
         dataType   : 'json',
 		success: function(retorno){
             $( "#enquete .enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
-            $( "#enquete .enquete_morador" ).html(retorno[0]['criado']);
+            $( "#enquete .enquete_morador" ).html(titulo_enquete(0,retorno[0]['criado']));
             $( "#enquete span" ).html(retorno[0]['titulo']);
             $( "#enquete .enquete_subtitulo" ).html(retorno[0]['descricao']);
             $( "#enquete .enquete_periodo" ).html('Validade de '+retorno[0]['data_inicio']+' ate '+retorno[0]['data_final']);
@@ -171,11 +172,18 @@ function carrega_enquete(id){
 	
 }
 
-	function matrizCor(cod_cod){
-		cores = [ 'navy', 'lime', 'red', 'yellow', 'maroon', 'fuchsia', 'orange', 'pink', 'goldenrod', 'olive', 'aqua', 'crimson', 'lavender', 'blue'];
-		
-		return cores[cod_cod];
+function titulo_enquete(tipo,valor){
+	
+   if(tipo == 0){
+	  	return '<div style="margin-top:7px" class="chip"><div class="chip-media bg-color-yellow"><i class="fa fa-calendar"></i></div><div class="chip-label">'+valor+'</div></div>';  
 	}
+}
+
+function matrizCor(cod_cod){
+	cores = [ 'navy', 'lime', 'red', 'yellow', 'maroon', 'fuchsia', 'orange', 'pink', 'goldenrod', 'olive', 'aqua', 'crimson', 'lavender', 'blue'];
+
+	return cores[cod_cod];
+}
 
 function drawChart() {
         var data = google.visualization.arrayToDataTable([
