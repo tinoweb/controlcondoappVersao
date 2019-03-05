@@ -148,7 +148,7 @@ function login_user_device(){
                             if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }
                             if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }
                             if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }
-							alert(localStorage.getItem('MFPERFIL'));
+							//alert(localStorage.getItem('MFPERFIL'));
                             if(localStorage.getItem('MFPERFIL') == 1){ 
 							$("#foto_user_mor").attr("onclick","afed('#bg_box3','','','',1);");
 							}else{ 
@@ -388,7 +388,7 @@ function select_user(id_usuario_condominio=0) {
                     if(localStorage.getItem('MCAM') == 1){ afed('#menu_cameras','','','',3); }else{ afed('','#menu_cameras','','',3); }    
                     if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }    
                     if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }  
-					alert(localStorage.getItem('MFPERFIL'));
+					//alert(localStorage.getItem('MFPERFIL'));
 					if(localStorage.getItem('MFPERFIL') == 1){ 
 					$("#foto_user_mor").attr("onclick","afed('#bg_box3','','','',1);");
 					}else{ 
