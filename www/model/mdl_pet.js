@@ -338,12 +338,15 @@ function excluir_pet(){
 			complete   : function() { $("#wait").css("display", "none"); },
             data       :{id_pet : id_pet,id_condominio : id_con},
 			success: function(retorno)
-			{              
+			{    setTimeout(carrega_pets(0),300);          
 				alert("Pet excluido com sucesso !"); 
-				afed('#pet_lista','#pet_add','');
+				afed('#pet_lista','','');
 				afed('','#pet_add','','#pet_lista');
-				 carrega_pets(0);
-				afed('','#pet_add','#pet_lista','');
+				afed('','#pet','','');
+				afed('','#update_pet','','');
+				
+				
+				
 				//$("#pet_lista #meus_pets").click();
 			}
 		 })	
@@ -405,6 +408,7 @@ function pet_insert(){
                 voltar('#pet_lista','#pet_add','pet_lista');           
                 carrega_pets(0);
 				$("#todos_pets").click();
+				  afed('','#add_pet','','');
 			}
 		});
 		
