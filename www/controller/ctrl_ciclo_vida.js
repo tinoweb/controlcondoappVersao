@@ -263,7 +263,24 @@ function onBackKeyDown() {
     if(localStorage.getItem('TELA_ATUAL') == 'cameras_condominio'){
         afed('#home','#cameras_condominio','','',2,'home');
         localStorage.setItem('TELA_ATUAL','home');
+    } 
+	if(localStorage.getItem('TELA_ATUAL') == 'pet_lista'){
+        afed('#home','#pet_lista','','',2,'home');
+        localStorage.setItem('TELA_ATUAL','home');
     }
+	if(localStorage.getItem('TELA_ATUAL') == 'add_pet'){
+        afed('#pet_lista','#add_pet','','',2,'home');
+        localStorage.setItem('TELA_ATUAL','home');
+    }
+	if(localStorage.getItem('TELA_ATUAL') == 'pet'){
+        afed('#pet_lista','#pet','','',2,'home');
+        localStorage.setItem('TELA_ATUAL','home');
+    }
+	if(localStorage.getItem('TELA_ATUAL') == 'update_pet'){
+        afed('#pet_lista','#update_pet','','',2,'home');
+        localStorage.setItem('TELA_ATUAL','home');
+    }
+	
 	
 	
 }
