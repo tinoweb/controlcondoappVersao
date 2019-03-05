@@ -451,14 +451,14 @@ function get_filtro_pet()
 	
 	// PEGAR DADOS DO FORM PARA BUSCA
 	var busca_nome = $("#busca_dpet #pets_nome_busca").val();
-	//alert(busca_nome);
-	var busca_raca = $("#busca_dpet #pets_raca_busca").val();
- 	busca_raca.toUpperCase();
-	//alert(busca_raca);
+ 	var buscar_por_nome = busca_nome.toUpperCase();
+ 	var busca_raca = $("#busca_dpet #pets_raca_busca").val();
+ 	var buscar_por_raca = busca_raca.toUpperCase();
+// alert(buscar_por_raca);
 	var busca_cor = $("#busca_dpet #pets_cor_busca").val();
-	//alert(busca_cor);
+ 	var buscar_por_cor = busca_cor.toUpperCase();
 	var busca_especie = $("#busca_dpet #pets_especie_busca").val();
-	//alert(busca_especie);
+	
  	//MANDAR VIA POST
 		$.ajax({
 			type: 'POST',
@@ -466,7 +466,7 @@ function get_filtro_pet()
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
-            data       :{id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),nome: busca_nome, cor: busca_cor, id_especie: busca_especie,raca: busca_raca},
+            data       :{id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),nome: buscar_por_nome, cor: buscar_por_cor, id_especie: busca_especie,raca: buscar_por_raca},
 			dataType   : 'json',
 			success: function(retorno){  
 				afed('#pet_lista','#home','','',3,'');
