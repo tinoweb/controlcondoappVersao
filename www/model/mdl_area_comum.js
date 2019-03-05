@@ -850,6 +850,7 @@ $.ajax({
 
 						$( "#DADOS #AREA_COMUM" ).val(id_area_comum);
 						$( "#dt_festa" ).val(day+'/'+(parseInt(month)+1)+'/'+year);
+						$( "#dt_reserva_aberta" ).html($( "#dt_festa" ).val());
 					}else{
 						//alert('teste block');
 						$('#retorno_reservas_dia').html('<li><div class="row"><i class="fa fa-exclamation-triangle" style="font-size: 50px;"></i></div><div class="row"><span>Data Indisponivel</span></div></li>');
