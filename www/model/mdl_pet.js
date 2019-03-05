@@ -314,8 +314,10 @@ function edit_pet()
 			success: function(retorno)
 			 {
                 voltar('#pet_lista','#pet_add','pet_lista');
-				 $("#meus_pets").click();
+				
                 carrega_pets(0);
+				 setTimeout(carrega_pets(0),300);
+			 	 setTimeout(carrega_pets(5),300);
 			 }
 		  })
 }
@@ -326,10 +328,11 @@ function excluir_pet(){
 	//Pegando informações do pet
 	var id_pet = $("#form_pet #id_pet").html();
 	var id_con = $( "#DADOS #ID_CONDOMINIO" ).val();
-	var del = confirm("Tem Certeza que deseja excluir?");
-	if (del ===true)
-	{
-	 
+	//var del = confirm("Tem Certeza que deseja excluir?");
+	app2.dialog.confirm('Tem Certeza que deseja excluir?','Evento', function () {
+	//if (del ===true)
+//	{
+//	 
 	$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/pet_delete.php',
@@ -338,8 +341,10 @@ function excluir_pet(){
 			complete   : function() { $("#wait").css("display", "none"); },
             data       :{id_pet : id_pet,id_condominio : id_con},
 			success: function(retorno)
-			{    setTimeout(carrega_pets(0),300);          
-				alert("Pet excluido com sucesso !"); 
+			{    setTimeout(carrega_pets(0),300);
+			 	 setTimeout(carrega_pets(5),300);
+				 
+			 	alerta("","Pet excluido com sucesso.");
 				afed('#pet_lista','','');
 				afed('','#pet_add','','#pet_lista');
 				afed('','#pet','','');
@@ -350,10 +355,10 @@ function excluir_pet(){
 				//$("#pet_lista #meus_pets").click();
 			}
 		 })	
-	}else{
-	  
-	}
-}
+	}//else{
+//	  
+//	}
+)}
  
 // CADASTRAR NOVO PET BY DAVID 13/02/2019
 function pet_insert(){
@@ -407,6 +412,7 @@ function pet_insert(){
 				
                 voltar('#pet_lista','#pet_add','pet_lista');           
                 carrega_pets(0);
+                carrega_pets(5);
 				$("#todos_pets").click();
 				  afed('','#add_pet','','');
 			}
