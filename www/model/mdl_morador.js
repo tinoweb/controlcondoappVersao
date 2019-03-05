@@ -135,10 +135,10 @@ function carrega_morador_dados(id_morador){
 			
 			if(localStorage.getItem('MMORADOR') != 1){
 				afed('','#bt_mor_atu,#bt_mor_del','','',2,'');
-				$("#form_moradores input,#form_moradores textarea").prop("disabled", true);
+				$("#form_moradores input,#form_moradores textarea,#form_moradores select").prop("disabled", true);
 			}else{
 				afed('#bt_mor_atu,#bt_mor_del','','','',2,'');
-				$("#form_moradores input,#form_moradores textarea").prop("disabled", false);
+				$("#form_moradores input,#form_moradores textarea,#form_moradores select").prop("disabled", false);
 			}
 			
 			if(localStorage.getItem('MFPERFIL') != 1){

@@ -593,16 +593,19 @@ function adiciona_reserva(h){
 
 //FUNCAO EDITA RESERVA
 function edite_reserva(id_reserva,data,inicio,fim){ 
+	afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'');
 	var dt_festa = $( "#dt_festa" ).val();
 	afed('#reserva','#area','','',2,'reserva')
 	$( "#add_reserva_dt" ).val(data);
 	$( "#add_reserva #add_reserva_id" ).val(id_reserva);
     $( "#add_reserva_data" ).html(dt_festa);
-	$( "#add_reserva_hora_inicio" ).val(inicio);
-	$( "#add_reserva_hora_fim" ).val(fim);
 	$( "#add_reserva_tipo" ).val("1");
     $("#concordo").attr('checked','checked');
 	var bt_add_voltar = document.getElementById('voltar_add_reserva');
+	setTimeout(function(){ 
+		$( "#add_reserva_hora_inicio" ).val(inicio);
+		$( "#add_reserva_hora_fim" ).val(fim);
+	}, 300);
 	if(localStorage.getItem('periodo_integral') == 1){
 		bt_add_voltar.setAttribute("onclick", "afed('#area_comum_new,#bt_add_reserva2','#reserva,#bt_add_reserva','','',2,'area');");
 		afed('#bt_re_ex','#bt_re_ca','','#add_reserva_hora_inicio,#add_reserva_hora_fim',2,'');
