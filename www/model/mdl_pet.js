@@ -314,8 +314,10 @@ function edit_pet()
 			success: function(retorno)
 			 {
                 voltar('#pet_lista','#pet_add','pet_lista');
-				 $("#meus_pets").click();
+				
                 carrega_pets(0);
+				 setTimeout(carrega_pets(0),300);
+			 	 setTimeout(carrega_pets(5),300);
 			 }
 		  })
 }
@@ -326,10 +328,11 @@ function excluir_pet(){
 	//Pegando informações do pet
 	var id_pet = $("#form_pet #id_pet").html();
 	var id_con = $( "#DADOS #ID_CONDOMINIO" ).val();
-	var del = confirm("Tem Certeza que deseja excluir?");
-	if (del ===true)
-	{
-	 
+	//var del = confirm("Tem Certeza que deseja excluir?");
+	app2.dialog.confirm('Tem Certeza que deseja excluir?','Evento', function () {
+	//if (del ===true)
+//	{
+//	 
 	$.ajax({
 			type: 'POST',
             url: localStorage.getItem('DOMINIO')+'appweb/pet_delete.php',
@@ -338,19 +341,24 @@ function excluir_pet(){
 			complete   : function() { $("#wait").css("display", "none"); },
             data       :{id_pet : id_pet,id_condominio : id_con},
 			success: function(retorno)
-			{              
-				alert("Pet excluido com sucesso !"); 
-				afed('#pet_lista','#pet_add','');
+			{    setTimeout(carrega_pets(0),300);
+			 	 setTimeout(carrega_pets(5),300);
+				 
+			 	alerta("","Pet excluido com sucesso.");
+				afed('#pet_lista','','');
 				afed('','#pet_add','','#pet_lista');
-				 carrega_pets(0);
-				afed('','#pet_add','#pet_lista','');
+				afed('','#pet','','');
+				afed('','#update_pet','','');
+				
+				
+				
 				//$("#pet_lista #meus_pets").click();
 			}
 		 })	
-	}else{
-	  
-	}
-}
+	}//else{
+//	  
+//	}
+)}
  
 // CADASTRAR NOVO PET BY DAVID 13/02/2019
 function pet_insert(){
@@ -404,7 +412,9 @@ function pet_insert(){
 				
                 voltar('#pet_lista','#pet_add','pet_lista');           
                 carrega_pets(0);
+                carrega_pets(5);
 				$("#todos_pets").click();
+				  afed('','#add_pet','','');
 			}
 		});
 		
@@ -447,14 +457,14 @@ function get_filtro_pet()
 	
 	// PEGAR DADOS DO FORM PARA BUSCA
 	var busca_nome = $("#busca_dpet #pets_nome_busca").val();
-	//alert(busca_nome);
-	var busca_raca = $("#busca_dpet #pets_raca_busca").val();
- 	busca_raca.toUpperCase();
-	//alert(busca_raca);
+ 	var buscar_por_nome = busca_nome.toUpperCase();
+ 	var busca_raca = $("#busca_dpet #pets_raca_busca").val();
+ 	var buscar_por_raca = busca_raca.toUpperCase();
+// alert(buscar_por_raca);
 	var busca_cor = $("#busca_dpet #pets_cor_busca").val();
-	//alert(busca_cor);
+ 	var buscar_por_cor = busca_cor.toUpperCase();
 	var busca_especie = $("#busca_dpet #pets_especie_busca").val();
-	//alert(busca_especie);
+	
  	//MANDAR VIA POST
 		$.ajax({
 			type: 'POST',
@@ -462,7 +472,7 @@ function get_filtro_pet()
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
-            data       :{id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),nome: busca_nome, cor: busca_cor, id_especie: busca_especie,raca: busca_raca},
+            data       :{id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(),nome: buscar_por_nome, cor: buscar_por_cor, id_especie: busca_especie,raca: buscar_por_raca},
 			dataType   : 'json',
 			success: function(retorno){  
 				afed('#pet_lista','#home','','',3,'');

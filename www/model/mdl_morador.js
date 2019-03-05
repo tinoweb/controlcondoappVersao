@@ -135,16 +135,16 @@ function carrega_morador_dados(id_morador){
 			
 			if(localStorage.getItem('MMORADOR') != 1){
 				afed('','#bt_mor_atu,#bt_mor_del','','',2,'');
-				$("#form_moradores input,#form_moradores textarea").prop("disabled", true);
+				$("#form_moradores input,#form_moradores textarea,#form_moradores select").prop("disabled", true);
 			}else{
 				afed('#bt_mor_atu,#bt_mor_del','','','',2,'');
-				$("#form_moradores input,#form_moradores textarea").prop("disabled", false);
+				$("#form_moradores input,#form_moradores textarea,#form_moradores select").prop("disabled", false);
 			}
 			
 			if(localStorage.getItem('MFPERFIL') != 1){
-				afed('','#bt_mor_ft1,#bt_mor_ft2','','',2,'');
+				afed('#bt_mor_ftn','#bt_mor_ft1,#bt_mor_ft2','','',2,'');
 			}else{
-				afed('#bt_mor_ft1,#bt_mor_ft2','','','',2,'');
+				afed('#bt_mor_ft1,#bt_mor_ft2','#bt_mor_ftn','','',2,'');
 			}
 			//alert(localStorage.getItem('MMORADOR')+localStorage.getItem('MVEICULOS')+localStorage.getItem('MCONTATOS')+localStorage.getItem('MFPERFIL'));
 			
