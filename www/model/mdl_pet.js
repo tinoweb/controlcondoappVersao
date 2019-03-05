@@ -329,7 +329,7 @@ function excluir_pet(){
 	var id_pet = $("#form_pet #id_pet").html();
 	var id_con = $( "#DADOS #ID_CONDOMINIO" ).val();
 	//var del = confirm("Tem Certeza que deseja excluir?");
-	app2.dialog.confirm('Tem Certeza que deseja excluir?','Evento', function () {
+	app2.dialog.confirm('Tem Certeza que deseja excluir?','PET', function () {
 	//if (del ===true)
 //	{
 //	 
