@@ -280,8 +280,7 @@ function onBackKeyDown() {
         afed('#pet_lista','#update_pet','','',2,'home');
         localStorage.setItem('TELA_ATUAL','home');
     }
-	
-	
+		
 	
 }
 
