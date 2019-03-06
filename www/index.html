@@ -494,13 +494,13 @@
 						<div class="fundo2">
 							<div id="foto_user_mor" class="user_foto" style="border: 2px solid white;" onClick=""></div>
 						</div>
-						<div class="fundo3">
+						<!--<div class="fundo3">
 							<div id="bloco">Bloco</div>
 						    <div id="apto">Apto</div>
-						</div>
+						</div>-->
 						
 					</div>
-					<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
+					<!--<div class="perfil_nome" style="font-size: 13px">Nome do Morador</div>
                     <div class="TagUser">
 						<div class="TagUserCenter" style="margin-left: 79px;"> 
 							<span class="TagUserSindico" style="margin-bottom: 3px;" id="gsin" >Síndico</span> 
@@ -509,8 +509,58 @@
 							<br>
 							<span class="TagUserDiretoria" style="margin-bottom: 3px;" id="gdir">Diretoria</span> 
 						</div>
+					</div>-->
+					<div style="margin: 11px 0 0 11px;">
+						<div class="chip">
+							<div class="chip-media bg-color-red">
+							<i class="fa fa-user"></i>
+							</div>
+							<div class="chip-label"><div class="perfil_nome" style="font-size: 13px"></div></div>
+						</div><br>
+						<div class="chip">
+							<div class="chip-media bg-color-orange">
+
+							<i class="fa fa-building-o"></i>
+							</div>
+							<div class="chip-label"><span id="blocoapto"></span></div>
+						</div><br>
+						<div class="chip msindico" style="margin-right: 34px;">
+							<div class="chip-media bg-color-green">
+
+							<i class="fa fa-group"></i>
+							</div>
+							<div class="chip-label"><span id="gsin">Síndico</span></div>
+						</div><br class="mlsindico msindico">
+						<div class="chip madministracao">
+							<div class="chip-media bg-color-yellow">
+
+							<i class="fa fa-group"></i>
+							</div>
+							<div class="chip-label"><span id="gadm">Administração</span></div>
+						</div><br class="madministracao">
+						<div class="chip madministradora">
+							<div class="chip-media bg-color-orange">
+
+							<i class="fa fa-group"></i>
+							</div>
+							<div class="chip-label"><span id="gadm2">Administradora</span></div>
+						</div><br class="madministradora">
+						<div class="chip mdiretoria">
+							<div class="chip-media bg-color-red">
+
+							<i class="fa fa-group"></i>
+							</div>
+							<div class="chip-label"><span id="gdir">Diretoria</span></div>
+						</div><br class="mdiretoria">
+						<div class="chip">
+							<div class="chip-media bg-color-blue">
+
+							<i class="icon material-icons md-only" style="color:white">location_on</i>
+							</div>
+							<div class="chip-label"><div class="perfil_condominio" style="margin: 1px 0 0 0px;"></div></div>
+						</div><br>
 					</div>
-					<div class="perfil_condominio" style="">Nome do Condominio</div>
+					<!--<div class="perfil_condominio" style="">Nome do Condominio</div>-->
 					<br>
 					<br>
 					<div style="border-bottom: 1px solid #cacaca; width: 100%; float: left; padding-bottom: 10px;">
@@ -544,7 +594,7 @@
 			</div>
 			</div>
 
-			<div id="perfil" class="perfil" style="margin-top: 111px">
+			<div id="perfil" class="perfil" style="margin-top: 122px">
 				<div class="col-xs-9">
 					<div class="user_foto"><div id="border_m"></div></div>
 					<strong class="perfil_nome">Nome do Morador</strong>
@@ -556,7 +606,7 @@
 			</div>
 			
 			<div id="perfil_abre" class="perfil_abre" onClick="afed('#perfil_edit,#perfil_fecha','#perfil_abre,#perfil,#menu_perfil','','',2);"></div>
-			    <div class="page m_page" style="margin-top: 177px">
+			    <div class="page m_page" style="margin-top: 188px">
                  <div class="page-content" style="padding-top:0px;height:69%;overflow:auto">
 					<div class="list components-list searchbar-found" style=" color: #414141">
 						<ul>
@@ -2432,12 +2482,17 @@
 			<span class="title">Enquete</span> </div>
 		</div>
 		<div class="scroll">
+			
 			<div class="enquete_foto_morador"></div>
 			<div class="enquete_morador"></div>
+			<div class="enquete_status" style="margin:45px 0 0 77px"></div><hr style="width:100%">
+			<h3 style="margin-left:58px;color:#cb8d2e;">Informações da Enquete</h3>
 			<span class="enquete_titulo">titulo</span>
+			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_dataini"></span><br>
+			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_datafim"></span>
+			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_votos_total"></span>
 			<div class="enquete_subtitulo">stitulo</div>
-			<div class="enquete_periodo ">Validade de </div>
-			<div class="enquete_votos">Votos </div>
+			
 			<form name="enquete_voto" id="enquete_voto"style="height: 392px;">
 			</form>
 	</div>
@@ -4972,5 +5027,9 @@
                 
 </script>
 </body>
+<<<<<<< HEAD
 
 </html>>>>>>>>>>>>>
+=======
+</html>
+>>>>>>> origin/master
