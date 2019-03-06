@@ -593,7 +593,7 @@ function adiciona_reserva(h){
 
 //FUNCAO EDITA RESERVA
 function edite_reserva(id_reserva,data,inicio,fim){ 
-	afed('','','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'');
+	afed('','#bt_add_reserva','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'');
 	var dt_festa = $( "#dt_festa" ).val();
 	afed('#reserva','#area','','',2,'reserva')
 	$( "#add_reserva_dt" ).val(data);
@@ -644,7 +644,7 @@ function salva_reserva(){
         }else{
             $.ajax({
                 type: 'POST',
-                url: localStorage.getItem('DOMINIO')+'appweb/reserva_insert.php',
+                url: localStorage.getItem('DOMINIO')+'appweb/reserva_insert_teste.php',
 				crossDomain: true,
 				beforeSend : function() { $("#wait").css("display", "block"); },
 				complete   : function() { $("#wait").css("display", "none"); },
@@ -657,7 +657,10 @@ function salva_reserva(){
                     }else if(retorno == 'erro2'){
                         notifica('Alerta/Horario n\u00e3o disponivel/Fechar',2000,0);
                     }else if(retorno != ''){
-                        notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
+                        //notifica('Erro/Tente novamenta mais tarde/Fechar',2000,0);
+						//alert(retorno);
+						alerta('0',retorno);
+						//alert();
                     }else{
 						//alert(localStorage.getItem('dsa'));
 						if(localStorage.getItem('periodo_integral') == 1){
