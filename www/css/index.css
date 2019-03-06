@@ -1702,13 +1702,13 @@ input, textarea {
 }
 
 .home .corpo .menu .perfil_edit .perfil_condominio {
-	width:100%; 
+	/*width:100%; 
 	float:left; 
 	margin-top: -4px;
 	text-align:center;
 	color:#666;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: bold;*/
 }
 
 .home .corpo .menu .perfil_edit #bloco {

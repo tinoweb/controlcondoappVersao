@@ -43,7 +43,7 @@ function carrega_enquetes(tipo){
 			var cont=0;			
             for (x in retorno) {
 				
-				$(".enquete_status").text();
+
 				cont++;
 				
 				if(retorno[x].visualizacao != null ){
@@ -70,7 +70,7 @@ function carrega_enquetes(tipo){
 				
 				
 
-                dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div> <div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x].status+'</div></div>';
+                dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div> <div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
 
                 //dado = '<div class="enquete" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos"><button type="button" class="btn btn-info">VOTOS</button></span><span class="enquete_periodo">Validade<br> de '+retorno[x]['data_inicio']+' até '+retorno[x]['data_final']+'</span></div>';
                 dados = dados + dado;
@@ -119,10 +119,17 @@ function carrega_enquete(id){
 			$( "#enquete .enquete_dataini" ).html(titulo_enquete(2,retorno[0]['data_inicio']));
 			$( "#enquete .enquete_datafim" ).html(titulo_enquete(3,retorno[0]['data_final']));
             $( "#enquete .enquete_subtitulo" ).html(retorno[0]['descricao']);
-           /* $( "#enquete .enquete_periodo" ).html();*/
+           /* $( "#enquete .enquete_periodo" ).html();
 			$( "#enquete .navbar").css("background-color","#00a65a");
-			$( "#enquetes .navbar").css("background-color","#00a65a");
-			$( "#enquete .enquete_status" ).html(retorno[0]['status']);
+			$( "#enquetes .navbar").css("background-color","#00a65a");*/
+			
+			/*setTimeout(function(){
+				
+				$( "#enquete .enquete_status" ).html('');
+			    $( "#enquete .enquete_status" ).html(retorno[0]['status']);
+				
+			},500);*/
+			
 			
 			//alert(retorno[0]['voto']);
             //$( "#enquete" ).html(retorno);
@@ -175,10 +182,10 @@ function carrega_enquete(id){
 							  '<span style="color: white;">Você deve ser o titular da unidade para votar.</span>'+
 						  '</div>';
 
-			let sit = $(".enquete_status"+id).text();
-			$(".enquete_status").text(sit);
-			setTimeout(function(){
-				
+		    let sit = $(".enquete_status"+id).html();
+			
+				$(".enquete_status").html('');	
+			    $(".enquete_status").html(sit);
 				if(sit == 'Aguardando data inicial.'){ 
 				   $("#enquete_voto").html('');
 				   $("#enquete_voto").html(texto).show();
@@ -186,7 +193,7 @@ function carrega_enquete(id){
 				   $("#enquete_voto").show();
 				}
 
-			},300);
+		
 			
 			
 			
@@ -221,7 +228,7 @@ function carrega_enquete(id){
 function titulo_enquete(tipo,valor){
 	
    if(tipo == 0){ /* Nome */
-	  	return '<div class="chip"><div style="background:#f0bf05 !important" class="chip-media bg-color-yellow"><i class="fa fa-user"></i></div><div class="chip-label">'+valor+'</div></div>';  
+	  	return '<div class="chip"><div style="background:#f0bf05 !important" class="chip-media bg-color-yellow"><i class="fa fa-user"></i></div><div class="chip-label">'+limita_txt(valor,27)+'</div></div>';  
 	}else
 	if(tipo == 1){ /* Titulo */
 	  	return '<div class="chip"><div class="chip-media bg-color-red"><i class="fa fa-edit"></i></div><div class="chip-label">'+valor.substr(0,30)+'</div></div>';  
