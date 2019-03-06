@@ -58,6 +58,8 @@ function carrega_pets(tipo)
 				{
 				   var foto_pet = 'data:image/jpeg;base64,'+retorno[x]['foto']+'';
 				} // CARREGANDO OS CARDS DOS PET
+				var titulo = ''+localStorage.getItem('ROTULO_LOTE')+'' +retorno[x]['lote']+' / '+localStorage.getItem('ROTULO_QUADRA')+retorno[x]['desc_quadra']+'';
+				titulo = limita_txt(titulo,20);
                 dado = 
 					'<div class="card" style="margin-top:5%;" onClick="carrega_pet(\''+retorno[x]['id_pet']+'\');"  >'
 						+'<div class="feed-comunicado cabecalho_card card-header" style="background: rgb(140, 83, 83) !important;" onload="atualiza_notificacao_modulo(5,236,this)">'+retorno[x]['nome']+'<div><i class="fa fa-paw"></i></div>'						
@@ -67,7 +69,7 @@ function carrega_pets(tipo)
 								+'<img class="circle_pet" style="margin-left: 1%" src="'+foto_pet+'">'
 								+'</img>'
 								+'<div class="chip" style="margin-left:2%"><div class="chip-media bg-color-green">'
-								+'<i class="icon material-icons md-only" style="color:white">location_on</i></div><div class="chip-label"style="font-size: 13px;" style="font-size: 13px;">'+localStorage.getItem('ROTULO_LOTE')+' '+retorno[x]['lote']+' / '+localStorage.getItem('ROTULO_QUADRA')+' '+retorno[x]['desc_quadra']+'</div>'
+								+'<i class="icon material-icons md-only" style="color:white">location_on</i></div><div class="chip-label"style="font-size: 13px;" style="font-size: 13px;">'+titulo+'</div>'
 							+'</div><div style="border-top: 1px solid #d6d6d6; height: 25px; margin-top: 2px;"></div>'
 						+'</div>'	
 				dado = dado +'</div>';
@@ -101,7 +103,7 @@ function carrega_pets(tipo)
 			afed('#pet_lista','#home','','',3,'pet_lista');
 			$("#main_pet").html(sempet);
 			$("#main_pet1").html(sempet);
-			 carrega_pets(0);
+			 //carrega_pets(0);
         }
 	}); 
 	//Meu Pet
@@ -191,11 +193,12 @@ function carrega_pet(id){
 				var id_unidades = $( "#DADOS #ID_UNIDADE" ).val();
 					if(retorno[x]['id_unidade'] == id_unidades)
 					{
-						afed('#edit_exclui','','','');
+						
+						afed('#edit_exclui','','','')
 						
 					} 
 				else{
-						afed('','#edit_exclui','','');
+					afed('','#edit_exclui','','')
 					
 					}
 				
@@ -216,10 +219,11 @@ function carrega_pet(id){
 						var foto_pet = 'data:image/jpeg;base64,'+retorno[x]['foto']+'';
 					}
 				//Preenche dados do form form_pet da pagina index.html
-							
+					var titulo = ''+localStorage.getItem('ROTULO_LOTE')+'' +retorno[x]['lote']+' / '+localStorage.getItem('ROTULO_QUADRA')+retorno[x]['desc_quadra']+'';
+				titulo = limita_txt(titulo,100);		
                
 				$("#form_pet #foto").html('<img class="circle_pts" src="'+foto_pet+'">');
-                $("#form_pet #unidade").html('<label>'+localStorage.getItem('ROTULO_LOTE')+' '+retorno[x]['lote']+' / '+localStorage.getItem('ROTULO_QUADRA')+' '+retorno[x]['desc_quadra']+'</label');
+                $("#form_pet #unidade").html('<label>'+titulo+'</label');
                 $("#form_pet #id_pet").html(retorno[x]['id_pet']);
 			    $("#form_pet #nome_pet").html(retorno[x]['nome']);
                 $("#form_pet #desc_especie").html(retorno[x]['especie']);
@@ -251,6 +255,7 @@ function carrega_pet(id){
 				var sempet = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 				+"<img  width='50%'> </div>";
 				$("#pet").html(sempet); 
+				
             }
         });
     }
@@ -329,7 +334,7 @@ function excluir_pet(){
 	var id_pet = $("#form_pet #id_pet").html();
 	var id_con = $( "#DADOS #ID_CONDOMINIO" ).val();
 	//var del = confirm("Tem Certeza que deseja excluir?");
-	app2.dialog.confirm('Tem Certeza que deseja excluir?','Evento', function () {
+	app2.dialog.confirm('Tem Certeza que deseja excluir?','PET', function () {
 	//if (del ===true)
 //	{
 //	 

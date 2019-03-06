@@ -1674,7 +1674,7 @@ input, textarea {
 .home .corpo .menu .perfil_edit .perfil_nome {
 	width:100%;
 	float:left;
-	color:#666;
+	/*color:#666;*/
 	text-align:center;
 	min-width: 0;
     -webkit-flex-shrink: 1;
@@ -1702,13 +1702,13 @@ input, textarea {
 }
 
 .home .corpo .menu .perfil_edit .perfil_condominio {
-	width:100%; 
+	/*width:100%; 
 	float:left; 
 	margin-top: -4px;
 	text-align:center;
 	color:#666;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: bold;*/
 }
 
 .home .corpo .menu .perfil_edit #bloco {
@@ -3124,7 +3124,7 @@ input, textarea {
 .enquete .enquete_morador{
 	width:70%;
 	float:left;
-	margin:4% 0 0 2%;
+	margin:2% 0 0 1%;
 }
 
 .enquete .lock {
@@ -3161,7 +3161,7 @@ input, textarea {
 .enquete .enquete_periodo{
 	width:92%;
 	float:left;
-	margin:2% 0 0 4%;
+	margin:-6% 0 0 21%;
 	font-size:11px;
 	color:#5cb4a6;
 }
@@ -3172,11 +3172,12 @@ input, textarea {
 	margin:4% 0 0 35%;
 	margin-top:6%;
 	font-size:16px;
-	color:#0a0a0a;;
+	color:#ffffff;
 	padding:5px;
 	text-align:center;
 	border-radius:50px;
-	background-color: #f1efef;
+	background-color: #f0bf05;
+	padding-top: 10px;
 }
 
 .enquete form { 

@@ -20,7 +20,7 @@ function login_user_device(){
             data       : {uuid : UUID, id_notificacao : localStorage.getItem('registrationId')}, //APP
             dataType   : 'json',
             success    : function(retorno) {
-
+				
                 if(retorno[0]['error'] == 0){
                     if(retorno[0]['perfil'] > 1){
                         //alert('teste4');
@@ -52,11 +52,11 @@ function login_user_device(){
                             }else{
                                 afed('#btipo_rg','#btipo_nome','','',3,'home');
                             }
-                            if(retorno[0]['GRUPOS'].indexOf("Morador") != -1){ $( "#DADOS #GRUPO_MOR" ).val(1); $( "#gmor" ).css("display","block"); }
-                            if(retorno[0]['GRUPOS'].indexOf("Síndico") != -1){ $( "#DADOS #GRUPO_SIN" ).val(1); $( "#gsin" ).css("display","block"); }
-                            if(retorno[0]['GRUPOS'].indexOf("Administração") != -1){ $( "#DADOS #GRUPO_ADM" ).val(1); $( "#gadm" ).css("display","block"); }
-                            if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){ $( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }
-                            if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){ $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }
+                            if(retorno[0]['GRUPOS'].indexOf("Morador") != -1){ $( "#DADOS #GRUPO_MOR" ).val(1); $( "#gmor" ).css("display","block"); }else{}
+                            if(retorno[0]['GRUPOS'].indexOf("Síndico") != -1){ $(".mlsindico").show();$(".msindico").show();  $( "#DADOS #GRUPO_SIN" ).val(1); $( "#gsin" ).css("display","block"); }else{ $(".mlsindico").hide();$(".msindico").hide();  }
+                            if(retorno[0]['GRUPOS'].indexOf("Administração") != -1){ $(".madministracao").show();$(".mlsindico").show(); $( "#DADOS #GRUPO_ADM" ).val(1); $( "#gadm" ).css("display","block"); }else{  $(".mlsindico").hide();$(".madministracao").hide();  }
+                            if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){  $(".mlsindico").show();$( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }else{ $(".mlsindico").hide();$(".madministradora").hide(); }
+                            if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){  $(".mlsindico").show();$(".mdiretoria").show();  $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }else{ $(".mlsindico").hide();$(".mdiretoria").hide(); }
                             $( "#DADOS #MHOME" ).val(retorno[0]['perfil']);
                             $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MCOMUNICADO']);
                             $( "#DADOS #MLUNICA" ).val(retorno[0]['MLUNICA']);
@@ -127,11 +127,30 @@ function login_user_device(){
                             afed('#home','#login_ini','','',3,'home');
                             
                             afed('.smenu,#perfil_abre,#perfil','#perfil_edit,#perfil_fecha','','',2);
+							
+							/* Tratativa para limitar nome do morador no menu */
+							var nome_formatado = '' 
+							if(MORADOR_NOME.length > 18){
+								nome_formatado = MORADOR_NOME.substr(0,18)+'...';
+							}else{
+								nome_formatado = MORADOR_NOME;
+							}
 
-                            $( ".perfil_condominio" ).html(retorno[0]['nome_condominio']);
-                            $( ".perfil_nome" ).html(MORADOR_NOME);
+							if($('#DADOS #PARENTESCO').val() == 1 ){ 
+								 tipo_user_ = ' - Titular';		 
+							}else{
+								 tipo_user_ = '';	
+							}
+              
+
+                            $( ".perfil_condominio" ).html(limita_txt(retorno[0]['nome_condominio'],27));
+                            $( ".perfil_nome" ).html(nome_formatado+tipo_user_);
                             $( "#bloco" ).html(QUADRA);
                             $( "#apto" ).html(LOTE);
+							
+							$( "#blocoapto" ).html(QUADRA+' - '+LOTE);
+							
+							
         //					$( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
                             if($( "#DADOS #PARENTESCO" ).val() == 1){ $( "#edit_moradores" ).css("display","block"); }
                             //carrega_notificacoes(1);
@@ -245,6 +264,7 @@ function carrega_user_perfil(id) {
 // FUNCAO LOGIN TROCA USUARIO
 function select_user(id_usuario_condominio=0) {
 	
+		
 	if(navigator.connection.type != 'none'){
         if(id_usuario_condominio == 0){
             var dados = $( "#form_perfil" ).serialize();
@@ -283,10 +303,10 @@ function select_user(id_usuario_condominio=0) {
                         afed('#btipo_rg','#btipo_nome','','',3,'home');
                     }
                     if(retorno[0]['GRUPOS'].indexOf("Morador") != -1){ $( "#DADOS #GRUPO_MOR" ).val(1); $( "#gmor" ).css("display","block"); }
-                    if(retorno[0]['GRUPOS'].indexOf("Síndico") != -1){ $( "#DADOS #GRUPO_SIN" ).val(1); $( "#gsin" ).css("display","block"); }
-                    if(retorno[0]['GRUPOS'].indexOf("Administração") != -1){ $( "#DADOS #GRUPO_ADM" ).val(1); $( "#gadm" ).css("display","block"); }
-                    if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){ $( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }
-                    if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){ $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }
+                    if(retorno[0]['GRUPOS'].indexOf("Síndico") != -1){ $(".mlsindico").show();$(".msindico").show(); $( "#DADOS #GRUPO_SIN" ).val(1); $( "#gsin" ).css("display","block"); }else{ $(".mlsindico").hide();$(".msindico").hide(); }
+                    if(retorno[0]['GRUPOS'].indexOf("Administração") != -1){ $(".mlsindico").show();$(".madministracao").show(); $( "#DADOS #GRUPO_ADM" ).val(1); $( "#gadm" ).css("display","block"); }else{ $(".mlsindico").hide();$(".madministracao").hide();  }
+                    if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){ $(".mlsindico").show();$(".madministradora").show(); $( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }else{ $(".mlsindico").hide(); $(".madministradora").hide(); }
+                    if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){ $(".mlsindico").show();$(".mdiretoria").show(); $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }else{ $(".mlsindico").hide();$(".mdiretoria").hide(); }
                     $( "#DADOS #MHOME" ).val(retorno[0]['perfil']);
                     $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MCOMUNICADOS']);
                     $( "#DADOS #MLUNICA" ).val(retorno[0]['MLUNICA']);
@@ -321,7 +341,7 @@ function select_user(id_usuario_condominio=0) {
                     MORADOR_SEXO = retorno[0]['masculino'];
                     QUADRA = retorno[0]['rquadra']+' '+retorno[0]['quadra'];
                     LOTE = retorno[0]['rlote']+' '+retorno[0]['lote'];
-
+				  $( "#blocoapto" ).html(QUADRA+' - '+LOTE);
                     localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                     localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
                     localStorage.setItem('AUTORIZA' ,retorno[0]['autoriza']);
@@ -339,8 +359,21 @@ function select_user(id_usuario_condominio=0) {
 						$( '.fundo1 #bloco' ).css('margin','2% 0 0 -8%');
 						$( '#perfil .user_foto').html('<div id="border_m"></div>');
                     }
-
-                  
+					
+					/* Tratativa para limitar nome do morador no menu */
+					var nome_formatado = '' 
+					if(MORADOR_NOME.length > 18){
+						nome_formatado = MORADOR_NOME.substr(0,18)+'...';
+					}else{
+						nome_formatado = MORADOR_NOME;
+					}
+					
+					if($('#DADOS #PARENTESCO').val() == 1 ){ 
+						 tipo_user_ = ' - Titular';		 
+					}else{
+						 tipo_user_ = '';	
+					}
+              
 			
                     localStorage.setItem('CHAT_EMAIL',retorno[0]['CHAT_EMAIL']);
                     localStorage.setItem('CHAT_TOCA',retorno[0]['CHAT_TOCA']);
@@ -368,9 +401,9 @@ function select_user(id_usuario_condominio=0) {
                     localStorage.setItem('COR_MSG',retorno[0]['COR_MSG']);
                     afed('#home','#login_perfil','','',3,'home');
                  
-
-                    $( ".perfil_condominio" ).html(retorno[0]['nome_condominio']);
-                    $( ".perfil_nome" ).html(MORADOR_NOME);
+                    $( ".perfil_condominio" ).html(limita_txt(retorno[0]['nome_condominio'],27));
+					
+                    $( ".perfil_nome" ).html(nome_formatado+tipo_user_);
                     $( "#bloco" ).html("<strong> "+QUADRA+"</storng>");
                     $( "#apto" ).html("<strong> "+LOTE+"</storng>");
     //					$( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
