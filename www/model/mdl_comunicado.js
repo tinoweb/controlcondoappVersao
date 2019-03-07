@@ -418,6 +418,7 @@ function download_arq_comunicado(caminho,arquivo) {
 		}
 	};
     //var filePath = cordova.file.applicationStorageDirectory+'Download/'+arquivo;
+	
     fileTransfer.download(
         uri,
         filePath,
