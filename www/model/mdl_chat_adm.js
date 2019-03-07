@@ -13,6 +13,7 @@ function carrega_chat(par=''){
 	}else{
 		var nome = '';
 	}
+	//alert("123"+nome+"123");
     $.ajax({
         type       : "POST",
         url        : localStorage.getItem('DOMINIO')+"appweb/chat_get.php",

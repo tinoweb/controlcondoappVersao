@@ -157,7 +157,15 @@ function login_user_device(){
                             carrega_notificacoes(0);
                             
                             if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
-                            if($( "#DADOS #MLUNICA" ).val() == 1 && localStorage.getItem('AUTORIZA') == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
+                            if($( "#DADOS #MLUNICA" ).val() == 1){ 
+								if(localStorage.getItem('AUTORIZA') == 1){
+									afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3);
+								}else{
+									afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3);
+								}
+							}else{
+								afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); 
+							}
                             if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
                             if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
                             if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
@@ -416,7 +424,14 @@ function select_user(id_usuario_condominio=0) {
                     carrega_notificacoes(0);
                     
                     if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
-                    if($( "#DADOS #MLUNICA" ).val() == 1 && localStorage.getItem('AUTORIZA') == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
+                    if($( "#DADOS #MLUNICA" ).val() == 1){
+						//alert(localStorage.getItem('AUTORIZA'));
+						if(localStorage.getItem('AUTORIZA') == 1){
+							afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3);
+						}else{
+							afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3);
+						}
+					}else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
                     if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3);} 
                     if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
                     if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
