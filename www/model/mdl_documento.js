@@ -38,7 +38,7 @@ function carrega_documentos(tipo){
             //alert(retorno);
 			
 			var cont = 0;
-            for (x in retorno) {
+            for (x in retorno) { 
 				cont++;
                 caminho = retorno[x]['local'].split('../');
                 tipo_   = retorno[x]['local'];
