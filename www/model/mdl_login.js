@@ -1,6 +1,7 @@
 // LOGIN USUARIO DEVICE (VALIDA O LOGIN PELO ID DO DISPOSITIVO)
 function login_user_device(){
     //alert('Login');
+	localStorage.setItem('VERSAO','1.2.1');
     if(navigator.connection.type != 'none'){
         //alert('teste2');
         if(device.uuid == null){
@@ -32,6 +33,7 @@ function login_user_device(){
                     }else{    
 						
                         if(retorno[0]['usar_control_condo'] == 1){
+							
                             //alert('credito:'+retorno[0]['qtd_credito_liberacao']);
                             $( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
                             $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
@@ -58,7 +60,8 @@ function login_user_device(){
                             if(retorno[0]['GRUPOS'].indexOf("Administradora") != -1){  $(".mlsindico").show();$( "#DADOS #GRUPO_ADM2" ).val(1); $( "#gadm2" ).css("display","block"); }else{ $(".mlsindico").hide();$(".madministradora").hide(); }
                             if(retorno[0]['GRUPOS'].indexOf("Diretoria") != -1){  $(".mlsindico").show();$(".mdiretoria").show();  $( "#DADOS #GRUPO_DIR" ).val(1); $( "#gdir" ).css("display","block"); }else{ $(".mlsindico").hide();$(".mdiretoria").hide(); }
                             $( "#DADOS #MHOME" ).val(retorno[0]['perfil']);
-                            $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MCOMUNICADO']);
+                            $( "#DADOS #MCOMUNICADOS" ).val(retorno[0]['MCOMUNICADOS']);
+							//alert(retorno[0]['MCOMUNICADOS']);
                             $( "#DADOS #MLUNICA" ).val(retorno[0]['MLUNICA']);
                             $( "#DADOS #MLRECORRENTE" ).val(retorno[0]['MLRECORRENTE']);
                             $( "#DADOS #MRESERVA" ).val(retorno[0]['MRESERVA']);
@@ -156,7 +159,8 @@ function login_user_device(){
                             //carrega_notificacoes(1);
                             carrega_notificacoes(0);
                             
-                            if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
+                            if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); }
+							
                             if($( "#DADOS #MLUNICA" ).val() == 1){ 
 								if(localStorage.getItem('AUTORIZA') == 1){
 									afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3);
