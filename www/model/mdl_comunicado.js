@@ -195,7 +195,7 @@ function carrega_comunicado_arq(id){
 				num += 1;
 				ext = retorno[x]['nome_arquivo'];
 				ext = ext.split('.');
-                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arq_comunicado(\''+retorno[x]['caminho']+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
+                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arquivo(\'https://www.controlcondo.com.br/controlcondo/v2//docs/63/documento/cfedd95f0b8b9faf66ee9c7f40bd6e8a.jpg','/docs/63/documento/cfedd95f0b8b9faf66ee9c7f40bd6e8a.jpg','TESTESTETSETS\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
                 //alert(retorno[x]['caminho']);
                 dados = dados + dado;
             }
