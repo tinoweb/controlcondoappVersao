@@ -319,10 +319,10 @@ function edit_pet()
 			success: function(retorno)
 			 {
                 voltar('#pet_lista','#pet_add','pet_lista');
-				
-                carrega_pets(0);
-				 setTimeout(carrega_pets(0),300);
-			 	 setTimeout(carrega_pets(5),300);
+							afed('#pet_lista','#update_pet','');
+                //carrega_pets(0);
+                carrega_pets(5);
+				$("#todos_pets").click();
 			 }
 		  })
 }
