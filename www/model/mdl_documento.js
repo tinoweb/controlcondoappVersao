@@ -38,7 +38,7 @@ function carrega_documentos(tipo){
             //alert(retorno);
 			
 			var cont = 0;
-            for (x in retorno) { 
+            for (x in retorno) {
 				cont++;
                 caminho = retorno[x]['local'].split('../');
                 tipo_   = retorno[x]['local'];
@@ -58,7 +58,7 @@ function carrega_documentos(tipo){
 								'<div>'+retorno[x]['tipo']+'</div>'+
 							'</div>'+
 							'<div class="card-content card-content-padding corpo_card">'+
-								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="check_leitura(2,'+retorno[x]['id_documento']+');download_arquivo(\'https://www.controlcondo.com.br/controlcondo/v2/paginas/docs/26/comunicado/71c99aa608d912207e75045a56de7bf1.jpg\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
+								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="check_leitura(2,'+retorno[x]['id_documento']+');download_arquivo(\''+localStorage.getItem('DOMINIO')+caminho[1]+fmt_lin(tipo_)+'\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
 							'</div>'+
 						'</div>';
 				

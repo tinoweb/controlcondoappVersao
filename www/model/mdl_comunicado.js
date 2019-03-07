@@ -400,7 +400,7 @@ function download_arq_comunicado(caminho,arquivo) {
 	var extencao = arquivo.split(".");
 	var ext      = extencao[1];
     //alert(path);
-	
+    console.log(cordova.file.externalRootDirectory);
 	statusDom    = document.querySelector('#status');
 	$('#downloadProgress').css({"display":"block"});
   	app2.progressbar.set('#status', "0");
@@ -410,7 +410,6 @@ function download_arq_comunicado(caminho,arquivo) {
     var uri = encodeURI(path);
 	
     var filePath = cordova.file.externalApplicationStorageDirectory+'Download/'+fmt_lin(arquivo);
-	
 	fileTransfer.onprogress = function(progressEvent) {
 		if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
@@ -419,8 +418,7 @@ function download_arq_comunicado(caminho,arquivo) {
 		}
 	};
     //var filePath = cordova.file.applicationStorageDirectory+'Download/'+arquivo;
-	
-    /*fileTransfer.download(
+    fileTransfer.download(
         uri,
         filePath,
         function(entry) {
@@ -441,32 +439,6 @@ function download_arq_comunicado(caminho,arquivo) {
 			$('#downloadProgress').css({"display":"none"});
 			alert("erro ao fazer download");
             //console.log("upload error code" + error.code);
-        },
-        false,
-        {
-            headers: {
-                "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-            }
-        }
-    );*/
-	
-	fileTransfer.download(
-        uri,
-        filePath,
-        function(entry) {
-			$('#downloadProgress').css({"display":"none"});
-            var ref = cordova.InAppBrowser.open(uri, '_system', 'location=yes');
-			//var ref = cordova.InAppBrowser.open(uri, '_blank', 'location=yes');
-			
-		 },
-        function(error) {
-			$('#downloadProgress').css({"display":"none"});
-			alert('erro');
-            console.log("download error source " + error.source);
-            console.log("download error target " + error.target);
-			alert(error.code);
-			alert(filePath);
-	
         },
         false,
         {
