@@ -148,7 +148,7 @@ function login_user_device(){
                             $( "#bloco" ).html(QUADRA);
                             $( "#apto" ).html(LOTE);
 							
-							$( "#blocoapto" ).html(QUADRA+' - '+LOTE);
+							$( "#blocoapto" ).html(QUADRA.toLowerCase()+' - '+LOTE.toLowerCase());
 							
 							
         //					$( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
@@ -180,6 +180,10 @@ function login_user_device(){
                             localStorage.setItem('TELA_ATUAL','home');	
                             //carrega_liberacao(0);
 							atualiza_notificacao(0);
+							setTimeout(function(){
+								nome_exibicao(retorno[0]['id_condominio']);
+
+							},500);
                         }else{
                             notifica('Perfil/Perfil usuário inválido/Fechar',0,0);
                         }
@@ -437,6 +441,10 @@ function select_user(id_usuario_condominio=0) {
                     localStorage.setItem('TELA_ATUAL','home');	
                     //carrega_liberacao(0);
 					atualiza_notificacao();
+					setTimeout(function(){
+						nome_exibicao(retorno[0]['id_condominio']);
+						
+					},500);
                 }else{
                     notifica('Perfil/Perfil usuário inválido/Fechar',0,0);
                 }
@@ -496,6 +504,20 @@ function perfil_notificacao(id_condominio){
                 }
             }, 500);
             clearInterval(intervalo);
+		}
+	});
+}
+
+function nome_exibicao(id_condominio){
+	
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/login.php',
+		data: 'NOME_EXIBICAO=""&id_condominio='+id_condominio,
+		crossDomain: true,
+        dataType   : 'json',
+		success: function(retorno){
+           $('.perfil_condominio').html(retorno);
 		}
 	});
 }
