@@ -58,7 +58,7 @@ function carrega_documentos(tipo){
 								'<div>'+retorno[x]['tipo']+'</div>'+
 							'</div>'+
 							'<div class="card-content card-content-padding corpo_card">'+
-								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="check_leitura(2,'+retorno[x]['id_documento']+');download_arquivo(\''+localStorage.getItem('DOMINIO')+caminho[1]+fmt_lin(tipo_)+'\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
+								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="check_leitura(2,'+retorno[x]['id_documento']+');download_arquivo(\'https://www.controlcondo.com.br/controlcondo/v2/docs/63/documento/cfedd95f0b8b9faf66ee9c7f40bd6e8a.jpg\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
 							'</div>'+
 						'</div>';
 				
