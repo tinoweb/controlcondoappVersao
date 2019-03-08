@@ -199,7 +199,7 @@ function carrega_comunicado_arq(id){
 				num  += 1;
 				ext  = retorno[x]['nome_arquivo'];
 				ext  = ext.split('.');
-                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arquivo(\''+link+'\',\''+caminho+'\',\'Jesus\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
+                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arquivo(\''+link+'\',\''+caminho+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
                 //alert(retorno[x]['caminho']);
                 dados = dados + dado;
             }
