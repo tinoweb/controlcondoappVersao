@@ -177,9 +177,11 @@ function carrega_comunicado(id){
 // FUNCAO CARREGA UM ANEXO
 function carrega_comunicado_arq(id){
 	
+	var link  = '';
     var dados = '';
     var dado  = '';
 	var ext;
+	var caminho = '';
 	var num;
 	$.ajax({
 		type: 'POST',
@@ -191,11 +193,13 @@ function carrega_comunicado_arq(id){
         dataType   : 'json',
 		success: function(retorno){
             for (x in retorno) {
+				link    = localStorage.getItem('DOMINIO')+'paginas'+retorno[x]['caminho']+retorno[x]['nome_arquivo'];
+				caminho = retorno[x]['caminho'];
 				num  = parseInt(x);
-				num += 1;
-				ext = retorno[x]['nome_arquivo'];
-				ext = ext.split('.');
-                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arq_comunicado(\''+retorno[x]['caminho']+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
+				num  += 1;
+				ext  = retorno[x]['nome_arquivo'];
+				ext  = ext.split('.');
+                dado = '<button class="col button button-small button-fill color-gray" onClick="download_arquivo(\''+link+'\',\''+caminho+'\',\''+retorno[x]['nome_arquivo']+'\');" style="top: 18px;margin-top:10px"><i class="fa fa-cloud-download"></i>DOWNLOAD ANEXO ' + num + '  ('+ext[1]+')</button>';
                 //alert(retorno[x]['caminho']);
                 dados = dados + dado;
             }

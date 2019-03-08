@@ -111,8 +111,6 @@ function carrega_enquete(id){
         dataType   : 'json',
 		success: function(retorno){
 			
-			
-			
             $( "#enquete .enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
             $( "#enquete .enquete_morador" ).html(titulo_enquete(0,retorno[0]['criado']));
             $( "#enquete .enquete_titulo" ).html(titulo_enquete(1,retorno[0]['titulo']));
@@ -221,8 +219,6 @@ function carrega_enquete(id){
             alert('Erro ao carregar');
         }
 	});	
-	
-	
 }
 
 function titulo_enquete(tipo,valor){
@@ -303,6 +299,29 @@ function carrega_perguntas(id,id_usuario_condominio){
             alert('Erro ao carregar respostas');    
         }
 	});	
+}
+
+
+function resposta_morador(id,id_usuario_condominio){
+	
+	$.ajax({
+		type: 'POST',
+        url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+        data       : {id_enquete : id, id_usuario_condominio : id_usuario_condominio, tipo : 4},
+        dataType   : 'json',
+		success: function(retorno){
+			
+			console.log(retorno);
+		},
+        error      : function() {
+            alert('Erro ao carregar respostas');    
+        }
+	});	
+	
+	
 }
 
 function carrega_resposta(id){
