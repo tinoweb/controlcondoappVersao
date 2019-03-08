@@ -189,7 +189,9 @@
 								if(localStorage.getItem('MMUDANCA') == 1){ afed('#menu_mudanca','','','',3); }else{ afed('','#menu_mudanca','','',3); }
 								if(localStorage.getItem('MAGENDA') == 1){ afed('#menu_agenda','','','',3); }else{ afed('','#menu_agenda','','',3); }
 
-							}else{
+							}else if(localStorage.getItem("NOT_TYPE") == 666){
+								logout();
+							}
 								openNotificacao(localStorage.getItem("NOT_TYPE"),data.title,'',data.message);
 							}
 							

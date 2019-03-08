@@ -199,7 +199,7 @@ setTimeout(function(){
 	$("#visitante #rg").mask("99.999.999-9");
 },3000);
 
-function alerta(tipo,valor=""){
+function alerta(tipo,valor="",time=2000){
 	
 	let icon = "";
 	let msg  = "";
@@ -230,7 +230,7 @@ function alerta(tipo,valor=""){
 	  icon: icon,
 	  text: msg,
 	  position: 'center',
-	  closeTimeout: 2000,
+	  closeTimeout: time,
 	});
 
     toastIcon.open();
