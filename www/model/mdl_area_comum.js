@@ -3,6 +3,7 @@
 //FUNCAO CARREGA TODAS AREAS COMUNS
 function carrega_areas(){
 	var dados = '';
+	//dados = '<div class="area col button button-big button-raised button-fill link popup-open" style=" margin-bottom: 4%;" onClick="carrega_minha_reserva(\'0\');">MINHAS RESERVAS</div>';
 	var dados_select = '<option value="">TODOS</option>';
 	$.ajax({
 		type: 'POST',
