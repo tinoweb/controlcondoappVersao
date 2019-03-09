@@ -374,6 +374,89 @@ function verifica_data_retroativa(el){
 	}
 }
 
+function grupo_mrd(grupos){
+	
+	  if(grupos.indexOf('Síndico') >= 0 ){
+		  grupo_desc =  'Síndico' 
+	  }else
+	  if(grupos.indexOf('Síndico') == -1       && 
+		 grupos.indexOf('Administradora') >= 0 && 
+		 grupos.indexOf('Administração') >= 0  && 
+		 grupos.indexOf('Diretoria') >= 0){
+		 grupo_desc =  'Diretoria' 
+	  }else
+	  if(grupos.indexOf('Síndico') == -1         && 
+		 grupos.indexOf('Administradora')  == -1 && 
+		 grupos.indexOf('Administração')   >=  0 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Administração' 
+	  }else
+	  if(grupos.indexOf('Síndico') == -1         && 
+		 grupos.indexOf('Administradora')  == -1 && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  >= 0){
+		 grupo_desc =  'Diretoria' 
+	  }else
+	  if(grupos.indexOf('Síndico') == -1         && 
+		 grupos.indexOf('Administradora')  >= 0  && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Administradora' 
+	  }else
+	  if(grupos.indexOf('Síndico') >=0           && 
+		 grupos.indexOf('Administradora')  == -1 && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Síndico' 
+	  }else
+	  if(grupos.indexOf('Síndico')  == -1        && 
+		 grupos.indexOf('Administradora')  >= 0  && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Administradora' 
+      }else
+	  if(grupos.indexOf('Síndico') == -1         && 
+		 grupos.indexOf('Administradora')  == -1 && 
+		 grupos.indexOf('Administração')  >=   0 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Administração' 
+	  }else
+	  if(grupos.indexOf('Síndico') >= 0          && 
+		 grupos.indexOf('Administradora')  == -1 && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  > 0){
+		 grupo_desc =  'Síndico' 
+	  }else
+	  if(grupos.indexOf('Síndico') == -1         && 
+		 grupos.indexOf('Administradora')  >=  0 && 
+		 grupos.indexOf('Administração')   >=  0 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Administração' 
+	  }else
+	  if(grupos.indexOf('Síndico') >= 0          && 
+		 grupos.indexOf('Administradora') == -1  && 
+		 grupos.indexOf('Administração')   >=  0 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Síndico' 
+	  }else
+	  if(grupos.indexOf('Síndico') == -1         && 
+		 grupos.indexOf('Administradora')  >= 0  && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  >= 0){
+		 grupo_desc =  'Diretoria' 
+	  }else
+	  if(grupos.indexOf('Síndico') >= 0          && 
+		 grupos.indexOf('Administradora')  >= 0  && 
+		 grupos.indexOf('Administração')   == -1 && 
+		 grupos.indexOf('Diretoria')  == -1){
+		 grupo_desc =  'Síndico' 
+	  }else{
+		 grupo_desc =  '' 
+	  }
+	
+	  return grupo_desc;
+}
+
 
 
   

@@ -29,6 +29,7 @@ function carrega_enquetes(tipo){
 	var grupo  		= '';
 	var cor          = '';
 	var foto_morador = ''
+	var grupo_desc  = ''
 	$.ajax({
 		type: 'POST',
         url        : localStorage.getItem('DOMINIO')+"appweb/enquete_get.php",
@@ -63,15 +64,99 @@ function carrega_enquetes(tipo){
                 }
                 if(grupos.length>0){
                     grupos = '<div style="float:left; width: 100%;"enquete_votos>'+grupos+'</div>';
-                }         
+                } 
+				
+				     if(grupos.indexOf('Síndico') >= 0 ){
+					     grupo_desc =  'Síndico' 
+					 }else
+					 if(grupos.indexOf('Síndico') == -1        && 
+						 grupos.indexOf('Administradora') >= 0 && 
+						 grupos.indexOf('Administração') >= 0  && 
+						 grupos.indexOf('Diretoria') >= 0){
+						 grupo_desc =  'Diretoria' 
+					 }else
+					  if(grupos.indexOf('Síndico') == -1         && 
+						 grupos.indexOf('Administradora')  == -1 && 
+						 grupos.indexOf('Administração')   >=  0 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Administração' 
+					  }else
+					  if(grupos.indexOf('Síndico') == -1         && 
+						 grupos.indexOf('Administradora')  == -1 && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  >= 0){
+						 grupo_desc =  'Diretoria' 
+					  }else
+					  if(grupos.indexOf('Síndico') == -1         && 
+						 grupos.indexOf('Administradora')  >= 0 && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Administradora' 
+					  }else
+					  if(grupos.indexOf('Síndico') >=0           && 
+						 grupos.indexOf('Administradora')  == -1 && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Síndico' 
+					  }else
+					  if(grupos.indexOf('Síndico')  == -1        && 
+						 grupos.indexOf('Administradora')  >= 0   && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Administradora' 
+						 
+					  }else
+					  if(grupos.indexOf('Síndico') == -1          && 
+						 grupos.indexOf('Administradora')  == -1 && 
+						 grupos.indexOf('Administração')  >=   0 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Administração' 
+					  }else
+					  if(grupos.indexOf('Síndico') >= 0          && 
+						 grupos.indexOf('Administradora')  == -1 && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  > 0){
+						 grupo_desc =  'Síndico' 
+					  }else
+					  if(grupos.indexOf('Síndico') == -1          && 
+						 grupos.indexOf('Administradora')  >=  0 && 
+						 grupos.indexOf('Administração')   >=  0 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Administração' 
+					  }else
+					  if(grupos.indexOf('Síndico') >= 0          && 
+						 grupos.indexOf('Administradora') == -1  && 
+						 grupos.indexOf('Administração')   >=  0 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Síndico' 
+					  }else
+					  if(grupos.indexOf('Síndico') == -1         && 
+						 grupos.indexOf('Administradora')  >= 0 && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  >= 0){
+						 grupo_desc =  'Diretoria' 
+					  }else
+					  if(grupos.indexOf('Síndico') >= 0          && 
+						 grupos.indexOf('Administradora')  >= 0  && 
+						 grupos.indexOf('Administração')   == -1 && 
+						 grupos.indexOf('Diretoria')  == -1){
+						 grupo_desc =  'Síndico' 
+					  }else{
+						 grupo_desc =  '' 
+					  }
+				
+				    
 				
 				if(retorno[x]['foto'] == ''){   
 					
-					 dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div> <div class="enquete_foto_morador"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
+			         
+					 dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div>	<div class="chip" style=" margin:11px 0 0px 12px;"><div class="chip-media bg-color-green"> <span style="font-size:1.6em;" class="fa fa-user-circle"></span></div><div class="chip-label">'+retorno[x]['criado']+'</div></div><br><div class="chip" style="margin: 6px 0 0px 12px;"><div class="chip-media bg-color-blue"><i class="fa fa-group"></i></div><div class="chip-label">Grupo: '+grupo_desc+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-red"> <span style="" class="fa fa-exchange"></span></div><div class="chip-label" style="">Status: '+retorno[x]['status']+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-orange"> <span style="" class="fa fa-edit"></span></div><div class="chip-label" style="">Titulo: '+retorno[x]['titulo']+'</div></div></span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
 					
 				   
 				}else{
-					  dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div> <div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
+					 /* dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div> <div class="enquete_foto_morador" style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span class="enquete_morador"><span style="height: 19px; overflow:hidden; float:left"> <strong>'+retorno[x]['criado']+'</strong></span>'+grupos+'</span><span class="enquete_titulo">'+retorno[x]['titulo']+'</span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';*/
+					
+					 dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div>	<div class="chip" style=" margin:11px 0 0px 12px;"><div class="chip-media bg-color"> <img class="chip_photo_" style="font-size:1.6em;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');" ></img></div><div class="chip-label">'+limita_txt(retorno[x]['criado'],37)+'</div></div><br><div class="chip" style="margin: 6px 0 0px 12px;"><div class="chip-media bg-color-blue"><i class="fa fa-group"></i></div><div class="chip-label">Grupo: '+grupo_desc+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-red"> <span style="" class="fa fa-exchange"></span></div><div class="chip-label" style="">Status: '+retorno[x]['status']+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-orange"> <span style="" class="fa fa-edit"></span></div><div class="chip-label" style="">Titulo: '+limita_txt(retorno[x]['titulo'],34)+'</div></div></span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
 				}
 				
 
@@ -116,8 +201,15 @@ function carrega_enquete(id){
         dataType   : 'json',
 		success: function(retorno){
 			
+			if(retorno[0]['foto'] == ''){
+			   $( "#enquete .enquete_foto_morador" ).removeAttr('style');
+			   $( "#enquete .enquete_foto_morador" ).html('<span style="font-size:4em;color:#c2c2c2;" class="foto_enquete_t fa fa-user-circle"></span>');		
+			}else{
+			   $( "#enquete .enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+				$('.foto_enquete_t').hide();
+			}
 			
-            $( "#enquete .enquete_foto_morador" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
+           
             $( "#enquete .enquete_morador" ).html(titulo_enquete(0,retorno[0]['criado']));
             $( "#enquete .enquete_titulo" ).html(titulo_enquete(1,retorno[0]['titulo']));
 			$( "#enquete .enquete_dataini" ).html(titulo_enquete(2,retorno[0]['data_inicio']));
@@ -177,7 +269,7 @@ function carrega_enquete(id){
 				setTimeout(function(){
 			
 				  if($('#PARENTESCO').val() != 1 ){
-					    $("#enquete_voto").prev().html(texto2);
+					    $("#enquete_voto").prev().html(texto2).show();
 					}
 				},500);
 			}
@@ -187,7 +279,7 @@ function carrega_enquete(id){
 							  '<span style="color: white;">Essa enquete estará disponivel para Votação a partir de '+retorno[0]['data_inicio']+'</span>'+
 						  '</div>';
 			
-			let texto2  =  '<div style="background: orange;padding: 7px;margin: 6px;margin-left: -10px;">'+
+			let texto2  =  '<div style="background: orange;padding: 7px;margin: 6px;">'+
 							  '<span style="color: white;">Você deve ser o titular da unidade para votar.</span>'+
 						  '</div>';
 
@@ -332,9 +424,9 @@ let resposta_morador = (id) => {
 					
 			for(x in retorno){
 				if(retorno[x].status == 'rpt_escolhida'){
-				  html += '<div class="accordion-item-content" style="border-bottom: 1px solid #f4f4f4;font-size: 16px;padding-left:14px;"> '+retorno[x].pergunta+' <span style="color: #2196f3;float:right;margin: 5px 41px 0 0px;" class="fa fa-check-circle"></span></div>';
+				  html += '<div class="accordion-item-content" style="background:rgb(248, 248, 248);font-size: 16px;padding-left:14px;"> '+retorno[x].pergunta+' <span style="color: #2196f3;float:right;margin: 5px 41px 0 0px;" class="fa fa-check-circle"></span></div>';
 				}else{
-				  html += '<div class="accordion-item-content" style="border-bottom: 1px solid #f4f4f4;padding-left: 14px;font-size: 16px;">'+retorno[x].pergunta+' <span style="color: #white;float:right;margin: 5px 10px 0 0px;" class="fa fa-check-close"></span></div>';
+				  html += '<div class="accordion-item-content" style="padding-left: 14px;font-size: 16px;">'+retorno[x].pergunta+' <span style="color: #white;float:right;margin: 5px 10px 0 0px;" class="fa fa-check-close"></span></div>';
 				}
 			}
 			
@@ -383,9 +475,9 @@ function carrega_resposta(id){
                 dados = dados + dado;
             }
 			
-			if(qt_dados == 2){
+			/*if(qt_dados == 2){
 				cor = ['green','red'];
-			}
+			}*/
 			
 			limparGrafico();
 			if(retorno[0]['total'] > 0){

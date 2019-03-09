@@ -33,6 +33,49 @@ body, html {
   	flex-direction: column;
 }
 
+@media only screen and (max-width:360px){
+	
+	.acesso_ul{
+		margin-left: 17px;
+		margin-left: 17px;
+		overflow: auto;
+		max-height: 213px;
+		margin-top: 15px;
+	}
+	
+	.home .corpo .menu .perfil_edit {
+		width:100%;
+		/*height:80%;*/
+		float:left;
+		margin:0;
+		display:none;
+		margin-top: 50px;
+		overflow:auto;
+		max-height: 465px;
+		padding-bottom: 58px;
+
+	}
+	
+	.home .fast_menu {
+		width: 100%;
+		height: 9% !important;
+		float: left;
+		margin: 0;
+		background-color: #FFF;
+		border-bottom: 1px solid #d2d1d6;
+		display: table-cell;
+		margin-top: 50px;
+	}
+}
+
+.chip_photo_{
+
+    width: 86px !important;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 73px !important;
+
+}
 
 #perfil_edit .back{
 	border-radius: 71px;
@@ -718,7 +761,7 @@ input, textarea {
 
 .home .fast_menu {
 	width:100%;
-	height:9%;
+	height:7%;
 	float:left;
 	margin:0;
 	background-color:#FFF;
@@ -1102,12 +1145,12 @@ input, textarea {
 	float:left;
 	margin:2% 0 0 0;
 	border-radius:50%;
-	background-image:url(../img/user2.png);
+	/*background-image:url(../img/user2.png);*/
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
-	border:1.2px solid #D6D6D6;
-	background-color:#FBFBFB;
+	/*border:1.2px solid #D6D6D6;
+	background-color:#FBFBFB;*/
 }
 
 .enquete_morador{
@@ -1637,18 +1680,7 @@ input, textarea {
 	color:#666;
 }
 
-.home .corpo .menu .perfil_edit {
-	width:100%;
-	/*height:80%;*/
-	float:left;
-	margin:0;
-	display:none;
-	margin-top: 50px;
-	overflow:auto;
-	max-height: 465px;
-	padding-bottom: 58px;
 
-}
 
 .home .corpo .menu .perfil_edit .user_foto {
 	width:140px;
@@ -3047,12 +3079,12 @@ input, textarea {
 	float:left;
 	margin:2% 0 0 2%;
 	border-radius:50%;
-	background-image:url(../img/user2.png);
+	/*background-image:url(../img/user2.png);*/
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
-	border:1.2px solid #D6D6D6;
-	background-color:#FBFBFB;
+	/*border:1.2px solid #D6D6D6;
+	background-color:#FBFBFB;*/
 }
 
 .enquetes .enquete .enquete_morador{
@@ -3113,12 +3145,12 @@ input, textarea {
 	float:left;
 	margin:2% 0 0 2%;
 	border-radius:50%;
-	background-image:url(../img/user2.png);
+	/*background-image:url(../img/user2.png);*/
 	background-repeat:no-repeat;
 	background-size:100%;
 	background-position:center center;
-	border:2px solid #D6D6D6;
-	background-color:#FFF;
+	/*border:2px solid #D6D6D6;
+	background-color:#FFF;*/
 }
 
 .enquete .enquete_morador{
@@ -3152,7 +3184,6 @@ input, textarea {
 
 .enquete .enquete_subtitulo{
 	width:96%;
-	float:left;
 	margin:2% 0 0 4%;
 	font-size:14px;
 	color:#999;
@@ -3163,7 +3194,7 @@ input, textarea {
 	float:left;
 	margin:-6% 0 0 21%;
 	font-size:11px;
-	color:#5cb4a6;
+	color:#020202;
 }
 
 .enquete .enquete_votos {

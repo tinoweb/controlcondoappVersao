@@ -180,8 +180,6 @@ function carrega_ocorrencia(id){
                 afed('#ocorrencia','#ocorrencias,#home,#bt_oco_salva,#bt_oco_finaliza','','#form_ocorrencia #titulo_ocorrencia',3);
         
 
-				alert($( "#DADOS #ID_MORADOR" ).val()); 
-				alert(retorno[0].id_solicitante);
 				
                 if( ($( "#DADOS #ID_MORADOR" ).val() == retorno[0].id_solicitante) && (retorno[0].id_situacao != 10)){
                     afed('#bt_oco_finaliza','','','','','');
