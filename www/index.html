@@ -690,7 +690,7 @@
 						<a class="item-content item-link" href="/cards/">
 						<div class="item-media"><i class="fa fa-calendar"></i></div>
 						<div class="item-inner">
-						<div class="item-title">Agenda Tarefas</div>
+						<div class="item-title">Minha Agenda</div>
 						</div>
 						</a>
 						</li>
@@ -2442,9 +2442,8 @@
 	</div>
 </div>
 
+		
 <!---   $ENQUETES         -->
-
-
 <div id="enquetes" class="pagina enquetes">
 	<div class="view view-enquetes"> 
 		<!-- Initial Page, "data-name" contains page name -->
@@ -2482,101 +2481,103 @@
 <div id="enquete" class="pagina enquete">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-			<div class="left"> <a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> </div>
-			<span class="title">Enquete</span> </div>
-		</div>
-		<div class="scroll">
-			
-			<div class="enquete_foto_morador"></div>
-			<div class="enquete_morador"></div>
-			<div class="enquete_status" style="margin:45px 0 0 77px"></div><hr style="width:100%">
-			<h3 style="margin-left:58px;color:#cb8d2e;">Informações da Enquete</h3>
-			<span class="enquete_titulo">titulo</span>
-			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_dataini"></span><br>
-			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_datafim"></span>
-			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_votos_total"></span>
-			<div class="enquete_subtitulo" >stitulo</div>
-			
-			<form name="enquete_voto" id="enquete_voto"style="height: 392px;">
-			</form>
-	</div>
-	</div>
-			  <!--                <span class="enquete_barra_voto">pergunta</span>';
-				<span class="enquete_barra_voto4">Votos | 100%</span>
-				<div class="enquete_barra_voto2" style="border-color:'.cor_enquete(conta_perguntas).';">
-					<div class="enquete_barra_voto3" style="width:100%; background-color:'.cor_enquete(1).';"></div>
-
-<div id="enquete" class="pagina">
-	<div class="view">
-		<div class="page page-current"> 
-			<div class="navbar" >
-				<div class="navbar-inner">
-					<div class="left"> <a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> </div>
-					<div class="title">Enquete</div> 
-					<div class="right"></div> 
-
-				</div>
+			<div class="left"> 
+				<a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> 
 			</div>
-			<div class="page-content" style="padding: 55px 10px 10px 10px" >
-				<div class="row">
-					<div class="enquete_foto_morador" id="enquete_foto_morador"></div>
-					<div class="enquete_morador" id="enquete_morador"></div>
+			<span class="title">Enquete</span> 
+		</div>
+	</div>
+	
+	<div class="scroll">
+	    <div class="enquete_foto_morador"></div>
+		<div class="enquete_morador"></div>
+		<div class="enquete_status" style="margin:45px 0 0 77px"></div>
+	    <hr style="width:100%">
+		<h3  style="margin-left:58px;color:#cb8d2e;">Informações da Enquete</h3>
+		<div style=" width: 100%;height: 0px;">
+			<span class="enquete_titulo">titulo</span>
+	    </div>
+		<div style=" width: 100%;height: 59px;">
+			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_dataini"></span>
+	    </div>
+		<div  style=" width: 100%;height: 59px;">
+			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_datafim"></span>
+	    </div>
+		<div  style=" width: 100%;height: 59px;">
+			<span style="width: 96%;float: left;margin: 1% 0 0 4%;" class="enquete_votos_total"></span>
+	    </div>
+		<div class="enquete_subtitulo"></div>
+		
+		<div class="list accordion-list resposta_enquete_lista_father" style="display:none">
+		   <ul>
+				<li class="accordion-item accordion-item-closed" id="resposta_enquete_lista">
+						<a href="" class="item-link item-content" onclick="up_down()">
+							<div class="item-inner">
+								<div class="item-title" style="" >Ver resposta</div>
+								<span id="up_down" class="fa fa-angle-up"></span>
+							</div>
+						</a>
+						<!--<div class="accordion-item-content" style="font-size: 16px;padding-left:14px;background: #2196f3;color:white"> Teste1 <span style="color: #white;float:right;margin: 5px 10px 0 0px;" class="fa fa-check-circle"></span></div>
+						<div class="accordion-item-content" style="padding-left: 14px;font-size: 16px;">Teste2</div>
+						<div class="accordion-item-content" style="padding-left: 14px;font-size: 16px;">Teste3</div>-->
+				</li>
+		   </ul>
+		</div>
+		
+		<!-- Ver resposta -->
+		<!--<div class="list accordion-list" style="margin-top: 50px;">
+		  <ul>
+			<li class="accordion-item"><a href="#" class="item-content item-link">
+				<div class="item-inner">
+				  <div class="item-title">Ver Resposta</div>
+					<div style="display:block" class="item-title">
+						<span id="up_down" class="fa fa-angle-up"></span>
+					</div>
+				</div></a>
+			  <div class="accordion-item-content" style="" >
+				<div class="block" id="resposta_enquete_lista">
+				 
 				</div>
-				<hr style="margin-bottom: 10px; margin-top: 10px"/>
-					<label style="font-size:15px">Título</label>
-					<div id="enquete_titulo">titulo</div>
-					
-					<label style="font-size:15px">Descrição</label>
-					<div id="enquete_subtitulo">stitulo</div>
-					
-					<label style="font-size:15px">Período</label>
-					<div id="enquete_periodo">Validade de </div>
-				
-					<h5 id="enquete_votos" >Votos </h5>
-				
-					<form name="enquete_voto" id="enquete_voto">
-						<span>Resultado</span>
-						<canvas id="canvas"></canvas>
-					</form>
-
-		</div>
-		</div>
+			  </div>
+			</li>
+		  </ul>
+		</div>-->
+		<form name="enquete_voto" id="enquete_voto"style="height: 392px;"></form>	
 	</div>
 </div>
-	
 
 <!---   $DOCUMENTOS       -->
 
-		<div id="documentos" class="pagina documentos">
-			<div class="view view-documentos"> 
-				<!-- Initial Page, "data-name" contains page name -->
-				<div data-name="home" class="page">
-					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner"> <a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class="icon icon-back"></i></a>
-							<div class="title">Documentos</div>
-						</div>
+	<div id="documentos" class="pagina documentos">
+		<div class="view view-documentos"> 
+			<!-- Initial Page, "data-name" contains page name -->
+			<div data-name="home" class="page">
+				<div class="navbar" style="height: 50px">
+					<div class="navbar-inner"> <a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class="icon icon-back"></i></a>
+						<div class="title">Documentos</div>
 					</div>
-					<form class="searchbar" id="form_busca_documentos" style="width: 100%; margin-top: -7px">
-						<div class="searchbar-inner">
-							<div class="searchbar-input-wrap">
-								<input type="search" placeholder="Busca" name="busca" id="busca_documento">
-								<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_documentos(4)"></span> </div>
-								<span class="searchbar-disable-button" onClick="carrega_documentos(3)">Cancela</span> </div>
-								<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
-							</form>
-							<!-- Searchbar backdrop -->
-							<div class="searchbar-backdrop"></div>
-							<div class="box" id="boxUp_documentos"></div>
-							<div class="page-content ptr-content pull-documentos" data-ptr-distance="55" id="pull-documentos" style="background-color: #EAEBED;">
-								<div class="ptr-preloader">
-									<div class="preloader"></div>
-									<div class="ptr-arrow"></div>
-								</div>
-								<div id="main_documento" class="list media-list" style="height: 90% !important; margin-top:0px;"></div>
+				</div>
+				<form class="searchbar" id="form_busca_documentos" style="width: 100%; margin-top: -7px">
+					<div class="searchbar-inner">
+						<div class="searchbar-input-wrap">
+							<input type="search" placeholder="Busca" name="busca" id="busca_documento">
+							<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_documentos(4)"></span> </div>
+							<span class="searchbar-disable-button" onClick="carrega_documentos(3)">Cancela</span> </div>
+							<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
+						</form>
+						<!-- Searchbar backdrop -->
+						<div class="searchbar-backdrop"></div>
+						<div class="box" id="boxUp_documentos"></div>
+						<div class="page-content ptr-content pull-documentos" data-ptr-distance="55" id="pull-documentos" style="background-color: #EAEBED;">
+							<div class="ptr-preloader">
+								<div class="preloader"></div>
+								<div class="ptr-arrow"></div>
 							</div>
+							<div id="main_documento" class="list media-list" style="height: 90% !important; margin-top:0px;"></div>
 						</div>
 					</div>
 				</div>
+		</div>
 
    <!--
          Inicio de configuração do modulo de OCORRENCIA 
