@@ -406,32 +406,34 @@ function agenda_novo(){
 }
 
 function check_intervalo(tipo){
-	 
-   if(tipo == 1){ /* Intervalo Fixo */
-		$('#intervaloGrupo').fadeOut();
-        $('#intervaloAgenda').fadeOut();
-	    $('#intervaloGrupoDetalhe').fadeOut();
-	    $('#intervalorFixo').fadeIn();
-	    $('#intervalorFixoDetalhe').fadeIn();
-	    $('.intervaloAgenda').val('intervalo fixo');
-	    $('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
-	    $('.btn_cria_evento').removeClass('sheet-open');
-	    $('.adicionaEven').hide();
-   }else
-   if(tipo == 2){ /* Intervalo Personalizado */
-	    
-		$('#intervaloGrupo').fadeIn();
-        $('#intervaloAgenda').fadeIn();
-	    $('#intervaloAgendaDetalhe').fadeIn();
-	    $('#intervalorFixo').fadeOut();
-	    $('#intervalorFixoDetalhe').fadeOut();
-	    $('#intervaloGrupoDetalhe').fadeIn();
-	    $('.intervaloAgenda').val('intervalo personalizado');
-	    /*$('.btn_cria_evento').Attr('data-sheet','.confirmacao_agenda');
-	   	$('.btn_cria_evento').addClass('sheet-open');*/
-	    $('.adicionaEven').fadeIn();
-	    $('.item1').fadeIn();  
-   }	
+	
+   if($('.check2agenda input').attr('disabled') != 'disabled'){
+	   if(tipo == 1){ /* Intervalo Fixo */
+			$('#intervaloGrupo').fadeOut();
+			$('#intervaloAgenda').fadeOut();
+			$('#intervaloGrupoDetalhe').fadeOut();
+			$('#intervalorFixo').fadeIn();
+			$('#intervalorFixoDetalhe').fadeIn();
+			$('.intervaloAgenda').val('intervalo fixo');
+			$('.btn_cria_evento').removeAttr('data-sheet','.confirmacao_agenda');
+			$('.btn_cria_evento').removeClass('sheet-open');
+			$('.adicionaEven').hide();
+	   }else
+	   if(tipo == 2){ /* Intervalo Personalizado */
+
+			$('#intervaloGrupo').fadeIn();
+			$('#intervaloAgenda').fadeIn();
+			$('#intervaloAgendaDetalhe').fadeIn();
+			$('#intervalorFixo').fadeOut();
+			$('#intervalorFixoDetalhe').fadeOut();
+			$('#intervaloGrupoDetalhe').fadeIn();
+			$('.intervaloAgenda').val('intervalo personalizado');
+			/*$('.btn_cria_evento').Attr('data-sheet','.confirmacao_agenda');
+			$('.btn_cria_evento').addClass('sheet-open');*/
+			$('.adicionaEven').fadeIn();
+			$('.item1').fadeIn();  
+	   }
+    }
 }
 
 function salva_evento() { 
@@ -1022,6 +1024,9 @@ let desabilita_campo_ag = (op) => {
 
 		}    
 	}
+	
+	
+	
 }
 
 let carrega_evento_detalhe = (id,tipo) => {
