@@ -1,4 +1,22 @@
 //FUNCAO CARREGA TODOS VISITAMTES
+localStorage.setItem('BUSCA_VISITA','0');
+function carrega_visitantes2(sql){
+	var requisicao = 0;
+	var typingTimer; //timer identifier
+	var doneTypingInterval = 1000; //time in ms, 1 second for example
+  	//clearTimeout(typingTimer);
+	if (localStorage.getItem('BUSCA_VISITA') == 0) {
+		typingTimer = setTimeout(doneTyping, doneTypingInterval);
+		localStorage.setItem('BUSCA_VISITA','1');
+	 }
+}
+
+function doneTyping() {
+  //alert($('#visitante_busca').val());
+	carrega_visitantes($('#visitante_busca').val());
+	localStorage.setItem('BUSCA_VISITA','0');
+}
+
 function carrega_visitantes(sql){
     //alert(localStorage.getItem('TIPO_BUSCA_VISITANTE')+'///'+sql);
     var dados = '';
@@ -240,5 +258,3 @@ function get_veiculo(placa){
 		   
 	  }
   };
-
-
