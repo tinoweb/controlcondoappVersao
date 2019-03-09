@@ -22,9 +22,10 @@ function login_user_device(){
             dataType   : 'json',
             success    : function(retorno) {
 				//alert(retorno[0]['VERSAO']);
-				if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
+				//if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 					   //alert('versao ok');
 					if(retorno[0]['error'] == 0){
+						if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 						if(retorno[0]['perfil'] > 1){
 							//alert('teste4');
 							afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
@@ -203,12 +204,15 @@ function login_user_device(){
 							}
 
 						}
+						
+						}else{
+							alerta('0','Há uma nova versão do Control Condo. Atualize seu aplicativo para continuar...',4000);
+						}
+						
+						
 					}else{
 
 					}
-				}else{
-					alerta('0','Há uma nova versão do Control Condo. Atualize seu aplicativo para continuar...',4000);
-				}
             },
             error      : function() {
                 notifica('Aviso/Erro ao logar automático/Fechar',0,0);

@@ -1,4 +1,22 @@
 //FUNCAO CARREGA TODOS VISITAMTES
+localStorage.setItem('BUSCA_VISITA','0');
+function carrega_visitantes2(sql){
+	var requisicao = 0;
+	var typingTimer; //timer identifier
+	var doneTypingInterval = 1000; //time in ms, 1 second for example
+  	//clearTimeout(typingTimer);
+	if (localStorage.getItem('BUSCA_VISITA') == 0) {
+		typingTimer = setTimeout(doneTyping, doneTypingInterval);
+		localStorage.setItem('BUSCA_VISITA','1');
+	 }
+}
+
+function doneTyping() {
+  //alert($('#visitante_busca').val());
+	carrega_visitantes($('#visitante_busca').val());
+	localStorage.setItem('BUSCA_VISITA','0');
+}
+
 function carrega_visitantes(sql){
     //alert(localStorage.getItem('TIPO_BUSCA_VISITANTE')+'///'+sql);
     var dados = '';
@@ -15,15 +33,28 @@ function carrega_visitantes(sql){
             dataType   : 'json',
             success: function(retorno){
                 for (x in retorno) {
-					cont++;
-                    var dadof = '<div class="liberado_foto" ';
-                    if(retorno[x]['foto'].length>0){
-                        dadof = dadof + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')" ';
-                    }
-                    var dado = '<div class="visitanteb" onClick="hidden_btn();escolhe_visita(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\',\''+retorno[x]['rg']+'\')">';
-                    dado     = dado+dadof+'></div><strong>'+limitanome(retorno[x]['nome'])+'</strong><span>'+retorno[x]['rg']+'</span></div>';
-                    //var dado = '<div class="visitanteb">teste</div>';
-                    dados = dados + dado;
+//					if(getItem('TIPO_BUSCA_VISITANTE') == 0){
+//						var primeiro_nome_res = retorno[x]['nome'].split(' ');
+//						var primeiro_nome_bus = sql.split(' ');
+//						if(primeiro_nome_res[0] == primeiro_nome_bus[0].toUpperCase()){
+//							var exibi_resultado = 1;
+//						}else{
+//							var exibi_resultado = 0;
+//						}
+//					}else{
+//						var exibi_resultado = 1;
+//					}
+//					if(exibi_resultado == 1){
+						cont++;
+						var dadof = '<div class="liberado_foto" ';
+						if(retorno[x]['foto'].length>0){
+							dadof = dadof + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')" ';
+						}
+						var dado = '<div class="visitanteb" onClick="hidden_btn();escolhe_visita(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\',\''+retorno[x]['rg']+'\')">';
+						dado     = dado+dadof+'></div><strong>'+retorno[x]['nome']+'</strong><span>'+retorno[x]['rg']+'</span></div>';
+						//var dado = '<div class="visitanteb">teste</div>';
+						dados = dados + dado;
+//					}
                 }
                 dados = dados + '<div class="visitanteb" style="background-color: #f86464;color: white;height: 50px;padding-top: -10px;" onClick="novo_visitante()"><strong><i class="fa fa-user"></i> Novo Visitante</strong></div>';
                 $( "#retorno_visita" ).html(dados);
@@ -240,5 +271,3 @@ function get_veiculo(placa){
 		   
 	  }
   };
-
-

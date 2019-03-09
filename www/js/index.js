@@ -96,8 +96,7 @@ var app = {
                 carrega_documentos(0);
                 event.preventDefault();
             }
-        });   
-		
+        });   		
 		
 		
 	},
