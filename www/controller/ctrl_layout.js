@@ -457,7 +457,7 @@ function grupo_mrd(grupos){
 		 grupos.indexOf('Diretoria')  == -1){
 		 grupo_desc =  'Síndico' 
 	  }else{
-		 grupo_desc =  'Morador' 
+		 grupo_desc =  '' 
 	  }
 	
 	  return grupo_desc;
