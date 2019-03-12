@@ -106,7 +106,7 @@ function carrega_enquetes(tipo){
 						 grupo_desc =  'Administradora' 
 						 
 					  }else
-					  if(grupos.indexOf('Síndico') == -1          && 
+					  if(grupos.indexOf('Síndico') == -1         && 
 						 grupos.indexOf('Administradora')  == -1 && 
 						 grupos.indexOf('Administração')  >=   0 && 
 						 grupos.indexOf('Diretoria')  == -1){
@@ -130,6 +130,12 @@ function carrega_enquetes(tipo){
 						 grupos.indexOf('Diretoria')  == -1){
 						 grupo_desc =  'Síndico' 
 					  }else
+					  if(grupos.indexOf('Síndico') == -1          && 
+						 grupos.indexOf('Administradora') == -1  && 
+						 grupos.indexOf('Administração')   >=  0 && 
+						 grupos.indexOf('Diretoria')  >= 0){
+						 grupo_desc =  'Diretoria' 
+					  }else
 					  if(grupos.indexOf('Síndico') == -1         && 
 						 grupos.indexOf('Administradora')  >= 0 && 
 						 grupos.indexOf('Administração')   == -1 && 
@@ -142,7 +148,7 @@ function carrega_enquetes(tipo){
 						 grupos.indexOf('Diretoria')  == -1){
 						 grupo_desc =  'Síndico' 
 					  }else{
-						 grupo_desc =  '' 
+						 grupo_desc =  'Morador' 
 					  }
 				
 				    
@@ -150,7 +156,7 @@ function carrega_enquetes(tipo){
 				if(retorno[x]['foto'] == ''){   
 					
 			         
-					 dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div>	<div class="chip" style=" margin:11px 0 0px 12px;"><div class="chip-media bg-color-green"> <span style="font-size:1.6em;" class="fa fa-user-circle"></span></div><div class="chip-label">'+retorno[x]['criado']+'</div></div><br><div class="chip" style="margin: 6px 0 0px 12px;"><div class="chip-media bg-color-blue"><i class="fa fa-group"></i></div><div class="chip-label">Grupo: '+grupo_desc+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-red"> <span style="" class="fa fa-exchange"></span></div><div class="chip-label" style="">Status: '+retorno[x]['status']+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-orange"> <span style="" class="fa fa-edit"></span></div><div class="chip-label" style="">Titulo: '+retorno[x]['titulo']+'</div></div></span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
+					 dado = '<div class="enquete card" onClick="carrega_enquete(\''+retorno[x]['id_enquete']+'\');"><div style="'+cor+'" class="cabecalho_card card-header"><div>Enquete</div><div><span class="fa fa-pie-chart"></span></div></div><div class="chip" style=" margin:11px 0 0px 12px;"><div class="chip-media bg-color-green"> <span style="font-size:1.6em;" class="fa fa-user-circle"></span></div><div class="chip-label">'+retorno[x]['criado']+'</div></div><br><div class="chip" style="margin: 6px 0 0px 12px;"><div class="chip-media bg-color-blue"><i class="fa fa-group"></i></div><div class="chip-label">Grupo: '+grupo_desc+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-red"> <span style="" class="fa fa-exchange"></span></div><div class="chip-label" style="">Status: '+retorno[x]['status']+'</div></div><br><div class="chip" style=" margin: 6px 0 0px 12px;"><div class="chip-media bg-color-orange"> <span style="" class="fa fa-edit"></span></div><div class="chip-label" style="">Titulo: '+retorno[x]['titulo']+'</div></div></span><span class="enquete_votos" style="display:none;background-color:white !important"><button type="button"  class="btn btn-primary"><i class="fa fa-pie-chart"></i> Votos</button></span><span class="enquete_periodo card-footer">Validade<br> de '+retorno[x]['data_inicio']+' ate '+retorno[x]['data_final']+'</span><div style="display:none" class="enquete_status'+retorno[x]['id_enquete']+'">'+retorno[x]['status']+'</div></div>';
 					
 				   
 				}else{

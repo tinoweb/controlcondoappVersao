@@ -70,11 +70,31 @@ function carrega_comunicados(tipo){
 					var txt_titulo = retorno[x]['titulo'].substr(0,32)+'...';
 				}else{
 					var txt_titulo = retorno[x]['titulo'];
+				} txt_titulo
+				
+				grupo = grupo_mrd(grupos);
+				
+				if(retorno[x]['foto'] == ''){
+				   
+					dado = '<div class="comunicado card" onClick="check_leitura(1,'+retorno[x]['id_comunicado']+');carrega_comunicado(\''+retorno[x]['id_comunicado']+'\');"><div class="feed-comunicado cabecalho_card card-header" style="'+cor+'" onload="atualiza_notificacao_modulo(5,236,this)"><div class="noti_tipo">Comunicado</div><div style="color:white" class="chip color-"><i class="fa fa-bullhorn"></i></div></div><div class="p_comunicado" style="margin: 19% 0 11px 3%;"><div class="topo_comunicado"><div class="chip" style=""><div class="chip-media bg-color-green"> <span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span></div><div class="chip-label">'+limita_txt(retorno[x]['criado'],37)+'</div></div><br><div class="chip" style=""><div class="chip-media bg-color-blue"><i class="fa fa-group"></i></div><div class="chip-label">Grupo: '+grupo+'</div></div><br><div class="chip" style=""><div class="chip-media bg-color-orange"> <span style="color:white" class="fa fa-edit"></span></div><div class="chip-label">'+txt_titulo+'</div></div><br><div class="chip" style=""><div class="chip-media bg-color-red"><i class="fa fa-calendar"></i></div><div class="chip-label">Data: '+retorno[x]['data_criacao']+'</div></div></div></div><div class="feed_home" >';
+				   
+				}else{
+					
+					dado = '<div class="comunicado card" onClick="check_leitura(1,'+retorno[x]['id_comunicado']+');carrega_comunicado(\''+retorno[x]['id_comunicado']+'\');"><div class="feed-comunicado cabecalho_card card-header" style="'+cor+'" onload="atualiza_notificacao_modulo(5,236,this)"><div class="noti_tipo">Comunicado</div><div  style="color:white" class="chip color-"><i class="fa fa-bullhorn"></i></div></div><div class="p_comunicado" style="margin: 19% 0 11px 3%;"><div class="topo_comunicado"><div class="chip" style=""><div class="chip-media bg-color"> <img class="chip_photo_" style="font-size:1.6em;color:white;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></img></div><div class="chip-label">'+limita_txt(retorno[x]['criado'],37)+'</div></div><br><div class="chip" style=""><div class="chip-media bg-color-blue"><i class="fa fa-group"></i></div><div class="chip-label">Grupo: '+grupo+'</div></div><br><div class="chip" style=""><div class="chip-media bg-color-orange"> <span style="color:white" class="fa fa-edit"></span></div><div class="chip-label">'+txt_titulo+'</div></div><br><div class="chip" style=""><div class="chip-media bg-color-red"><i class="fa fa-calendar"></i></div><div class="chip-label">Data: '+retorno[x]['data_criacao']+'</div></div></div></div><div class="feed_home" >';
+				   
+					
 				}
-                dado = '<div class="comunicado card" onClick="check_leitura(1,'+retorno[x]['id_comunicado']+');carrega_comunicado(\''+retorno[x]['id_comunicado']+'\');"><div class="feed-comunicado cabecalho_card card-header" style="'+cor+'" onload="atualiza_notificacao_modulo(5,236,this)"><div class="noti_tipo">'+txt_titulo+'</div><div><i class="fa fa-bullhorn"></i></div></div><div class="p_comunicado" style="margin: 19% 0 0 3%;"><div class="topo_comunicado"><div class="morador_foto" style="margin-right: 8px;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span>'+retorno[x]['data_criacao']+'</span><strong>'+retorno[x]['criado']+'</strong>'+grupos+'</div><div class="comunicado_titulo" style="margin-top:20px">'+retorno[x]['texto'].substr(0,50)+'</div></div><div class="feed_home" >';
+				
+				/*dado = '<div class="comunicado card" onClick="check_leitura(1,'+retorno[x]['id_comunicado']+');carrega_comunicado(\''+retorno[x]['id_comunicado']+'\');"><div class="feed-comunicado cabecalho_card card-header" style="'+cor+'" onload="atualiza_notificacao_modulo(5,236,this)"><div class="noti_tipo">'+txt_titulo+'</div><div><i class="fa fa-bullhorn"></i></div></div><div class="p_comunicado" style="margin: 19% 0 0 3%;"><div class="topo_comunicado"><div class="morador_foto" style="margin-right: 8px;background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+');"></div><span>'+retorno[x]['data_criacao']+'</span><strong>'+retorno[x]['criado']+'</strong>'+grupos+'</div><div class="comunicado_titulo" style="margin-top:20px">'+retorno[x]['texto'].substr(0,50)+'</div></div><div class="feed_home" >';*/
+				   
+				   
+                
+				
+				
 				if(retorno[x]['comentario']>0){
                     dado = dado + '<img width="15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKFSURBVHhe7ZpNThwxEIUni5A7kEjJ6YgghAMEqXsLsi3Ekmsku5A1YcHfVTJiP7E7hdSUbeia107NdPuT3oJx+fnVUDM9Cy8qlUqlUqlUOG3b7rTGHbXWXXs9eq02XI+Nsb8ba7+E7NTGerSnp7ve6D5xyHbIuLvQA7Uj4+v5+bvW2Iek8RbJ/wNv15oE/+4dpgy3UsYdUFvD8RvDZ75nZL9/c+49LW8sIWNj3I9+9vCdQMvD8Ruff+GdnHygpY0nZH2W3bolLQ2HGazo5a0Bzg8bKAPnhw2UgfPDBsrA+WEDZeD8sIEycH6pAa8vLTo2i7Q+QmrA60uLjs0irY+QGvD60qJjs0jrI6QGvL606Ngs0voI2EAZOD9soAycHzZQBs4PGygD55ca8PrSomOzSOsjpAa8vrTo2CzS+gipAa8vLTo2i7Q+QmrA60uLjs0irY+ADZSB88MGysD5YQNl4PywgTJwfqkBr5eKbEYD9pca8HqpyGY0YH+pAa+XimxGA/aXGvB6qchmNGB/2EAZOD9soAycHzZQBs4PGygD54cNlIHzwwbKwPn9pnlfkAjXSvom4drJvK7I/L9LUsvGuc+L1eoNHZ0ksW+41rok9e+C5F3SsIAaay+PjflIx0ek9gzUzd7FxVuykUEXJW8TpqWUnYZE7RDdrH1R8okwCd21U2uvvOGSHVBEqWlI1WXkM9or77EPX5UtTXt29sl/zH4lmuga6U8DX+8MJoFvMDQaGuZNdjLuZ5gG/jrtng6hyTD6vNEg/xj7w1+jbRPjtWnoiXZMk5em4UlUOmFemQaqmj65aaDlmZCYBlqZF93j0D8WZ/sGdPhp8L/09uivSmUUFou/iNJ/GAhnlLQAAAAASUVORK5CYII="><span style="font-size: 10px;color: #7f8c8d">&nbsp;'+retorno[x]['comentario']+'&nbsp; &nbsp; &nbsp; </span>';
                 }
+				
                 if(retorno[x]['curtida']>0){
                     dado = dado + '<img width="15" src="data:image/png;base64,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"><span style="font-size:10px; color: #7f8c8d">&nbsp;'+retorno[x]['curtida']+'</span>&nbsp; &nbsp; </span>';
                 }
@@ -109,6 +129,7 @@ function carrega_comunicados(tipo){
 function carrega_comunicado(id){
 	var id_condominio         = $( "#DADOS #ID_CONDOMINIO" ).val();
 	var id_usuario_condominio = $( "#DADOS #ID_USER" ).val();
+	var foto = '';
 	//alert("Condominio: "+id_condominio+" usuario: "+id_usuario_condominio);
     var dados = '';
 	$.ajax({
@@ -127,15 +148,30 @@ function carrega_comunicado(id){
 				var txt_titulo = retorno[0]['titulo'];
 			}
 			
-            $( ".comunicado_titulo" ).html(txt_titulo);
+            $( ".comunicado_titulo" ).html('<i class="fa fa-edit"></i> '+txt_titulo);
 			//alert('classe titulo');
             $( "#comunicados_comentario span" ).html(retorno[0]['titulo'].substring(0,53));
-            $( "#comunicados2 .comunicado .topo_comunicado .morador_foto" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")");
-            $( "#comunicados2 .comunicado .topo_comunicado span" ).html(retorno[0]['data_criacao']);
-            $( "#comunicados2 .comunicado .topo_comunicado strong" ).html(retorno[0]['criado']);
-            $( "#comunicados2 .comunidado .comunicado_titulo" ).html(retorno[0]['titulo']);
+			
+			if(retorno[0]['foto'] == ''){
+			   $( "#comunicados2 .comunicado .topo_comunicado .icon_without_comu" ).html('');
+			   $( "#comunicados2 .comunicado .topo_comunicado .morador_foto" ).hide();
+			   $( "#comunicados2 .comunicado .topo_comunicado .icon_without_comu" ).append('<div style="margin-left: -26px;" class="col-md-2"><span style="font-size:4em;color:#c2c2c2" class="fa fa-user-circle"></span></div>');
+			   $('.icon_without_comu').show();
+				
+			}else{
+				
+			   $('.icon_without_comu').hide();
+			   $( "#comunicados2 .comunicado .topo_comunicado .morador_foto" ).show();
+			   $( "#comunicados2 .comunicado .topo_comunicado .morador_foto" ).css("background-image", "url(data:image/jpeg;base64,"+retorno[0]['foto']+")").css('margin-left','-7px');
+			}
+			   
+            
+			
+			
+            $( "#comunicados2 .comunicado .topo_comunicado .data_criado" ).html('<div class="col-md-2">'+retorno[0]['data_criacao']+'</div>');
+            $( "#comunicados2 .comunicado .topo_comunicado .comunicado_criado" ).html('<div class="chip" style=""><div class="chip-media bg-color-yellow"> <span style="font-size:1.6em;color:white" class="fa fa-user"></span></div><div class="chip-label">'+limita_txt(retorno[0]['criado'],27)+'</div></div><br>');
+            $( "#comunicados2 .comunidado .comunicado_titulo" ).html('<i class="fa fa-edit"></i> '+retorno[0]['titulo']);
 			$( "#comunicados2 .navbar").css("background-color","#0073b7");
-			$( "#comunicados  .navbar-inner").css("background-color","#0073b7");
 			
             //alert(retorno[0]['texto']);
             $( "#txt_comunicado" ).html(retorno[0]['texto']);

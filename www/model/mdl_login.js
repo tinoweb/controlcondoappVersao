@@ -188,7 +188,7 @@ function login_user_device(){
 								$("#foto_user_mor").attr("onclick","afed('#bg_box3','','','',1);");
 								}else{ 
 								$("#foto_user_mor").attr("onclick","alerta('','Para alterar a foto, entre em contato com administração');"); }
-
+ 								$('.back').hide();
 
 								carrega_chat();
 								inicia(0);

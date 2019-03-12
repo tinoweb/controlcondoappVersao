@@ -68,6 +68,32 @@ body, html {
 	}
 }
 
+
+@media (max-width:411px) and (min-width:376px) {
+	
+   .centerposition{
+	
+		position: relative;
+		width: 78% !important;
+		left: 95px;
+		float: left;
+		margin-top: -80px;
+	
+    }
+}
+
+.centerposition{
+	
+	position: relative;
+    width: 75%;
+    left: 95px;
+    float: left;
+	margin-top: -80px;
+	
+}
+
+
+
 .chip_photo_{
 
     width: 86px !important;
@@ -883,7 +909,7 @@ input, textarea {
 
 .feed-comunicado{
 	
-	background-color: #0073b7;
+	background-color: #2196f3;
     padding-left: 6px;
     padding-top: 5px;
     margin-top: 8px !important;
@@ -1052,8 +1078,8 @@ input, textarea {
 }
 
 .home .corpo .notificacoes .notificacao .noti_corpo .topo_comunicado .morador_foto {
-	width:50px;
-	height:50px;
+	width:70px;
+	height:70px;
 	float:left;
 	margin:2% 0 0 2%;
 	border-radius:50%;
@@ -1068,7 +1094,7 @@ input, textarea {
 .home .corpo .notificacoes .notificacao .noti_corpo .topo_comunicado strong {
 	width:70%;
 	float:left;
-	margin:0 0 0 2%;
+	margin:0 0 0 0%;
 	font-size:14px;
 }
 
@@ -1096,7 +1122,7 @@ input, textarea {
 .home .corpo .notificacoes .notificacao .noti_corpo .topo_comunicado span {
 	width:70%;
 	float:left;
-	margin:2% 0 0 2%;
+	margin:0% 0 0 2%;
 	color: #666;;
 	font-size:10px; 
 }
@@ -2216,8 +2242,8 @@ input, textarea {
 
 .comunicados .comunicado .topo_comunicado {
 	width:100%;
-    height: 60px;
-	float:left;
+    /*height: 60px;*/
+	/*float:left;*/
 	margin:0;
 }
 
@@ -2256,11 +2282,11 @@ input, textarea {
 }
 
 .comunicados .comunicado .topo_comunicado span {
-	width:60%;
-	float:left;
-	margin:2% 0 0 2%;
-	color: #88969a;
-	font-size:11px;
+	/*width:60%;
+	float:left;*/
+	margin:3% 1% 0 0%;
+	/*color: #88969a;
+	font-size:11px;*/
 }
 
 .comunicados .comunicado .topo_comunicado img {
@@ -2362,7 +2388,7 @@ input, textarea {
 	width:50px;
 	height:50px;
 	float:left;
-	margin:2% 0 0 2%;
+	margin:0% 0 0 2%;
 	border-radius:50%;
 	background-image:url(../img/user2.png);
 	background-repeat:no-repeat;
@@ -2391,9 +2417,9 @@ input, textarea {
 }
 
 .comunicados2 .comunicado .topo_comunicado span {
-	width:70%;
+	
 	float:left;
-	margin:2% 0 0 4%;
+	/*margin:2% 0 0 4%;*/
 	color: #35393a;
 	font-size:12px;
 }
@@ -3399,6 +3425,7 @@ input, textarea {
     height: 28px;
     text-align: -webkit-right;
     border-top: 1px solid #d6d6d6;
+	padding-top: 3px;
 }
 #gsin, #gadm, #gadm2, #gdir{
     display: none;
