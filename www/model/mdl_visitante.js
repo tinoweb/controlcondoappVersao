@@ -32,30 +32,34 @@ function carrega_visitantes(sql){
             data       : {id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), tipo : localStorage.getItem('TIPO_BUSCA_VISITANTE'), sql : sql},
             dataType   : 'json',
             success: function(retorno){
+				var dados = '';
                 for (x in retorno) {
-//					if(getItem('TIPO_BUSCA_VISITANTE') == 0){
-//						var primeiro_nome_res = retorno[x]['nome'].split(' ');
-//						var primeiro_nome_bus = sql.split(' ');
-//						if(primeiro_nome_res[0] == primeiro_nome_bus[0].toUpperCase()){
-//							var exibi_resultado = 1;
-//						}else{
-//							var exibi_resultado = 0;
-//						}
-//					}else{
-//						var exibi_resultado = 1;
-//					}
-//					if(exibi_resultado == 1){
-						cont++;
-						var dadof = '<div class="liberado_foto" ';
+					cont++;
+					if(retorno[x]['foto'].length>0){
+						var dadof = '<div style=" width: 44px;  height: 44px; background-size: 44px; background-position: center center; border-radius: 44px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')"></div>';
+					}else{
+						var dadof = '<i class="fa fa-user-circle-o" style="font-size: 44px;"></i>';
+					}
+					dados = dados+'<li>'+
+						'<a href="#" class="item-link item-content" onClick="hidden_btn();escolhe_visita(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\',\''+retorno[x]['rg']+'\')">'+
+							'<div class="item-media">'+dadof+'</div>'+
+							'<div class="item-inner">'+
+								'<div class="item-title-row">'+
+									'<div class="item-title">'+retorno[x]['nome']+'</div>'+
+								'</div>'+
+								'<div class="item-subtitle">'+retorno[x]['rg']+'</div>'+
+							'</div>'+
+						'</a>'+
+					'</li>';	
+
+/*						var dadof = '<div class="liberado_foto" ';
 						if(retorno[x]['foto'].length>0){
 							dadof = dadof + 'style="background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+')" ';
 						}
 						var dado = '<div class="visitanteb" onClick="hidden_btn();escolhe_visita(\''+retorno[x]['id']+'\',\''+retorno[x]['nome']+'\',\''+retorno[x]['rg']+'\')">';
 						dado     = dado+dadof+'></div><strong>'+retorno[x]['nome']+'</strong><span>'+retorno[x]['rg']+'</span></div>';
-						//var dado = '<div class="visitanteb">teste</div>';
 						dados = dados + dado;
-//					}
-                }
+*/                }
                 dados = dados + '<div class="visitanteb" style="background-color: #f86464;color: white;height: 50px;padding-top: -10px;" onClick="novo_visitante()"><strong><i class="fa fa-user"></i> Novo Visitante</strong></div>';
                 $( "#retorno_visita" ).html(dados);
                 

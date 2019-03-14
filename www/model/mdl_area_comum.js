@@ -596,10 +596,12 @@ function adiciona_reserva(h){
 function edite_reserva(id_reserva,data,inicio,fim){ 
 	afed('','#bt_add_reserva','#add_reserva_hora_inicio,#add_reserva_hora_fim','',2,'');
 	var dt_festa = $( "#dt_festa" ).val();
-	afed('#reserva','#area','','',2,'reserva')
+	afed('#reserva','#area','','',2,'reserva');
 	$( "#add_reserva_dt" ).val(data);
 	$( "#add_reserva #add_reserva_id" ).val(id_reserva);
     $( "#add_reserva_data" ).html(dt_festa);
+	$( "#add_reserva_hora_inicio" ).val(inicio);
+	$( "#add_reserva_hora_fim" ).val(fim);
 	$( "#add_reserva_tipo" ).val("1");
     $("#concordo").attr('checked','checked');
 	var bt_add_voltar = document.getElementById('voltar_add_reserva');
