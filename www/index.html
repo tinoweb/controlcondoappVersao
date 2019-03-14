@@ -736,7 +736,7 @@
 		</div>
 	</div>
 	<div style="width: 100%;float: left;text-align: center"> <img alt="" src="img/logo.png" width="180"> </div>
-	<p style="margin-top: 15px"><span style="text-align: center">CONTROL CONDO MOBILE - v2.0</span><br>
+	<p style="margin-top: 15px"><span style="text-align: center">CONTROL CONDO MOBILE - v1.2.1</span><br>
 		<br>
 	Este aplicativo foi projetado e desenvolvido pela FIRSTCONTROL SISTEMAS INTELIGENTES, e compõe o grupo de sistemas voltados para segurança de acesso a condomínios residenciais; CONTROL GUARITA, CONTROLCONDO e CONTROLCONDOMOBILE. </p>
 	<p style="text-align: left; margin-top: 20px">Para dúvidas e sugestões, encaminhe e-mail para controlcondo@firstcontrol.com.br <br>
@@ -1393,8 +1393,15 @@
 						<div class="comunicado">
 							<div class="topo_comunicado">
 								<div class="morador_foto"></div>
-								<span>data</span> <strong>criado</strong> </div>
-								<span style="background-color: #e4ae3a;padding-left: 9px;border-radius: 7px;color: white;"class="comunicado_titulo">titulo</span>
+								<div class="col-md-2 icon_without_comu"></div>
+								<div class="col-md-2">
+									<span class="comunicado_criado" style="margin-left: 8px;width: 81%;"></span>
+									<span class="data_criado" style=""></span>
+								</div>
+								
+								
+							</div>
+								<span style="background-color: #e4d43a;padding-left: 9px;color: white;"class="comunicado_titulo">titulo</span>
 								<div id="txt_comunicado" class="txt_comunicado" style="word-break: break-word;">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> 
@@ -2542,7 +2549,7 @@
 						<a href="" class="item-link item-content" onclick="up_down()">
 							<div class="item-inner">
 								<div class="item-title" style="" >Ver resposta</div>
-								<span id="up_down" class="fa fa-angle-up"></span>
+								<span id="up_down" class="fa fa-angle-down"></span>
 							</div>
 						</a>
 						<!--<div class="accordion-item-content" style="font-size: 16px;padding-left:14px;background: #2196f3;color:white"> Teste1 <span style="color: #white;float:right;margin: 5px 10px 0 0px;" class="fa fa-check-circle"></span></div>
@@ -2570,7 +2577,7 @@
 			</li>
 		  </ul>
 		</div>-->
-		<form name="enquete_voto" id="enquete_voto"style="height: 392px;"></form>	
+		<form name="enquete_voto" id="enquete_voto" style="height: 392px;display:none"></form>	
 	</div>
 </div>
 
@@ -3505,7 +3512,7 @@
 		
 	<!-- $AGENDA  
          Autor: Caio Souza.
-         Data: 06/02/2019.#add_agenda
+         Data: 06/02/2019
     -->
 		
 	<div id="agenda" class="pagina agenda"> 
@@ -3537,15 +3544,7 @@
 						</div>
 						<!-- informacoes evento -->
 						<div id="info_agenda_evento" style="padding: 0px 0 41% 11px; overflow: auto; max-height: 59%;">
-							<div class="chip color-red" style="width: 96%;">
-								<div class="chip-label">1 - Festa na piscina</div>
-							</div><br>
-							<div class="chip color-red" style="background: #0ee000;width: 96%;">
-								<div class="chip-label">2 - Manutencao do portao</div>
-							</div><br>
-							<div class="chip color-red" style="background: #f0b716;width: 96%;">
-								<div class="chip-label">3 - Indulto de natal rs</div>
-							</div><br><br>
+							
 						 </div>
 					</div>
 				</div>
@@ -4834,7 +4833,7 @@
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
-                            '</div><hr><div id="conteudo" style="margin-left: 17px;margin-left: 17px;overflow: auto;max-height: 153px;    margin-top: 15px;">'+
+                            '</div><hr><div id="conteudo" class="acesso_ul" style="">'+
 								'<!--<div class="item-inner" style="margin-top:10px;">'+
 									'<div class="item-subtitle" style="font-size:10px;"><strong>Visitante</strong></div>'+
 									'<div class="item-title">'+dados[2]+'</div>'+
