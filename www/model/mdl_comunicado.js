@@ -70,7 +70,7 @@ function carrega_comunicados(tipo){
 					var txt_titulo = retorno[x]['titulo'].substr(0,32)+'...';
 				}else{
 					var txt_titulo = retorno[x]['titulo'];
-				} txt_titulo
+				} 
 				
 				grupo = grupo_mrd(grupos);
 				
@@ -169,6 +169,7 @@ function carrega_comunicado(id){
 			
 			
             $( "#comunicados2 .comunicado .topo_comunicado .data_criado" ).html('<div class="col-md-2">'+retorno[0]['data_criacao']+'</div>');
+			
             $( "#comunicados2 .comunicado .topo_comunicado .comunicado_criado" ).html('<div class="chip" style=""><div class="chip-media bg-color-yellow"> <span style="font-size:1.6em;color:white" class="fa fa-user"></span></div><div class="chip-label">'+limita_txt(retorno[0]['criado'],27)+'</div></div><br>');
             $( "#comunicados2 .comunidado .comunicado_titulo" ).html('<i class="fa fa-edit"></i> '+retorno[0]['titulo']);
 			$( "#comunicados2 .navbar").css("background-color","#0073b7");

@@ -148,7 +148,7 @@ function carrega_enquetes(tipo){
 						 grupos.indexOf('Diretoria')  == -1){
 						 grupo_desc =  'Síndico' 
 					  }else{
-						 grupo_desc =  'Morador' 
+						 grupo_desc =  '' 
 					  }
 				
 				    
