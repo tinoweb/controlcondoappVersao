@@ -1,138 +1,4 @@
 // JavaScript Document
-/*function carrega_agenda_eventos(){
-	$('#calendario_agenda').html('');
-	let html       = ''; 
-	let icon       = '';
-    let cor        = '';
-	let now        = new Date();
-    let today      = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    let weekLater  = new Date().setDate(today.getDate() + 7);
-	let monthNames = ['Janeiro', 
-					  'Fevereiro', 
-					  'Março', 
-					  'Abril', 
-					  'Maio', 
-					  'Junho', 
-					  'Julho', 
-					  'Agosto' , 
-					  'Setembro' , 
-					  'Outubro', 
-					  'Novembro', 
-					  'Dezembro'];
-	
-	let dayNames =   ['Seg', 
-					  'Ter', 
-					  'Qua', 
-					  'Qui', 
-					  'Sex', 
-					  'Sab',
-					  'Dom'];
-	
-
-	
-	let calendarInline = app2.calendar.create({
-	  containerEl: '#calendario_agenda',
-		    value: [new Date()],
-	   weekHeader: true,
-		   events: [
-						new Date(2018, 9, 1),
-						new Date(2018, 9, 5),	
-				   ],
-	  renderToolbar: function () {
-		 
-		return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
-				  '<div class="toolbar-inner">' +
-					'<div class="left">' +
-					  '<a href="#" class="link icon-only"><i class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
-					'</div>' +
-					'<div class="center" style="margin-left: -23px;"></div>' +
-					'<div class="right">' +
-					  '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
-					'</div>' +
-				  '</div>' +
-				'</div>';
-	  },
-	  on: {
-		      /*take the day thay the user click*/
-			  /*dayClick: function(calendar, dayEl, year, month, day){
-			  		$.ajax({
-						url        : localStorage.getItem('DOMINIO')+'appweb/agenda_get.php',
-		                beforeSend : function() { $("#wait").css("display", "block"); },
-		                complete   : function() { $("#wait").css("display", "none"); },
-						data       : {operacao:2},     
-						type       : 'POST',
-						dataType   : 'JSON',
-						success    : function(e){
-							
-							for(x in e){
-								contador = parseInt(x)+1;
-								if(x == 1){
-								      cor = 'background: #0ee000;';
-								   
-								}else
-								if(x == 2){
-								   cor = 'background: #f0b716;';
-								   
-								 }else
-								if(x == 3){
-								   cor = 'background: #2196f3;';
-								   
-								 }else
-								if(x == 4){
-								   cor = 'background: #0ee000;';
-								   
-								 }else{
-								   cor = 'background: red;';
-								 }
-								
-								if(e[x].titulo == 'Mudanca'){
-								    cor      = 'background:  #ffc906;';
-									icon     = 'fa fa-exchange';
-									
-								}else{
-									icon     = 'fa fa-calendar';
-								}
-								
-								html += '<div class="background-btn chip color-red" style="height: 35px;width: 96%;'+cor+'">'
-											+'<div style="padding-left: 5px;" class="chip-label col-xs-6">'+contador+' - '+e[x].titulo+'</div>'
-								            +'<div class="col-xs-6"><span>'+ e[x].hora_inicio+' ás '+e[x].hora_inicio+'</span></div>'
-								 			+'<div><span class="'+icon+'"></span></div>'
-									   +'</div><br>';
-							};
-							
-							$('#info_agenda_evento').html(html);
-						},
-						error : function(){				
-							alerta('','Erro ao carregar eventos');
-						}
-					})
-               },
-
-			  init: function (c) {
-				  
-				  /*Write week name*/
-				  /*for(x = 0;x <=7; x++){
-					  $('.calendar-week-header').children().eq(x).html(dayNames[x])
-				  }
-
-				  $('calendar-week-header').text(dayNames[c.currentMonth]);
-				  $('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
-				  $('.calendar-custom-toolbar .left .link').on('click', function () {
-					calendarInline.prevMonth();
-				  });
-				  $('.calendar-custom-toolbar .right .link').on('click', function () {
-					calendarInline.nextMonth();
-				  });
-			},
-			monthYearChangeStart: function (c) {
-			  $('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
-
-			}
-	     }
-	});
-	
-    afed('#agenda','#home','','');
-}*/
 
 let event_days = (data) => {
 	/*this function get all the events of the apartament (little points in calendar) */
@@ -164,205 +30,216 @@ let event_days = (data) => {
 
 let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
 	
-	let currently_data = new Date();
-	let currently_dia  = currently_data.getDate();
-	let currently_mes  = currently_data.getMonth();
-	let currently_ano  = currently_data.getFullYear();
-	let direciona_mes  = '';
-	let verifica       = 0;
-    app2.calendar.close("#calendario_agenda");
-	
-    $('#calendario_agenda').html('');
-	$('#dia_selecionado_ag').val('');
-	event_days();
-	
-	if(pano != '' && pmes != ''){
-	   direciona_mes = ' /*calendarInline.setValue(["'+pano+'-'+pmes+'-'+pdia+'"]);*/calendarInline.setYearMonth('+pano+', '+pmes+', 2)';
-	   verifica = 1;	   
-	}
-					  
+	let status = $('#ag_habilita').text();
+	$('#ag_habilita').text('nook');
 	
 	setTimeout(function(){
-		
-		let d_eventos        = sessionStorage.getItem('my_events');
-		let a_dias           = d_eventos.split(',');
-		let s_dias           = '';
-		let s_dias_formatado = '';
+		$('#ag_habilita').text('ok');
+	},2000);
+	
+    if(status == 'ok'){
+	
+	
+	
+		let currently_data = new Date();
+		let currently_dia  = currently_data.getDate();
+		let currently_mes  = currently_data.getMonth();
+		let currently_ano  = currently_data.getFullYear();
+		let direciona_mes  = '';
+		let verifica       = 0;
+		app2.calendar.close("#calendario_agenda");
 
-		for(x in a_dias){	
+		$('#calendario_agenda').html('');
+		$('#dia_selecionado_ag').val('');
+		event_days();
 
-			  ano = a_dias[x].substr(0,4);	
-			  mes = parseInt(a_dias[x].substr(5,2))-1;	
-			  dia = a_dias[x].substr(8);
-
-			  s_dias += ' new Date("'+ano+'", "'+mes+'", "'+dia+'"), '
+		if(pano != '' && pmes != ''){
+		   direciona_mes = ' /*calendarInline.setValue(["'+pano+'-'+pmes+'-'+pdia+'"]);*/calendarInline.setYearMonth('+pano+', '+pmes+', 2)';
+		   verifica = 1;	   
 		}
-		
-		s_dias_formatado = s_dias.substr(25);
-       
-		let header_calendar = '<div class="toolbar calendar-custom-toolbar no-shadow">' +
-								  '<div class="toolbar-inner">' +
-									'<div class="left">' +
-									  '<a href="#" class="link icon-only"><i style="width: 24px;height: 24px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
-									'</div>' +
-									'<div class="center" style="margin-left: -23px;"></div>' +
-									'<div class="right">' +
-									  '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
-									'</div>' +
-								  '</div>' +
-								'</div>';
-
-		/* Build function dinamicly in time execution of aplication */
-		let gera = new Function('',   'let html        = "";'
-									  +'let icon       = "";'
-									  +'let cor        = "";'
-									  +'let now        = new Date();'
-									  +'let today      = new Date(now.getFullYear(), now.getMonth(), now.getDate());'
-									  +'let weekLater  = new Date().setDate(today.getDate() + 7);'
-									  +'let monthNames = [\'Janeiro\',' 
-														  +'\'Fevereiro\',' 
-														  +'\'Março\','
-														  +'\'Abril\',' 
-														  +'\'Maio\',' 
-														  +'\'Junho\',' 
-														  +'\'Julho\',' 
-														  +'\'Agosto\',' 
-														  +'\'Setembro\',' 
-														  +'\'Outubro\',' 
-														  +'\'Novembro\',' 
-														  +'\'Dezembro\'];'
-
-									   +'let dayNames =   [\'Seg\','
-														  +'\'Ter\',' 
-														  +'\'Qua\',' 
-														  +'\'Qui\',' 
-														  +'\'Sex\',' 
-														  +'\'Sab\','
-														  +'\'Dom\'];'
 
 
-							  +' let calendarInline = app2.calendar.create({'
-									  +'containerEl: "#calendario_agenda",'
-											+'value: [new Date()],'
-									   +'weekHeader: true,'
-										   +'events: ['
-														+s_dias_formatado+
+		setTimeout(function(){
 
-													'],'
-									  +'renderToolbar: function () {'
+			let d_eventos        = sessionStorage.getItem('my_events');
+			let a_dias           = d_eventos.split(',');
+			let s_dias           = '';
+			let s_dias_formatado = '';
 
-										   +' return \''+header_calendar+'\''
+			for(x in a_dias){	
 
-									  +' },'
-									  +' on: {'
-											   +'/*take the day thay the user click*/'
-											   +'dayClick: function(calendar, dayEl, year, month, day){'
-													 +' $("#info_agenda_evento").html(""); html = "";'
-								                     +'let data_formatada = trata_data_agenda(day+"/"+month+"/"+year,1);'
-								                     +' $("#dia_selecionado_ag").val(trata_data_agenda(day+"/"+month+"/"+year,2));' 
-													 +'$.ajax({'
-														 +'url        : localStorage.getItem("DOMINIO")+"appweb/agenda_get.php",'
-														 +'beforeSend : function() { $("#wait").css("display", "block"); },'
-														 +'complete   : function() { $("#wait").css("display", "none"); },'
-														 +'data       : {operacao:2,id_morador:$( "#DADOS #ID_MORADOR" ).val(),data:data_formatada,id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val()},  '   
-														 +'type       : "POST",'
-														 +'dataType   : "JSON",'
-														 +'success    : function(e){'
-                                                             +'let hidden1   = "";'
-														     +'let titulo    = "";'
-															 +'let id        = "";'
-															 +'let id_modulo = 0;'
-															 +'for(x in e){'
-																 +'contador = parseInt(x)+1;'
-																 +'if(e[x].titulo == "Mudanca"){'
+				  ano = a_dias[x].substr(0,4);	
+				  mes = parseInt(a_dias[x].substr(5,2))-1;	
+				  dia = a_dias[x].substr(8);
 
-								                                     +'titulo    = e[x].titulo;'
-																	 +'cor       = "background:  #ffc906";'
-																	 +'icon      = \'fa fa-exchange\';'
-																	 +'vclasse   = "icon-mudanca";'
-								 								     +'hidden1   = "display:block;";'
-								                                     +'$(".ag_btn_relacionados").hide();'
-																	 +'id_modulo = 1;'
-								
+				  s_dias += ' new Date("'+ano+'", "'+mes+'", "'+dia+'"), '
+			}
 
-																 +'}else '
-								                                 +'if(e[x].titulo == "Comunicado"){'
-								
-																	 +'titulo    = e[x].titulo_descricao;'
-																	 +'cor       = "background:"+e[x].cor;'
-																	 +'icon      = \'fa fa-bullhorn\';'
-																	 +'vclasse   = "icon-comunicado";'
-																     +'hidden1   = "display:none;";'
-																     +'id        = " N° "+e[x].id;'
-								                                     +'$(".ag_btn_relacionados").hide();'
-																	 +'id_modulo = 2;'
-								
-								                                 +'}'
-								                                 +'else{'
-								
-																	 +'titulo   = e[x].titulo;'
-																	 +'icon     = \'fa fa-calendar;\';'
-																	 +'vclasse  = "icon-evento";'
-								 									 +'hidden1  = "display:block;";'
-																	 +'cor      = "background:"+e[x].cor;'
-																	 +'id       = ""'
-															
+			s_dias_formatado = s_dias.substr(25);
 
-																 +'}'
+			let header_calendar = '<div class="toolbar calendar-custom-toolbar no-shadow">' +
+									  '<div class="toolbar-inner">' +
+										'<div class="left">' +
+										  '<a href="#" class="link icon-only"><i style="width: 24px;height: 24px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+										'</div>' +
+										'<div class="center" style="margin-left: -23px;"></div>' +
+										'<div class="right">' +
+										  '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+										'</div>' +
+									  '</div>' +
+									'</div>';
 
-																+'html += "<div data-sheet=\'.evento_detalhe\' onclick=\'carrega_evento_detalhe("+e[x].id_evento+","+id_modulo+") \'class=\'sheet-open background-btn chip color-red\' style=\'height: 35px;width: 96%;"+cor+"  \'>'
-																			+'<div style=\'padding-left: 5px;\' class=\'chip-label col-xs-6\'>"+contador+" - "+titulo+id+"</div>'
-																			+'<div class=\'col-xs-6\'><span style="+hidden1+">"+ e[x].hora_inicio+" ás "+e[x].hora_fim+"</span></div>'
-																			+'<div><span class="+vclasse+"></span></div>'
-																	   +'</div><br>"'
-															+'}; '
-															+' $(\'#info_agenda_evento\').html(html);'
-															+' $(\'.icon-evento\').addClass(\'fa fa-calendar\');'
-															+' $(\'.icon-mudanca\').addClass(\'fa fa-exchange\');'
-								                            +' $(\'.icon-comunicado\').addClass(\'fa fa-bullhorn\');'
+			/* Build function dinamicly in time execution of aplication */
+			let gera = new Function('',   'let html        = "";'
+										  +'let icon       = "";'
+										  +'let cor        = "";'
+										  +'let now        = new Date();'
+										  +'let today      = new Date(now.getFullYear(), now.getMonth(), now.getDate());'
+										  +'let weekLater  = new Date().setDate(today.getDate() + 7);'
+										  +'let monthNames = [\'Janeiro\',' 
+															  +'\'Fevereiro\',' 
+															  +'\'Março\','
+															  +'\'Abril\',' 
+															  +'\'Maio\',' 
+															  +'\'Junho\',' 
+															  +'\'Julho\',' 
+															  +'\'Agosto\',' 
+															  +'\'Setembro\',' 
+															  +'\'Outubro\',' 
+															  +'\'Novembro\',' 
+															  +'\'Dezembro\'];'
 
-														+'},'
-														+'error : function(){'				
-															+'alerta(\'\',\'Erro ao carregar eventos\');'
-														+'}'
-													+'})'
-											   +'},'
+										   +'let dayNames =   [\'Seg\','
+															  +'\'Ter\',' 
+															  +'\'Qua\',' 
+															  +'\'Qui\',' 
+															  +'\'Sex\',' 
+															  +'\'Sab\','
+															  +'\'Dom\'];'
 
-											  +'init: function (c) {'
-												  +'/*Write week name*/'
-												  +'for(x = 0;x <=7; x++){'
-													 +'$(\'.calendar-week-header\').children().eq(x).html(dayNames[x])'
-												  +'}'
 
-												+'$(\'calendar-week-header\').text(dayNames[c.currentMonth]);'
-												+'$(\'.calendar-custom-toolbar .center\').text(monthNames[c.currentMonth] +", " + c.currentYear);'
-												 +'$(".calendar-custom-toolbar .left .link").on("click", function () {'
-													+'calendarInline.prevMonth();'
-												 +'});'
-												 +'$(".calendar-custom-toolbar .right .link").on("click", function () {'
-													+'calendarInline.nextMonth();'
-												 +'});'
-											+'},'
-											+'monthYearChangeStart: function (c) {'
-											  +'$(".calendar-custom-toolbar .center").text(monthNames[c.currentMonth] +", " + c.currentYear);'
+								  +' let calendarInline = app2.calendar.create({'
+										  +'containerEl: "#calendario_agenda",'
+												+'value: [new Date()],'
+										   +'weekHeader: true,'
+											   +'events: ['
+															+s_dias_formatado+
 
-											+'}'
-										 +'}'
-									 +'});'+direciona_mes)
-								 
-		gera();
-		afed('#agenda','#home','','');
-		
-	},700);
-	
-	setTimeout(function(){
-		if(verifica == 1){
-		  $('.calendar-month-current div[data-date="'+pano+'-'+pmes+'-'+parseInt(pdia)+'"]').click();	
-	    }else{
-		  $('.calendar-month-current div[data-date="'+currently_ano+'-'+currently_mes+'-'+currently_dia+'"]').click();
-		}		
-	},1000);
-	
+														'],'
+										  +'renderToolbar: function () {'
+
+											   +' return \''+header_calendar+'\''
+
+										  +' },'
+										  +' on: {'
+												   +'/*take the day thay the user click*/'
+												   +'dayClick: function(calendar, dayEl, year, month, day){'
+														 +' $("#info_agenda_evento").html(""); html = "";'
+														 +'let data_formatada = trata_data_agenda(day+"/"+month+"/"+year,1);'
+														 +' $("#dia_selecionado_ag").val(trata_data_agenda(day+"/"+month+"/"+year,2));' 
+														 +'$.ajax({'
+															 +'url        : localStorage.getItem("DOMINIO")+"appweb/agenda_get.php",'
+															 +'beforeSend : function() { $("#wait").css("display", "block"); },'
+															 +'complete   : function() { $("#wait").css("display", "none"); },'
+															 +'data       : {operacao:2,id_morador:$( "#DADOS #ID_MORADOR" ).val(),data:data_formatada,id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val()},  '   
+															 +'type       : "POST",'
+															 +'dataType   : "JSON",'
+															 +'success    : function(e){'
+																 +'let hidden1   = "";'
+																 +'let titulo    = "";'
+																 +'let id        = "";'
+																 +'let id_modulo = 0;'
+																 +'for(x in e){'
+																	 +'contador = parseInt(x)+1;'
+																	 +'if(e[x].titulo == "Mudanca"){'
+
+																		 +'titulo    = e[x].titulo;'
+																		 +'cor       = "background:  #ffc906";'
+																		 +'icon      = \'fa fa-exchange\';'
+																		 +'vclasse   = "icon-mudanca";'
+																		 +'hidden1   = "display:block;";'
+																		 +'$(".ag_btn_relacionados").hide();'
+																		 +'id_modulo = 1;'
+
+
+																	 +'}else '
+																	 +'if(e[x].titulo == "Comunicado"){'
+
+																		 +'titulo    = e[x].titulo_descricao;'
+																		 +'cor       = "background:"+e[x].cor;'
+																		 +'icon      = \'fa fa-bullhorn\';'
+																		 +'vclasse   = "icon-comunicado";'
+																		 +'hidden1   = "display:none;";'
+																		 +'id        = " N° "+e[x].id;'
+																		 +'$(".ag_btn_relacionados").hide();'
+																		 +'id_modulo = 2;'
+
+																	 +'}'
+																	 +'else{'
+
+																		 +'titulo   = e[x].titulo;'
+																		 +'icon     = \'fa fa-calendar;\';'
+																		 +'vclasse  = "icon-evento";'
+																		 +'hidden1  = "display:block;";'
+																		 +'cor      = "background:"+e[x].cor;'
+																		 +'id       = ""'
+
+
+																	 +'}'
+
+																	+'html += "<div data-sheet=\'.evento_detalhe\' onclick=\'carrega_evento_detalhe("+e[x].id_evento+","+id_modulo+") \'class=\'sheet-open background-btn chip color-red\' style=\'height: 35px;width: 96%;"+cor+"  \'>'
+																				+'<div style=\'padding-left: 5px;\' class=\'chip-label col-xs-6\'>"+contador+" - "+titulo+id+"</div>'
+																				+'<div class=\'col-xs-6\'><span style="+hidden1+">"+ e[x].hora_inicio+" ás "+e[x].hora_fim+"</span></div>'
+																				+'<div><span class="+vclasse+"></span></div>'
+																		   +'</div><br>"'
+																+'}; '
+																+' $(\'#info_agenda_evento\').html(html);'
+																+' $(\'.icon-evento\').addClass(\'fa fa-calendar\');'
+																+' $(\'.icon-mudanca\').addClass(\'fa fa-exchange\');'
+																+' $(\'.icon-comunicado\').addClass(\'fa fa-bullhorn\');'
+
+															+'},'
+															+'error : function(){'				
+																+'alerta(\'\',\'Erro ao carregar eventos\');'
+															+'}'
+														+'})'
+												   +'},'
+
+												  +'init: function (c) {'
+													  +'/*Write week name*/'
+													  +'for(x = 0;x <=7; x++){'
+														 +'$(\'.calendar-week-header\').children().eq(x).html(dayNames[x])'
+													  +'}'
+
+													+'$(\'calendar-week-header\').text(dayNames[c.currentMonth]);'
+													+'$(\'.calendar-custom-toolbar .center\').text(monthNames[c.currentMonth] +", " + c.currentYear);'
+													 +'$(".calendar-custom-toolbar .left .link").on("click", function () {'
+														+'calendarInline.prevMonth();'
+													 +'});'
+													 +'$(".calendar-custom-toolbar .right .link").on("click", function () {'
+														+'calendarInline.nextMonth();'
+													 +'});'
+												+'},'
+												+'monthYearChangeStart: function (c) {'
+												  +'$(".calendar-custom-toolbar .center").text(monthNames[c.currentMonth] +", " + c.currentYear);'
+
+												+'}'
+											 +'}'
+										 +'});'+direciona_mes)
+
+			gera();
+			afed('#agenda','#home','','');
+
+		},1000);
+
+		setTimeout(function(){
+			if(verifica == 1){
+			  $('.calendar-month-current div[data-date="'+pano+'-'+pmes+'-'+parseInt(pdia)+'"]').click();	
+			}else{
+			  $('.calendar-month-current div[data-date="'+currently_ano+'-'+currently_mes+'-'+currently_dia+'"]').click();
+			}		
+		},1300);
+	}
 }
 
 function trata_data_agenda(valor,op){
