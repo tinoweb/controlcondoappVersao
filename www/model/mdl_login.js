@@ -1,7 +1,7 @@
 // LOGIN USUARIO DEVICE (VALIDA O LOGIN PELO ID DO DISPOSITIVO)
 function login_user_device(){
     //alert('Login');
-	localStorage.setItem('VERSAO','1.2.2');
+	localStorage.setItem('VERSAO','1.2.1');
     if(navigator.connection.type != 'none'){
         //alert('teste2');
         if(device.uuid == null){
