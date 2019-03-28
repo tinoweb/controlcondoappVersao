@@ -76,6 +76,9 @@
     },
     "cordova-plugin-vha-fileopener2": {
       "PACKAGE_NAME": "com.controlcondo.phonega"
+    },
+    "cordova-plugin-autostart": {
+      "PACKAGE_NAME": "com.controlcondo.phonega"
     }
   },
   "dependent_plugins": {
