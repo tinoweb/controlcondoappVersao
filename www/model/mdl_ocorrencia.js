@@ -503,6 +503,18 @@ function clean_picture(){
 function ocorrencia_insert(){
 	/* Monta string com fotos inseridas pelo usuario*/
 	var foto_src = "";
+	var c_tipo_ocorrencia = $('#DADOS #OCORRENCIA_PUBLICA').val();
+	var tipo_ocorrencia_  = '';
+	var c_msg             = '';
+	var conf_ocorrencia   = '';
+	
+	if(c_tipo_ocorrencia == 0){
+	   tipo_ocorrencia_ = 1;
+	}else
+	if(c_tipo_ocorrencia == 1){
+	   tipo_ocorrencia_ = 0
+	}
+	   
 	$("#anexo_oco img[name='foto']").each(function(){
 
 		 foto_src += $(this).data("src")+"**";
@@ -515,6 +527,8 @@ function ocorrencia_insert(){
 		notifica('Campo não preenchido/Você deve preencher o campo de Resumo/Ok',1000,0);
 	}else if($( "#form_ocorrencia_add #privada" ).val() == '99'){
 		notifica('Campo não preenchido/Você deve preencher o campo Privacidade/Ok',1000,0);
+	}else if(tipo_ocorrencia_ == 1 && $( "#form_ocorrencia_add #privada" ).val() == 0 && $( "#form_ocorrencia_add #privada" ).val() != '99'  ){
+	    alerta('','O condomínio não permite ocorrência Pública');
 	}else if($( "#form_ocorrencia_add #id_categoria" ).val() == '99'){
 		notifica('Campo não preenchido/Você deve preencher o campo Categoria/Ok',1000,0);
 	}else if($( "#form_ocorrencia_add #id_situacao" ).val() == '99'){

@@ -24,6 +24,7 @@ function login_user_device(){
 				//alert(retorno[0]['VERSAO']);
 				//if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 					   //alert('versao ok');
+				console.log(retorno);
 					if(retorno[0]['error'] == 0){
 						if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 						if(retorno[0]['perfil'] > 1){
@@ -91,6 +92,8 @@ function login_user_device(){
 								$( "#DADOS #NOME_MORADOR" ).val(retorno[0]['nome']);
 								$( "#DADOS #QUADRA" ).val(retorno[0]['rquadra']+' '+retorno[0]['quadra']);
 								$( "#DADOS #LOTE" ).val(retorno[0]['rlote']+' '+retorno[0]['lote']);
+								$( "#DADOS #OCORRENCIA_PUBLICA" ).val(retorno[0]['TIPO_OCORRENCIA']);
+								
 								MORADOR_NOME = retorno[0]['nome'];
 								localStorage.setItem('MORADOR_NOME',MORADOR_NOME);
 								$( "#DADOS #PARENTESCO" ).val(retorno[0]['parentesco']);
@@ -244,6 +247,7 @@ function login_user() {
 			//data: dados+'&nome=local&sistema=windows&uuid=123456&versao=10', //local
 			data: dados+'&nome='+device.model+'&sistema='+device.platform+'&uuid='+UUID+'&versao='+device.version+'&id_notificacao='+localStorage.getItem('registrationId'), //APP
 			success: function(retorno){
+				
 				if(retorno[0]['error'] == 1){
 					notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
 				}else{
@@ -370,7 +374,7 @@ function select_user(id_usuario_condominio=0) {
                     localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                     localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
                     localStorage.setItem('AUTORIZA' ,retorno[0]['autoriza']);
-					
+					$( "#DADOS #OCORRENCIA_PUBLICA" ).val(retorno[0]['TIPO_OCORRENCIA']);
 					if(retorno[0]['foto']==""){
 						$( '.back' ).hide();
 						$( '.fundo1 #bloco' ).css('margin','2% 0 0 -3%');
@@ -460,7 +464,7 @@ function select_user(id_usuario_condominio=0) {
 					$("#foto_user_mor").attr("onclick","afed('#bg_box3','','','',1);");
 					}else{ 
 					$("#foto_user_mor").attr("onclick","alerta('','Para alterar a foto, entre em contato com administração');"); }
-
+              
                     
                     carrega_chat();
                     inicia(0);

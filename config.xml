@@ -137,7 +137,6 @@
     <engine name="android" spec="^7.1.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
-	<gap:plugin platform="android" name="cordova-plugin-autostart" version="2.3.0" source="npm"/>
 
 	<feature name="File">
     <param name="android-package" value="org.apache.cordova.file.FileUtils" />
