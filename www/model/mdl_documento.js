@@ -53,7 +53,7 @@ function carrega_documentos(tipo){
 				var titulo = retorno[x]['titulo']+' ('+retorno[x]['descricao']+')';
 				
 				titulo = limita_txt(titulo,20);
-				link   = caminho[1];
+				link   = link;
 				
 				dado = 	'<div class="card padrao_card documento_card">'+
 							'<div class="card-header cabecalho_card" style="'+cor+'background-color: #f39c12; color:white;">'+
@@ -69,11 +69,10 @@ function carrega_documentos(tipo){
 								'<button style="margin:0 0 0 25%; width:50%" class="col button button-fill color-green" href="#" onClick="check_leitura(2,'+retorno[x]['id_documento']+');download_arquivo(\''+localStorage.getItem('DOMINIO')+caminho[1]+fmt_lin(tipo_)+'\',\''+fmt_lin(tipo_)+'\',\''+retorno[x]['titulo']+'\')"><i class="fa fa-cloud-download"></i>DOWNLOAD</button>'+
 							'</div>'+
 						'</div>';
-				
-		
-				
+				     
                 dados = dados + dado;
             }
+			
 			if(tipo === 0){
 				$( "#main_documento" ).html('');
 			}

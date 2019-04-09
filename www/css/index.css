@@ -84,11 +84,11 @@ body, html {
 
 .centerposition{
 	
-	position: relative;
-    width: 75%;
-    left: 95px;
+	/*position: relative;
+    width: 78%;
+    left: 89px;
     float: left;
-	margin-top: -80px;
+	margin-top: -80px;*/
 	
 }
 
@@ -1081,7 +1081,7 @@ input, textarea {
 	width:70px;
 	height:70px;
 	float:left;
-	margin:2% 0 0 2%;
+    margin: 14% 0 0 5%;
 	border-radius:50%;
 	/*background-image:url(../img/user2.png);*/
 	background-repeat:no-repeat;
