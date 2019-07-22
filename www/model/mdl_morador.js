@@ -2,6 +2,7 @@
 
 function carrega_morador(){
 	//alert(1);
+	var icon_cc = '';
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/morador_get.php',
@@ -29,13 +30,39 @@ function carrega_morador(){
 				   qtd_u_cc++;
 					
 				   localStorage.setItem('QTD_USUARIO_CC',qtd_u_cc);
+				
 				}
 				
-				var morador =  	'<div class="card morador-card" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')">'+
-									'<div class="card-header">'+
-										'<div class="morador-avatar" style="background-image:url('+foto_morador+');"></div>'+
+				
+				if(foto_morador == 'img/user2.png'){			
+					
+					var icon     = '<i style="color:white;margin: 7px 0 0 11.3px;font-size:25px" class="fa fa-user"></i>';
+					var style    = '/*padding-left: 0px;*/';
+					var style2   = '/*left: 94%;*/';
+					foto_morador = '';
+					
+				}else{
+					var icon   = '';
+					var style  = '';
+					var style2 = 'left: 80%;';
+				}
+				
+				if(retorno[x]['usar_control_condo'] == 1 ){
+				   
+					icon_cc = '<img src="./img/logo_blue.png" style="width: 36%;left: 72%;position: relative;" />';
+				    
+				 }else{
+					 
+					 icon_cc = '';
+					 style  += '/*margin-left: -19px;*/';
+				 }
+				var morador =  	'<div style="padding: 13px 0px 12px 0px;" class="card morador-card" onClick="carrega_morador_dados(\''+retorno[x]['id']+'\')"><div class="row no-gap">'+
+									'<div class="col-40" style="'+style+'">'+
+										'<div class="morador-avatar" style="background-color:#c2c2c2;background-image:url('+foto_morador+');">'+icon+'</div>'+
 										'<div class="morador-name">'+retorno[x]['nome']+'</div>'+
 										'<div class="morador-date">'+retorno[x]['descricao']+'</div>'+
+									'</div>'+
+									'<div class="col-30">'+icon_cc+'</div>'+
 									'</div>'+
                             	'</div>';
 
@@ -221,42 +248,63 @@ function carrega_morador_dados(id_morador){
 
         }
 	});
+	$('#bt_mor_atu').removeAttr('disabled');
 }
+
+
+
 
 function atualiza_morador(){
 	
-	var dados = $( "#form_moradores" ).serialize();
-    if($('#mor_nome').val() != '' && $('#mor_rg').val() != '' && $('#mor_cpf').val() != '' && $('#mor_nascimento').val() != '' && $('#mor_parentesco').val() != 0 && localStorage.getItem('QTD_USUARIO_CC') < localStorage.getItem('QTD_CONTROL_CONDO')){
+	var dados        = $( "#form_moradores" ).serialize();
+	var novo_morador = localStorage.getItem('novo_morador');
+	var controlcondo = $('#mor_controlcondo').prop("checked");
 	
-		if( $("#mor_controlcondo").is(":checked") == true && $('#mor_email').val() == '' ){
-			alerta('',"Informe um email");
-		}else if($("#mor_id_morador").val() == $( "#DADOS #ID_MORADOR" ).val() && $("#mor_controlcondo").is(":checked") == false){
-			alerta('',"Você não pode desativar seu perfil, contate o administrador");	 
+    if($('#mor_nome').val() != '' && $('#mor_rg').val() != '' && $('#mor_cpf').val() != '' && $('#mor_nascimento').val() != '' && $('#mor_parentesco').val() != 0){
+	
+
+		if(novo_morador == 'S' && localStorage.getItem('QTD_USUARIO_CC') >= localStorage.getItem('QTD_CONTROL_CONDO') && controlcondo == true){
+		   
+		   alerta('',"Você ja possui "+localStorage.getItem('QTD_USUARIO_CC')+", contate o administrador. ");
+		   
 		}else{
-//			alert('Atualiza');
-			$.ajax({
-				type: 'POST',
-				url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
-				data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
-				crossDomain: true,
-				beforeSend : function() { $("#wait").css("display", "block"); },
-				complete   : function() { $("#wait").css("display", "none"); },
-				success: function(retorno){
-					//alert(retorno);
-					if(retorno == '1A'){
-						alerta(2);
-					}else{
-						alerta(1);
-					}
-					$( '#mor_foto_up' ).val('');
-					afed('#moradores','#morador','','',2,'moradores');
-					carrega_morador();
-				},
-				error: function(data){
-					alerta(4);
-				}	
-			});	
+			
+
+			if( $("#mor_controlcondo").is(":checked") == true && $('#mor_email').val() == '' ){
+				alerta('',"Informe um email");
+			}else if($("#mor_id_morador").val() == $( "#DADOS #ID_MORADOR" ).val() && $("#mor_controlcondo").is(":checked") == false){
+				alerta('',"Você não pode desativar seu perfil, contate o administrador");	 
+			}else{
+	
+				$.ajax({
+					type: 'POST',
+					url: localStorage.getItem('DOMINIO')+'appweb/morador_update.php',
+					data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val(),
+					crossDomain: true,
+					beforeSend : function() { $("#wait").css("display", "block"); },
+					complete   : function() { $("#wait").css("display", "none"); },
+					success: function(retorno){
+						//alert(retorno);
+						if(retorno == '1A'){
+							alerta(2);
+						}else{
+							alerta(1);
+						}
+						$( '#mor_foto_up' ).val('');
+						afed('#moradores','#morador','','',2,'moradores');
+						localStorage.removeItem('novo_morador');
+						carrega_morador();
+					},
+					error: function(data){
+						alerta(4);
+					}	
+				});	
+			}
+			
 		}
+	
+	
+		
 	}else{
 		if($('#mor_nome').val() == ''){
 		   	alerta('',"Informe um nome");
@@ -268,11 +316,20 @@ function atualiza_morador(){
 			alerta('',"Informe uma data nascimento");
 		}else if($('#mor_parentesco').val() == ''){
 			alerta('',"Informe um parentesco");
-		}else if(localStorage.getItem('QTD_USUARIO_CC') >= localStorage.getItem('QTD_CONTROL_CONDO')){
+		}/*else if(localStorage.getItem('QTD_USUARIO_CC') >= localStorage.getItem('QTD_CONTROL_CONDO') && novo_morador == 'S'){
 			alerta('',"Você ja possui "+localStorage.getItem('QTD_USUARIO_CC')+", contate o administrador. ");
-		}
+		}*/
 	}
+
+	
 }
+
+
+function set_morador(){
+		
+	localStorage.setItem('novo_morador','S');
+}
+
 
 function delete_morador(){
 	if($("#mor_id_morador").val() == $( "#DADOS #ID_MORADOR" ).val()){
@@ -307,6 +364,27 @@ function delete_morador(){
 	}
 	
 }
+
+setTimeout(function(){
+	
+	
+	$('#mor_controlcondo').change(function(){
+
+	var verifica = $(this).prop("checked");
+	if(verifica == true && localStorage.getItem('QTD_USUARIO_CC') >= localStorage.getItem('QTD_CONTROL_CONDO')){
+
+		alerta('',"Você ja possui "+localStorage.getItem('QTD_USUARIO_CC')+", contate o administrador. ");
+		$('#bt_mor_atu').attr('disabled','false');
+		sessionStorage.setItem('morador_controlcondo','S');
+	}else{
+
+		$('#bt_mor_atu').removeAttr('disabled');
+		sessionStorage.setItem('morador_controlcondo','N');
+	}
+
+});
+	
+},2000);
 
 
 //function insert_morador(){
