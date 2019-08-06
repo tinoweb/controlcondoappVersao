@@ -196,7 +196,7 @@ function troca_foto2(valor){
 setTimeout(function(){
 	$("#liberacao2 #liberacao_placa").mask("AAA-9999");
 	$("#placa_carro").mask("AAA-9999");
-	$("#visitante #rg").mask("99.999.999-9");
+	/*$("#visitante #rg").mask("99.999.999-9");*/
 },3000);
 
 function alerta(tipo,valor="",time=2000){

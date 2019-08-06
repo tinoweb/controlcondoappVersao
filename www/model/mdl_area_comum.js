@@ -759,6 +759,7 @@ function pad(str, length) {
 function new_calendario(id_area_comum,data_evento='',tipo=1,integral=0,min='',max='',ativos='') {
 $( "#DADOS #AREA_COMUM" ).val(id_area_comum);
 localStorage.setItem('periodo_integral',integral);
+var id_morador = $('#ID_MORADOR').val();
 	
 $.ajax({
 	type: 'POST',
@@ -906,8 +907,23 @@ $.ajax({
 		}else{
 			var oc = "alerta('0','Essa reserva não pode ser alterada!');";
 		}
+			
+			
+		if(retorno[x]['situacao'] == 0){
+		   
+		   var cor = 'yellow' /* aguardando confirmacao */
+		}else{
+			
+		   var cor = '#2196f3' /* minhas reservas */
+		}
+			
+		if(id_morador != retorno[x]['id_morador']){
+			
+			 var cor = 'red' /* reservas terceiros */
+		}
+			
 		//alert(reserva_inicio[1]+' '+reserva_fim[1]);
-		var	dado_reserva = '<li onclick="'+oc+'" class="item-content" style="border-left: 7px solid #2196f3">'+
+		var	dado_reserva = '<li onclick="'+oc+'" class="item-content" style="border-left: 7px solid '+cor+' ">'+
 							'<div class="event-color" style="background-color: #2196f3"></div>'+
 							'<div class="item-inner">'+
 							'<div class="item-media" style="width: 44px; height: 44px; margin:4px 4px 0 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotov+'</div>'+

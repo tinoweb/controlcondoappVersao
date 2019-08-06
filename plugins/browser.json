@@ -66,6 +66,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
+        "cordova-backgroundvideo": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
         }
     },
     "dependent_plugins": {
