@@ -75,10 +75,10 @@
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
 		
-		//cordova.plugins.firebase.analytics.logEvent("app_open");
+		
 		
 		function onDeviceReady() { 
-
+			cordova.plugins.firebase.analytics.logEvent("app_open");
 			var push = PushNotification.init({ 
 				"android": {"senderID": "572833270659"},
 				"browser": {},
