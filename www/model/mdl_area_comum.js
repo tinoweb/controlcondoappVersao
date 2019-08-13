@@ -25,7 +25,7 @@ function carrega_areas(){
   							'<div class="card-content card-content-padding">'+
     						'<p>'+retorno[x]['nome']+'</p>'+
   							'</div>'+foto_area+
-  							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\');">Reservar</a></div>'+
+  							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\','+retorno[x]['data_situacao_de']+','+retorno[x]['data_situacao']+');">Reservar</a></div>'+
 							'</div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
                 dados = dados + dado;
@@ -756,7 +756,7 @@ function pad(str, length) {
 /***********************************FUNCOES NOVO CALENDARIO******************************/
 
 
-function new_calendario(id_area_comum,data_evento='',tipo=1,integral=0,min='',max='',ativos='') {
+function new_calendario(id_area_comum,data_evento='',tipo=1,integral=0,min='',max='',ativos='',blockde='',blockate='') {
 $( "#DADOS #AREA_COMUM" ).val(id_area_comum);
 localStorage.setItem('periodo_integral',integral);
 var id_morador = $('#ID_MORADOR').val();
@@ -809,12 +809,19 @@ $.ajax({
 			var ndt = data_evento.split('-');
 			var dt_value = new Date(ndt[0],(ndt[1]-1),ndt[2]);
 		}
+
+		var bde = blockde.split('-');
+		var bate = blockate.split('-');
+			
 		var calendarInline = app2.calendar.create({
 			containerEl: '#demo-calendar-inline-container',
 			dateFormat: 'M dd yyyy',
 			minDate: ontem,
 			maxDate: dt_max,
-			disabled: [new Date(2019, 8, 10), new Date(2019, 8, 20)],
+			disabled: {
+        		from: new Date(bde[0], (bde[1]-1), bde[2]),
+        		to: new Date(bate[0], (bate[1]-1), bate[2])
+    		},
 			weekHeader: false,
 			events: eventos_data,
 			value: [dt_value],
