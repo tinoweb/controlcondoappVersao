@@ -810,8 +810,9 @@ $.ajax({
 			var dt_value = new Date(ndt[0],(ndt[1]-1),ndt[2]);
 		}
 
-		var bde = blockde.split('-');
-		var bate = blockate.split('-');
+		alert(blockde+'-----'+blockate)//
+		//var bde = blockde.split('-');
+		//var bate = blockate.split('-');
 			
 		var calendarInline = app2.calendar.create({
 			containerEl: '#demo-calendar-inline-container',
@@ -819,8 +820,10 @@ $.ajax({
 			minDate: ontem,
 			maxDate: dt_max,
 			disabled: {
-        		from: new Date(bde[0], (bde[1]-1), bde[2]),
-        		to: new Date(bate[0], (bate[1]-1), bate[2])
+        		from: new Date(2019, 7, 20),
+        		to: new Date(2019, 7, 24)
+        		//from: new Date(bde[0], (bde[1]-1), bde[2]),
+        		//to: new Date(bate[0], (bate[1]-1), bate[2])
     		},
 			weekHeader: false,
 			events: eventos_data,
