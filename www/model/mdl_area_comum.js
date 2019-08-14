@@ -819,12 +819,12 @@ $.ajax({
 			dateFormat: 'M dd yyyy',
 			minDate: ontem,
 			maxDate: dt_max,
-			disabled: {
-        		from: new Date(2019, 7, 20),
-        		to: new Date(2019, 7, 24)
+			//disabled: {
+        		//from: new Date(2019, 7, 20),
+        		//to: new Date(2019, 7, 24)
         		//from: new Date(bde[0], (bde[1]-1), bde[2]),
         		//to: new Date(bate[0], (bate[1]-1), bate[2])
-    		},
+    		//},
 			weekHeader: false,
 			events: eventos_data,
 			value: [dt_value],
