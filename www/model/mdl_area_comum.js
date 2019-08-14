@@ -23,9 +23,9 @@ function carrega_areas(){
 				}
 				var dado = 	'<div class="card demo-card-header-pic">'+
   							'<div class="card-content card-content-padding">'+
-    						'<p>'+retorno[x]['nome']+'</p>'+
+    						'<p>'+retorno[x]['nome']+' '+retorno[x]['data_situacao_de']+' '+retorno[x]['data_situacao']+'</p>'+
   							'</div>'+foto_area+
-  							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\','+retorno[x]['data_situacao_de']+','+retorno[x]['data_situacao']+');">Reservar</a></div>'+
+  							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\',\''+retorno[x]['data_situacao_de']+'\',\''+retorno[x]['data_situacao']+'\');">Reservar</a></div>'+
 							'</div>';
                 var dado_select = '<option value="'+retorno[x]['id_area_comum']+'">'+retorno[x]['nome']+'</option>';
                 dados = dados + dado;
@@ -810,22 +810,24 @@ $.ajax({
 			var dt_value = new Date(ndt[0],(ndt[1]-1),ndt[2]);
 		}
 
-		alert(blockde+'-----'+blockate)//
-		//var bde = blockde.split('-');
-		//var bate = blockate.split('-');
+		//alert(blockde+'-----'+blockate)//
+		var bde = blockde.split('-');
+		var bate = blockate.split('-');
 			
 		var calendarInline = app2.calendar.create({
 			containerEl: '#demo-calendar-inline-container',
 			dateFormat: 'M dd yyyy',
+			//header: true, 
 			minDate: ontem,
 			maxDate: dt_max,
-			//disabled: {
-        		//from: new Date(2019, 7, 20),
+			disabled: {
+        		//from: new Date(2019, 7, 20), 
         		//to: new Date(2019, 7, 24)
-        		//from: new Date(bde[0], (bde[1]-1), bde[2]),
-        		//to: new Date(bate[0], (bate[1]-1), bate[2])
-    		//},
-			weekHeader: false,
+        		from: new Date(bde[0], (bde[1]-1), bde[2]),
+        		to: new Date(bate[0], (bate[1]-1), bate[2])
+    		},
+			dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'], 
+			weekHeader: true,
 			events: eventos_data,
 			value: [dt_value],
 			renderToolbar: function () {
