@@ -852,7 +852,7 @@ var app = {
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true,
-			correctOrientation: true 
+			correctOrientation: false 
         });
         function onSuccess(imageURI) { 
             $( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
