@@ -447,6 +447,7 @@ var app = {
 	foto_perfil: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true
         });
@@ -850,9 +851,9 @@ var app = {
     foto_mor: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
-            saveToPhotoAlbum: true,
-			correctOrientation: false 
+            saveToPhotoAlbum: true
         });
         function onSuccess(imageURI) { 
             $( '#foto_morador_edit' ).css("background-image", "url(data:image/jpeg;base64,"+imageURI+")");
