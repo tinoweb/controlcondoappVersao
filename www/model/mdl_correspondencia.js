@@ -72,6 +72,14 @@ function carrega_entregas(tipo){
 											'</div>'+
 											'</li>';
 										}
+											'<li>'+
+										'<div class="item-inner">'+
+										'<div class="item-title">'+
+										'<div class="item-header">Data Recebimento</div>'+
+										retorno[x]['datarecebimento']+
+										'</div>'+
+										'</div>'+
+										'</li>';
 										if(retorno[x]['dataentrega'] != ''){
 											dado = dado +
 											'<li>'+
@@ -98,16 +106,28 @@ function carrega_entregas(tipo){
 											'</div>'+
 											'</div>'+
 											'</li>';
+										}else{
+											if(retorno[x]['codigo_correspondencia']==1)
+												{
+											dado = dado +
+											
+											
+											'<li>'+
+						 
+											'<button class="btn btn-success col-md-12 card sheet-open" onClick="qrcode_encomenda('+retorno[x]['id']+')" data-sheet=".entregaqr_modal" ><i class="fa fa-qrcode"></i></button>'+
+											
+											'</li>';
+												}
 										}
 									dado = dado +
   									'</ul>'+
-									'</div>'+
+									'</div>'+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 								'</div>'+
 						  	'</div>'+
 						'</li>';
 
 //                dado = '<div class="entrega" onClick=""><div class="entrega_foto" style="background-image:url(';
-//				if(retorno[x]['descricao']==='SEDEX'){
+//				if(retorno[x]['descricao']==='SEDEX'){ onClick="carregar_um_visitante('+retorno[x] ['id']+')"
 //					dado+= 'img/pacote.png';
 //				}else if(retorno[x]['descricao']==='CARTA'){
 //					dado+= 'img/carta.png';
@@ -142,3 +162,45 @@ function carrega_entregas(tipo){
         }
 	});	
 }
+
+
+//PEGAR QRCODE DA ENCOMENDA PARA O MORADOR 
+function qrcode_encomenda(id)
+{	$("#code_encomenda").html('');
+	$("#qrcode_encomenda").html('');
+	var id_condominio = $( "#DADOS #ID_CONDOMINIO" ).val();
+	var id_morador = $( "#DADOS #ID_MORADOR" ).val();
+	var id_correspondencia = id;
+	var codigo = id_morador+"ENC"+id_condominio+"D"+id_correspondencia;
+	$("#code_encomenda").html(codigo);
+	
+	
+	
+	
+	  jQuery('#qrcode_encomenda').qrcode({
+                text	:codigo,
+                quiet   : 1,
+                ecLevel: 'L',
+                radius: 0.2
+            });
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
