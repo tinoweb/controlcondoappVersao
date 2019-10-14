@@ -236,6 +236,47 @@ function alerta(tipo,valor="",time=2000){
     toastIcon.open();
 	
 }
+function alerta_callback(tipo,valor="",time=2000){
+	
+	let icon = "";
+	let msg  = "";
+	
+	if(tipo==1){
+		icon = '<i class="fa fa-check-square"></i>';
+		msg  = "Salvo com sucesso";
+    }else
+	if(tipo==2){
+	    icon = '<i class="fa fa-check"></i>';
+		msg  = "Alterado com sucesso";
+	}else
+	if(tipo==3){
+		icon = '<i class="fa fa-close"></i>';
+		msg  = "Excluido com sucesso";
+	}else
+	if(tipo==4){
+		icon = '<i class="fa fa-exclamation-triangle"></i>';
+		msg  = "Erro, tente novamente";
+	}else{
+		
+		icon = '<i class="fa fa-info"></i>';
+		msg  = valor;
+	}
+		
+	/* Estancia objeto e chama o metodo para exibir mensagem */
+	var dialog = app.dialog.create({
+		
+  text: msg,
+  on: {
+    opened: function () {
+      console.log('Dialog opened')
+    }
+  }
+})
+
+    dialog.open();
+	
+}
+
 
 function abre_menu(el){
 	/* Abre e Fecha Menu */

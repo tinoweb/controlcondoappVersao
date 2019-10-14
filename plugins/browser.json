@@ -7,6 +7,12 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-backgroundvideo": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
+        "cordova-plugin-autostart": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
         "cordova-plugin-battery-status": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
@@ -32,6 +38,9 @@
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
+        "cordova-plugin-fileopener": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-geolocation": {
@@ -61,13 +70,13 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
+        "cordova-plugin-vha-fileopener2": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.controlcondo.phonega"
-        },
-        "cordova-backgroundvideo": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         }
     },

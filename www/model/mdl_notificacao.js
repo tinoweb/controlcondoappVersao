@@ -12,6 +12,8 @@ function atualiza_notificacao(){
 			complete   : function() { $("#wait").css("display", "none"); },
 			data       : { 
 							usuario:id_usuario_condominio,
+							id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val(),
+							 id_morador : $( "#DADOS #ID_MORADOR" ).val(),
 							   tipo:'atualiza'
 						 },
 			dataType   : 'json',

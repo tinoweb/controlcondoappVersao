@@ -227,6 +227,7 @@ function login_user_device(){
 
 // FUNCAO LOGIN USUARIO (LOGIN POR EMAIL/SENHA)
 function login_user() {
+
 	if(navigator.connection.type != 'none'){
 		var dados = $( "#form_login" ).serialize();
         if(device.uuid == null){

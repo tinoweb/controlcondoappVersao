@@ -50,6 +50,9 @@ var app = {
 		$("#boxUp_mudancas").hide();	
 		$("#boxUp_tickets").hide();
 		$("#boxUp_mreserva").hide();
+		$("#boxUp_recorrente" ).hide();
+		$("#boxUp_pontual").hide();
+		$("#boxUp_mcasa").hide();
 		$("#boxUp_pet").hide();
 		$("#boxUp_pet1").hide(); 
 		
@@ -188,7 +191,7 @@ var app = {
 				scrollTop: 0
 			},600)
 		});
-		
+	//--------------------------------------	
 		$("#pull-documentos").scroll(function() { 
 			var y=(($(this).scrollTop() + $(this).height()) + 110);
 			var x=$(this).get(0).scrollHeight;
@@ -203,6 +206,56 @@ var app = {
 				scrollTop: 0
 			},600)
 		});
+		//-----------------------------------------
+		$("#pull-recorrente").scroll(function() {
+			//alert('pull');
+			var y=(($(this).scrollTop() + $(this).height()) + 110);
+			var x=$(this).get(0).scrollHeight;
+            if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
+               // meus_recorrentes();
+            }
+			app.ckBoxUp("#boxUp_recorrente","#pull-recorrente");
+		});		
+		
+		$('#boxUp_recorrente').click(function(){
+			$('#pull-recorrente').animate({
+				scrollTop: 0
+			},400)
+		});
+		//---------------------------------------------------
+			//-----------------------------------------
+		$("#pull-pontual").scroll(function() {
+			//alert('pull');
+			var y=(($(this).scrollTop() + $(this).height()) + 110);
+			var x=$(this).get(0).scrollHeight;
+            if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
+               // meus_recorrentes();
+            }
+			app.ckBoxUp("#boxUp_pontual","#pull-pontual");
+		});		
+		
+		$('#boxUp_pontual').click(function(){
+			$('#pull-pontual').animate({
+				scrollTop: 0
+			},400)
+		});
+		//-----------------------------------------
+		$("#pull-mcasa").scroll(function() {
+			//alert('pull');
+			var y=(($(this).scrollTop() + $(this).height()) + 110);
+			var x=$(this).get(0).scrollHeight;
+            if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
+               // meus_recorrentes();
+            }
+			app.ckBoxUp("#boxUp_mcasa","#pull-mcasa");
+		});		
+		
+		$('#boxUp_mcasa').click(function(){
+			$('#pull-mcasa').animate({
+				scrollTop: 0
+			},400)
+		});
+		//---------------------------------------------------
 		
 		$("#pull-pet").scroll(function() {
 			//alert('pull');
@@ -225,7 +278,7 @@ var app = {
 			var y=(($(this).scrollTop() + $(this).height()) + 110);
 			var x=$(this).get(0).scrollHeight;
             if ((($(this).scrollTop() + $(this).height()) + 110) > $(this).get(0).scrollHeight) {
-                carrega_pets(0);
+                meus_recorrentes();
             }
 			app.ckBoxUp("#boxUp_pet1","#pull-pet1");
 		});		
@@ -322,11 +375,11 @@ var app = {
 		});
 		
     },
-    
+  //-------------------------------------------------------------------------------  
     foto_pet_edicao: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
-            
+            	correctOrientation: true,
 			destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true
         });
@@ -348,6 +401,7 @@ var app = {
      
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+				correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
 			//sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             //saveToPhotoAlbum: true
@@ -373,6 +427,7 @@ var app = {
      
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             saveToPhotoAlbum: true
@@ -398,6 +453,7 @@ var app = {
      
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
 			//sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             //saveToPhotoAlbum: true
@@ -423,6 +479,7 @@ var app = {
      
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+		   	correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             saveToPhotoAlbum: true
@@ -481,7 +538,8 @@ var app = {
     foto_perfil2: function() {
         
         navigator.camera.getPicture(onSuccess, onFail, {  
-            quality: 50, 
+            quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL, 
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 	
         }); 
@@ -525,6 +583,7 @@ var app = {
 			
 			navigator.camera.getPicture(onSuccess, onFail, { 
 				quality: 50,
+				correctOrientation: true,
 				destinationType: Camera.DestinationType.DATA_URL,
 				saveToPhotoAlbum: true
 			});
@@ -593,7 +652,8 @@ var app = {
 		}else{
 			
 			navigator.camera.getPicture(onSuccess, onFail, { 
-				quality: 50, 
+				quality: 50,
+				correctOrientation: true,
 				destinationType: Camera.DestinationType.DATA_URL, 
 				sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
 			});
@@ -654,6 +714,7 @@ var app = {
 			var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
 			navigator.camera.getPicture(onSuccess, onFail, { 
 				quality: 50,
+				correctOrientation: true,
 				destinationType: Camera.DestinationType.DATA_URL,
 				saveToPhotoAlbum: true
 			});
@@ -714,6 +775,7 @@ var app = {
 			var caminho = "docs/"+($( "#DADOS #ID_CONDOMINIO" ).val())+"/ocorrencia/";
 			navigator.camera.getPicture(onSuccess, onFail, { 
 				quality: 50, 
+				correctOrientation: true,
 				destinationType: Camera.DestinationType.DATA_URL, 
 				sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
 			});
@@ -753,6 +815,7 @@ var app = {
     foto_visitante: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true
         });
@@ -770,7 +833,8 @@ var app = {
     foto_visitante2: function() {
         
 	   navigator.camera.getPicture(onSuccess, onFail, {  
-            quality: 50, 
+            quality: 50,
+		  	correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL, 
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         }); 
@@ -791,6 +855,7 @@ var app = {
     foto_visitante3: function(id_visitante) {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true
         });
@@ -819,7 +884,8 @@ var app = {
     foto_visitante4: function() {
         
 	   navigator.camera.getPicture(onSuccess, onFail, {  
-            quality: 50, 
+            quality: 50,
+		  	correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL, 
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         }); 
@@ -868,7 +934,8 @@ var app = {
     foto_mor2: function() {
         
 	   navigator.camera.getPicture(onSuccess, onFail, {  
-            quality: 50, 
+            quality: 50,
+		   	correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL, 
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         }); 
@@ -888,6 +955,7 @@ var app = {
     foto_veiculo: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true
         });
@@ -903,6 +971,7 @@ var app = {
     }, foto_veiculo4: function() {
         navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 50,
+			correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL,
             saveToPhotoAlbum: true
         });
@@ -923,6 +992,7 @@ var app = {
         
 	   navigator.camera.getPicture(onSuccess, onFail, {  
             quality: 50, 
+		  	correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL, 
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         }); 
@@ -942,7 +1012,8 @@ var app = {
 	foto_veiculo3: function() {
         
 	   navigator.camera.getPicture(onSuccess, onFail, {  
-            quality: 50, 
+            quality: 50,
+		  	correctOrientation: true,
             destinationType: Camera.DestinationType.DATA_URL, 
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
         }); 
@@ -959,7 +1030,7 @@ var app = {
             //alert('Câmera Indisponível');
         }    
     },
-
+//---------------------------------------------------------
     setupPush: function() {
         console.log('calling push init');
         var push = PushNotification.init({
@@ -1006,6 +1077,8 @@ var app = {
 		$("#pull-pet" ).removeClass("ptr-refreshing");
 		$("#pull-mudancas" ).removeClass("ptr-content");
 		$("#pull-mudancas" ).removeClass("ptr-refreshing");
+		$("#pull-recorrente" ).removeClass("ptr-content");
+		$("#pull-recorrente" ).removeClass("ptr-refreshing");
 		
 		//$("#pull-minha-reserva" ).removeClass("ptr-content");
 	},
@@ -1047,6 +1120,9 @@ var app = {
 		}else if(pag==='mudancas'){
 			$("#pull-mudancas").addClass("ptr-content");
 			//alert('saindo do controler_pull');
+		}else if(pag==='minha_casa_recorrente'){
+			$("#pull-recorrente").addClass("ptr-content");
+			//alert('saindo do controler_pull');
 		}
 	},
 	pull_to_refresh: function(res){
@@ -1081,6 +1157,9 @@ var app = {
 		}else if(res==='mudancas'){
 			//carrega_tickets(0);
             carrega_mudancas(0);
+		}else if(res==='minha_casa_recorrente'){
+			//carrega_tickets(0);
+            meus_recorrentes();
 		}
 		//alert('terminado');
 	},

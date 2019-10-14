@@ -173,6 +173,7 @@ function carrega_area(view=1){
 			$( "#reserva #add_reserva #add_reserva_termo" ).html(retorno[0]['termo']);
 			$( "#add_reserva_hora_inicio" ).val(retorno[0]['inicio']);
 			$( "#add_reserva_hora_fim" ).val(retorno[0]['fim']);
+			$( "#add_reserva #confirma_reserva" ).val(retorno[0]['confirmacao']);
 			localStorage.setItem('TIPO_PERIODO',retorno[0]['periodo_integral']);
 			limpa_calendario();
 			if(dt_festa_new > dt_mim_age && dt_festa_new < dt_max_age){  
@@ -626,12 +627,24 @@ function salva_reserva(){
 		var dados = $( "#add_reserva" ).serialize();
 		var dt_res = $("#add_reserva_dt").val();
 		//alert(dt_res);
+		var confirmacao_reserva = $( "#add_reserva #confirma_reserva" ).val();
         var dt_ini = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_inicio").val());
         var dt_fim = new Date($("#add_reserva_dt").val()+' '+$("#add_reserva_hora_fim").val());
         var dt_atual = new Date();
         var dt_valida_ini = new Date(localStorage.getItem('RESERVA_ATUAL_INI'));
         var dt_valida_fim = new Date(localStorage.getItem('RESERVA_ATUAL_FIM'));
         ///alert(dt_ini+' '+dt_fim);
+		if(confirmacao_reserva == 1)
+		   {
+		   	var mensagem = "Sua reserva foi encaminhado para a administração para analise";
+		   }
+		 else
+		   {
+		   	var mensagem = "Sua reserva foi notificado a administração";
+		   }
+		
+		
+		
         if(dt_fim < dt_ini){
             notifica('Alerta/Horario final n\u00e3o pode ser menor que o de inicio/Fechar',2000,0);
         }else if(dt_ini < dt_atual){
@@ -654,6 +667,7 @@ function salva_reserva(){
                 data: dados+'&id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&morador='+$( "#DADOS #ID_MORADOR" ).val()+'&area='+$( "#DADOS #AREA_COMUM" ).val()+'&observacao=',
                 success: function(retorno){
 
+                   
                     //alert(retorno);
                     if(retorno == 'erro1'){
                         notifica('Alerta/Horario n\u00e3o disponivel/Fechar',2000,0);
@@ -665,9 +679,12 @@ function salva_reserva(){
 						alerta('0',retorno);
 						//alert();
                     }else{
-						//alert(localStorage.getItem('dsa'));
+						alerta('0',mensagem,8000);
+						
+						
 						if(localStorage.getItem('periodo_integral') == 1){
 							//alert(0);
+							
 							carrega_area(0);
 							fecha_calendario();
 							new_calendario($( "#DADOS #AREA_COMUM" ).val(),dt_res,1,localStorage.getItem('periodo_integral'),'','',localStorage.getItem('dsa'));
