@@ -10,31 +10,27 @@ afed('#minha_casa_rel','#home','','')
 }
 // FUNÇÃO PARA MOSTRAR TODOS OS RECORRENTES DO MORADOR É PASSADO ID DO CONDOMÍNIO E DO USUÁRIO CONDOMÍNIO  // CARREGAPAGINA DOS VISITATES RECORRENTES 
 function meus_recorrentes()
-<<<<<<< HEAD
 	{	
-			var pg = 0;
- 		app.controler_pull("minha_casa_recorrente");
-		var offset = $('.minha_casa_recorrente').length;
-		if(offset !== 0)
-		{
-          pg = (offset/6)+1;			
-		}else
-		{
-          pg = 1;
-       	}
-   
- 
-	 if(parseInt(pg) !== parseFloat(pg)) 	{ 
-        pg = pg+1; 
-    }	
-	
+		//	var pg = 0;
+//	 		app.controler_pull("minha_casa_recorrente");
+//			var offset = $('.minha_casa_recorrente').length;
+//			if(offset !== 0)
+//			{
+//            pg = (offset/6)+1;
+//			}else
+//			{
+//            pg = 1;
+//        	}
+//    
+//  
+//	 if(parseInt(pg) !== parseFloat(pg)) 
+//	{ 
+//        pg = pg+1; 
+//    }	
+//		
 		
 		
 		var dados = '';
-=======
-	{
-	  var dados = '';
->>>>>>> master
 		afed('#minha_casa_recorrente','#minha_casa_rel','','');
 		$( "#body_recorrente" ).html('');
 		
@@ -47,7 +43,6 @@ function meus_recorrentes()
 			data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_USER" ).val(),op:1 },
 			dataType   : 'json',
 		 	success: function(retorno)
-<<<<<<< HEAD
 			{
 			 if(retorno == null )
 				 {
@@ -55,9 +50,6 @@ function meus_recorrentes()
 						+"<img  width='50%'> </div>";
 						$( "#body_recorrente" ).html(sem);
 				 }else{
-=======
-			{ 
->>>>>>> master
 			var autorizar = '';
 			var cont = 0;
             for (x in retorno) 
@@ -69,7 +61,6 @@ function meus_recorrentes()
 					+'</div>';
 				$( "#body_recorrente" ).append(dados);	
 			}
-<<<<<<< HEAD
 				 }
 				
 	},
@@ -78,9 +69,6 @@ function meus_recorrentes()
 						+"<img  width='50%'> </div>";
 						$( "#body_recorrente" ).html(sem);
         }
-=======
-	}
->>>>>>> master
 	});
 		   }
 
@@ -113,16 +101,12 @@ function meus_recorrentes_busca()
 						  op:3 },
 			dataType   : 'json',
 		 	success: function(retorno)
-<<<<<<< HEAD
 			{ 	if(retorno == null )
 				 {
 					 var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
 						$( "#body_recorrente" ).html(sem);
 				 }else{
-=======
-			{ 
->>>>>>> master
 				var autorizar = '';
 				var cont = 0;
 				for (x in retorno)
@@ -135,16 +119,8 @@ function meus_recorrentes_busca()
 						+'</div>';
 						$( "#body_recorrente" ).append(dados);	
 					}
-<<<<<<< HEAD
 				 }
 					
-=======
-				if(cont ==0)
-					{
-					  $( "#body_recorrente" ).html("<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
-					  +"<img  width='50%'> </div>");	
-					} 
->>>>>>> master
 			}
 	});
 }
@@ -184,11 +160,7 @@ function meus_pontuais()
 	
 	  var dados = '';
 	
-<<<<<<< HEAD
 		$( "#body_mpontuais" ).html('');
-=======
-		$( "#body_nrecorrente" ).html('');
->>>>>>> master
 		
 	$.ajax({
 		type: 'POST',
@@ -199,16 +171,12 @@ function meus_pontuais()
 			data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_USER" ).val(),op:1 },
 			dataType   : 'json',
 		 	success: function(retorno)
-<<<<<<< HEAD
 			{ if(retorno == null )
 				 {
 					 var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
 						$( "#body_mpontuais" ).html(sem);
 				 }else{
-=======
-			{ 
->>>>>>> master
 			var autorizar = '';
 			var cont = 0;
             for (x in retorno) 
@@ -218,14 +186,9 @@ function meus_pontuais()
 					+'<div class="card-content card-content-padding"><label>Nome :</label> '+retorno[x] ['nome']+'<br><label> RG :</label> '+retorno[x] ['rg']+' </div>'
 					+'<div class="card-footer"><label>Telefone: </label> '+retorno[x] ['tel']+'<label>Celular: </label>'+retorno[x] ['cel']+'</div>'
 					+'</div>';
-<<<<<<< HEAD
 				$( "#body_mpontuais" ).append(dados);	
 			}
 				 }
-=======
-				$( "#body_nrecorrente" ).append(dados);	
-			}
->>>>>>> master
 	}
 	});	
 	
@@ -260,11 +223,7 @@ function meus_visitantes_busca()
 {
 	  var dados = '';
 	 // afed('#minha_casa_recorrente','#minha_casa_rel','','');
-<<<<<<< HEAD
 	  $( "#body_mpontuais" ).html('');	
-=======
-	  $( "#body_nrecorrente" ).html('');	
->>>>>>> master
 	  $.ajax({
 		type: 'POST',
 			url		   : localStorage.getItem('DOMINIO')+"appweb/get_meus_pontuais.php",
@@ -280,16 +239,12 @@ function meus_visitantes_busca()
 			dataType   : 'json',
 		 	success: function(retorno)
 			{ 
-<<<<<<< HEAD
 				if(retorno == null )
 				 {
 					 var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
 						$( "#body_mpontuais" ).html(sem);
 				 }else{
-=======
-				
->>>>>>> master
 				var cont = 0;
 				for (x in retorno) 
 				{
@@ -298,20 +253,10 @@ function meus_visitantes_busca()
 						+'<div class="card-content card-content-padding"><label>Nome :</label> '+retorno[x] ['nome']+'<br><label> RG :</label> '+retorno[x] ['rg']+' </div>'
 						+'<div class="card-footer"><label>Telefone: </label> '+retorno[x] ['tel']+'<label>Celular: </label>'+retorno[x] ['cel']+'</div>'
 						+'</div>';
-<<<<<<< HEAD
 					$( "#body_mpontuais" ).append(dados);	
 				}
 				 }
 
-=======
-					$( "#body_nrecorrente" ).append(dados);	
-				}
-				if(cont ==0)
-					{
-					  $( "#body_nrecorrente" ).html("<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
-					  +"<img  width='50%'> </div>");	
-					} 
->>>>>>> master
 			}
 	});	
 	
@@ -342,15 +287,12 @@ function acesso_minha_casa()
 			dataType   : 'json',
 		 	success: function(retorno)
 			{ 
-<<<<<<< HEAD
 				if(retorno == null )
 				 {
 					 var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
 						$( "#body_minha_casa" ).html(sem);
 				 }else{
-=======
->>>>>>> master
 			var autorizar = '';
 			var cont = 0;
             for (x in retorno) 
@@ -361,16 +303,7 @@ function acesso_minha_casa()
 					+'<div class="card-footer"><label>Direção:</label> '+retorno[x] ['direcao']+'<label>Data:</label>'+retorno[x] ['data']+'</div>'
 					+'</div>';
 				$( "#body_minha_casa" ).append(dados);	
-<<<<<<< HEAD
 			}}
-=======
-			}
-					if(cont ==0)
-					{
-					  $( "#body_nrecorrente" ).html("<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
-					  +"<img  width='50%'> </div>");	
-					} 
->>>>>>> master
 	}
 	});	
 }
@@ -424,16 +357,12 @@ function filtrar_eventos_meus()
 			data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(),nome:nome,perfil:perfil,data_inicio:data_inicio,data_fim:data_fim,op:3 },
 			dataType   : 'json',
 		 	success: function(retorno)
-<<<<<<< HEAD
 			{ if(retorno == null )
 				 {
 					 var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
 						$( "#body_minha_casa" ).html(sem);
 				 }else{
-=======
-			{ 
->>>>>>> master
 			var autorizar = ''; 
 			var cont = 0;
             for (x in retorno) 
@@ -444,11 +373,7 @@ function filtrar_eventos_meus()
 					+'<div class="card-footer"><label>Direção:</label> '+retorno[x] ['direcao']+'<label>Data:</label>'+retorno[x] ['data']+'</div>'
 					+'</div>';
 				$( "#body_minha_casa" ).append(dados);	
-<<<<<<< HEAD
 			}}
-=======
-			}
->>>>>>> master
 	}
 	});
 	
