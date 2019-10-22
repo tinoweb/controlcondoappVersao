@@ -14,7 +14,9 @@ function atualiza_notificacao(){
 							usuario:id_usuario_condominio,
 							id_condominio:$( "#DADOS #ID_CONDOMINIO" ).val(),
 							 id_morador : $( "#DADOS #ID_MORADOR" ).val(),
-							   tipo:'atualiza'
+							id_unidade:  $( "#DADOS #ID_UNIDADE" ).val(),
+							id_moradores_unidade:  $("#DADOS #ID_MORADORES_UNIDADE").val(),
+						    tipo:'atualiza'
 						 },
 			dataType   : 'json',
 			success: function(retorno){
@@ -88,7 +90,7 @@ function atualiza_notificacao(){
 
 			}
 		});							
-	},500);
+	},1100);
 		 
 }
 

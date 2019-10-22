@@ -23,7 +23,7 @@ function carrega_entregas(tipo){
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
-        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_morador : $( "#DADOS #ID_MORADOR" ).val(), pg : parseInt(pg) },
+        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), pg : parseInt(pg) },
         dataType   : 'json',
 		success: function(retorno){
 			var cont = 0;
@@ -38,7 +38,7 @@ function carrega_entregas(tipo){
 				}
 				
 				if(retorno[x]['foto'] == ""){
-					var fotoc = '<i class="icon material-icons" style="margin: 0px 0 0 8px;  ">camera_alt</i>';
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(../img/carrinho-encomenda.png); background-size: 33px; background-position: center center; border-radius: 20px;" />';
 				}else{
 					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
 				}
