@@ -77,6 +77,14 @@
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
 		
+	    console.log('sim log....');
+
+        function handleOpenURL(url) {
+		    alert("etrou na funcao get");
+		    setTimeout(function() {
+				alert("received url:");
+			}, 0);
+		}
 		
 		
 		function onDeviceReady() { 
@@ -93,6 +101,8 @@
 				},
 				"windows":{}
 			}); 
+
+
 			
 //			PushNotification.createChannel(
 //			  () => {
@@ -385,6 +395,11 @@
 		
 		<!--############ Tela do primero acesso ############## -->
 		<div id="initApp" class="login_iniNew">
+			
+			<script>
+				
+			</script>
+
 			<img src="img/logoicon.png" width="150">
 			<div id="formInit" class="form-signin" style="top: 64px;position: relative;padding: 15px 14px;"> 
 				<div class="row" style="position: relative; padding: 12px;">
@@ -400,6 +415,10 @@
 					
 					<a style="position: relative;top: 34px;left: 29%;font-size: 19px;font-family: sans-serif;" onclick="swich_tela_primeiroAcesso()">Primeiro acesso?</a>
 				</div>
+					
+					<br>
+					<br>
+					<button onclick="window.open('mycoolapp://somepath?codigo=12555142', '_system')">Open the other app</button>
 			</div>
 		</div>
 		<!--############Fim Tela do primero acesso############ -->

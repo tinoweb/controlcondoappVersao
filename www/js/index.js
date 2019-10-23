@@ -27,10 +27,9 @@ var app = {
     },
 
     handleOpenURL: function (url) {
-	    window.alert(url);
-	    alert("etrou na funcao get "+url);
+	    alert("etrou na funcao get");
 	    setTimeout(function() {
-			alert("received url: " + url);
+			alert("received url:");
 		}, 0);
 	},
 	

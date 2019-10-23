@@ -144,7 +144,7 @@
     </feature>
     <plugin name="cordova-backgroundvideo" spec="0.0.22" />
 
-    <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+    <plugin name="cordova-plugin-customurlscheme" source="npm">
       <param name="URL_SCHEME" value="mycoolapp" />
-    </gap:plugin>
+    </plugin>
 </widget>
