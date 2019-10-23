@@ -25,6 +25,14 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
 		
     },
+
+    handleOpenURL: function (url) {
+	    window.alert(url);
+	    alert("etrou na funcao get "+url);
+	    setTimeout(function() {
+			alert("received url: " + url);
+		}, 0);
+	},
 	
     onDeviceReady: function() {
     
@@ -39,6 +47,7 @@ var app = {
             return false;
         });      
         
+        $("#login_ini" ).hide();
 		$("#box_notificacoes" ).hide();
 		$("#boxUp_liberacao"  ).hide();
 		$("#boxUp_liberacao2" ).hide();
