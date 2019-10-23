@@ -64,6 +64,7 @@
 	<script src="model/mdl_contatos.js"></script>
 	<script src="model/mdl_mudanca.js"></script>
 	<script src="model/mdl_agenda.js"></script>
+	<script src="model/mdl_inicalizaapp.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -379,8 +380,134 @@
 				</div>
 			</form>
 		</div>-->
+
+
+		
+		<!--############ Tela do primero acesso ############## -->
+		<div id="initApp" class="login_iniNew">
+			<img src="img/logoicon.png" width="150">
+			<div id="formInit" class="form-signin" style="top: 64px;position: relative;padding: 15px 14px;"> 
+				<div class="row" style="position: relative; padding: 12px;">
+					<div class="col-xs-12">
+						<button class="btn btn-default btn-lg btn-block btn-no-border" onclick="swich_tela_login();">Entrar com e-mail</button>
+					</div>
+					<div class="col-xs-6" style="position: relative;top: 14px;">
+						<button class="btn btn-primary btn-lg btn-block btn-no-border" name="entrar">Facebook</button>
+					</div>
+					<div class="col-xs-6" style="position: relative;top: 14px;">
+						<button class="btn btn-lg btn-danger btn-block btn-no-border">Google</button>
+					</div>
+					
+					<a style="position: relative;top: 34px;left: 29%;font-size: 19px;font-family: sans-serif;" onclick="swich_tela_primeiroAcesso()">Primeiro acesso?</a>
+				</div>
+			</div>
+		</div>
+		<!--############Fim Tela do primero acesso############ -->
+
+		<!--###################Tela Opcoes Primeiro Acesso ################### -->
+		<div id="primeiroAcesso" class="primeiroAcessoPage">
+			<div class="navbar" id="login_iniBtnVoltar" style="height: 50px" onclick="primeiroAcessoBtnVoltar()">
+				<div class="navbar-inner">
+					<i class="fa fa-arrow-left" style="color: azure;margin-left: 17px;font-size: 23px;"></i>
+				</div>
+			</div>
+			<img src="img/logoicon.png" width="150">
+			<div class="row">
+				<p class="col-xs-12" style="position: relative;top: 20px;padding: 15px 41px;">clica em um dos botões abaixo para escolher como quer receber o codigo de ativação para ter acesso ao seu condominio!</p>
+			</div>
+
+			<div id="" class="form-signin" style="top: 35px;position: relative;padding: 15px 14px;"> 
+				<div class="row" style="position: relative; padding: 12px;">
+
+					<!-- ############################## -->
+					<div class="col-xs-12" id="divRecevebyEmail">
+						<!-- <button class="btn btn-primary btn-lg btn-block btn-no-border" data-toggle="modal" data-target="#enviaPeloEmail" id="btnReceberbyEmail">Receber pelo email</button> -->
+						
+					<!--    	<div id="enviaPeloEmail" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h4 class="modal-title">Digite o email</h4>
+						      </div>
+						      <div class="modal-body">
+						        <div class="emailinput">
+									<input class="form-control input-lg btn-no-border" id="email" type="email" name="campoEmail" value="e-mail" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
+									<button id="btnSendEmailbtn" class="btn btn-success btn-lg btn-block btn-no-border mt-14" onclick="verificacaoCodigo()" style="margin-bottom: 10px;">CONTINUAR</button>
+								</div>
+						      </div>
+						    </div>
+						  </div>
+						</div> -->
+
+						<a href="#" data-sheet=".buscar_pets" class="sheet-open material-icons"> <span class="fa fa-filter" onClick="" style="margin-right: 15px"></span> </a>
+						<!-- And somewhere in DOM -->
+						<div class="sheet-modal my-sheet">
+						  <div class="sheet-modal-inner">
+						    <!-- Link to close sheet -->
+						    <a class="link sheet-close">Close</a>
+						  </div>
+						</div>
+					</div>
+
+					<div class="col-xs-12" style="position: relative;top: 14px;" id="divRecevebySMS">
+						<button class="btn btn-primary btn-lg btn-block btn-no-border" data-toggle="modal" data-target="#enviarSMS" id="btnReceberbyCelular">Receber pelo SMS</button>
+						 <!-- onclick="choosedSms($(this))" -->
+						<div id="enviarSMS" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+										<h4 class="modal-title">Numero do Celular</h4>
+									</div>
+									<div class="modal-body">
+										<div class="emailinput">
+											<input class="form-control input-lg btn-no-border" id="celular" type="text" name="campoCell" value="celular" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
+											<button id="btnSendEmailbtn" class="btn btn-success btn-lg btn-block btn-no-border mt-14" onclick="" style="margin-bottom: 10px;">CONTINUAR</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ############################## -->
+
+				</div>
+			</div>
+		</div>
+		<!--################### Fim Tela opcoes primeiro acesso ###############-->
+
+		<!--################### Tela Opcoes Primeiro Acesso ###################-->
+		<div id="telaVerificaCodigo" class="">
+			<img src="img/logoicon.png" width="150">
+			
+			<div id="" class=""> 
+				<div class="row" style="position: relative; padding: 12px;">
+					<div class="col-xs-12">
+						<div class="item-inner">
+							<div class="item-title item-label">E-mail</div>
+							<div class="item-input-wrap">
+								<input name="email" type="email" placeholder="Your e-mail" class="">
+								<span class="input-clear-button"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12" style="position: relative;top: 14px;">
+						<button class="btn btn-primary btn-lg btn-block" onclick="">Receber pelo SMS</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--###################Fim Tela opcoes primeiro acesso ################-->
+
+
 	    <div id="login_ini" class="login_ini">
 			<img src="img/logoicon.png" width="150">
+			<div class="navbar" id="login_iniBtnVoltar" style="height: 50px" onclick="loginIniBtnVoltar()">
+				<div class="navbar-inner">
+					<i class="fa fa-arrow-left" style="color: azure;margin-left: 17px;font-size: 23px;"></i>
+				</div>
+			</div>
 			<form id="form_login"> 
 				<div class="input-group" style="margin-top: 30px; padding: 20px;">
 					<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
