@@ -2528,11 +2528,17 @@
 			</div>
 		</div>
 		<div class="item-input-wrap">
-			<form id="busca_entregas"  style="margin-top:1%;margin-left: 10%;margin-right: 10%; max-height: 90%; overflow: scroll;"> 
+			<form id="busca_entregas"  style="margin-top: 3%;margin-left: 10%;margin-right: 10%;max-height: 35%;height: 385px !important;overflow: scroll;"> 
    				
 				<div class="col-md-12 " >
 					<label class="col-md-12" style="text-align: center;width: 100%;">Responsável por retirar</label>	
 					<input type="text" id="respons_retirar" class="form-control">
+					<label> Status:</label>
+					<select id="status_encomenda" class="form-control">
+						<option value="">Selecione..</option>
+						<option value="1">A retirar</option>
+						<option value="2">Entregue</option>
+					</select>
 					<label class="col-md-12" style="text-align: center;width: 100%;">Por data de recebimento</label>
 					<label style="width: 100%">De:  </label><input type="datetime-local" id="recb_in" class="form-control">
 					<label style="width: 100% ">Até: </label><input type="datetime-local" id="recb_fm" class="form-control">

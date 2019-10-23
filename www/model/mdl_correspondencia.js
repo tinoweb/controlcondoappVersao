@@ -172,7 +172,8 @@ function buscar_encomenda()
 		var recb_in = $("#recb_in").val();
 		var recb_fim = $("#recb_fm").val();	
 		var entr_in = $("#entr_in").val();	
-		var entr_fim = $("#entr_fm").val();	
+		var entr_fim = $("#entr_fm").val();
+ 		var status = $("#status_encomenda").val();
 		var pg = 1;
 		var dados = '';
 		var dado  = '';
@@ -183,7 +184,7 @@ function buscar_encomenda()
 		crossDomain: true,
 		//beforeSend : function() { $("#wait").css("display", "block"); },
 		//complete   : function() { $("#wait").css("display", "none"); },
-        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_moradores : $("#DADOS #ID_MORADORES_UNIDADE").val(), pg : parseInt(pg),n_retira:n_retira,recb_in:recb_in,recb_fim:recb_fim, entr_in:entr_in, entr_fim:entr_fim},
+        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_moradores : $("#DADOS #ID_MORADORES_UNIDADE").val(), pg : parseInt(pg),n_retira:n_retira,recb_in:recb_in,recb_fim:recb_fim, entr_in:entr_in, entr_fim:entr_fim,status:status},
        dataType   : 'json', 
 		success: function(retorno){ 
 			
