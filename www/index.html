@@ -2474,7 +2474,14 @@
 	    <div data-name="home" class="page">
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner">
-					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span> </div>
+					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span>
+				<div class="right"> 
+					
+					<a href="#" onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
+					</div>
+				</div>
+					
             </div>
 			<div class="box" id="boxUp_entregas"></div>
 			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
@@ -2492,7 +2499,7 @@
 	<div class="sheet-modal entregaqr_modal" id="entregas_qrcode" style="height: 92%; display: block; display: none">
 		<div class="toolbar">
 			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-qrcode" style="margin-left: 10px;"></span></div>
+				<div class="left"><span class="fa fa fa-search" style="margin-left: 10px;"></span></div>
 				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
 			</div>
 		</div>
@@ -2508,6 +2515,33 @@
 					<p style="text-align: center">Cada usuário Control Condo possui um código próprio para retirada de sua correspondência.</p>
 					<p style="text-align: center">Para sua segurança, recomendamos o não compartilhamento do mesmo.</p>
 		
+				</div>
+				
+			</form>
+		</div>
+	</div>
+		<div class="sheet-modal buscentrg_modal" id="busc_entregas" style="height: 70%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa fa-truck" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_buscent" href="#">Fechar</a></div>
+			</div>
+		</div>
+		<div class="item-input-wrap">
+			<form id="busca_entregas"  style="margin-top:1%;margin-left: 10%;margin-right: 10%; max-height: 90%; overflow: scroll;"> 
+   				
+				<div class="col-md-12 " >
+					<label class="col-md-12" style="text-align: center;width: 100%;">Responsável por retirar</label>	
+					<input type="text" id="respons_retirar" class="form-control">
+					<label class="col-md-12" style="text-align: center;width: 100%;">Por data de recebimento</label>
+					<label style="width: 100%">De:  </label><input type="datetime-local" id="recb_in" class="form-control">
+					<label style="width: 100% ">Até: </label><input type="datetime-local" id="recb_fm" class="form-control">
+					
+					<label style="text-align: center;width: 100%;">Por data de Entrega</label>
+					<label class="col-md-2">De: </label><input type="datetime-local" id="entr_in" class="form-control">
+					<label class="col-md-2">Até: </label><input type="datetime-local" id="entr_fm" class="form-control">
+					<span type="button" class="btn btn-success sheet-close"   onClick="buscar_encomenda()" style="margin-top: 2%; width: 100%">Buscar</span>
+					
 				</div>
 				
 			</form>
@@ -5376,4 +5410,4 @@
                 
 </script>
 </body>
-</html>>>>>
+</html>>>>>>>>>
