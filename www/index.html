@@ -57,7 +57,6 @@
 	<script src="model/mdl_chat_adm.js"></script>
 	<script src="model/mdl_morador.js"></script>
 	<script src="model/mdl_pet.js"></script>
-	<script src="model/mdl_relaorio_mcasa.js"></script>
 	<script src="model/mdl_cameras.js"></script>
 	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
@@ -274,7 +273,6 @@
 			<input id="QUADRA"              value="" type="hidden">
 			<input id="LOTE"                value="" type="hidden">
 			<input id="OCORRENCIA_PUBLICA"  value="" type="hidden">
-			<input id="ID_MORADORES_UNIDADE"  value="" type="hidden">
 		</form>
 			<!--ERRO-->
 		<div id="bg_processando" class="bg_processando"> </div>
@@ -717,15 +715,6 @@
 						<span class="circle_m" id="n_camera"  style="background-color: green;"></span>
 						</div>
 						</a>
-						</li>
-						<li id="relatorio_casa" onClick="carregar_minha_casa();" >
-						    <a class="item-content item-link" href="/checkbox/">
-							 <div class="item-media"><i class="fa fa-home"></i></div>
-							  <div class="item-inner">
-							   <div class="item-title">Minha Casa</div>
-								
-							  </div>
-							</a>
 						</li>
 					</div>
 				</div>
@@ -1194,6 +1183,7 @@
 				<div class="sheet-modal veiculo-morador" style="height: 100%;">
     				<div class="toolbar">
 					  	<div class="toolbar-inner">
+
 							<div class="left"></div>
 							<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
 					  	</div>
@@ -2380,7 +2370,6 @@
 				<form name="add_reserva" id="add_reserva" style="height:100%; padding: 3%;" >
 					<input type="hidden" name="tipo" id="add_reserva_tipo">
 					<input type="hidden" name="id" id="add_reserva_id">
-					<input type="hidden" name="confirma_reserva" id="confirma_reserva" value="">
 					<div class="item-inner">
 						<div class="item-title item-label">Data</div>
 						<div class="item-input-wrap"> <span id="add_reserva_data">10/10/2017</span>
@@ -2488,6 +2477,7 @@
 						<!--RETORNO DOS DADOS CORRESPODENCIA-->
 				  	</ul>
 				</div>
+<<<<<<< HEAD
 				
 				
 	<div class="sheet-modal entregaqr_modal" id="entregas_qrcode" style="height: 92%; display: block; display: none">
@@ -2514,6 +2504,8 @@
 			</form>
 		</div>
 	</div>
+=======
+>>>>>>> 62e3a2677f341c36ad11829046b11c63affe0407
 				<!--<div class="preloader infinite-scroll-preloader"></div>-->
 			</div>
 		</div>
@@ -3210,7 +3202,7 @@
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner">
 					<div class="left"> 
-						<a href="#" onClick="voltar('#home','#pet_lista','home');"><i class="icon icon-back"></i></a>
+						<a href="#" onClick="voltar('#home','#pet_lista','home')"><i class="icon icon-back"></i></a>
 					</div>
 					<div class="title">Pets</div>
 					<div class="right"> 
@@ -3552,8 +3544,7 @@
             <div class="block" style="margin-top: 0" id="cameras_retorno">
             </div>
         </div>
-    </div>  
-
+    </div>
 		
 	<!-- $AGENDA  
          Autor: Caio Souza.
@@ -4159,307 +4150,7 @@
 			</form>
 		</div>
 	</div>	
-			 <!---    MINHA RESIDENCIA        -->
-		<div id="minha_casa_rel" class="pagina">
-        <div class="navbar" style="height: 50px">
-            <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#minha_casa_rel','','',2,'home');"><i class="icon icon-back"></i></a> </div>
-                <div class="title" style="font-size: 16px">Minha Casa</div>
-            </div>
-		</div>		
-      <div class="card" onClick="meus_recorrentes()">
-		<div class="card-content card-content-padding">
-			<div class="col-md-6">
-				<h3 style="text-align: center">Meus Recorrentes</h3>
-			 <i class="fa fa-exchange" style="font-size: 30px; margin-left: 45%;"></i>
-			</div>
-		</div>
-	 </div>  
-	 <div class="card" onClick="meus_pontuais()">
-			<div class="card-content card-content-padding">
-			<div class="col-md-6">
-			 <h3 style="text-align: center">Pontuais</h3>	
-			 <i class="fa  fa-user" style="font-size: 30px; margin-left: 45%;"></i>
-			</div>
-			
-		</div>
-	 </div>	
-	<div class="card" onClick="acesso_minha_casa()">
-			<div class="card-content card-content-padding" >
-			<div class="col-md-6">
-			 <h3 style="text-align: center">Acessos</h3>	
-			 <i class="fa  fa-home" style="font-size: 30px; margin-left: 45%;"></i>
-			</div>
-			
-		</div>
 		
-	 </div>	
-			
-    </div>
-		<!-- PAGINAS MEUS RECORRENTES-->
-		<div id="minha_casa_recorrente" class="pagina minha_casa_recorrente"> 
-			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner">
-					<div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#minha_casa_recorrente','','',2,'home');"><i class="icon icon-back"></i></a> </div>
-					<div class="title" style="font-size: 16px;color: white;">Meus Recorrentes</div>
-					<div class="right"> 
-					<a href="#" onclick="busc_recorr();" data-sheet=".busca_recorrente" class="sheet-open material-icons">
-					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
-					</div>
-				</div>
-			
-			</div>
-		
-			<!--<div id="body_recorrente" class="scroll" style="height: 85%"> </div>-->
-				<div class="box" id="boxUp_recorrente"></div>
-						<div class="page-content ptr-content pull-recorrente" data-ptr-distance="55" id="pull-recorrente" style="height: 93% !important;margin-top: -13% !IMPORTANT;" >
-						<!--	<div class="ptr-preloader">
-								<div class="preloader"></div>
-								<div class="ptr-arrow"></div>
-							</div>-->
-							<div id="body_recorrente" class="list media-list" style="height: 100% !important;margin-top: 0px"></div>
-						</div>
-			
-		
-			
-			<div class="sheet-modal um_recorrente" style="height: 80%;">
-			<div class="toolbar">
-				<div class="toolbar-inner">
-					<div class="left"></div>
-					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
-				</div>
-			</div>
-			<div class="sheet-modal-inner">
-				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
-					<form id="form_recorrente_um">
-					
-					
-				  </form>
-				</div>
-			</div>
-	    </div>
-			<div class="sheet-modal busca_recorrente" style="height: 80%;">
-			<div class="toolbar">
-				<div class="toolbar-inner">
-					<div class="left"><i class="fa fa-filter" style="margin-left: 50%;font-size: 20px;"></i></div>
-					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
-				</div>
-			</div>
-			<div class="sheet-modal-inner">
-				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
-					<form id="form_recorrente_um">
-					
-					<label >Nome:</label><br>
-					 <input type="text"	id="busc_nome_recorrente" value="" class="form-control"><br>
-						<label>Autoriza entrada</label><br>
-						<select id="autoriza_visitante_recorrente" class="form-control">
-							<option selected value=""> </option>
-							<option value="1">SIM</option>
-							<option value="0">NÃO</option>
-						</select><br>
-						<label>Motivo</label><br>
-						<input type="text" id="motivo_recorrente_busca" value="" class="form-control"> 
-						<button style="margin-top: 2%"onClick="meus_recorrentes_busca()" type="button" class="btn btn-success link sheet-close"> Buscar </button>
-				  </form>
-				</div>
-			</div>
-	    </div>
-   			
-		
-			<div class="sheet-modal recorrente_modal"  style="height: 80%; display: block; display: none">
-		<div class="toolbar">
-			<div class="toolbar-inner" style="background-color:#2196f3 ">
-				<div class="left"><span class="fa fa fa-exchange" style="margin-left: 10px;color: white"></span></div>
-				<div class="right"><a class="link sheet-close" id="fecha_recorretent" style="color: white" href="#">Fechar</a></div>
-			</div>
-          
-		</div>
-		<div class="item-input-wrap">
-			<form id="meu_recorrente" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
-   				<div class="col-md-12">
-				<div class="col-md-4" id="foto_recorrente" style="height: 120px;width: 120px;margin-left: 30%; background-image: url(img/logoicon.png); background-repeat: no-repeat;background-size: 100px;background-position: center center"></div>
-				<div class="col-md-8" >
-					<label class="col-md-12">Nome:</label>	
-					<input type="text" class="col-md-12 form-control" id="nome_recorrente" disabled>
-					<label class="col-md-12">Motivo:</label>
-					<input class="col-md-12 form-control" type="text" id="motivo_recorrente" disabled>	
-					<label class="col-md-12" >Atoriza Visita:</label>
-					<input type="text" id="autorizar_recorrrent" disabled class="form-control">
-					<label class="col-md-12" > Autorização de acesso:</label><br>
-					<label class="col-md-2">De:</label>
-					<input type="text" id="hora_inicio_recorrente" class="col-md-4 form-control" disabled>
-					<label class="col-md-2">Á</label>
-					<input type="text" class="col-md-4 form-control" id="hora_fim_recorrente" disabled>
-		
-				</div>
-				</div>
-			</form>
-		</div>
-	</div>
-			</div>
-	 <!-- PAGINAS VISITANTES PONTUAIS-->
-		
-		<div id="meus_pontuais" class="pagina">
-        <div class="navbar" style="height: 50px">
-            <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#meus_pontuais','','',2,'home');"><i class="icon icon-back"></i></a> </div>
-                <div class="title" style="font-size: 16px">Pontuais</div>
-				<div class="right"> 
-					<a href="#" onclick="limpar_busca_visitante();" data-sheet=".busca_meus_visitantes" class="sheet-open material-icons">
-					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
-				</div>
-            </div>
-			
-		</div>
-			
-						<div class="box" id="boxUp_pontual"></div>
-						<div class="page-content ptr-content pull-pontual" data-ptr-distance="55" style="height: 93% !important;margin-top: -13% !IMPORTANT;" id="pull-pontual" >
-							<!--<div class="ptr-preloader">
-								<div class="preloader"></div>
-								<div class="ptr-arrow"></div>
-							</div>-->
-							<div id="body_mpontuais"  class="list media-list" style="height: 100% !important;margin-top: 0px"></div>
-						</div>	
-		
-     
-		<div class="sheet-modal busca_meus_visitantes" style="height: 80%;">
-			<div class="toolbar">
-				<div class="toolbar-inner">
-					<div class="left"><i class="fa fa-filter" style="margin-left: 50%;font-size: 20px;"></i></div>
-					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
-				</div>
-			</div>
-			<div class="sheet-modal-inner">
-				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
-					<form id="form_recorrente_um">
-					
-					<label >Nome</label><br>
-					 <input type="text"	id="busc_nome_visitante" value="" class="form-control"><br>
-						
-						<label>RG </label><br>
-						<input type="text" id="busca_rg_visitantes" value="" class="form-control"> 
-						<button style="margin-top: 2%"onClick="meus_visitantes_busca()" type="button" class="btn btn-success link sheet-close"> Buscar </button>
-				  </form>
-				</div>
-			</div>
-	    </div>
-			<div class="sheet-modal meu_visitante" id="busca_pet_abre" style="height: 80%; display: block; display: none">
-		<div class="toolbar">
-			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-user" style="margin-left: 10px;"></span></div>
-				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
-			</div>
-          
-		</div>
-		<div class="item-input-wrap">
-			<form id="meu_visiante_" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
-   				<div class="col-md-12">
-				<div class="col-md-4" id="foto_visitante_meu" style="height: 120px;width: 120px;margin-left: 30%; background-image: url(img/logoicon.png); background-repeat: no-repeat;background-size: 100px;background-position: center center"></div>
-				<div class="col-md-8" >
-					<label class="col-md-12">Nome:</label>	
-					<input type="text" class="col-md-12 form-control" id="nome_visitante_meu" disabled>
-					<label class="col-md-12">Rg:</label>
-					<input class="col-md-12 form-control" type="text" id="rg_visitante_meu" disabled>	
-					<label class="col-md-12" >Celular:</label>
-					<input type="text" id="cel_visitante_meu" disabled class="form-control">
-					<label class="col-md-12" >Telefone:</label><br>
-					<input type="text" id="tel_visitante_meu" class="col-md-4 form-control" disabled>
-				
-		
-				</div>
-				</div>
-			</form>
-		</div>
-	</div>		
-			
-			
-    </div>
-		<!--  ACESSO MINHA RESIDENCIA -->
-	<div id="acsso_minha_casa" class="pagina">
-        <div class="navbar" style="height: 50px">
-            <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#acsso_minha_casa','','',2,'home');"><i class="icon icon-back"></i></a> </div>
-                <div class="title" style="font-size: 16px">Acesso</div>
-				<div class="right"> 
-					<a href="#" onclick="limpar_busca_visitante();" data-sheet=".meu_evento_busca" class="sheet-open material-icons">
-					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
-				</div>
-            </div>
-		</div>	
-		
-		<div class="box" id="boxUp_mcasa"></div>
-						<div class="page-content ptr-content pull-mcasa" data-ptr-distance="55" style="height: 93% !important;margin-top: -13% !IMPORTANT;" id="pull-mcasa" >
-							<!--<div class="ptr-preloader">
-								<div class="preloader"></div>
-								<div class="ptr-arrow"></div>
-							</div>-->
-							<div id="body_minha_casa"  class="list media-list" style="height: 100% !important;margin-top: 0px"></div>
-						</div>	
-		
-		
-     
-			<div class="sheet-modal meu_eventos_meus" id="meu_eventos_meus" style="height: 80%; display: block; display: none">
-		<div class="toolbar">
-			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-user" style="margin-left: 10px;"></span></div>
-				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
-			</div>
-          
-		</div>
-		<div class="item-input-wrap">
-			<form id="meu_visiante_" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
-   				<div class="col-md-12">
-				<div class="col-md-4" id="foto_evento_selct" style="height: 120px;width: 120px;margin-left: 30%; background-image: url(img/logoicon.png); background-repeat: no-repeat;background-size: 100px;background-position: center center"></div>
-				<div class="col-md-8" >
-					<label class="col-md-12">Nome:</label>	
-					<input type="text" class="col-md-12 form-control" id="nome_evento_selct" disabled>
-					<label class="col-md-12">Data:</label>
-					<input class="col-md-12 form-control" type="text" id="data_evento_selct" disabled>	
-					<label class="col-md-12" >Leitor:</label>
-					<input type="text" id="leitor_evento_selct" disabled class="form-control">
-					<label class="col-md-12" >Sentido:</label><br>
-					<input type="text" id="direcao_evento_selct" class="col-md-4 form-control" disabled>
-				
-		
-				</div>
-				</div>
-			</form>
-		</div>
-	</div>
-		<div class="sheet-modal meu_evento_busca" id="meu_evento_busc" style="height: 80%; display: block; display: none">
-		<div class="toolbar">
-			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-user" style="margin-left: 10px;"></span></div>
-				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
-			</div>
-          
-		</div>
-		<div class="item-input-wrap">
-			<form id="meu_visiante_" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
-   				<div class="col-md-12">
-			
-				<div class="col-md-8" >
-					<label class="col-md-12">Nome:</label>	
-					<input type="text" class="col-md-12 form-control" id="nome_evento_meu" >
-					<label class="col-md-12">Perfil:</label>
-					<input class="col-md-12 form-control" type="text" id="perfil_evento_meu" >	
-					
-					<label class="col-md-12" >De:</label>
-					<input type="datetime-local" id="datai_evento_meu"  class="form-control">
-					<label class="col-md-12" >até:</label><br>
-					<input type="datetime-local" id="dataf_evento_meu" class="col-md-4 form-control" >
-					<button style="margin-top: 2%"onClick="filtrar_eventos_meus()" type="button" class="btn btn-success link sheet-close"> Buscar </button>
-		
-				</div>
-				</div>
-			</form>
-		</div>
-	</div>
-		
-		
-		
-    </div>
-		 <!---  FIM MINHA RESIDENCIA        -->
 	
 	<!-- $MUDANCA  
          Autor: Caio Souza.
