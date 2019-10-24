@@ -1416,7 +1416,7 @@
 								
 								
 							</div>
-								<span style="background-color: #e4d43a;padding-left: 9px;color: white;" class="comunicado_titulo">titulo</span>
+								<span style="background-color: #e4d43a;padding-left: 9px;color: white;"class="comunicado_titulo">titulo</span>
 								<div id="txt_comunicado" class="txt_comunicado" style="word-break: break-word;">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> 
@@ -2139,6 +2139,7 @@
             </li>
         </ul>
     </div>
+
 </div>
 	
 	
@@ -2474,14 +2475,7 @@
 	    <div data-name="home" class="page">
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner">
-					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span>
-				<div class="right"> 
-					
-					<!--<a href="#" onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
-					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> -->
-					</div>
-				</div>
-					
+					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span> </div>
             </div>
 			<div class="box" id="boxUp_entregas"></div>
 			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
@@ -2499,7 +2493,7 @@
 	<div class="sheet-modal entregaqr_modal" id="entregas_qrcode" style="height: 92%; display: block; display: none">
 		<div class="toolbar">
 			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-search" style="margin-left: 10px;"></span></div>
+				<div class="left"><span class="fa fa fa-qrcode" style="margin-left: 10px;"></span></div>
 				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
 			</div>
 		</div>
@@ -2520,82 +2514,7 @@
 			</form>
 		</div>
 	</div>
-	<!--	<div class="sheet-modal buscentrg_modal" id="busc_entregas" style="height: 70%; display: block; display: none">
-		<div class="toolbar">
-			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-truck" style="margin-left: 10px;"></span></div>
-				<div class="right"><a class="link sheet-close" id="fecha_buscent" href="#">Fechar</a></div>
-			</div>
-		</div>
-		<div class="item-input-wrap">
-			<form id="busca_entregas" class="list"  style="margin-top: 3%;margin-left: 10%;margin-right: 10%;max-height: 35%;height: 385px !important;overflow: scroll;"> 
-   				
-				<div class="col-md-12 " >
-					
-					 <div class="item-content item-input">
-						<div class="item-inner">
-						  <div class="item-title item-label" style="font-size:15px;text-align: center">Responsável por retirar</div>
-						  <div class="item-input-wrap">
-							<input type="text"  id="respons_retirar" style="border: none" name="respons_retirar" placeholder="Nome">
-						  </div>
-						</div>
-				  </div>
-					 <div class="item-content item-input">
-					<div class="item-inner">
-					  <div class="item-title item-label" style="font-size:15px; text-align: center ">Status</div>
-					  <div class="item-input-wrap">
-						<select name="status_encomenda" style="border-color: white !important; background-color: white !important" id="status_encomenda">
-						  <option value="">Selecione..</option>
-									<option value="1">A retirar</option>
-									<option value="2">Entregue</option>
-						</select>
-					  </div>
-					</div>
-				  </div>
-					<div class="item-title item-label" style="font-size:15px;text-align: center">Por data de recebimento</div>
-					  <div class="item-content item-input">
-						<div class="item-inner">
-						  <div class="item-title item-label">De :</div>
-						  <div class="item-input-wrap">
-							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%;max-width: 64vw !important;" id="recb_in">
-						  </div>
-						</div>
-					  </div>
-   					  <div class="item-content item-input">
-						<div class="item-inner">
-						  <div class="item-title item-label">Até :</div>
-						  <div class="item-input-wrap">
-							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%;max-width: 64vw !important;" id="recb_fm" >
-						  </div>
-						</div>
-					  </div>
-					<div class="item-title item-label" style="font-size:15px;text-align: center">Por data de Entrega</div>
-					  <div class="item-content item-input">
-						<div class="item-inner">
-						  <div class="item-title item-label">De :</div>
-						  <div class="item-input-wrap">
-							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%; max-width: 64vw !important;" id="entr_in">
-						  </div>
-						</div>
-					  </div>
-                     
-					  <div class="item-content item-input">
-						<div class="item-inner">
-						  <div class="item-title item-label">Até :</div>
-						  <div class="item-input-wrap">
-							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%;max-width: 64vw !important;" id="entr_fm">
-						  </div>
-						</div>
-					  </div>
-                      
-					<span type="button" class="btn btn-success sheet-close"   onClick="buscar_encomenda()" style="margin-top: 2%; width: 100%">Buscar</span>
-					
-				</div>
-				
-			</form>
-		</div>
-	</div>
-			-->	<!--<div class="preloader infinite-scroll-preloader"></div>-->
+				<!--<div class="preloader infinite-scroll-preloader"></div>-->
 			</div>
 		</div>
 	</div>
@@ -2950,6 +2869,7 @@
 							<div class="item-inner">
 							  <div class="item-title">&nbsp; Lista de Tickets</div>
 							<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
+
 							</div></a>
 						  <div class="accordion-item-content">
 							<div class="block" id="main_ticket" >
@@ -5458,4 +5378,4 @@
                 
 </script>
 </body>
-</html>
+</html>>>>>
