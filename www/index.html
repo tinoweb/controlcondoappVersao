@@ -57,7 +57,6 @@
 	<script src="model/mdl_chat_adm.js"></script>
 	<script src="model/mdl_morador.js"></script>
 	<script src="model/mdl_pet.js"></script>
-	<script src="model/mdl_relaorio_mcasa.js"></script>
 	<script src="model/mdl_cameras.js"></script>
 	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
@@ -717,15 +716,6 @@
 						</div>
 						</a>
 						</li>
-						<li id="relatorio_casa" onClick="carregar_minha_casa();" >
-						    <a class="item-content item-link" href="/checkbox/">
-							 <div class="item-media"><i class="fa fa-home"></i></div>
-							  <div class="item-inner">
-							   <div class="item-title">Minha Casa</div>
-								
-							  </div>
-							</a>
-						</li>
 					</div>
 				</div>
 			    <div id="menu_perfil" style="position:relative;margin-top: 217px;margin-left: 27px;"></div>
@@ -1193,6 +1183,7 @@
 				<div class="sheet-modal veiculo-morador" style="height: 100%;">
     				<div class="toolbar">
 					  	<div class="toolbar-inner">
+
 							<div class="left"></div>
 							<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
 					  	</div>
@@ -2378,7 +2369,6 @@
 				<form name="add_reserva" id="add_reserva" style="height:100%; padding: 3%;" >
 					<input type="hidden" name="tipo" id="add_reserva_tipo">
 					<input type="hidden" name="id" id="add_reserva_id">
-					<input type="hidden" name="confirma_reserva" id="confirma_reserva" value="">
 					<div class="item-inner">
 						<div class="item-title item-label">Data</div>
 						<div class="item-input-wrap"> <span id="add_reserva_data">10/10/2017</span>
@@ -2486,32 +2476,6 @@
 						<!--RETORNO DOS DADOS CORRESPODENCIA-->
 				  	</ul>
 				</div>
-				
-				
-	<div class="sheet-modal entregaqr_modal" id="entregas_qrcode" style="height: 80%; display: block; display: none">
-		<div class="toolbar">
-			<div class="toolbar-inner">
-				<div class="left"><span class="fa fa fa-qrcode" style="margin-left: 10px;"></span></div>
-				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
-			</div>
-		</div>
-		<div class="item-input-wrap">
-			<form id="meu_recorrente" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
-   				
-				<div class="col-md-12 scroll" >
-					<label class="col-md-12">Utilize o código ou senha abaixo para retirar sua correspondência!</label>	
-					
-					<div id="qrcode_encomenda"></div>
-					<label  id="code_encomenda" style="text-align: center"></label>
-					<p>Este código é de sua total responsabilidade!</p>
-					<p>Cada usuário Control Condo possui um código próprio para retirada de sua correspondência.</p>
-					<p>Para sua segurança, recomendamos o não compartilhamento do mesmo.</p>
-		
-				</div>
-				
-			</form>
-		</div>
-	</div>
 				<!--<div class="preloader infinite-scroll-preloader"></div>-->
 			</div>
 		</div>
@@ -3207,7 +3171,7 @@
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner">
 					<div class="left"> 
-						<a href="#" onClick="voltar('#home','#pet_lista','home');"><i class="icon icon-back"></i></a>
+						<a href="#" onClick="voltar('#home','#pet_lista','home')"><i class="icon icon-back"></i></a>
 					</div>
 					<div class="title">Pets</div>
 					<div class="right"> 
@@ -3549,8 +3513,7 @@
             <div class="block" style="margin-top: 0" id="cameras_retorno">
             </div>
         </div>
-    </div>  
-c
+    </div>
 		
 	<!-- $AGENDA  
          Autor: Caio Souza.
