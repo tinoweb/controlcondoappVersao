@@ -133,7 +133,6 @@
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
     <plugin name="cordova-plugin-ionic-keyboard" source="npm" />
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
-    <engine name="android" spec="^7.1.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
     <feature name="File">
@@ -143,8 +142,7 @@
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
     <plugin name="cordova-backgroundvideo" spec="0.0.22" />
-
     <plugin name="cordova-plugin-customurlscheme" source="npm">
-      <param name="URL_SCHEME" value="mycoolapp" />
+        <param name="URL_SCHEME" value="mycoolapp" />
     </plugin>
 </widget>

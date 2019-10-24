@@ -4,7 +4,6 @@
   "displayName": "ControlCondoMobile",
   "cordova": {
     "platforms": [
-      "android",
       "browser"
     ],
     "plugins": {
@@ -35,7 +34,7 @@
     }
   },
   "dependencies": {
-    "cordova-android": "^7.0.0",
+    "cordova-android": "^7.1.4",
     "cordova-backgroundvideo": "0.0.22",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-autostart": "git+https://github.com/ToniKorin/cordova-plugin-autostart.git",
