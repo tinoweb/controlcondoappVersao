@@ -26,13 +26,6 @@ var app = {
 		
     },
 
-    handleOpenURL: function (url) {
-	    alert("etrou na funcao get");
-	    setTimeout(function() {
-			alert("received url:");
-		}, 0);
-	},
-	
     onDeviceReady: function() {
     
 		app.receivedEvent('deviceready');
@@ -46,7 +39,9 @@ var app = {
             return false;
         });      
         
+		
         $("#login_ini" ).hide();
+		$("#telaAceitaTermo" ).hide();
 		$("#box_notificacoes" ).hide();
 		$("#boxUp_liberacao"  ).hide();
 		$("#boxUp_liberacao2" ).hide();

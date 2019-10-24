@@ -580,8 +580,7 @@ input, textarea {
 	display:none;
 }
 
-/*######add by tino#####*/
-
+/*###### Add by Tino #####*/
 .btn-no-border{
 	border-radius: 0px !important;
 }
@@ -622,8 +621,7 @@ input, textarea {
 #telaVerificaCodigo{
 	display:none;
 }
-
-/*#####################*/
+/*######## End add by Tino #############*/
 
 .login_ini img {
     top: 13%;
