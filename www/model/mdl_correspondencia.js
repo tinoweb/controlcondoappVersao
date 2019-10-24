@@ -38,7 +38,7 @@ function carrega_entregas(tipo){
 				}
 				
 				if(retorno[x]['foto'] == ""){
-					var fotoc = '<img style="width:40px;height:40px; background-image:url(img/carrinho-encomenda.png); background-size: 33px;background-repeat: no-repeat; background-position: center center; border-radius: 20px;" />';
+					var fotoc = '';
 				}else{
 					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
 				}
