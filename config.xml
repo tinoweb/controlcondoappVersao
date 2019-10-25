@@ -8,7 +8,8 @@
        First Control Sistemas Inteligentes Ltda. Epp
     </author>
     <content src="index.html" />
-
+    
+    <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="show-splash-screen-spinner" value="true" />
@@ -19,8 +20,6 @@
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="KeyboardResize" value="true" />
     <preference name="KeyboardResizeMode" value="native" />
-    
-
 
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.2.4" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.4.1" />
