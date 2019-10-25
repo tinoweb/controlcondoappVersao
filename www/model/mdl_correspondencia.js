@@ -165,168 +165,168 @@ function carrega_entregas(tipo){
 
 
 //// FILTRAR ENCOMENDA 
-//function buscar_encomenda()
-//{		$( "#main_correspondencia" ).html('');
-//	
-//		var n_retira = $("#respons_retirar").val();	
-//		var recb_in = $("#recb_in").val();
-//		var recb_fim = $("#recb_fm").val();	
-//		var entr_in = $("#entr_in").val();	
-//		var entr_fim = $("#entr_fm").val();
-// 		var status = $("#status_encomenda").val();
-//		var pg = 1;
-//		var dados = '';
-//		var dado  = '';
-//	
-//	$.ajax({
-//		type: 'POST',
-//		url: localStorage.getItem('DOMINIO')+'appweb/correspondencia_busca.php',
-//		crossDomain: true,
-//		//beforeSend : function() { $("#wait").css("display", "block"); },
-//		//complete   : function() { $("#wait").css("display", "none"); },
-//        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_moradores : $("#DADOS #ID_MORADORES_UNIDADE").val(), pg : parseInt(pg),n_retira:n_retira,recb_in:recb_in,recb_fim:recb_fim, entr_in:entr_in, entr_fim:entr_fim,status:status},
-//       dataType   : 'json', 
-//		success: function(retorno){ 
-//			
-//			
-//			
-//			var cont = 0;
-//            for (x in retorno) {
-//				
-//				cont++;
-//				
-//				if(retorno[x]['dataentrega'] != ''){
-//					var cor_status='#a1cf77';
-//				}else{
-//					var cor_status='yellow';
-//				}
-//				
-//				if(retorno[x]['foto'] == ""){
-//					var fotoc = '<img style="width:40px;height:40px; background-image:url(img/carrinho-encomenda.png); background-size: 33px;background-repeat: no-repeat; background-position: center center; border-radius: 20px;" />';
-//				}else{
-//					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
-//				}
-//
-//				dado = '<li class="accordion-item entrega"><a href="#" class="item-content item-link">'+
-//							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
-//							'<div class="item-inner">'+
-//								'<div class="item-title">'+retorno[0]['descricao']+' para '+retorno[0]['nome_morador']+'</div>'+
-//								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
-//							'</div></a>'+
-//						  	'<div class="accordion-item-content bg-color-white">'+
-//								'<div class="block">'+
-//									'<div class="list">'+
-//  									'<ul>'+
-//										'<li>'+
-//										'<div class="item-inner">'+
-//										'<div class="item-title">'+
-//										'<div class="item-header">Data Recebimento</div>'+
-//										retorno[x]['datarecebimento']+
-//										'</div>'+
-//										'</div>'+
-//										'</li>';
-//										if(retorno[x]['obsRecebimento'] != ''){
-//											dado = dado +
-//											'<li>'+
-//											'<div class="item-inner">'+
-//											'<div class="item-title">'+
-//											'<div class="item-header">Obs Recebimento</div>'+
-//											retorno[x]['obsRecebimento']+
-//											'</div>'+
-//											'</div>'+
-//											'</li>';
-//										}
-//											'<li>'+
-//										'<div class="item-inner">'+
-//										'<div class="item-title">'+
-//										'<div class="item-header">Data Recebimento</div>'+
-//										retorno[x]['datarecebimento']+
-//										'</div>'+
-//										'</div>'+
-//										'</li>';
-//										if(retorno[x]['dataentrega'] != ''){
-//											dado = dado +
-//											'<li>'+
-//											'<div class="item-inner">'+
-//											'<div class="item-title">'+
-//											'<div class="item-header">Data entrega</div>'+
-//											retorno[x]['dataentrega']+
-//											'</div>'+
-//											'</div>'+
-//											'</li>'+
-//											'<li>'+
-//											'<div class="item-inner">'+
-//											'<div class="item-title">'+
-//											'<div class="item-header">Entregue para</div>'+
-//											retorno[x]['nomeRetirada']+
-//											'</div>'+
-//											'</div>'+
-//											'</li>'+
-//											'<li>'+
-//											'<div class="item-inner">'+
-//											'<div class="item-title">'+
-//											'<div class="item-header">Obs entrega</div>'+
-//											retorno[x]['obsEntrega']+
-//											'</div>'+
-//											'</div>'+
-//											'</li>';
-//										}else{
-//											if(retorno[x]['codigo_correspondencia']==1)
-//												{
-//											dado = dado +
-//											
-//											
-//											'<li>'+
-//						 
-//											'<button class="btn btn-success col-md-12 card sheet-open" onClick="qrcode_encomenda('+retorno[x]['id']+')" data-sheet=".entregaqr_modal" ><i class="fa fa-qrcode"></i></button>'+
-//											
-//											'</li>';
-//												}
-//										}
-//									dado = dado +
-//  									'</ul>'+
-//									'</div>'+                                                                                                                                                   
-//								'</div>'+
-//						  	'</div>'+
-//						'</li>';
-//
-//                dados = dados + dado;
-//				
-//            }
-//		// alert(dados);
-//				
-//				
-//				if(retorno =="")
-//				{
-//					var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
-//						+"<img  width='50%'> </div>";
-//					
-//				$( "#main_correspondencia" ).html(sem);	
-//
-//								
-//				}else{
-//					$( "#main_correspondencia" ).html(dados);
-//					
-//					}
-//		},
-//        error : function() {
-//            alert(erro);
-//        }
-//	});	
-//	
-//
-//	
-//}
+function buscar_encomenda()
+{		$( "#main_correspondencia" ).html('');
+	
+		var n_retira = $("#respons_retirar").val();	
+		var recb_in = $("#recb_in").val();
+		var recb_fim = $("#recb_fm").val();	
+		var entr_in = $("#entr_in").val();	
+		var entr_fim = $("#entr_fm").val();
+ 		var status = $("#status_encomenda").val();
+		var pg = 1;
+		var dados = '';
+		var dado  = '';
+	
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/correspondencia_busca.php',
+		crossDomain: true,
+		//beforeSend : function() { $("#wait").css("display", "block"); },
+		//complete   : function() { $("#wait").css("display", "none"); },
+        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_moradores : $("#DADOS #ID_MORADORES_UNIDADE").val(), pg : parseInt(pg),n_retira:n_retira,recb_in:recb_in,recb_fim:recb_fim, entr_in:entr_in, entr_fim:entr_fim,status:status},
+       dataType   : 'json', 
+		success: function(retorno){ 
+			
+			
+			
+			var cont = 0;
+            for (x in retorno) {
+				
+				cont++;
+				
+				if(retorno[x]['dataentrega'] != ''){
+					var cor_status='#a1cf77';
+				}else{
+					var cor_status='yellow';
+				}
+				
+				if(retorno[x]['foto'] == ""){
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(img/carrinho-encomenda.png); background-size: 33px;background-repeat: no-repeat; background-position: center center; border-radius: 20px;" />';
+				}else{
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
+				}
 
-//// LIMPAR CAMPO DE BUSCA DE ENCOMENDA
-//function limpa_campobusca()
-//{
-//	 $("#respons_retirar").val('');	
-//	 $("#recb_in").val('');
-//	 $("#recb_fm").val('');	
-//	 $("#entr_in").val('');	
-//	 $("#entr_fm").val('');		
-//}
+				dado = '<li class="accordion-item entrega"><a href="#" class="item-content item-link">'+
+							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
+							'<div class="item-inner">'+
+								'<div class="item-title">'+retorno[0]['descricao']+' para '+retorno[0]['nome_morador']+'</div>'+
+								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
+							'</div></a>'+
+						  	'<div class="accordion-item-content bg-color-white">'+
+								'<div class="block">'+
+									'<div class="list">'+
+  									'<ul>'+
+										'<li>'+
+										'<div class="item-inner">'+
+										'<div class="item-title">'+
+										'<div class="item-header">Data Recebimento</div>'+
+										retorno[x]['datarecebimento']+
+										'</div>'+
+										'</div>'+
+										'</li>';
+										if(retorno[x]['obsRecebimento'] != ''){
+											dado = dado +
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Obs Recebimento</div>'+
+											retorno[x]['obsRecebimento']+
+											'</div>'+
+											'</div>'+
+											'</li>';
+										}
+											'<li>'+
+										'<div class="item-inner">'+
+										'<div class="item-title">'+
+										'<div class="item-header">Data Recebimento</div>'+
+										retorno[x]['datarecebimento']+
+										'</div>'+
+										'</div>'+
+										'</li>';
+										if(retorno[x]['dataentrega'] != ''){
+											dado = dado +
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Data entrega</div>'+
+											retorno[x]['dataentrega']+
+											'</div>'+
+											'</div>'+
+											'</li>'+
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Entregue para</div>'+
+											retorno[x]['nomeRetirada']+
+											'</div>'+
+											'</div>'+
+											'</li>'+
+											'<li>'+
+											'<div class="item-inner">'+
+											'<div class="item-title">'+
+											'<div class="item-header">Obs entrega</div>'+
+											retorno[x]['obsEntrega']+
+											'</div>'+
+											'</div>'+
+											'</li>';
+										}else{
+											if(retorno[x]['codigo_correspondencia']==1)
+												{
+											dado = dado +
+											
+											
+											'<li>'+
+						 
+											'<button class="btn btn-success col-md-12 card sheet-open" onClick="qrcode_encomenda('+retorno[x]['id']+')" data-sheet=".entregaqr_modal" ><i class="fa fa-qrcode"></i></button>'+
+											
+											'</li>';
+												}
+										}
+									dado = dado +
+  									'</ul>'+
+									'</div>'+                                                                                                                                                   
+								'</div>'+
+						  	'</div>'+
+						'</li>';
+
+                dados = dados + dado;
+				
+            }
+		// alert(dados);
+				
+				
+				if(retorno =="")
+				{
+					var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
+						+"<img  width='50%'> </div>";
+					
+				$( "#main_correspondencia" ).html(sem);	
+
+								
+				}else{
+					$( "#main_correspondencia" ).html(dados);
+					
+					}
+		},
+        error : function() {
+            alert(erro);
+        }
+	});	
+	
+
+	
+}
+
+// LIMPAR CAMPO DE BUSCA DE ENCOMENDA
+function limpa_campobusca()
+{
+	 $("#respons_retirar").val('');	
+	 $("#recb_in").val('');
+	 $("#recb_fm").val('');	
+	 $("#entr_in").val('');	
+	 $("#entr_fm").val('');		
+}
 
 
 

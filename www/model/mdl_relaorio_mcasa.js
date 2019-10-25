@@ -5,7 +5,7 @@ function carregar_minha_casa()
 {
 
 
-afed('#minha_casa_rel','#home','','')
+afed('#minha_casa_rel','#home','','');
 	
 }
 // FUNÇÃO PARA MOSTRAR TODOS OS RECORRENTES DO MORADOR É PASSADO ID DO CONDOMÍNIO E DO USUÁRIO CONDOMÍNIO  // CARREGAPAGINA DOS VISITATES RECORRENTES 
