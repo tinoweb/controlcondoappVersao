@@ -621,6 +621,10 @@ input, textarea {
 #telaVerificaCodigo{
 	display:none;
 }
+
+.aceitaTermoClass{
+	display:none;	
+}
 /*######## End add by Tino #############*/
 
 .login_ini img {

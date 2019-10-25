@@ -43,6 +43,9 @@ function swich_to_primeiroAcesso(){
 
 function enviarCodigoAtivacao(){
 	$("#telaVerificaCodigo").hide();
+	$(".aceitaTermoClass").css('display', 'block');
+	$("#concordaComTermo").hide();
+	$("#btnAtivarConta").hide();
 	$("#telaAceitaTermo").show();
 }
 
@@ -51,20 +54,8 @@ function aceiteiTermo(){
 	$("#login_ini").show();
 }
 
-
-// var appmeu = new Framework7({
-//   popup: {
-//     closeByBackdropClick: false,
-//   }
-// });
-
-
-// var popup = appmeu.popup.create({
-//   content: '<div class="popup">Lorem ipusm dolre </div>',
-//   el: '.termoAtivacao',
-//   on: {
-//     opened: function () {
-//       console.log('Popup opened')
-//     }
-//   }
-// })
+function myFunction() {
+	if($("#tab-1").scrollTop() + $("#tab-1").height() >= $("#tab-1").get(0).scrollHeight -70) {
+		$("#concordaComTermo").show('700');
+	}
+}

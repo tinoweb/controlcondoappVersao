@@ -229,5 +229,13 @@
     "variables": {
       "URL_SCHEME": "mycoolapp"
     }
+  },
+  "cordova-plugin-appavailability": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-appavailability"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

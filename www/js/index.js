@@ -39,6 +39,7 @@ var app = {
             return false;
         });      
         
+
 		
         $("#login_ini" ).hide();
 		$("#telaAceitaTermo" ).hide();
@@ -58,7 +59,8 @@ var app = {
 		$("#boxUp_mcasa").hide();
 		$("#boxUp_pet").hide();
 		$("#boxUp_pet1").hide(); 
-		
+
+
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
                 afed('#fale_user','#fale_msg','','',2,'fale_user');
@@ -113,6 +115,21 @@ var app = {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
 		login_user_device();
+
+		if($("#checkboxElementoTermo").checked) {
+	        console.log("Termo como super...");
+	        $("#btnAtivarConta").show('500');
+	    }
+		$("#checkboxElementoTermo").change(function() {
+		    if(this.checked) {
+		        $("#btnAtivarConta").show('700');
+		        let fullHeight = $('#tab-1').get(0).scrollHeight;
+		        $('#tab-1').scrollTop(fullHeight + 50);
+		    }else{
+		    	$("#btnAtivarConta").hide('500');
+		    }
+		});
+		
 		
         $("#notificacoes").scroll(function() {
             if ($(this).scrollTop() + $(this).height() > ($(this).get(0).scrollHeight-58)) {
@@ -138,7 +155,9 @@ var app = {
                 carrega_liberacao(1);
             }
 			app.ckBoxUp("#boxUp_liberacao","#pull-liberacao");
-		});		
+		});	
+
+
 		
 		$('#boxUp_liberacao').click(function(){
 			$('#pull-liberacao').animate({

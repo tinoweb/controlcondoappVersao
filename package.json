@@ -30,7 +30,8 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-backgroundvideo": {},
-      "cordova-plugin-customurlscheme": {}
+      "cordova-plugin-customurlscheme": {},
+      "cordova-plugin-appavailability": {}
     }
   },
   "dependencies": {
