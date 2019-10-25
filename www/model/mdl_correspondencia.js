@@ -38,7 +38,7 @@ function carrega_entregas(tipo){
 				}
 				
 				if(retorno[x]['foto'] == ""){
-					var fotoc = '';
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(../img/carrinho-encomenda.png); background-size: 33px; background-position: center center; border-radius: 20px;" />';
 				}else{
 					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
 				}
@@ -164,6 +164,7 @@ function carrega_entregas(tipo){
 }
 
 
+<<<<<<< HEAD
 //// FILTRAR ENCOMENDA 
 function buscar_encomenda()
 {		$( "#main_correspondencia" ).html('');
@@ -333,6 +334,8 @@ function limpa_campobusca()
 
 
 
+=======
+>>>>>>> bcfb59e3fc204425e6968db7e63c8c3ebb40d437
 //PEGAR QRCODE DA ENCOMENDA PARA O MORADOR 
 function qrcode_encomenda(id)
 {	$("#code_encomenda").html('');
