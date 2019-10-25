@@ -11,7 +11,7 @@
     
     <pref0erence name="phonegap-version" value="cli-8.1.1" />
     <preference name="DisallowOverscroll" value="true" />
-    <!-- <preference name="android-minSdkVersion" value="14" /> -->
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="orientation" value="portrait" />
