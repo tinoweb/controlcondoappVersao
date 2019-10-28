@@ -164,7 +164,7 @@ function carrega_entregas(tipo){
 }
 
 
-<<<<<<< HEAD
+
 //// FILTRAR ENCOMENDA 
 function buscar_encomenda()
 {		$( "#main_correspondencia" ).html('');
@@ -333,9 +333,6 @@ function limpa_campobusca()
 
 
 
-
-=======
->>>>>>> bcfb59e3fc204425e6968db7e63c8c3ebb40d437
 //PEGAR QRCODE DA ENCOMENDA PARA O MORADOR 
 function qrcode_encomenda(id)
 {	$("#code_encomenda").html('');
