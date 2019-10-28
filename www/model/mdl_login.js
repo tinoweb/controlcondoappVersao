@@ -53,6 +53,23 @@ function login_user_device(){
 								localStorage.setItem('EXIBIR_NOME',retorno[0]['exibir_nome_qrcode']);
 								//alert(localStorage.getItem('QTD_CONTROL_CONDO'));
 								//localStorage.getItem('QTD_CONTROL_CONDO');
+											//$( "#DADOS #ID_MORADORES_UNIDADE" ).val('171');
+								setTimeout(function()
+								{
+								 $.ajax({
+										 type       : "POST",
+										 url        : localStorage.getItem('DOMINIO')+"appweb/notificacao_correspondencia.php",
+										 data       : {id_condominio : $("#DADOS #ID_CONDOMINIO").val(),id_unidade : $("#DADOS #ID_UNIDADE").val()}, //APP
+										 success    : function(retornos) 
+													{
+														$("#DADOS #ID_MORADORES_UNIDADE").val(retornos);
+
+													}
+										});	
+
+								},3);	
+
+								
 								if(retorno[0]['tipo_busca_visitante'] == 0){
 									afed('#btipo_nome','#btipo_rg','','',3,'home');
 								}else{
@@ -227,6 +244,7 @@ function login_user_device(){
 
 // FUNCAO LOGIN USUARIO (LOGIN POR EMAIL/SENHA)
 function login_user() {
+
 	if(navigator.connection.type != 'none'){
 		var dados = $( "#form_login" ).serialize();
         if(device.uuid == null){
@@ -317,6 +335,21 @@ function select_user(id_usuario_condominio=0) {
                     $( "#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
                     $( "#DADOS #ID_MORADOR" ).val(retorno[0]['id_referencia']);
                     $( "#DADOS #ID_UNIDADE" ).val(retorno[0]['id_unidade']);
+					//$( "#DADOS #ID_MORADORES_UNIDADE" ).val('171');
+					
+					setTimeout(function(){
+					$.ajax({
+							type       : "POST",
+							url        : localStorage.getItem('DOMINIO')+"appweb/notificacao_correspondencia.php",
+							data       : {id_condominio : $("#DADOS #ID_CONDOMINIO").val(),id_unidade : $("#DADOS #ID_UNIDADE").val()}, //APP
+							success    : function(retornos) 
+									   {
+											$("#DADOS #ID_MORADORES_UNIDADE").val(retornos);
+											
+									   }
+							});	
+						
+					},3);			
                     $( "#DADOS #ID_CONDOMINIO" ).val(retorno[0]['id_condominio']);
                     //alert($( "#DADOS #ID_CONDOMINIO" ).val());
                     $( "#DADOS #CONDOMINIO" ).val(retorno[0]['nome_condominio']);
