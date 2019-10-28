@@ -625,6 +625,11 @@ input, textarea {
 .aceitaTermoClass{
 	display:none;	
 }
+
+.toolbar:after {
+    content: none !important;
+    position: absolute;
+}
 /*######## End add by Tino #############*/
 
 .login_ini img {

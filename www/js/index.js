@@ -116,17 +116,20 @@ var app = {
         console.log('calling setup push');
 		login_user_device();
 
-		if($("#checkboxElementoTermo").checked) {
+		if($("#checkboxElementoTermo").prop('checked')) {
 	        console.log("Termo como super...");
+	        alert("checkado ...");
 	        $("#btnAtivarConta").show('500');
 	    }
 		$("#checkboxElementoTermo").change(function() {
 		    if(this.checked) {
-		        $("#btnAtivarConta").show('700');
 		        let fullHeight = $('#tab-1').get(0).scrollHeight;
 		        $('#tab-1').scrollTop(fullHeight + 50);
+		        $("#concordaComTermo").hide('500');
+		        $("#btnAtivarConta").show('400');
 		    }else{
 		    	$("#btnAtivarConta").hide('500');
+		    	$("#concordaComTermo").show('500');
 		    }
 		});
 		

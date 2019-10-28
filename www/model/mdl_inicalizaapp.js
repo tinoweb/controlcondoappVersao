@@ -1,11 +1,9 @@
 // DONE BY TINO 22/10/2019
 
-// FUNÇÃO PARA INICIAR A PRIMEIRA TELA.... ()
 function swich_tela_login(){
 	afed('#login_ini','#initApp','','',1);
 }
 
-// BOTÃO VOLTAR DA TELA LOGIN (USUARIO/SENHA)
 function loginIniBtnVoltar(){
 	afed('#initApp','#login_ini','','');
 }
@@ -14,7 +12,6 @@ function primeiroAcessoBtnVoltar(){
 	afed('#initApp','#primeiroAcesso','','',1);	
 }
 
-// ABRIR A TELA DE PRIMEIRO ACESSO
 function swich_tela_primeiroAcesso(){
 	afed('#primeiroAcesso','#initApp','','',1);
 }
@@ -56,6 +53,12 @@ function aceiteiTermo(){
 
 function myFunction() {
 	if($("#tab-1").scrollTop() + $("#tab-1").height() >= $("#tab-1").get(0).scrollHeight -70) {
-		$("#concordaComTermo").show('700');
+		
+		if ($("#checkboxElementoTermo").prop('checked')) {
+			$("#concordaComTermo").hide();
+			$("#btnAtivarConta").show();
+		}else{
+			$("#concordaComTermo").show('700');
+		}
 	}
 }
