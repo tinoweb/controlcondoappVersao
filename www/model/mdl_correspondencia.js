@@ -38,7 +38,7 @@ function carrega_entregas(tipo){
 				}
 				
 				if(retorno[x]['foto'] == ""){
-					var fotoc = '<img style="width:40px;height:40px; background-image:url(../img/carrinho-encomenda.png); background-size: 33px; background-position: center center; border-radius: 20px;" />';
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(img/carrinho-encomenda.png); background-size: 33px; background-position: center center; border-radius: 20px;" />';
 				}else{
 					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
 				}
@@ -367,7 +367,7 @@ function status_encomenda_filtro()
 	$(".smart-select-page .navbar .sliding .left .back .icon-back").attr('id','slc_status_correspondencia');
 
 	$("#slc_status_correspondencia").click();
-	
+	$("#resultado_selc  .resultado_selc").attr('style','text-align: center;')
 	
 	
 	
