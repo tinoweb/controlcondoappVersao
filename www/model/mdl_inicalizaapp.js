@@ -43,6 +43,7 @@ function enviarCodigoAtivacao(){
 	$(".aceitaTermoClass").css('display', 'block');
 	$("#concordaComTermo").hide();
 	$("#btnAtivarConta").hide();
+	$("#btnCancelarConta").hide();
 	$("#telaAceitaTermo").show();
 }
 
@@ -53,12 +54,24 @@ function aceiteiTermo(){
 
 function myFunction() {
 	if($("#tab-1").scrollTop() + $("#tab-1").height() >= $("#tab-1").get(0).scrollHeight -70) {
-		
 		if ($("#checkboxElementoTermo").prop('checked')) {
 			$("#concordaComTermo").hide();
 			$("#btnAtivarConta").show();
+			$("#btnCancelarConta").show();
 		}else{
 			$("#concordaComTermo").show('700');
 		}
 	}
+}
+
+function cancelarTermo(){
+	afed('#initApp','#telaAceitaTermo','','',1);	
+}
+
+function definesenha(){
+	afed('#defineSenha','#initApp','','',1);	
+}
+
+function sairTelaDefineSenha(){
+	afed('#initApp','#defineSenha','','',1);
 }

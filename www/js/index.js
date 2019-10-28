@@ -41,8 +41,9 @@ var app = {
         
 
 		
-        $("#login_ini" ).hide();
-		$("#telaAceitaTermo" ).hide();
+        $("#login_ini").hide();
+		$("#telaAceitaTermo").hide();
+		$("#defineSenha").hide();
 		$("#box_notificacoes" ).hide();
 		$("#boxUp_liberacao"  ).hide();
 		$("#boxUp_liberacao2" ).hide();
@@ -125,11 +126,13 @@ var app = {
 		    if(this.checked) {
 		        let fullHeight = $('#tab-1').get(0).scrollHeight;
 		        $('#tab-1').scrollTop(fullHeight + 50);
-		        $("#concordaComTermo").hide('500');
-		        $("#btnAtivarConta").show('400');
+		        $("#concordaComTermo").hide();
+		        $("#btnAtivarConta").show();
+		        $("#btnCancelarConta").show();
 		    }else{
 		    	$("#btnAtivarConta").hide('500');
 		    	$("#concordaComTermo").show('500');
+		    	$("#btnCancelarConta").show('500');
 		    }
 		});
 		
