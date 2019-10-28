@@ -23,7 +23,7 @@ function carrega_entregas(tipo){
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
-        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), pg : parseInt(pg) },
+        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), pg : parseInt(pg),op:1 },
         dataType   : 'json',
 		success: function(retorno){
 			var cont = 0;
@@ -367,7 +367,7 @@ function status_encomenda_filtro()
 	$(".smart-select-page .navbar .sliding .left .back .icon-back").attr('id','slc_status_correspondencia');
 
 	$("#slc_status_correspondencia").click();
-	$("#resultado_selc  .resultado_selc").attr('style','text-align: center;')
+	//$("#resultado_selc  .resultado_selc").attr('style','text-align: center;')
 	
 	
 	
