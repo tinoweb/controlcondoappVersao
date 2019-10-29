@@ -170,19 +170,19 @@ var app = {
 			app.ckBoxUp("#boxUp_comunicados","#pull-comunicados");
 		});		
 		
-		$('#boxUp_comunicados').click(function(){
+		$('#boxUp_comunicados').click(function(){ 
 			$('#pull-comunicados').animate({
 				scrollTop: 0
 			},600)
 		});
 		
 		$("#pull-entregas").scroll(function() { 
-			var y=(($(this).scrollTop() + $(this).height()) + 71);
-			var x=$(this).get(0).scrollHeight;
-			//alert(y+ ' iii '+x);
-            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
-                carrega_entregas(1);
-            }
+		//	var y=(($(this).scrollTop() + $(this).height()) + 71);
+//			var x=$(this).get(0).scrollHeight;
+//			//alert(y+ ' iii '+x);
+//            if ((($(this).scrollTop() + $(this).height()) + 71) > $(this).get(0).scrollHeight) {
+//                carrega_entregas(1);
+//            }
 			app.ckBoxUp("#boxUp_entregas","#pull-entregas");
 		});			
 		

@@ -7,7 +7,7 @@ function carrega_entregas(tipo){
     }else{
         var offset = $(".entrega").length;
         if(offset !== 0){
-            pg = (offset/10)+1;
+            pg = (offset/40)+1;
         }else{
             pg = 1;
         }
@@ -31,9 +31,11 @@ function carrega_entregas(tipo){
 				
 				cont++;
 				
-				if(retorno[x]['dataentrega'] != ''){
-					var cor_status='#a1cf77';
+				 if(retorno[x]['dataentrega'] !='' )
+				{
+					var cor_status='#a1cf77';	
 				}else{
+					
 					var cor_status='yellow';
 				}
 				
@@ -46,7 +48,7 @@ function carrega_entregas(tipo){
 				dado = '<li class="accordion-item entrega"><a href="#" class="item-content item-link">'+
 							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
 							'<div class="item-inner">'+
-								'<div class="item-title">'+retorno[x]['descricao']+' para '+retorno[x]['nome_morador']+'</div>'+
+								'<div class="item-title">'+retorno[x]['descricao']+' para '+retorno[x]['nome_morador']+'<br>'+retorno[x]['dataentrega']+'</div>'+
 								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
 							'</div></a>'+
 						  	'<div class="accordion-item-content bg-color-white">'+
@@ -194,9 +196,11 @@ function buscar_encomenda()
 				
 				cont++;
 				
-				if(retorno[x]['dataentrega'] != ''){
-					var cor_status='#a1cf77';
+				 if(retorno[x]['dataentrega'] !='' )
+				{
+					var cor_status='#a1cf77';	
 				}else{
+					
 					var cor_status='yellow';
 				}
 				
@@ -209,7 +213,7 @@ function buscar_encomenda()
 				dado = '<li class="accordion-item entrega"><a href="#" class="item-content item-link">'+
 							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
 							'<div class="item-inner">'+
-								'<div class="item-title">'+retorno[0]['descricao']+' para '+retorno[0]['nome_morador']+'</div>'+
+								'<div class="item-title">'+retorno[0]['descricao']+' para '+retorno[0]['nome_morador']+'<br>'+retorno[x]['dataentrega']+'</div>'+
 								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
 							'</div></a>'+
 						  	'<div class="accordion-item-content bg-color-white">'+
@@ -295,7 +299,7 @@ function buscar_encomenda()
 		// alert(dados);
 				
 				
-				if(retorno =="")
+				if(cont ==0)
 				{
 					var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
@@ -304,6 +308,7 @@ function buscar_encomenda()
 
 								
 				}else{
+					$( "#main_correspondencia" ).html('');
 					$( "#main_correspondencia" ).html(dados);
 					
 					}
