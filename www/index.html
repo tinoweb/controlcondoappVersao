@@ -82,9 +82,19 @@
 		    setTimeout(function() {
 				alert("received url:");
 				alert(url);
+				// let urli = "mycoolapp://auth?codigo=N80gotg9";
+				resultado = url.split("=");
+				localStorage.setItem("ativacaoCode", resultado[1]);
+				$("#login_ini").hide();
+				$("#telaVerificaCodigo").show();
+				$("#codigoAtivacao").val(resultado[1]);
+				
 			}, 0);
 
 		    // receber o codigo enviado pela url
+
+
+
 
 		    // guardar o codigo no localStorage
 
