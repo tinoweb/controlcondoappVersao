@@ -143,4 +143,7 @@
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
     <plugin name="cordova-backgroundvideo" spec="0.0.22" />
+    <plugin name="cordova-plugin-customurlscheme" source="npm">
+      <variable name="URL_SCHEME" value="mycoolapp" />
+    </plugin>
 </widget>
