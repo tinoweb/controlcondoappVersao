@@ -45,6 +45,25 @@ function enviarCodigoAtivacao(){
 	$("#btnAtivarConta").hide();
 	$("#btnCancelarConta").hide();
 	$("#telaAceitaTermo").show();
+
+	let codigoAtivacao = $("#codigoAtivacao").val();
+	var icon_cc = '';
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_get.php',
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+        data       : { codigo : codigoAtivacao, typeFunction : 'enviarCodigoAtivacao' },
+        dataType   : 'json',
+		success: function(retorno){
+			console.log(retorno);       
+        },
+        error: function() {
+			alert(3);
+        }
+	});	
+	
 }
 
 function aceiteiTermo(){
