@@ -400,8 +400,6 @@
 			</form>
 		</div>-->
 		
-
-		
 		<!--############ Tela do primero acesso ############## -->
 		<div id="initApp" class="login_iniNew">
 			<img src="img/logoicon.png" width="150">
@@ -419,59 +417,10 @@
 					
 					<a style="position: relative;top: 34px;left: 29%;font-size: 19px;font-family: sans-serif;" onclick="swich_tela_primeiroAcesso()">Primeiro Acesso?</a>
 					<br>
-
-					<!-- <a style="position: relative;top: 44px;left: 29%;font-size: 19px;font-family: sans-serif;" onclick="definesenha()">Tela define senha</a> -->
 				</div>
 			</div>
 		</div>
-
-		<!--############ Tela definicao senha acesso ############## -->
-		<div id="defineSenha" class="login_iniNew">
-			<img class="" src="img/logoicon.png" width="150">
-			<div id="formInit" class="form-signin" style="top: 24px;position: relative;padding: 15px 14px;"> 
-				<div class="" style="position: relative;padding: 12px;padding-bottom: 52px;">
-					<form class="row list" id="formSendEmail">
-					    <div class="col-xs-12 item-content item-input">
-					      	<div class="item-inner">
-						        <!-- <div class="item-title">Defina a sua senha</div> -->
-						        <div class="item-input-wrap">
-						          <input type="password" name="defineSenha" validate required="true" placeholder="Definir Senha" style="border: none;">
-						          <span class="input-clear-button"></span>
-						        </div>
-					      	</div>
-					    </div>
-					    <p></p>
-					    <div class="col-xs-12 item-content item-input">
-						    <div class="item-inner">
-						        <!-- <div class="item-title">Repetir Senha</div> -->
-						        <div class="item-input-wrap">
-						          <input type="password" name="defineSenhaRepita" validate required="true" placeholder="Repetir Senha" style="border: none;">
-						          <span class="input-clear-button"></span>
-						        </div>
-					      	</div>
-					    </div>
-						
-						<div class="col-xs-12" style="position: relative;top: 14px;">
-							<button class="btn btn-primary btn-lg btn-block btn-no-border" name="entrar"> Salvar </button>
-						</div>
-						<div class="col-xs-12" style="position: relative;top: 20px;">
-							<a class="btn btn-block btn-default btn-no-border" style="position: relative; color: #b8bec5" onclick="sairTelaDefineSenha()">sair</a>
-						</div>
-
-
-						<!-- <div class="col-xs-6" style="position: relative;top: 14px;">
-							<button class="btn btn-primary btn-lg btn-block btn-no-border" name="entrar"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button>
-						</div>
-						<div class="col-xs-6" style="position: relative;top: 14px;">
-							<button class="btn btn-lg btn-danger btn-block btn-no-border"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
-						</div> -->
-
-					</form>
-
-				</div>
-			</div>
-		</div>
-
+		
 		<!--###################Tela Opcoes Primeiro Acesso ################### -->
 		<div id="primeiroAcesso" class="primeiroAcessoPage">
 			<div class="navbar">
@@ -671,6 +620,53 @@
 
 		        </div>
 		    </div>
+		</div>
+		
+		<!--############ Tela definicao senha acesso ############## -->
+		<div id="defineSenha" class="login_iniNew">
+			<img class="" src="img/logoicon.png" width="150">
+			<div id="formInit" class="form-signin" style="top: 24px;position: relative;padding: 15px 14px;"> 
+				<div class="" style="position: relative;padding: 12px;padding-bottom: 52px;">
+					<form class="row list" id="formSendEmail">
+					    <div class="col-xs-12 item-content item-input">
+					      	<div class="item-inner">
+						        <!-- <div class="item-title">Defina a sua senha</div> -->
+						        <div class="item-input-wrap">
+						          <input type="password" name="defineSenha" validate required="true" placeholder="Definir Senha" style="border: none;">
+						          <span class="input-clear-button"></span>
+						        </div>
+					      	</div>
+					    </div>
+					    <p></p>
+					    <div class="col-xs-12 item-content item-input">
+						    <div class="item-inner">
+						        <!-- <div class="item-title">Repetir Senha</div> -->
+						        <div class="item-input-wrap">
+						          <input type="password" name="defineSenhaRepita" validate required="true" placeholder="Repetir Senha" style="border: none;">
+						          <span class="input-clear-button"></span>
+						        </div>
+					      	</div>
+					    </div>
+						
+						<div class="col-xs-12" style="position: relative;top: 14px;">
+							<a class="btn btn-primary btn-lg btn-block btn-no-border" onclick="salvarSenha()" name="entrar"> Salvar </a>
+						</div>
+						<div class="col-xs-12" style="position: relative;top: 20px;">
+							<a class="btn btn-block btn-default btn-no-border" style="position: relative; color: #b8bec5" onclick="sairTelaDefineSenha()">sair</a>
+						</div>
+
+
+						<!-- <div class="col-xs-6" style="position: relative;top: 14px;">
+							<button class="btn btn-primary btn-lg btn-block btn-no-border" name="entrar"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button>
+						</div>
+						<div class="col-xs-6" style="position: relative;top: 14px;">
+							<button class="btn btn-lg btn-danger btn-block btn-no-border"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
+						</div> -->
+
+					</form>
+
+				</div>
+			</div>
 		</div>
 
 

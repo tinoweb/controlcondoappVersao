@@ -38,7 +38,6 @@ var app = {
             e.stopImmediatePropagation();
             return false;
         });      
-        
 
 		
         $("#login_ini").hide();

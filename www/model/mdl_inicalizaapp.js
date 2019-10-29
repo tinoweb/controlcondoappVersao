@@ -1,7 +1,7 @@
 // DONE BY TINO 22/10/2019
 
 function swich_tela_login(){
-	afed('#login_ini','#initApp','','',1);
+	afed('#login_ini','#initApp','','');
 }
 
 function loginIniBtnVoltar(){
@@ -49,18 +49,24 @@ function enviarCodigoAtivacao(){
 
 function aceiteiTermo(){
 	$("#telaAceitaTermo").hide();
-	$("#login_ini").show();
+	$("#defineSenha").show();
 }
 
 function myFunction() {
 	if($("#tab-1").scrollTop() + $("#tab-1").height() >= $("#tab-1").get(0).scrollHeight -70) {
-		if ($("#checkboxElementoTermo").prop('checked')) {
-			$("#concordaComTermo").hide();
-			$("#btnAtivarConta").show();
-			$("#btnCancelarConta").show();
-		}else{
-			$("#concordaComTermo").show('700');
-		}
+	
+		$("#concordaComTermo").show('700');
+		$("#checkboxElementoTermo").change(function() {
+			if (this.checked) {
+				$("#concordaComTermo").hide();
+				$("#btnAtivarConta").show();
+				$("#btnCancelarConta").show();
+			}
+		});
+	}else{
+		$("#checkboxElementoTermo").prop("checked", false);
+		$("#btnAtivarConta").hide();
+		$("#btnCancelarConta").hide();
 	}
 }
 
@@ -74,4 +80,9 @@ function definesenha(){
 
 function sairTelaDefineSenha(){
 	afed('#initApp','#defineSenha','','',1);
+}
+
+function salvarSenha(){
+	// afed('#initApp','#defineSenha','','',1);
+
 }
