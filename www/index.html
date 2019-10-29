@@ -78,23 +78,22 @@
 		document.addEventListener("deviceready",onDeviceReady,false); 
 		
         function handleOpenURL(url) {
-		    alert("etrou na funcao get");
-		    setTimeout(function() {
-				alert("received url:");
-				alert(url);
+		    // alert("etrou na funcao get");
+		    // setTimeout(function() {
+				// alert("received url:");
+				// alert(url);
 				// let urli = "mycoolapp://auth?codigo=N80gotg9";
+
 				resultado = url.split("=");
 				localStorage.setItem("ativacaoCode", resultado[1]);
-				$("#login_ini").hide();
+
+				$("#initApp").hide();
 				$("#telaVerificaCodigo").show();
 				$("#codigoAtivacao").val(resultado[1]);
-				
-			}, 0);
+
+			// }, 0);
 
 		    // receber o codigo enviado pela url
-
-
-
 
 		    // guardar o codigo no localStorage
 
@@ -550,7 +549,7 @@
 					<form class="list" id="formGetActivationCode">
 					    <div class="item-content item-input">
 					      	<div class="item-inner">
-						        <div class="item-title" style="text-align: center;">Código Ativação</div>
+						        <div class="item-title" style="">Código Ativação</div>
 						        <div class="item-input-wrap">
 						          <input id="codigoAtivacao" type="text" name="codigoativacaoField" style="border: none;">
 						          <span class="input-clear-button"></span>
