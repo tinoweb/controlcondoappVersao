@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	
 	<!-- framework7 -->
 	<meta name="theme-color" content="#2196f3">
@@ -68,7 +69,7 @@
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<script type="text/javascript" src="https://www.controlcondo.com.br/controlcondo/v2/js/zepto.min.js"></script>
 	<script type="text/javascript" src="https://www.controlcondo.com.br/controlcondo/v2/js/jquery.mask.js"></script>
@@ -476,24 +477,25 @@
 									</div>
 								</div>
 							</div>
-							<form class="list" id="formSendEmail">
+							<div class="list" id="formSendEmail">
 							    <div class="item-content item-input">
 							      	<div class="item-inner">
 								        <div class="item-title">Digite o seu email</div>
 								        <div class="item-input-wrap">
-								          <input type="email" name="emailCode" validate required="true" placeholder="aaa@mail.com" style="border: none;">
+								          <input type="email" name="emailCode" validate id="inputReceveEmailToGetCode" required="true" placeholder="usuario@mail.com" style="border: none;">
 								          <span class="input-clear-button"></span>
 								        </div>
-								        <button type="button" style="width: 100%;margin-top: 10%;" class="button button-fill color-green link sheet-close" onclick="choosedMail()">ENVIAR</button>
+								        <button class="btn btn-success btn-lg btn-block btn-no-border" style="color: white; width: 100%;margin-top: 10%;" id="btnSendEmailToGetCode" onclick="choosedMail()" name="entrar"> ENVIAR </button>
 							      	</div>
 							    </div>
-							</form>
+							</div>
 						</div>
 					</div>
 					<!-- ############################## -->
 
 
 					<!-- ############# receber pelo SMS ################# -->
+					<div class="hide"> <!--temporariamente escondido até implementar o o envio e recebimento de SMS-->
 					<div class="col-xs-12" style="position: relative;top: 14px;" id="divRecevebySMS">
 						<a href="#" style="color:white" data-sheet=".recebSMS" class="sheet-open btn btn-primary btn-lg btn-block btn-no-border">
 							<i class="fa fa-commenting-o" aria-hidden="true"></i>
@@ -525,6 +527,7 @@
 							</form>
 						</div>
 					</div>
+					</div>
 					<!-- ############################## -->
 				</div>
 			</div>
@@ -552,7 +555,7 @@
 					      	<div id="authCodeAtivacao" class="item-inner">
 						        <div class="item-title" style="">Código Ativação</div>
 						        <div class="item-input-wrap">
-						          <input id="codigoAtivacao" type="text" name="codigoativacaoField" style="border: none;">
+						          <input id="codigoAtivacao" data-error-message="Por favor, preencha este campo!" type="text" required name="codigoativacaoField" style="border: none;">
 						          <span class="input-clear-button"></span>
 						        </div>
 						        <button type="button" style="width: 100%;margin-top: 10%;" class="button button-fill color-green link sheet-close" onclick="enviarCodigoAtivacao()">ENVIAR</button>
