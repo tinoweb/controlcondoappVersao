@@ -159,7 +159,7 @@ function carrega_ocorrencia(id){
 				
                 $("#form_ocorrencia #privada").val(retorno[0].privada);
 
-                if(retorno[0].privada === 1){
+                if(retorno[0].privada == 1){
                 	$("#form_ocorrencia #txt_privada").html("Tipo - Privada");	
                 }else{
                 	$("#form_ocorrencia #txt_privada").html("Tipo - Pública");	
@@ -714,6 +714,7 @@ function ticket_insert(){
 
 // FUNCAO CARREGA TODOS OS TICKETS
 function carrega_tickets(tipo){
+	
     "use strict";
 	setTimeout(function(){
 		
@@ -763,7 +764,6 @@ function carrega_tickets(tipo){
 				data       : 'id_condominio='+$( "#DADOS #ID_CONDOMINIO" ).val()+'&pg='+parseInt(pg)+'&id_ocorrencia='+id_ocorrencia+'&tipo='+tipo,
 				dataType   : 'json',
 				success: function(retorno){
-					
 					for (x in retorno) {
 						
 						cor_status = retorno[x]['id_situacao'];
@@ -775,9 +775,17 @@ function carrega_tickets(tipo){
 						}else{
 							cor_status='yellow'
 						}
-						
 						if(retorno[x]['q_anexo'] > 0){
-							new_field = '<tr class="anexo-ticket" onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\')"><td><span class="col button button-raised button-round" style="margin: 8px 0px 8px 0;">Ver Anexo</span></td></tr>';
+							
+							//new_field = '<tr class="anexo-ticket" onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\')"><td><span class="col button button-raised button-round" style="margin: 8px 0px 8px 0;">Ver Anexo</span></td></tr>';
+							var dados_anexo = '';
+//							for (x2 in retorno[x]['anexos']) {
+							for (i = 0; i < retorno[x]['q_anexo']; i++){
+								var caminho = retorno[x]['anexos'][i]['caminho'].split('../');
+								//alert(localStorage.getItem('DOMINIO')+caminho[1]);
+								dados_anexo = dados_anexo +'<div class="col-33"><img style="width: 100%;" src="'+localStorage.getItem('DOMINIO')+caminho[1]+'"></div>';
+							}
+							new_field = '<tr class="anexo-ticket"><td><div class="row col-100 color-red">'+dados_anexo+'</div></td></tr>';
 							
 						}else{
 							new_field = "";
@@ -789,7 +797,7 @@ function carrega_tickets(tipo){
 										  +'<div class="item-title"><table><tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'
 						                  +'<tr><td>Descrição: '+retorno[x]['descricao']+'</td></tr>'
 						                  +'<tr><td>Autor: '+limitanome(retorno[x]['nome'])+'</td></tr>'
-						                   +new_field
+						                  +new_field
 						                  +'<tr><td><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></td></tr>'
 						                +'</table></div>'
 						            '</div></li>';
