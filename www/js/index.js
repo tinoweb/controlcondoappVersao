@@ -30,7 +30,7 @@ var app = {
     onDeviceReady: function() {
     
 		app.receivedEvent('deviceready');
-        document.addEventListener("backbutton", onBackKeyDown, false);
+        // document.addEventListener("backbutton", onBackKeyDown, false);
 		app.remove_pull();
         
         $('#visitante_busca').on('submit', function(e){       

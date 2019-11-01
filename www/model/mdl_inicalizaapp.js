@@ -43,9 +43,8 @@ function emailNotRecognizedBySystemAlert(type, messenge, afterClose=null){
 	});
 }
 
-function alertShowPosibilityToResetPassword(){
+function alertShowPosibilityToResetPassword(email){
 	Swal.fire({
-		// title: "Are you sure?",
 	  	text: "Esse email se encontra ativo! Deseja recuperar a sua senha",
 	  	type: 'warning',
 	  	showCancelButton: true,
@@ -54,8 +53,27 @@ function alertShowPosibilityToResetPassword(){
 	  	confirmButtonText: 'Sim recuperar senha!'
 	}).then((result) => {
 	  	if (result.value) {
-		    // após aceitar encaminhar 
-		    // para a tela de resetar a senha 
+		    alert("vai para tela de esqui a minha senha....");
+		    $.ajax({
+				// type: 'POST',
+				// url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+				// crossDomain: true,
+				// beforeSend : function() { $("#wait").css("display", "block"); },
+				// complete   : function() { $("#wait").css("display", "none"); },
+		  //       data       : { codigo : codigoAtivacao, typeFunction : 'enviarCodigoAtivacao' },
+		  //       dataType   : 'json',
+				// success: function(retorno){
+				// 	if (1) {
+				// 		console.log("retorno sucesso 1");
+				// 	}else{
+				// 		console.log("retorno sucesso else condition");
+				// 	}
+		  //       },
+		  //       error: function(error) {
+				// 	console.log(error);
+		  //       }
+			});
+
 	  	}
 	});
 }
@@ -86,14 +104,13 @@ function choosedMail(){
 				}else if (retorno.status == "codigoEnviadoParaEmailComSucesso" && retorno.statuscode == 200) {
 					app2.sheet.close('.recebEmail', true);
 					emailNotRecognizedBySystemAlert('success', "Código de Ativação enviado para o email com Sucesso", "primeiroAcesso");
-				}else if (retorno.status == "codigoEnviadoParaEmailComSucesso" && retorno.statuscode == 200) {
+				}else if (retorno.status == "proporRecuperacaoSenhaUsuarioAtivo" && retorno.statuscode == 200) {
 					app2.sheet.close('.recebEmail', true);
-
+					alertShowPosibilityToResetPassword(campoEmail);
 				}
-		
 	        },
 	        error: function(error) {
-	        	// alert("tem informacoes com erro");
+	        	console.log("tem informacoes com erro");
 				console.log(error);
 	        }
 		});	
