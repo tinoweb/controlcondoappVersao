@@ -228,8 +228,9 @@
 		}  
 	
 	</script>
+
 </head>
-<body >
+<body> 
 	<div id="app">
 		<form id="DADOS" style="display: none;">
 			<input id="SERVIDOR_CAMINHO"    value="" type="hidden">
@@ -273,6 +274,7 @@
 			<input id="QUADRA"              value="" type="hidden">
 			<input id="LOTE"                value="" type="hidden">
 			<input id="OCORRENCIA_PUBLICA"  value="" type="hidden">
+			<input id="ID_MORADORES_UNIDADE"  value="" type="hidden">
 		</form>
 			<!--ERRO-->
 		<div id="bg_processando" class="bg_processando"> </div>
@@ -2468,17 +2470,14 @@
 					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span>
 				<div class="right"> 
 					
-					<a href="#" onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
-					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a>
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
 					</div>
 				</div>
-					
-
-					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span> </div>
-
+				
             </div>
 			<div class="box" id="boxUp_entregas"></div>
-			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
+			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 18px; padding-bottom: 10px; background-color: #EAEBED;">
 				<div class="ptr-preloader">
 					<div class="preloader"></div>
 					<div class="ptr-arrow"></div>
@@ -2537,16 +2536,21 @@
 						</div>
 				  </div>
 					 <div class="item-content item-input">
-					<div class="item-inner">
-					  <div class="item-title item-label" style="font-size:15px; text-align: center ">Status</div>
-					  <div class="item-input-wrap">
-						<select name="status_encomenda" style="border-color: white !important; background-color: white !important" id="status_encomenda">
-						  <option value="">Selecione..</option>
-									<option value="1">A retirar</option>
+					
+					 
+						  <a class="item-link smart-select smart-select-init sheet-close">
+  							  <select name="status_encomenda" onChange="status_encomenda_filtro()" id="status_encomenda" >
+     							 <option value="" selected>Selecione...</option>
+     							 <option value="1">A retirar</option>
 									<option value="2">Entregue</option>
-						</select>
-					  </div>
-					</div>
+							  </select>
+							<div class="item-content">
+								  <div class="item-inner" id="resultado_selc" style="border-bottom: solid rgba(0, 0, 0, 0.65) 0.2px;margin-bottom: 3%;margin-left: -7%;">
+									<div class="item-title" style="font-size:15px;padding-left: 50%;width: 255px">Status</div>
+								  </div>
+							</div>
+					     </a>
+				 
 				  </div>
 					<div class="item-title item-label" style="font-size:15px;text-align: center">Por data de recebimento</div>
 					  <div class="item-content item-input">
@@ -2583,7 +2587,7 @@
 						  </div>
 						</div>
 					  </div>
-                      
+                      <input type="hidden" id="encd_sttus" value="">
 					<span type="button" class="btn btn-success sheet-close"   onClick="buscar_encomenda()" style="margin-top: 2%; width: 100%">Buscar</span>
 					
 				</div>
@@ -2596,7 +2600,6 @@
 			</div>
 		</div>
 	</div>
-
 		
 <!---   $ENQUETES         -->
 <div id="enquetes" class="pagina enquetes">
@@ -4517,7 +4520,12 @@
 	</div>
 		
 		
-   <!-- $RELATORIOS -->
+
+
+
+
+
+<!-- $RELATORIOS -->
 	<div id="relatorios" class="pagina relatorios">
 		<div class="topo_sub" style="background-color:#53c7ec;"> <img alt="" onClick="afed('#home','#relatorios','','',2,'home');" src="img/voltar.png"> <span>Relatorios</span> </div>
 			<div class="scroll">

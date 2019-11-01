@@ -7,7 +7,7 @@ function carrega_entregas(tipo){
     }else{
         var offset = $(".entrega").length;
         if(offset !== 0){
-            pg = (offset/10)+1;
+            pg = (offset/40)+1;
         }else{
             pg = 1;
         }
@@ -23,7 +23,7 @@ function carrega_entregas(tipo){
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
-        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), pg : parseInt(pg) },
+        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_unidade : $( "#DADOS #ID_UNIDADE" ).val(), pg : parseInt(pg),op:1 },
         dataType   : 'json',
 		success: function(retorno){
 			var cont = 0;
@@ -31,14 +31,16 @@ function carrega_entregas(tipo){
 				
 				cont++;
 				
-				if(retorno[x]['dataentrega'] != ''){
-					var cor_status='#a1cf77';
+				 if(retorno[x]['dataentrega'] !='' )
+				{
+					var cor_status='#a1cf77';	
 				}else{
+					
 					var cor_status='yellow';
 				}
 				
 				if(retorno[x]['foto'] == ""){
-					var fotoc = '<img style="width:40px;height:40px; background-image:url(../img/carrinho-encomenda.png); background-size: 33px; background-position: center center; border-radius: 20px;" />';
+					var fotoc = '<img style="width:40px;height:40px; background-image:url(img/carrinho-encomenda.png); background-size: 33px; background-position: center center; border-radius: 20px;" />';
 				}else{
 					var fotoc = '<img style="width:40px;height:40px; background-image:url(data:image/jpeg;base64,'+retorno[x]['foto']+'); background-size: 52px; background-position: center center; border-radius: 20px;" />';
 				}
@@ -46,7 +48,7 @@ function carrega_entregas(tipo){
 				dado = '<li class="accordion-item entrega"><a href="#" class="item-content item-link">'+
 							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
 							'<div class="item-inner">'+
-								'<div class="item-title">'+retorno[x]['descricao']+' para '+retorno[x]['nome_morador']+'</div>'+
+								'<div class="item-title">'+retorno[x]['descricao']+' para '+retorno[x]['nome_morador']+'<br>'+retorno[x]['dataentrega']+'</div>'+
 								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
 							'</div></a>'+
 						  	'<div class="accordion-item-content bg-color-white">'+
@@ -163,9 +165,7 @@ function carrega_entregas(tipo){
 	});	
 }
 
-
-<<<<<<< HEAD
-//// FILTRAR ENCOMENDA 
+// FILTRAR ENCOMENDA 
 function buscar_encomenda()
 {		$( "#main_correspondencia" ).html('');
 	
@@ -174,7 +174,7 @@ function buscar_encomenda()
 		var recb_fim = $("#recb_fm").val();	
 		var entr_in = $("#entr_in").val();	
 		var entr_fim = $("#entr_fm").val();
- 		var status = $("#status_encomenda").val();
+ 		var status = $("#encd_sttus").val();
 		var pg = 1;
 		var dados = '';
 		var dado  = '';
@@ -185,7 +185,7 @@ function buscar_encomenda()
 		crossDomain: true,
 		//beforeSend : function() { $("#wait").css("display", "block"); },
 		//complete   : function() { $("#wait").css("display", "none"); },
-        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_moradores : $("#DADOS #ID_MORADORES_UNIDADE").val(), pg : parseInt(pg),n_retira:n_retira,recb_in:recb_in,recb_fim:recb_fim, entr_in:entr_in, entr_fim:entr_fim,status:status},
+        data       : { id_condominio : $( "#DADOS #ID_CONDOMINIO" ).val(), id_moradores: $("#DADOS #ID_MORADORES_UNIDADE").val(), pg : parseInt(pg),n_retira:n_retira,recb_in:recb_in,recb_fim:recb_fim, entr_in:entr_in, entr_fim:entr_fim,status:status},
        dataType   : 'json', 
 		success: function(retorno){ 
 			
@@ -196,9 +196,11 @@ function buscar_encomenda()
 				
 				cont++;
 				
-				if(retorno[x]['dataentrega'] != ''){
-					var cor_status='#a1cf77';
+				 if(retorno[x]['dataentrega'] !='' )
+				{
+					var cor_status='#a1cf77';	
 				}else{
+					
 					var cor_status='yellow';
 				}
 				
@@ -211,7 +213,7 @@ function buscar_encomenda()
 				dado = '<li class="accordion-item entrega"><a href="#" class="item-content item-link">'+
 							'<div class="item-media" style="width: 44px; height: 44px; margin:3px 0 3px 0; border-radius: 22px; border: 2px solid #8e8e93;">'+fotoc+'</div>'+
 							'<div class="item-inner">'+
-								'<div class="item-title">'+retorno[0]['descricao']+' para '+retorno[0]['nome_morador']+'</div>'+
+								'<div class="item-title">'+retorno[0]['descricao']+' para '+retorno[0]['nome_morador']+'<br>'+retorno[x]['dataentrega']+'</div>'+
 								'<div class="item-after"><i class="fa fa-circle" style="color:'+cor_status+'"></i></div>'+
 							'</div></a>'+
 						  	'<div class="accordion-item-content bg-color-white">'+
@@ -297,7 +299,7 @@ function buscar_encomenda()
 		// alert(dados);
 				
 				
-				if(retorno =="")
+				if(cont ==0)
 				{
 					var sem = "<div align='center' style='margin-top: 50%; width:100%'><h4>Ops! Nenhum registro encontrado aqui :(</h4><br>"
 						+"<img  width='50%'> </div>";
@@ -306,6 +308,7 @@ function buscar_encomenda()
 
 								
 				}else{
+					$( "#main_correspondencia" ).html('');
 					$( "#main_correspondencia" ).html(dados);
 					
 					}
@@ -333,9 +336,6 @@ function limpa_campobusca()
 
 
 
-
-=======
->>>>>>> bcfb59e3fc204425e6968db7e63c8c3ebb40d437
 //PEGAR QRCODE DA ENCOMENDA PARA O MORADOR 
 function qrcode_encomenda(id)
 {	$("#code_encomenda").html('');
@@ -359,7 +359,25 @@ function qrcode_encomenda(id)
 }
 
 
+//FUNÇÃO PARA FECHAR E RETORNAR O QUE FOI SELECIONADO NO STATUS DA BUSCA DE CORRESPONDENCIA 
 
+function status_encomenda_filtro()
+{
+	
+	var valor = $("#status_encomenda option:selected").val();
+	
+	$("#encd_sttus").attr('value',''+valor+'');
+	$("#filtro_encomenda").click();
+
+	$(".smart-select-page .navbar .sliding .left .back .icon-back").attr('id','slc_status_correspondencia');
+
+	$("#slc_status_correspondencia").click();
+	//$("#resultado_selc  .resultado_selc").attr('style','text-align: center;')
+	
+	
+	
+	
+}
 
 
 
