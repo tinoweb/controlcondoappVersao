@@ -40,13 +40,13 @@ var app = {
             return false;
         });     
 
-        let urli = "mycoolapp://auth?codigo=N80gotg9";
-		resultado = urli.split("=");
-		localStorage.setItem("ativacaoCode", resultado[1]);
+  //       let urli = "mycoolapp://auth?codigo=N80gotg9";
+		// resultado = urli.split("=");
+		// localStorage.setItem("ativacaoCode", resultado[1]);
 
-		$("#initApp").hide();
-		$("#telaVerificaCodigo").show();
-		$("#codigoAtivacao").val(resultado[1]); 
+		// $("#initApp").hide();
+		// $("#telaVerificaCodigo").show();
+		// $("#codigoAtivacao").val(resultado[1]); 
 
 		
         $("#login_ini").hide();
