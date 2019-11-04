@@ -94,11 +94,13 @@
 					$("#codigoAtivacao").val(resultado[1]);
 				}else if(resultado[0] == "recoveryPassword"){
 					alert("Codigo de Recuperacao de senha => " +resultado[1]);
+					let recoveryCode = resultado[1];
+					confirmaCodeResetPassword(recoveryCode);
+
 					console.log("enviar esses codigo para validação e se valido envhaminhar para setar nova senha");
 				}else{
 					alert("vem aki agora....");
 				}
-
 			}, 100);
 		}
 		
@@ -117,7 +119,6 @@
 				"windows":{}
 			}); 
 
-
 			
 			// PushNotification.createChannel(
 			//   () => {
@@ -135,6 +136,8 @@
 			// 	vibration: true
 			//   }
 			// );
+
+
 			
 			push.on('registration', function(data) { 
 				localStorage.setItem('registrationId', data.registrationId);
@@ -668,11 +671,11 @@
 		<!--############ Tela definicao senha acesso ############## -->
 		<div id="defineSenha" class="login_iniNew">
 			<img class="" src="img/logoicon.png" width="150">
-			<div id="formInit" class="form-signin" style="top: 24px;position: relative;padding: 15px 14px;"> 
+			<div id="formDefinePassword" class="form-signin" style="top: 24px;position: relative;padding: 15px 14px;"> 
 				<div class="" style="position: relative;padding: 12px;padding-bottom: 52px;">
 					<form class="row list" id="formSendDefineSenha">
 					    <div class="col-xs-12 item-content item-input">
-					      	<div class="item-inner">
+					      	<div class="item-inner" style="padding-right: 0px !important;">
 						        <div class="item-input-wrap">
 						          <input type="password" name="defineSenha" id="inputDefineSenha" validate required="true" placeholder="Definir Senha" style="border: none;">
 						          <span class="input-clear-button"></span>
@@ -681,7 +684,7 @@
 					    </div>
 					    <p></p>
 					    <div class="col-xs-12 item-content item-input">
-						    <div class="item-inner">
+						    <div class="item-inner" style="padding-right: 0px !important;">
 						        <div class="item-input-wrap">
 						          <input type="password" name="defineSenhaRepita" id="inputDefineSenhaRepita" validate required="true" placeholder="Repetir Senha" style="border: none;">
 						          <span class="input-clear-button"></span>
@@ -742,7 +745,7 @@
 					        <button class="btn btn-success btn-lg btn-block btn-no-border" onClick="login_user();" style="color: white;width: 100%;position: relative;top: 13px;" id="" name="entrar"> Entrar </button>
 
 					        <div style="text-align: center; margin-top: 28px">
-								<a href="#" style="color:gray" data-sheet=".recuperaSenha" class="sheet-open">Esqueci a minha Senha </a> 
+								<a href="#" style="color:gray" onclick="esqueciMinhaSenha()">Esqueci a minha Senha </a> 
 							</div>
 
 				      	</div>

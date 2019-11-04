@@ -40,13 +40,15 @@ var app = {
             return false;
         });     
 
-  //       let urli = "mycoolapp://auth?codigo=N80gotg9";
+  		// let urli = "mycoolapp://auth?codigo=N80gotg9";
 		// resultado = urli.split("=");
 		// localStorage.setItem("ativacaoCode", resultado[1]);
 
 		// $("#initApp").hide();
 		// $("#telaVerificaCodigo").show();
 		// $("#codigoAtivacao").val(resultado[1]); 
+
+		confirmaCodeResetPassword('6bc17ae0d7a948977960056e287af8f3'); // apagar quando ligar com o deeplinking
 
 		
         $("#login_ini").hide();
