@@ -338,42 +338,35 @@
 				</div>
 			</form>
 		</div>
-		
-		
-			
 
-			<!-- ############# recovery senha ################# -->
-			<!-- <div class="col-xs-12" id="divRecevebyEmail"> -->
-				<div class="sheet-modal recuperaSenha" id="" style="">
-					<div class="toolbar">
-						<div class="toolbar-inner">
-							<div class="left">
-								<i class="fa fa-envelope" aria-hidden="true" style="margin-left: 10px;"></i>
-							</div>
-							<div class="right">
-								<a class="link sheet-close" id="fecha_busca_pet" href="#">Fechar</a>
-							</div>
-						</div>
+		<!-- ############# recovery senha ################# -->
+		<div class="sheet-modal recuperaSenha" id="" style="">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left">
+						<i class="fa fa-envelope" aria-hidden="true" style="margin-left: 10px;"></i>
 					</div>
-					<div class="list" id="formSendEmail">
-					    <div class="item-content item-input">
-					      	<div class="item-inner">
-						        <div class="item-title">Digite o seu email</div>
-						        <div class="item-input-wrap">
-						          <input id="email_recupera" type="email" validate class="" name="email" placeholder="seuemail@mail.com" style="border: none;">
-						          <span class="input-clear-button"></span>
-						        </div>
-						        <button class="btn btn-primary btn-lg btn-block btn-no-border" style="color: white; width: 100%;margin-top: 10%;" id="" onclick="recuperaEmail()" name="entrar"> Recuperar </button>
-					      	</div>
-					    </div>
+					<div class="right">
+						<a class="link sheet-close" id="fecha_busca_pet" href="#">Fechar</a>
 					</div>
 				</div>
-			<!-- </div> -->
-			<!-- ############################## -->
+			</div>
+			<div class="list" id="formSendEmail">
+			    <div class="item-content item-input">
+			      	<div class="item-inner">
+				        <div class="item-title">Digite o seu email</div>
+				        <div class="item-input-wrap">
+				          <input id="email_recupera" type="email" validate class="" name="email" placeholder="seuemail@mail.com" style="border: none;">
+				          <span class="input-clear-button"></span>
+				        </div>
+				        <button class="btn btn-primary btn-lg btn-block btn-no-border" style="color: white; width: 100%;margin-top: 10%;" id="" onclick="recuperaEmail()" name="entrar"> Recuperar </button>
+			      	</div>
+			    </div>
+			</div>
+		</div>
+		<!-- ############################## -->
 
-
-
-		<!-- 
+		<!-- modelo antigo ......
 		<div id="bg_box5" class="bg_box3" style="text-align: center">
 			<form id="form_recupera_senha" style="width: 100%; min-height: 100px; background-color: white;margin-top: 30px;padding: 21px">
 				<h4>Recuperação de Senha</h4>
@@ -684,7 +677,6 @@
 					<form class="row list" id="formSendDefineSenha">
 					    <div class="col-xs-12 item-content item-input">
 					      	<div class="item-inner">
-						        <!-- <div class="item-title">Defina a sua senha</div> -->
 						        <div class="item-input-wrap">
 						          <input type="password" name="defineSenha" id="inputDefineSenha" validate required="true" placeholder="Definir Senha" style="border: none;">
 						          <span class="input-clear-button"></span>
@@ -694,7 +686,6 @@
 					    <p></p>
 					    <div class="col-xs-12 item-content item-input">
 						    <div class="item-inner">
-						        <!-- <div class="item-title">Repetir Senha</div> -->
 						        <div class="item-input-wrap">
 						          <input type="password" name="defineSenhaRepita" id="inputDefineSenhaRepita" validate required="true" placeholder="Repetir Senha" style="border: none;">
 						          <span class="input-clear-button"></span>
@@ -727,23 +718,38 @@
 		<!--################### Tela Login usuario/senha ################-->
 	    <div id="login_ini" class="login_ini">
 			<img src="img/logoicon.png" width="150">
-			<div class="navbar">
-		        <div class="navbar-bg">
-		        </div>
-		        <div class="navbar-inner sliding">
-		            <div class="left">
-		                <a class="link back" href="#" onclick="loginIniBtnVoltar()">
-		                    <i class="icon icon-back">
-		                    </i>
-		                </a>
-		            </div>
-		            <div class="title">
-		                Autenticação
-		            </div>
-		        </div>
-		    </div>
+		
 
-			<form id="form_login"> 
+    		<div class="sheet-modal loginApp" id="" style="">
+				<div class="toolbar">
+					<div class="toolbar-inner">
+						<div class="left">
+							<i class="fa fa-sign-in" aria-hidden="true" style="margin-left: 10px;"></i>
+						</div>
+						<div class="right">
+							<a class="link sheet-close" id="fecha_busca_pet" onclick="loginOut()" href="#">Sair</a>
+						</div>
+					</div>
+				</div>
+				<div class="list" id="form_login">
+				    <div class="item-content item-input">
+				      	<div class="item-inner">
+					        
+					        <div class="item-input-wrap">
+					          <input id="login" type="email" validate class="" name="email" placeholder="seuemail@mail.com" onblur="Padrao(this)" style="border: none;" autocomplete="off">
+					        </div>
+							<br>
+					        <div class="item-input-wrap">
+					          <input id="senha" type="password" validate class="" name="senha" placeholder="************" onblur="Padrao(this)" style="border: none;" autocomplete="off">
+					        </div>
+
+					        <button class="btn btn-primary btn-lg btn-block btn-no-border" onClick="login_user();" style="color: white;width: 100%;position: relative;top: 13px;" id="" name="entrar"> Entrar </button>
+				      	</div>
+				    </div>
+				</div>
+			</div>
+
+			<!-- <form id="form_login"> 
 				<div class="input-group" style="margin-top: 30px; padding: 20px;">
 					<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
 					<span class="input-group-addon"><i class="fa fa-user-o"></i></span>
@@ -756,12 +762,14 @@
 					<input class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="login_user();" style="width: 50%" >
 				</div>
 				<div style="text-align: center; margin-top: 20px">
-					<!-- <a href="#" onclick="afed('#bg_box5','','','',1);$('#email_recupera').focus();">Esqueceu sua senha?</a> -->
-					<!-- <a href="#" style="color:white" data-sheet=".recuperaSenha" class="btn btn-primary">Esqueceu sua Senha </a>  -->
 					<a href="#" style="color:gray" data-sheet=".recuperaSenha" class="sheet-open">Esqueci a minha Senha </a> 
 				</div>
-			</form>
+			</form> -->
 		</div>
+		<!-- ############################################################ -->
+
+
+
 		<div id="login_perfil" class="login_perfil"> <img alt="" src="img/logoicon.png">
 			<form id="form_perfil" style="border-radius: 0px">
 				<span id="texto_login" class="texto_login">Selecione o seu Condomínio</span>

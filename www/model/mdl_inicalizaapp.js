@@ -2,11 +2,25 @@
 
 function swich_tela_login(){
 	afed('#login_ini','#initApp','','');
+	console.log("swich tela");
+
+	app2.sheet.create({
+	  el: '.loginApp',
+	  closeByOutsideClick: false,
+	  closeByBackdropClick: false,
+	  closeOnEscape: false
+	});
+
+	app2.actions.open('.loginApp', true);
+
 }
 
-function loginIniBtnVoltar(){
+loginOut = () => {
 	afed('#initApp','#login_ini','','');
 }
+
+// function loginIniBtnVoltar(){
+// }
 
 function primeiroAcessoBtnVoltar(){
 	afed('#initApp','#primeiroAcesso','','',1);	

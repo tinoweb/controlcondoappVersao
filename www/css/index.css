@@ -643,7 +643,7 @@ input, textarea {
 	text-align: center;
 }
 
-.login_ini form {
+/*.login_ini form {*/
 	/* como estava
 	width:100%;
 	height:50%;
@@ -653,7 +653,7 @@ input, textarea {
 	
 	
 	
-	width: 96%;
+	/*width: 96%;
     height: 50%;
     background: rgba(255, 255, 255, 0.7);
     bottom: 0;
@@ -661,8 +661,21 @@ input, textarea {
     margin-top: 249px;
     border-radius: 0px;
     padding: 1px;
-    border: 1px solid silver;
+    border: 1px solid silver;*/
 	
+/*}*/
+
+/*by tino*/
+.login_ini form{
+	width: 96%;
+    height: 50%;
+    background: rgba(0, 0, 0, 0.72);
+    bottom: 0;
+    margin-left: 2%;
+    margin-top: 249px;
+    border-radius: 0px;
+    padding: 1px;
+    border: 1px solid #0b0a0a63;
 }
 
 .login_ini form .login {
