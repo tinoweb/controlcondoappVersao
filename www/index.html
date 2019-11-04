@@ -79,30 +79,25 @@
 		document.addEventListener("deviceready",onDeviceReady,false); 
 		
         function handleOpenURL(url) {
-		    // alert("etrou na funcao get");
-		    // setTimeout(function() {
+		    alert("recebido url from server...");
+		    setTimeout(function() {
 				// alert("received url:");
 				// alert(url);
-				
-				let url = "mycoolapp://auth?codigo=N80gotg9";
-				resultado = url.split("=");
-				localStorage.setItem("ativacaoCode", resultado[1]);
+				// let url = "mycoolapp://auth?codigo=N80gotg9";
 
-				// if (resultado[0] == "codigo") {
+				resultado = url.split("=");
+
+				if (resultado[0] == "codigo") {
+				localStorage.setItem("ativacaoCode", resultado[1]);
 					$("#initApp").hide();
 					$("#telaVerificaCodigo").show();
 					$("#codigoAtivacao").val(resultado[1]);
-				// }else if(resultado[0] == "recoveryPassword"){
+				}else if(resultado[0] == "recoveryPassword"){
+					alert("Codigo de Recuperacao de senha => " +resultado[1]);
+					console.log("enviar esses codigo para validação e se valido envhaminhar para setar nova senha");
+				}
 
-					// receber o codigo de ativação de recuperacao de senha
-
-					// enviar esse codigo de ativação de senha para o serviço 
-				// }
-
-
-			// }, 0);
-
-
+			}, 0);
 		}
 		
 		function onDeviceReady() { 
@@ -377,9 +372,6 @@
 				<button class="btn btn-danger" type="button" onClick="afed('','#bg_box5','','',1);$('#email_recupera').val('');">Fechar</button>
 			</form>
 		</div> -->
-
-
-
 
 		<div id="bg_box6" class="bg_box3" style="z-index: 100000" onClick="afed('','#bg_box6','','',1);">
 			<div class="block">
@@ -748,7 +740,8 @@
 				    </div>
 				</div>
 			</div>
-
+			
+			<!-- modelo antigo -->
 			<!-- <form id="form_login"> 
 				<div class="input-group" style="margin-top: 30px; padding: 20px;">
 					<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">

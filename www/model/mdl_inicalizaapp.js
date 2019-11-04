@@ -19,9 +19,6 @@ loginOut = () => {
 	afed('#initApp','#login_ini','','');
 }
 
-// function loginIniBtnVoltar(){
-// }
-
 function primeiroAcessoBtnVoltar(){
 	afed('#initApp','#primeiroAcesso','','',1);	
 }
