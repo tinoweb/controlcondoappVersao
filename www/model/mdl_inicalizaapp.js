@@ -19,6 +19,11 @@ loginOut = () => {
 	afed('#initApp','#login_ini','','');
 }
 
+fechaRecoverEmail = () => {
+	app2.actions.close('#recoveryPasswordLogin', true);
+	app2.actions.open('.loginApp', true);
+}
+
 function primeiroAcessoBtnVoltar(){
 	afed('#initApp','#primeiroAcesso','','',1);	
 }
