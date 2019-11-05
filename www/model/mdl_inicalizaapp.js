@@ -235,7 +235,7 @@ function switchTelaDefineSenhaToLogin(){
 	app2.actions.open('.loginApp', true);
 }
 
-function salvarSenha(resetPwd = null){
+function salvarSenha(){
 	if ($("#inputDefineSenha").val().length !== 0 ) {
 		$("#btnSaveSenha").attr('disabled', false);
 		if ($("#inputDefineSenha").val() != $("#inputDefineSenhaRepita").val()) {
@@ -243,13 +243,10 @@ function salvarSenha(resetPwd = null){
 		}else{
 
 			let senha = $("#inputDefineSenha").val();
+
 			idUsuario = null;	
-			if (resetPwd !== undefined) {
-				console.log("entrou aki ou noaiu");
-				idUsuario = localStorage.getItem('idUsuarioResetPassword');
-			}else{
-				idUsuario = localStorage.getItem('idUsuarioAtivacao');
-			}
+			idUsuario = localStorage.getItem('idUsuarioAtivacao');
+			alert("usuariio ===>>" + idUsuario);
 
 			$.ajax({
 				type: 'POST',
@@ -298,10 +295,14 @@ confirmaCodeResetPassword = (recoveryCode) => {
 			console.log(retorno);
 
 			if (retorno.status == "codigoConfere" && retorno.statuscode == 200) {
+				
 				console.log("definir senha");
+				alert("definir senha");
+				alert("codigo confirmado");
+
 				localStorage.removeItem('idUsuarioAtivacao');
-				localStorage.setItem("idUsuarioResetPassword", retorno.id_usuario);
-				definesenha("resetPwd");
+				localStorage.setItem("idUsuarioAtivacao", retorno.id_usuario);
+				definesenha();
 			}else{
 				emailNotRecognizedBySystemAlert("error", "Não foi possivel continuar o processo...", afterClose=null)
 			}
