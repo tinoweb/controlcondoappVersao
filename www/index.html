@@ -88,6 +88,7 @@
 				alert(resultado[1]);
 
 				if (resultado[0] == "codigo") {
+					alert("entrou na condição do codigo recebido apos cadastro...." + resultado[1]);
 					localStorage.setItem("ativacaoCode", resultado[1]);
 					$("#initApp").hide();
 					$("#telaVerificaCodigo").show();
@@ -99,9 +100,9 @@
 
 					console.log("enviar esses codigo para validação e se valido envhaminhar para setar nova senha");
 				}else{
-					alert("vem aki agora....");
+					alert("Entrou no else nehuma condicao acima certo...");
 				}
-			}, 100);
+			}, 1000);
 		}
 		
 		function onDeviceReady() { 

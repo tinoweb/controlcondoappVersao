@@ -25,8 +25,8 @@ function login_user_device(){
 				//if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 					   //alert('versao ok');
 				console.log(retorno);
-					if(retorno[0]['error'] == 0){
-						if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
+				if(retorno[0]['error'] == 0){
+					if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 						if(retorno[0]['perfil'] > 1){
 							//alert('teste4');
 							afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
@@ -177,7 +177,7 @@ function login_user_device(){
 								$( "#blocoapto" ).html(QUADRA.toLowerCase()+' - '+LOTE.toLowerCase());
 
 
-			//					$( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
+								// $( '.user_foto' ).css("background-image", "url("+SERVIDOR_CAMINHO+"appweb/foto_morador.php?id="+ID_MORADOR+"&sexo="+MORADOR_SEXO+")");
 								if($( "#DADOS #PARENTESCO" ).val() == 1){ $( "#edit_moradores" ).css("display","block"); }
 								//carrega_notificacoes(1);
 								carrega_notificacoes(0);
@@ -224,15 +224,12 @@ function login_user_device(){
 							}
 
 						}
-						
-						}else{
-							alerta('0','Há uma nova versão do Control Condo. Atualize seu aplicativo para continuar...',4000);
-						}
-						
-						
 					}else{
-
+						alerta('0','Há uma nova versão do Control Condo. Atualize seu aplicativo para continuar...',4000);
 					}
+				}else{
+
+				}
             },
             error      : function() {
                 notifica('Aviso/Erro ao logar automático/Fechar',0,0);
@@ -273,7 +270,8 @@ function login_user() {
 					login_user_device();	
 				}
 			},
-            error: function(){
+            error: function(error){
+            	console.log(error);
                 notifica('Aviso/Erro de conexão com o servidor/Fechar',0,0);
             }
 		});

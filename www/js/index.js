@@ -47,8 +47,7 @@ var app = {
 		// $("#initApp").hide();
 		// $("#telaVerificaCodigo").show();
 		// $("#codigoAtivacao").val(resultado[1]); 
-
-		confirmaCodeResetPassword('6bc17ae0d7a948977960056e287af8f3'); // apagar quando ligar com o deeplinking
+		// confirmaCodeResetPassword('6bc17ae0d7a948977960056e287af8f3'); // apagar quando ligar com o deeplinking
 
 		
         $("#login_ini").hide();
