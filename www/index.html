@@ -3173,7 +3173,7 @@
     <!-- OCORRENCIAS PAGINA VISUALIZACAO -->
 
 	<div id="ocorrencia" class="pagina">
-		<div class="view"> 
+		<div class="view">
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class=" icon-back"></i></a>
@@ -3181,8 +3181,27 @@
 					<input type="hidden" id="verifica_anexo"/>
 				</div>
 			</div>
-
+			<div class="toolbar toolbar-bottom fab-morph-target" style="margin-top: 142%;" id="toobar_oco">
+				<div class="toolbar-inner">
+				  <!-- Each Toolbar link will close FAB (morph back) on click -->
+				  <a class="link fab-close" id="bt_oco_reabre" onclick="ticket_novo(2);"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir</a>
+				  <a class="link" id="bt_oco_finaliza" onclick="ticket_novo(4);"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar</a>
+				  <a class="link" id="bt_oco_novo"  onclick="ticket_novo(0);"><span class="glyphicon glyphicon-plus"></span>&nbsp;Novo Ticket</a>			
+				  <a class="link" id="bt_oco_cancela" onClick="app2.fab.close();"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cancelar</a>			
+				</div>
+			</div>
+			<div class="fab fab-left-bottom fab-morph color-blue" data-morph-to=".toolbar">
+				<a href="#">
+				  <!-- Icons For iOS Theme -->
+				  <i class="icon f7-icons if-not-md">add</i>
+				  <i class="icon f7-icons if-not-md">close</i>
+				  <!-- Icons For MD Theme -->
+				  <i class="icon material-icons md-only">add</i>
+				  <i class="icon material-icons md-only">close</i>
+				</a>
+			</div>
 			<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
+				<!-- data-ptr-distance="55" style="padding: 55px 5px 5px 5px; "-->
 			    <form id="form_ocorrencia" style="padding: 12px;float: left; width: 100%;">
 
 					<input type="hidden" id="foto" name="foto" > 
@@ -3221,7 +3240,7 @@
 						</div>
 						<div name="txt_privada" id="txt_privada" class="chip-label"></div>
 					</div><br>
-					<div class="chip">
+					<div class="chip" style="margin-top: -3px;">
 						<div class="chip-media bg-color-red">
 						<i class="fa fa-th-large"></i>
 
@@ -3243,14 +3262,30 @@
 						<div name="descricao" id="descricao" class="chip-label"></div>
 					</div><br>
 					
+					<div data-pagination='{"el": ".swiper-pagination"}' data-space-between="10" data-slides-per-view="auto" data-centered-slides="true" class="swiper-container swiper-init demo-swiper demo-swiper-auto">
+					  <div class="swiper-pagination"></div>
+					  <div class="swiper-wrapper">
+						<div class="swiper-slide">Slide 1</div>
+						<div class="swiper-slide">Slide 2</div>
+						<div class="swiper-slide">Slide 3</div>
+						<div class="swiper-slide">Slide 4</div>
+						<div class="swiper-slide">Slide 5</div>
+						<div class="swiper-slide">Slide 6</div>
+						<div class="swiper-slide">Slide 7</div>
+						<div class="swiper-slide">Slide 8</div>
+						<div class="swiper-slide">Slide 9</div>
+						<div class="swiper-slide">Slide 10</div>
+					  </div>
+					</div>
+					
                    <p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
  					<!-- Separate collapsibles - omit "accordion-list" class-->
 					<div class="list" onclick="up_down()">
 					  <ul>
-						<li class="accordion-item"><a href="#" class="item-content item-link">
+						<li class="accordion-item accordion-item-opened"><a href="#" class="item-content item-link">
 							<div class="item-inner">
 							  <div class="item-title">&nbsp; Lista de Tickets</div>
-							<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
+							<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-up"></span></div>
 
 							</div></a>
 						  <div class="accordion-item-content">
@@ -3264,7 +3299,7 @@
 
 					<!--<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>-->
 					
-					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
+<!--					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
 						<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
 					</span>
 					<button class="col button button-fill" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> 
@@ -3272,12 +3307,11 @@
 					</button>
 					<span class="col button button-fill" id="bt_oco_novo" type="button" style="background-color: #4caf50;margin-top: 4px;" onClick="ticket_novo(0);"> 
 						<span class="glyphicon glyphicon-plus"></span>&nbsp;Novo Ticket 
-					</span>
+					</span>-->
 
 				</form>
 			</div>
-		</div>
-		</div>
+		</div>		</div>
 	</div>
 					
    <!--   OCORRENCIAS PAGINA INCLUSAO -->
@@ -5084,7 +5118,7 @@
 							   </li>
 						</div>
 						<div class="col-xs-3" style="padding-left: 0px;">
-							 <li class="item-content item-input" style="padding-left: 0;">
+							 <li class="item-content item-input" style="padding-left: 0; height: 100px;">
 							   <div class="item-inner">
 								<div class="item-title item-label">Hora Fim:</div>
 									<div class="item-input-wrap">
@@ -5111,7 +5145,7 @@
 						<label class="item-checkbox item-content" onclick="hab_campo_mudanca()" style="font-weight:100; font-size: 12px;">
 							    <input type="checkbox" id="check_sugerir" name="f_minhas" />
 								<i class="icon icon-checkbox"></i>
-								<div class="item-title" style="width:100%; float:left"> Sugerir nova data</div>
+								<div class="item-title" style="width:100%; float:left;"> Sugerir nova data</div>
 					   </label>
 					   </li>
 					</ul>
@@ -5768,4 +5802,5 @@
 </script>
 </body>
 
-</html>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+</html>
