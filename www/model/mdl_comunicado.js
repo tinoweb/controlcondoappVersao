@@ -91,7 +91,7 @@ function carrega_comunicados(tipo){
 				
 				if(retorno[x]['foto'] == ''){
 				   
-					dado = '<div class="card demo-facebook-card" style=" border-top: solid 7px '+cor+'"><div class="card-header"><div class="demo-facebook-avatar"><img src="https://cdn.framework7.io/placeholder/people-68x68-1.jpg" width="34" height="34"></div><div class="demo-facebook-name">John Doe</div><div class="demo-facebook-date">Monday at 2:15 PM</div></div><div class="card-content card-content-padding"><p>What a nice photo i took yesterday!</p><img src="https://cdn.framework7.io/placeholder/nature-1000x700-8.jpg" width="100%"><p class="likes">Likes: 112 &nbsp;&nbsp; Comments: 43</p></div><div class="card-footer"><a href="#" class="link"><i class="fa fa-thumbs-o-up"></i></a><a href="#" class="link">Comment</a><a href="#" class="link">Share</a></div></div>';
+					dado = '<div class="card demo-facebook-card" style=" border-top: solid 7px '+cor+'"><div class="card-header"><div class="demo-facebook-avatar"><img src="https://cdn.framework7.io/placeholder/people-68x68-1.jpg" width="34" height="34"></div><div class="demo-facebook-name">John Doe</div><div class="demo-facebook-date">Monday at 2:15 PM</div></div><div class="card-content card-content-padding"><p>What a nice photo i took yesterday!</p><img src="https://cdn.framework7.io/placeholder/nature-1000x700-8.jpg" width="100%"><p class="likes">Likes: 112 &nbsp;&nbsp; Comments: 43</p></div><div class="card-footer"><a href="#" class="link"><i class="fa fa-thumbs-o-up"></i></a><a href="#" class="link">Comment</a></div></div>';
 				   
 				}else{
 					
