@@ -587,7 +587,9 @@ function getCategoria_incluir(){
 
 //FUNCAO CARREGA PAGINA NOVO TICKET
 function ticket_novo(operacao){
-	
+	app2.fab.close();
+	setTimeout(function(){
+
 	$("#anexo_oco img[name='foto']").each(function(){
        $(this).remove();
     });
@@ -648,7 +650,8 @@ function ticket_novo(operacao){
 		afed('#add_ticket','#ocorrencias_ticket','','','2','add_ticket');
 		afed('','#ocorrencia','','','2','');
 				
-    }	
+    }
+	},700);
 }
 
 
@@ -783,7 +786,7 @@ function carrega_tickets(tipo){
 							for (i = 0; i < retorno[x]['q_anexo']; i++){
 								var caminho = retorno[x]['anexos'][i]['caminho'].split('../');
 								//alert(localStorage.getItem('DOMINIO')+caminho[1]);
-								dados_anexo = dados_anexo +'<div class="col-33"><img style="width: 100%;" src="'+localStorage.getItem('DOMINIO')+caminho[1]+'"></div>';
+								dados_anexo = dados_anexo +'<div onclick="get_anexo(\''+retorno[x]['id_ocorrencia_ticket']+'\','+i+')" class="col-33"><img style="width: 100%;  height: 60px; background-size: 100%; background-position: center center; background-image:url('+localStorage.getItem('DOMINIO')+caminho[1]+')"></div>';
 							}
 							new_field = '<tr class="anexo-ticket"><td><div class="row col-100 color-red">'+dados_anexo+'</div></td></tr>';
 							
@@ -794,17 +797,21 @@ function carrega_tickets(tipo){
 					   $("#tl_btn_voltar").attr('onclick', 'carrega_ocorrencia('+retorno[x]['id_ocorrencia']+');');
 						  dados += '<li class="accordion-item">'
 										+'<div class="item-inner">'
-										  +'<div class="item-title"><table><tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'
+										  +'<div class="item-title"><table>'
+										  +'<tr><td><i style="color:'+cor_status+'" class="fa fa-circle" id="icone_ocorrencia">&nbsp;</i> '+retorno[x]['situacao_descricao']+'</td></tr>'
+							  			  +'<tr><td>Data Criação: '+retorno[x]['data_criacao']+'</td></tr>'
 						                  +'<tr><td>Descrição: '+retorno[x]['descricao']+'</td></tr>'
 						                  +'<tr><td>Autor: '+limitanome(retorno[x]['nome'])+'</td></tr>'
 						                  +new_field
-						                  +'<tr><td><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></td></tr>'
+						                  //+'<tr><td><span class="chip color-'+cor_status+'">'+retorno[x]['situacao_descricao']+'</span></td></tr>'
 						                +'</table></div>'
 						            '</div></li>';
 
 					}
 					
 					$("#main_ticket").append(dados);
+					//var swiper = app2.swiper.get('.swiper-container');
+					//swiper.slideNext();
 				},
 				error      : function() {
 					//alert('Erro tickets');
@@ -940,7 +947,8 @@ function fmt_lin(string){
 }
 
 
-function get_anexo(id){	
+function get_anexo(id,index){	
+	//alert(index);
 	"use strict";
 	let status         = false;
 	let array_photo    = "";
@@ -971,7 +979,7 @@ function get_anexo(id){
 				link         = formata_link;
 				
 				/* Chama funcao */
-				abre_photo(link);
+				abre_photo(link,index);
 				localStorage.setItem('TELA_ATUAL','ocorrencia_ticket_foto');
 			 }
      });	
