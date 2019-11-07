@@ -10,6 +10,9 @@
         "cordova-backgroundvideo": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
+        "cordova-plugin-appavailability": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
         "cordova-plugin-autostart": {
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
@@ -23,6 +26,10 @@
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.controlcondo.phonega"
+        },
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "mycoolapp",
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-device": {
@@ -77,13 +84,6 @@
             "PACKAGE_NAME": "com.controlcondo.phonega"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.controlcondo.phonega"
-        },
-        "cordova-plugin-appavailability": {
-            "PACKAGE_NAME": "com.controlcondo.phonega"
-        },
-        "cordova-plugin-customurlscheme": {
-            "URL_SCHEME": "mycoolapp",
             "PACKAGE_NAME": "com.controlcondo.phonega"
         }
     },

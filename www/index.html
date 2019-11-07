@@ -13,6 +13,7 @@
 	<meta name="theme-color" content="#2196f3">
 	<link rel="stylesheet" href="lib/framework7/css/framework7.css">
 	<link rel="stylesheet" href="lib/framework7/css/framework7-icons.css">
+	<link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
 	<!-- end framework7 -->
 	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -58,6 +59,7 @@
 	<script src="model/mdl_morador.js"></script>
 	<script src="model/mdl_pet.js"></script>
 	<script src="model/mdl_cameras.js"></script>
+	<script src="model/mdl_relaorio_mcasa.js"></script>
 	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
 	<script src="model/mdl_contatos.js"></script>
@@ -331,7 +333,247 @@
 			<div class="preloader color-multi" style="margin-top: 70%"><span class="preloader-inner"><span class="preloader-inner-gap"></span><span class="preloader-inner-left"><span class="preloader-inner-half-circle"></span></span><span class="preloader-inner-right"><span class="preloader-inner-half-circle"></span></span></span></div>
 			<!--<img alt="" src="img/aguarde.gif" width="50" style="margin-top: 70%">-->
 		</div>
+		
+		
+	<!--	SKELETON COMUNICADO -->
+		
+		<div id="skul-comunicado" style="display: none;">
+		
+  			 <div class="navbar" style="height: 50px">
+                <div class="navbar-inner">
 
+					<a href="#" onClick="voltar('#home','#comunicados','home');"><i class=" icon-back"></i></a> <span class="title">Comunicado</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
+					</div>
+				</div>
+				
+            </div>
+											<!-- Searchbar backdrop -->
+				    <div class="searchbar-backdrop"></div>
+		<div id="" class="card skeleton-text skeleton-effect-blink" style="border: solid;" >
+			<div class="cabecalho_card card-header">
+				<div class="noti_tipo">Comunicado</div>
+			</div>
+				<div class="p_comunicado" style="margin: 19% 0 11px 3%;">
+				<div class="topo_comunicado">
+					<div class="chip" style="">
+						<div class="chip-media ">
+							<span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span>
+						</div>
+						<div class="chip-label">aaaaaaaaaaaaa </div></div><br>
+					<div class="chip" style="">
+						<div class="chip-media "><i class="fa fa-group"></i></div>
+						<div class="chip-label">Grupo: bbbbbbbbbbbbbbdfsfsdfdf</div>
+					</div><br>
+					<div class="chip" style="">
+						<div class="chip-media "> <span style="color:white" class="fa fa-edit"></span></div>
+						<div class="chip-label">ccccccccc ddddddd </div>
+					</div><br>
+					<div class="chip" style="">
+					<div class="chip-media"><i class="fa fa-calendar"></i></div>
+					<div class="chip-label">Data: dddfffffffffffffffffsssssssssssss</div>
+					</div></div>
+				</div>
+			<div class="card-footer" style="height: 8px !important;"></div>
+		</div>
+			<div id="" class="card skeleton-text skeleton-effect-blink" style="border: solid;" >
+			<div class="cabecalho_card card-header">
+				<div class="noti_tipo">Comunicado</div>
+			</div>
+				<div class="p_comunicado" style="margin: 19% 0 11px 3%;">
+				<div class="topo_comunicado">
+					<div class="chip" style="">
+						<div class="chip-media ">
+							<span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span>
+						</div>
+						<div class="chip-label">aaaaaaaaaaaaa aaaaaaaaaaa</div></div><br>
+					<div class="chip" style="">
+						<div class="chip-media "><i class="fa fa-group"></i></div>
+						<div class="chip-label">Grupo: bbbbbbbbbbbbbb</div>
+					</div><br>
+					<div class="chip" style="">
+						<div class="chip-media "> <span style="color:white" class="fa fa-edit"></span></div>
+						<div class="chip-label">ccccccccc ddddddd </div>
+					</div><br>
+					<div class="chip" style="">
+					<div class="chip-media"><i class="fa fa-calendar"></i></div>
+					<div class="chip-label">Data: dddfffffffffuuuuuuuuuuuuuuuuuuuuuuu</div>
+					</div></div>
+				</div>
+			<div class="card-footer" style="height: 8px !important;"></div>
+		</div>
+			<div id="" class="card skeleton-text skeleton-effect-blink" style="border: solid;" >
+			<div class="cabecalho_card card-header">
+				<div class="noti_tipo">Comunicado</div>
+			</div>
+				<div class="p_comunicado" style="margin: 19% 0 11px 3%;">
+				<div class="topo_comunicado">
+					<div class="chip" style="">
+						<div class="chip-media ">
+							<span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span>
+						</div>
+						<div class="chip-label">aaaaaaaaaaaaa aaaaaaaaaaassssssssssssssssssss</div></div><br>
+					<div class="chip" style="">
+						<div class="chip-media "><i class="fa fa-group"></i></div>
+						<div class="chip-label">Grupo: bbbbbbbbbb</div>
+					</div><br>
+					<div class="chip" style="">
+						<div class="chip-media "> <span style="color:white" class="fa fa-edit"></span></div>
+						<div class="chip-label">ccccccccc dddddfffdd </div>
+					</div><br>
+					<div class="chip" style="">
+					<div class="chip-media"><i class="fa fa-calendar"></i></div>
+					<div class="chip-label">Data: dddssssssssssssssssssssss</div>
+					</div></div>
+				</div>
+			<div class="card-footer" style="height: 8px !important;"></div>
+		</div>
+			
+			
+
+		</div>
+		
+		
+		
+		<!--SKELETON CORRESPONDENCIA -->
+<div id="skull_correspondencia" style="display: none">
+	
+            <div class="navbar" style="height: 50px">
+                <div class="navbar-inner">
+
+					<a href="#" onClick="voltar('#home','#entregas','home');"><i class=" icon-back"></i></a> <span class="title">Entregas</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
+					</div>
+				</div>
+				
+            </div>	
+	
+<div class="list media-list" style="margin-top: -5%">
+			  <ul style="padding-left: 5px !important;">
+				<li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					 <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL </div>
+					  </div>
+					 <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					 <div class="item-title-row">
+						<div class="item-title">FIRST CONTROL SISTEMA  LTDA</div>
+					 </div>
+					 <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					<div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE </div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INT</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					  <div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL </div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					 <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE </div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 
+
+
+			 </ul>
+			 </div>		
+		
+		</div>
+			
 		<div id="downloadProgress">
 			<div class="block-strong">
 				<p>Download</p>
@@ -718,6 +960,15 @@
 						</div>
 						</a>
 						</li>
+							<li id="relatorio_casa" onClick="carregar_minha_casa();" >
+						    <a class="item-content item-link" href="/checkbox/">
+							 <div class="item-media"><i class="fa fa-home"></i></div>
+							  <div class="item-inner">
+							   <div class="item-title">Minha Casa</div>
+								
+							  </div>
+							</a>
+						</li>
 					</div>
 				</div>
 			    <div id="menu_perfil" style="position:relative;margin-top: 217px;margin-left: 27px;"></div>
@@ -737,7 +988,7 @@
 <div id="info" class="pagina info">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a href="#" onClick="afed('#home','#info','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a href="#" onClick="afed('#home','#info','','',2,'home');"><i class=" icon-back"></i></a> </div>
 			<div class="title">Informações</div>
 		</div>
 	</div>
@@ -761,7 +1012,7 @@
 <div id="perfil2" class="pagina">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a href="#" onClick="afed('#home','#perfil2','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a href="#" onClick="afed('#home','#perfil2','','',2,'home');"><i class=" icon-back"></i></a> </div>
 			<div class="title">Perfil do Usuário</div>
 		</div>
 	</div>
@@ -824,7 +1075,7 @@
 	<div id="config" class="pagina">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner" >
-				<div class="left"> <a href="#" onClick="afed('#home','#config','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="afed('#home','#config','','',2,'home');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Conf. de Notificações</div>
 			</div>
 		</div>
@@ -987,7 +1238,7 @@
 	<div id="moradores" class="pagina moradores">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a href="#" onClick="afed('#home','#moradores','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="afed('#home','#moradores','','',2,'home');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Moradores</div>
 				<div class="right">
 					<!--<a href="#"  onClick="carrega_morador_dados(0)">
@@ -1007,7 +1258,7 @@
 	<div id="morador" class="pagina morador2">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a id="voltar_morador" href="#" onClick=""><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a id="voltar_morador" href="#" onClick=""><i class=" icon-back"></i></a> </div>
 				<div class="title">Morador</div>
 			</div>
 		</div>
@@ -1337,7 +1588,7 @@
 	<div id="fale_msg" class="pagina fale_msg">
 		<div class="page" id="page_chat">
 			<div id="fale_msg_user" class="fale_msg_user">
-				<div onClick="limpa_reload();afed('#home','#fale_msg','','',2,'home');carrega_chat();" id="fale_msg_user_volta" class="fale_msg_user_volta"> <i class="icon icon-back"></i> </div>
+				<div onClick="limpa_reload();afed('#home','#fale_msg','','',2,'home');carrega_chat();" id="fale_msg_user_volta" class="fale_msg_user_volta"> <i class=" icon-back"></i> </div>
 				<div id="fale_msg_user_foto" class="fale_msg_user_foto"></div>
 				<div id="fale_msg_user_nome" class="fale_msg_user_nome"> <span class="item-title">Nome Morador</span> </div>
 			</div>
@@ -1356,24 +1607,31 @@
 		</div>
 
 		<!--    $COMUNICADOS     -->
-
+  
 		<div id="comunicados" class="pagina comunicados">
 			<div class="view view-comunicados"> 
 				<!-- Initial Page, "data-name" contains page name -->
 				<div data-name="home" class="page">
-					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner"  style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#home','#comunicados','home');"><i class="icon icon-back"></i></a>
-							<div class="title">Comunicados</div>
-						</div>
+       <div class="navbar" style="height: 50px">
+                <div class="navbar-inner">
+
+					<a href="#" onClick="voltar('#home','#comunicados','home');"><i class=" icon-back"></i></a> <span class="title">Comunicado</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".comunicadobusca_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
 					</div>
-					<form class="searchbar" id="form_busca_comunicados" style="width: 100%; margin-top: -7px">
+				</div>
+				
+            </div>
+					<form class="searchbar" id="form_busca_comunicadoss" style="width: 100%; margin-top: -7px;display: none">
 						<div class="searchbar-inner">
-							<div class="searchbar-input-wrap">
-								<input type="search" placeholder="Busca" name="busca" id="busca_comunicados">
+							<div class="searchbar-input-wrap" style="height:56px !important;">
+								<input type="search" placeholder="Busca" name="buscad" id="busca_comunicadoss">
 								<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_comunicados(4)"></span> </div>
 								<span class="searchbar-disable-button" onClick="carrega_comunicados(3)">Cancela</span> 
                         </div>
-								<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
+								
 					</form>
 							<!-- Searchbar backdrop -->
 				    <div class="searchbar-backdrop"></div>
@@ -1383,21 +1641,64 @@
                         <div class="ptr-preloader">
                             <div class="preloader"></div>
                             <div class="ptr-arrow"></div>
-                        </div>
-                        <div id="main_comunicado" class="list media-list searchbar-found" style="height: 90% !important"></div>
+                        </div> <!--searchbar-found-->
+                        <div id="main_comunicado" class="list media-list " style="height: 90% !important;margin-top: -6%"></div>
                     </div>
 				</div>
                 </div>
+			
+			
+		<div class="sheet-modal comunicadobusca_modal" id="comunicadobusca_modal" style="height: 40%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa-bullhorn" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_buscent" href="#">Fechar</a></div>
+			</div>
+		</div>
+		<div class="item-input-wrap">
+			<form id="form_busca_comunicados" class="list" style="margin-top: 3%;margin-left: 10%;margin-right: 10%;"> 
+   				
+				<div class="col-md-12 " >
+					
+					 <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label" style="font-size:15px;text-align: center">Buscar</div>
+						  <div class="item-input-wrap">
+							<input type="text" name="busca" id="busca_comunicados"style="border: none;margin-bottom: 3%" placeholder="Título do Comunicado">
+							  
+							  
+						  </div>
+						</div>
+				  </div>
+					<button type="button" onClick="carrega_comunicados(0)" class="col button button-raised button-fill col-md-12 sheet-close">Buscar</button>
+					
+				</div>
+			</form>
+		</div>
+	</div>		
+			
+			
+			
+			
+			
+			
         </div>
 				<!-- Pagina Anexo dos Comunicados -->
 				<div id="comunicados2" class="pagina comunicados2">
 					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#comunicados','#comunicados2','comunicados');"><i class="icon icon-back"></i></a>
+						<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#comunicados','#comunicados2','comunicados');"><i class=" icon-back"></i></a>
 							<div class="title">Comunicado</div>
 						</div>
 					</div>
 					<div class="scroll" style="height: 87%">
 						<div class="comunicado">
+							
+							<span style="padding-left: 9px;"class="comunicado_titulo">titulo</span>
+							<h3 id=""> </h3>
+							
+							
+							
+							
 							<div class="topo_comunicado">
 								<div class="morador_foto"></div>
 								<div class="col-md-2 icon_without_comu"></div>
@@ -1408,7 +1709,7 @@
 								
 								
 							</div>
-								<span style="background-color: #e4d43a;padding-left: 9px;color: white;"class="comunicado_titulo">titulo</span>
+								
 								<div id="txt_comunicado" class="txt_comunicado" style="word-break: break-word;">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> 
@@ -1427,7 +1728,7 @@
 				<!--  Pagiina comentario em comunicado -->
 					<div id="comunicados_comentario" class="pagina comunicados_comentario">
 						<div class="navbar" style="height: 50px">
-							<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="afed('#comunicados2','#comunicados_comentario','','',1);"><i class="icon icon-back"></i></a> <span class="title">Comunicado</span> </div>
+							<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="afed('#comunicados2','#comunicados_comentario','','',1);"><i class=" icon-back"></i></a> <span class="title">Comunicado</span> </div>
 						</div>
 						<form id="form_comenta">
 							<div class="form-group" >
@@ -1542,7 +1843,7 @@
 	</div>
 	
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class=" icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -1704,7 +2005,7 @@
 		<!-- Initial Page, "data-name" contains page name -->
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px;">
-				<div class="navbar-inner"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="link popup-close" href="#"><i class=" icon-back"></i></a>
 					<div class="title">Minhas liberações</div>
 				</div>
 			</div>
@@ -1738,7 +2039,7 @@
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner"> 
-                    <a class="link popup-close" href="#"><i class="icon icon-back"></i></a>
+                    <a class="link popup-close" href="#"><i class=" icon-back"></i></a>
 					<div class="title">Ultimos Acessos</div>
 				</div>
 			</div>
@@ -1778,7 +2079,7 @@
 <div id="visitante" class="pagina visitante">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#visitantes','#visitante','','',2,'visitantes')"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#visitantes','#visitante','','',2,'visitantes')"><i class=" icon-back"></i></a> </div>
 			<div class="title" style="font-size: 16px">Cadastro de Visitante</div>
 		</div>
 	</div>
@@ -1934,7 +2235,7 @@
 	<div class="topo_sub" style="background-color:#437efc;">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#visitantes','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#visitantes','','',2,'home');"><i class=" icon-back"></i></a> </div>
 				<div class="title" style="font-size: 16px">Cadastro de Autorizado</div>
 				<div class="right"><span onClick="novo_visitante()" style="font-size: 1.5em; margin-right: 12px;" class="fa fa-plus-circle"></span> <!--<img alt="" onClick="novo_visitante()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARGSURBVHhe7ZpJaBRBGIXjgqIHF4iCGyrxoB6iREU9uVxdQFQwevESPetFQXA7qvGkoqAHE5UwCAp6U4wLhGQmkwxJQBnISVGJiPsCCRm/f/iF2JRJqru60oF+8Ogm6f+9V38vU71UpEiRIkWKFPGiVCpN6OjoWNne3r43l8udgFdYvwkzrDfCa/A0rIU1zc3Nk7V0/KKlpWUaAzygg/zAsmTBr9Q8yOfzh7q6umar5PhAZ2fnEsJfYhCfA4MKRbR+s7zDEbRKLZKJQqEwl6DXYf/f8C5JIwbhPY6KZWqZHBCwjnCfgqFj4k94MhHXCQ73WYTJDAnnjTT8Of4LNIp/cCguJsRLUziPfE+ONRrJHzBdweDfGAKNBb9ms9lNGi1+tLa2LsT0dSDEmJKd8R2u14jxAbOZGBWDAZJAcvWxc5Zq1HiA0d2gccKY7enpmaJx3QLxuoBZIsmRcF4juwOzsDkIx/E7P2D4W1T2c5Gu1uhugOiNgElU/oLbM5nMJMJuZP3dkP+54FONHh0yt0fQ9fT2qsqXwdF11LBNVG5V+Wgg3GWDeFQeV/ky8Nhm2CYS0Xys8uGB0HT4ZaiwI/pogNw8ValFOCBQaxJ3wNgboDylFuGAQFw3Ol4agG5BLewhj7EQsH2SM1r6asAgy0q1sYM+wzMKO6CvU0C4S23sQKg9BjFX9NYAtE+ojR2k0CToiD4b0Kg2dqBQHl0bRYehzPCuUntsOLLNBrUpg79VBbcJkpp6+BGafP9LasPNByhuCIqNRKa1O7Q8Fuh1yXZW2qbldqDQ9idwQOb2Wh4b2KNWj+HYvktL7UDhLZPgCPzn0HYNjrD5eMhpZvI2knHktNwO1FlfA6h5C4+wvncELlebMqiZZ9jmH7LNYZavoNH7f6TuidrYgcIzJkFH9Pkr0KQ2dqBwv0nQEX024Iza2IHCGpOgI/psQK3a2EFePSEQx62w0FsDstnsIrWxB8EemkQd0EsD0C2qRTggIFdeo3hE+mrABbUIB/k4ARF5P280iEAvDWhra1utFuFBuNsm8YiMvQFo5lU+GuTLDMTkwYLRKCTrVb4M9J2falz8dqt8dCB4P2gQkR/lDbNoM3iZBVrP8EZgd6lUmlgO7wKErELUag4+CvajKzc28sWH6f+hKEcr3KLR3QHxk0GzhLJBI7uF3OrS2RcGwySxF87UyO4hH0fQhL6AaSJIrh+wRqPGBy5eazB08g2gQw5w1d+pEeMHnd4MvxmCjAXlFftBjeYPdHxdAk6Hn173fBDyTQ5NyBmC+WAvp+NajTJ2KBaLU+nBOQLF8olskHjJrLSB5s/QCMkAe6OacM+CgR2zBw/3kxyXkIDwse4p0yCsiVZe5vZOp7dxg9AyfT7FshCmGdTI94gXE/+Z/GjAQCrhLgYl7xvljdMj1uXi2S0LKEdMEzzLnt4Hwz/GSpEiRYoUKVKMDhUVfwAInmQ611X6iwAAAABJRU5ErkJggg==" width="30" style="float: right;">--> </div>
 			</div>
@@ -1985,7 +2286,7 @@
 </div>
 <div id="qrcode" class="qrcode pagina"  style="background-color: #EAEBED;">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#qrcode','','',2,'home');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#qrcode','','',2,'home');"><i class=" icon-back"></i></a>
 			<div class="title">QR Code</div>
 		</div>
 	</div>
@@ -2004,7 +2305,7 @@
 </div>
 <div id="qrcode_share" class="pagina">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="afed('#qrcode','#qrcode_share','','',2,'qrcode');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="afed('#qrcode','#qrcode_share','','',2,'qrcode');"><i class=" icon-back"></i></a>
 			<div class="title">Compartilhe QR Code</div>
 		</div>
 	</div>
@@ -2022,7 +2323,7 @@
 <div id="reservas" class="pagina reservas">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#reservas','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#reservas','','',2,'home');"><i class="icon-back"></i></a> </div>
 			<div class="title" style="font-size: 16px">Reserva de Áreas Comuns</div>
 			<div class="right"> <a class="link" href="#" onClick="carrega_minha_reserva('0');"><i class="f7-icons">search</i></a> </div>
 		</div>
@@ -2037,7 +2338,7 @@
         <div data-name="home" class="page">
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner">
-                    <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#m_reserva','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+                    <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#m_reserva','','',2,'reservas');"><i class=" icon-back"></i></a> </div>
                     <div class="title" style="font-size: 16px">Minhas Reservas</div>
                     <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
                 </div>
@@ -2059,7 +2360,7 @@
     <div class="view view-minha-reserva">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');carrega_areas();"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');carrega_areas();"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Minhas Reservas</div>
                 <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
             </div>
@@ -2076,7 +2377,7 @@
 <div class="popup pop-filtro" style="display: none;">
     <div class="navbar" style="height: 50px">
         <div class="navbar-inner">
-            <div class="left"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a> </div>
+            <div class="left"> <a class="link popup-close" href="#"><i class=" icon-back"></i></a> </div>
             <div class="title" style="font-size: 16px">FILTRO</div>
         </div>
     </div>
@@ -2180,7 +2481,7 @@
 <div id="area" class="pagina area">
 	<div class="navbar" style="height: 50px;margin-bottom:0px">
 		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-			<div class="left"> <a href="#" onClick="afed('#area_comum_new','#area','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a href="#" onClick="afed('#area_comum_new','#area','','',2,'reservas');"><i class=" icon-back"></i></a> </div>
 			<span class="title" style="font-size: 16px">Data do Evento</span>
 		</div>
 		</div>
@@ -2352,7 +2653,7 @@
 	<div id="reserva" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a id="voltar_add_reserva" href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a id="voltar_add_reserva" href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class=" icon-back"></i></a> </div>
 				<span class="title" style="font-size: 16px">Data do Evento</span> 
 			</div>
 		</div>
@@ -2431,7 +2732,7 @@
 	<div id="area_comum_new" class="pagina">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a class="link" href="#" onClick="afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas');fecha_calendario();"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a class="link" href="#" onClick="afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas');fecha_calendario();"><i class=" icon-back"></i></a> </div>
 				<div class="title" style="font-size: 16px">Reserva de Áreas Comuns</div>
 			</div>
 		</div>
@@ -2467,7 +2768,7 @@
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner">
 
-					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span>
+					<a href="#" onClick="voltar('#home','#entregas','home');"><i class=" icon-back"></i></a> <span class="title">Entregas</span>
 				<div class="right"> 
 					
 					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
@@ -2484,6 +2785,7 @@
 				</div>
 				<div class="list">
 				  	<ul id="main_correspondencia">
+						
 						<!--RETORNO DOS DADOS CORRESPODENCIA-->
 				  	</ul>
 				</div>
@@ -2610,7 +2912,7 @@
 				<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;">
 					<div class="left"> 
 						<a type="button" href="#" onClick="voltar('#home','#enquetes','home');">
-							<i class="icon icon-back"></i>
+							<i class=" icon-back"></i>
 						</a> 
 					</div>
 					<div class="title">Enquetes</div>
@@ -2640,7 +2942,7 @@
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 			<div class="left"> 
-				<a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> 
+				<a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class=" icon-back"></i></a> 
 			</div>
 			<span class="title">Enquete</span> 
 		</div>
@@ -2711,7 +3013,7 @@
 			<!-- Initial Page, "data-name" contains page name -->
 			<div data-name="home" class="page">
 				<div class="navbar" style="height: 50px">
-					<div class="navbar-inner"> <a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class="icon icon-back"></i></a>
+					<div class="navbar-inner"> <a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class=" icon-back"></i></a>
 						<div class="title">Documentos</div>
 					</div>
 				</div>
@@ -2751,7 +3053,7 @@
 					<div class="navbar-inner">
 						<div class="left"> 
 							<a href="#" onClick="$('#add_ticket').hide();voltar('#home','#ocorrencias','home');">
-								<i class="icon icon-back"></i>
+								<i class=" icon-back"></i>
 							</a>
 						</div>
  						<div class="title">Ocorrências</div>
@@ -2874,7 +3176,7 @@
 		<div class="view"> 
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class=" icon-back"></i></a>
 					<div class="title" >Detalhe da Ocorrência</div>
 					<input type="hidden" id="verifica_anexo"/>
 				</div>
@@ -2983,7 +3285,7 @@
 	<div id="add_ocorrencia" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#ocorrencias','#add_ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#ocorrencias','#add_ocorrencia','ocorrencias');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Nova Ocorrência</div>
 			</div>
 		</div>
@@ -3119,7 +3421,7 @@
 
 						<div class="navbar-inner">
 							<div class="left"> 
-								<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class="icon icon-back"></i></a>
+								<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class=" icon-back"></i></a>
 							</div>
 							<div class="title">Tickets</div>
 							<div class="right">
@@ -3149,7 +3451,7 @@
 
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-					<div class="left"> <a href="#" id="oco_voltar" onClick="$('#add_ticket').hide();voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
+					<div class="left"> <a href="#" id="oco_voltar" onClick="$('#add_ticket').hide();voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class=" icon-back"></i></a> </div>
 					<div class="title" id="ti_titulo">Novo Ticket</div>
 				</div>
 			</div>
@@ -3237,7 +3539,7 @@
 
 				<div class="navbar" style="height: 50px">
 					<div class="navbar-inner"> 
-						<a href="#" id="oco_detalhe_voltar"><i class="icon icon-back"></i></a>
+						<a href="#" id="oco_detalhe_voltar"><i class=" icon-back"></i></a>
 						<div class="title">Detalhe do Ticket</div>
 					</div>
 				</div>
@@ -3290,7 +3592,7 @@
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner">
 					<div class="left"> 
-						<a href="#" onClick="voltar('#home','#pet_lista','home')"><i class="icon icon-back"></i></a>
+						<a href="#" onClick="voltar('#home','#pet_lista','home')"><i class=" icon-back"></i></a>
 					</div>
 					<div class="title">Pets</div>
 					<div class="right"> 
@@ -3353,7 +3655,7 @@
 	  <div class="navbar" style="height: 50px">
 		 <div class="navbar-inner">
 			<a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');">
-				<i class="icon icon-back"></i>
+				<i class=" icon-back"></i>
 			</a>
 		  <div class="title" >INFORMAÇÕES DO PET</div>
 		 </div>
@@ -3446,7 +3748,7 @@
 		<div id="add_pet" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#add_pet','pet_lista');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#add_pet','pet_lista');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Cadastrar Novo Pet</div>
 			</div>
 		</div>
@@ -3518,7 +3820,7 @@
 	<div id="update_pet" class="pagina view">
 		<div class="navbar" style="height: 50px;">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#update_pet','pet_lista');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#update_pet','pet_lista');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Editar PET</div>
 			</div>
 		</div>
@@ -3624,10 +3926,11 @@
     <div id="cameras_condominio" class="pagina cameras_condominio">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#cameras_condominio','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#cameras_condominio','','',2,'home');"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Cameras Segurança</div>
             </div>
         </div>
+		
         <div class="scroll" id="cameras_scroll">
             <div class="block" style="margin-top: 0" id="cameras_retorno">
             </div>
@@ -3650,7 +3953,7 @@
 					<div class="navbar-inner">
 						<div class="left"> 
 							<a href="#" onClick="voltar('#home','#agenda','home');">
-								<i class="icon icon-back"></i>
+								<i class=" icon-back"></i>
 							</a>
 						</div>
 						<div class="title">Agenda Tarefas</div>
@@ -4009,7 +4312,7 @@
 	<div id="add_agenda" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="$('#dia_selecionado_ag').val('');voltar('#agenda','#add_agenda','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="$('#dia_selecionado_ag').val('');voltar('#agenda','#add_agenda','');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Novo Evento</div>
 			</div>
 		</div>
@@ -4238,7 +4541,309 @@
 			</form>
 		</div>
 	</div>	
+	
+			 <!---    MINHA RESIDENCIA        -->
+		<div id="minha_casa_rel" class="pagina">
+        <div class="navbar" style="height: 50px">
+            <div class="navbar-inner">
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#minha_casa_rel','','',2,'home');"><i class=" icon-back"></i></a> </div>
+                <div class="title" style="font-size: 16px">Minha Casa</div>
+            </div>
+		</div>	
+	
+      <div class="card" onClick="meus_recorrentes()">
+		<div class="card-content card-content-padding">
+			<div class="col-md-6">
+				<h3 style="text-align: center">Meus Recorrentes</h3>
+			 <i class="fa fa-exchange" style="font-size: 30px; margin-left: 45%;"></i>
+			</div>
+		</div>
+	 </div>  
+	 <div class="card" onClick="meus_pontuais()">
+			<div class="card-content card-content-padding">
+			<div class="col-md-6">
+			 <h3 style="text-align: center">Pontuais</h3>	
+			 <i class="fa  fa-user" style="font-size: 30px; margin-left: 45%;"></i>
+			</div>
+			
+		</div>
+	 </div>	
+	<div class="card" onClick="acesso_minha_casa()">
+			<div class="card-content card-content-padding" >
+			<div class="col-md-6">
+			 <h3 style="text-align: center">Acessos</h3>	
+			 <i class="fa  fa-home" style="font-size: 30px; margin-left: 45%;"></i>
+			</div>
+			
+		</div>
 		
+	 </div>	
+			
+    </div>
+		<!-- PAGINAS MEUS RECORRENTES-->
+		<div id="minha_casa_recorrente" class="pagina minha_casa_recorrente"> 
+			<div class="navbar" style="height: 50px">
+				<div class="navbar-inner">
+					<div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#minha_casa_recorrente','','',2,'home');"><i class=" icon-back"></i></a> </div>
+					<div class="title" style="font-size: 16px;color: white;">Meus Recorrentes</div>
+					<div class="right"> 
+					<a href="#" onclick="busc_recorr();" data-sheet=".busca_recorrente" class="sheet-open material-icons">
+					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
+					</div>
+				</div>
+			
+			</div>
+		
+			<!--<div id="body_recorrente" class="scroll" style="height: 85%"> </div>-->
+				<div class="box" id="boxUp_recorrente"></div>
+						<div class="page-content ptr-content pull-recorrente" data-ptr-distance="55" id="pull-recorrente" style="height: 93% !important;margin-top: -13% !IMPORTANT;" >
+						<!--	<div class="ptr-preloader">
+								<div class="preloader"></div>
+								<div class="ptr-arrow"></div>
+							</div>-->
+							<div id="body_recorrente" class="list media-list" style="height: 100% !important;margin-top: 0px"></div>
+						</div>
+			
+		
+			
+			<div class="sheet-modal um_recorrente" style="height: 80%;">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left"></div>
+					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
+				</div>
+			</div>
+			<div class="sheet-modal-inner">
+				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
+					<form id="form_recorrente_um">
+					
+					
+				  </form>
+				</div>
+			</div>
+	    </div>
+			<div class="sheet-modal busca_recorrente" style="height: 80%;">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left"><i class="fa fa-filter" style="margin-left: 50%;font-size: 20px;"></i></div>
+					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
+				</div>
+			</div>
+			<div class="sheet-modal-inner">
+				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
+					<form id="form_recorrente_um">
+					
+					<label >Nome:</label><br>
+					 <input type="text"	id="busc_nome_recorrente" value="" class="form-control"><br>
+						<label>Autoriza entrada</label><br>
+						<select id="autoriza_visitante_recorrente" class="form-control">
+							<option selected value=""> </option>
+							<option value="1">SIM</option>
+							<option value="0">NÃO</option>
+						</select><br>
+						<label>Motivo</label><br>
+						<input type="text" id="motivo_recorrente_busca" value="" class="form-control"> 
+						<button style="margin-top: 2%"onClick="meus_recorrentes_busca()" type="button" class="btn btn-success link sheet-close"> Buscar </button>
+				  </form>
+				</div>
+			</div>
+	    </div>
+   			
+		
+			<div class="sheet-modal recorrente_modal"  style="height: 80%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner" style="background-color:#2196f3 ">
+				<div class="left"><span class="fa fa fa-exchange" style="margin-left: 10px;color: white"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_recorretent" style="color: white" href="#">Fechar</a></div>
+			</div>
+          
+		</div>
+		<div class="item-input-wrap">
+			<form id="meu_recorrente" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
+   				<div class="col-md-12">
+				<div class="col-md-4" id="foto_recorrente" style="height: 120px;width: 120px;margin-left: 30%; background-image: url(img/logoicon.png); background-repeat: no-repeat;background-size: 100px;background-position: center center"></div>
+				<div class="col-md-8" >
+					<label class="col-md-12">Nome:</label>	
+					<input type="text" class="col-md-12 form-control" id="nome_recorrente" disabled>
+					<label class="col-md-12">Motivo:</label>
+					<input class="col-md-12 form-control" type="text" id="motivo_recorrente" disabled>	
+					<label class="col-md-12" >Atoriza Visita:</label>
+					<input type="text" id="autorizar_recorrrent" disabled class="form-control">
+					<label class="col-md-12" > Autorização de acesso:</label><br>
+					<label class="col-md-2">De:</label>
+					<input type="text" id="hora_inicio_recorrente" class="col-md-4 form-control" disabled>
+					<label class="col-md-2">Á</label>
+					<input type="text" class="col-md-4 form-control" id="hora_fim_recorrente" disabled>
+		
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+			</div>
+	 <!-- PAGINAS VISITANTES PONTUAIS-->
+		
+		<div id="meus_pontuais" class="pagina">
+        <div class="navbar" style="height: 50px">
+            <div class="navbar-inner">
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#meus_pontuais','','',2,'home');"><i class=" icon-back"></i></a> </div>
+                <div class="title" style="font-size: 16px">Pontuais</div>
+				<div class="right"> 
+					<a href="#" onclick="limpar_busca_visitante();" data-sheet=".busca_meus_visitantes" class="sheet-open material-icons">
+					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
+				</div>
+            </div>
+			
+		</div>
+			
+						<div class="box" id="boxUp_pontual"></div>
+						<div class="page-content ptr-content pull-pontual" data-ptr-distance="55" style="height: 93% !important;margin-top: -13% !IMPORTANT;" id="pull-pontual" >
+							<!--<div class="ptr-preloader">
+								<div class="preloader"></div>
+								<div class="ptr-arrow"></div>
+							</div>-->
+							<div id="body_mpontuais"  class="list media-list" style="height: 100% !important;margin-top: 0px"></div>
+						</div>	
+		
+     
+		<div class="sheet-modal busca_meus_visitantes" style="height: 80%;">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left"><i class="fa fa-filter" style="margin-left: 50%;font-size: 20px;"></i></div>
+					<div class="right"><span style="margin-right: 8px;" class="fechaAgenda link sheet-close" href="#">Fechar</span></div>
+				</div>
+			</div>
+			<div class="sheet-modal-inner">
+				<div class="block list no-hairlines-md" style="overflow:auto;max-height: 362px;">
+					<form id="form_recorrente_um">
+					
+					<label >Nome</label><br>
+					 <input type="text"	id="busc_nome_visitante" value="" class="form-control"><br>
+						
+						<label>RG </label><br>
+						<input type="text" id="busca_rg_visitantes" value="" class="form-control"> 
+						<button style="margin-top: 2%"onClick="meus_visitantes_busca()" type="button" class="btn btn-success link sheet-close"> Buscar </button>
+				  </form>
+				</div>
+			</div>
+	    </div>
+			<div class="sheet-modal meu_visitante" id="busca_pet_abre" style="height: 80%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa fa-user" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
+			</div>
+          
+		</div>
+		<div class="item-input-wrap">
+			<form id="meu_visiante_" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
+   				<div class="col-md-12">
+				<div class="col-md-4" id="foto_visitante_meu" style="height: 120px;width: 120px;margin-left: 30%; background-image: url(img/logoicon.png); background-repeat: no-repeat;background-size: 100px;background-position: center center"></div>
+				<div class="col-md-8" >
+					<label class="col-md-12">Nome:</label>	
+					<input type="text" class="col-md-12 form-control" id="nome_visitante_meu" disabled>
+					<label class="col-md-12">Rg:</label>
+					<input class="col-md-12 form-control" type="text" id="rg_visitante_meu" disabled>	
+					<label class="col-md-12" >Celular:</label>
+					<input type="text" id="cel_visitante_meu" disabled class="form-control">
+					<label class="col-md-12" >Telefone:</label><br>
+					<input type="text" id="tel_visitante_meu" class="col-md-4 form-control" disabled>
+				
+		
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>		
+			
+			
+    </div>
+		<!--  ACESSO MINHA RESIDENCIA -->
+	<div id="acsso_minha_casa" class="pagina">
+        <div class="navbar" style="height: 50px">
+            <div class="navbar-inner">
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#acsso_minha_casa','','',2,'home');"><i class=" icon-back"></i></a> </div>
+                <div class="title" style="font-size: 16px">Acesso</div>
+				<div class="right"> 
+					<a href="#" onclick="limpar_busca_visitante();" data-sheet=".meu_evento_busca" class="sheet-open material-icons">
+					<span class="fa fa-filter"  style="margin-right: 15px"></span> </a> 
+				</div>
+            </div>
+		</div>	
+		
+		<div class="box" id="boxUp_mcasa"></div>
+						<div class="page-content ptr-content pull-mcasa" data-ptr-distance="55" style="height: 93% !important;margin-top: -13% !IMPORTANT;" id="pull-mcasa" >
+							<!--<div class="ptr-preloader">
+								<div class="preloader"></div>
+								<div class="ptr-arrow"></div>
+							</div>-->
+							<div id="body_minha_casa"  class="list media-list" style="height: 100% !important;margin-top: 0px"></div>
+						</div>	
+		
+		
+     
+			<div class="sheet-modal meu_eventos_meus" id="meu_eventos_meus" style="height: 80%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa fa-user" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
+			</div>
+          
+		</div>
+		<div class="item-input-wrap">
+			<form id="meu_visiante_" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
+   				<div class="col-md-12">
+				<div class="col-md-4" id="foto_evento_selct" style="height: 120px;width: 120px;margin-left: 30%; background-image: url(img/logoicon.png); background-repeat: no-repeat;background-size: 100px;background-position: center center"></div>
+				<div class="col-md-8" >
+					<label class="col-md-12">Nome:</label>	
+					<input type="text" class="col-md-12 form-control" id="nome_evento_selct" disabled>
+					<label class="col-md-12">Data:</label>
+					<input class="col-md-12 form-control" type="text" id="data_evento_selct" disabled>	
+					<label class="col-md-12" >Leitor:</label>
+					<input type="text" id="leitor_evento_selct" disabled class="form-control">
+					<label class="col-md-12" >Sentido:</label><br>
+					<input type="text" id="direcao_evento_selct" class="col-md-4 form-control" disabled>
+				
+		
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+		<div class="sheet-modal meu_evento_busca" id="meu_evento_busc" style="height: 80%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa fa-user" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_recorretent" href="#">Fechar</a></div>
+			</div>
+          
+		</div>
+		<div class="item-input-wrap">
+			<form id="meu_visiante_" style="margin-top:1%;margin-left: 10%;margin-right: 10%;"> 
+   				<div class="col-md-12">
+			
+				<div class="col-md-8" >
+					<label class="col-md-12">Nome:</label>	
+					<input type="text" class="col-md-12 form-control" id="nome_evento_meu" >
+					<label class="col-md-12">Perfil:</label>
+					<input class="col-md-12 form-control" type="text" id="perfil_evento_meu" >	
+					
+					<label class="col-md-12" >De:</label>
+					<input type="datetime-local" id="datai_evento_meu"  class="form-control">
+					<label class="col-md-12" >até:</label><br>
+					<input type="datetime-local" id="dataf_evento_meu" class="col-md-4 form-control" >
+					<button style="margin-top: 2%"onClick="filtrar_eventos_meus()" type="button" class="btn btn-success link sheet-close"> Buscar </button>
+		
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+		
+		
+		
+    </div>
+		 <!---  FIM MINHA RESIDENCIA        -->	
 	
 	<!-- $MUDANCA  
          Autor: Caio Souza.
@@ -4255,7 +4860,7 @@
 					<div class="navbar-inner">
 						<div class="left"> 
 							<a href="#" onClick="$('.any_found').hide();voltar('#home','#mudanca','home');">
-								<i class="icon icon-back"></i>
+								<i class=" icon-back"></i>
 							</a>
 						</div>
 						<div class="title">Mudança</div>
@@ -4292,7 +4897,7 @@
 	<div id="add_mudanca" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Nova Solicitação</div>
 			</div>
 		</div>
@@ -4396,7 +5001,7 @@
 	<div id="mudanca_info" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="carrega_mudancas(0);voltar('#mudanca','#mudanca_info','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="carrega_mudancas(0);voltar('#mudanca','#mudanca_info','');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Mudança</div>
 			</div>
 		</div>
@@ -5163,4 +5768,4 @@
 </script>
 </body>
 
-</html>>>
+</html>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

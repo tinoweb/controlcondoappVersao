@@ -80,7 +80,7 @@ let carrega_agenda_eventos = (pano = '', pmes = '', pdia = '') => {
 			let header_calendar = '<div class="toolbar calendar-custom-toolbar no-shadow">' +
 									  '<div class="toolbar-inner">' +
 										'<div class="left">' +
-										  '<a href="#" class="link icon-only"><i style="width: 24px;height: 24px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+										  '<a href="#" class="link icon-only"><i style="width: 24px;height: 24px;" class="icon  ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
 										'</div>' +
 										'<div class="center" style="margin-left: -23px;"></div>' +
 										'<div class="right">' +
