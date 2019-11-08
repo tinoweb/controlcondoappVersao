@@ -5129,22 +5129,13 @@
     	<script>
     		function loginFB() {
 			    alert('facebook alert....');
-		    	facebookConnectPlugin.getLoginStatus( 
-                function (sucesso) { 
-                	alert(JSON.stringify(sucesso));
-                	alert("status conectado");
-                },
-                function (falha) { 
-                	alert(JSON.stringify(falha));
-	                facebookConnectPlugin.login(['public_profile','email'], function(result){
-	                	alert('facebook alert');
-	                    alert(JSON.stringify(result));
-	                },function(error){
-	                    alert(JSON.stringify(error));
-	                    alert("erro no metodo login...");
-	                });
-            	});
-			}
+			    alert(facebookConnectPlugin);
+			    alert(JSON.stringify(facebookConnectPlugin));
+
+                facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+                	alert('facebook alert');
+                    alert(JSON.stringify(result));
+
                     // facebookConnectPlugin.api("/me?fields=email", ["email"], function(userData){
                     //     // success calback
                     //     alert(JSON.stringify(userData));
@@ -5152,6 +5143,12 @@
                     //     alert(JSON.stringify(error));
                     //     alert("erro no query do api...");
                     // });
+
+                },function(error){
+                    alert(JSON.stringify(error));
+                    alert("erro no metodo login...");
+                });
+			}
     	</script>
 
 				<script type="text/javascript">
