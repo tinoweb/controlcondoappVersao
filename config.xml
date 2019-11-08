@@ -133,7 +133,6 @@
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
     <plugin name="cordova-plugin-ionic-keyboard" source="npm" />
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
-    <engine name="android" spec="^7.1.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
     <feature name="File">
@@ -144,6 +143,13 @@
     </feature>
     <plugin name="cordova-backgroundvideo" spec="0.0.22" />
     <plugin name="cordova-plugin-customurlscheme" source="npm">
-      <variable name="URL_SCHEME" value="mycoolapp" />
+        <variable name="URL_SCHEME" value="mycoolapp" />
     </plugin>
+
+    <plugin name="cordova-plugin-facebook4" spec="6.2.0">
+        <variable name="APP_ID" value="519331278795494" />
+        <variable name="APP_NAME" value="controlcondoApp" />
+        <variable name="ANDROID_SDK_VERSION" value="5.5.2" />
+    </plugin>
+
 </widget>

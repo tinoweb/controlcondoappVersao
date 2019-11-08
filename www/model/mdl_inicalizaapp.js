@@ -314,3 +314,7 @@ confirmaCodeResetPassword = (recoveryCode) => {
 	});	
 
 }
+
+
+
+

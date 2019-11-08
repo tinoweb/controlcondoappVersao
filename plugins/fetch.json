@@ -237,5 +237,16 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-facebook4": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/jeduan/cordova-plugin-facebook4"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "519331278795494",
+      "APP_NAME": "controlcondoApp"
+    }
   }
 }

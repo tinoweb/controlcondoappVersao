@@ -65,15 +65,15 @@
 	<script src="model/mdl_contatos.js"></script>
 	<script src="model/mdl_mudanca.js"></script>
 	<script src="model/mdl_agenda.js"></script>
-	<script src="model/mdl_inicalizaapp.js"></script>
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+	<script src="model/mdl_inicalizaapp.js"></script>
+
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<script type="text/javascript" src="https://www.controlcondo.com.br/controlcondo/v2/js/zepto.min.js"></script>
 	<script type="text/javascript" src="https://www.controlcondo.com.br/controlcondo/v2/js/jquery.mask.js"></script>
-	
 	<script type="text/javascript"> 
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
@@ -265,6 +265,7 @@
 </head>
 <body >
 	<div id="app">
+		<div id="fb-root"></div>
 		<form id="DADOS" style="display: none;">
 			<input id="SERVIDOR_CAMINHO"    value="" type="hidden">
 			<input id="ID_USER"             value="" type="hidden">
@@ -452,7 +453,7 @@
 						<button class="btn btn-default btn-lg btn-block btn-no-border" onclick="swich_tela_login();">Entrar com e-mail</button>
 					</div>
 					<div class="col-xs-6" style="position: relative;top: 14px;">
-						<button class="btn btn-primary btn-lg btn-block btn-no-border" name="entrar"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button>
+						<button class="btn btn-primary btn-lg btn-block btn-no-border" onclick="loginFB()" name="entrar"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button>
 					</div>
 					<div class="col-xs-6" style="position: relative;top: 14px;">
 						<button class="btn btn-lg btn-danger btn-block btn-no-border"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
@@ -5124,6 +5125,35 @@
 		</div>				
 	</div>
     <!---   $FUNCOES          --> 
+
+    	<script>
+    		function loginFB() {
+			    console.log("entramos na funcao");
+			    console.log(facebookConnectPlugin);
+				var perms = new Array("email","public_profile");
+				facebookConnectPlugin.login(perms, fbLoginSuccess,
+				  function loginError (error) {
+				    console.error(error)
+				  }
+				);
+
+				var fbLoginSuccess = function (userData) {
+				  console.log("UserInfo: ", userData);
+				}
+
+			    // console.log("initialized facebook Api...");
+
+			    // console.log(facebookConnectPlugin);
+
+			    // facebookConnectPlugin.login(['email'], function(successo){
+			    //     console.log("sucesso....");
+			    //     console.log(result);
+			    // },function(error){
+			    //     console.log("Falha....");
+			    //     console.log(error);
+			    // });
+			}
+    	</script>
 
 				<script type="text/javascript">
 					altera_menu();
