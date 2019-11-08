@@ -5129,20 +5129,20 @@
     	<script>
     		function loginFB() {
 			    alert('facebook alert....');
-                // console.log("sim vai agora");
-                // console.log(facebookConnectPlugin);
+			    alert(facebookConnectPlugin);
+			    alert(JSON.stringify(facebookConnectPlugin));
 
-                facebookConnectPlugin.login(["email"], function(result){
+                facebookConnectPlugin.login(['public_profile', 'user_friends', 'email'], function(result){
                 	alert('facebook alert');
                     alert(JSON.stringify(result));
 
-                    facebookConnectPlugin.api("/me?fields=email", ["email"], function(userData){
-                        // success calback
-                        alert(JSON.stringify(userData));
-                    },function(error){
-                        alert(JSON.stringify(error));
-                        alert("erro no query do api...");
-                    });
+                    // facebookConnectPlugin.api("/me?fields=email", ["email"], function(userData){
+                    //     // success calback
+                    //     alert(JSON.stringify(userData));
+                    // },function(error){
+                    //     alert(JSON.stringify(error));
+                    //     alert("erro no query do api...");
+                    // });
 
                 },function(error){
                     alert(JSON.stringify(error));
