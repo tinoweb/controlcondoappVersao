@@ -58,6 +58,8 @@ function emailNotRecognizedBySystemAlert(type, messenge, afterClose=null){
 				switchTelaDefineSenhaToLogin();
 			}else if (afterClose == "logaNoApp") {
 
+			}else if(afterClose == "logaDoFace"){
+				login_user_device();
 			}
 		}
 	}).then((result) => {
@@ -309,6 +311,8 @@ confirmaCodeResetPassword = (recoveryCode) => {
 	});	
 }
 
+
+
 checkUsuarioFacebookToLogin = (email) => {
 	$.ajax({
 		type: 'POST',
@@ -317,15 +321,19 @@ checkUsuarioFacebookToLogin = (email) => {
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
         data: { 
+			uuid: device.uuid,
+			nome: device.model,
+			versao: device.version,
+			sistema: device.platform,
+			typeFunction : "checkEmailFacebook",
 			emailFacebook : email, 
-			typeFunction : "checkEmailFacebook"
+			id_notificacao: localStorage.getItem('registrationId')
 		},
         dataType   : 'json',
 		success: function(retorno){
 			console.log(retorno);
 			if (retorno.status == "usuarioValidoToLogin" && retorno.statuscode == 200) {
-				// encaminhar para o login
-				emailNotRecognizedBySystemAlert('success', "Serás direcionado para o login");
+				emailNotRecognizedBySystemAlert('success', "direcionando para App", afterClose="logaDoFace");
 			}else{
 				emailNotRecognizedBySystemAlert("error", 'O ' +email+ ' não está liberado para acessar o condominio tente outra forma de autenticar..', afterClose=null)
 			}
@@ -338,15 +346,11 @@ checkUsuarioFacebookToLogin = (email) => {
 }
 
 function loginFB() {
-	
-	// console.log("fimcopna.....");
-	// let email = "testefirstlgii@gmail.com";
-	// checkUsuarioFacebookToLogin(email);
-
     facebookConnectPlugin.login(['public_profile', 'email'], function(result){
-        alert(JSON.stringify(result));
+        // alert(JSON.stringify(result));
+        alert("permission ...");
         facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
-            alert(JSON.stringify(userData));
+            // alert(JSON.stringify(userData));
             let name = userData.name;
             let email = userData.email;
             checkUsuarioFacebookToLogin(email);
