@@ -142,9 +142,7 @@ function swich_to_primeiroAcesso(){
 }
 
 function enviarCodigoAtivacao(){
-	
 	let codigoAtivacao = $("#codigoAtivacao").val();
-
 	console.log(localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php');
 	if (codigoAtivacao.length !== 0) {
 		$.ajax({
@@ -158,9 +156,7 @@ function enviarCodigoAtivacao(){
 			success: function(retorno){
 				console.log(retorno);    
 				if (retorno.statuscode == 200 && retorno.status == "codigoOk") {
-					
 					localStorage.setItem("idUsuarioAtivacao", retorno.idUsuario); // Id do usuario recebido atraves do codigo de ativacao
-
 					$("#btnCancelarConta").hide();
 					$("#btnAtivarConta").hide();
 					$("#telaVerificaCodigo").hide();
@@ -279,7 +275,6 @@ function salvarSenha(){
 
 confirmaCodeResetPassword = (recoveryCode) => {
 	alert("codigo recebido "+recoveryCode);
-
 	$.ajax({
 		type: 'POST',
 		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
@@ -312,7 +307,57 @@ confirmaCodeResetPassword = (recoveryCode) => {
 			alert('Não foi possivel executar a ação pretendida, entre em contato com seu administrador');
         }
 	});	
+}
 
+checkUsuarioFacebookToLogin = (email) => {
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+        data: { 
+			emailFacebook : email, 
+			typeFunction : "checkEmailFacebook"
+		},
+        dataType   : 'json',
+		success: function(retorno){
+			console.log(retorno);
+			if (retorno.status == "usuarioValidoToLogin" && retorno.statuscode == 200) {
+				// encaminhar para o login
+				emailNotRecognizedBySystemAlert('success', "Serás direcionado para o login");
+			}else{
+				emailNotRecognizedBySystemAlert("error", 'O ' +email+ ' não está liberado para acessar o condominio tente outra forma de autenticar..', afterClose=null)
+			}
+        },
+        error: function(error) {
+			console.log(error);
+			alert('não foi possivel continuar...');
+        }
+	});	
+}
+
+function loginFB() {
+	
+	// console.log("fimcopna.....");
+	// let email = "testefirstlgii@gmail.com";
+	// checkUsuarioFacebookToLogin(email);
+
+    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+        alert(JSON.stringify(result));
+        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+            alert(JSON.stringify(userData));
+            let name = userData.name;
+            let email = userData.email;
+            checkUsuarioFacebookToLogin(email);
+        },function(error){
+            alert(JSON.stringify(error));
+            alert("erro no query do api...");
+        });
+    },function(error){
+        alert(JSON.stringify(error));
+        alert("erro no metodo login...");
+    });
 }
 
 
