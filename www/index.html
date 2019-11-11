@@ -5128,21 +5128,16 @@
 
     	<script>
     		function loginFB() {
-			    alert('facebook alert....');
-			    alert(facebookConnectPlugin);
-			    alert(JSON.stringify(facebookConnectPlugin));
-
                 facebookConnectPlugin.login(['public_profile', 'email'], function(result){
-                	alert('facebook alert');
+
                     alert(JSON.stringify(result));
 
-                    // facebookConnectPlugin.api("/me?fields=email", ["email"], function(userData){
-                    //     // success calback
-                    //     alert(JSON.stringify(userData));
-                    // },function(error){
-                    //     alert(JSON.stringify(error));
-                    //     alert("erro no query do api...");
-                    // });
+                    facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+                        alert(JSON.stringify(userData));
+                    },function(error){
+                        alert(JSON.stringify(error));
+                        alert("erro no query do api...");
+                    });
 
                 },function(error){
                     alert(JSON.stringify(error));
