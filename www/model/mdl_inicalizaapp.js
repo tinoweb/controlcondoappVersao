@@ -311,6 +311,28 @@ confirmaCodeResetPassword = (recoveryCode) => {
 	});	
 }
 
+/*########################################
+  #     Adicionar Facebook login         #
+  ########################################*/
+
+function loginFB() {
+    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+        // alert(JSON.stringify(result));
+        alert("permission ...");
+        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+            // alert(JSON.stringify(userData));
+            let name = userData.name;
+            let email = userData.email;
+            checkUsuarioFacebookToLogin(email);
+        },function(error){
+            alert(JSON.stringify(error));
+            alert("erro no query do api...");
+        });
+    },function(error){
+        alert(JSON.stringify(error));
+        alert("erro no metodo login...");
+    });
+}
 
 checkUsuarioFacebookToLogin = (email) => {
 	$.ajax({
@@ -344,41 +366,61 @@ checkUsuarioFacebookToLogin = (email) => {
 	});	
 }
 
-function loginFB() {
-    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
-        // alert(JSON.stringify(result));
-        alert("permission ...");
-        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
-            // alert(JSON.stringify(userData));
-            let name = userData.name;
-            let email = userData.email;
-            checkUsuarioFacebookToLogin(email);
-        },function(error){
-            alert(JSON.stringify(error));
-            alert("erro no query do api...");
-        });
-    },function(error){
-        alert(JSON.stringify(error));
-        alert("erro no metodo login...");
-    });
-}
-
+/*########################################
+  #       Adicionar Google login         #
+  ########################################*/
 
 let loginGoogle = () =>{
 	alert("botão logim com google...");
-	alert(window.plugins.googleplus);
 
 	window.plugins.googleplus.login({},
 	    function(obj) {
 	      alert(JSON.stringify(obj));
+	      let email = obj.email;
+	      let nome = obj.displayName;
+
+	      checkUsuarioGoogleToLogin(email);
 	    },
 	    function(msg) {
 	      alert('error: ' + msg);
 	    }
 	);
-	console.log("passou e nao executou...");
 }
 
+checkUsuarioGoogleToLogin = (email) => {
+	$.ajax({
+		type: 'POST',
+		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+		crossDomain: true,
+		beforeSend : function() { $("#wait").css("display", "block"); },
+		complete   : function() { $("#wait").css("display", "none"); },
+        data: { 
+			uuid: device.uuid,
+			nome: device.model,
+			versao: device.version,
+			sistema: device.platform,
+			typeFunction : "checkEmailGoogle",
+			emailGoogle : email, 
+			id_notificacao: localStorage.getItem('registrationId')
+		},
+        dataType   : 'json',
+		success: function(retorno){
+			console.log(retorno);
+			return false;
+
+			
+			if (retorno.status == "usuarioValidoToLogin" && retorno.statuscode == 200) {
+				emailNotRecognizedBySystemAlert('success', "direcionando para App", afterClose="logaDoFace");
+			}else{
+				emailNotRecognizedBySystemAlert("error", 'O ' +email+ ' não está liberado para acessar o condominio tente outra forma de autenticar..', afterClose=null)
+			}
+        },
+        error: function(error) {
+			console.log(error);
+			alert('não foi possivel continuar...');
+        }
+	});	
+}
 
 
 
