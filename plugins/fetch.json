@@ -248,5 +248,16 @@
       "APP_ID": "519331278795494",
       "APP_NAME": "controlcondoApp"
     }
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus"
+    },
+    "is_top_level": true,
+    "variables": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5",
+      "WEB_APPLICATION_CLIENT_ID": "1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5.apps.googleusercontent.com"
+    }
   }
 }

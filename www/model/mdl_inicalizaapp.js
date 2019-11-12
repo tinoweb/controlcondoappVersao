@@ -312,7 +312,6 @@ confirmaCodeResetPassword = (recoveryCode) => {
 }
 
 
-
 checkUsuarioFacebookToLogin = (email) => {
 	$.ajax({
 		type: 'POST',
@@ -362,6 +361,20 @@ function loginFB() {
         alert(JSON.stringify(error));
         alert("erro no metodo login...");
     });
+}
+
+
+let loginGoogle = () =>{
+	console.log("botão logim com google...");
+
+	window.plugins.googleplus.login(
+	    function (obj) {
+	      alert(JSON.stringify(obj)); // do something useful instead of alerting
+	    },
+	    function (msg) {
+	      alert('error: ' + msg);
+	    }
+	);
 }
 
 

@@ -152,4 +152,9 @@
         <variable name="ANDROID_SDK_VERSION" value="5.5.2" />
     </plugin>
 
+    <plugin name="cordova-plugin-googleplus" source="npm">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5" />
+        <variable name="WEB_APPLICATION_CLIENT_ID" value="1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5.apps.googleusercontent.com" />
+    </plugin>
+
 </widget>

@@ -95,6 +95,10 @@
       "FACEBOOK_HYBRID_APP_EVENTS": "false",
       "FACEBOOK_ANDROID_SDK_VERSION": "5.5.2",
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-googleplus": {
+      "WEB_APPLICATION_CLIENT_ID": "1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5.apps.googleusercontent.com",
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {
