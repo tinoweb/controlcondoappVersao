@@ -365,16 +365,18 @@ function loginFB() {
 
 
 let loginGoogle = () =>{
-	console.log("botão logim com google...");
+	alert("botão logim com google...");
+	alert(window.plugins.googleplus);
 
-	window.plugins.googleplus.login(
-	    function (obj) {
-	      alert(JSON.stringify(obj)); // do something useful instead of alerting
+	window.plugins.googleplus.login({},
+	    function(obj) {
+	      alert(JSON.stringify(obj));
 	    },
-	    function (msg) {
+	    function(msg) {
 	      alert('error: ' + msg);
 	    }
 	);
+	console.log("passou e nao executou...");
 }
 
 

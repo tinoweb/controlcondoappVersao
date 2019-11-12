@@ -153,8 +153,8 @@
     </plugin>
 
     <plugin name="cordova-plugin-googleplus" source="npm">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5" />
-        <variable name="WEB_APPLICATION_CLIENT_ID" value="1058499709966-nhp3foupgp7vqhdheu6nbdqt5210snj5.apps.googleusercontent.com" />
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1058499709966-viv6q4mor5jgev1splb9313u3o0cl0n5" />
+        <variable name="WEB_APPLICATION_CLIENT_ID" value="1058499709966-viv6q4mor5jgev1splb9313u3o0cl0n5.apps.googleusercontent.com" />
     </plugin>
 
 </widget>
