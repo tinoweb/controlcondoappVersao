@@ -60,6 +60,12 @@ function emailNotRecognizedBySystemAlert(type, messenge, afterClose=null){
 
 			}else if(afterClose == "logaDoFace"){
 				login_user_device();
+			}else if (afterClose == "termoUso") {
+				console.log("vai para termo de uso");
+				console.log("definir uma senha para esse usuario atomaticamente");
+				console.log("loga na Aplicacao automaticamente");
+
+				console.log("........");
 			}
 		}
 	}).then((result) => {
@@ -275,6 +281,7 @@ function salvarSenha(){
 	}
 }
 
+// não ta sendo usado essa função..............
 confirmaCodeResetPassword = (recoveryCode) => {
 	alert("codigo recebido "+recoveryCode);
 	$.ajax({
@@ -310,6 +317,7 @@ confirmaCodeResetPassword = (recoveryCode) => {
         }
 	});	
 }
+// não ta sendo usado essa função..............
 
 /*########################################
   #     Adicionar Facebook login         #
@@ -325,7 +333,7 @@ function loginFB() {
             let email = userData.email;
             checkUsuarioFacebookToLogin(email);
         },function(error){
-            alert(JSON.stringify(error));
+            // alert(JSON.stringify(error));
             alert("erro no query do api...");
         });
     },function(error){
@@ -371,15 +379,11 @@ checkUsuarioFacebookToLogin = (email) => {
   ########################################*/
 
 let loginGoogle = () =>{
-	alert("botão logim com google...");
-
 	window.plugins.googleplus.login({},
 	    function(obj) {
-	      alert(JSON.stringify(obj));
-	      let email = obj.email;
-	      let nome = obj.displayName;
-
-	      checkUsuarioGoogleToLogin(email);
+	      	let email = obj.email;
+	      	let nome = obj.displayName;
+		    checkUsuarioGoogleToLogin(email);
 	    },
 	    function(msg) {
 	      alert('error: ' + msg);
@@ -405,12 +409,12 @@ checkUsuarioGoogleToLogin = (email) => {
 		},
         dataType   : 'json',
 		success: function(retorno){
-			console.log(retorno);
-			return false;
-
-			
 			if (retorno.status == "usuarioValidoToLogin" && retorno.statuscode == 200) {
 				emailNotRecognizedBySystemAlert('success', "direcionando para App", afterClose="logaDoFace");
+			}else if (retorno.status == "perfilAtivoSemSenha" && retorno.statuscode == 200) {
+				emailNotRecognizedBySystemAlert('success', "direcionando para termo de uso", afterClose="termoUso");
+			}else if (retorno.status == "usuarioValidoToLoginGoogle" && retorno.statuscode == 200){
+				emailNotRecognizedBySystemAlert('success', "direcionando para App", afterClose="logaDoGoogle");
 			}else{
 				emailNotRecognizedBySystemAlert("error", 'O ' +email+ ' não está liberado para acessar o condominio tente outra forma de autenticar..', afterClose=null)
 			}
