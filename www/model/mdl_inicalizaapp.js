@@ -367,21 +367,30 @@ confirmaCodeResetPassword = (recoveryCode) => {
   */
 
 function loginFB() {
-    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
-    	alert(JSON.stringify(result));
-        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
-        	alert(JSON.stringify(userData));
-            let name = userData.name;
-            let email = userData.email;
-    		localStorage.setItem('emailSocialMidia', email);
-            checkUsuarioFacebookToLogin(email);
-        },function(error){
-            alert("erro no query do api...");
-        });
-    },function(error){
-        alert(JSON.stringify(error));
-        alert("erro no metodo login...");
-    });
+	facebookConnectPlugin.logout(
+	function(successo){
+		alert(JSON.stringify(successo));
+	    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+	    	alert(JSON.stringify(result));
+	        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+	        	alert(JSON.stringify(userData));
+	            let name = userData.name;
+	            let email = userData.email;
+	    		localStorage.setItem('emailSocialMidia', email);
+	            checkUsuarioFacebookToLogin(email);
+	        },function(error){
+	            alert("erro no query do api...");
+	        });
+	    },function(error){
+	        alert(JSON.stringify(error));
+	        alert("erro no metodo login...");
+	    })
+	},
+	function(erroror){
+		alert(JSON.stringify(erroror));
+	});
+
+
 }
 
 checkUsuarioFacebookToLogin = (email) => {
