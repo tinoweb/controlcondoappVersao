@@ -663,10 +663,20 @@
 					      	<span>Li e concordo com os termos</span>
 						</div>
 						<button id="btnCancelarConta" class="col-50 button button-raised button-large color-gray button-fill" onclick="cancelarTermo()">Cancelar</button>
-						<button id="btnAtivarConta" class="col-50 button button-raised button-large color-green button-fill" onclick="aceiteiTermo()">Ativar a minha conta</button>
+						<button id="btnAtivarConta" class="col-50 button button-raised button-large color-green button-fill">Ativar conta</button>
 				      </div>
 				    </div>
-
+				    <script>
+				    	$("#btnAtivarConta").click(function(event) {
+							let dataAttr = $(this).data("liberarsemsenha");
+							console.log(dataAttr);
+							if (dataAttr == undefined) {
+								aceiteiTermo();
+							}else{
+								aceiteiTermo(dataAttr);
+							}
+						});
+				    </script>
 		        </div>
 		    </div>
 		</div>
@@ -732,24 +742,24 @@
 						</div>
 					</div>
 				</div>
-				<div class="list" id="form_login">
+				<div class="list" id="">
 				    <div class="item-content item-input">
 				      	<div class="item-inner">
-					        
-					        <div class="item-input-wrap">
-					          <input id="login" type="email" validate class="" name="email" placeholder="seuemail@mail.com" onblur="Padrao(this)" style="border: none;" autocomplete="off">
-					        </div>
-							<br>
-					        <div class="item-input-wrap">
-					          <input id="senha" type="password" validate class="" name="senha" placeholder="************" onblur="Padrao(this)" style="border: none;" autocomplete="off">
-					        </div>
+					        <form id="form_login">
+						        <div class="item-input-wrap">
+						          <input id="login" type="email" validate class="" name="email" placeholder="seuemail@mail.com" onblur="" style="border: none;" autocomplete="off">
+						        </div>
+								<br>
+						        <div class="item-input-wrap">
+						          <input id="senha" type="password" validate class="" name="senha" placeholder="************" onblur="" style="border: none;" autocomplete="off">
+						        </div>
 
-					        <button class="btn btn-success btn-lg btn-block btn-no-border" onClick="login_user();" style="color: white;width: 100%;position: relative;top: 13px;" id="" name="entrar"> Entrar </button>
+						        <button class="btn btn-success btn-lg btn-block btn-no-border" onClick="login_user();" style="color: white;width: 100%;position: relative;top: 13px;" id="" name="entrar"> Entrar </button>
 
-					        <div style="text-align: center; margin-top: 28px">
-								<a href="#" style="color:gray" onclick="esqueciMinhaSenha()">Esqueci a minha Senha </a> 
-							</div>
-
+						        <div style="text-align: center; margin-top: 28px">
+									<a href="#" style="color:gray" onclick="esqueciMinhaSenha()">Esqueci a minha Senha </a> 
+								</div>
+							</form>
 				      	</div>
 				    </div>
 				</div>

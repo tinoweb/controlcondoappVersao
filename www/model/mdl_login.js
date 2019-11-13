@@ -39,7 +39,7 @@ function login_user_device(){
 
 							if(retorno[0]['usar_control_condo'] == 1){
 							
-							console.log("PERMITIDO CONTROLCONDO....");
+								console.log("PERMITIDO CONTROLCONDO....");
 
 								//alert('credito:'+retorno[0]['qtd_credito_liberacao']);
 								$( "#DADOS #ID_USER" ).val(retorno[0]['id_usuario_condominio']);
