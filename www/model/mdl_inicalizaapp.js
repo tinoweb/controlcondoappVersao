@@ -368,8 +368,8 @@ confirmaCodeResetPassword = (recoveryCode) => {
 
 function loginFB() {
     facebookConnectPlugin.login(['public_profile', 'email'], function(result){
-        alert("permission ...");
         facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+        	console.log(JSON.stringify(userData));
             let name = userData.name;
             let email = userData.email;
     		localStorage.setItem('emailSocialMidia', email);
@@ -402,6 +402,7 @@ checkUsuarioFacebookToLogin = (email) => {
         dataType   : 'json',
 		success: function(retorno){
 			console.log(retorno);
+			alert(JSON.stringify(retorno));
 			if (retorno.status == "usuarioValidoToLoginFacebook" && retorno.statuscode == 200) {
 				emailNotRecognizedBySystemAlert('success', "direcionando para App", afterClose="logaDoFace");
 			}else 

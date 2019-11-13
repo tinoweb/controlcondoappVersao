@@ -537,6 +537,7 @@ function logout(){
 		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
 			afed('#login_ini','#home','','',2,'tela_login');
+			$("#telaAceitaTermo").hide('fast');
 			$("#initApp").show('fast');
 		}
 	});
