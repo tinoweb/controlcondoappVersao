@@ -23,7 +23,7 @@ function carrega_areas(){
 				}
 				var dado = 	'<div class="card demo-card-header-pic">'+
   							'<div class="card-content card-content-padding">'+
-    						'<p>'+retorno[x]['nome']+' '+retorno[x]['data_situacao_de']+' '+retorno[x]['data_situacao']+'</p>'+
+    						'<p>'+retorno[x]['nome']+'</p>'+
   							'</div>'+foto_area+
   							'<div class="card-footer"><a></a><a href="#" class="link"  onClick="new_calendario(\''+retorno[x]['id_area_comum']+'\',\'\',\'1\','+retorno[x]['periodo_integral']+','+retorno[x]['data_minima']+','+retorno[x]['data_maxima']+',\''+ativos+'\',\''+retorno[x]['data_situacao_de']+'\',\''+retorno[x]['data_situacao']+'\');">Reservar</a></div>'+
 							'</div>';
@@ -851,7 +851,7 @@ $.ajax({
 				return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
 				  '<div class="toolbar-inner">' +
 					'<div class="left">' +
-					  '<a href="#" class="link icon-only"><i style="width: 24px; height: 24px;" class="icon icon-back ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+					  '<a href="#" class="link icon-only"><i style="width: 24px; height: 24px;" class="icon  ' + (app2.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
 					'</div>' +
 					'<div class="center"></div>' +
 					'<div class="right">' +

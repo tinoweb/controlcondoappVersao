@@ -9145,7 +9145,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 	},
 
 	_updateIcon: function( checked ) {
-		var toAdd = "ui-icon ui-icon-background ";
+		var toAdd = "ui-icon ui-ground ";
 
 		if ( this.options.icon ) {
 			if ( !this.icon ) {

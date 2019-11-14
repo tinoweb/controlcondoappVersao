@@ -317,7 +317,7 @@ function altera_menu(){
 
 
 
-function abre_photo(valor){
+function abre_photo(valor,index=0){
 
 	let links        = valor.split("**");
 	let format_links = '';
@@ -326,9 +326,10 @@ function abre_photo(valor){
 	for(x in links){
     	format_links += ',"'+links[x]+'"';
     }
-
-	/* Monta funcao dinamicamente com valores do array */
-	var build_funcion_photo = new Function('', 'var myPhotoBrowserStandalone = app2.photoBrowser.create({ photos:['+format_links.substr(1)+'] });  myPhotoBrowserStandalone.open();');
+	
+	
+//	/* Monta funcao dinamicamente com valores do array */
+	var build_funcion_photo = new Function('', 'var myPhotoBrowserStandalone = app2.photoBrowser.create({ photos:['+format_links.substr(1)+'], swiper: { lazy: { enabled: false, } } });  myPhotoBrowserStandalone.open('+index+');');
     
 	/* chama funcao */
 	build_funcion_photo();

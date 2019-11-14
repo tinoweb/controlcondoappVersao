@@ -6175,7 +6175,7 @@ i.icon {
   font-style: normal;
   position: relative;
 }
-.ios .icon-back,
+.ios .,
 .ios .icon-prev {
   width: 12px;
   height: 20px;
@@ -6189,7 +6189,7 @@ i.icon {
 .ios .icon-prev {
   width: 10px;
 }
-.ios .icon-back,
+.ios .,
 .ios .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M.18261596%209.4221638c.0352203-.05148305.07573462-.10050698.1215468-.14631917L9.1425872.4374202c.5830904-.58309038%201.52656832-.5849888%202.11643872.00488163.5857864.58578644.591222%201.53009836.0048816%202.11643873L3.82594417%209.9967039l7.43188553%207.4318855c.5830904.5830904.5849888%201.5265683-.0048817%202.1164387-.5857864.5857865-1.5300983.591222-2.11643868.0048816L.2980849%2010.7114853c-.3526746-.3526746-.3939974-.89699-.11546894-1.2893215z'%20fill%3D'%23007aff'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
@@ -6216,9 +6216,9 @@ i.icon {
 .ios .list .icon {
   color: #808080;
 }
-.ios .color-theme-red .icon-back,
-.ios .icon-back.color-red,
-.ios a.link.color-red .icon-back,
+.ios .color-theme-red .,
+.ios ..color-red,
+.ios a.link.color-red .,
 .ios .color-theme-red .icon-prev,
 .ios .icon-prev.color-red,
 .ios a.link.color-red .icon-prev {
@@ -6232,9 +6232,9 @@ i.icon {
 .ios a.link.color-red .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%23ff3b30'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-green .icon-back,
-.ios .icon-back.color-green,
-.ios a.link.color-green .icon-back,
+.ios .color-theme-green .,
+.ios ..color-green,
+.ios a.link.color-green .,
 .ios .color-theme-green .icon-prev,
 .ios .icon-prev.color-green,
 .ios a.link.color-green .icon-prev {
@@ -6248,9 +6248,9 @@ i.icon {
 .ios a.link.color-green .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%234cd964'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-blue .icon-back,
-.ios .icon-back.color-blue,
-.ios a.link.color-blue .icon-back,
+.ios .color-theme-blue .,
+.ios ..color-blue,
+.ios a.link.color-blue .,
 .ios .color-theme-blue .icon-prev,
 .ios .icon-prev.color-blue,
 .ios a.link.color-blue .icon-prev {
@@ -6264,9 +6264,9 @@ i.icon {
 .ios a.link.color-blue .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%23007aff'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-pink .icon-back,
-.ios .icon-back.color-pink,
-.ios a.link.color-pink .icon-back,
+.ios .color-theme-pink .,
+.ios ..color-pink,
+.ios a.link.color-pink .,
 .ios .color-theme-pink .icon-prev,
 .ios .icon-prev.color-pink,
 .ios a.link.color-pink .icon-prev {
@@ -6280,9 +6280,9 @@ i.icon {
 .ios a.link.color-pink .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%23ff2d55'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-yellow .icon-back,
-.ios .icon-back.color-yellow,
-.ios a.link.color-yellow .icon-back,
+.ios .color-theme-yellow .,
+.ios ..color-yellow,
+.ios a.link.color-yellow .,
 .ios .color-theme-yellow .icon-prev,
 .ios .icon-prev.color-yellow,
 .ios a.link.color-yellow .icon-prev {
@@ -6296,9 +6296,9 @@ i.icon {
 .ios a.link.color-yellow .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%23ffcc00'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-orange .icon-back,
-.ios .icon-back.color-orange,
-.ios a.link.color-orange .icon-back,
+.ios .color-theme-orange .,
+.ios ..color-orange,
+.ios a.link.color-orange .,
 .ios .color-theme-orange .icon-prev,
 .ios .icon-prev.color-orange,
 .ios a.link.color-orange .icon-prev {
@@ -6312,9 +6312,9 @@ i.icon {
 .ios a.link.color-orange .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%23ff9500'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-gray .icon-back,
-.ios .icon-back.color-gray,
-.ios a.link.color-gray .icon-back,
+.ios .color-theme-gray .,
+.ios ..color-gray,
+.ios a.link.color-gray .,
 .ios .color-theme-gray .icon-prev,
 .ios .icon-prev.color-gray,
 .ios a.link.color-gray .icon-prev {
@@ -6328,9 +6328,9 @@ i.icon {
 .ios a.link.color-gray .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%238e8e93'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-white .icon-back,
-.ios .icon-back.color-white,
-.ios a.link.color-white .icon-back,
+.ios .color-theme-white .,
+.ios ..color-white,
+.ios a.link.color-white .,
 .ios .color-theme-white .icon-prev,
 .ios .icon-prev.color-white,
 .ios a.link.color-white .icon-prev {
@@ -6344,9 +6344,9 @@ i.icon {
 .ios a.link.color-white .icon-next {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M11.51840604%2010.5648622c-.0352203.05148305-.07573462.10050698-.1215468.14631917L2.5584348%2019.5496058c-.5830904.58309038-1.52656832.5849888-2.11643872-.00488163-.5857864-.58578644-.591222-1.53009836-.0048816-2.11643873L7.87507783%209.9903221.4431923%202.5584366C-.1398981%201.9753462-.1417965%201.0318683.448074.4419979c.5857864-.5857865%201.5300983-.591222%202.11643868-.0048816l8.83842442%208.8384244c.3526746.3526746.3939974.89699.11546894%201.2893215z'%20fill%3D'%23ffffff'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E");
 }
-.ios .color-theme-black .icon-back,
-.ios .icon-back.color-black,
-.ios a.link.color-black .icon-back,
+.ios .color-theme-black .,
+.ios ..color-black,
+.ios a.link.color-black .,
 .ios .color-theme-black .icon-prev,
 .ios .icon-prev.color-black,
 .ios a.link.color-black .icon-prev {
@@ -6387,7 +6387,7 @@ i.icon {
 .ios .icon.color-black {
   color: #000000;
 }
-.md .icon-back {
+.md . {
   width: 24px;
   height: 24px;
 }
@@ -6408,7 +6408,7 @@ i.icon {
   width: 24px;
   height: 24px;
 }
-.md .icon-back {
+.md . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward {
@@ -6420,8 +6420,8 @@ i.icon {
 .md .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23ffffff'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-red,
-.md a.link .color-red .icon-back {
+.md ..color-red,
+.md a.link .color-red . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-red,
@@ -6436,8 +6436,8 @@ i.icon {
 .md a.link .color-red .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23f44336'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-green,
-.md a.link .color-green .icon-back {
+.md ..color-green,
+.md a.link .color-green . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%234caf50'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-green,
@@ -6452,8 +6452,8 @@ i.icon {
 .md a.link .color-green .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%234caf50'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-blue,
-.md a.link .color-blue .icon-back {
+.md ..color-blue,
+.md a.link .color-blue . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%232196f3'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-blue,
@@ -6468,8 +6468,8 @@ i.icon {
 .md a.link .color-blue .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%232196f3'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-pink,
-.md a.link .color-pink .icon-back {
+.md ..color-pink,
+.md a.link .color-pink . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23e91e63'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-pink,
@@ -6484,8 +6484,8 @@ i.icon {
 .md a.link .color-pink .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23e91e63'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-yellow,
-.md a.link .color-yellow .icon-back {
+.md ..color-yellow,
+.md a.link .color-yellow . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23ffeb3b'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-yellow,
@@ -6500,8 +6500,8 @@ i.icon {
 .md a.link .color-yellow .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23ffeb3b'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-orange,
-.md a.link .color-orange .icon-back {
+.md ..color-orange,
+.md a.link .color-orange . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23ff9800'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-orange,
@@ -6516,8 +6516,8 @@ i.icon {
 .md a.link .color-orange .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23ff9800'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-gray,
-.md a.link .color-gray .icon-back {
+.md ..color-gray,
+.md a.link .color-gray . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%239e9e9e'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-gray,
@@ -6532,8 +6532,8 @@ i.icon {
 .md a.link .color-gray .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%239e9e9e'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-white,
-.md a.link .color-white .icon-back {
+.md ..color-white,
+.md a.link .color-white . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-white,
@@ -6548,8 +6548,8 @@ i.icon {
 .md a.link .color-white .icon-prev {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23ffffff'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
 }
-.md .icon-back.color-black,
-.md a.link .color-black .icon-back {
+.md ..color-black,
+.md a.link .color-black . {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
 }
 .md .icon-forward.color-black,
@@ -17554,7 +17554,7 @@ label.item-radio.disabled,
 .md .calendar .toolbar .icon-next,
 .md .calendar .toolbar .icon-prev,
 .md .calendar .toolbar .icon-forward,
-.md .calendar .toolbar .icon-back {
+.md .calendar .toolbar . {
   opacity: 0.54;
 }
 .md .calendar-week-header {

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="39" id="com.controlcondo.phonega" version="1.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget android-versionCode="38" id="com.controlcondo.phonega" version="1.2.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>ControlCondoMobile</name>
     <description>
         Aplicativo ControlCondoMobile.
@@ -7,8 +7,8 @@
     <author email="rbelli@firstcontrol.com.br" href="https://www.controlcondo.com.br">
        First Control Sistemas Inteligentes Ltda. Epp
     </author>
-    <content src="index.html" />
-    <preference name="phonegap-version" value="cli-9.0.0" />
+    <content src="index.html" /> 
+  <!--  <preference name="phonegap-version" value="cli-8.1.1" />-->
     <preference name="DisallowOverscroll" value="true" />
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
@@ -19,7 +19,7 @@
     <preference name="KeyboardResize" value="true" />
     <preference name="KeyboardResizeMode" value="native" />
     <preference name="android-minSdkVersion" value="19" />
-    <preference name="android-targetSdkVersion" value="28" />
+    <preference name="android-targetSdkVersion" value="27" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
@@ -133,6 +133,7 @@
     <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
     <plugin name="cordova-plugin-ionic-keyboard" source="npm" />
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <engine name="android" spec="^7.1.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-file-transfer" spec="1.5.1" />
     <feature name="File">
@@ -142,19 +143,4 @@
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
     <plugin name="cordova-backgroundvideo" spec="0.0.22" />
-    <plugin name="cordova-plugin-customurlscheme" source="npm">
-        <variable name="URL_SCHEME" value="mycoolapp" />
-    </plugin>
-
-    <plugin name="cordova-plugin-facebook4" spec="6.2.0">
-        <variable name="APP_ID" value="519331278795494" />
-        <variable name="APP_NAME" value="controlcondoApp" />
-        <variable name="ANDROID_SDK_VERSION" value="5.5.2" />
-    </plugin>
-
-    <plugin name="cordova-plugin-googleplus" source="npm">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1058499709966-viv6q4mor5jgev1splb9313u3o0cl0n5" />
-        <variable name="WEB_APPLICATION_CLIENT_ID" value="1058499709966-viv6q4mor5jgev1splb9313u3o0cl0n5.apps.googleusercontent.com" />
-    </plugin>
-
 </widget>

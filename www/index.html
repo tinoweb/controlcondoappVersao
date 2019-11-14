@@ -14,6 +14,7 @@
 	<meta name="theme-color" content="#2196f3">
 	<link rel="stylesheet" href="lib/framework7/css/framework7.css">
 	<link rel="stylesheet" href="lib/framework7/css/framework7-icons.css">
+	<link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
 	<!-- end framework7 -->
 	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -58,8 +59,8 @@
 	<script src="model/mdl_chat_adm.js"></script>
 	<script src="model/mdl_morador.js"></script>
 	<script src="model/mdl_pet.js"></script>
-	<script src="model/mdl_relaorio_mcasa.js"></script>
 	<script src="model/mdl_cameras.js"></script>
+	<script src="model/mdl_relaorio_mcasa.js"></script>
 	<script src="model/mdl_notificacao.js"></script>
 	<script src="model/mdl_veiculos.js"></script>
 	<script src="model/mdl_contatos.js"></script>
@@ -262,8 +263,9 @@
 		}  
 	
 	</script>
+
 </head>
-<body >
+<body> 
 	<div id="app">
 		<div id="fb-root"></div>
 		<form id="DADOS" style="display: none;">
@@ -395,7 +397,247 @@
 			<div class="preloader color-multi" style="margin-top: 70%"><span class="preloader-inner"><span class="preloader-inner-gap"></span><span class="preloader-inner-left"><span class="preloader-inner-half-circle"></span></span><span class="preloader-inner-right"><span class="preloader-inner-half-circle"></span></span></span></div>
 			<!--<img alt="" src="img/aguarde.gif" width="50" style="margin-top: 70%">-->
 		</div>
+		
+		
+	<!--	SKELETON COMUNICADO -->
+		
+		<div id="skul-comunicado" style="display: none;">
+		
+  			 <div class="navbar" style="height: 50px">
+                <div class="navbar-inner">
 
+					<a href="#" onClick="voltar('#home','#comunicados','home');"><i class=" icon-back"></i></a> <span class="title">Comunicado</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
+					</div>
+				</div>
+				
+            </div>
+											<!-- Searchbar backdrop -->
+				    <div class="searchbar-backdrop"></div>
+		<div id="" class="card skeleton-text skeleton-effect-blink" style="border: solid;" >
+			<div class="cabecalho_card card-header">
+				<div class="noti_tipo">Comunicado</div>
+			</div>
+				<div class="p_comunicado" style="margin: 19% 0 11px 3%;">
+				<div class="topo_comunicado">
+					<div class="chip" style="">
+						<div class="chip-media ">
+							<span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span>
+						</div>
+						<div class="chip-label">aaaaaaaaaaaaa </div></div><br>
+					<div class="chip" style="">
+						<div class="chip-media "><i class="fa fa-group"></i></div>
+						<div class="chip-label">Grupo: bbbbbbbbbbbbbbdfsfsdfdf</div>
+					</div><br>
+					<div class="chip" style="">
+						<div class="chip-media "> <span style="color:white" class="fa fa-edit"></span></div>
+						<div class="chip-label">ccccccccc ddddddd </div>
+					</div><br>
+					<div class="chip" style="">
+					<div class="chip-media"><i class="fa fa-calendar"></i></div>
+					<div class="chip-label">Data: dddfffffffffffffffffsssssssssssss</div>
+					</div></div>
+				</div>
+			<div class="card-footer" style="height: 8px !important;"></div>
+		</div>
+			<div id="" class="card skeleton-text skeleton-effect-blink" style="border: solid;" >
+			<div class="cabecalho_card card-header">
+				<div class="noti_tipo">Comunicado</div>
+			</div>
+				<div class="p_comunicado" style="margin: 19% 0 11px 3%;">
+				<div class="topo_comunicado">
+					<div class="chip" style="">
+						<div class="chip-media ">
+							<span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span>
+						</div>
+						<div class="chip-label">aaaaaaaaaaaaa aaaaaaaaaaa</div></div><br>
+					<div class="chip" style="">
+						<div class="chip-media "><i class="fa fa-group"></i></div>
+						<div class="chip-label">Grupo: bbbbbbbbbbbbbb</div>
+					</div><br>
+					<div class="chip" style="">
+						<div class="chip-media "> <span style="color:white" class="fa fa-edit"></span></div>
+						<div class="chip-label">ccccccccc ddddddd </div>
+					</div><br>
+					<div class="chip" style="">
+					<div class="chip-media"><i class="fa fa-calendar"></i></div>
+					<div class="chip-label">Data: dddfffffffffuuuuuuuuuuuuuuuuuuuuuuu</div>
+					</div></div>
+				</div>
+			<div class="card-footer" style="height: 8px !important;"></div>
+		</div>
+			<div id="" class="card skeleton-text skeleton-effect-blink" style="border: solid;" >
+			<div class="cabecalho_card card-header">
+				<div class="noti_tipo">Comunicado</div>
+			</div>
+				<div class="p_comunicado" style="margin: 19% 0 11px 3%;">
+				<div class="topo_comunicado">
+					<div class="chip" style="">
+						<div class="chip-media ">
+							<span style="font-size:1.6em;color:white" class="fa fa-user-circle"></span>
+						</div>
+						<div class="chip-label">aaaaaaaaaaaaa aaaaaaaaaaassssssssssssssssssss</div></div><br>
+					<div class="chip" style="">
+						<div class="chip-media "><i class="fa fa-group"></i></div>
+						<div class="chip-label">Grupo: bbbbbbbbbb</div>
+					</div><br>
+					<div class="chip" style="">
+						<div class="chip-media "> <span style="color:white" class="fa fa-edit"></span></div>
+						<div class="chip-label">ccccccccc dddddfffdd </div>
+					</div><br>
+					<div class="chip" style="">
+					<div class="chip-media"><i class="fa fa-calendar"></i></div>
+					<div class="chip-label">Data: dddssssssssssssssssssssss</div>
+					</div></div>
+				</div>
+			<div class="card-footer" style="height: 8px !important;"></div>
+		</div>
+			
+			
+
+		</div>
+		
+		
+		
+		<!--SKELETON CORRESPONDENCIA -->
+<div id="skull_correspondencia" style="display: none">
+	
+            <div class="navbar" style="height: 50px">
+                <div class="navbar-inner">
+
+					<a href="#" onClick="voltar('#home','#entregas','home');"><i class=" icon-back"></i></a> <span class="title">Entregas</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
+					</div>
+				</div>
+				
+            </div>	
+	
+<div class="list media-list" style="margin-top: -5%">
+			  <ul style="padding-left: 5px !important;">
+				<li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					 <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL </div>
+					  </div>
+					 <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					 <div class="item-title-row">
+						<div class="item-title">FIRST CONTROL SISTEMA  LTDA</div>
+					 </div>
+					 <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					<div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE </div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INT</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					  <div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL </div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					 <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE LTDA</div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 				 <li class="item-content skeleton-text skeleton-effect-blink">
+					<div class="item-media">
+					 	<div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+							<div class="item-title">FIRST CONTROL SISTEMA INTELIGENTE </div>
+					  </div>
+					  <div class="item-text">00-00-0000 00:00</div>
+					</div>
+				 </li>
+ 
+
+
+			 </ul>
+			 </div>		
+		
+		</div>
+			
 		<div id="downloadProgress">
 			<div class="block-strong">
 				<p>Download</p>
@@ -1106,7 +1348,7 @@
 						</div>
 						</a>
 						</li>
-						<li id="relatorio_casa" onClick="carregar_minha_casa();" >
+							<li id="relatorio_casa" onClick="carregar_minha_casa();" >
 						    <a class="item-content item-link" href="/checkbox/">
 							 <div class="item-media"><i class="fa fa-home"></i></div>
 							  <div class="item-inner">
@@ -1134,7 +1376,7 @@
 <div id="info" class="pagina info">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a href="#" onClick="afed('#home','#info','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a href="#" onClick="afed('#home','#info','','',2,'home');"><i class=" icon-back"></i></a> </div>
 			<div class="title">Informações</div>
 		</div>
 	</div>
@@ -1158,7 +1400,7 @@
 <div id="perfil2" class="pagina">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a href="#" onClick="afed('#home','#perfil2','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a href="#" onClick="afed('#home','#perfil2','','',2,'home');"><i class=" icon-back"></i></a> </div>
 			<div class="title">Perfil do Usuário</div>
 		</div>
 	</div>
@@ -1221,7 +1463,7 @@
 	<div id="config" class="pagina">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner" >
-				<div class="left"> <a href="#" onClick="afed('#home','#config','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="afed('#home','#config','','',2,'home');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Conf. de Notificações</div>
 			</div>
 		</div>
@@ -1384,7 +1626,7 @@
 	<div id="moradores" class="pagina moradores">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a href="#" onClick="afed('#home','#moradores','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="afed('#home','#moradores','','',2,'home');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Moradores</div>
 				<div class="right">
 					<!--<a href="#"  onClick="carrega_morador_dados(0)">
@@ -1404,7 +1646,7 @@
 	<div id="morador" class="pagina morador2">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a id="voltar_morador" href="#" onClick=""><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a id="voltar_morador" href="#" onClick=""><i class=" icon-back"></i></a> </div>
 				<div class="title">Morador</div>
 			</div>
 		</div>
@@ -1582,6 +1824,7 @@
 				<div class="sheet-modal veiculo-morador" style="height: 100%;">
     				<div class="toolbar">
 					  	<div class="toolbar-inner">
+
 							<div class="left"></div>
 							<div class="right"><a class="link sheet-close" href="#">Fechar</a></div>
 					  	</div>
@@ -1733,7 +1976,7 @@
 	<div id="fale_msg" class="pagina fale_msg">
 		<div class="page" id="page_chat">
 			<div id="fale_msg_user" class="fale_msg_user">
-				<div onClick="limpa_reload();afed('#home','#fale_msg','','',2,'home');carrega_chat();" id="fale_msg_user_volta" class="fale_msg_user_volta"> <i class="icon icon-back"></i> </div>
+				<div onClick="limpa_reload();afed('#home','#fale_msg','','',2,'home');carrega_chat();" id="fale_msg_user_volta" class="fale_msg_user_volta"> <i class=" icon-back"></i> </div>
 				<div id="fale_msg_user_foto" class="fale_msg_user_foto"></div>
 				<div id="fale_msg_user_nome" class="fale_msg_user_nome"> <span class="item-title">Nome Morador</span> </div>
 			</div>
@@ -1752,24 +1995,31 @@
 		</div>
 
 		<!--    $COMUNICADOS     -->
-
+  
 		<div id="comunicados" class="pagina comunicados">
 			<div class="view view-comunicados"> 
 				<!-- Initial Page, "data-name" contains page name -->
 				<div data-name="home" class="page">
-					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner"  style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#home','#comunicados','home');"><i class="icon icon-back"></i></a>
-							<div class="title">Comunicados</div>
-						</div>
+       <div class="navbar" style="height: 50px">
+                <div class="navbar-inner">
+
+					<a href="#" onClick="voltar('#home','#comunicados','home');"><i class=" icon-back"></i></a> <span class="title">Comunicado</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".comunicadobusca_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
 					</div>
-					<form class="searchbar" id="form_busca_comunicados" style="width: 100%; margin-top: -7px">
+				</div>
+				
+            </div>
+					<form class="searchbar" id="form_busca_comunicadoss" style="width: 100%; margin-top: -7px;display: none">
 						<div class="searchbar-inner">
-							<div class="searchbar-input-wrap">
-								<input type="search" placeholder="Busca" name="busca" id="busca_comunicados">
+							<div class="searchbar-input-wrap" style="height:56px !important;">
+								<input type="search" placeholder="Busca" name="buscad" id="busca_comunicadoss">
 								<i class="searchbar-icon"></i> <span class="input-clear-button" onClick="carrega_comunicados(4)"></span> </div>
 								<span class="searchbar-disable-button" onClick="carrega_comunicados(3)">Cancela</span> 
                         </div>
-								<!-- <button type="button" onClick="carrega_liberacao(0)">Buscar</button> -->
+								
 					</form>
 							<!-- Searchbar backdrop -->
 				    <div class="searchbar-backdrop"></div>
@@ -1779,21 +2029,64 @@
                         <div class="ptr-preloader">
                             <div class="preloader"></div>
                             <div class="ptr-arrow"></div>
-                        </div>
-                        <div id="main_comunicado" class="list media-list searchbar-found" style="height: 90% !important"></div>
+                        </div> <!--searchbar-found-->
+                        <div id="main_comunicado" class="list media-list " style="height: 90% !important;margin-top: -6%"></div>
                     </div>
 				</div>
                 </div>
+			
+			
+		<div class="sheet-modal comunicadobusca_modal" id="comunicadobusca_modal" style="height: 40%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa-bullhorn" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_buscent" href="#">Fechar</a></div>
+			</div>
+		</div>
+		<div class="item-input-wrap">
+			<form id="form_busca_comunicados" class="list" style="margin-top: 3%;margin-left: 10%;margin-right: 10%;"> 
+   				
+				<div class="col-md-12 " >
+					
+					 <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label" style="font-size:15px;text-align: center">Buscar</div>
+						  <div class="item-input-wrap">
+							<input type="text" name="busca" id="busca_comunicados"style="border: none;margin-bottom: 3%" placeholder="Título do Comunicado">
+							  
+							  
+						  </div>
+						</div>
+				  </div>
+					<button type="button" onClick="carrega_comunicados(0)" class="col button button-raised button-fill col-md-12 sheet-close">Buscar</button>
+					
+				</div>
+			</form>
+		</div>
+	</div>		
+			
+			
+			
+			
+			
+			
         </div>
 				<!-- Pagina Anexo dos Comunicados -->
 				<div id="comunicados2" class="pagina comunicados2">
 					<div class="navbar" style="height: 50px">
-						<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#comunicados','#comunicados2','comunicados');"><i class="icon icon-back"></i></a>
+						<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="voltar('#comunicados','#comunicados2','comunicados');"><i class=" icon-back"></i></a>
 							<div class="title">Comunicado</div>
 						</div>
 					</div>
 					<div class="scroll" style="height: 87%">
 						<div class="comunicado">
+							
+							<span style="padding-left: 9px;"class="comunicado_titulo">titulo</span>
+							<h3 id=""> </h3>
+							
+							
+							
+							
 							<div class="topo_comunicado">
 								<div class="morador_foto"></div>
 								<div class="col-md-2 icon_without_comu"></div>
@@ -1804,7 +2097,7 @@
 								
 								
 							</div>
-								<span style="background-color: #e4d43a;padding-left: 9px;color: white;"class="comunicado_titulo">titulo</span>
+								
 								<div id="txt_comunicado" class="txt_comunicado" style="word-break: break-word;">texto texto</div>
 								<div id="anexos_comunicado" class="anexos_comunicado"></div>
 								<div id="comentario_curtir" class="comentario_curtir"> 
@@ -1823,7 +2116,7 @@
 				<!--  Pagiina comentario em comunicado -->
 					<div id="comunicados_comentario" class="pagina comunicados_comentario">
 						<div class="navbar" style="height: 50px">
-							<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="afed('#comunicados2','#comunicados_comentario','','',1);"><i class="icon icon-back"></i></a> <span class="title">Comunicado</span> </div>
+							<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;"> <a href="#" onClick="afed('#comunicados2','#comunicados_comentario','','',1);"><i class=" icon-back"></i></a> <span class="title">Comunicado</span> </div>
 						</div>
 						<form id="form_comenta">
 							<div class="form-group" >
@@ -1938,7 +2231,7 @@
 	</div>
 	
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#liberacao2','','',2,'liberacao_list');"><i class=" icon-back"></i></a>
 			<div class="title">Cadastro de Autorização</div>
 		</div>
 	</div>
@@ -2100,7 +2393,7 @@
 		<!-- Initial Page, "data-name" contains page name -->
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px;">
-				<div class="navbar-inner"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="link popup-close" href="#"><i class=" icon-back"></i></a>
 					<div class="title">Minhas liberações</div>
 				</div>
 			</div>
@@ -2134,7 +2427,7 @@
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner"> 
-                    <a class="link popup-close" href="#"><i class="icon icon-back"></i></a>
+                    <a class="link popup-close" href="#"><i class=" icon-back"></i></a>
 					<div class="title">Ultimos Acessos</div>
 				</div>
 			</div>
@@ -2174,7 +2467,7 @@
 <div id="visitante" class="pagina visitante">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#visitantes','#visitante','','',2,'visitantes')"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#visitantes','#visitante','','',2,'visitantes')"><i class=" icon-back"></i></a> </div>
 			<div class="title" style="font-size: 16px">Cadastro de Visitante</div>
 		</div>
 	</div>
@@ -2330,7 +2623,7 @@
 	<div class="topo_sub" style="background-color:#437efc;">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#visitantes','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#visitantes','','',2,'home');"><i class=" icon-back"></i></a> </div>
 				<div class="title" style="font-size: 16px">Cadastro de Autorizado</div>
 				<div class="right"><span onClick="novo_visitante()" style="font-size: 1.5em; margin-right: 12px;" class="fa fa-plus-circle"></span> <!--<img alt="" onClick="novo_visitante()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARGSURBVHhe7ZpJaBRBGIXjgqIHF4iCGyrxoB6iREU9uVxdQFQwevESPetFQXA7qvGkoqAHE5UwCAp6U4wLhGQmkwxJQBnISVGJiPsCCRm/f/iF2JRJqru60oF+8Ogm6f+9V38vU71UpEiRIkWKFPGiVCpN6OjoWNne3r43l8udgFdYvwkzrDfCa/A0rIU1zc3Nk7V0/KKlpWUaAzygg/zAsmTBr9Q8yOfzh7q6umar5PhAZ2fnEsJfYhCfA4MKRbR+s7zDEbRKLZKJQqEwl6DXYf/f8C5JIwbhPY6KZWqZHBCwjnCfgqFj4k94MhHXCQ73WYTJDAnnjTT8Of4LNIp/cCguJsRLUziPfE+ONRrJHzBdweDfGAKNBb9ms9lNGi1+tLa2LsT0dSDEmJKd8R2u14jxAbOZGBWDAZJAcvWxc5Zq1HiA0d2gccKY7enpmaJx3QLxuoBZIsmRcF4juwOzsDkIx/E7P2D4W1T2c5Gu1uhugOiNgElU/oLbM5nMJMJuZP3dkP+54FONHh0yt0fQ9fT2qsqXwdF11LBNVG5V+Wgg3GWDeFQeV/ky8Nhm2CYS0Xys8uGB0HT4ZaiwI/pogNw8ValFOCBQaxJ3wNgboDylFuGAQFw3Ol4agG5BLewhj7EQsH2SM1r6asAgy0q1sYM+wzMKO6CvU0C4S23sQKg9BjFX9NYAtE+ojR2k0CToiD4b0Kg2dqBQHl0bRYehzPCuUntsOLLNBrUpg79VBbcJkpp6+BGafP9LasPNByhuCIqNRKa1O7Q8Fuh1yXZW2qbldqDQ9idwQOb2Wh4b2KNWj+HYvktL7UDhLZPgCPzn0HYNjrD5eMhpZvI2knHktNwO1FlfA6h5C4+wvncELlebMqiZZ9jmH7LNYZavoNH7f6TuidrYgcIzJkFH9Pkr0KQ2dqBwv0nQEX024Iza2IHCGpOgI/psQK3a2EFePSEQx62w0FsDstnsIrWxB8EemkQd0EsD0C2qRTggIFdeo3hE+mrABbUIB/k4ARF5P280iEAvDWhra1utFuFBuNsm8YiMvQFo5lU+GuTLDMTkwYLRKCTrVb4M9J2falz8dqt8dCB4P2gQkR/lDbNoM3iZBVrP8EZgd6lUmlgO7wKErELUag4+CvajKzc28sWH6f+hKEcr3KLR3QHxk0GzhLJBI7uF3OrS2RcGwySxF87UyO4hH0fQhL6AaSJIrh+wRqPGBy5eazB08g2gQw5w1d+pEeMHnd4MvxmCjAXlFftBjeYPdHxdAk6Hn173fBDyTQ5NyBmC+WAvp+NajTJ2KBaLU+nBOQLF8olskHjJrLSB5s/QCMkAe6OacM+CgR2zBw/3kxyXkIDwse4p0yCsiVZe5vZOp7dxg9AyfT7FshCmGdTI94gXE/+Z/GjAQCrhLgYl7xvljdMj1uXi2S0LKEdMEzzLnt4Hwz/GSpEiRYoUKVKMDhUVfwAInmQ611X6iwAAAABJRU5ErkJggg==" width="30" style="float: right;">--> </div>
 			</div>
@@ -2381,7 +2674,7 @@
 </div>
 <div id="qrcode" class="qrcode pagina"  style="background-color: #EAEBED;">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#qrcode','','',2,'home');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="openPopUp();afed('#home','#qrcode','','',2,'home');"><i class=" icon-back"></i></a>
 			<div class="title">QR Code</div>
 		</div>
 	</div>
@@ -2400,7 +2693,7 @@
 </div>
 <div id="qrcode_share" class="pagina">
 	<div class="navbar" style="height: 50px">
-		<div class="navbar-inner"> <a href="#" onClick="afed('#qrcode','#qrcode_share','','',2,'qrcode');"><i class="icon icon-back"></i></a>
+		<div class="navbar-inner"> <a href="#" onClick="afed('#qrcode','#qrcode_share','','',2,'qrcode');"><i class=" icon-back"></i></a>
 			<div class="title">Compartilhe QR Code</div>
 		</div>
 	</div>
@@ -2418,7 +2711,7 @@
 <div id="reservas" class="pagina reservas">
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner">
-			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#reservas','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#reservas','','',2,'home');"><i class="icon-back"></i></a> </div>
 			<div class="title" style="font-size: 16px">Reserva de Áreas Comuns</div>
 			<div class="right"> <a class="link" href="#" onClick="carrega_minha_reserva('0');"><i class="f7-icons">search</i></a> </div>
 		</div>
@@ -2433,7 +2726,7 @@
         <div data-name="home" class="page">
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner">
-                    <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#m_reserva','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+                    <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#m_reserva','','',2,'reservas');"><i class=" icon-back"></i></a> </div>
                     <div class="title" style="font-size: 16px">Minhas Reservas</div>
                     <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
                 </div>
@@ -2455,7 +2748,7 @@
     <div class="view view-minha-reserva">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');carrega_areas();"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#reservas','#minha_reservas','','',2,'reservas');carrega_areas();"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Minhas Reservas</div>
                 <div class="right"> <a class="link popup-open" href="#" data-popup=".pop-filtro"><i class="f7-icons">filter</i></a> </div>
             </div>
@@ -2472,7 +2765,7 @@
 <div class="popup pop-filtro" style="display: none;">
     <div class="navbar" style="height: 50px">
         <div class="navbar-inner">
-            <div class="left"> <a class="link popup-close" href="#"><i class="icon icon-back"></i></a> </div>
+            <div class="left"> <a class="link popup-close" href="#"><i class=" icon-back"></i></a> </div>
             <div class="title" style="font-size: 16px">FILTRO</div>
         </div>
     </div>
@@ -2527,6 +2820,7 @@
             </li>
         </ul>
     </div>
+
 </div>
 	
 	
@@ -2575,7 +2869,7 @@
 <div id="area" class="pagina area">
 	<div class="navbar" style="height: 50px;margin-bottom:0px">
 		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-			<div class="left"> <a href="#" onClick="afed('#area_comum_new','#area','','',2,'reservas');"><i class="icon icon-back"></i></a> </div>
+			<div class="left"> <a href="#" onClick="afed('#area_comum_new','#area','','',2,'reservas');"><i class=" icon-back"></i></a> </div>
 			<span class="title" style="font-size: 16px">Data do Evento</span>
 		</div>
 		</div>
@@ -2747,7 +3041,7 @@
 	<div id="reserva" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a id="voltar_add_reserva" href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a id="voltar_add_reserva" href="#" onClick="afed('#area','#reserva','','',2,'area');"><i class=" icon-back"></i></a> </div>
 				<span class="title" style="font-size: 16px">Data do Evento</span> 
 			</div>
 		</div>
@@ -2767,7 +3061,6 @@
 				<form name="add_reserva" id="add_reserva" style="height:100%; padding: 3%;" >
 					<input type="hidden" name="tipo" id="add_reserva_tipo">
 					<input type="hidden" name="id" id="add_reserva_id">
-					<input type="hidden" name="confirma_reserva" id="confirma_reserva" value="">
 					<div class="item-inner">
 						<div class="item-title item-label">Data</div>
 						<div class="item-input-wrap"> <span id="add_reserva_data">10/10/2017</span>
@@ -2827,7 +3120,7 @@
 	<div id="area_comum_new" class="pagina">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner">
-				<div class="left"> <a class="link" href="#" onClick="afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas');fecha_calendario();"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a class="link" href="#" onClick="afed('#reservas','#area_comum_new,#bt_add_reserva','','',2,'reservas');fecha_calendario();"><i class=" icon-back"></i></a> </div>
 				<div class="title" style="font-size: 16px">Reserva de Áreas Comuns</div>
 			</div>
 		</div>
@@ -2862,19 +3155,29 @@
 	    <div data-name="home" class="page">
             <div class="navbar" style="height: 50px">
                 <div class="navbar-inner">
-					<a href="#" onClick="voltar('#home','#entregas','home');"><i class="icon icon-back"></i></a> <span class="title">Entregas</span> </div>
+
+					<a href="#" onClick="voltar('#home','#entregas','home');"><i class=" icon-back"></i></a> <span class="title">Entregas</span>
+				<div class="right"> 
+					
+					<a href="#"  onclick="limpa_campobusca()" data-sheet=".buscentrg_modal" class="sheet-open material-icons">
+					<span id="filtro_encomenda" class="fa fa-filter"  style="margin-right: 15px"></span> </a>
+					</div>
+				</div>
+				
             </div>
 			<div class="box" id="boxUp_entregas"></div>
-			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 60px; padding-bottom: 10px; background-color: #EAEBED;">
+			<div class="page-content ptr-content infinite-scroll-content" data-ptr-distance="55" id="pull-entregas" style="padding-top: 18px; padding-bottom: 10px; background-color: #EAEBED;">
 				<div class="ptr-preloader">
 					<div class="preloader"></div>
 					<div class="ptr-arrow"></div>
 				</div>
 				<div class="list">
 				  	<ul id="main_correspondencia">
+						
 						<!--RETORNO DOS DADOS CORRESPODENCIA-->
 				  	</ul>
 				</div>
+
 				
 				
 	<div class="sheet-modal entregaqr_modal" id="entregas_qrcode" style="height: 92%; display: block; display: none">
@@ -2901,13 +3204,93 @@
 			</form>
 		</div>
 	</div>
-				<!--<div class="preloader infinite-scroll-preloader"></div>-->
+
+		<div class="sheet-modal buscentrg_modal" id="busc_entregas" style="height: 70%; display: block; display: none">
+		<div class="toolbar">
+			<div class="toolbar-inner">
+				<div class="left"><span class="fa fa fa-truck" style="margin-left: 10px;"></span></div>
+				<div class="right"><a class="link sheet-close" id="fecha_buscent" href="#">Fechar</a></div>
+			</div>
+		</div>
+		<div class="item-input-wrap">
+			<form id="busca_entregas" class="list"  style="margin-top: 3%;margin-left: 10%;margin-right: 10%;max-height: 35%;height: 385px !important;overflow: scroll;"> 
+   				
+				<div class="col-md-12 " >
+					
+					 <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label" style="font-size:15px;text-align: center">Responsável por retirar</div>
+						  <div class="item-input-wrap">
+							<input type="text"  id="respons_retirar" style="border: none" name="respons_retirar" placeholder="Nome">
+						  </div>
+						</div>
+				  </div>
+					 <div class="item-content item-input">
+					
+					 
+						  <a class="item-link smart-select smart-select-init sheet-close">
+  							  <select name="status_encomenda" onChange="status_encomenda_filtro()" id="status_encomenda" >
+     							 <option value="" selected>Selecione...</option>
+     							 <option value="1">A retirar</option>
+									<option value="2">Entregue</option>
+							  </select>
+							<div class="item-content">
+								  <div class="item-inner" id="resultado_selc" style="border-bottom: solid rgba(0, 0, 0, 0.65) 0.2px;margin-bottom: 3%;margin-left: -7%;">
+									<div class="item-title" style="font-size:15px;padding-left: 50%;width: 255px">Status</div>
+								  </div>
+							</div>
+					     </a>
+				 
+				  </div>
+					<div class="item-title item-label" style="font-size:15px;text-align: center">Por data de recebimento</div>
+					  <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label">De :</div>
+						  <div class="item-input-wrap">
+							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%;max-width: 64vw !important;" id="recb_in">
+						  </div>
+						</div>
+					  </div>
+   					  <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label">Até :</div>
+						  <div class="item-input-wrap">
+							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%;max-width: 64vw !important;" id="recb_fm" >
+						  </div>
+						</div>
+					  </div>
+					<div class="item-title item-label" style="font-size:15px;text-align: center">Por data de Entrega</div>
+					  <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label">De :</div>
+						  <div class="item-input-wrap">
+							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%; max-width: 64vw !important;" id="entr_in">
+						  </div>
+						</div>
+					  </div>
+                     
+					  <div class="item-content item-input">
+						<div class="item-inner">
+						  <div class="item-title item-label">Até :</div>
+						  <div class="item-input-wrap">
+							<input type="datetime-local" style="border-color: white !important;background-color: white !important;width: 100%;max-width: 64vw !important;" id="entr_fm">
+						  </div>
+						</div>
+					  </div>
+                      <input type="hidden" id="encd_sttus" value="">
+					<span type="button" class="btn btn-success sheet-close"   onClick="buscar_encomenda()" style="margin-top: 2%; width: 100%">Buscar</span>
+					
+				</div>
+				
+			</form>
+		</div>
+	</div>
+			<!--<div class="preloader infinite-scroll-preloader"></div>-->
+
 			</div>
 		</div>
 	</div>
-</div>
-
-		
+		</div>	 	
 <!---   $ENQUETES         -->
 <div id="enquetes" class="pagina enquetes">
 	<div class="view view-enquetes"> 
@@ -2917,7 +3300,7 @@
 				<div class="navbar-inner" style="padding-right: 8px;padding-left: 9px;">
 					<div class="left"> 
 						<a type="button" href="#" onClick="voltar('#home','#enquetes','home');">
-							<i class="icon icon-back"></i>
+							<i class=" icon-back"></i>
 						</a> 
 					</div>
 					<div class="title">Enquetes</div>
@@ -2947,7 +3330,7 @@
 	<div class="navbar" style="height: 50px">
 		<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
 			<div class="left"> 
-				<a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class="icon icon-back"></i></a> 
+				<a href="#" onClick="voltar('#enquetes','#enquete','enquetes');"><i class=" icon-back"></i></a> 
 			</div>
 			<span class="title">Enquete</span> 
 		</div>
@@ -3018,7 +3401,7 @@
 			<!-- Initial Page, "data-name" contains page name -->
 			<div data-name="home" class="page">
 				<div class="navbar" style="height: 50px">
-					<div class="navbar-inner"> <a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class="icon icon-back"></i></a>
+					<div class="navbar-inner"> <a href="#" onClick="afed('#home','#documentos','','',2,'home');"><i class=" icon-back"></i></a>
 						<div class="title">Documentos</div>
 					</div>
 				</div>
@@ -3058,7 +3441,7 @@
 					<div class="navbar-inner">
 						<div class="left"> 
 							<a href="#" onClick="$('#add_ticket').hide();voltar('#home','#ocorrencias','home');">
-								<i class="icon icon-back"></i>
+								<i class=" icon-back"></i>
 							</a>
 						</div>
  						<div class="title">Ocorrências</div>
@@ -3178,16 +3561,35 @@
     <!-- OCORRENCIAS PAGINA VISUALIZACAO -->
 
 	<div id="ocorrencia" class="pagina">
-		<div class="view"> 
+		<div class="view">
 		<div data-name="home" class="page">
 			<div class="navbar" style="height: 50px">
-				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a>
+				<div class="navbar-inner"> <a class="left" href="#" onClick="$('#ocorrencia').hide();carrega_ocorrencias(0);carrega_ocorrencias(0);voltar('#ocorrencias','#ocorrencia','ocorrencias');"><i class=" icon-back"></i></a>
 					<div class="title" >Detalhe da Ocorrência</div>
 					<input type="hidden" id="verifica_anexo"/>
 				</div>
 			</div>
-
+			<div class="toolbar toolbar-bottom fab-morph-target" style="margin-top: 142%;" id="toobar_oco">
+				<div class="toolbar-inner">
+				  <!-- Each Toolbar link will close FAB (morph back) on click -->
+				  <a class="link fab-close" id="bt_oco_reabre" onclick="ticket_novo(2);"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir</a>
+				  <a class="link" id="bt_oco_finaliza" onclick="ticket_novo(4);"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Finalizar</a>
+				  <a class="link" id="bt_oco_novo"  onclick="ticket_novo(0);"><span class="glyphicon glyphicon-plus"></span>&nbsp;Novo Ticket</a>			
+				  <a class="link" id="bt_oco_cancela" onClick="app2.fab.close();"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cancelar</a>			
+				</div>
+			</div>
+			<div class="fab fab-left-bottom fab-morph color-blue" data-morph-to=".toolbar">
+				<a href="#">
+				  <!-- Icons For iOS Theme -->
+				  <i class="icon f7-icons if-not-md">add</i>
+				  <i class="icon f7-icons if-not-md">close</i>
+				  <!-- Icons For MD Theme -->
+				  <i class="icon material-icons md-only">add</i>
+				  <i class="icon material-icons md-only">close</i>
+				</a>
+			</div>
 			<div class="page-content" data-ptr-distance="55" style="padding: 55px 5px 5px 5px; ">
+				<!-- data-ptr-distance="55" style="padding: 55px 5px 5px 5px; "-->
 			    <form id="form_ocorrencia" style="padding: 12px;float: left; width: 100%;">
 
 					<input type="hidden" id="foto" name="foto" > 
@@ -3226,7 +3628,7 @@
 						</div>
 						<div name="txt_privada" id="txt_privada" class="chip-label"></div>
 					</div><br>
-					<div class="chip">
+					<div class="chip" style="margin-top: -3px;">
 						<div class="chip-media bg-color-red">
 						<i class="fa fa-th-large"></i>
 
@@ -3248,14 +3650,31 @@
 						<div name="descricao" id="descricao" class="chip-label"></div>
 					</div><br>
 					
+					<div data-pagination='{"el": ".swiper-pagination"}' data-space-between="10" data-slides-per-view="auto" data-centered-slides="true" class="swiper-container swiper-init demo-swiper demo-swiper-auto">
+					  <div class="swiper-pagination"></div>
+					  <div class="swiper-wrapper">
+						<div class="swiper-slide">Slide 1</div>
+						<div class="swiper-slide">Slide 2</div>
+						<div class="swiper-slide">Slide 3</div>
+						<div class="swiper-slide">Slide 4</div>
+						<div class="swiper-slide">Slide 5</div>
+						<div class="swiper-slide">Slide 6</div>
+						<div class="swiper-slide">Slide 7</div>
+						<div class="swiper-slide">Slide 8</div>
+						<div class="swiper-slide">Slide 9</div>
+						<div class="swiper-slide">Slide 10</div>
+					  </div>
+					</div>
+					
                    <p id="ocorrencia_anexo_retorno"></p> <!-- Anexos sera mostrados aqui -->
  					<!-- Separate collapsibles - omit "accordion-list" class-->
 					<div class="list" onclick="up_down()">
 					  <ul>
-						<li class="accordion-item"><a href="#" class="item-content item-link">
+						<li class="accordion-item accordion-item-opened"><a href="#" class="item-content item-link">
 							<div class="item-inner">
 							  <div class="item-title">&nbsp; Lista de Tickets</div>
-							<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-down"></span></div>
+							<div style="display:block" class="item-title"><span id="up_down" class="fa fa-angle-up"></span></div>
+
 							</div></a>
 						  <div class="accordion-item-content">
 							<div class="block" id="main_ticket" >
@@ -3268,7 +3687,7 @@
 
 					<!--<button class="btn btn-default" style="margin-bottom: 4px" id="bt_oco_tickets" type="button" onClick="carrega_tickets(0)" > <span class="glyphicon glyphicon-tags"></span>&nbsp;Lista de Tickets </button>-->
 					
-					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
+<!--					<span class="col button button-fill" id="bt_oco_reabre" onclick="ticket_novo(2);"> 
 						<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Reabrir
 					</span>
 					<button class="col button button-fill" id="bt_oco_finaliza" type="button" onClick="ticket_novo(4);"> 
@@ -3276,12 +3695,11 @@
 					</button>
 					<span class="col button button-fill" id="bt_oco_novo" type="button" style="background-color: #4caf50;margin-top: 4px;" onClick="ticket_novo(0);"> 
 						<span class="glyphicon glyphicon-plus"></span>&nbsp;Novo Ticket 
-					</span>
+					</span>-->
 
 				</form>
 			</div>
-		</div>
-		</div>
+		</div>		</div>
 	</div>
 					
    <!--   OCORRENCIAS PAGINA INCLUSAO -->
@@ -3289,7 +3707,7 @@
 	<div id="add_ocorrencia" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#ocorrencias','#add_ocorrencia','ocorrencias');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#ocorrencias','#add_ocorrencia','ocorrencias');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Nova Ocorrência</div>
 			</div>
 		</div>
@@ -3425,7 +3843,7 @@
 
 						<div class="navbar-inner">
 							<div class="left"> 
-								<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class="icon icon-back"></i></a>
+								<a href="#" id="tl_btn_voltar" name="tl_btn_voltar"  onClick="voltar('#ocorrencia','#ocorrencias_ticket','ocorrencia')"><i class=" icon-back"></i></a>
 							</div>
 							<div class="title">Tickets</div>
 							<div class="right">
@@ -3455,7 +3873,7 @@
 
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-					<div class="left"> <a href="#" id="oco_voltar" onClick="$('#add_ticket').hide();voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class="icon icon-back"></i></a> </div>
+					<div class="left"> <a href="#" id="oco_voltar" onClick="$('#add_ticket').hide();voltar('#ocorrencias_ticket','#add_ticket','ocorrencias_ticket');"><i class=" icon-back"></i></a> </div>
 					<div class="title" id="ti_titulo">Novo Ticket</div>
 				</div>
 			</div>
@@ -3543,7 +3961,7 @@
 
 				<div class="navbar" style="height: 50px">
 					<div class="navbar-inner"> 
-						<a href="#" id="oco_detalhe_voltar"><i class="icon icon-back"></i></a>
+						<a href="#" id="oco_detalhe_voltar"><i class=" icon-back"></i></a>
 						<div class="title">Detalhe do Ticket</div>
 					</div>
 				</div>
@@ -3596,7 +4014,7 @@
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner">
 					<div class="left"> 
-						<a href="#" onClick="voltar('#home','#pet_lista','home');"><i class="icon icon-back"></i></a>
+						<a href="#" onClick="voltar('#home','#pet_lista','home')"><i class=" icon-back"></i></a>
 					</div>
 					<div class="title">Pets</div>
 					<div class="right"> 
@@ -3659,7 +4077,7 @@
 	  <div class="navbar" style="height: 50px">
 		 <div class="navbar-inner">
 			<a class="left" href="#" onClick="voltar('#pet_lista','#pet','pet_lista');">
-				<i class="icon icon-back"></i>
+				<i class=" icon-back"></i>
 			</a>
 		  <div class="title" >INFORMAÇÕES DO PET</div>
 		 </div>
@@ -3752,7 +4170,7 @@
 		<div id="add_pet" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#add_pet','pet_lista');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#add_pet','pet_lista');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Cadastrar Novo Pet</div>
 			</div>
 		</div>
@@ -3824,7 +4242,7 @@
 	<div id="update_pet" class="pagina view">
 		<div class="navbar" style="height: 50px;">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#update_pet','pet_lista');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#pet_lista','#update_pet','pet_lista');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Editar PET</div>
 			</div>
 		</div>
@@ -3927,16 +4345,16 @@
     <div id="cameras_condominio" class="pagina cameras_condominio">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#cameras_condominio','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#cameras_condominio','','',2,'home');"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Cameras Segurança</div>
             </div>
         </div>
+		
         <div class="scroll" id="cameras_scroll">
             <div class="block" style="margin-top: 0" id="cameras_retorno">
             </div>
         </div>
-    </div>  
-
+    </div>
 		
 	<!-- $AGENDA  
          Autor: Caio Souza.
@@ -3954,7 +4372,7 @@
 					<div class="navbar-inner">
 						<div class="left"> 
 							<a href="#" onClick="voltar('#home','#agenda','home');">
-								<i class="icon icon-back"></i>
+								<i class=" icon-back"></i>
 							</a>
 						</div>
 						<div class="title">Agenda Tarefas</div>
@@ -4313,7 +4731,7 @@
 	<div id="add_agenda" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="$('#dia_selecionado_ag').val('');voltar('#agenda','#add_agenda','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="$('#dia_selecionado_ag').val('');voltar('#agenda','#add_agenda','');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Novo Evento</div>
 			</div>
 		</div>
@@ -4542,14 +4960,16 @@
 			</form>
 		</div>
 	</div>	
+	
 			 <!---    MINHA RESIDENCIA        -->
 		<div id="minha_casa_rel" class="pagina">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#minha_casa_rel','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#home','#minha_casa_rel','','',2,'home');"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Minha Casa</div>
             </div>
-		</div>		
+		</div>	
+	
       <div class="card" onClick="meus_recorrentes()">
 		<div class="card-content card-content-padding">
 			<div class="col-md-6">
@@ -4583,7 +5003,7 @@
 		<div id="minha_casa_recorrente" class="pagina minha_casa_recorrente"> 
 			<div class="navbar" style="height: 50px">
 				<div class="navbar-inner">
-					<div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#minha_casa_recorrente','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+					<div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#minha_casa_recorrente','','',2,'home');"><i class=" icon-back"></i></a> </div>
 					<div class="title" style="font-size: 16px;color: white;">Meus Recorrentes</div>
 					<div class="right"> 
 					<a href="#" onclick="busc_recorr();" data-sheet=".busca_recorrente" class="sheet-open material-icons">
@@ -4685,7 +5105,7 @@
 		<div id="meus_pontuais" class="pagina">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#meus_pontuais','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#meus_pontuais','','',2,'home');"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Pontuais</div>
 				<div class="right"> 
 					<a href="#" onclick="limpar_busca_visitante();" data-sheet=".busca_meus_visitantes" class="sheet-open material-icons">
@@ -4761,7 +5181,7 @@
 	<div id="acsso_minha_casa" class="pagina">
         <div class="navbar" style="height: 50px">
             <div class="navbar-inner">
-                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#acsso_minha_casa','','',2,'home');"><i class="icon icon-back"></i></a> </div>
+                <div class="left"> <a class="link popup-close" href="#" onClick="afed('#minha_casa_rel','#acsso_minha_casa','','',2,'home');"><i class=" icon-back"></i></a> </div>
                 <div class="title" style="font-size: 16px">Acesso</div>
 				<div class="right"> 
 					<a href="#" onclick="limpar_busca_visitante();" data-sheet=".meu_evento_busca" class="sheet-open material-icons">
@@ -4842,7 +5262,7 @@
 		
 		
     </div>
-		 <!---  FIM MINHA RESIDENCIA        -->
+		 <!---  FIM MINHA RESIDENCIA        -->	
 	
 	<!-- $MUDANCA  
          Autor: Caio Souza.
@@ -4859,7 +5279,7 @@
 					<div class="navbar-inner">
 						<div class="left"> 
 							<a href="#" onClick="$('.any_found').hide();voltar('#home','#mudanca','home');">
-								<i class="icon icon-back"></i>
+								<i class=" icon-back"></i>
 							</a>
 						</div>
 						<div class="title">Mudança</div>
@@ -4896,7 +5316,7 @@
 	<div id="add_mudanca" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="voltar('#mudanca','#add_mudanca','');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Nova Solicitação</div>
 			</div>
 		</div>
@@ -5000,7 +5420,7 @@
 	<div id="mudanca_info" class="pagina view">
 		<div class="navbar" style="height: 50px">
 			<div class="navbar-inner topo_sub" style="padding-right: 8px;padding-left: 9px;">
-				<div class="left"> <a href="#" onClick="carrega_mudancas(0);voltar('#mudanca','#mudanca_info','');"><i class="icon icon-back"></i></a> </div>
+				<div class="left"> <a href="#" onClick="carrega_mudancas(0);voltar('#mudanca','#mudanca_info','');"><i class=" icon-back"></i></a> </div>
 				<div class="title">Mudança</div>
 			</div>
 		</div>
@@ -5083,7 +5503,7 @@
 							   </li>
 						</div>
 						<div class="col-xs-3" style="padding-left: 0px;">
-							 <li class="item-content item-input" style="padding-left: 0;">
+							 <li class="item-content item-input" style="padding-left: 0; height: 100px;">
 							   <div class="item-inner">
 								<div class="item-title item-label">Hora Fim:</div>
 									<div class="item-input-wrap">
@@ -5110,7 +5530,7 @@
 						<label class="item-checkbox item-content" onclick="hab_campo_mudanca()" style="font-weight:100; font-size: 12px;">
 							    <input type="checkbox" id="check_sugerir" name="f_minhas" />
 								<i class="icon icon-checkbox"></i>
-								<div class="item-title" style="width:100%; float:left"> Sugerir nova data</div>
+								<div class="item-title" style="width:100%; float:left;"> Sugerir nova data</div>
 					   </label>
 					   </li>
 					</ul>
@@ -5122,9 +5542,8 @@
 			</div>
 		</div>
 	</div>
-		
-		
-   <!-- $RELATORIOS -->
+
+	<!-- $RELATORIOS -->
 	<div id="relatorios" class="pagina relatorios">
 		<div class="topo_sub" style="background-color:#53c7ec;"> <img alt="" onClick="afed('#home','#relatorios','','',2,'home');" src="img/voltar.png"> <span>Relatorios</span> </div>
 			<div class="scroll">
@@ -5132,7 +5551,7 @@
 			</div>
 		</div>				
 	</div>
-    <!---   $FUNCOES          --> 
+    <!-- $FUNCOES --> 
 
     	<script>
 			// function loginFB() {
@@ -5198,10 +5617,9 @@
 						
 						app2.ptr.done();
 					});
-					///*******NEW SCROLL INFINITO***************************************************************************/
+					
+					///*******NEW SCROLL INFINITO********************************************************************/
 					//		var allowInfinite = true;			
-							
-
 					//		
 					//		$$('.infinite-scroll-content').on('infinite', function () {
 					//		  var lastItemIndex = $$('#pull-entregas .list li').length;
@@ -5228,13 +5646,13 @@
 					//			}
 					//
 					//			// Generate new items HTML
-					////			var html = '';
-					////			for (var i = lastItemIndex + 1; i <= lastItemIndex + itemsPerLoad; i++) {
-					////			  html += '<li>Item ' + i + '</li>';
-					////			}
+					//			var html = '';
+					//			for (var i = lastItemIndex + 1; i <= lastItemIndex + itemsPerLoad; i++) {
+					//			  html += '<li>Item ' + i + '</li>';
+					//			}
 					//
 					//			// Append new items
-					////			$$('.list ul').append(html);
+					//			$$('.list ul').append(html);
 					//
 					//			// Update last loaded index
 					//			lastItemIndex = $$('#pull-entregas .list li').length;
@@ -5394,13 +5812,10 @@
 					    }else{
 				            var icone = 'glyphicon glyphicon-home';
 				        }
-		
-		
-		
-		
 
-//        alert('entro');
-// Create notification with close button
+				// alert('entro');
+				// Create notification with close button
+
         var notificationWithButton = app2.notification.create({
 			
           icon: '<i class="'+icone+'"></i>',
@@ -5409,12 +5824,9 @@
           closeButton: true,
           closeOnClick: true,
           on: {
-			  
 			open: function () {
-				 			
-				 
+								 
 			},
-			  
             click: function () {
                app2.dialog.alert('Notification closed');
                 var id_reg    = localStorage.getItem("NOT_ID");
@@ -5471,8 +5883,8 @@
                         if(tipo==20){
                             var val_confg = id_reg.split(';');
                             if(val_confg[0] == 'Morador'){
-    //                                    alert(id_reg);
-    //                                    alert('DADOS1'+val_confg[0]);
+	                            alert(id_reg);
+	                            alert('DADOS1'+val_confg[0]);
                                 $( "#DADOS #MHOME" ).val(val_confg[2]);
                                 $( "#DADOS #MCOMUNICADOS" ).val(val_confg[3]);
                                 $( "#DADOS #MLUNICA" ).val(val_confg[4]);
@@ -5495,7 +5907,6 @@
                                 if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
                                 if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
                                 if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
-
                             }
                         }else if(tipo==21){
                             var vfiltro = id_reg.split('||');
@@ -5525,18 +5936,18 @@
         var dados = parametros.split('||');
         if(modulo == 'visita'){
 			localStorage.setItem('TELA_ATUAL','evento_liberacao')
-//            if(dados[0] == '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'){
-//                var foto  = 'img/user3.png';
-//				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
-//            }else{
-//			    var icone = '';
-//				if(foto == 'img/user3.png' || foto == ''){
-//				   icone = '';
-//				}else{
-//				   icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
-//				}
-//                var foto  = 'data:image/jpeg;base64,'+dados[0]+'';
-//            }
+			//            if(dados[0] == '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'){
+			//                var foto  = 'img/user3.png';
+			//				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
+			//            }else{
+			//			    var icone = '';
+			//				if(foto == 'img/user3.png' || foto == ''){
+			//				   icone = '';
+			//				}else{
+			//				   icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
+			//				}
+			//                var foto  = 'data:image/jpeg;base64,'+dados[0]+'';
+			//            }
 			if(dados[0] == ''){
 				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
 				//var foto  = '';
