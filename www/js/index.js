@@ -7,7 +7,8 @@ var ref_documento       = '';
 var ref_ocorrencia       = '';
 
 //localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/');
-localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/v2/');
+//localStorage.setItem('DOMINIO','https://www.controlcondo.com.br/controlcondo/v2/');
+localStorage.setItem('DOMINIO','https://old.controlcondo.com.br/controlcondo/v2/');
 
 
 var app = {
@@ -25,11 +26,11 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
 		
     },
-	
+
     onDeviceReady: function() {
     
 		app.receivedEvent('deviceready');
-        document.addEventListener("backbutton", onBackKeyDown, false);
+        // document.addEventListener("backbutton", onBackKeyDown, false);
 		app.remove_pull();
         
         $('#visitante_busca').on('submit', function(e){       
@@ -37,8 +38,21 @@ var app = {
             e.stopPropagation();
             e.stopImmediatePropagation();
             return false;
-        });      
-        
+        });     
+
+  		// let urli = "mycoolapp://auth?codigo=N80gotg9";
+		// resultado = urli.split("=");
+		// localStorage.setItem("ativacaoCode", resultado[1]);
+
+		// $("#initApp").hide();
+		// $("#telaVerificaCodigo").show();
+		// $("#codigoAtivacao").val(resultado[1]); 
+		// confirmaCodeResetPassword('6bc17ae0d7a948977960056e287af8f3'); // apagar quando ligar com o deeplinking
+
+		
+        $("#login_ini").hide();
+		$("#telaAceitaTermo").hide();
+		$("#defineSenha").hide();
 		$("#box_notificacoes" ).hide();
 		$("#boxUp_liberacao"  ).hide();
 		$("#boxUp_liberacao2" ).hide();
@@ -55,7 +69,8 @@ var app = {
 		$("#boxUp_mcasa").hide();
 		$("#boxUp_pet").hide();
 		$("#boxUp_pet1").hide(); 
-		
+
+
         $('#home').on('mousemove',function(e){
             if(swiper.realIndex != 1){
                 afed('#fale_user','#fale_msg','','',2,'fale_user');
@@ -110,6 +125,26 @@ var app = {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
 		login_user_device();
+
+		if($("#checkboxElementoTermo").prop('checked')) {
+	        console.log("Termo como super...");
+	        alert("checkado ...");
+	        $("#btnAtivarConta").show('500');
+	    }
+		$("#checkboxElementoTermo").change(function() {
+		    if(this.checked) {
+		        let fullHeight = $('#tab-1').get(0).scrollHeight;
+		        $('#tab-1').scrollTop(fullHeight + 50);
+		        $("#concordaComTermo").hide();
+		        $("#btnAtivarConta").show();
+		        $("#btnCancelarConta").show();
+		    }else{
+		    	$("#btnAtivarConta").hide('500');
+		    	$("#concordaComTermo").show('500');
+		    	$("#btnCancelarConta").show('500');
+		    }
+		});
+		
 		
         $("#notificacoes").scroll(function() {
             if ($(this).scrollTop() + $(this).height() > ($(this).get(0).scrollHeight-58)) {
@@ -135,7 +170,9 @@ var app = {
                 carrega_liberacao(1);
             }
 			app.ckBoxUp("#boxUp_liberacao","#pull-liberacao");
-		});		
+		});	
+
+
 		
 		$('#boxUp_liberacao').click(function(){
 			$('#pull-liberacao').animate({

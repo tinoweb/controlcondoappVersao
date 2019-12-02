@@ -1,0 +1,56 @@
+{
+  "_from": "git+https://github.com/jeduan/cordova-plugin-facebook4.git",
+  "_id": "cordova-plugin-facebook4@6.2.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-facebook4",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/jeduan/cordova-plugin-facebook4",
+    "rawSpec": "https://github.com/jeduan/cordova-plugin-facebook4",
+    "saveSpec": "git+https://github.com/jeduan/cordova-plugin-facebook4.git",
+    "fetchSpec": "https://github.com/jeduan/cordova-plugin-facebook4.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/jeduan/cordova-plugin-facebook4.git#8ef262c1a20d03328ef07826c88e8fdc6cf86a64",
+  "_spec": "https://github.com/jeduan/cordova-plugin-facebook4",
+  "_where": "/home/firstcontrol/Documents/PROJECTOS/CONTROLCOND/mobileTeste/controlcondoMobile2",
+  "bugs": {
+    "url": "https://github.com/jeduan/cordova-plugin-facebook4/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-facebook4",
+    "platforms": [
+      "android",
+      "ios",
+      "browser"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Facebook SDK 4 Plugin",
+  "homepage": "https://github.com/jeduan/cordova-plugin-facebook4#readme",
+  "keywords": [
+    "cordova",
+    "facebook",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-browser",
+    "facebook-sdk",
+    "social",
+    "sharing"
+  ],
+  "license": "Apache-2.0",
+  "name": "cordova-plugin-facebook4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeduan/cordova-plugin-facebook4.git"
+  },
+  "version": "6.2.0"
+}

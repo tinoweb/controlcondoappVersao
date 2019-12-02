@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	
 	<!-- framework7 -->
 	<meta name="theme-color" content="#2196f3">
@@ -68,16 +69,43 @@
 	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	
+	<script src="model/mdl_inicalizaapp.js"></script>
+
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<script type="text/javascript" src="https://www.controlcondo.com.br/controlcondo/v2/js/zepto.min.js"></script>
 	<script type="text/javascript" src="https://www.controlcondo.com.br/controlcondo/v2/js/jquery.mask.js"></script>
-	
 	<script type="text/javascript"> 
 
 		document.addEventListener("deviceready",onDeviceReady,false); 
 		
-		
+        function handleOpenURL(url) {
+		    // alert("recebido url from server..." +url);
+		    setTimeout(function() {
+				
+				resultado = url.split("=");
+				
+				alert(resultado[0]);
+				alert(resultado[1]);
+
+				if (resultado[0] == "mycoolapp://auth?codigo") {
+					alert("entrou na condição do codigo recebido apos cadastro...." + resultado[1]);
+					localStorage.setItem("ativacaoCode", resultado[1]);
+					$("#initApp").hide();
+					$("#telaVerificaCodigo").show();
+					$("#codigoAtivacao").val(resultado[1]);
+				}else if(resultado[0] == "mycoolapp://auth?recoveryPassword"){
+					alert("Codigo de Recuperacao de senha => " +resultado[1]);
+					let recoveryCode = resultado[1];
+					confirmaCodeResetPassword(recoveryCode);
+					alert("passou da funcao confirmaCodeResetPassword");
+
+					console.log("enviar esses codigo para validação e se valido envhaminhar para setar nova senha");
+				}else{
+					alert("Entrou no else nehuma condicao acima certo...");
+				}
+			}, 1000);
+		}
 		
 		function onDeviceReady() { 
 			//cordova.plugins.firebase.analytics.logEvent("app_open");
@@ -93,23 +121,26 @@
 				},
 				"windows":{}
 			}); 
+
 			
-//			PushNotification.createChannel(
-//			  () => {
-//				console.log('success notification channes');
-//				alert('success notification channes');
-//			  },
-//			  () => {
-//				console.log('error');
-//				alert('error notification channes');
-//			  },
-//			  {
-//				id: 'testchannel1',
-//				description: 'My first test channel',
-//				importance: 3,
-//				vibration: true
-//			  }
-//			);
+			// PushNotification.createChannel(
+			//   () => {
+			// 	console.log('success notification channes');
+			// 	alert('success notification channes');
+			//   },
+			//   () => {
+			// 	console.log('error');
+			// 	alert('error notification channes');
+			//   },
+			//   {
+			// 	id: 'testchannel1',
+			// 	description: 'My first test channel',
+			// 	importance: 3,
+			// 	vibration: true
+			//   }
+			// );
+
+
 			
 			push.on('registration', function(data) { 
 				localStorage.setItem('registrationId', data.registrationId);
@@ -171,16 +202,18 @@
 								localStorage.setItem('MCAM',val_confg[17]);
 								localStorage.setItem('MMUDANCA',val_confg[18]);
 								localStorage.setItem('MAGENDA',val_confg[19]);
+
 								//localStorage.setItem('MMUDANCA',retorno[0]['MMUDANCA']);
-//                                if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
-//                                if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
-//                                if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
-//                                if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
-//                                //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
-//                                if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
-//                                if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
-//                                if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
-//                                if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
+                               // if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
+                               // if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
+                               // if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
+                               // if($( "#DADOS #MENTREGAS" ).val() == 1){ afed('#menu_entregas','','','',3); }else{ afed('','#menu_entregas','','',3); } 
+                               // //if($( "#DADOS #MFALE" ).val() == 1){  afed('','','','',3); }else{ afed('','','','',3); } 
+                               // if($( "#DADOS #MENQUENTE" ).val() == 1){ afed('#menu_enquete','','','',3); }else{ afed('','#menu_enquete','','',3); } 
+                               // if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
+                               // if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
+                               // if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
+                               
 								if($( "#DADOS #MCOMUNICADOS" ).val() == 1){ afed('#menu_comunicado','','','',3); }else{ afed('','#menu_comunicado','','',3); } 
 								if($( "#DADOS #MLUNICA" ).val() == 1){ afed('#menu_liberacao,#libt1,#libt2,#libt3','#liberacao_desativada','','',3); }else{ afed('#liberacao_desativada','#menu_liberacao,#libt1,#libt2,#libt3','','',3); } 
 								if($( "#DADOS #MRESERVA" ).val() == 1){ afed('#menu_area','','','',3); }else{ afed('','#menu_area','','',3); } 
@@ -234,6 +267,7 @@
 </head>
 <body> 
 	<div id="app">
+		<div id="fb-root"></div>
 		<form id="DADOS" style="display: none;">
 			<input id="SERVIDOR_CAMINHO"    value="" type="hidden">
 			<input id="ID_USER"             value="" type="hidden">
@@ -311,16 +345,46 @@
 				</div>
 			</form>
 		</div>
+
+		<!-- ############# recovery senha ################# -->
+		<div class="sheet-modal recuperaSenha" id="recoveryPasswordLogin" style="">
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<div class="left">
+						<i class="fa fa-envelope" aria-hidden="true" style="margin-left: 10px;"></i>
+					</div>
+					<div class="right">
+						<a class="link" id="fechaRecuperaEmail" onclick="fechaRecoverEmail()" href="#">Fechar</a>
+					</div>
+				</div>
+			</div>
+			<div class="list" id="formSendEmail">
+			    <div class="item-content item-input">
+			      	<div class="item-inner">
+				        <div class="item-title">Digite o seu email</div>
+				        <div class="item-input-wrap">
+				          <input id="email_recupera" type="email" validate class="" name="email" placeholder="seuemail@mail.com" style="border: none;">
+				          <span class="input-clear-button"></span>
+				        </div>
+				        <button class="btn btn-primary btn-lg btn-block btn-no-border" style="color: white; width: 100%;margin-top: 10%;" id="" onclick="recuperaEmail()" name="entrar"> Recuperar </button>
+			      	</div>
+			    </div>
+			</div>
+		</div>
+		<!-- ############################## -->
+
+		<!-- modelo antigo ......
 		<div id="bg_box5" class="bg_box3" style="text-align: center">
 			<form id="form_recupera_senha" style="width: 100%; min-height: 100px; background-color: white;margin-top: 30px;padding: 21px">
 				<h4>Recuperação de Senha</h4>
 				<div class="input-group" style="margin-bottom: 20px" > <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 					<input id="email_recupera" type="text" class="form-control" name="email" placeholder="Digite seu e-mail">
 				</div>
-				<button class="btn btn-primary" type="button" onClick="recuperaEmail();">Recuperar</button>
+				<button class="btn btn-primary" type="button" onClick="recuperaEmail()">Recuperar</button>
 				<button class="btn btn-danger" type="button" onClick="afed('','#bg_box5','','',1);$('#email_recupera').val('');">Fechar</button>
 			</form>
-		</div>
+		</div> -->
+
 		<div id="bg_box6" class="bg_box3" style="z-index: 100000" onClick="afed('','#bg_box6','','',1);">
 			<div class="block">
 				<div id="foto_menu" class="foto_menu" style="text-align: center;">
@@ -585,21 +649,21 @@
 			</div>
 		</div>
     
-<!-- NOTIFICACAO 
-        <div class="notification modal-in">
-            <div class="notification-header">
-                <div class="notification-icon"><i class="icon icon-f7"></i></div>
-                <div class="notification-title">Framework7</div>
-                <div class="notification-title-right-text">now</div>
+		<!-- NOTIFICACAO 
+	        <div class="notification modal-in">
+	            <div class="notification-header">
+	                <div class="notification-icon"><i class="icon icon-f7"></i></div>
+	                <div class="notification-title">Framework7</div>
+	                <div class="notification-title-right-text">now</div>
 
-            </div>
-            <div class="notification-content">
-                <div class="notification-subtitle">Notification with close on click</div>
-                <div class="notification-text">Click me to close</div>
-            </div>
-        </div>
+	            </div>
+	            <div class="notification-content">
+	                <div class="notification-subtitle">Notification with close on click</div>
+	                <div class="notification-text">Click me to close</div>
+	            </div>
+	        </div>-->
 
-<!--  $LOGIN   -->
+		<!--  $LOGIN   -->
 		<!--<div id="login_ini" class="login_ini"> <img alt="" src="img/logoicon.png" width="150">
 			<form id="form_login" >
 				<div class="input-group" style="margin-top: 30px; padding: 20px;">
@@ -621,9 +685,330 @@
 				</div>
 			</form>
 		</div>-->
+		
+		<!--############ Tela do primero acesso ############## -->
+		<div id="initApp" class="login_iniNew">
+			<img src="img/logoicon.png" width="150">
+			<div id="formInit" class="form-signin" style="top: 64px;position: relative;padding: 15px 14px;"> 
+				<div class="row" style="position: relative; padding: 12px;">
+					<div class="col-xs-12">
+						<button class="btn btn-default btn-lg btn-block btn-no-border" onclick="swich_tela_login();">Entrar com e-mail</button>
+					</div>
+					<div class="col-xs-6" style="position: relative;top: 14px;">
+						<button class="btn btn-primary btn-lg btn-block btn-no-border" onclick="loginFB()" name="entrar"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button>
+					</div>
+					<div class="col-xs-6" style="position: relative;top: 14px;">
+						<button class="btn btn-lg btn-danger btn-block btn-no-border" onclick="loginGoogle()"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
+					</div>
+					<div class="col-xs-12" style="position: relative;top: 48px;">
+						<a style="color: #919b97;" onclick="swich_tela_primeiroAcesso()">Primeiro Acesso?</a>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+		
+		<!--###################Tela Opcoes Primeiro Acesso ################### -->
+		<div id="primeiroAcesso" class="primeiroAcessoPage">
+			<div class="navbar">
+		        <div class="navbar-bg">
+		        </div>
+		        <div class="navbar-inner sliding">
+		            <div class="left">
+		                <a class="link back" href="#" onclick="primeiroAcessoBtnVoltar()">
+		                    <i class="icon icon-back">
+		                    </i>
+		                </a>
+		            </div>
+		            <div class="title">
+		                Receber código de ativação
+		            </div>
+		        </div>
+		    </div>
+			<img src="img/logoicon.png" width="150">
+			<div class="row">
+				<p class="col-xs-12" style="position: relative;top: 20px;padding: 15px 41px;">
+					clica em um dos botões abaixo para escolher como quer receber o codigo de ativação para ter acesso ao seu condominio!
+				</p>
+			</div>
+
+			<div id="" class="form-signin" style="top: 35px;position: relative;padding: 15px 14px;"> 
+				<div class="row" style="position: relative; padding: 12px;">
+
+					<!-- ############# receber pelo email ################# -->
+					<div class="col-xs-12" id="divRecevebyEmail">
+						<a href="#" style="color:white" data-sheet=".recebEmail" class="sheet-open btn btn-primary btn-lg btn-block btn-no-border">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							Receber pelo e-mail 
+						</a> 
+
+
+						
+						<div class="sheet-modal recebEmail" id="" style="height: 40%; display: block; display: none">
+							<div class="toolbar">
+								<div class="toolbar-inner">
+									<div class="left">
+										<i class="fa fa-envelope" aria-hidden="true" style="margin-left: 10px;"></i>
+									</div>
+									<div class="right">
+										<a class="link sheet-close" id="fecha_busca_pet" href="#">Fechar</a>
+									</div>
+								</div>
+							</div>
+							<div class="list" id="formSendEmail">
+							    <div class="item-content item-input">
+							      	<div class="item-inner">
+								        <div class="item-title">Digite o seu email</div>
+								        <div class="item-input-wrap">
+								          <input type="email" name="emailCode" validate id="inputReceveEmailToGetCode" required="true" placeholder="usuario@mail.com" style="border: none;">
+								          <span class="input-clear-button"></span>
+								        </div>
+								        <button class="btn btn-success btn-lg btn-block btn-no-border" style="color: white; width: 100%;margin-top: 10%;" id="btnSendEmailToGetCode" onclick="choosedMail()" name="entrar"> ENVIAR </button>
+							      	</div>
+							    </div>
+							</div>
+						</div>
+					</div>
+					<!-- ############################## -->
+
+
+					<!-- ############# receber pelo SMS ################# -->
+					<div class="hide"> <!--temporariamente escondido até implementar o o envio e recebimento de SMS-->
+					<div class="col-xs-12" style="position: relative;top: 14px;" id="divRecevebySMS">
+						<a href="#" style="color:white" data-sheet=".recebSMS" class="sheet-open btn btn-primary btn-lg btn-block btn-no-border">
+							<i class="fa fa-commenting-o" aria-hidden="true"></i>
+							Receber pelo SMS 
+						</a> 
+
+						<div class="sheet-modal recebSMS" id="" style="height: 40%; display: block; display: none">
+							<div class="toolbar">
+								<div class="toolbar-inner">
+									<div class="left">
+										<i class="fa fa-commenting-o" aria-hidden="true" style="margin-left: 10px;"></i>
+									</div>
+									<div class="right">
+										<a class="link sheet-close" id="fecha_busca_pet" href="#">Fechar</a>
+									</div>
+								</div>
+							</div>
+							<form class="list" id="formSendSMS">
+							    <div class="item-content item-input">
+							      	<div class="item-inner">
+								        <div class="item-title">Digite o seu Telefone</div>
+								        <div class="item-input-wrap">
+								          <input type="tel" validate required name="telefone" placeholder="(99) 99999-9999" style="border: none;">
+								          <span class="input-clear-button"></span>
+								        </div>
+								        <button type="button" style="width: 100%;margin-top: 10%;" class="button button-fill color-green link sheet-close" onclick="choosedSms()">ENVIAR</button>
+							      	</div>
+							    </div>
+							</form>
+						</div>
+					</div>
+					</div>
+					<!-- ############################## -->
+				</div>
+			</div>
+		</div>
+
+		<!--################### Tela Codigo de Ativação ###################-->
+		<div id="telaVerificaCodigo" class="">
+			<div class="navbar">
+		        <div class="navbar-bg">
+		        </div>
+		        <div class="navbar-inner sliding">
+		            <div class="left">
+		                <a class="link back" href="#" onclick="voltaraoPrimeiroAcesso()">
+		                    <i class="icon icon-back">
+		                    </i>
+		                </a>
+		            </div>
+		        </div>
+		    </div>
+			
+			<div class="row" style="position: relative; padding: 12px; margin-top:30%;">
+				<div class="col-xs-12">
+					<form class="list" id="formGetActivationCode">
+					    <div class="item-content item-input">
+					      	<div id="authCodeAtivacao" class="item-inner">
+						        <div class="item-title" style="">Código Ativação</div>
+						        <div class="item-input-wrap">
+						          <input id="codigoAtivacao" data-error-message="Por favor, preencha este campo!" type="text" required name="codigoativacaoField" style="border: none;">
+						          <span class="input-clear-button"></span>
+						        </div>
+						        <button type="button" style="width: 100%;margin-top: 10%;" class="button button-fill color-green link sheet-close" onclick="enviarCodigoAtivacao()">ENVIAR</button>
+						        <!-- <p class=""> -->
+									<!-- <button class="col-100 button button-raised button-large button-fill" onclick="enviarCodigoAtivacao()">ENVIAR</button> -->
+								<!-- </p> -->
+					      	</div>
+					    </div>
+					</form>
+				</div>
+				<div class="col-xs-12" style="position: relative;text-align: center;top: 8px;">
+					<a class="btn btn-default" style="position: relative; color: #b8bec5" onclick="swich_to_primeiroAcesso()">Obter Codigo Ativação</a>
+				</div>
+			</div>
+		</div>
+
+		<!--################### Tela Codigo de Ativação ###################-->
+		<div id="telaAceitaTermo" class="page aceitaTermoClass">
+			<div class="navbar">
+		        <div class="navbar-bg">
+		        </div>
+		        <div class="navbar-inner sliding">
+		            <div class="navbar-inner sliding">
+		            	<div class="left"></div>
+		            	<div class="title" style="left: 0px;">Termo</div>
+		            	<div class="right"></div>
+		            </div>
+		        </div>
+		    </div>
+    
+		    <div class="tabs" style="height: 100% !important;">
+		        <div class="page-content tab tab-active" id="tab-1" onscroll="myFunction()" style="background-color: #dbe3e3a6;">
+		            <div class="card block" id="contentTermo" style="padding-top: 10px;">
+						<h2>Termo de Uso</h2>
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+						<br>
+	
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+						<br>					
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+						<br>
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+
+		                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel enim veniam tenetur laborum porro et consequuntur, earum iusto saepe, blanditiis obcaecati sint odio autem aut qui in, suscipit aliquam totam.
+		            </div>
+
+		            <div class="toolbar toolbar-bottom">
+				      <div class="toolbar-inner row" style="position: relative;left: 15px;">
+						<div class="simple-list" id="concordaComTermo">
+					      	<label class="toggle color-green" id="toggleAcordo" style="margin-right: 10px;">
+						        <input type="checkbox" id="checkboxElementoTermo">
+						        <span class="toggle-icon"></span>
+					      	</label>
+					      	<span>Li e concordo com os termos</span>
+						</div>
+						<button id="btnCancelarConta" class="col-50 button button-raised button-large color-gray button-fill" onclick="cancelarTermo()">Cancelar</button>
+						<button id="btnAtivarConta" class="col-50 button button-raised button-large color-green button-fill">Ativar conta</button>
+				      </div>
+				    </div>
+				    <script>
+				    	$("#btnAtivarConta").click(function(event) {
+							let dataAttr = $(this).data("liberarsemsenha");
+							console.log(dataAttr);
+							if (dataAttr == undefined) {
+								aceiteiTermo();
+							}else{
+								aceiteiTermo(dataAttr);
+							}
+						});
+				    </script>
+		        </div>
+		    </div>
+		</div>
+		
+		<!--############ Tela definicao senha acesso ############## -->
+		<div id="defineSenha" class="login_iniNew">
+			<img class="" src="img/logoicon.png" width="150">
+			<div id="formDefinePassword" class="form-signin" style="top: 24px;position: relative;padding: 15px 14px;"> 
+				<div class="" style="position: relative;padding: 12px;padding-bottom: 52px;">
+					<form class="row list" id="formSendDefineSenha">
+					    <div class="col-xs-12 item-content item-input">
+					      	<div class="item-inner" style="padding-right: 0px !important;">
+						        <div class="item-input-wrap">
+						          <input type="password" name="defineSenha" id="inputDefineSenha" validate required="true" placeholder="Definir Senha" style="border: none;">
+						          <span class="input-clear-button"></span>
+						        </div>
+					      	</div>
+					    </div>
+					    <p></p>
+					    <div class="col-xs-12 item-content item-input">
+						    <div class="item-inner" style="padding-right: 0px !important;">
+						        <div class="item-input-wrap">
+						          <input type="password" name="defineSenhaRepita" id="inputDefineSenhaRepita" validate required="true" placeholder="Repetir Senha" style="border: none;">
+						          <span class="input-clear-button"></span>
+						        </div>
+					      	</div>
+					    </div>
+						
+						<div class="col-xs-12" style="position: relative;top: 14px;">
+							<a class="btn btn-success btn-lg btn-block btn-no-border" style="color: white;" id="btnSaveSenha" onclick="salvarSenha()" name="entrar"> Salvar </a>
+							<!-- <a id="btnSaveSenha" class="col-100 button button-raised button-large color-green button-fill" onclick="salvarSenha()">Salvar</a> -->
+						</div>
+						<div class="col-xs-12" style="position: relative;top: 20px;">
+							<a class="btn btn-block btn-default btn-no-border" style="position: relative; color: #b8bec5" onclick="btnSairTelaDefineSenha()">sair</a>
+						</div>
+
+						<!-- <div class="col-xs-6" style="position: relative;top: 14px;">
+							<button class="btn btn-primary btn-lg btn-block btn-no-border" name="entrar"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</button>
+						</div>
+						<div class="col-xs-6" style="position: relative;top: 14px;">
+							<button class="btn btn-lg btn-danger btn-block btn-no-border"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
+						</div> -->
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<!--################### Tela Login usuario/senha ################-->
 	    <div id="login_ini" class="login_ini">
 			<img src="img/logoicon.png" width="150">
-			<form id="form_login"> 
+		
+
+    		<div class="sheet-modal loginApp" id="" style="display: block;height: 290px;">
+				<div class="toolbar">
+					<div class="toolbar-inner">
+						<div class="left">
+							<i class="fa fa-sign-in" aria-hidden="true" style="margin-left: 10px;"></i>
+						</div>
+						<div class="right">
+							<a class="link sheet-close" id="sairLogin" onclick="loginOut()" href="#">Sair</a>
+						</div>
+					</div>
+				</div>
+				<div class="list" id="">
+				    <div class="item-content item-input">
+				      	<div class="item-inner">
+					        <form id="form_login">
+						        <div class="item-input-wrap">
+						          <input id="login" type="email" validate class="" name="email" placeholder="seuemail@mail.com" onblur="" style="border: none;" autocomplete="off">
+						        </div>
+								<br>
+						        <div class="item-input-wrap">
+						          <input id="senha" type="password" validate class="" name="senha" placeholder="************" onblur="" style="border: none;" autocomplete="off">
+						        </div>
+
+						        <button class="btn btn-success btn-lg btn-block btn-no-border" onClick="login_user();" style="color: white;width: 100%;position: relative;top: 13px;" id="" name="entrar"> Entrar </button>
+
+						        <div style="text-align: center; margin-top: 28px">
+									<a href="#" style="color:gray" onclick="esqueciMinhaSenha()">Esqueci a minha Senha </a> 
+								</div>
+							</form>
+				      	</div>
+				    </div>
+				</div>
+			</div>
+			
+			<!-- modelo antigo -->
+			<!-- <form id="form_login"> 
 				<div class="input-group" style="margin-top: 30px; padding: 20px;">
 					<input class="form-control" id="login" type="email" name="email" value="Usu&aacute;rio" onfocus="Esvazia(this)" onblur="Padrao(this)" autocomplete="off">
 					<span class="input-group-addon"><i class="fa fa-user-o"></i></span>
@@ -636,10 +1021,13 @@
 					<input class="btn btn-primary" type="button" name="entrar" value="Entrar" onClick="login_user();" style="width: 50%" >
 				</div>
 				<div style="text-align: center; margin-top: 20px">
-					<a href="#" onclick="afed('#bg_box5','','','',1);$('#email_recupera').focus();">Esqueceu sua senha?</a>
+					<a href="#" style="color:gray" data-sheet=".recuperaSenha" class="sheet-open">Esqueci a minha Senha </a> 
 				</div>
-			</form>
+			</form> -->
 		</div>
+		<!-- ############################################################ -->
+
+
 		<div id="login_perfil" class="login_perfil"> <img alt="" src="img/logoicon.png">
 			<form id="form_perfil" style="border-radius: 0px">
 				<span id="texto_login" class="texto_login">Selecione o seu Condomínio</span>
@@ -654,7 +1042,7 @@
 			</form>
 		</div>
 		  
-<!--   $HOME    -->
+		<!--   $HOME    -->
 		  
 		<div id="home" class="home"> 
 		<!-- Statusbar overlay -->
@@ -3932,7 +4320,6 @@
 				<div class="left"><span class="fa fa-paw" style="margin-left: 10px;"></span></div>
 				<div class="right"><a class="link sheet-close" id="fecha_busca_pet" href="#">Fechar</a></div>
 			</div>
-          
 		</div>
 		<div class="item-input-wrap">
 			<form id="busca_dpet" style="margin-top:10%;margin-left: 10%;margin-right: 10%;"> 
@@ -3950,8 +4337,6 @@
 				<span type="text" style="width: 100%;margin-top: 10%;"  class="button button-fill color-green link sheet-close" onclick="get_filtro_pet();"><i class="fa fa-search" style="margin-right: 1%;"></i>BUSCAR</span>
 			</form>
 		</div>
-		
-    
 	</div>
 		
 		
@@ -5157,14 +5542,8 @@
 			</div>
 		</div>
 	</div>
-		
-		
 
-
-
-
-
-<!-- $RELATORIOS -->
+	<!-- $RELATORIOS -->
 	<div id="relatorios" class="pagina relatorios">
 		<div class="topo_sub" style="background-color:#53c7ec;"> <img alt="" onClick="afed('#home','#relatorios','','',2,'home');" src="img/voltar.png"> <span>Relatorios</span> </div>
 			<div class="scroll">
@@ -5172,7 +5551,30 @@
 			</div>
 		</div>				
 	</div>
-    <!---   $FUNCOES          --> 
+    <!-- $FUNCOES --> 
+
+    	<script>
+			// function loginFB() {
+				// console.log("fimcopna.....");
+				// let email = "testefirstlg@gmail.com";	// checkUsuarioFacebookToLogin(userData.email);
+
+			    // facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+			    //     alert(JSON.stringify(result));
+			    //     facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+			    //         alert(JSON.stringify(userData));
+			    //         let name = userData.name;
+			    //         let email = userData.email;
+			    //         checkUsuarioFacebookToLogin(userData.email);
+			    //     },function(error){
+			    //         alert(JSON.stringify(error));
+			    //         alert("erro no query do api...");
+			    //     });
+			    // },function(error){
+			    //     alert(JSON.stringify(error));
+			    //     alert("erro no metodo login...");
+			    // });
+			// }
+    	</script>
 
 				<script type="text/javascript">
 					altera_menu();
@@ -5192,9 +5594,10 @@
 					});
 					
 					var app2 = new Framework7({
-		// App root element
-		root: '#app'
-	});
+						// App root element
+						root: '#app'
+					});
+
 					var mainView    = app2.views.create('.view-main'       );
 					var mainLibera  = app2.views.create('.view-liberacao'  );
 					var mainLibera  = app2.views.create('.view-liberacao2'  );
@@ -5214,209 +5617,205 @@
 						
 						app2.ptr.done();
 					});
-///*******NEW SCROLL INFINITO***************************************************************************/
-//		var allowInfinite = true;			
-		
-
-//		
-//		$$('.infinite-scroll-content').on('infinite', function () {
-//		  var lastItemIndex = $$('#pull-entregas .list li').length;
-//			
-//		  alert(lastItemIndex);
-//		  // Exit, if loading in progress
-//		  if (!allowInfinite) return;
-//
-//		  // Set loading flag
-//		  allowInfinite = false;
-//
-//		  // Emulate 1s loading
-//		  setTimeout(function () {
-//			// Reset loading flag
-//		  allowInfinite = true;
-//
-//			if (lastItemIndex >= maxItems) {
-//			  // Nothing more to load, detach infinite scroll events to prevent unnecessary loadings
-//			  app2.infiniteScroll.destroy('.infinite-scroll-content');
-//			  //app2.infiniteScroll.create('.infinite-scroll-content');
-//			  // Remove preloader
-//			  $$('.infinite-scroll-preloader').remove();
-//			  return;
-//			}
-//
-//			// Generate new items HTML
-////			var html = '';
-////			for (var i = lastItemIndex + 1; i <= lastItemIndex + itemsPerLoad; i++) {
-////			  html += '<li>Item ' + i + '</li>';
-////			}
-//
-//			// Append new items
-////			$$('.list ul').append(html);
-//
-//			// Update last loaded index
-//			lastItemIndex = $$('#pull-entregas .list li').length;
-//			alert(lastItemIndex);
-//		  }, 1000);
-//		});
-///**********************************************************************************************/
-
-	// create searchbar
-	var searchbar = app2.searchbar.create({
-		el: '#busca_chat',
-		searchContainer: '#fale_usuarios',
-		searchIn: '.item-title',
-		on: {
-			search() {
-				carrega_chat();
-				$(".list").show();
-				//$(".block").hide();		
-			}
-		}
-	});
 					
-					
-	var searchbar_liberacao = app2.searchbar.create({
-		el: '#form_busca_liberacao',
-		searchContainer: '#retorno_liberacao',
-		searchIn: '.item-title',
-		on: {
-			search() {
-				carrega_liberacao(0);
-				//alert("busca_liberacao");
-				$(".list").show();
-				//$(".block").hide();	
-			}
-		}
-	});
-	var searchbar_liberacao2 = app2.searchbar.create({
-		el: '#form_busca_liberacao2',
-		searchContainer: '#retorno_liberacao2',
-		searchIn: '.item-title',
-		on: {
-			search() {
-				carrega_liberacao2(0);
-				//alert("busca_liberacao");
-				$(".list").show();
-				//$(".block").hide();	
-			}
-		}
-	});
-	var searchbar_comunicados = app2.searchbar.create({
-		el: '#form_busca_comunicados',
-		searchContainer: '#busca_comunicados',
-		searchIn: '.item-title',
-		on: {
-			search() {
-				carrega_comunicados(0);	
-				$(".list").show();
-				//$(".block").hide();	
-			}
-		}
-	});
-	var searchbar_documentos = app2.searchbar.create({
-		el: '#form_busca_documentos',
-		searchContainer: '#busca_documento',
-		searchIn: '.item-title',
-		on: {
-			search() {
-				carrega_documentos(0);	
-				$(".list").show();
-				//$(".block").hide();	
-			}
-		}
-	});
+					///*******NEW SCROLL INFINITO********************************************************************/
+					//		var allowInfinite = true;			
+					//		
+					//		$$('.infinite-scroll-content').on('infinite', function () {
+					//		  var lastItemIndex = $$('#pull-entregas .list li').length;
+					//			
+					//		  alert(lastItemIndex);
+					//		  // Exit, if loading in progress
+					//		  if (!allowInfinite) return;
+					//
+					//		  // Set loading flag
+					//		  allowInfinite = false;
+					//
+					//		  // Emulate 1s loading
+					//		  setTimeout(function () {
+					//			// Reset loading flag
+					//		  allowInfinite = true;
+					//
+					//			if (lastItemIndex >= maxItems) {
+					//			  // Nothing more to load, detach infinite scroll events to prevent unnecessary loadings
+					//			  app2.infiniteScroll.destroy('.infinite-scroll-content');
+					//			  //app2.infiniteScroll.create('.infinite-scroll-content');
+					//			  // Remove preloader
+					//			  $$('.infinite-scroll-preloader').remove();
+					//			  return;
+					//			}
+					//
+					//			// Generate new items HTML
+					//			var html = '';
+					//			for (var i = lastItemIndex + 1; i <= lastItemIndex + itemsPerLoad; i++) {
+					//			  html += '<li>Item ' + i + '</li>';
+					//			}
+					//
+					//			// Append new items
+					//			$$('.list ul').append(html);
+					//
+					//			// Update last loaded index
+					//			lastItemIndex = $$('#pull-entregas .list li').length;
+					//			alert(lastItemIndex);
+					//		  }, 1000);
+					//		});
+					///**********************************************************************************************/
 
-	var liberacaoPopup = app2.popup.create({
-		el: '.popup-liberacao',
-		animate: false,
-		on: {
-			open: function (popup) {
-				console.log('Popup open');
-			},
-			opened: function (popup) {
-				app.controler_pull('liberacao');  // controle do pull refresh
-				carrega_liberacao(0);
-			},
-		}
-	});
-	
-	var liberacaoPopup2 = app2.popup.create({
-		el: '.popup-liberacao2',
-		animate: false,
-		on: {
-			open: function (popup) {
-				console.log('Popup open');
-			},
-			opened: function (popup) {
-				app.controler_pull('liberacao2');  // controle do pull refresh
-				carrega_liberacao2(0);
-			},
-		}
-	});
-                    
-    var searchbar_ocorrencias = app2.searchbar.create({
-		el: '#form_busca_ocorrencias',
-		searchContainer: '#busca_ocorrencias',
-		searchIn: '.item-title',
-		on: {
-			search() {
-				var ordem = $('#ol_ordem').val();
-				carrega_ocorrencias(ordem);	
-				$(".list").show();
-				//$(".block").hide();	
-			}
-		}
-	});
-					
-	
-                    
-	
-	function closePopUp(){
-		liberacaoPopup.close(false);
-	};
-	
-	function openPopUp(){
-		liberacaoPopup.open(false);
-	};
-	
-	function openNotificacao(icone,titulo,subtitulo,texto){
-        if(localStorage.getItem("NOT_TYPE") == 1){
-            var icone = 'glyphicon glyphicon-bullhorn';
-        }else if(localStorage.getItem("NOT_TYPE") == 2){
-            var icone = 'glyphicon glyphicon-duplicate';
-        }else if(localStorage.getItem("NOT_TYPE") == 3){
-            var icone = 'fa fa-pie-chart';
-        }else if(localStorage.getItem("NOT_TYPE") == 4){
-            var icone = 'glyphicon glyphicon-comment';
-        }else if(localStorage.getItem("NOT_TYPE") == 5){
-            var icone = 'glyphicon glyphicon-warning-sign';
-        }else if(localStorage.getItem("NOT_TYPE") == 6){
-            var icone = 'glyphicon glyphicon-log-in';
-        }else if(localStorage.getItem("NOT_TYPE") == 7){
-            var icone = 'glyphicon glyphicon-log-in';
-        }else if(localStorage.getItem("NOT_TYPE") == 8){
-            var icone = 'glyphicon glyphicon-envelope';
-        }else if(localStorage.getItem("NOT_TYPE") == 9){
-            var icone = 'glyphicon glyphicon-envelope';
-        }else if(localStorage.getItem("NOT_TYPE") == 13){
-            var icone = 'glyphicon glyphicon-log-in';
-        }else if(localStorage.getItem("NOT_TYPE") == 14){
-            var icone = 'glyphicon glyphicon-log-in';
-        }else if(localStorage.getItem("NOT_TYPE") == 20){
-            var icone = 'fa fa-cogs';
-        }else if(localStorage.getItem("NOT_TYPE") == 21){
-            var icone = 'glyphicon glyphicon-calendar';
-        }else if(localStorage.getItem("NOT_TYPE") == 99){
-			  var icone = 'glyphicon glyphicon-bullhorn';	 
-	    }else{
-            var icone = 'glyphicon glyphicon-home';
-        }
-		
-		
-		
-		
+					// create searchbar
+					var searchbar = app2.searchbar.create({
+						el: '#busca_chat',
+						searchContainer: '#fale_usuarios',
+						searchIn: '.item-title',
+						on: {
+							search() {
+								carrega_chat();
+								$(".list").show();
+								//$(".block").hide();		
+							}
+						}
+					});
+									
+									
+					var searchbar_liberacao = app2.searchbar.create({
+						el: '#form_busca_liberacao',
+						searchContainer: '#retorno_liberacao',
+						searchIn: '.item-title',
+						on: {
+							search() {
+								carrega_liberacao(0);
+								//alert("busca_liberacao");
+								$(".list").show();
+								//$(".block").hide();	
+							}
+						}
+					});
+					var searchbar_liberacao2 = app2.searchbar.create({
+						el: '#form_busca_liberacao2',
+						searchContainer: '#retorno_liberacao2',
+						searchIn: '.item-title',
+						on: {
+							search() {
+								carrega_liberacao2(0);
+								//alert("busca_liberacao");
+								$(".list").show();
+								//$(".block").hide();	
+							}
+						}
+					});
+					var searchbar_comunicados = app2.searchbar.create({
+						el: '#form_busca_comunicados',
+						searchContainer: '#busca_comunicados',
+						searchIn: '.item-title',
+						on: {
+							search() {
+								carrega_comunicados(0);	
+								$(".list").show();
+								//$(".block").hide();	
+							}
+						}
+					});
+					var searchbar_documentos = app2.searchbar.create({
+						el: '#form_busca_documentos',
+						searchContainer: '#busca_documento',
+						searchIn: '.item-title',
+						on: {
+							search() {
+								carrega_documentos(0);	
+								$(".list").show();
+								//$(".block").hide();	
+							}
+						}
+					});
 
-//        alert('entro');
-// Create notification with close button
+					var liberacaoPopup = app2.popup.create({
+						el: '.popup-liberacao',
+						animate: false,
+						on: {
+							open: function (popup) {
+								console.log('Popup open');
+							},
+							opened: function (popup) {
+								app.controler_pull('liberacao');  // controle do pull refresh
+								carrega_liberacao(0);
+							},
+						}
+					});
+					
+					var liberacaoPopup2 = app2.popup.create({
+						el: '.popup-liberacao2',
+						animate: false,
+						on: {
+							open: function (popup) {
+								console.log('Popup open');
+							},
+							opened: function (popup) {
+								app.controler_pull('liberacao2');  // controle do pull refresh
+								carrega_liberacao2(0);
+							},
+						}
+					});
+				                    
+				    var searchbar_ocorrencias = app2.searchbar.create({
+						el: '#form_busca_ocorrencias',
+						searchContainer: '#busca_ocorrencias',
+						searchIn: '.item-title',
+						on: {
+							search() {
+								var ordem = $('#ol_ordem').val();
+								carrega_ocorrencias(ordem);	
+								$(".list").show();
+								//$(".block").hide();	
+							}
+						}
+					});
+									
+					
+				                    
+					
+					function closePopUp(){
+						liberacaoPopup.close(false);
+					};
+					
+					function openPopUp(){
+						liberacaoPopup.open(false);
+					};
+					
+					function openNotificacao(icone,titulo,subtitulo,texto){
+				        if(localStorage.getItem("NOT_TYPE") == 1){
+				            var icone = 'glyphicon glyphicon-bullhorn';
+				        }else if(localStorage.getItem("NOT_TYPE") == 2){
+				            var icone = 'glyphicon glyphicon-duplicate';
+				        }else if(localStorage.getItem("NOT_TYPE") == 3){
+				            var icone = 'fa fa-pie-chart';
+				        }else if(localStorage.getItem("NOT_TYPE") == 4){
+				            var icone = 'glyphicon glyphicon-comment';
+				        }else if(localStorage.getItem("NOT_TYPE") == 5){
+				            var icone = 'glyphicon glyphicon-warning-sign';
+				        }else if(localStorage.getItem("NOT_TYPE") == 6){
+				            var icone = 'glyphicon glyphicon-log-in';
+				        }else if(localStorage.getItem("NOT_TYPE") == 7){
+				            var icone = 'glyphicon glyphicon-log-in';
+				        }else if(localStorage.getItem("NOT_TYPE") == 8){
+				            var icone = 'glyphicon glyphicon-envelope';
+				        }else if(localStorage.getItem("NOT_TYPE") == 9){
+				            var icone = 'glyphicon glyphicon-envelope';
+				        }else if(localStorage.getItem("NOT_TYPE") == 13){
+				            var icone = 'glyphicon glyphicon-log-in';
+				        }else if(localStorage.getItem("NOT_TYPE") == 14){
+				            var icone = 'glyphicon glyphicon-log-in';
+				        }else if(localStorage.getItem("NOT_TYPE") == 20){
+				            var icone = 'fa fa-cogs';
+				        }else if(localStorage.getItem("NOT_TYPE") == 21){
+				            var icone = 'glyphicon glyphicon-calendar';
+				        }else if(localStorage.getItem("NOT_TYPE") == 99){
+							  var icone = 'glyphicon glyphicon-bullhorn';	 
+					    }else{
+				            var icone = 'glyphicon glyphicon-home';
+				        }
+
+				// alert('entro');
+				// Create notification with close button
+
         var notificationWithButton = app2.notification.create({
 			
           icon: '<i class="'+icone+'"></i>',
@@ -5425,14 +5824,11 @@
           closeButton: true,
           closeOnClick: true,
           on: {
-			  
 			open: function () {
-				 			
-				 
+								 
 			},
-			  
             click: function () {
-//                app2.dialog.alert('Notification closed');
+               app2.dialog.alert('Notification closed');
                 var id_reg    = localStorage.getItem("NOT_ID");
                 var tipo      = localStorage.getItem("NOT_TYPE");
                 var not_cond  = localStorage.getItem("NOT_COND");
@@ -5487,8 +5883,8 @@
                         if(tipo==20){
                             var val_confg = id_reg.split(';');
                             if(val_confg[0] == 'Morador'){
-    //                                    alert(id_reg);
-    //                                    alert('DADOS1'+val_confg[0]);
+	                            alert(id_reg);
+	                            alert('DADOS1'+val_confg[0]);
                                 $( "#DADOS #MHOME" ).val(val_confg[2]);
                                 $( "#DADOS #MCOMUNICADOS" ).val(val_confg[3]);
                                 $( "#DADOS #MLUNICA" ).val(val_confg[4]);
@@ -5511,7 +5907,6 @@
                                 if($( "#DADOS #MDOCUMENTOS" ).val() == 1){ afed('#menu_documentos','','','',3); }else{ afed('','#menu_documentos','','',3); } 
                                 if(localStorage.getItem('MOCORRENCIA') == 1){ afed('#menu_ocorrencia','','','',3); }else{ afed('','#menu_ocorrencia','','',3); } 
                                 if(localStorage.getItem('MPET') == 1){ afed('#menu_pet','','','',3); }else{ afed('','#menu_pet','','',3); }
-
                             }
                         }else if(tipo==21){
                             var vfiltro = id_reg.split('||');
@@ -5541,18 +5936,18 @@
         var dados = parametros.split('||');
         if(modulo == 'visita'){
 			localStorage.setItem('TELA_ATUAL','evento_liberacao')
-//            if(dados[0] == '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'){
-//                var foto  = 'img/user3.png';
-//				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
-//            }else{
-//			    var icone = '';
-//				if(foto == 'img/user3.png' || foto == ''){
-//				   icone = '';
-//				}else{
-//				   icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
-//				}
-//                var foto  = 'data:image/jpeg;base64,'+dados[0]+'';
-//            }
+			//            if(dados[0] == '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'){
+			//                var foto  = 'img/user3.png';
+			//				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
+			//            }else{
+			//			    var icone = '';
+			//				if(foto == 'img/user3.png' || foto == ''){
+			//				   icone = '';
+			//				}else{
+			//				   icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
+			//				}
+			//                var foto  = 'data:image/jpeg;base64,'+dados[0]+'';
+			//            }
 			if(dados[0] == ''){
 				var icone = '<span style="color: #c2c2c2;font-size: 9em;margin-left: 17px;" class="fa fa-user-circle"></span>';
 				//var foto  = '';
@@ -5801,6 +6196,4 @@
                 
 </script>
 </body>
-
-
 </html>
