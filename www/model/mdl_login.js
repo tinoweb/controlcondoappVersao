@@ -1,6 +1,5 @@
 // LOGIN USUARIO DEVICE (VALIDA O LOGIN PELO ID DO DISPOSITIVO)
 function login_user_device(){
-    //alert('Login');
 	localStorage.setItem('VERSAO','1.2.5');
     if(navigator.connection.type != 'none'){
         //alert('teste2');
@@ -9,21 +8,15 @@ function login_user_device(){
         }else{
             var UUID = device.uuid;
         }
-        //alert(UUID);
         $.ajax({
             type       : "POST",
-            //url        : "https://leo.controlcondo.com.br/controlcondo/appweb/login.php",
-            url        : "http://aut.controlcondo.com.br/login/appweb/login.php",
+            url        : "https://aut.controlcondo.com.br/login/appweb/login_multi.php",
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
-            //data       : {uuid : '123456'}, //local
             data       : {uuid : UUID, id_notificacao : localStorage.getItem('registrationId')}, //APP
-            dataType   : 'json',
+            //dataType   : 'json',
             success    : function(retorno) {
-				//alert(retorno[0]['VERSAO']);
-				//if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
-					   //alert('versao ok');
 				console.log(retorno);
 				if(retorno[0]['error'] == 0){
 					if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
@@ -245,8 +238,8 @@ function login_user_device(){
 }
 
 // FUNCAO LOGIN USUARIO (LOGIN POR EMAIL/SENHA)
-function login_user() {
-
+function login_user(e) {
+	e.preventDefault();
 	if(navigator.connection.type != 'none'){
 		var dados = $( "#form_login" ).serialize();
         if(device.uuid == null){
@@ -256,18 +249,17 @@ function login_user() {
         }
 		//alert(device.uuid);
 		//alert("Device: "+device.model+' sistema='+device.platform+' uuid='+UUID+' versao='+device.version+' id_notificacao='+localStorage.getItem('registrationId'));
-		
 		$.ajax({
 			type: 'POST',
-			url: 'http://aut.controlcondo.com.br/login/appweb/login_multi.php',
+			url: 'https://aut.controlcondo.com.br/login/appweb/login_multi.php',
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
             dataType   : 'json',
 			//data: dados+'&nome=local&sistema=windows&uuid=123456&versao=10', //local
 			data: dados+'&nome='+device.model+'&sistema='+device.platform+'&uuid='+UUID+'&versao='+device.version+'&id_notificacao='+localStorage.getItem('registrationId'), //APP
+			//data: dados+'&nome=teste&sistema=teste&uuid=1234&versao=12&id_notificacao=123456', //APP
 			success: function(retorno){
-				alert(retorno);
 				if(retorno[0]['error'] == 1){
 					notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
 				}else{
@@ -276,6 +268,7 @@ function login_user() {
 				}
 			},
             error: function(error){
+				alert(4);
             	console.log(error);
                 notifica('Aviso/Erro de conexão com o servidor/Fechar',0,0);
             }
@@ -291,13 +284,14 @@ function carrega_user_perfil(id) {
 	if(navigator.connection.type != 'none'){
 		$.ajax({
 			type: 'POST',
-			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
+			url: 'https://aut.controlcondo.com.br/login/appweb/login_multi.php',
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
             data       : {id_usuario : id},
             dataType   : 'json',
 			success: function(retorno){
+				alert(retorno);
                 for (x in retorno) {
                     var dado = '<option value="'+retorno[x]['id_usuario_condominio']+'">'+retorno[x]['nome_condominio']+'</option>';
                     dados = dados + dado;
@@ -324,12 +318,15 @@ function select_user(id_usuario_condominio=0) {
 		
 		$.ajax({
 			type: 'POST',
-			url: localStorage.getItem('DOMINIO')+'appweb/login.php',
+			url: 'https://aut.controlcondo.com.br/login/appweb/login_multi.php',
 			data: dados,
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
 			success: function(retorno){
+				//alert(localStorage.getItem('DOMINIO'));
+				//alert(retorno[0]['http']);
+				localStorage.setItem('DOMINIO',retorno[0]['http']+'/controlcondo/v2/');
                 if(retorno[0]['usar_control_condo'] == 1){
 //					alert('credito:'+retorno[0]['qtd_credito_liberacao']);	
 //					alert('periodo:'+retorno[0]['periodo_max_liberacao']);	
