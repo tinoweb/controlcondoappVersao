@@ -10,6 +10,7 @@ function login_user_device(autoInit=null){
         }else{
             var UUID = device.uuid;
         }
+
         $.ajax({
             type       : "POST",
             url        : "https://aut.controlcondo.com.br/login/appweb/login_multi.php",
@@ -33,6 +34,7 @@ function login_user_device(autoInit=null){
 								afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
 								carrega_user_perfil(retorno[0]['id_usuario']);
 							}else{
+								console.log("entrou aki no else...");
 								afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
 								carrega_user_perfil(retorno[0]['id_usuario']);
 							}
@@ -230,7 +232,8 @@ function login_user_device(autoInit=null){
 
 								},500);
 							}else{
-								notifica('Perfil/Perfil usuário inválido/Fechar',0,0);
+								console.log("fala antes....");
+								console.log('Perfil/Perfil usuário inválido/Fechar');
 							}
 
 						}
@@ -543,16 +546,22 @@ function select_user(id_usuario_condominio=0) {
 
 // FUNCAO lOGOUT 
 function logout(){
-	inicia2(0);
+	// inicia2(0);
+	console.log("deslogar .... sair ......");
 
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/logout.php',
+		// url: localStorage.getItem('DOMINIO')+'appweb/logout.php',
+		url : "https://aut.controlcondo.com.br/login/appweb/logout.php",
 		data: 'id='+$( "#DADOS #ID_USER_L" ).val(),
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
 		success: function(retorno){
+			console.log("retoorno");
+			console.log(retorno);
+			// return false;
+
 			afed('#login_ini','#home','','',2,'tela_login');
 			$("#telaAceitaTermo").hide('fast');
 			$("#initApp").show('fast');

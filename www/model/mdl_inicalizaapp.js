@@ -59,10 +59,9 @@ function emailNotRecognizedBySystemAlert(type, messenge, afterClose=null){
 			}else if (afterClose == "backLogin") {
 				swich_tela_login();
 				$("#form_login")[0].reset();
-			}else if(afterClose == "logaDoFace"){
-				login_user_device();
-			}else if(afterClose == "logaDoGoogle"){
-				login_user_device();
+			}else if(afterClose == "logaDoFace" || afterClose == "logaDoGoogle"){
+				var inicializaAutomatico = "inicializaAutomatico";
+				login_user_device(inicializaAutomatico);
 			}else if (afterClose == "termoUso") {
 				$("#initApp").hide();
 				$("#login_ini").hide();
@@ -367,42 +366,59 @@ confirmaCodeResetPassword = (recoveryCode) => {
   ########################################
   */
 
-function loginFB() {
+function getDeviceId() {
+	if(device.uuid == null){
+        var UUID = '1234567890';
+    }else{
+        var UUID = device.uuid;
+    }
+    return UUID;
+}
+
+let loginFB = () => {
+	// app.dialog.preloader("carregando", 'blue');
 	facebookConnectPlugin.logout(
-	function(successo){
-		// alert(JSON.stringify(successo));
-	    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
-	    	// alert(JSON.stringify(result));
-	        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
-	        	// alert(JSON.stringify(userData));
-	            let name = userData.name;
-	            let email = userData.email;
-	    		localStorage.setItem('emailSocialMidia', email);
-	            checkUsuarioFacebookToLogin(email);
-	        },function(error){
-	            alert("erro no query do api...");
-	        });
-	    },function(error){
-	        alert(JSON.stringify(error));
-	        alert("erro no metodo login...");
-	    })
-	},
-	function(erroror){
-		alert(JSON.stringify(erroror));
-	});
-
-
+		function(successo){
+		    facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+		        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+		            let name = userData.name;
+		            let email = userData.email;
+		    		localStorage.setItem('emailSocialMidia', email);
+		            checkUsuarioFacebookToLogin(email);
+		        },function(error){
+		            emailNotRecognizedBySystemAlert("error", 'Erro ao logar com facebook (api)...', afterClose=null);
+		        });
+		    },function(error){
+		        emailNotRecognizedBySystemAlert("error", 'Erro ao logar com facebook (login)...', afterClose=null);
+		    })
+		},
+		function(erroror){
+			facebookConnectPlugin.login(['public_profile', 'email'], function(result){
+		        facebookConnectPlugin.api("/me?fields=id,name,email", ["email"], function(userData){
+		            let name = userData.name;
+		            let email = userData.email;
+		    		localStorage.setItem('emailSocialMidia', email);
+		            checkUsuarioFacebookToLogin(email);
+		        },function(error){
+		           	emailNotRecognizedBySystemAlert("error", 'Erro ao logar com facebook (api)...', afterClose=null); 
+		        });
+		    },function(error){
+		        emailNotRecognizedBySystemAlert("error", 'Erro ao logar com facebook (login)...', afterClose=null);
+		    });
+		}
+	);
 }
 
 checkUsuarioFacebookToLogin = (email) => {
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+		url: "https://aut.controlcondo.com.br/login/appweb/ativacao_post_multi.php", 
+		// localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
         data: { 
-			uuid: device.uuid,
+			uuid: getDeviceId(),
 			nome: device.model,
 			versao: device.version,
 			sistema: device.platform,
@@ -412,8 +428,8 @@ checkUsuarioFacebookToLogin = (email) => {
 		},
         dataType   : 'json',
 		success: function(retorno){
-			// alert(retorno);
-			// alert(JSON.stringify(retorno));
+			console.log("retorno do ativacao pelo facebook...");
+
 			if (retorno.status == "usuarioValidoToLoginFacebook" && retorno.statuscode == 200) {
 				emailNotRecognizedBySystemAlert('success', "direcionando para App", afterClose="logaDoFace");
 			}else 
@@ -427,6 +443,7 @@ checkUsuarioFacebookToLogin = (email) => {
         error: function(error) {
 			console.log(error);
 			console.log('não foi possivel continuar...');
+			emailNotRecognizedBySystemAlert('error', "Não foi possivel continuar com este metodo de autenticação");
         }
 	});	
 }
@@ -438,12 +455,16 @@ checkUsuarioFacebookToLogin = (email) => {
   */
 
 let loginGoogle = () =>{
+	app2.dialog.preloader("carregando", 'blue');
 	window.plugins.googleplus.login({},
 	    function(obj) {
 	      	let email = obj.email;
 	      	let nome = obj.displayName;
 			localStorage.setItem('emailSocialMidia', email);
-		    checkUsuarioGoogleToLogin(email);
+			setTimeout(function() {
+				app2.dialog.close();
+		    	checkUsuarioGoogleToLogin(email);
+			}, 2000);
 	    },
 	    function(msg) {
 	      console.log('error: ' + msg);
@@ -454,12 +475,13 @@ let loginGoogle = () =>{
 checkUsuarioGoogleToLogin = (email) => {
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+		url: "https://aut.controlcondo.com.br/login/appweb/ativacao_post_multi.php", 
+		// url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
         data: { 
-			uuid: device.uuid,
+			uuid: getDeviceId(),
 			nome: device.model,
 			versao: device.version,
 			sistema: device.platform,

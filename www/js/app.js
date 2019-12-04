@@ -1,5 +1,6 @@
 /* formulário vazio */
 function login_user_device() {
+	console.log("logUserdevice from app.js");
 	SERVIDOR_CAMINHO = 'https://www.controlcondo.com.br/controlcondo/v2/';
     PullToRefresh.init({
         mainElement: 'body',
