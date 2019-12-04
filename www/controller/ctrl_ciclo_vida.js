@@ -305,7 +305,8 @@ function responseMessageCalback(type, messenge, afterClose=null){
         },
         onClose: () => {
             console.log("acao apos fechar automatico");
-            
+            $("#primeiroAcesso").hide();
+            $("#telaVerificaCodigo").show();
         }
     }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) {
@@ -318,10 +319,11 @@ function recuperaEmail(){
     var erro  = $('#email_recupera').val();
     if(erro.length>0){
         var dados = 'email='+erro+'&origin=mobileApp';
+        var url = "https://aut.controlcondo.com.br/login/appweb/recupera_senha.php";
         $.ajax({
             type: 'POST',
             data: dados,
-            url: localStorage.getItem('DOMINIO')+'mail_template/pt-br/recupera_senha.php',
+            url: url,
             crossDomain: true,
             dataType   : 'json',
             beforeSend : function() { $("#wait").css("display", "block"); },

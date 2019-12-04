@@ -90,6 +90,9 @@ function alertShowPosibilityToResetPassword(email){
 	  		swich_tela_login();
 	  		esqueciMinhaSenha();
 	  		$("#email_recupera").val(email);
+	  	}else{
+	  		Swal.close();
+	  		primeiroAcessoBtnVoltar();
 	  	}
 	});
 }
@@ -97,16 +100,20 @@ function alertShowPosibilityToResetPassword(email){
 function choosedMail(){
 	let campoEmail = $("#inputReceveEmailToGetCode").val();
 	if (campoEmail.length !== 0) {
-		console.log(localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php');
+		// console.log(localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php');
+		var url = "https://aut.controlcondo.com.br/login/appweb/ativacao_post_multi.php";
+		console.log(url);
+		// return false;
 		$.ajax({
 			type: 'POST',
-			url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+			url: url,
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
 	        data       : { email : campoEmail, typeFunction : 'enviarEmailParaAtivacao' },
 	        dataType   : 'json',
 			success: function(retorno){
+				console.log(retorno);
 				if (retorno.status == "emailNaoReconhecidoPeloSistema") {
 					app2.sheet.close('.recebEmail', true);
 					emailNotRecognizedBySystemAlert('error','Email não reconhecido pelo sistema, Insira seu email cadastrado');
