@@ -1,7 +1,8 @@
 // JavaScript Document
 
 function carrega_notificacoes(tipo){
-	localStorage.setItem('TELA_ATUAL','home');
+alert(1);
+localStorage.setItem('TELA_ATUAL','home');
 var dados = '';
 var id_condominio = $( "#DADOS #ID_CONDOMINIO" ).val();
 var id_usuario_condominio = $( "#DADOS #ID_USER" ).val();
@@ -29,6 +30,8 @@ var grupos      = '';
 var width       = 0 ;
 var grupo       = '';
 var feed        = '';
+alert(2);
+alert(localStorage.getItem('DOMINIO'));
 $.ajax({
     type       : "POST",
     url        : localStorage.getItem('DOMINIO')+"appweb/feed_get.php",
@@ -36,9 +39,9 @@ $.ajax({
     beforeSend : function() { $("#wait").css("display", "block"); },
     complete   : function() { $("#wait").css("display", "none"); },
     data       : {id_condominio : id_condominio,id_usuario_condominio : id_usuario_condominio, pg : parseInt(pg)},
-    dataType   : 'json',
+    //dataType   : 'json',
     success    : function(retorno) {
-	
+		alert(retorno);
 		var cont  =0;
 		var icone ="";
         for (x in retorno) {
@@ -161,9 +164,9 @@ $.ajax({
         $( "#main_feed" ).append(dados);
     },
     error: function(error) {
+        alert('Erro ao carregar feed');                  
         console.dir(error);
         $("#main_feed").html(sem_reg);
-        //alert('Erro ao carregar ');                  
     }
 }).done(function(){
 	console.log("feito");

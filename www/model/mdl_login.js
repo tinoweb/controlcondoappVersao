@@ -240,6 +240,7 @@ function login_user_device(){
 // FUNCAO LOGIN USUARIO (LOGIN POR EMAIL/SENHA)
 function login_user(e) {
 	e.preventDefault();
+	alert('entrou');
 	if(navigator.connection.type != 'none'){
 		var dados = $( "#form_login" ).serialize();
         if(device.uuid == null){
@@ -263,12 +264,12 @@ function login_user(e) {
 				if(retorno[0]['error'] == 1){
 					notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
 				}else{
-					//alert(retorno);
+					alert(retorno);
 					login_user_device();	
 				}
 			},
             error: function(error){
-				alert(4);
+				//alert(4);
             	console.log(error);
                 notifica('Aviso/Erro de conexão com o servidor/Fechar',0,0);
             }
@@ -291,13 +292,16 @@ function carrega_user_perfil(id) {
             data       : {id_usuario : id},
             dataType   : 'json',
 			success: function(retorno){
-				alert(retorno);
+				//alert(retorno);
                 for (x in retorno) {
                     var dado = '<option value="'+retorno[x]['id_usuario_condominio']+'">'+retorno[x]['nome_condominio']+'</option>';
                     dados = dados + dado;
                 }
                 //alert(dados);
                 $('#perfil_login').html(dados);
+			},
+			error : function(erro){
+				alert('Erro login');
 			}
 		});
 	}else{
@@ -308,14 +312,14 @@ function carrega_user_perfil(id) {
 // FUNCAO LOGIN TROCA USUARIO
 function select_user(id_usuario_condominio=0) {
 	
-		
+		//alert(id_usuario_condominio);
 	if(navigator.connection.type != 'none'){
         if(id_usuario_condominio == 0){
             var dados = $( "#form_perfil" ).serialize();
         }else{
             var dados = 'perfil='+id_usuario_condominio;
         }
-		
+		//alert(dados);
 		$.ajax({
 			type: 'POST',
 			url: 'https://aut.controlcondo.com.br/login/appweb/login_multi.php',
@@ -514,6 +518,9 @@ function select_user(id_usuario_condominio=0) {
                     notifica('Perfil/Perfil usuário inválido/Fechar',0,0);
                 }
                 
+			},
+			error : function(erro){
+				alert('Erro Login');
 			}
 		});
 	}else{
