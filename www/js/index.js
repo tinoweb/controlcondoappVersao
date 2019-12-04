@@ -124,7 +124,8 @@ var app = {
         var parentElement = document.getElementById(id);
         console.log('Received Device Ready Event');
         console.log('calling setup push');
-		login_user_device();
+        var autoInit="inicializaAutomatico";
+		login_user_device(autoInit);
 
 		if($("#checkboxElementoTermo").prop('checked')) {
 	        console.log("Termo como super...");

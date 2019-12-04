@@ -56,8 +56,9 @@ function emailNotRecognizedBySystemAlert(type, messenge, afterClose=null){
 				$("#initApp").css('display', 'none');
 			}else if(afterClose == "defineSenha"){
 				switchTelaDefineSenhaToLogin();
-			}else if (afterClose == "logaNoApp") {
-
+			}else if (afterClose == "backLogin") {
+				swich_tela_login();
+				$("#form_login")[0].reset();
 			}else if(afterClose == "logaDoFace"){
 				login_user_device();
 			}else if(afterClose == "logaDoGoogle"){
@@ -291,7 +292,7 @@ function salvarSenha(){
 
 			idUsuario = null;	
 			idUsuario = localStorage.getItem('idUsuarioAtivacao');
-			alert("usuariio ===>>" + idUsuario);
+			// alert("usuariio ===>>" + idUsuario);
 
 			$.ajax({
 				type: 'POST',

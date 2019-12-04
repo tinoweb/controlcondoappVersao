@@ -1,5 +1,7 @@
 // LOGIN USUARIO DEVICE (VALIDA O LOGIN PELO ID DO DISPOSITIVO)
-function login_user_device(){
+function login_user_device(autoInit=null){
+
+	console.log("tentando se auto logar....");
 	localStorage.setItem('VERSAO','1.2.5');
     if(navigator.connection.type != 'none'){
         //alert('teste2');
@@ -15,15 +17,25 @@ function login_user_device(){
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
             data       : {uuid : UUID, id_notificacao : localStorage.getItem('registrationId')}, //APP
-            //dataType   : 'json',
             success    : function(retorno) {
 				console.log(retorno);
+				console.log("retorno das informacoes do login....");
+
 				if(retorno[0]['error'] == 0){
 					if(retorno[0]['VERSAO'] == localStorage.getItem('VERSAO')){
 						if(retorno[0]['perfil'] > 1){
-							//alert('teste4');
-							afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
-							carrega_user_perfil(retorno[0]['id_usuario']);
+							// alert('teste4');
+							console.log(autoInit);
+
+							if (autoInit == "inicializaAutomatico") {
+								swich_tela_login();
+								app2.actions.close('.loginApp', true);
+								afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
+								carrega_user_perfil(retorno[0]['id_usuario']);
+							}else{
+								afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
+								carrega_user_perfil(retorno[0]['id_usuario']);
+							}
 
 							$("#DADOS #ID_USER_L" ).val(retorno[0]['id_usuario']);
 
@@ -261,9 +273,11 @@ function login_user(e) {
 			//data: dados+'&nome=teste&sistema=teste&uuid=1234&versao=12&id_notificacao=123456', //APP
 			success: function(retorno){
 				if(retorno[0]['error'] == 1){
-					notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
+					// notifica('Falha ao Entrar/Usu\u00e1rio ou senha inv\u00e1lida/Fechar',0,0);
+					emailNotRecognizedBySystemAlert('error','Usu\u00e1rio ou senha inv\u00e1lida', 'backLogin');
+					
 				}else{
-					alert(retorno);
+					// alert(retorno);
 					login_user_device();	
 				}
 			},
@@ -406,7 +420,7 @@ function select_user(id_usuario_condominio=0) {
                     MORADOR_SEXO = retorno[0]['masculino'];
                     QUADRA = retorno[0]['rquadra']+' '+retorno[0]['quadra'];
                     LOTE = retorno[0]['rlote']+' '+retorno[0]['lote'];
-				  $( "#blocoapto" ).html(QUADRA+' - '+LOTE);
+				  	$( "#blocoapto" ).html(QUADRA+' - '+LOTE);
                     localStorage.setItem('ROTULO_QUADRA',retorno[0]['rotulo_quadra']);
                     localStorage.setItem('ROTULO_LOTE' ,retorno[0]['rlote']);
                     localStorage.setItem('AUTORIZA' ,retorno[0]['autoriza']);
