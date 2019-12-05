@@ -34,7 +34,7 @@ function login_user_device(autoInit=null){
 								afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
 								carrega_user_perfil(retorno[0]['id_usuario']);
 							}else{
-								console.log("entrou aki no else...");
+								console.log("login da tela login...");
 								afed('#login_perfil,#troca_perfil','#login_ini','','',3,'perfil_login');
 								carrega_user_perfil(retorno[0]['id_usuario']);
 							}
@@ -65,19 +65,15 @@ function login_user_device(autoInit=null){
 								//localStorage.getItem('QTD_CONTROL_CONDO');
 								//$( "#DADOS #ID_MORADORES_UNIDADE" ).val('171');
 
-								setTimeout(function()
-								{
-								 $.ajax({
-										 type       : "POST",
-										 url        : localStorage.getItem('DOMINIO')+"appweb/notificacao_correspondencia.php",
-										 data       : {id_condominio : $("#DADOS #ID_CONDOMINIO").val(),id_unidade : $("#DADOS #ID_UNIDADE").val()}, //APP
-										 success    : function(retornos) 
-													{
-														$("#DADOS #ID_MORADORES_UNIDADE").val(retornos);
-
-													}
-										});	
-
+								setTimeout(function(){
+									$.ajax({
+										type: "POST",
+										url: localStorage.getItem('DOMINIO')+"appweb/notificacao_correspondencia.php",
+										data: {id_condominio : $("#DADOS #ID_CONDOMINIO").val(),id_unidade : $("#DADOS #ID_UNIDADE").val()}, //APP
+										success: function(retornos){
+											$("#DADOS #ID_MORADORES_UNIDADE").val(retornos);
+										}
+									});	
 								},3);	
 
 								
@@ -253,10 +249,21 @@ function login_user_device(autoInit=null){
 }
 
 // FUNCAO LOGIN USUARIO (LOGIN POR EMAIL/SENHA)
-function login_user(e) {
+function login_user(e, logarDaValidacao=null) {
 	e.preventDefault();
 	if(navigator.connection.type != 'none'){
-		var dados = $( "#form_login" ).serialize();
+		if (logarDaValidacao == null) {
+			var dados = $("#form_login").serialize();
+
+			if(dados.indexOf('=&') > -1 || dados.substr(dados.length - 1) == '='){
+			   alerta("Falha ao Logar","Necessário email e senha para continuar");
+			   return false;
+			}
+		}else{
+			dados = `email=${localStorage.getItem('emailDefinidoOk')}&senha=${localStorage.getItem('senhaDefinidoOk')}`;
+			console.log("logar com email e senha do localstorage...");
+		}
+
         if(device.uuid == null){
             var UUID = '1234567890';
         }else{

@@ -305,6 +305,7 @@ function responseMessageCalback(type, messenge, afterClose=null){
         },
         onClose: () => {
             console.log("acao apos fechar automatico");
+            $("#login_ini").hide();
             $("#primeiroAcesso").hide();
             $("#telaVerificaCodigo").show();
         }

@@ -35,6 +35,7 @@ function primeiroAcessoBtnVoltar(){
 	afed('#initApp','#primeiroAcesso','','',1);	
 }
 
+
 function swich_tela_primeiroAcesso(){
 	afed('#primeiroAcesso','#initApp','','',1);
 }
@@ -62,6 +63,11 @@ function emailNotRecognizedBySystemAlert(type, messenge, afterClose=null){
 			}else if(afterClose == "logaDoFace" || afterClose == "logaDoGoogle"){
 				var inicializaAutomatico = "inicializaAutomatico";
 				login_user_device(inicializaAutomatico);
+			}else if(afterClose == "logarDaValidacao"){
+				$("#defineSenha").hide();
+				// $("#initApp").show();
+				event = new CustomEvent('click');
+				login_user(event, 'logarDaValidacao');
 			}else if (afterClose == "termoUso") {
 				$("#initApp").hide();
 				$("#login_ini").hide();
@@ -162,7 +168,8 @@ function enviarCodigoAtivacao(){
 	if (codigoAtivacao.length !== 0) {
 		$.ajax({
 			type: 'POST',
-			url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+			// url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+			url: "https://aut.controlcondo.com.br/login/appweb/ativacao_post_multi.php",
 			crossDomain: true,
 			beforeSend : function() { $("#wait").css("display", "block"); },
 			complete   : function() { $("#wait").css("display", "none"); },
@@ -192,12 +199,14 @@ function enviarCodigoAtivacao(){
 	}
 }
 
+// essa função e responsavel para valdar o facebook e google para login
 let enviarSenhaEliberarAcesso = () => {
 	let email = localStorage.getItem('emailSocialMidia');
 			    localStorage.removeItem('emailSocialMidia');
 	$.ajax({
 		type: 'POST',
-		url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+		url: "https://aut.controlcondo.com.br/login/appweb/ativacao_post_multi.php", 
+		// url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
 		crossDomain: true,
 		beforeSend : function() { $("#wait").css("display", "block"); },
 		complete   : function() { $("#wait").css("display", "none"); },
@@ -229,7 +238,7 @@ let enviarSenhaEliberarAcesso = () => {
 
 function aceiteiTermo(prossigaOutroCaminho=null){
 	if (prossigaOutroCaminho == null) {
-		console.log("entrou aki");
+		console.log("validar uma uma recuperacao de senha, validação do cadastro.");
 		$("#telaAceitaTermo").hide();
 		$("#defineSenha").show();
 		$("#btnSaveSenha").attr('disabled', true);
@@ -240,7 +249,7 @@ function aceiteiTermo(prossigaOutroCaminho=null){
 			}
 		});
 	}else{
-		console.log("posso continuar agora...");
+		console.log("enviar senha e liberar acesso... => validação pelo facebook ou google");
 		enviarSenhaEliberarAcesso();
 	}
 }
@@ -295,14 +304,13 @@ function salvarSenha(){
 		}else{
 
 			let senha = $("#inputDefineSenha").val();
-
 			idUsuario = null;	
 			idUsuario = localStorage.getItem('idUsuarioAtivacao');
-			// alert("usuariio ===>>" + idUsuario);
 
 			$.ajax({
 				type: 'POST',
-				url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+				// url: localStorage.getItem('DOMINIO')+'appweb/ativacao_post.php',
+				url: "https://aut.controlcondo.com.br/login/appweb/ativacao_post_multi.php", 
 				crossDomain: true,
 				beforeSend : function() { $("#wait").css("display", "block"); },
 				complete   : function() { $("#wait").css("display", "none"); },
@@ -315,7 +323,10 @@ function salvarSenha(){
 				success: function(retorno){
 					if (retorno.statuscode == 200 && retorno.status == "senhaDefinidoOk") {
 						$('#formSendDefineSenha').trigger("reset");
-						emailNotRecognizedBySystemAlert('success', "Senha definida com sucesso", "defineSenha");
+						localStorage.setItem('emailDefinidoOk', retorno.emailUsuario);
+						localStorage.setItem('senhaDefinidoOk', senha);
+						localStorage.removeItem('idUsuarioAtivacao');
+						emailNotRecognizedBySystemAlert('success', "Senha definida com sucesso", "logarDaValidacao");
 					}
 		        },
 		        error: function(error) {
@@ -474,9 +485,11 @@ let loginGoogle = () =>{
 			}, 2000);
 	    },
 	    function(msg) {
+	    	app2.dialog.close();
 	      console.log('error: ' + msg);
 	    }
 	);
+	app2.dialog.close();
 }
 
 checkUsuarioGoogleToLogin = (email) => {
